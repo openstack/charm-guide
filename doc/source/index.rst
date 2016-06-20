@@ -11,6 +11,7 @@ with lose coupling between OpenStack Services.
 
    getting-started
    how-to-contribute
+   openstack-charms
    find-us
 
 ====================
