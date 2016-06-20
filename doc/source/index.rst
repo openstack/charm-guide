@@ -10,8 +10,8 @@ with lose coupling between OpenStack Services.
    :includehidden:
 
    getting-started
-   how-to-contribute
    openstack-charms
+   how-to-contribute
    find-us
 
 ====================
