@@ -82,6 +82,9 @@ etc. This is all done in the src/lib/charm/openstack/congress.py file.
 
     class CongressCharm(charms_openstack.charm.OpenStackCharm):
 
+        # name of service to register into keystone
+        service_name = 'congress'
+
         # Internal name of charm - used for HA support + others
         name = 'congress'
 
