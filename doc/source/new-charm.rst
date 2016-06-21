@@ -178,6 +178,13 @@ src/lib/charm/openstack/congress.py file.
         """
         CongressCharm.singleton.render_with_interfaces(interfaces_list)
 
+
+    def assess_status():
+        """Just call the CongressCharm.singleton.assess_status() command to update
+        status on the unit.
+        """
+        CongressCharm.singleton.assess_status()
+
 Add Congress code to react to events
 ------------------------------------
 
@@ -219,6 +226,12 @@ interact with the services it depend on. For example when joining the database
 the charm needs to specify the user and database it requires. The following code
 configures the relations with the dependant services.
 
+.. note:: ``assess_status()``: when a relation changes the workload
+          status may be changed.  e.g. if a interface is complete in the sense
+          that it is connected and all information is available, then that
+          interface will set the `{relation}.available` (by convention).
+          Thus the workload status could change to 'waiting' from 'blocked'.
+
 Append to src/reactive/handlers.py:
 
 .. code:: python
@@ -230,6 +243,7 @@ Append to src/reactive/handlers.py:
         """
         amqp.request_access(username='congress',
                             vhost='openstack')
+        congress.assess_status()
 
 
     @reactive.when('shared-db.connected')
@@ -238,11 +252,13 @@ Append to src/reactive/handlers.py:
         interface.
         """
         database.configure('congress', 'congress', hookenv.unit_private_ip())
+        congress.assess_status()
 
 
     @reactive.when('identity-service.connected')
     def setup_endpoint(keystone):
         congress.setup_endpoint(keystone)
+        congress.assess_status()
 
 Configure Congress
 ------------------
@@ -325,11 +341,12 @@ Append to src/reactive/handlers.py
 .. code:: python
 
     @reactive.when('config.complete')
-    @reactive.when_not('db.synched')
+    @reactive.when_not('db.synced')
     def run_db_migration():
         congress.db_sync()
         congress.restart_all()
-        reactive.set_state('db.synched')
+        reactive.set_state('db.synced')
+        congress.assess_status()
 
 Build and Deploy charm
 ----------------------
