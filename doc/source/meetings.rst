@@ -13,7 +13,7 @@ Weekly meeting
 ==============
 
 If you're interested in the OpenStack Charms, we hold public meetings weekly on
-``#ubuntu-meeting`` on freenode.
+``#openstack-meeting-4`` on freenode.
 
 .. list-table::
    :widths: 25 75
@@ -21,21 +21,22 @@ If you're interested in the OpenStack Charms, we hold public meetings weekly on
 
    * - Meeting Time
      - Local Time
-   * - UTC 1700 Wednesdays
-     - http://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenStack+Charms&iso=20160622T17
+   * - Every two weeks (on even weeks) on Monday at 1700 UTC.
+     - http://www.epochconverter.com/weeknumbers
+     - http://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenStack+Charms&iso=20160711T17
 
 
 Next meeting
 ============
 
-- `Wednesday Jun 22, 2016 @ 1700 UTC
+- `Monday July 11, 2016 @ 1700 UTC
   <http://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenStack+Charms&iso
-  =20160622T17>`_ on ``#ubuntu-meeting`` on freenode
+  =20160711T17>`_ on ``#openstack-meeting-4`` on freenode
 
 Agenda
 ======
 
-https://etherpad.openstack.org/p/openstack-charms-weekly-meeting-20160622
+https://etherpad.openstack.org/p/openstack-charms-weekly-meeting-20160711
 
 Previous meetings
 =================
