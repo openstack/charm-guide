@@ -29,9 +29,8 @@ If you're interested in the OpenStack Charms, we hold public meetings weekly on
 Next meeting
 ============
 
-- `Monday July 11, 2016 @ 1700 UTC
-  <http://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenStack+Charms&iso
-  =20160711T17>`_ on ``#openstack-meeting-4`` on freenode
+- `Monday July 25th, 2016 @ 1700 UTC
+  <http://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenStack+Charms&iso=20160725T17>`_ on ``#openstack-meeting-4`` on freenode
 
 Agenda
 ======
