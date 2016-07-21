@@ -674,3 +674,17 @@ Although it can be a handy side-effect for allowing a function to remember
 previous values, due to a quirk in the interpreter in only assigning the
 reference once, it may be changed in the future and it hides the intention of
 the code.
+
+Avoid side effects in Adapters and Contexts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Adapters (reactive charms) and Contexts should not alter the unit they are
+running, i.e. should not have unexpected side effects. Some environment
+altering side effects do exist in older contexts, however this should not be
+taken as an indicator that it is acceptable to add more.
+
+Why?
+
+Adapters and Contexts are regulary called via the update status hook to assess
+whether a charm is ready. If calling the Context or Adapter has unexpected
+side effects it could interupt service. See `Bug #1605184 <https://bugs.launchpad.net/charms/+source/nova-cloud-controller/+bug/1605184>`__ for an example of this issue.
