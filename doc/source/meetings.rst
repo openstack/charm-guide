@@ -29,16 +29,28 @@ If you're interested in the OpenStack Charms, we hold public meetings weekly on
 Next meeting
 ============
 
-- `Monday July 25th, 2016 @ 1700 UTC
-  <http://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenStack+Charms&iso=20160725T17>`_ on ``#openstack-meeting-4`` on freenode
+- `Monday August 8th, 2016 @ 1700 UTC
+  <http://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenStack+Charms&iso=20160808T17>`_ on ``#openstack-meeting-4`` on freenode
 
 Agenda
 ======
 
-https://etherpad.openstack.org/p/openstack-charms-weekly-meeting-20160711
+- Review ACTION points from previous meeting
+- State of Development for next Charm Release
+- High Priority Bugs
+- Openstack Events
+- Open Discussion
 
 Previous meetings
 =================
 
+https://etherpad.openstack.org/p/openstack-charms-weekly-meeting
+
 Meeting organizers
 ==================
+
+- Liam Young (gnuoy)
+- Alex Kavanagh (tinwood)
+- David Ames (thedace)
+- Carlos Gonzales (cargonza)
+- James Page (jamespage)
