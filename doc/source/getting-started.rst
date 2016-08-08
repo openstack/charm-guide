@@ -6,7 +6,7 @@ Getting started
   getting to know Juju_ is a great first step.
 * You might want to tryout the charms on your laptop using the Juju LXD
   provider and the
-  `OpenStack on LXD bundle <http://github.com/openstack-charmers/openstack-on-lxd>`__
+  `OpenStack on LXD bundle <openstack-on-lxd.html>`__
   if you don't have physical servers to use or just want to contribute a fix
   or change.
 * For bare-metal deployment, Juju uses MAAS_ to provision and configure

@@ -10,6 +10,7 @@ with lose coupling between OpenStack Services.
    :includehidden:
 
    getting-started
+   deployment
    openstack-charms
    how-to-contribute
    find-us
