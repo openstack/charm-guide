@@ -228,7 +228,15 @@ rabbitmq-server + Juju 2.0/MAAS 2.0
 https://bugs.launchpad.net/charms/+source/rabbitmq-server/+bug/1584902
 
 rabbitmq-server charm fails to deploy with Juju 2.0 and MAAS 2.0 due
-to changes in DNS hostname management in MAAS 2.0.
+to changes in DNS hostname management in MAAS 2.0.  To workaround this
+use version 5 of the xenial charm:
+
+.. code:: bash
+
+    juju deploy cs:xenial/rabbitmq-server-5
+
+A more complete backwards compatible solution to this bug is being
+worked on.
 
 ceilometer and aodh + Juju 1.25/MAAS 1.9
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
