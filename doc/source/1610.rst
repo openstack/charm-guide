@@ -5,7 +5,7 @@
 =====
 
 Summary
-~~~~~~~
+=======
 
 The 16.10 OpenStack Charm release includes updates for the following charms:
 
@@ -222,10 +222,34 @@ Deprecation Notices
 Known Issues
 ============
 
-https://bugs.launchpad.net/ubuntu/+source/python-amqp/+bug/1472712
+rabbitmq-server + Juju 2.0/MAAS 2.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 https://bugs.launchpad.net/charms/+source/rabbitmq-server/+bug/1584902
 
+rabbitmq-server charm fails to deploy with Juju 2.0 and MAAS 2.0 due
+to changes in DNS hostname management in MAAS 2.0.
+
+ceilometer and aodh + Juju 1.25/MAAS 1.9
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+https://bugs.launchpad.net/charms/+source/ceilometer/+bug/1632909
+
+ceilometer and aodh charms fail to deploy with Juju 1.25 when deployed
+in LXD containers using the MAAS provider due to hostname resolution
+issues.  Specifically, the API service will fail to startup, resulting
+in a blocked service status.
+
+Adding an entry into /etc/hosts on each LXC unit that correctly maps the
+hostname of the unit to its IP address will workaround this issue.
+
+Ubuntu 16.10 + Juju 1.25/MAAS 1.9
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+https://bugs.launchpad.net/juju-core/+bug/1632530
+
+Juju 1.25 is unable to start LXC containers on physical servers when deploying
+on Ubuntu 16.10 (yakkety).
 
 Bugs Fixed
 ==========
