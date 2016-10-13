@@ -14,6 +14,7 @@ with lose coupling between OpenStack Services.
    openstack-charms
    how-to-contribute
    find-us
+   releases
 
 ====================
  Indices and tables

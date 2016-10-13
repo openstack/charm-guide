@@ -1,0 +1,234 @@
+.. _release_notes_1610:
+
+=====
+16.10
+=====
+
+Summary
+~~~~~~~
+
+The 16.10 OpenStack Charm release includes updates for the following charms:
+
+* aodh
+* barbican
+* ceilometer
+* ceilometer-agent
+* ceph
+* ceph-mon
+* ceph-osd
+* ceph-radosgw
+* cinder
+* cinder-backup
+* cinder-ceph
+* designate
+* designate-bind
+* glance
+* hacluster
+* heat
+* keystone
+* lxd
+* neutron-api
+* neutron-api-odl
+* neutron-openvswitch
+* neutron-gateway
+* nova-cloud-controller
+* nova-compute
+* odl-controller
+* openstack-dashboard
+* openvswitch-odl
+* percona-cluster
+* rabbitmq-server
+* swift-proxy
+* swift-storage
+
+New Charm Features
+==================
+
+Ubuntu 16.10 support
+~~~~~~~~~~~~~~~~~~~~
+
+The OpenStack charms have been validated for Ubuntu 16.10 (Yakkety). The
+Yakkety series charms are available in the charm-store via jujucharms.com. For
+example:
+
+.. code:: bash
+
+    juju deploy --series yakkety cs:nova-compute
+
+
+OpenStack Newton support on 16.04 and 16.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The charms provide full support for OpenStack Newton. For further details and
+documentation on Openstack Newton, please check out
+http://releases.openstack.org/newton
+
+To deploy OpenStack Newton on Ubuntu 16.04, use the 'openstack-origin'
+configuration option, for example:
+
+
+.. code:: bash
+
+    cat > config.yaml << EOF
+    nova-cloud-controller:
+      openstack-origin: cloud:xenial-newton
+    EOF
+
+    juju deploy --config config.yaml nova-cloud-controller
+
+OpenStack Newton is part of the Ubuntu 16.10 release, so no additional
+configuration is required for deployment:
+
+.. code:: bash
+
+    juju deploy --series yakkety cs:nova-cloud-controller
+
+To upgrade an existing Mitaka based deployment on Ubuntu 16.04 to the Newton
+release, simple re-configure the charm with a new openstack-origin
+configuration:
+
+
+.. code:: bash
+
+    juju config nova-cloud-controller openstack-origin=cloud:xenial-newton
+
+Please ensure that ceph services are upgraded before services that consume ceph
+resources, such as cinder, glance and nova-compute.
+
+Rewrite of neutron-api-odl and openvswitch-odl
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The neutron-api-odl and openvswitch-odl charms have both been rewritten using
+the `reactive framework <https://pythonhosted.org/charms.reactive>`__  and the
+`OpenStack charm layers <https://github.com/openstack?query=charm-layer>`__
+and `interfaces <https://github.com/openstack?query=charm-interface>`__.
+
+Upgrading an existing deployment which uses previous versions of these charms is
+not supported.
+
+Application version support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Charms will now display the version of the application they are deploying via
+Juju 2.0 status output.
+
+Swift Proxy swauth
+~~~~~~~~~~~~~~~~~~
+
+The swift-proxy charm now supports the `swauth <https://swauth.readthedocs.io/en/latest/>`__
+authentication module, supporting deployment in standalone configurations
+without the use of keystone.  To enable this option:
+
+.. code:: bash
+
+    juju config swift-proxy auth-type=swauth
+
+An 'add-user' action is provided to setup end user credentials in swauth.
+
+Serial Console Support
+~~~~~~~~~~~~~~~~~~~~~~
+
+Support has been added for accessing instances via the optionally enabled serial
+console feature provided in Nova.
+
+Serial console access is enabled using a new config flag in the nova-cloud-controller
+charm.
+
+This feature is only supported in OpenStack Juno or later, and replaces
+the standard output to the nova console-log.
+
+.. code:: bash
+
+    juju config nova-cloud-controller enable-serial-console=true
+
+
+AppArmor Support
+~~~~~~~~~~~~~~~~
+
+A selection of charms have been enabled with AppArmor profiles for the
+services that they manage. This includes:
+
+* nova-compute
+* ceph-osd
+* neutron-gateway
+
+AppArmor profiles are disabled by default and can be enabled using the
+aa-profile-mode configuration option. Valid settings are 'complain',
+'enforce' or 'disable':
+
+.. code:: bash
+
+    juju config neutron-gateway aa-profile-mode=enforce
+
+
+hacluster default transport
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For this release of the OpenStack Charms, the hacluster charm will default to
+using unicast instead of multicast for corosync communication between units
+participating within a cluster.  This configuration has proven more generally
+reliable than the previous default of multicast.
+
+If you wish to continue to use the multicast configuration, ensure that you
+explicitly set the corosync_transport configuration prior to charm upgrade:
+
+.. code:: bash
+
+    juju config hacluster corosync_transport=multicast
+
+This will ensure that the previous default is maintained during the charm
+upgrade process.
+
+Nova LXD block storage support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Nova Compute LXD integration includes support for persistent block device
+usage via Cinder.  The first release of this feature only supports the Cinder
+iSCSI/LVM reference implementation, and can only be used with the ext4 fileystem
+type, enabled using:
+
+.. code:: bash
+
+    juju config lxd enable-ext4-userns=true
+
+Use of ext4 within unpriviledged containers is still relatively new in the Linux
+Kernel so is not enabled by default.
+
+Barbican
+~~~~~~~~
+
+The barbican charm is provided as the base for future HSM enablement for production
+grade storage of secrets in an OpenStack cloud.  The charm for this release will
+only deploy barbican using the default key store implementation, and as a result
+does not support HA deployment. This charm should not currently be considered secure
+in any way and is not appropriate for production use in an OpenStack cloud.
+
+Upgrading
+=========
+
+Please ensure that the keystone charm is upgraded first.
+
+To upgrade an existing deployment to the latest charm version simply use the
+'upgrade-charm' command:
+
+.. code:: bash
+
+    juju upgrade-charm cinder
+
+
+Deprecation Notices
+===================
+
+Known Issues
+============
+
+https://bugs.launchpad.net/ubuntu/+source/python-amqp/+bug/1472712
+
+https://bugs.launchpad.net/charms/+source/rabbitmq-server/+bug/1584902
+
+
+Bugs Fixed
+==========
+
+For the full list of bugs resolved for the 16.10 release please refer to
+https://launchpad.net/charms/+milestone/16.10
