@@ -12,6 +12,7 @@ with lose coupling between OpenStack Services.
    getting-started
    deployment
    openstack-charms
+   creating-charms
    how-to-contribute
    find-us
    releases
