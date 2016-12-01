@@ -7,7 +7,7 @@ OpenStack on LXD
 Overview
 ========
 
-An OpenStack deployment is typically made over a number of physical servers, using LXD containers where appriopriate for control plane services.
+An OpenStack deployment is typically made over a number of physical servers, using LXD containers where appropriate for control plane services.
 
 However, the average developer probably does not have, or want to have, access to such infrastructure for day-to-day charm development.
 
@@ -16,15 +16,15 @@ Its possible to deploy OpenStack using the OpenStack Charms in LXD containers on
 Host Setup
 ==========
 
-The tools in the openstack-on-lxd git repository require the use of Juju 2.0, which provides full support for the LXD local provider.
+The tools in the openstack-on-lxd git repository require the use of Juju 2.x, which provides full support for the LXD local provider.
 
 .. code:: bash
 
     sudo apt-get install juju lxd zfsutils-linux squid-deb-proxy \
         python-novaclient python-keystoneclient python-glanceclient \
-        python-neutronclient python-openstackclient
+        python-neutronclient python-openstackclient curl
 
-These tools are provided as part of the Ubuntu 16.04 LTS release; the latest Juju 2.0 beta release can be obtained from the Juju team devel PPA:
+These tools are provided as part of the Ubuntu 16.04 LTS release; the latest Juju 2.x beta release can be obtained from the Juju team devel PPA:
 
 .. code:: bash
 
@@ -47,6 +47,20 @@ LXD
 
 Base Configuration
 ~~~~~~~~~~~~~~~~~~
+
+This type of deployment creates numerous containers on a single host which leads to many thousands of file handles.
+
+Some of the default system thresholds may not be high enough for this use case, potentially leading to issues such as `Too many open files`.
+
+To address this, the host system should be configured according to the LXD production-setup_ guide, specifically the `/etc/sysctl.conf` bits:
+
+.. code:: bash
+
+    echo fs.inotify.max_queued_events=1048576 | sudo tee -a /etc/sysctl.conf
+    echo fs.inotify.max_user_instances=1048576 | sudo tee -a /etc/sysctl.conf
+    echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.conf
+    echo vm.max_map_count=262144 | sudo tee -a /etc/sysctl.conf
+    sudo sysctl -p
 
 In order to allow the OpenStack Cloud to function, you'll need to reconfigure the default LXD bridge to support IPv4 networking; is also recommended that you use a fast storage backend such as ZFS on a SSD based block device.  Use the lxd provided configuration tool to help do this:
 
@@ -124,19 +138,25 @@ Deploy
 
 Next, deploy the OpenStack cloud using the provided bundle.
 
-For amd64 installs:
+For amd64 Mitaka:
 
 .. code:: bash
 
-    juju deploy bundle.yaml
+    juju deploy bundle-mitaka.yaml
 
-For s390x:
+For s390x Mitaka:
 
 .. code:: bash
 
-    juju deploy bundle-s390x.yaml
+    juju deploy bundle-mitaka-s390x.yaml
 
-For ppc64el (PowerNV):
+For s390x Newton:
+
+.. code:: bash
+
+    juju deploy bundle-newton-s390x.yaml
+
+For ppc64el (PowerNV) Mitaka:
 
 .. code:: bash
 
@@ -214,7 +234,23 @@ Upload your local public key into the cloud so you can access instances:
 
 .. code:: bash
 
-    nova keypair-add --pub-key ~/.ssh/id_rsa.pub mykey
+    openstack keypair create --public-key ~/.ssh/id_rsa.pub mykey
+
+
+Create Flavors
+++++++++++++++
+It's safe to skip this for Mitaka.  For Newton and later, there are no pre-populated flavors.  Check if flavors exist, and if not, create them:
+
+.. code:: bash
+    openstack flavor list
+
+.. code:: bash
+
+    openstack flavor create --public --ram 512 --disk 1 --ephemeral 0 --vcpus 1 m1.tiny
+    openstack flavor create --public --ram 1024 --disk 20 --ephemeral 40 --vcpus 1 m1.small
+    openstack flavor create --public --ram 2048 --disk 40 --ephemeral 40 --vcpus 2 m1.medium
+    openstack flavor create --public --ram 8192 --disk 40 --ephemeral 40 --vcpus 4 m1.large
+    openstack flavor create --public --ram 16384 --disk 80 --ephemeral 40 --vcpus 8 m1.xlarge
 
 Boot an instance
 ++++++++++++++++
@@ -223,8 +259,8 @@ You can now boot an instance on your cloud:
 
 .. code:: bash
 
-    nova boot --image xenial --flavor m1.small --key-name mykey \
-       --nic net-id=$(neutron net-list | grep internal | awk '{ print $2 }') \
+    openstack server create --image xenial --flavor m1.small --key-name mykey \
+       --wait --nic net-id=$(neutron net-list | grep internal | awk '{ print $2 }') \
        openstack-on-lxd-ftw
 
 Attaching a volume
@@ -286,3 +322,5 @@ Known Limitations
 =================
 
 Currently is not possible to run Cinder with iSCSI/LVM based storage under LXD; this limits use of block storage options to those that are 100% userspace, such as Ceph.
+
+.. _production-setup: https://github.com/lxc/lxd/blob/master/doc/production-setup.md
