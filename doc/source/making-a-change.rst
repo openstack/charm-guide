@@ -79,7 +79,7 @@ release (ensuring that any interim releases have the fix landed):
 
 .. code:: bash
 
-    git checkout -b stable/bug/XXXX stable/YYYY
+    git checkout -b stable/bug/XXXX origin/stable/YYYY
     git cherry-pick -x <hash of master branch commit>
     git review
 
