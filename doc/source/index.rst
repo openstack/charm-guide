@@ -14,6 +14,7 @@ with lose coupling between OpenStack Services.
    openstack-charms
    creating-charms
    how-to-contribute
+   charm-release
    find-us
    releases
 
