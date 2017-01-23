@@ -687,4 +687,4 @@ Why?
 
 Adapters and Contexts are regulary called via the update status hook to assess
 whether a charm is ready. If calling the Context or Adapter has unexpected
-side effects it could interupt service. See `Bug #1605184 <https://bugs.launchpad.net/charms/+source/nova-cloud-controller/+bug/1605184>`__ for an example of this issue.
+side effects it could interrupt service. See `Bug #1605184 <https://bugs.launchpad.net/charms/+source/nova-cloud-controller/+bug/1605184>`__ for an example of this issue.
