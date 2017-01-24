@@ -19,9 +19,11 @@ following release requirements:
 
 2. Charms must include functional tests to be eligible for inclusion in the official
    OpenStack Charm release every 3 months; these are typically implemented as
-   Amulet tests within each charm.
+   Amulet tests (https://jujucharms.com/docs/stable/tools-amulet) within each charm.
 
-3. Charms must have an active and responsive community of developers.
+3. Charms must have an active and responsive community of developers to help sustain the
+   lifecycle of the charm. Charms that do not have any active community participation will
+   be reviewed at a 3 or 6 month cadence.
 
 4. Charms should provide 3rd party CI where it's not possible to provide functional
    testing of charms using standard OpenStack Cloud resources; examples of this might
@@ -42,4 +44,5 @@ OpenStack release cycle.
 This policy is broadly based on the Charm Store 'curated charm' policy adopted
 by the wider charm community, and as such charms not meeting the OpenStack
 Charms release policy will not form part of the curated charm set on the
-Juju Charm Store.
+Juju Charm Store. For more information on 'curated charm' policy, 
+please review https://jujucharms.com/docs/stable/authors-charm-policy.
