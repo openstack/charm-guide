@@ -186,7 +186,7 @@ across them.
 However, the congress endpoint registered in Keystone is still 10.5.3.128, so
 if congress/1 dies clients will fail to connect unless they explicitly set
 congress url. To fix this a Congress VIP can be registered in Keystone and
-the VIP floated accross the Congress units using the hacluster charm.
+the VIP floated across the Congress units using the hacluster charm.
 
 Adding HA
 ~~~~~~~~~
