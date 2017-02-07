@@ -15,22 +15,13 @@ Weekly meeting
 If you're interested in the OpenStack Charms, we hold public meetings weekly on
 ``#openstack-meeting-4`` on freenode.
 
-.. list-table::
-   :widths: 25 75
-   :header-rows: 1
-
-   * - Meeting Time
-     - Local Time
-   * - Every two weeks (on even weeks) on Monday at 1700 UTC.
-     - http://www.epochconverter.com/weeknumbers
-     - http://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenStack+Charms&iso=20160711T17
-
-
 Next meeting
 ============
 
-- `Monday August 8th, 2016 @ 1700 UTC
-  <http://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenStack+Charms&iso=20160808T17>`_ on ``#openstack-meeting-4`` on freenode
+- Every two weeks (on even weeks) on Monday @ 1700 UTC on ``#openstack-meeting-4`` on freenode
+- Every two weeks (on odd weeks) on Monday @ 1000 UTC on ``#openstack-meeting-4`` on freenode
+
+`Week Numbers <http://www.epochconverter.com/weeknumbers>`_ 
 
 Agenda
 ======
