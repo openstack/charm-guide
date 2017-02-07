@@ -46,7 +46,7 @@ can also refer to bugs:
     Related-Bug: #######
 
 Gerrit will automatically link your proposal to the bug reports on launchpad and
-mark them fix commited when changes are merged.
+mark them fix committed when changes are merged.
 
 Execute pep8 and unit tests:
 

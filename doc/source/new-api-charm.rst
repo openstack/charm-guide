@@ -59,7 +59,7 @@ All the questions are optional, below are the responses for Congress.
     What port does the primary service listen on ? 1789
     What is the name of the api service? congress-server
     What type of service is this (used for keystone registration)? congress
-    What is the earliest OpenStack release this charm is compatable with? mitaka
+    What is the earliest OpenStack release this charm is compatible with? mitaka
     Where command is used to sync the database? congress-db-manage --config-file /etc/congress/congress.conf upgrade head
     What packages should this charm install (space seperated list)? congress-server congress-common python-antlr3 python-pymysql
     List of config files managed by this charm (space seperated) /etc/congress/congress.conf

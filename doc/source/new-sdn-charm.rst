@@ -38,7 +38,7 @@ During the charm generation charm tools asks a few questions about the charm.
     charm-create  -t openstack-neutron-plugin virtual-token-ring
     INFO: Generating charm for virtual-token-ring in ./virtual-token-ring
     INFO: No virtual-token-ring in apt cache; creating an empty charm instead.
-    What is the earliest OpenStack release this charm is compatable with? liberty
+    What is the earliest OpenStack release this charm is compatible with? liberty
     What packages should this charm install (space seperated list)?
 
 .. _`Build Charm`:
