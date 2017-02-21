@@ -14,7 +14,7 @@ needed to install a component on compute nodes and to inject some
 configuration into nova.conf.
 
 Prerequisites
-===========
+=============
 
 This will change once the OpenStack templates are on pypi
 
@@ -22,7 +22,7 @@ This will change once the OpenStack templates are on pypi
 
    mkdir sdn-charm
    cd ~/sdn-charm
-   git clone git@github.com:gnuoy/charm_templates_openstack.git
+   git clone git@github.com:openstack-charmers/charm-templates-openstack.git
    cd charm_templates_openstack
    sudo ./setup.py install
 
