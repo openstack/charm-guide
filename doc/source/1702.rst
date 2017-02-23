@@ -1,0 +1,217 @@
+.. _release_notes_17.02
+
+=====
+17.02
+=====
+
+Summary
+=======
+
+The 17.02 OpenStack Charm release includes updates for the following charms:
+
+* aodh
+* barbican
+* ceilometer
+* ceilometer-agent
+* ceph
+* ceph-fs
+* ceph-mon
+* ceph-osd
+* ceph-radosgw
+* cinder
+* cinder-backup
+* cinder-ceph
+* designate
+* designate-bind
+* glance
+* hacluster
+* heat
+* keystone
+* keystone-ldap
+* lxd
+* manila
+* manila-generic
+* neutron-api
+* neutron-api-odl
+* neutron-openvswitch
+* neutron-gateway
+* nova-cloud-controller
+* nova-compute
+* odl-controller
+* openstack-dashboard
+* openvswitch-odl
+* percona-cluster
+* rabbitmq-server
+* swift-proxy
+* swift-storage
+
+New Charm Features
+==================
+
+OpenStack Ocata support on 16.04
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The charms provide full support for OpenStack Ocata. For further details and
+documentation on Openstack Ocata please check out
+http://releases.openstack.org/ocata
+
+To deploy OpenStack Ocata on Ubuntu 16.04, use the 'openstack-origin'
+configuration option, for example:
+
+
+.. code:: bash
+
+    cat > config.yaml << EOF
+    nova-cloud-controller:
+      openstack-origin: cloud:xenial-ocata
+    EOF
+
+    juju deploy --config config.yaml nova-cloud-controller
+
+To upgrade an existing Mitaka based deployment on Ubuntu 16.04 to the Newton
+release, simple re-configure the charm with a new openstack-origin
+configuration:
+
+
+.. code:: bash
+
+    juju config nova-cloud-controller openstack-origin=cloud:xenial-ocata
+
+Please ensure that ceph services are upgraded before services that consume ceph
+resources, such as cinder, glance and nova-compute.
+
+percona-cluster and rabbitmq-server clustering improvements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When deploying the percona-cluster or rabbitmq-server charms in clustered
+configurations, please use the new min-cluster-size configuration option
+to avoid configuration races during unit deployment and clustering:
+
+.. code:: bash
+
+    juju config rabbitmq-server min-cluster-size=3
+    juju add-unit -n 2 rabbitmq-server
+
+    juju config percona-cluster min-cluster-size=3
+    juju add-unit -n 2 percona-cluster
+
+
+keystone v3 domain independent identity drivers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The keystone charm now supports use of different identity drivers for v3 domains;
+the first implementation of this is using the keystone-ldap subordinate charm that
+provides the ability to use an existing LDAP or Active Directory deployment for
+authentication of users for a domain. See the keystone-ldap charm for more details.
+
+hacluster minimum units
+~~~~~~~~~~~~~~~~~~~~~~~
+
+For this release of the OpenStack Charms, the hacluster charm will default to
+requiring a minimum of 3 units before cluster formation will occur;  this
+can be switched back to support two unit clusters:
+
+.. code:: bash
+
+    juju config hacluster cluster_count=2
+
+This change reflects the most common use case for hacluster which is for
+deployments of 3 or more units.
+
+ceph-osd availability zone support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-osd charm now supports an availability zone.  This can be utilized to
+modify the default of having 1 replica per host.
+
+
+Ceph FS support
+~~~~~~~~~~~~~~~
+
+This charm release provides the new ceph-fs charm, providing support for Ceph FS.
+
+.. code:: bash
+
+    juju deploy ceph-fs
+    juju add-relation ceph-mon ceph-fs
+
+ceph-radosgw keystone v3 support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-radosgw charm now has support for the keystone v3 API.
+
+ceph-radsogw FastCGI support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Inline with the Ceph project, the ceph-radosgw charm has dropped support for
+deployment of the Rados Gateway using Apache and mod_fastcgi; existing deployments
+will be reconfigured on upgrade to use the embedded webserver support provided
+by the radosgw binaries.
+
+
+ceph pool permissions restrictions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The cinder, cinder-ceph, glance, nova-compute and ceph-radosgw charms can now
+be optionally configured to request cephx keys with more limited restrictions
+on pool access as required for OpenStack deployments.  This is enabled using the
+`restrict-ceph-pools` configuration option, for example:
+
+.. code:: bash
+
+    juju config cinder-ceph restrict-ceph-pools=True
+
+Nova LXD block storage support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Nova Compute LXD integration includes support for persistent block device
+usage via Cinder using the LVM iSCSI driver; this is now enabled by default.
+
+Upgrading
+=========
+
+Please ensure that the keystone charm is upgraded first.
+
+To upgrade an existing deployment to the latest charm version simply use the
+'upgrade-charm' command:
+
+.. code:: bash
+
+    juju upgrade-charm cinder
+
+
+Deprecation Notices
+===================
+
+ZeroMQ messaging support across the charms will be removed during the Pike
+development cycle.
+
+PostgreSQL database support across the charms will be removed during the
+Pike developement cycle.
+
+Deploy from Source (DFS) support is under review for sustainability and may be
+removed during the Pike development cycle.
+
+Known Issues
+============
+
+ceilometer and aodh + Juju 1.25/MAAS 1.9
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+https://bugs.launchpad.net/charms/+source/ceilometer/+bug/1632909
+
+ceilometer and aodh charms fail to deploy with Juju 1.25 when deployed
+in LXD containers using the MAAS provider due to hostname resolution
+issues.  Specifically, the API service will fail to startup, resulting
+in a blocked service status.
+
+Adding an entry into /etc/hosts on each LXC unit that correctly maps the
+hostname of the unit to its IP address will workaround this issue.
+
+Note that this only impacts OpenStack Newton based deployments.
+
+Bugs Fixed
+==========
+
+For the full list of bugs resolved for the 17.02 release please refer to
+https://launchpad.net/charms/+milestone/17.01 and https://launchpad.net/openstack-charms/+milestone/17.02

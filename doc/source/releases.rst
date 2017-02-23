@@ -3,9 +3,10 @@ Release Notes
 =============
 
 Latest Release Notes
- * `16.10 release <1610.html>`__
+ * `17.02 release <1702.html>`__
 
 Older release notes
+ * `16.10 release <1610.html>`__
  * `16.07 release <https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1607>`__
  * `16.04 release <https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1604>`__
  * `16.01 release <https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1601>`__
@@ -21,3 +22,4 @@ Older release notes
    :hidden:
 
    1610
+   1702
