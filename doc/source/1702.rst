@@ -214,4 +214,4 @@ Bugs Fixed
 ==========
 
 For the full list of bugs resolved for the 17.02 release please refer to
-https://launchpad.net/charms/+milestone/17.01 and https://launchpad.net/openstack-charms/+milestone/17.02
+https://launchpad.net/openstack-charms/+milestone/17.02
