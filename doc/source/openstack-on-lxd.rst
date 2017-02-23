@@ -242,6 +242,7 @@ Create Flavors
 It's safe to skip this for Mitaka.  For Newton and later, there are no pre-populated flavors.  Check if flavors exist, and if not, create them:
 
 .. code:: bash
+
     openstack flavor list
 
 .. code:: bash
