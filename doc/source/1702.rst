@@ -148,6 +148,8 @@ deployment of the Rados Gateway using Apache and mod_fastcgi; existing deploymen
 will be reconfigured on upgrade to use the embedded webserver support provided
 by the radosgw binaries.
 
+The `use-embedded-webserver` option has been removed from this charm and should be
+dropped from any bundles.
 
 ceph pool permissions restrictions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
