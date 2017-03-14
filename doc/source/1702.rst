@@ -80,6 +80,23 @@ configuration:
 Please ensure that ceph services are upgraded before services that consume ceph
 resources, such as cinder, glance and nova-compute.
 
+ceph based cinder storage backends
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+OpenStack Ocata changes the behaviour of cephx key management for ceph based
+cinder storage backends; as a result, nova-compute units must now have copies
+of the key used by the cinder backend for managing ceph storage.  To support
+sharing of these keys, users must add a relation between the cinder-ceph and
+nova-compute charms:
+
+.. code:: bash
+
+    juju add-relation nova-compute cinder-ceph
+
+For more details please see:
+
+    https://bugs.launchpad.net/charm-nova-compute/+bug/1671422
+
 percona-cluster and rabbitmq-server clustering improvements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
