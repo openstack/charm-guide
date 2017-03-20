@@ -40,7 +40,6 @@ https://etherpad.openstack.org/p/openstack-charms-weekly-meeting
 Meeting organizers
 ==================
 
-- Liam Young (gnuoy)
 - Alex Kavanagh (tinwood)
 - David Ames (thedace)
 - Carlos Gonzales (cargonza)
