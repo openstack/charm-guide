@@ -60,6 +60,7 @@ To address this, the host system should be configured according to the LXD produ
     echo fs.inotify.max_user_instances=1048576 | sudo tee -a /etc/sysctl.conf
     echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.conf
     echo vm.max_map_count=262144 | sudo tee -a /etc/sysctl.conf
+    echo vm.swappiness=1 | sudo tee -a /etc/sysctl.conf
     sudo sysctl -p
 
 In order to allow the OpenStack Cloud to function, you'll need to reconfigure the default LXD bridge to support IPv4 networking; is also recommended that you use a fast storage backend such as ZFS on a SSD based block device.  Use the lxd provided configuration tool to help do this:
@@ -68,7 +69,7 @@ In order to allow the OpenStack Cloud to function, you'll need to reconfigure th
 
     sudo lxd init
 
-Ensure that you leave a range of IP addresses free to use for floating IP's for OpenStack instances; For reference the author used:
+The referenced config.yaml uses an apt proxy to improve installation performance.  The network that you create during the lxd init procedure should accomodate that address.  Also ensure that you leave a range of IP addresses free to use for floating IP addresses for OpenStack instances; The following are the values which are used in this example procedure:
 
     Network and IP: 10.0.8.1/24
     DHCP range: 10.0.8.2 -> 10.0.8.200
@@ -138,11 +139,23 @@ Deploy
 
 Next, deploy the OpenStack cloud using the provided bundle.
 
-For amd64 Mitaka:
+For amd64, arm64, or ppc64el Mitaka:
 
 .. code:: bash
 
     juju deploy bundle-mitaka.yaml
+
+For amd64, arm64, or ppc64el Newton:
+
+.. code:: bash
+
+    juju deploy bundle-newton.yaml
+
+For amd64, arm64, or ppc64el Ocata:
+
+.. code:: bash
+
+    juju deploy bundle-ocata.yaml
 
 For s390x Mitaka:
 
@@ -156,11 +169,11 @@ For s390x Newton:
 
     juju deploy bundle-newton-s390x.yaml
 
-For ppc64el (PowerNV) Mitaka:
+For s390x Ocata:
 
 .. code:: bash
 
-    juju deploy bundle-ppc64el.yaml
+    juju deploy bundle-ocata-s390x.yaml
 
 You can watch deployment progress using the 'juju status' command.  This may take some time depending on the speed of your system; CPU, disk and network speed will all effect deployment time.
 
@@ -176,9 +189,9 @@ Once deployment has completed (units should report a ready state in the status o
 
     source novarc
     openstack catalog list
-    nova service-list
-    neutron agent-list
-    cinder service-list
+    openstack service list
+    openstack network agent list
+    openstack volume service list
 
 This commands should all succeed and you should get a feel as to how the various OpenStack components are deployed in each container.
 
@@ -193,6 +206,13 @@ For amd64:
 
     curl http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img | \
         openstack image create --public --container-format=bare --disk-format=qcow2 xenial
+
+For arm64:
+
+.. code:: bash
+
+    curl http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-arm64-uefi1.img | \
+        openstack image create --public --container-format=bare --disk-format=qcow2 --property hw_firmware_type=uefi xenial
 
 For s390x:
 
@@ -216,7 +236,8 @@ First, create the 'external' network which actually maps directly to the LXD bri
 
 .. code:: bash
 
-    ./neutron-ext-net -g 10.0.8.1 -c 10.0.8.0/24 \
+    ./neutron-ext-net --network-type flat \
+        -g 10.0.8.1 -c 10.0.8.0/24
         -f 10.0.8.201:10.0.8.254 ext_net
 
 and then create an internal overlay network for the instances to actually attach to:
@@ -271,13 +292,14 @@ First, create a volume in cinder:
 
 .. code:: bash
 
-    cinder create --name testvolume 10
+    openstack volume create --size 10 testvolume
 
 then attach it to the instance we just booted in nova:
 
 .. code:: bash
 
-    nova volume-attach openstack-on-lxd-ftw $(cinder list | grep testvolume | awk '{ print $2 }') /dev/vdc
+    openstack server add volume openstack-on-lxd-ftw testvolume
+    openstack volume show testvolume
 
 The attached volume will be accessible once you login to the instance (see below).  It will need to be formatted and mounted!
 
