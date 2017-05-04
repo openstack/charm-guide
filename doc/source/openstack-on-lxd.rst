@@ -237,7 +237,7 @@ First, create the 'external' network which actually maps directly to the LXD bri
 .. code:: bash
 
     ./neutron-ext-net --network-type flat \
-        -g 10.0.8.1 -c 10.0.8.0/24
+        -g 10.0.8.1 -c 10.0.8.0/24 \
         -f 10.0.8.201:10.0.8.254 ext_net
 
 and then create an internal overlay network for the instances to actually attach to:
