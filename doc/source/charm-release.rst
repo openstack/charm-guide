@@ -8,7 +8,7 @@ OpenStack Charms project does have a regular release cadence which makes specifi
 on the charms in terms of development and testing.
 
 The OpenStack Charms team produces a release every 6 months aligned to the main
-OpenStack release cadence, and an interim release 3 months after each main release.
+OpenStack release cadence.
 
 To be included as part of a release, the (sub)team supporting a charm must meet the
 following release requirements:
