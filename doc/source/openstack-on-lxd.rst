@@ -16,15 +16,17 @@ Its possible to deploy OpenStack using the OpenStack Charms in LXD containers on
 Host Setup
 ==========
 
-The tools in the openstack-on-lxd git repository require the use of Juju 2.x, which provides full support for the LXD local provider.
+The tools in the openstack-on-lxd git repository require the use of Juju 2.x, which provides full support for the LXD local provider.  The Ocata version of the OpenStack clients should be used with this procedure.  These tools are provided as part of the Ubuntu Cloud Archive on Ubuntu 16.04 LTS.
 
 .. code:: bash
+
+    sudo add-apt-repository cloud-archive:ocata -y && sudo apt update
 
     sudo apt-get install juju lxd zfsutils-linux squid-deb-proxy \
         python-novaclient python-keystoneclient python-glanceclient \
         python-neutronclient python-openstackclient curl
 
-These tools are provided as part of the Ubuntu 16.04 LTS release; the latest Juju 2.x beta release can be obtained from the Juju team devel PPA:
+The latest Juju 2.x beta release can be obtained from the Juju team devel PPA:
 
 .. code:: bash
 
@@ -119,7 +121,7 @@ Prior to deploying the OpenStack on LXD bundle, you'll need to bootstrap a contr
 
     juju bootstrap --config config.yaml localhost lxd
 
-Review the contents of the config.yaml prior to running this command and edit as appropriate; this configures some defaults for containers created in the model including setting up things like a APT proxy to improve performance of network operations.
+Review the contents of the config.yaml prior to running this command and edit as appropriate; this configures some defaults for containers created in the model including setting up things like APT proxy to improve performance of network operations.
 
 Configure a PowerNV (ppc64el) Host
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -310,18 +312,16 @@ In order to access the instance you just booted on the cloud, you'll need to ass
 
 .. code:: bash
 
-    nova floating-ip-create
-    nova add-floating-ip <uuid-of-instance> <new-floating-ip>
+    openstack floating ip create ext_net
+    openstack server add floating ip <uuid-of-instance> <new-floating-ip>
 
 and then allow access via SSH (and ping) - you only need todo this once:
 
 .. code:: bash
 
-    neutron security-group-rule-create --protocol icmp \
-        --direction ingress $(nova secgroup-list | grep default | awk '{ print $2 }')
-    neutron security-group-rule-create --protocol tcp \
-        --port-range-min 22 --port-range-max 22 \
-        --direction ingress $(nova secgroup-list | grep default | awk '{ print $2 }')
+    openstack security group rule create default --protocol icmp --remote-ip 0.0.0.0/0 --project admin
+
+    openstack security group rule create default --protocol tcp --remote-ip 0.0.0.0/0 --dst-port 22 --project admin
 
 After running these commands you should be able to access the instance:
 
