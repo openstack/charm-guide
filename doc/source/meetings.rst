@@ -42,5 +42,5 @@ Meeting organizers
 
 - Alex Kavanagh (tinwood)
 - David Ames (thedace)
-- Carlos Gonzales (cargonza)
 - James Page (jamespage)
+- Ryan Beisner (beisner)
