@@ -17,13 +17,13 @@ Bug Triage
 
 Review `new bugs <https://bugs.launchpad.net/openstack-charms/+bugs?search=Search&field.status=New>`__ across the OpenStack Charms.
 
-+--------+---------+-----------+------------+-------------+
-| Monday | Tuesday | Wednesday | Thursday   | Friday      |
-+========+=========+===========+============+=============+
-|        |         |           | james-page | billy-olsen |
-+--------+---------+-----------+------------+-------------+
-|        |         |           |            |             |
-+--------+---------+-----------+------------+-------------+
++--------+----------+-----------+------------+-------------+
+| Monday | Tuesday  | Wednesday | Thursday   | Friday      |
++========+==========+===========+============+=============+
+|        | fnordahl |           | james-page | billy-olsen |
++--------+----------+-----------+------------+-------------+
+|        |          |           |            |             |
++--------+----------+-----------+------------+-------------+
 
 Charm Review
 ############
@@ -33,7 +33,7 @@ Review of `open changes <https://review.openstack.org/#/q/project:%22%255Eopenst
 +--------+------------+-----------+-------------+--------+
 | Monday | Tuesday    | Wednesday | Thursday    | Friday |
 +========+============+===========+=============+========+
-|        | james-page |           | billy-olsen |        |
+|        | james-page | fnordahl  | billy-olsen |        |
 +--------+------------+-----------+-------------+--------+
 |        |            |           |             |        |
 +--------+------------+-----------+-------------+--------+
