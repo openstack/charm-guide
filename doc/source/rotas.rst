@@ -22,7 +22,7 @@ Review `new bugs <https://bugs.launchpad.net/openstack-charms/+bugs?search=Searc
 +========+==========+===========+============+=============+
 |        | fnordahl |           | james-page | billy-olsen |
 +--------+----------+-----------+------------+-------------+
-|        |          |           |            |             |
+|        |          |           | coreycb    |             |
 +--------+----------+-----------+------------+-------------+
 
 Charm Review
@@ -35,5 +35,5 @@ Review of `open changes <https://review.openstack.org/#/q/project:%22%255Eopenst
 +========+============+===========+=============+========+
 |        | james-page | fnordahl  | billy-olsen |        |
 +--------+------------+-----------+-------------+--------+
-|        |            |           |             |        |
+|        | coreycb    |           |             |        |
 +--------+------------+-----------+-------------+--------+
