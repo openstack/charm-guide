@@ -1,3 +1,5 @@
+.. _creating-charms:
+
 ==============
 Create A Charm
 ==============

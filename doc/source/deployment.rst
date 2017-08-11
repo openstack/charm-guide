@@ -15,3 +15,4 @@ managed using MAAS.
    :maxdepth: 1
 
    openstack-on-lxd
+   charm-store

@@ -17,6 +17,6 @@ to the OpenStack Charms.
    coding-guidelines
    testing
    making-a-change
-   new-charm
+   creating-charms
    backport-policy
    reviews
