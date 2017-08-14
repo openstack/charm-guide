@@ -18,11 +18,11 @@ Bug Triage
 Review `new bugs <https://bugs.launchpad.net/openstack-charms/+bugs?search=Search&field.status=New>`__ across the OpenStack Charms.
 
 +--------+----------+-----------+------------+--------------+
-| Monday | Tuesday  | Wednesday | Thursday   | Friday       |
+| Monday |  Tuesday   | Wednesday | Thursday   | Friday       |
 +========+==========+===========+============+==============+
-|        | fnordahl |           | james-page | billy-olsen  |
+|        |  fnordahl  |           | james-page | billy-olsen  |
 +--------+----------+-----------+------------+--------------+
-|        |          |           | coreycb    | alex-tinwood |
+|        | chris-icey |           | coreycb    | alex-tinwood |
 +--------+----------+-----------+------------+--------------+
 
 Charm Review
@@ -30,10 +30,10 @@ Charm Review
 
 Review of `open changes <https://review.openstack.org/#/q/project:%22%255Eopenstack/charm.*%22+status:open>`__ on the OpenStack Charms.
 
-+--------+------------+--------------+-------------+--------+
-| Monday | Tuesday    | Wednesday    | Thursday    | Friday |
-+========+============+==============+=============+========+
-|        | james-page | fnordahl     | billy-olsen |        |
-+--------+------------+--------------+-------------+--------+
-|        | coreycb    | alex-tinwood |             |        |
-+--------+------------+--------------+-------------+--------+
++--------+------------+--------------+-------------+----------+
+| Monday | Tuesday    | Wednesday    | Thursday    |  Friday    |
++========+============+==============+=============+==========+
+|        | james-page | fnordahl     | billy-olsen | chris-icey |
++--------+------------+--------------+-------------+----------+
+|        | coreycb    | alex-tinwood |             |            |
++--------+------------+--------------+-------------+----------+
