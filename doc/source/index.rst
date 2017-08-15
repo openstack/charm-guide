@@ -14,6 +14,7 @@ with lose coupling between OpenStack Services.
    openstack-charms
    creating-charms
    how-to-contribute
+   author-guides/index
    rotas
    charm-release
    find-us
