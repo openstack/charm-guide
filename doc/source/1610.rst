@@ -191,7 +191,7 @@ type, enabled using:
 
     juju config lxd enable-ext4-userns=true
 
-Use of ext4 within unpriviledged containers is still relatively new in the Linux
+Use of ext4 within unprivileged containers is still relatively new in the Linux
 Kernel so is not enabled by default.
 
 Barbican
