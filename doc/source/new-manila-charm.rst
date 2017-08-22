@@ -50,7 +50,7 @@ further editing to produce the functional charm needed.
     INFO: Generating charm for new-manila-plugin in ./new-manila-plugin
     INFO: No new-manila-plugin in apt cache; creating an empty charm instead.
     What is the earliest OpenStack release this charm will support? mitaka
-    What packages should this charm install (space seperated list)?
+    What packages should this charm install (space separated list)?
     What is the package to take the version from (manila-api is probably ok)?
 
 Three questions are asked:

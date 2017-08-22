@@ -61,8 +61,8 @@ All the questions are optional, below are the responses for Congress.
     What type of service is this (used for keystone registration)? congress
     What is the earliest OpenStack release this charm is compatible with? mitaka
     Where command is used to sync the database? congress-db-manage --config-file /etc/congress/congress.conf upgrade head
-    What packages should this charm install (space seperated list)? congress-server congress-common python-antlr3 python-pymysql
-    List of config files managed by this charm (space seperated) /etc/congress/congress.conf
+    What packages should this charm install (space separated list)? congress-server congress-common python-antlr3 python-pymysql
+    List of config files managed by this charm (space separated) /etc/congress/congress.conf
     What is the name of the init script which controls the primary service congress-server
 
 Configuration Files
