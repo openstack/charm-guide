@@ -261,6 +261,26 @@ a stable charm update after the 17.08 release.
 
 https://bugs.launchpad.net/charm-heat/+bug/1714157
 
+Nova LXD Ceph support
+~~~~~~~~~~~~~~~~~~~~~
+
+Support for presentation of Ceph backed Cinder volumes to Nova LXD
+instances is supported in the Pike OpenStack release.  This integration
+uses the Linux kernel RBD module and requires a minimum of a
+Linux 4.5 to support the default crush tunables for Luminous.
+
+Deployments using the release Xenial kernel (4.4) should set the crush
+tunables level to 'hammer':
+
+.. code:: bash
+
+   juju run --unit ceph-mon/0 'sudo ceph osd crush tunables hammer'
+
+Xenial deployments using hardware enablement kernels (hwe) or
+deployments on later Ubuntu releases do not require this workaround.
+
+https://bugs.launchpad.net/charm-ceph/+bug/1716735
+
 Bugs Fixed
 ==========
 
