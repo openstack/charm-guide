@@ -69,7 +69,7 @@ configuration option, for example:
 
     juju deploy --config config.yaml nova-cloud-controller
 
-To upgrade an existing Ocata based deployment on Ubuntu 16.04 to the Newton
+To upgrade an existing Ocata based deployment on Ubuntu 16.04 to the Pike
 release, re-configure the charm with a new openstack-origin
 configuration:
 
