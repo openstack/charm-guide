@@ -20,7 +20,7 @@ Review `new bugs <https://bugs.launchpad.net/openstack-charms/+bugs?search=Searc
 +--------+------------+-----------+------------+--------------+
 | Monday |  Tuesday   | Wednesday | Thursday   | Friday       |
 +========+============+===========+============+==============+
-| gnuoy  |  fnordahl  |           | james-page | billy-olsen  |
+| gnuoy  |  fnordahl  |  thedac   | james-page | billy-olsen  |
 +--------+------------+-----------+------------+--------------+
 |        | chris-icey |           | coreycb    | alex-tinwood |
 +--------+------------+-----------+------------+--------------+
@@ -33,7 +33,7 @@ Review of `open changes <https://review.openstack.org/#/q/project:%22%255Eopenst
 +--------+------------+--------------+-------------+------------+
 | Monday | Tuesday    | Wednesday    | Thursday    |  Friday    |
 +========+============+==============+=============+============+
-|        | james-page | fnordahl     | billy-olsen | chris-icey |
+| thedac | james-page | fnordahl     | billy-olsen | chris-icey |
 +--------+------------+--------------+-------------+------------+
 |        | coreycb    | alex-tinwood | gnuoy       |            |
 +--------+------------+--------------+-------------+------------+
