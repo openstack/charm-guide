@@ -245,7 +245,7 @@ secondary state as the trigger to do the work needed. e.g.:
             set_state('name_has_changed')
 
         @when('name_has_changed')
-        @when('<name>.available'):
+        @when('<name>.available')
         def do_something_with_data(the_if_object):
             do_something_with(the_if_object.get_data())
             remove_state('name_has_changed')
@@ -296,7 +296,7 @@ Exception.  It can be used as follows:
 
         import charms_openstack.charm.utils as utils
 
-        @when('<name>.available'):
+        @when('<name>.available')
         def do_something_with_data(the_if_object):
             data = the_if_object.get_data()
             with utils.is_data_changed('some-meaningful-key', data) as f:
