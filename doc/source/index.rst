@@ -10,15 +10,16 @@ with lose coupling between OpenStack Services.
    :includehidden:
 
    getting-started
+   find-us
    deployment
    openstack-charms
    creating-charms
    how-to-contribute
    author-guides/index
    rotas
-   charm-release
-   find-us
-   releases
+   release-policy
+   release-schedule
+   release-notes
 
 ====================
  Indices and tables
