@@ -7,8 +7,8 @@ The OpenStack charm repositories are all tagged as `release:independent`; howeve
 OpenStack Charms project does have a regular release cadence which makes specific demands
 on the charms in terms of development and testing.
 
-The OpenStack Charms team produces a release every 6 months aligned to the main
-OpenStack release cadence.
+The OpenStack Charms team produces a release every 3 months, with every other release
+aligned to the main OpenStack release.
 
 To be included as part of a release, the (sub)team supporting a charm must meet the
 following release requirements:
