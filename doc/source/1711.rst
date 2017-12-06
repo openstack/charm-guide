@@ -219,6 +219,15 @@ additional units to the clustered application.
 
 https://bugs.launchpad.net/charm-hacluster/+bug/1424048
 
+volume attachment on aarch64
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There is an outstanding issue which causes volume scsi hot plug to not work
+as expected on arm64.  If the guest instance is restarted after the cinder
+volume is attached, the volume attachment succeeds.
+
+https://bugs.launchpad.net/ubuntu/+source/libvirt/+bug/1664737
+
 Bugs Fixed
 ==========
 
