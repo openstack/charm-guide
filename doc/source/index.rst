@@ -2,8 +2,8 @@
 Welcome to the OpenStack Charm Guide
 ====================================
 
-The OpenStack charms deliver fast, repeatable OpenStack deployment
-with lose coupling between OpenStack Services.
+The OpenStack charms deliver fast and repeatable OpenStack
+deployments with loose coupling between OpenStack services.
 
 .. toctree::
    :maxdepth: 2
