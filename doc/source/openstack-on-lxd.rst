@@ -20,7 +20,7 @@ The tools in the openstack-on-lxd git repository require the use of Juju 2.x, wh
 
 .. code:: bash
 
-    sudo add-apt-repository cloud-archive:pike -y && sudo apt update
+    sudo add-apt-repository cloud-archive:queens -y && sudo apt update
 
     sudo apt-get install juju lxd zfsutils-linux squid-deb-proxy \
         python-novaclient python-keystoneclient python-glanceclient \
@@ -164,6 +164,19 @@ For amd64, arm64, or ppc64el Pike:
 .. code:: bash
 
     juju deploy bundle-pike.yaml
+
+For amd64, arm64, or ppc64el Queens on Xenial:
+
+.. code:: bash
+
+    juju deploy bundle-xenial-queens.yaml
+
+For amd64, arm64, or ppc64el Queens on Bionic:
+
+.. code:: bash
+
+    juju deploy bundle-bionic-queens.yaml
+
 For s390x Mitaka:
 
 .. code:: bash
@@ -187,6 +200,18 @@ For s390x Pike:
 .. code:: bash
 
     juju deploy bundle-pike-s390x.yaml
+
+For s390x Queens on Xenial:
+
+.. code:: bash
+
+    juju deploy bundle-xenial-queens-s390x.yaml
+
+For s390x Queens on Bionic:
+
+.. code:: bash
+
+    juju deploy bundle-bionic-queens-s390x.yaml
 
 You can watch deployment progress using the 'juju status' command.  This may take some time depending on the speed of your system; CPU, disk and network speed will all effect deployment time.
 
