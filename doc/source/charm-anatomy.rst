@@ -117,7 +117,7 @@ OpenStack Interfaces
 --------------------
 
 Interfaces define the data exchange between each of the charms. A list of all
-available interfaces is available `here <http://interfaces.juju.solutions>`__.
+available interfaces is available `here <https://interfaces.juju.solutions>`__.
 A list of OpenStack specific interfaces can be found `here <https://github.com/openstack?query=charm-interface>`__
 
 The interfaces a charm needs are defines in the `layers.yaml`_. Below is a list

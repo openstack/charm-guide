@@ -220,28 +220,28 @@ For amd64:
 
 .. code:: bash
 
-    curl http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img | \
+    curl https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img | \
         openstack image create --public --container-format=bare --disk-format=qcow2 xenial
 
 For arm64:
 
 .. code:: bash
 
-    curl http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-arm64-uefi1.img | \
+    curl https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-arm64-uefi1.img | \
         openstack image create --public --container-format=bare --disk-format=qcow2 --property hw_firmware_type=uefi xenial
 
 For s390x:
 
 .. code:: bash
 
-    curl http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-s390x-disk1.img | \
+    curl https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-s390x-disk1.img | \
         openstack image create --public --container-format=bare --disk-format=qcow2 xenial
 
 For ppc64el:
 
 .. code:: bash
 
-    curl http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-ppc64el-disk1.img | \
+    curl https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-ppc64el-disk1.img | \
         openstack image create --public --container-format=bare --disk-format=qcow2 xenial
 
 

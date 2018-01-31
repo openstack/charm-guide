@@ -12,11 +12,11 @@ Getting started
 * For bare-metal deployment, Juju uses MAAS_ to provision and configure
   physical servers, so that's a good next step.
 * Once you have MAAS setup, you can try out the
-  `OpenStack Base bundle <http://jujucharms.com/openstack-base>`__ from
+  `OpenStack Base bundle <https://jujucharms.com/openstack-base>`__ from
   the Juju charm store.
 
 .. _Juju: https://jujucharms.com/docs/devel/getting-started
-.. _MAAS: http://maas.io/get-started
+.. _MAAS: https://maas.io/get-started
 
 .. toctree::
    :maxdepth: 1

@@ -21,7 +21,7 @@ Next meeting
 - Every two weeks (on even weeks) on Monday @ 1700 UTC on ``#openstack-meeting-4`` on freenode
 - Every two weeks (on odd weeks) on Monday @ 1000 UTC on ``#openstack-meeting-4`` on freenode
 
-`Week Numbers <http://www.epochconverter.com/weeknumbers>`_ 
+`Week Numbers <https://www.epochconverter.com/weeknumbers>`_ 
 
 Agenda
 ======

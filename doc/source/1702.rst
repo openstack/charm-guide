@@ -53,7 +53,7 @@ OpenStack Ocata support on 16.04
 
 The charms provide full support for OpenStack Ocata. For further details and
 documentation on Openstack Ocata please check out
-http://releases.openstack.org/ocata
+https://releases.openstack.org/ocata
 
 To deploy OpenStack Ocata on Ubuntu 16.04, use the 'openstack-origin'
 configuration option, for example:

@@ -16,7 +16,7 @@ the syntax ensures that it roughly always looks the same.
 As OpenStack charms are for OpenStack it’s a good idea to adhere to the
 OpenStack Python coding standard.  So first things first:
 
-* Read the `OpenStack Coding standard <http://docs.openstack.org/developer/hacking/>`__.
+* Read the `OpenStack Coding standard <https://docs.openstack.org/developer/hacking/>`__.
 * Read PEP8 (again).
 
 Topics

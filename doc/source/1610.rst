@@ -61,7 +61,7 @@ OpenStack Newton support on 16.04 and 16.10
 
 The charms provide full support for OpenStack Newton. For further details and
 documentation on Openstack Newton, please check out
-http://releases.openstack.org/newton
+https://releases.openstack.org/newton
 
 To deploy OpenStack Newton on Ubuntu 16.04, use the 'openstack-origin'
 configuration option, for example:

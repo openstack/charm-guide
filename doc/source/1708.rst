@@ -54,7 +54,7 @@ OpenStack Pike support on 16.04
 
 The charms provide full support for OpenStack Pike. For further details and
 documentation on Openstack Pike please check out
-http://releases.openstack.org/pike
+https://releases.openstack.org/pike
 
 To deploy OpenStack Pike on Ubuntu 16.04, use the 'openstack-origin'
 configuration option, for example:

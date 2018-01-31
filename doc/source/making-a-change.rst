@@ -19,7 +19,7 @@ Broadly the work flow for making a change to a charm is:
 
 .. code:: bash
 
-    git clone http://github.com/openstack/charm-cinder
+    git clone https://github.com/openstack/charm-cinder
     cd charm-cinder
     git checkout -b bug/XXXXXX master
 
@@ -61,7 +61,7 @@ Finally, submit your change for review (if they pass pep8 and unit tests!):
     git review
 
 This will push your proposed changes to Gerrit and provide you with a URL for the
-review board on http://review.openstack.org/.
+review board on https://review.openstack.org/.
 
 To make amendments to your proposed change, update your local branch and then:
 
