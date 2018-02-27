@@ -27,7 +27,7 @@ This release will align approximately with the `OpenStack Queens Release Schedul
 +---------+-------------------+
 | Freeze  | Thu, Feb 15, 2018 |
 +---------+-------------------+
-| Release | Wed, Feb 28, 2018 |
+| Release | Thu, Mar 8, 2018  |
 +---------+-------------------+
 
 
