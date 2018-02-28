@@ -26,11 +26,11 @@ The tools in the openstack-on-lxd git repository require the use of Juju 2.x, wh
         python-novaclient python-keystoneclient python-glanceclient \
         python-neutronclient python-openstackclient curl
 
-The latest Juju 2.x beta release can be obtained from the Juju team devel PPA:
+The latest Juju 2.x stable release can be obtained from the Juju team stable PPA:
 
 .. code:: bash
 
-    sudo add-apt-repository ppa:juju/devel
+    sudo add-apt-repository ppa:juju/stable
 
 You'll need a well specified machine with at least 8G of RAM and a SSD; for reference the author uses Lenovo x240 with an Intel i5 processor, 16G RAM and a 500G Samsung SSD (split into two - one partition for the OS and one partition for a ZFS pool).
 
