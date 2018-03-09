@@ -1,0 +1,221 @@
+.. _release_notes_1802
+
+=====
+18.02
+=====
+
+Summary
+=======
+
+The 18.02 OpenStack Charm release includes updates for the following charms:
+
+Supported Charms
+~~~~~~~~~~~~~~~~
+
+* aodh
+* barbican
+* ceilometer
+* ceilometer-agent
+* ceph-fs
+* ceph-mon
+* ceph-osd
+* ceph-proxy
+* ceph-radosgw
+* cinder
+* cinder-backup
+* cinder-ceph
+* designate
+* designate-bind
+* glance
+* gnocchi
+* hacluster
+* heat
+* keystone
+* keystone-ldap
+* lxd
+* manila
+* manila-generic
+* neutron-api
+* neutron-openvswitch
+* neutron-gateway
+* nova-cloud-controller
+* nova-compute
+* openstack-dashboard
+* percona-cluster
+* rabbitmq-server
+* swift-proxy
+* swift-storage
+
+Deprecated Charms
+~~~~~~~~~~~~~~~~~
+The legacy ceph charm was deprecated in the 17.11 release, it will receive no further updates, and its final supported combination is Xenial with Pike.
+
+The supported approach is to use the ceph-osd and ceph-mon charms together. To upgrade to the ceph-osd and ceph-mon charms, please see:
+
+https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ceph-migration.html.
+
+New Charm Features
+==================
+
+OpenStack Queens Support
+~~~~~~~~~~~~~~~~~~~~~~~~
+The charms provide full support for OpenStack Queens. For further details and documentation on Openstack Queens please check out https://releases.openstack.org/queens.
+
+Use the ‘openstack-origin’ charm configuration option to declare the intended OpenStack version, for example:
+
+.. code:: bash
+
+    cat > config.yaml << EOF
+    nova-cloud-controller:
+      openstack-origin: cloud:xenial-queens
+    EOF
+
+    juju deploy --config config.yaml nova-cloud-controller
+
+Also see the published example bundles.
+
+Keystone Support is V3-Only for Queens and Later
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The preferred-api-version charm config option for the keystone charm will be a no-op for Queens and later, and the charms will automatically force keystone v3.
+
+https://docs.openstack.org/keystone/queens/contributor/http-api.html
+
+https://docs.openstack.org/keystone/queens/install/keystone-openrc-obs.html
+
+Designate Neutron Integration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Designate and neutron can be integrated to automatically create DNS records for floating IPs or ports. Add a relation between neutron-api and designate, which enables the integration.
+
+.. code:: bash
+
+    juju add-relation designate neutron-api
+
+You can set designate’s DNS backend(s) (designate-bind if you are using our charms) as the forwarders for neutron dnsmasq servers by setting:
+
+.. code:: bash
+
+    juju config neutron-gateway dns-servers=”$DNS_IP_1, $DNS_IP_2”
+
+Continue with integration configuration according to upstream documentation:
+
+https://docs.openstack.org/designate/latest/contributor/integrations.html
+
+https://docs.openstack.org/ocata/networking-guide/config-dns-int.html
+
+A walkthrough blog post can be found here:
+
+https://openstackdevops.wordpress.com/2018/01/27/designate-and-neutron-dns-integration/
+
+MongoDB is no longer necessary
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In Pike, Queens, and later, ceilometer can be related to gnocchi, which replaces the need for deploying mongodb.  See known issues for more information.
+
+Upgrading charms
+================
+
+Please ensure that the keystone charm is upgraded first.
+
+To upgrade an existing deployment to the latest charm version simply use the
+'upgrade-charm' command, for example:
+
+.. code:: bash
+
+    juju upgrade-charm keystone
+
+Charm upgrades and OpenStack upgrades are two distinctly different things. Charm upgrades ensure that the deployment is using the latest charm revision, containing the latest charm fixes and charm features available for a given deployment.
+
+Charm upgrades do not cause OpenStack versions to upgrade, however OpenStack upgrades do require the latest Charm version as pre-requisite.
+
+Upgrading OpenStack
+===================
+When upgrading ceilometer to Queens, an identity-credentials relation needs to be added between ceilometer and keystone. If this relation is not added, the ceilometer charm will indicate it is in a blocked state via workload status.
+
+To upgrade an existing Pike based deployment on Ubuntu 16.04 to the Queens
+release, re-configure the charm with a new openstack-origin
+configuration:
+
+.. code:: bash
+
+    juju config nova-cloud-controller openstack-origin=cloud:xenial-queens
+
+Please ensure that ceph services are upgraded before services that consume ceph
+resources, such as cinder, glance and nova-compute:
+
+.. code:: bash
+
+    juju config ceph-mon source=cloud:xenial-queens
+    juju config ceph-osd source=cloud:xenial-queens
+
+.. note::
+
+   Upgrading an OpenStack cloud is still not without risk; upgrades should
+   be tested in pre-production testing environments prior to production deployment
+   upgrades.
+
+See https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html for more details.
+
+
+New Bundle Features
+===================
+
+Queens Support in Example Bundles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Queens versions of the example bundles are published in the charm store under cs:openstack-base, cs:openstack-telemetry. The stand-alone ceph bundle is also updated at cs:ceph-base. These bundles have been validated on x86_64, arm64, s390x and ppc64el architectures with Juju 2.3.3 and MAAS 2.3.0.
+
+https://jujucharms.com/openstack-base
+
+https://jujucharms.com/openstack-telemetry
+
+https://jujucharms.com/ceph-base
+
+
+
+Deprecation Notices
+===================
+
+Designate Notifications based records
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To have DNS records automatically created based on guest and floating ip creation, please use the neutron integration feature. The notifications method will be removed in the next charm release and cannot be used for Queens deployments.
+
+
+Known Issues
+============
+
+Ceilometer Upgrade Action
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When ceilometer is related to gnocchi, the ceilometer-upgrade action must be run post-deployment in order to set up its data store.
+
+.. code:: bash
+
+    juju run-action ceilometer/0 ceilometer-upgrade
+
+Note that this tool does not migrate the existing monitoring data. Gnocchi represents a major change in how data is stored, and there are no known or documented tools for migrating existing data from mongodb to gnocchi. For more information, please reference the latest doc available as of this release:
+
+https://docs.openstack.org/ceilometer/ocata/install/dbreco.html
+
+hacluster scale-out
+~~~~~~~~~~~~~~~~~~~
+
+By default, the hacluster charm will assume a cluster size of three units; in order to scale a three unit clustered application out, you must increase the cluster-count configuration option to the target size prior to adding the additional units to the clustered application.
+
+https://bugs.launchpad.net/charm-hacluster/+bug/1424048
+
+Ceph Luminous on s390x
+~~~~~~~~~~~~~~~~~~~~~~
+
+In Queens validation for s390x, ceph has been removed from the example bundles due to an outstanding issue with Luminous on s390x. No work-around is known as of this release.
+
+https://bugs.launchpad.net/ubuntu/+source/ceph/+bug/1713032
+
+Bugs Fixed
+==========
+
+This release includes 112 bugs fixes. For the full list of bugs resolved for the 18.02 charms release please refer to https://launchpad.net/openstack-charms/+milestone/18.02.
+
+Next Release Info
+=================
+The next OpenStack Charms release is currently scheduled for May 2018, and is subject to change.  Please see https://docs.openstack.org/charm-guide/latest for current information.

@@ -3,9 +3,10 @@ Release Notes
 =============
 
 Latest Release Notes
- * `17.11 release <1711.html>`__
+ * `18.02 release <1802.html>`__
 
 Older release notes
+ * `17.11 release <1711.html>`__
  * `17.08 release <1708.html>`__
  * `17.02 release <1702.html>`__
  * `16.10 release <1610.html>`__
@@ -23,6 +24,7 @@ Older release notes
    :maxdepth: 1
    :hidden:
 
+   1802
    1711
    1708
    1702
