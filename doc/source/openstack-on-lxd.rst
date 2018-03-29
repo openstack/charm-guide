@@ -7,11 +7,13 @@ OpenStack on LXD
 Overview
 ========
 
-An OpenStack deployment is typically made over a number of physical servers, using LXD containers where appropriate for control plane services.
+A production OpenStack deployment is typically made over a number of physical servers, using LXD containers where appropriate for control plane services.
 
 However, the average developer probably does not have, or want to have, access to such infrastructure for day-to-day charm development.
 
 Its possible to deploy OpenStack using the OpenStack Charms in LXD containers on a single machine; this allows for faster, localized charm development and testing.
+
+The scenarios presented here are for development, testing and demonstration, and should not be used in place of multiple-machine, highly-available OpenStack deployment topologies and configurations more suitable for production use cases.
 
 Host Setup
 ==========
@@ -22,7 +24,9 @@ The tools in the openstack-on-lxd git repository require the use of Juju 2.x, wh
 
     sudo add-apt-repository cloud-archive:queens -y && sudo apt update
 
-    sudo apt-get install juju lxd zfsutils-linux squid-deb-proxy \
+    sudo apt install -t xenial-backports lxd lxd-client
+
+    sudo apt install juju zfsutils-linux squid-deb-proxy bridge-utils \
         python-novaclient python-keystoneclient python-glanceclient \
         python-neutronclient python-openstackclient curl
 
@@ -36,7 +40,9 @@ You'll need a well specified machine with at least 8G of RAM and a SSD; for refe
 
 For s390x, this has been validated on an LPAR with 12 CPUs, 40GB RAM, 2 ~40GB disks (one disk for the OS and one disk for the ZFS pool).
 
-You'll also need to clone the repository with the bundles and configuration for the deployment:
+For arm64, this has been validated on a single Gigabyte R120-T33 with 48 cores, 64GB RAM, 1 240GB SSD (for the operating system), 2 1TB SAS disks (for the ZFS pool).
+
+You'll need to clone the repository with the bundles and configuration for the deployment:
 
 .. code:: bash
 
@@ -145,25 +151,25 @@ For amd64, arm64, or ppc64el Mitaka:
 
 .. code:: bash
 
-    juju deploy bundle-mitaka.yaml
+    juju deploy bundle-xenial-mitaka.yaml
 
 For amd64, arm64, or ppc64el Newton:
 
 .. code:: bash
 
-    juju deploy bundle-newton.yaml
+    juju deploy bundle-xenial-newton.yaml
 
 For amd64, arm64, or ppc64el Ocata:
 
 .. code:: bash
 
-    juju deploy bundle-ocata.yaml
+    juju deploy bundle-xenial-ocata.yaml
 
 For amd64, arm64, or ppc64el Pike:
 
 .. code:: bash
 
-    juju deploy bundle-pike.yaml
+    juju deploy bundle-xenial-pike.yaml
 
 For amd64, arm64, or ppc64el Queens on Xenial:
 
@@ -181,25 +187,25 @@ For s390x Mitaka:
 
 .. code:: bash
 
-    juju deploy bundle-mitaka-s390x.yaml
+    juju deploy bundle-xenial-mitaka-s390x.yaml
 
 For s390x Newton:
 
 .. code:: bash
 
-    juju deploy bundle-newton-s390x.yaml
+    juju deploy bundle-xenial-newton-s390x.yaml
 
 For s390x Ocata:
 
 .. code:: bash
 
-    juju deploy bundle-ocata-s390x.yaml
+    juju deploy bundle-xenial-ocata-s390x.yaml
 
 For s390x Pike:
 
 .. code:: bash
 
-    juju deploy bundle-pike-s390x.yaml
+    juju deploy bundle-xenial-pike-s390x.yaml
 
 For s390x Queens on Xenial:
 
@@ -223,15 +229,17 @@ Check Access
 
 Once deployment has completed (units should report a ready state in the status output), check that you can access the deployed cloud OK:
 
+    Note:  While Keystone V3 can be enabled earlier than Queens, the example bundles provided herein use the default version of the Keystone API as shipped upstream.  As of Queens, that default is V3, and prior to Queens the default was V2.
+
 .. code:: bash
 
-    source novarc
+    source openrc
     openstack catalog list
     openstack service list
     openstack network agent list
     openstack volume service list
 
-This commands should all succeed and you should get a feel as to how the various OpenStack components are deployed in each container.
+The openstack client commands should all succeed and you should get a feel as to how the various OpenStack components are deployed in each container.
 
 Upload an image
 +++++++++++++++
@@ -270,8 +278,26 @@ For ppc64el:
         openstack image create --public --container-format=bare --disk-format=qcow2 xenial
 
 
-Configure some networking
-+++++++++++++++++++++++++
+Configure the network - Queens and Later
+++++++++++++++++++++++++++++++++++++++++
+
+First, create the 'external' network which actually maps directly to the LXD bridge:
+
+.. code:: bash
+
+    ./neutron-ext-net-ksv3 --network-type flat \
+        -g 10.0.8.1 -c 10.0.8.0/24 \
+        -f 10.0.8.201:10.0.8.254 ext_net
+
+and then create an internal overlay network for the instances to actually attach to:
+
+.. code:: bash
+
+    ./neutron-tenant-net-ksv3 -p admin -r provider-router \
+        -N 10.0.8.1 internal 192.168.20.0/24
+
+Configure the network - Pike and Earlier
+++++++++++++++++++++++++++++++++++++++++
 
 First, create the 'external' network which actually maps directly to the LXD bridge:
 
@@ -323,7 +349,7 @@ You can now boot an instance on your cloud:
 .. code:: bash
 
     openstack server create --image xenial --flavor m1.small --key-name mykey \
-       --wait --nic net-id=$(neutron net-list | grep internal | awk '{ print $2 }') \
+       --wait --nic net-id=$(openstack network list | grep internal | awk '{ print $2 }') \
        openstack-on-lxd-ftw
 
 Attaching a volume
@@ -354,20 +380,109 @@ In order to access the instance you just booted on the cloud, you'll need to ass
     openstack floating ip create ext_net
     openstack server add floating ip <uuid-of-instance> <new-floating-ip>
 
-and then allow access via SSH (and ping) - you only need todo this once:
+Permit SSH and ping quite liberally, by allowing both on all default security groups. This only needs to be done once on the deployed cloud:
 
 .. code:: bash
 
-    openstack security group rule create default --protocol icmp --remote-ip 0.0.0.0/0 --project admin
+    for i in $(openstack security group list | awk '/default/{ print $2 }'); do \
+        openstack security group rule create $i --protocol icmp --remote-ip 0.0.0.0/0; \
+        openstack security group rule create $i --protocol tcp --remote-ip 0.0.0.0/0 --dst-port 22; \
+    done
 
-    openstack security group rule create default --protocol tcp --remote-ip 0.0.0.0/0 --dst-port 22 --project admin
-
-After running these commands you should be able to access the instance:
+After running these commands you should be able to access the instance from the lxd host:
 
 .. code:: bash
 
     ssh ubuntu@<new-floating-ip>
 
+Access the GUIs
+===============
+
+The method of accessing the GUI IP addresses varies, depending on where the cloud was deployed.  The "public" addresses of the deployed cloud are actually 10.0.8.x addresses, sitting behind NAT.
+
+OpenStack Dashboard
+~~~~~~~~~~~~~~~~~~~
+
+First, find the IP address of the openstack-dashboard unit by querying juju status:
+
+.. code:: bash
+
+    juju status openstack-dashboard
+
+
+Then, choose your adventure:
+
+OpenStack-on-LXD is deployed on your local machine
+++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The IP address of the OpenStack Dashboard will be locally accessible.
+
+Adjust and visit the following URL from a browser your local machine:
+
+.. code:: bash
+
+    http://<ip address of openstack-dashboard>/horizon
+
+    domain:  admin_domain
+    user:  admin
+    password:  ??????????
+
+OpenStack-on-LXD is deployed on a remote machine
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+The IP address of the GUI will not be directly accessible. You can forward a tcp port across an existing ssh session, then access the dashboard on your localhost.
+
+In your SSH session, press the ~C key combo to initiate an SSH command console on-the-fly.  Adjust and issue the following command to forward localhost:10080 to openstack-dashboard:80 across that existing SSH session:
+
+.. code:: bash
+
+    -L 10080:<ip address of openstack-dashboard>:80
+
+Then visit the following URL from a browser on your local machine:
+
+    http://localhost:10080/horizon
+
+.. code:: bash
+
+    domain:  admin_domain
+    user:  admin
+    password:  ??????????
+
+Juju GUI
+~~~~~~~~
+
+First, find the IP address and credentials for the Juju GUI:
+
+.. code:: bash
+
+    juju gui
+
+Then, choose your adventure:
+
+OpenStack-on-LXD is deployed on your local machine
+++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The IP address of the Juju GUI will be locally accessible.
+
+The URL provided should work directly, and it should look something like:
+
+https://10.0.8.x:17070/gui/u/admin/default
+
+
+OpenStack-on-LXD is deployed on a remote machine
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+The IP address of the Juju GUI will not be directly accessible. You can forward a tcp port across an existing ssh session, then access the Juju GUI on your localhost.
+
+In your SSH session, press the ~C key combo to initiate an SSH command console on-the-fly.  Adjust and issue the following command to forward localhost:10070 to juju-gui:17070 across that existing SSH session:
+
+.. code:: bash
+
+    -L 10070:<ip address of juju-gui>:17070
+
+Then visit the following URL from a browser on your local machine:
+
+    https://localhost:10070/gui/login/u/admin/default
 
 Switching in a dev charm
 ========================
