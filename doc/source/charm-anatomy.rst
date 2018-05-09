@@ -264,7 +264,7 @@ access those variables:
 .. code:: python
 
     [keystone_authtoken]
-    auth_uri = {{ identity_service.service_protocol }}://{{ identity_service.service_host }}:{{ identity_service.service_port }}
+    www_authenticate_uri = {{ identity_service.service_protocol }}://{{ identity_service.service_host }}:{{ identity_service.service_port }}
     auth_url = {{ identity_service.auth_protocol }}://{{ identity_service.auth_host }}:{{ identity_service.auth_port }}
 
 See the **auto\_accessors** list in `charm-interface-keystone <https://github.com/openstack/charm-interface-keystone/blob/master/requires.py>`__
