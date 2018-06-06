@@ -1,0 +1,230 @@
+.. _release_notes_1805
+
+=====
+18.05
+=====
+
+Summary
+=======
+
+The 18.05 OpenStack Charm release includes updates for the following charms:
+
+Supported Charms
+~~~~~~~~~~~~~~~~
+
+* aodh
+* barbican
+* ceilometer
+* ceilometer-agent
+* ceph-fs
+* ceph-mon
+* ceph-osd
+* ceph-proxy
+* ceph-radosgw
+* cinder
+* cinder-backup
+* cinder-ceph
+* designate
+* designate-bind
+* glance
+* gnocchi
+* hacluster
+* heat
+* keystone
+* keystone-ldap
+* lxd
+* manila
+* manila-generic
+* neutron-api
+* neutron-openvswitch
+* neutron-gateway
+* nova-cloud-controller
+* nova-compute
+* openstack-dashboard
+* percona-cluster
+* rabbitmq-server
+* swift-proxy
+* swift-storage
+* vault
+
+
+New Charm Features
+==================
+
+Ubuntu 18.04 LTS Support
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The OpenStack Charms now provide support for the latest Ubuntu LTS release, 18.04 (code name Bionic Beaver).  Ubuntu 18.04 LTS provides the OpenStack Queens release; future OpenStack releases will be provided via the Ubuntu Cloud Archive.
+
+Encryption at rest
+~~~~~~~~~~~~~~~~~~
+
+The 18.05 charm release introduces support for encryption of data at rest across three charms - ceph-osd, swift-storage and nova-compute.
+
+This feature encrypts underlying block devices supporting these charms with dm-crypt key management provided by Vault, securing
+data used in block devices, object storage and instance ephemeral storage.
+
+For more details on using this feature please refer to the charm deployment guide.
+
+https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-encryption-at-rest.html
+
+Vault
+~~~~~
+
+Deployment of Vault is now supported as part of the OpenStack Charms project; Vault is used for secure storage of dm-crypt keys as part of the encryption-at-rest feature, and will also be used as part of a new approach to TLS certificate management.
+
+Neutron Dynamic Routing
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The OpenStack Charms now provide support for dynamic route propagation via Neutron using BGP.
+
+The neutron-dynamic-routing charm provides the BGP speaker for dynamic route propagation of tenant networks and floating IP addresses.
+
+For utilizing the dynamic routing feature of OpenStack see upstream documentation for neutron dynamic routing.
+
+https://docs.openstack.org/neutron-dynamic-routing/latest
+
+Upgrade Notes
+=============
+
+ceph-osd - automatic reformatting of OSD devices
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The 'osd-reformat' option has been dropped from the ceph-osd charm; The charm will only automatically use block devices which are considered pristine with no pre-existing partitions or volumes.   The charm will flag if it detects in-use block devices or block devices with existing data via Juju status.
+
+Block devices can be re-formatted for use using the new 'zap-disk' action.  Non-pristine disks can be discovered using the 'list-devices' action, and re-formatted disks can be introduced to the ceph cluster using the 'add-disk' action.
+
+Note that the 'replace-osd' action has been removed from the charm - please use 'add-disk' instead.
+
+Please refer to the ceph-osd charm documentation for more details.
+
+ceph-mon - FSID configuration via option
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-mon charm no longer provides the 'fsid' option; The charm will automatically generate an FSID during initial cluster creation.
+
+swift-storage - automatic block device unmount
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The swift-storage charm will no longer force an unmount of a block device that is already mounted on an application unit.
+
+designate - notification support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Support for generation of DNS records using notifications has been removed from the OpenStack charms; before upgrading deployments to the latest charm revisions, please remove the relation between nova-compute and designate:
+
+.. code:: bash
+
+    juju remove-relation nova-compute designate
+
+Upgrades of either charm will block without completing this step first.
+
+openstack-dashboard - ambiguous relations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Endpoint names must now be expressed for relations between the openstack-dashboard and keystone charms. This is required for upcoming feature support for WebSSO in the openstack-dashboard charm.  For example:
+
+.. code:: bash
+
+    juju add-relation openstack-dashboard:identity-service keystone:identity-service
+
+
+Upgrading charms
+================
+
+Please ensure that the keystone charm is upgraded first.
+
+To upgrade an existing deployment to the latest charm version simply use the
+'upgrade-charm' command, for example:
+
+.. code:: bash
+
+    juju upgrade-charm keystone
+
+Charm upgrades and OpenStack upgrades are two distinctly different things. Charm upgrades ensure that the deployment is using the latest charm revision, containing the latest charm fixes and charm features available for a given deployment.
+
+Charm upgrades do not cause OpenStack versions to upgrade, however OpenStack upgrades do require the latest Charm version as pre-requisite.
+
+Upgrading OpenStack
+===================
+
+When upgrading ceilometer to Queens, an identity-credentials relation needs to be added between ceilometer and keystone. If this relation is not added, the ceilometer charm will indicate it is in a blocked state via workload status.
+
+To upgrade an existing Pike based deployment on Ubuntu 16.04 to the Queens
+release, re-configure the charm with a new openstack-origin
+configuration:
+
+.. code:: bash
+
+    juju config nova-cloud-controller openstack-origin=cloud:xenial-queens
+
+Please ensure that ceph services are upgraded before services that consume ceph
+resources, such as cinder, glance and nova-compute:
+
+.. code:: bash
+
+    juju config ceph-mon source=cloud:xenial-queens
+    juju config ceph-osd source=cloud:xenial-queens
+
+.. warning::
+
+   Upgrading an OpenStack cloud is still not without risk; upgrades should
+   be tested in pre-production testing environments prior to production deployment
+   upgrades.
+
+See https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html for more details.
+
+Deprecation Notices
+===================
+
+Keystone PKI tokens
+~~~~~~~~~~~~~~~~~~~
+
+PKI token format support was dropped from Keystone in the Ocata release; The 'enable-pki' configuration option of the keystone charm is deprecated as of the 18.05release and will be removed in the next release in preference for Fernet token support (or UUID in pre-Fernet OpenStack releases).
+
+Keystone certificate management
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The keystone charm currently provides a self-signed certificate management feature for signing of TLS certificates for OpenStack API endpoints; This feature is deprecated as of the 18.05 charm release (configured via the 'https-service-endpoints' and 'use-https' configuration options) and will be removed in the next release in preference to a new solution for TLS certificate management using Vault.
+
+Note that the existing 'ssl_*' configuration options are not deprecated and can still be used to provide certificates, keys and CA certs to the majority of OpenStack charms.
+
+Known Issues
+============
+
+Ceilometer Upgrade Action
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When ceilometer is related to gnocchi, the ceilometer-upgrade action must be run post-deployment in order to set up its data store.
+
+.. code:: bash
+
+    juju run-action ceilometer/0 ceilometer-upgrade
+
+Note that this tool does not migrate the existing monitoring data. Gnocchi represents a major change in how data is stored, and there are no known or documented tools for migrating existing data from mongodb to gnocchi. For more information, please reference the latest doc available as of this release:
+
+https://docs.openstack.org/ceilometer/ocata/install/dbreco.html
+
+hacluster scale-out
+~~~~~~~~~~~~~~~~~~~
+
+By default, the hacluster charm will assume a cluster size of three units; in order to scale a three unit clustered application out, you must increase the cluster-count configuration option to the target size prior to adding the additional units to the clustered application.
+
+https://bugs.launchpad.net/charm-hacluster/+bug/1424048
+
+Ceph Luminous on s390x
+~~~~~~~~~~~~~~~~~~~~~~
+
+In Queens validation for s390x, ceph has been removed from the example bundles due to an outstanding issue with Luminous on s390x. No work-around is known as of this release.
+
+https://bugs.launchpad.net/ubuntu/+source/ceph/+bug/1713032
+
+Bugs Fixed
+==========
+
+This release includes 85 bug fixes. For the full list of bugs resolved for the 18.05 charms release please refer to https://launchpad.net/openstack-charms/+milestone/18.05.
+
+Next Release Info
+=================
+
+The next OpenStack Charms release is currently scheduled for August 2018.  Please see https://docs.openstack.org/charm-guide/latest for current information.

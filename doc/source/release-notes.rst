@@ -24,6 +24,7 @@ Older release notes
    :maxdepth: 1
    :hidden:
 
+   1805
    1802
    1711
    1708
