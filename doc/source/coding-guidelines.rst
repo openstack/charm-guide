@@ -34,7 +34,7 @@ clear which particular module path you're trying to mock out and which one is
 first in the module path map.
 
 So only every have ONE root for your python code in a charm.  e.g. put it in
-``/lib`` and add that to path by ``sys.path.append(‘lib’).``
+``/lib`` and add that to path by ``sys.path.append('lib').``
 
 Incidentally, if you **are** mocking out code in charmhelpers in you charms,
 **it's probably not a good idea**.  Only mock code in the target object file,
@@ -53,7 +53,7 @@ Although there is no actual distinction in Python, it’s useful to think of
 
 .. code:: python
 
-    if __name__ == ‘__main__’:
+    if __name__ == '__main__':
         do_something()
 
 I.e. the code execution of ``do_something()`` is runtime, with everything
@@ -70,7 +70,7 @@ these two fragments:
     import a.something
 
     OUR_CONFIG = {
-        ‘some_thing’: a.something.config(‘a-value’),
+        'some_thing': a.something.config('a-value'),
     }
 
 **Good:**
@@ -82,7 +82,7 @@ these two fragments:
 
     def get_our_config():
         return {
-            ‘some_thing’: a.something.config(‘a-value’),
+            'some_thing': a.something.config('a-value'),
         }
 
 If performance is an issue (i.e. multiple calls to ``config()`` are expensive)
@@ -104,7 +104,7 @@ something like:
 
 .. code:: python
 
-    with patch(‘a.something.config’) as mock_config:
+    with patch('a.something.config') as mock_config:
         import a.something.config
 
 This also relies on this being the _first_ time that module has been imported.
@@ -115,8 +115,8 @@ Compare this with the good example.
 .. code:: python
 
     def test_out_config(self):
-        with patch(‘module.a.something.config’) as mock_config:
-            mock_config.return_value = ‘thing’
+        with patch('module.a.something.config') as mock_config:
+            mock_config.return_value = 'thing'
             x = model.get_out_config()
 
 This brings us to:
@@ -134,7 +134,7 @@ Don’t:
 .. code:: python
 
     CONFIG = {
-        ‘some_key’: config(‘something’),
+        'some_key': config('something'),
     }
 
 This is actually a *function in disguise*.
@@ -145,7 +145,7 @@ Prefer:
 
     def get_config():
         return {
-            ‘some_key’: config(‘something’),
+            'some_key': config('something'),
         }
 
 Why?
@@ -463,14 +463,14 @@ Thus don’t:
 
 .. code:: python
 
-    if x in [‘hello’, ‘there’]:
+    if x in ['hello', 'there']:
         do_something()
 
 Prefer:
 
 .. code:: python
 
-    if x in (‘hello’, ‘there’):
+    if x in ('hello', 'there'):
         do_something()
 
 However, remember the caveat.  A single item tuple literal  has to have a
@@ -478,7 +478,7 @@ trailing comma:
 
 .. code:: python
 
-    my_tuple = (‘item’, )
+    my_tuple = ('item', )
 
 
 Prefer CONSTANTS to string literals or numbers
@@ -496,7 +496,7 @@ Prefer:
 
 .. code:: python
 
-    THING_KEY = ‘thing_key’
+    THING_KEY = 'thing_key'
 
     db = kv()
     previous_thing = db.get(THING_KEY, thing)
@@ -505,7 +505,7 @@ Why?
 
 String literals introduce a vector for mistakes.  We can’t use the language to
 help prevent spelling mistakes, nor our tools to do autocompletion, nor use
-lint to find ‘undefined’ variables.  This also means that if you use the same
+lint to find 'undefined' variables.  This also means that if you use the same
 number or string literal more than once in code you should create a constant
 for that value and use that in code.  This includes fixed array accesses,
 offsets, etc.
