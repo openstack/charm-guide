@@ -8,9 +8,10 @@ Overview
 --------
 
 The new OpenStack charms (charms written in 2016 onwards) are written using the
-`reactive framework <https://pythonhosted.org/charms.reactive>`__ in Python.
+`reactive framework <https://charmsreactive.readthedocs.io/en/latest/>`__ in Python.
 An introduction on the reactive framework and building charms from layers can
-be found in the `Authors Charm Building Guide <https://jujucharms.com/docs/devel/authors-charm-building>`__ .
+be found in the `Getting Started with charm development
+<https://docs.jujucharms.com/devel/en/developer-getting-started>`__ .
 This guide covers only the new reactive charms.
 
 Configuration Files
@@ -40,13 +41,13 @@ relation with MongoDB:
 When the charm is built the openstack-api layer and mongodb interface will
 be included in the built charm. The charm will run in a virtual env with
 system packages exposed in that virtual env.  See the *Layer Configuration*
-section in `Basic Layer README <https://github.com/juju-solutions/layer-basic>`__
+section in `Basic Layer README <http://charmsreactive.readthedocs.io/en/latest/layer-basic.html>`__
 for more details of the configurable options in a **layers.yaml**
 
 config.yaml
 ~~~~~~~~~~~
 
-The charm authors guide contains a section on the `config.yaml <https://jujucharms.com/docs/2.0/authors-charm-config>`__
+The charm authors guide contains a section on the `config.yaml <https://docs.jujucharms.com/devel/en/charms-config>`__
 and is a good place to start.  The config.yaml of the built charm is
 constructed from each layer that contains a config.yaml.
 
@@ -54,7 +55,7 @@ metadata.yaml
 ~~~~~~~~~~~~~
 
 The charm
-`metadata.yaml <https://jujucharms.com/docs/2.0/authors-charm-metadata>`__
+`metadata.yaml <https://docs.jujucharms.com/devel/en/authors-charm-metadata>`__
 describes the charm and how it relates to other charms. This is also
 constructed from each layer that defines a metadata.yaml
 
@@ -117,8 +118,8 @@ OpenStack Interfaces
 --------------------
 
 Interfaces define the data exchange between each of the charms. A list of all
-available interfaces is available `here <https://interfaces.juju.solutions>`__.
-A list of OpenStack specific interfaces can be found `here <https://github.com/openstack?query=charm-interface>`__
+available interfaces is available `here <https://github.com/juju/layer-index>`__.
+A list of OpenStack specific interfaces can be found `here <https://github.com/openstack?q=charm-interface>`__
 
 The interfaces a charm needs are defines in the `layers.yaml`_. Below is a list
 of the typical interfaces needed by different OpenStack charm types:
@@ -153,7 +154,7 @@ charms.openstack
 
 The `charms.openstack <https://github.com/openstack/charms.openstack>`__ python
 module provides helpers for building layered, reactive OpenStack charms. It is
-installed by the `OpenStack Layer`_ .
+installed by the `OpenStack Layer <https://github.com/openstack/charm-layer-openstack>`_ .
 
 Defining the Charm
 ------------------
