@@ -558,12 +558,49 @@ support, to name but a few.
 Docstrings and comments
 ~~~~~~~~~~~~~~~~~~~~~~~
 
+Docstrings and comments are there to inform a reader of the code additional,
+contextual, information that isn't readily available by just reading the code.
+Docstrings can also be used to automatically generate *useful* documentation
+for programmers who are using those functions.  This is particularly important
+in the case of a library, but is also very important simply from a maintenance
+perspective.  Being able to look at the docstring for a function and quickly
+understand the types of the parameters and the return type helps to understand
+the code *much more quickly* than hunting through other code trying to
+understand what types of things might be sent to the function.
+
+In futher, types in docstrings will become part of the *linting* of the code
+(as part of PEP8) and so, good practice now, will help with more maintainable
+code in the future.
+
+Comments are important to help the reader of the code understand what is being
+implemented, rather than just repeating what the code does.  A good comment is
+minimal and terse, yet still explains the purpose behind a segment of code.
+
+Docstring formats are slightly complicated by whether we are doing Python 2
+code, Python 3 code, or a shared library.  For Python 2 and Python 2 AND 3
+compatible code (e.g. charm-helpers) there is a preferred approach, and for
+Python 3 only code there is a separate preferred approach.
+
+Python 2 code and Python 2/3 compatible code
+--------------------------------------------
+
+Python 2 compatible code docstrings are constrained by not being able to have
+mypy_ annotations in the code.  We don't really want to add mypy annotations
+into comments, so we've adopted a docstring convention which informs as to what
+the types are, without being able to actually statically check it.
+
+The main reason for *not* using mypy compatible comments is that they are
+fairly ugly.  As we are not using, nor plan to use, mypy_ on Python 2 code, we
+can do something that is a little more aesthetically pleasing.
+
 Every function exported by a module should have a docstring.  Generally, this
 means all functions mentioned in ``__ALL__`` or implicitly those that do not
 start with an ``_``.
 
 The preferred format for documenting parameters and return values is
 ReStructuredText (reST) as described: http://docutils.sourceforge.net/rst.html
+but with mypy type signatures.  Classes will use the ``:class:`ClassName```
+type declaration so that sphinx can appropriately underline when using autodoc.
 
 The field lists are described here:
 http://www.sphinx-doc.org/en/stable/domains.html#info-field-lists
@@ -576,14 +613,83 @@ An example of an acceptable function docstring is:
         """Multiple a * b and return the result.
 
         :param a: Number
+        :type: Union[int, float]
         :param b: Number
-        :returns Number: a * b
+        :type: Union[int, float]
+        :returns a * b
+        :rtype: Union[int, float]
         :raises: ValueError, TypeError if the params are not numbers
         """
         return a * b
 
+
+    def some_function(a):
+        """Do something with the FineObject a
+
+        :param a: a fine object
+        :type: :class:`FineObject`
+        """
+        do_something_with(a)
+
+
 Other comments should be used to support the code, but not just re-say what the
 code is doing.
+
+Python 3 code
+-------------
+
+The situation is a little more complicated for Python 3 code. Ideally, we would
+just use Python 3.6 mypy_ annotations, but Xenial *only* has Python 3.5.  This
+means that some types of annotations aren't possible.  As Xenial is supported
+until 2021, until that time, all Python 3 mypy_ annotations will need to be
+supported on Python 3.5.
+
+This means that PEP-526 can't be used (Syntax for variable annotations) and
+PEP-525 (Asynchronous generators) and PEP-530 (comprehensions) are also not
+possible.
+
+So the minimal preferred docstring format for Python 3 code is the same as
+Python 2.  However, ideally, mypy_ notations will be used:
+
+.. code:: python
+
+    def mult(a: Union[int, float],
+             b: Union[int, float]) -> Union[int, float]:
+        """Multiple a * b and return the result"""
+        return a * b
+
+
+    def some_function(a: FineObject):
+        """Do something with a FineObject
+
+        :param: a is used in the context of doing something.
+        """
+        do_something_with(a)
+
+.. note::
+
+    Because mypy annotations tell you what the types are and this type
+    information can be checked statically, it means that we don't have to
+    specify what the function might raise as an exception, as that would be a
+    type error.  e.g. if at runtime the function ``mult(...)`` was supplied
+    with an object that had no ``*`` implementation, then the code would raise
+    an exception.  However, linting on fully typed code would prevent this.
+    Hence we don't, for function ``mult`` need to provide either a return type
+    in the docstring, nor a ``:raises:`` line.
+
+    In the ``some_function(...)`` we have optionally specified the ``:param:``
+    to provide additional information to the docstring for the user.  The type
+    will be provided by ``sphinx`` autodoc.
+
+The end objective with the Python 3 code is to use mypy_ (or pyre_) to
+statically check the code in the CI server prior to check-ins.
+
+
+.. _mypy: http://mypy-lang.org/
+.. _pyre: https://pyre-check.org/
+
+
+
 
 Ensure there's a comma on the last item of a dictionary
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
