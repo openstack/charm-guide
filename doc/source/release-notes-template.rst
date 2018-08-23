@@ -1,5 +1,7 @@
 .. _release_notes_<CHARM_RELEASE>
 
+**** This is a template file for future release notes and its contents should not be linked or referenced.  Use actual release notes instead. ****
+
 ===========================
 <release version goes here>
 ===========================
@@ -7,9 +9,7 @@
 Summary
 =======
 
-The <CHARM_RELEASE> OpenStack Charm release includes updates for the following charms:
-
-TODO: ensure these lists are accurate and up-to-date
+The <CHARM_RELEASE> OpenStack Charm release includes updates for the following charms.  Additional charm support status information is published in the main `charm guide <openstack-charms.html>`__ which ultimately supersedes release note contents.
 
 Supported Charms
 ~~~~~~~~~~~~~~~~
@@ -40,6 +40,7 @@ Supported Charms
 * neutron-api
 * neutron-openvswitch
 * neutron-gateway
+* neutron-dynamic-routing
 * nova-cloud-controller
 * nova-compute
 * openstack-dashboard
@@ -47,6 +48,7 @@ Supported Charms
 * rabbitmq-server
 * swift-proxy
 * swift-storage
+* vault
 
 Pre-Release Charms
 ~~~~~~~~~~~~~~~~~~
@@ -67,7 +69,7 @@ Use the 'openstack-origin' charm configuration option to declare the intended Op
 
     cat > config.yaml << EOF
     nova-cloud-controller:
-      openstack-origin: cloud:xenial-<O7K_RELEASE>
+      openstack-origin: cloud:bionic-<O7K_RELEASE>
     EOF
 
     juju deploy --config config.yaml nova-cloud-controller
@@ -99,23 +101,22 @@ Charm upgrades do not cause OpenStack versions to upgrade, however OpenStack upg
 
 Upgrading OpenStack
 ===================
-When upgrading ceilometer to <O7K_RELEASE>, an identity-credentials relation needs to be added between ceilometer and keystone. If this relation is not added, the ceilometer charm will indicate it is in a blocked state via workload status.
 
-To upgrade an existing Pike based deployment on Ubuntu 16.04 to the <O7K_RELEASE>
+To upgrade an existing <O7K_PREVIOUS_RELEASE> based deployment on Ubuntu <UBUNTU_RELEASE> to the <O7K_RELEASE>
 release, re-configure the charm with a new openstack-origin
 configuration:
 
 .. code:: bash
 
-    juju config nova-cloud-controller openstack-origin=cloud:xenial-<O7K_RELEASE>
+    juju config nova-cloud-controller openstack-origin=cloud:bionic-<O7K_RELEASE>
 
 Please ensure that ceph services are upgraded before services that consume ceph
 resources, such as cinder, glance and nova-compute:
 
 .. code:: bash
 
-    juju config ceph-mon source=cloud:xenial-<O7K_RELEASE>
-    juju config ceph-osd source=cloud:xenial-<O7K_RELEASE>
+    juju config ceph-mon source=cloud:bionic-<O7K_RELEASE>
+    juju config ceph-osd source=cloud:bionic-<O7K_RELEASE>
 
 .. note::
 
