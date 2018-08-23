@@ -19,6 +19,7 @@ These charms have stable releases with ongoing maintenance and testing.
 * `heat <https://git.openstack.org/cgit/openstack/charm-heat/>`_
 * `keystone <https://git.openstack.org/cgit/openstack/charm-keystone/>`_
 * `neutron-api <https://git.openstack.org/cgit/openstack/charm-neutron-api/>`_
+* `neutron-dynamic-routing <https://git.openstack.org/cgit/openstack/charm-neutron-dynamic-routing/>`_
 * `neutron-gateway <https://git.openstack.org/cgit/openstack/charm-neutron-gateway/>`_
 * `neutron-openvswitch <https://git.openstack.org/cgit/openstack/charm-neutron-openvswitch/>`_
 * `nova-cloud-controller <https://git.openstack.org/cgit/openstack/charm-nova-cloud-controller/>`_
@@ -38,10 +39,12 @@ classified differently because the payload of each is not technically an OpenSta
 * `lxd <https://git.openstack.org/cgit/openstack/charm-lxd/>`_
 * `ceph-osd <https://git.openstack.org/cgit/openstack/charm-ceph-osd/>`_
 * `ceph-mon <https://git.openstack.org/cgit/openstack/charm-ceph-mon/>`_
+* `ceph-proxy <https://git.openstack.org/cgit/openstack/charm-ceph-proxy/>`_
 * `ceph-radosgw <https://git.openstack.org/cgit/openstack/charm-ceph-radosgw/>`_
 * `hacluster <https://git.openstack.org/cgit/openstack/charm-hacluster/>`_
 * `designate-bind <https://git.openstack.org/cgit/openstack/charm-designate-bind/>`_
 * `gnocchi <https://git.openstack.org/cgit/openstack/charm-gnocchi/>`_
+* `vault <https://git.openstack.org/cgit/openstack/charm-vault/>`_
 
 Development / Preview Charms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
