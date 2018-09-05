@@ -1,0 +1,209 @@
+.. _release_notes_18.08
+
+=====
+18.08
+=====
+
+Summary
+=======
+
+The 18.08 OpenStack Charm release includes updates for the following charms.  Additional charm support status information is published in the main `charm guide <openstack-charms.html>`__ which ultimately supersedes release note contents.
+
+Supported Charms
+~~~~~~~~~~~~~~~~
+
+* aodh
+* barbican
+* ceilometer
+* ceilometer-agent
+* ceph-fs
+* ceph-mon
+* ceph-osd
+* ceph-proxy
+* ceph-radosgw
+* cinder
+* cinder-backup
+* cinder-ceph
+* designate
+* designate-bind
+* glance
+* gnocchi
+* hacluster
+* heat
+* keystone
+* keystone-ldap
+* lxd
+* manila
+* manila-generic
+* neutron-api
+* neutron-openvswitch
+* neutron-gateway
+* neutron-dynamic-routing
+* nova-cloud-controller
+* nova-compute
+* openstack-dashboard
+* percona-cluster
+* rabbitmq-server
+* swift-proxy
+* swift-storage
+* vault
+
+Pre-Release Charms
+~~~~~~~~~~~~~~~~~~
+
+Deprecated Charms
+~~~~~~~~~~~~~~~~~
+
+New Charm Features
+==================
+
+Ceph Bluestore
+~~~~~~~~~~~~~~
+
+In line with the Ceph projects switch to use bluestore by default, the ceph-osd charm will now default to using bluestore as the underlying disk format for OSDs for Ceph Luminous or later.
+
+Existing filestore based OSDs will not be automatically converted, but new units/disks added to a deployment will use bluestore.
+
+This can be disabled by setting the bluestore configuration option to false.
+
+Ceph Mimic
+~~~~~~~~~~
+
+The Rocky Ubuntu Cloud Archive contains a new release of Ceph (13.2.1 "Mimic") which is enabled by this release of the Ceph OpenStack Charms.
+
+
+Keystone Fernet Tokens
+~~~~~~~~~~~~~~~~~~~~~~
+
+As of the Rocky OpenStack release, Keystone only supports fernet tokens.  Keystone UUID token support is completely removed from Rocky.
+
+Therefore, the keystone charm now uses fernet tokens by default in Rocky and later.  For Ocata and Pike, the keystone charm still defaults to the UUID token format.  The fernet token format can be optionally enabled on Ocata and Pike via the token-provider charm configuration.
+
+Reconfiguring a deployment from UUID to fernet tokens should be done prior to upgrading a deployment from Queens to Rocky.  It is not recommended to attempt a Queens to Rocky upgrade without first switching to fernet tokens.
+
+https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
+
+
+OpenStack Rocky Support
+~~~~~~~~~~~~~~~~~~~~~~~
+The charms provide full support for OpenStack Rocky (see known issues). For further details and documentation on Openstack Rocky, please check out https://releases.openstack.org/rocky.
+
+Use the openstack-origin charm configuration option to declare the intended OpenStack version, for example:
+
+.. code:: bash
+
+    cat > config.yaml << EOF
+    nova-cloud-controller:
+      openstack-origin: cloud:bionic-rocky
+    EOF
+
+    juju deploy --config config.yaml nova-cloud-controller
+
+Also see the published example bundles.
+
+
+Upgrading charms
+================
+
+Please ensure that the keystone charm is upgraded first.
+
+To upgrade an existing deployment to the latest charm version simply use the
+'upgrade-charm' command, for example:
+
+.. code:: bash
+
+    juju upgrade-charm keystone
+
+Charm upgrades and OpenStack upgrades are two distinctly different things. Charm upgrades ensure that the deployment is using the latest charm revision, containing the latest charm fixes and charm features available for a given deployment.
+
+Charm upgrades do not cause OpenStack versions to upgrade, however OpenStack upgrades do require the latest Charm version as pre-requisite.
+
+Upgrading OpenStack
+===================
+
+To upgrade an existing Queens based deployment on Ubuntu 18.04 to the Rocky
+release, re-configure the charm with a new openstack-origin
+configuration:
+
+.. code:: bash
+
+    juju config nova-cloud-controller openstack-origin=cloud:bionic-rocky
+
+Please ensure that ceph services are upgraded before services that consume ceph
+resources, such as cinder, glance and nova-compute:
+
+.. code:: bash
+
+    juju config ceph-mon source=cloud:bionic-rocky
+    juju config ceph-osd source=cloud:bionic-rocky
+
+.. note::
+
+   Upgrading an OpenStack cloud is not without risk; upgrades should
+   be tested in pre-production testing environments prior to production deployment
+   upgrades.
+
+See https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html for more details.
+
+
+New Bundle Features
+===================
+
+Rocky Support in Example Bundles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+OpenStack Rocky and Ceph Mimic versions of the example bundles are published in the charm store under cs:openstack-base, cs:openstack-telemetry. The stand-alone ceph bundle is also updated at cs:ceph-base. These bundles have been validated with Juju 2.4.3 and MAAS 2.3.3.
+
+https://jujucharms.com/openstack-base
+
+https://jujucharms.com/openstack-telemetry
+
+https://jujucharms.com/ceph-base
+
+
+
+Deprecation Notices
+===================
+
+Keystone PKI tokens
+~~~~~~~~~~~~~~~~~~~
+
+PKI token format support was dropped from Keystone in the Ocata release; The 'enable-pki' configuration option of the keystone charm was deprecated as of the 18.05 release and has been removed in the 18.08 release in preference for fernet token support (or UUID in pre-fernet OpenStack releases).
+
+Keystone certificate management
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The keystone charm previously provided a self-signed certificate management feature for signing of TLS certificates for OpenStack API endpoints; This feature was deprecated as of the 18.05 charm release (configured via the 'https-service-endpoints' and 'use-https' configuration options) and has been removed in the 18.08 release in preference to a new solution for TLS certificate management using Vault.
+
+Note that the existing 'ssl_*' configuration options are not deprecated and can still be used to provide certificates, keys and CA certs to the majority of OpenStack charms.
+
+Known Issues
+============
+
+Glance v1 removed in Rocky, Glance v2 required
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+As of the Rocky OpenStack release the glance v1 API has been removed. Glance v2 is the only available API version. Two known issues from this have emerged.
+
+One, when using swift store as a back end for glance, glance fails to set the ACLs on the swift container properly:
+https://bugs.launchpad.net/glance/+bug/1789748
+
+The workaround is to manually set the read ACL on the glance container
+
+.. code:: bash
+    swift post glance --read-acl ".r:*,.rlistings"
+
+Two, the glance-simplestreams-sync charm relies on simplestreams which is not yet glance v2 aware:
+
+https://bugs.launchpad.net/simplestreams/+bug/1790904
+
+There is currently no workaround for this issue on Rocky.
+
+Bugs Fixed
+==========
+
+For the full list of bugs resolved for the 18.08 charms release please refer to https://launchpad.net/openstack-charms/+milestone/18.08.
+
+Next Release Info
+=================
+Please see https://docs.openstack.org/charm-guide/latest for current information.
