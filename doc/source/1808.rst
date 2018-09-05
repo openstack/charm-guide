@@ -180,6 +180,17 @@ Note that the existing 'ssl_*' configuration options are not deprecated and can 
 Known Issues
 ============
 
+Nova-LXD
+~~~~~~~~
+The lxd charm (supporting Nova-LXD) will have a delayed stable charm release as soon as possible following the regular 18.08 release, to address regression at Queens and to enable Rocky.
+
+Track the following bugs for more information:
+
+https://bugs.launchpad.net/ubuntu/+source/nova-lxd/+bug/1789427
+https://bugs.launchpad.net/ubuntu/+source/nova-lxd/+bug/1790956
+https://bugs.launchpad.net/nova-lxd/+bug/1790943
+
+
 Glance v1 removed in Rocky, Glance v2 required
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -197,7 +208,7 @@ Two, the glance-simplestreams-sync charm relies on simplestreams which is not ye
 
 https://bugs.launchpad.net/simplestreams/+bug/1790904
 
-There is currently no workaround for this issue on Rocky.
+There is currently no workaround for this issue on Rocky.  As soon as upstream simplestreams support is confirmed for the Glance v2 API, the bug will be updated with workaround information.  A subsequent stable charm update is expected to follow that, to formalize glance-simplestreams-sync Rocky support.
 
 Bugs Fixed
 ==========
