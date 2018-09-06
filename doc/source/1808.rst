@@ -187,7 +187,9 @@ The lxd charm (supporting Nova-LXD) will have a delayed stable charm release as 
 Track the following bugs for more information:
 
 https://bugs.launchpad.net/ubuntu/+source/nova-lxd/+bug/1789427
-https://bugs.launchpad.net/ubuntu/+source/nova-lxd/+bug/1790956
+
+https://bugs.launchpad.net/nova-lxd/+bug/1790956
+
 https://bugs.launchpad.net/nova-lxd/+bug/1790943
 
 
