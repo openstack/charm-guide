@@ -61,7 +61,7 @@ OpenStack Queens Support
 ~~~~~~~~~~~~~~~~~~~~~~~~
 The charms provide full support for OpenStack Queens. For further details and documentation on Openstack Queens please check out https://releases.openstack.org/queens.
 
-Use the ‘openstack-origin’ charm configuration option to declare the intended OpenStack version, for example:
+Use the 'openstack-origin' charm configuration option to declare the intended OpenStack version, for example:
 
 .. code:: bash
 
@@ -90,7 +90,7 @@ Designate and neutron can be integrated to automatically create DNS records for 
 
     juju add-relation designate neutron-api
 
-You can set designate’s DNS backend(s) (designate-bind if you are using our charms) as the forwarders for neutron dnsmasq servers by setting:
+You can set designate's DNS backend(s) (designate-bind if you are using our charms) as the forwarders for neutron dnsmasq servers by setting:
 
 .. code:: bash
 

@@ -8,12 +8,12 @@ Introduction
 ------------
 
 We write code for OpenStack charms.  Mostly in Python.  They say that code is
-read roughly 20 times more than writing it, and that’s just the process of
+read roughly 20 times more than writing it, and that's just the process of
 writing code.  Reviewing code and modifying it means that it will be read many,
-many times.  Let’s make it as easy as possible.  We’re lucky(!) with Python as
+many times.  Let's make it as easy as possible.  We're lucky(!) with Python as
 the syntax ensures that it roughly always looks the same.
 
-As OpenStack charms are for OpenStack it’s a good idea to adhere to the
+As OpenStack charms are for OpenStack it's a good idea to adhere to the
 OpenStack Python coding standard.  So first things first:
 
 * Read the `OpenStack Coding standard <https://docs.openstack.org/hacking/latest/>`__.
@@ -47,8 +47,8 @@ The hooks in charms are effectively short-term running scripts.  However,
 despite being short-lived, the code invoked is often complex with multiple
 modules being imported which also import other modules.
 
-It’s important to be clear on what is *load time* code and _runtime_ code.
-Although there is no actual distinction in Python, it’s useful to think of
+It's important to be clear on what is *load time* code and _runtime_ code.
+Although there is no actual distinction in Python, it's useful to think of
 *runtime* starting when the following code is reached:
 
 .. code:: python
@@ -59,7 +59,7 @@ Although there is no actual distinction in Python, it’s useful to think of
 I.e. the code execution of ``do_something()`` is runtime, with everything
 preceding being loadtime.
 
-So why is the distinction useful?  Put simply, *it’s much harder to test*
+So why is the distinction useful?  Put simply, *it's much harder to test*
 load-time code in comparison to runtime code with respect to mocking.  Consider
 these two fragments:
 
@@ -108,7 +108,7 @@ something like:
         import a.something.config
 
 This also relies on this being the _first_ time that module has been imported.
-Otherwise, the module is already cached and config can’t be mocked out.
+Otherwise, the module is already cached and config can't be mocked out.
 
 Compare this with the good example.
 
@@ -129,7 +129,7 @@ calling ``a.something.config()``.  Thus, in reality, the constant is being
 defined at load-time using a runtime function that returns a value - it's
 dynamic.
 
-Don’t:
+Don't:
 
 .. code:: python
 
@@ -152,18 +152,18 @@ Why?
 
 So that you can mock out ``get_config()`` or ``config()`` at the test run time,
 rather than before the module loads.  This makes testing easier, more
-predictable, and also makes it obvious that it’s not really a constant, but
+predictable, and also makes it obvious that it's not really a constant, but
 actually a function which returns a structure that is dynamically generated
 from configuration.
 
-And **definitely** don’t do this at the top level in a file:
+And **definitely** don't do this at the top level in a file:
 
 .. code:: python
 
     CONFIGS = register_configs()
 
-You’ve just created a load time test problem _and_ created a CONSTANT that
-isn’t really one.  Just use ``register_configs()`` directly in the code and write
+You've just created a load time test problem _and_ created a CONSTANT that
+isn't really one.  Just use ``register_configs()`` directly in the code and write
 ``register_configs()`` to be ``@cached`` if performance is an issue.
 
 
@@ -279,8 +279,8 @@ Import ordering
 * Local modules
 
 They should be be alphabetical order, with a single space between them, and
-preferably in alphabetical order.  If load order is important (and it shouldn’t
-be!) then that’s the only reason they shouldn’t be in alpha order.
+preferably in alphabetical order.  If load order is important (and it shouldn't
+be!) then that's the only reason they shouldn't be in alpha order.
 
 Import Style
 ++++++++++++
@@ -401,7 +401,7 @@ supposed to be private to the class, and not used in derived classes.
 Only use list comprehensions when you want the list
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Don’t:
+Don't:
 
 .. code:: python
 
@@ -416,14 +416,14 @@ Prefer:
 
 Why?
 
-You just created a list and then threw it away.  And it’s actually less clear
+You just created a list and then threw it away.  And it's actually less clear
 what you are doing.  Do use list comprehensions when you actually want a list
 to do something with.
 
 Avoid C-style dictionary access in loops
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Don’t:
+Don't:
 
 .. code:: python
 
@@ -440,13 +440,13 @@ Prefer:
 Why?
 
 Using a list of keys to access a dictionary is less efficient and less obvious
-as to what’s happening.  ``key, value`` could actually be ``config_name`` and
+as to what's happening.  ``key, value`` could actually be ``config_name`` and
 ``config_item`` which means the code is more self-documenting.
 
 Also remember that ``dictionary.keys()`` & ``dictionary.values()`` exist if you
 want to explicitly iterate just over the keys or values of a dictionary.  Also,
-it’s preferable to iterate of ``dictionary.keys()`` rather than ``dictionary``
-because, whilst they do the same thing, it’s not as obvious what is happening.
+it's preferable to iterate of ``dictionary.keys()`` rather than ``dictionary``
+because, whilst they do the same thing, it's not as obvious what is happening.
 
 If performance is an issue (Python2) then ``iterkeys()`` and ``itervalues()`` for
 generators, which is the default on Python3.
@@ -454,12 +454,12 @@ generators, which is the default on Python3.
 Prefer tuples to lists
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Tuples are non malleable lists, and should be used where the list isn’t going
+Tuples are non malleable lists, and should be used where the list isn't going
 to change.  They have (slight) performance advantages, but come with a
-guarantee that the list won’t change - note the objects within the tuple could
+guarantee that the list won't change - note the objects within the tuple could
 change, just not their position or reference.
 
-Thus don’t:
+Thus don't:
 
 .. code:: python
 
@@ -484,7 +484,7 @@ trailing comma:
 Prefer CONSTANTS to string literals or numbers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is the “No magic numbers” rule. In a lot of the OS charms there is code
+This is the "No magic numbers" rule. In a lot of the OS charms there is code
 like:
 
 .. code:: python
@@ -503,14 +503,14 @@ Prefer:
 
 Why?
 
-String literals introduce a vector for mistakes.  We can’t use the language to
+String literals introduce a vector for mistakes.  We can't use the language to
 help prevent spelling mistakes, nor our tools to do autocompletion, nor use
 lint to find 'undefined' variables.  This also means that if you use the same
 number or string literal more than once in code you should create a constant
 for that value and use that in code.  This includes fixed array accesses,
 offsets, etc.
 
-Don’t abuse __call__()
+Don't abuse __call__()
 ~~~~~~~~~~~~~~~~~~~~~~
 
 ``__call__()`` is a method that is invoked when ``()`` is invoked on an object --
@@ -536,7 +536,7 @@ happening.   It would have been more obvious if that method was just called
         hd.kv.set(...)
 
 
-Don’t use old style string interpolation
+Don't use old style string interpolation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: python
@@ -551,7 +551,7 @@ Prefer:
 
 Why?
 
-It’s the new style, and the old style is deprecated; eventually it will be
+It's the new style, and the old style is deprecated; eventually it will be
 removed.  Plus the new style is way more powerful: keywords, dictionary
 support, to name but a few.
 

@@ -61,7 +61,7 @@ OpenStack <O7K_RELEASE> Support
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The charms provide full support for OpenStack <O7K_RELEASE>. For further details and documentation on Openstack <O7K_RELEASE> please check out https://releases.openstack.org/<O7K_RELEASE>.
 
-Use the ‘openstack-origin’ charm configuration option to declare the intended OpenStack version, for example:
+Use the 'openstack-origin' charm configuration option to declare the intended OpenStack version, for example:
 
 .. code:: bash
 
