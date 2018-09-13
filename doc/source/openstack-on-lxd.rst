@@ -18,23 +18,19 @@ The scenarios presented here are for development, testing and demonstration, and
 Host Setup
 ==========
 
-The tools in the openstack-on-lxd git repository require the use of Juju 2.x, which provides full support for the LXD local provider.  The Ocata version of the OpenStack clients should be used with this procedure.  These tools are provided as part of the Ubuntu Cloud Archive on Ubuntu 16.04 LTS.
+The tools in the openstack-on-lxd git repository require the use of Juju 2.x, which provides full support for the LXD local provider.  The Queens version of the OpenStack clients should be used with this procedure.  These tools are provided as part of the Ubuntu Cloud Archive on Ubuntu 16.04 LTS.
 
 .. code:: bash
+
+    sudo snap install lxd
+    sudo snap install juju --classic
 
     sudo add-apt-repository cloud-archive:queens -y && sudo apt update
 
-    sudo apt install -t xenial-backports lxd lxd-client
-
-    sudo apt install juju zfsutils-linux squid-deb-proxy bridge-utils \
+    sudo apt install zfsutils-linux squid-deb-proxy bridge-utils \
         python-novaclient python-keystoneclient python-glanceclient \
         python-neutronclient python-openstackclient curl
 
-The latest Juju 2.x stable release can be obtained from the Juju team stable PPA:
-
-.. code:: bash
-
-    sudo add-apt-repository ppa:juju/stable
 
 You'll need a well specified machine with at least 8G of RAM and a SSD; for reference the author uses Lenovo x240 with an Intel i5 processor, 16G RAM and a 500G Samsung SSD (split into two - one partition for the OS and one partition for a ZFS pool).
 
