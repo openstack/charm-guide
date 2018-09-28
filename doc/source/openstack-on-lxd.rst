@@ -103,18 +103,6 @@ This should result in a running container you can exec into and back out of:
     lxc exec <container-name> bash
     exit
 
-Juju Profile Update
-~~~~~~~~~~~~~~~~~~~
-
-Juju creates a couple of profiles for the models that it creates by default; these are named juju-default and juju-admin.
-
-.. code:: bash
-
-    lxc profile create juju-default 2>/dev/null || echo "juju-default profile already exists"
-    cat lxd-profile.yaml | lxc profile edit juju-default
-
-This will ensure that containers created by LXD for Juju have the correct permissions to run your OpenStack cloud.
-
 Juju
 ====
 
@@ -128,6 +116,17 @@ Prior to deploying the OpenStack on LXD bundle, you'll need to bootstrap a contr
     juju bootstrap --config config.yaml localhost lxd
 
 Review the contents of the config.yaml prior to running this command and edit as appropriate; this configures some defaults for containers created in the model including setting up things like APT proxy to improve performance of network operations.
+
+Juju Profile Update
+~~~~~~~~~~~~~~~~~~~
+
+Juju creates a couple of profiles for the models that it creates by default.  After bootstrapping is complete, update the juju-default lxc profile:
+
+.. code:: bash
+
+    cat lxd-profile.yaml | lxc profile edit juju-default
+
+This will ensure that containers created by LXD for Juju have the correct permissions to run your OpenStack cloud.
 
 Configure a PowerNV (ppc64el) Host
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
