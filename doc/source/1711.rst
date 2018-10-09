@@ -195,7 +195,7 @@ ceph-osd + ceph-mon deployment method.
     Charm Deployment Guide for details of how to migration existing deployments
     to the preferred ceph-mon and ceph-osd charms.
 
-    https://docs.openstack.org/charm-deployment-guide
+    https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
 
 ZeroMQ messaging support across the charms will be removed during the Queens
 development cycle.

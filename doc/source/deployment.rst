@@ -27,6 +27,6 @@ managed using MAAS.
 
    openstack-on-lxd
    charm-store
-   Charm Deployment Guide <https://docs.openstack.org/charm-deployment-guide/latest/>
+   Charm Deployment Guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>
 
-.. _Charm Deployment Guide: https://docs.openstack.org/charm-deployment-guide/latest/
+.. _Charm Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
