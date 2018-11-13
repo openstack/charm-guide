@@ -278,7 +278,7 @@ Import ordering
 * Third party modules
 * Local modules
 
-They should be be alphabetical order, with a single space between them, and
+They should be alphabetical order, with a single space between them, and
 preferably in alphabetical order.  If load order is important (and it shouldn't
 be!) then that's the only reason they shouldn't be in alpha order.
 
