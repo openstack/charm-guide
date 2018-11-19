@@ -1,0 +1,218 @@
+.. _release_notes_18.11
+
+=====
+18.11
+=====
+
+Summary
+=======
+
+The 18.11 OpenStack Charm release includes updates for the following charms.  Additional charm support status information is published in the main `charm guide <openstack-charms.html>`__ which ultimately supersedes release note contents.
+
+Supported Charms
+~~~~~~~~~~~~~~~~
+
+* aodh
+* barbican
+* ceilometer
+* ceilometer-agent
+* ceph-fs
+* ceph-mon
+* ceph-osd
+* ceph-proxy
+* ceph-radosgw
+* cinder
+* cinder-backup
+* cinder-ceph
+* designate
+* designate-bind
+* glance
+* gnocchi
+* hacluster
+* heat
+* keystone
+* keystone-ldap
+* lxd
+* manila
+* manila-generic
+* neutron-api
+* neutron-openvswitch
+* neutron-gateway
+* neutron-dynamic-routing
+* nova-cloud-controller
+* nova-compute
+* openstack-dashboard
+* percona-cluster
+* rabbitmq-server
+* swift-proxy
+* swift-storage
+* vault
+
+Pre-Release Charms
+~~~~~~~~~~~~~~~~~~
+* octavia
+* barbican-vault
+
+Deprecated Charms
+~~~~~~~~~~~~~~~~~
+
+This is the final release for the charm projects:
+
+glusterfs (unmaintained)
+interface-odl-controller-api (unmaintained)
+manila-glusterfs (unmaintained)
+murano (unmaintained)
+neutron-api-odl (unmaintained)
+nova-compute-proxy (unmaintained)
+odl-controller (unmaintained)
+openvswitch-odl (unmaintained)
+trove (unmaintained)
+
+New Charm Features
+==================
+
+Nova Cells
+~~~~~~~~~~
+
+Nova Cells v2 is now supported by the OpenStack Charms, for deployments of Queens and later.
+
+More details and guidance is published in the charm deployment guide:
+
+https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-nova-cells.html
+
+Nova metadata service moved to nova-cloud-controller
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-metadata service has moved from the neutron-gateway to the nova-cloud-controller for Rocky+. The corresponding vendor-data and vendor-data-url charm config options have also moved so if these are being used they now need setting against the nova-cloud-controller.
+
+Preview Charm Features
+======================
+
+Series Upgrades
+~~~~~~~~~~~~~~~
+This charm release introduces support for Juju Series Upgrades, which allows machines to be transitioned from one Ubuntu LTS version to the next Ubuntu LTS version.  Juju version 2.5 or later is required.
+
+It is classified as a preview feature with this charm release.  The Series Upgrades feature requires Juju 2.5 or later, which is in beta as of this charm release.  When it releases to stable channels, additional charm validation will take place, followed by an update and appendix to the 18.11 OpenStack Charms release notes.  Subsequent charm changes may need to be back-ported to accommodate that staggered release.
+
+In the mean-time, the feature is available in the stable charms and it can be previewed using beta 2.5 of Juju.
+
+See the deployment guide for important guidance regarding the use of Juju Series Upgrades with OpenStack Charms.
+
+https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-series-upgrade.html
+
+Octavia Load Balancer Charm
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The new Octavia charm leverages a lxd container property modeling feature which requires Juju 2.5 or later.
+
+As such, it is classified as a preview charm with this charm release.  When Juju 2.5 releases to stable channels, additional charm validation will takeplace, followed by an update and appendix to the 18.11 OpenStack Charms release notes.  Subsequent charm changes may need to be back-ported to accommodate that staggered release.
+
+In the mean-time, the feature is available in the stable charms and it can be previewed using beta 2.5 of Juju.
+
+See the deployment guide for important guidance regarding the use of Octavia Charm.
+
+Barbican and Barbican-Vault Charms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Prior to this release, the Barbican Charm was in a preview state, having no production back-end charm until now.  With this charm release, the Barbican Charm is supported for Rocky and later only.  The production use case is to deploy the Barbican-Vault Charm to provide a Vault back-end store (which also leveragesthe Castellan library).  A stable update to the barbican-vault charm is anticipated in coordination with the Juju 2.5 stable release.
+
+Upgrading charms
+================
+
+Please ensure that the keystone charm is upgraded first.
+
+To upgrade an existing deployment to the latest charm version simply use the
+'upgrade-charm' command, for example:
+
+.. code:: bash
+
+    juju upgrade-charm keystone
+
+Charm upgrades and OpenStack upgrades are two distinctly different things. Charm upgrades ensure that the deployment is using the latest charm revision, containing the latest charm fixes and charm features available for a given deployment.
+
+Charm upgrades do not cause OpenStack versions to upgrade, however OpenStack upgrades do require the latest Charm version as pre-requisite.
+
+Upgrading OpenStack
+===================
+
+To upgrade an existing Queens based deployment on Ubuntu 18.04 to the Rocky
+release, re-configure the charm with a new openstack-origin
+configuration:
+
+.. code:: bash
+
+    juju config nova-cloud-controller openstack-origin=cloud:bionic-rocky
+
+Please ensure that ceph services are upgraded before services that consume ceph
+resources, such as cinder, glance and nova-compute:
+
+.. code:: bash
+
+    juju config ceph-mon source=cloud:bionic-rocky
+    juju config ceph-osd source=cloud:bionic-rocky
+
+.. note::
+
+   Upgrading an OpenStack cloud is still not without risk; upgrades should
+   be tested in pre-production testing environments prior to production deployment
+   upgrades.
+
+See https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html for more details.
+
+
+New Bundle Features
+===================
+
+Rocky Support in Example Bundles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+OpenStack Rocky and Ceph Mimic versions of the example bundles are published in the charm store under cs:openstack-base, cs:openstack-telemetry. The stand-alone ceph bundle is also updated at cs:ceph-base. These bundles have been validated on x86_64, arm64, s390x and ppc64el architectures with Juju 2.4.6, Juju 2.5beta1, and MAAS 2.3.5.
+
+https://jujucharms.com/openstack-base
+
+https://jujucharms.com/openstack-telemetry
+
+https://jujucharms.com/openstack-lxd
+
+https://jujucharms.com/ceph-base
+
+Deprecation Notices
+===================
+
+None.
+
+Known Issues
+============
+
+Glance v1 removed in Rocky, Glance v2 required
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+As of the Rocky OpenStack release the glance v1 API has been removed. Glance v2 is the only available API version. Two known issues from this have emerged.
+
+One, when using swift store as a back end for glance, glance fails to set the ACLs on the swift container properly:
+https://bugs.launchpad.net/glance/+bug/1789748
+
+The workaround is to manually set the read ACL on the glance container
+swift post glance --read-acl ".r:*,.rlistings"
+
+Two, the glance-simplestreams-sync charm relies on simplestreams which is not yet glance v2 aware:
+https://bugs.launchpad.net/simplestreams/+bug/1790904
+There is currently no workaround for this issue on Rocky.
+
+Nova-lxd tempest testing failing with legacy-tempest-dsvm-lxd-ovs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+https://bugs.launchpad.net/nova-lxd/+bug/1790943
+
+The issue is that very recently tempest has started failing some tests where the instance is not found when going to delete various items after a test (e.g. network vif).  nova-lxd complains that the profile doesn't exist, which means the  instance has already been deleted.  When setting the concurrency to 1 for tempest, the failures disappear.  Either tempest is now showing race conditions in nova-lxd - pylxd - lxd, or tempest has its own internal issues; it's not clear yet which is the case.
+
+
+Bugs Fixed
+==========
+
+This release includes 47 bug fixes. For the full list of bugs resolved for the 18.11 charms release please refer to https://launchpad.net/openstack-charms/+milestone/18.11.
+
+Next Release Info
+=================
+Please see https://docs.openstack.org/charm-guide/latest for current information.
+
