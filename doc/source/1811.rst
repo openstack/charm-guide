@@ -206,6 +206,17 @@ https://bugs.launchpad.net/nova-lxd/+bug/1790943
 
 The issue is that very recently tempest has started failing some tests where the instance is not found when going to delete various items after a test (e.g. network vif).  nova-lxd complains that the profile doesn't exist, which means the  instance has already been deleted.  When setting the concurrency to 1 for tempest, the failures disappear.  Either tempest is now showing race conditions in nova-lxd - pylxd - lxd, or tempest has its own internal issues; it's not clear yet which is the case.
 
+New ambiguous relation interfaces on nova-cloud-controller
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+https://bugs.launchpad.net/charm-nova-cloud-controller/+bug/1804301
+
+With the release of Nova Cell support, new relation interfaces have been added to the nova-cloud-controller charm which creates potential deployment issues with bundles using implied relations between nova-cloud-controller and rabbitmq-server (amqp) or mysql (shared-db).  The following relation definitions may be used to set these explicitly:
+
+.. code:: bash
+
+      - [ "nova-cloud-controller:shared-db", "mysql:shared-db" ]
+      - [ "nova-cloud-controller:amqp", "rabbitmq-server:amqp" ]
 
 Bugs Fixed
 ==========
