@@ -218,6 +218,17 @@ With the release of Nova Cell support, new relation interfaces have been added t
       - [ "nova-cloud-controller:shared-db", "mysql:shared-db" ]
       - [ "nova-cloud-controller:amqp", "rabbitmq-server:amqp" ]
 
+
+Python3 Keystone LDAP does not allow bytes for DN/RDN/field names
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+https://bugs.launchpad.net/keystone/+bug/1798184
+
+Under Python 2, python-ldap uses bytes by default. Under Python 3 this is removed and bytes aren't allowed for DN/RDN/field names.
+
+At the time of this writing it is not possible to upgrade an OpenStack cloud that uses keystone-ldap to Rocky as the keystone LDAP integration will not work until the above bug is resolved.
+
+
 Bugs Fixed
 ==========
 
