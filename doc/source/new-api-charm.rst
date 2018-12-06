@@ -73,7 +73,7 @@ directory corresponding to the OpenStack release being installed or earlier.
 Since Mitaka is the earliest release the charm is supporting a directory called
 mitaka will house the templates and files.
 
-A template for congress.conf is needed which will have have connection
+A template for congress.conf is needed which will have connection
 information for MySQL and Keystone as well as user controllable config options.
 Create **~/congress-charm/congress/src/templates/mitaka/congress.conf** with
 the following contents:
