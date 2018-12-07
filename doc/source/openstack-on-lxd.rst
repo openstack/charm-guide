@@ -18,14 +18,14 @@ The scenarios presented here are for development, testing and demonstration, and
 Host Setup
 ==========
 
-The tools in the openstack-on-lxd git repository require the use of Juju 2.x, which provides full support for the LXD local provider.  The Queens version of the OpenStack clients should be used with this procedure.  These tools are provided as part of the Ubuntu Cloud Archive on Ubuntu 16.04 LTS.
+The tools in the openstack-on-lxd git repository require the use of Juju 2.x, which provides full support for the LXD local provider.
+
+Ubuntu 18.04 (Bionic) is the current LTS release and should be used for this procedure.
 
 .. code:: bash
 
     sudo snap install lxd
     sudo snap install juju --classic
-
-    sudo add-apt-repository cloud-archive:queens -y && sudo apt update
 
     sudo apt install zfsutils-linux squid-deb-proxy bridge-utils \
         python-novaclient python-keystoneclient python-glanceclient \
@@ -90,7 +90,7 @@ Test out your configuration prior to launching an entire cloud:
 
 .. code:: bash
 
-    lxc launch ubuntu-daily:xenial
+    lxc launch ubuntu-daily:bionic
 
 This should result in a running container you can exec into and back out of:
 
@@ -102,16 +102,17 @@ This should result in a running container you can exec into and back out of:
 Juju
 ====
 
-Bootstrap the  Juju Controller
+Bootstrap the Juju Controller
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Prior to deploying the OpenStack on LXD bundle, you'll need to bootstrap a controller to manage your Juju models:
+Prior to deploying the OpenStack on LXD bundle, you'll need to bootstrap a controller to manage your Juju models.
+
+Review the contents of the config.yaml prior to running the following command and edit as appropriate; this configures some defaults for containers created in the model including setting up things like APT proxy to improve performance of network operations.
 
 .. code:: bash
 
     juju bootstrap --config config.yaml localhost lxd
 
-Review the contents of the config.yaml prior to running this command and edit as appropriate; this configures some defaults for containers created in the model including setting up things like APT proxy to improve performance of network operations.
 
 Juju Profile Update
 ~~~~~~~~~~~~~~~~~~~
@@ -178,6 +179,12 @@ For amd64, arm64, or ppc64el Queens on Bionic:
 
     juju deploy bundle-bionic-queens.yaml
 
+For amd64, arm64, or ppc64el Rocky:
+
+.. code:: bash
+
+    juju deploy bundle-bionic-rocky.yaml
+
 For s390x Mitaka:
 
 .. code:: bash
@@ -214,6 +221,12 @@ For s390x Queens on Bionic:
 
     juju deploy bundle-bionic-queens-s390x.yaml
 
+For s390x Rocky:
+
+.. code:: bash
+
+    juju deploy bundle-bionic-rocky-s390x.yaml
+
 You can watch deployment progress using the 'juju status' command.  This may take some time depending on the speed of your system; CPU, disk and network speed will all effect deployment time.
 
 Using the Cloud
@@ -224,11 +237,9 @@ Check Access
 
 Once deployment has completed (units should report a ready state in the status output), check that you can access the deployed cloud OK:
 
-    Note:  While Keystone V3 can be enabled earlier than Queens, the example bundles provided herein use the default version of the Keystone API as shipped upstream.  As of Queens, that default is V3, and prior to Queens the default was V2.
-
 .. code:: bash
 
-    source openrc
+    source openrcv3_project
     openstack catalog list
     openstack service list
     openstack network agent list
@@ -322,6 +333,7 @@ Upload your local public key into the cloud so you can access instances:
 
 Create Flavors
 ++++++++++++++
+
 It's safe to skip this for Mitaka.  For Newton and later, there are no pre-populated flavors.  Check if flavors exist, and if not, create them:
 
 .. code:: bash
