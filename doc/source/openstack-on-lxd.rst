@@ -24,7 +24,6 @@ Ubuntu 18.04 (Bionic) is the current LTS release and should be used for this pro
 
 .. code:: bash
 
-    sudo snap install lxd
     sudo snap install juju --classic
 
     sudo apt install zfsutils-linux squid-deb-proxy bridge-utils \
