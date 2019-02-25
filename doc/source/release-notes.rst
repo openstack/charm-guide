@@ -2,6 +2,9 @@
 Release Notes
 =============
 
+Pending Release Notes
+ * `1904 release <1904.html>`__
+
 Latest Release Notes
  * `18.11 release <1811.html>`__
 
@@ -27,6 +30,7 @@ Older release notes
    :maxdepth: 1
    :hidden:
 
+   1904
    1811
    1808
    1805

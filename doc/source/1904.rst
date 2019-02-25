@@ -1,0 +1,141 @@
+.. _release_notes_19.04
+
+=====
+19.04
+=====
+
+Summary
+=======
+
+The 19.04 OpenStack Charm release includes updates for the following charms.  Additional charm support status information is published in the main `charm guide <openstack-charms.html>`__ which ultimately supersedes release note contents.
+
+Supported Charms
+~~~~~~~~~~~~~~~~
+
+* aodh
+* barbican
+* ceilometer
+* ceilometer-agent
+* ceph-fs
+* ceph-mon
+* ceph-osd
+* ceph-proxy
+* ceph-radosgw
+* cinder
+* cinder-backup
+* cinder-ceph
+* designate
+* designate-bind
+* glance
+* gnocchi
+* hacluster
+* heat
+* keystone
+* keystone-ldap
+* lxd
+* manila
+* manila-generic
+* neutron-api
+* neutron-openvswitch
+* neutron-gateway
+* neutron-dynamic-routing
+* nova-cloud-controller
+* nova-compute
+* openstack-dashboard
+* percona-cluster
+* rabbitmq-server
+* swift-proxy
+* swift-storage
+* vault
+
+Pre-Release Charms
+~~~~~~~~~~~~~~~~~~
+* octavia
+* barbican-vault
+
+Removed Charms
+~~~~~~~~~~~~~~
+
+The following charms have been removed as part of this charm release:
+
+ * glusterfs (unmaintained)
+ * interface-odl-controller-api (unmaintained)
+ * manila-glusterfs (unmaintained)
+ * murano (unmaintained)
+ * neutron-api-odl (unmaintained)
+ * nova-compute-proxy (unmaintained)
+ * odl-controller (unmaintained)
+ * openvswitch-odl (unmaintained)
+ * trove (unmaintained)
+
+New Charm Features
+==================
+
+ceph-radosgw: multisite replication
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-radosgw charm now features support for replication between RADOS Gateway
+deployments; please refer to `Appendix J <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-rgw-multisite.html>`_
+of the charm deployment guide for more details.
+
+Upgrading charms
+================
+
+Please ensure that the keystone charm is upgraded first.
+
+To upgrade an existing deployment to the latest charm version simply use the
+'upgrade-charm' command, for example:
+
+.. code:: bash
+
+    juju upgrade-charm keystone
+
+Charm upgrades and OpenStack upgrades are two distinctly different things. Charm upgrades ensure that the deployment is using the latest charm revision, containing the latest charm fixes and charm features available for a given deployment.
+
+Charm upgrades do not cause OpenStack versions to upgrade, however OpenStack upgrades do require the latest Charm version as pre-requisite.
+
+Upgrading OpenStack
+===================
+
+To upgrade an existing Queens based deployment on Ubuntu 18.04 to the Rocky
+release, re-configure the charm with a new openstack-origin
+configuration:
+
+.. code:: bash
+
+    juju config nova-cloud-controller openstack-origin=cloud:bionic-rocky
+
+Please ensure that ceph services are upgraded before services that consume ceph
+resources, such as cinder, glance and nova-compute:
+
+.. code:: bash
+
+    juju config ceph-mon source=cloud:bionic-rocky
+    juju config ceph-osd source=cloud:bionic-rocky
+
+.. note::
+
+   Upgrading an OpenStack cloud is still not without risk; upgrades should
+   be tested in pre-production testing environments prior to production deployment
+   upgrades.
+
+See https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html for more details.
+
+New Bundle Features
+===================
+
+Deprecation Notices
+===================
+
+Known Issues
+============
+
+Bugs Fixed
+==========
+
+This release includes 47 bug fixes. For the full list of bugs resolved for the 19.04 charms release please refer to https://launchpad.net/openstack-charms/+milestone/19.04.
+
+Next Release Info
+=================
+Please see https://docs.openstack.org/charm-guide/latest for current information.
+
