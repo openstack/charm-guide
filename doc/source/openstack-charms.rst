@@ -10,6 +10,7 @@ These charms have stable releases with ongoing maintenance and testing.
 
 * `aodh <https://git.openstack.org/cgit/openstack/charm-aodh/>`_
 * `barbican <https://git.openstack.org/cgit/openstack/charm-barbican/>`_
+* `barbican-vault <https://git.openstack.org/cgit/openstack/charm-barbican-vault/>`_
 * `ceilometer <https://git.openstack.org/cgit/openstack/charm-ceilometer/>`_
 * `ceilometer-agent <https://git.openstack.org/cgit/openstack/charm-ceilometer-agent/>`_
 * `cinder <https://git.openstack.org/cgit/openstack/charm-cinder/>`_
@@ -27,6 +28,7 @@ These charms have stable releases with ongoing maintenance and testing.
 * `nova-cell-controller <https://git.openstack.org/cgit/openstack/charm-nova-cell-controller/>`_
 * `nova-cloud-controller <https://git.openstack.org/cgit/openstack/charm-nova-cloud-controller/>`_
 * `nova-compute <https://git.openstack.org/cgit/openstack/charm-nova-compute/>`_
+* `octavia <https://git.openstack.org/cgit/openstack/charm-octavia/>`_
 * `openstack-dashboard <https://git.openstack.org/cgit/openstack/charm-openstack-dashboard/>`_
 * `swift-proxy <https://git.openstack.org/cgit/openstack/charm-swift-proxy/>`_
 * `swift-storage <https://git.openstack.org/cgit/openstack/charm-swift-storage/>`_
@@ -57,12 +59,10 @@ is to indicate that additional validation, and further work may be necessary to
 make a stable release for production use.
 
 * `barbican-softhsm <https://git.openstack.org/cgit/openstack/charm-barbican-softhsm/>`_
-* `barbican-vault <https://git.openstack.org/cgit/openstack/charm-barbican-vault/>`_
 * `ceph-fs <https://git.openstack.org/cgit/openstack/charm-ceph-fs/>`_
 * `cinder-backup <https://git.openstack.org/cgit/openstack/charm-cinder-backup/>`_
 * `manila <https://git.openstack.org/cgit/openstack/charm-manila/>`_
 * `manila-generic <https://git.openstack.org/cgit/openstack/charm-manila-generic/>`_
-* `octavia <https://git.openstack.org/cgit/openstack/charm-octavia/>`_
 * `tempest <https://git.openstack.org/cgit/openstack/charm-tempest/>`_
 
 Maintenance-Mode Charms
