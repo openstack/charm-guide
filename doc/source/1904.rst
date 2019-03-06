@@ -127,6 +127,22 @@ New Bundle Features
 Deprecation Notices
 ===================
 
+Removed Features
+================
+
+nova-cloud-controller: single-nova-consoleauth
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The 'single-nova-consoleauth' feature has been removed from the nova-cloud-controller charm; this legacy feature has been superceeded by the use of nova-consoleauth daemons on all nova-cloud-controller units, sharing authentication tokens using memcached.
+
+Cluster resources associated with this feature will be cleaned up up during charm upgrade.
+
+If the charm is running in an HA deployment, a relation to memcached must be added to the nova-cloud-controller application:
+
+.. code:: bash
+
+    juju add-relation nova-cloud-controller memcached
+
 Known Issues
 ============
 
