@@ -142,6 +142,10 @@ Deploy
 
 Next, deploy the OpenStack cloud using the provided bundle.
 
+Note: Bundles should be deployed on the 'default' named model. That's
+to ensure that the 'juju-default' lxd profile is applied on
+containers.
+
 For amd64, arm64, or ppc64el Mitaka:
 
 .. code:: bash
