@@ -187,7 +187,7 @@ authentication data to do so.
    will be used to configure the backend.
 
 2. Then the charm author will modify the
-   ``src/lib/charm/openstack/{pacakge}.py`` file.
+   ``src/lib/charm/openstack/{package}.py`` file.
 
 Configuration Options
 ---------------------
