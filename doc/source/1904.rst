@@ -78,6 +78,34 @@ The ceph-radosgw charm now features support for replication between RADOS Gatewa
 deployments; please refer to `Appendix J <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-rgw-multisite.html>`_
 of the charm deployment guide for more details.
 
+
+rabbitmq integration refactor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Rabbitmq sectional configuration was deprecated and removed, replaced by
+transport_url configuration in the [DEFAULT] section.  As part of this
+change, a wider refactoring of the rabbitmq-server integration was done.
+
+The ceilometer-agent charm now requires a direct amqp relation to the
+rabbitmq-server charm.
+
+Users upgrading the ceilometer-agent charm to the 19.04 charm revision
+will need to add a relation, as ceilometer-agent units will go into a
+BLOCKED state for lack of this new required relation.  Users and operators
+will also need to update any relevant bundles accordingly.
+
+For example:
+
+.. code:: bash
+
+    juju add-relation ceilometer-agent:amqp rabbitmq-server:amqp
+
+Reference:
+ - https://launchpad.net/bugs/1817672
+ - https://review.openstack.org/#/c/639333
+ - https://review.openstack.org/#/q/topic:bug/1817672+(status:open+OR+status:merged)
+
+
 Upgrading charms
 ================
 
