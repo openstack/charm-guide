@@ -71,6 +71,17 @@ The following charms have been removed as part of this charm release:
 New Charm Features
 ==================
 
+pci passthrough for gpu and other devices
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The requirements and configuration for passing arbitrary PCI devices through
+to Nova KVM instances are now detailed in the charm deployment guide.
+
+A common use case for this configuration is to provide direct access to a
+GPGPU device within a virtual machine.
+
+Please refer to the `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-pci-passthrough-gpu.html>`_ for more details.
+
 ceph-radosgw: multisite replication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
