@@ -9,6 +9,34 @@ to being blocked or delayed by critical regressions or critical bugs
 introduced at master.
 
 
+19.10 Stable Charm Release
+##########################
+
++---------+-------------------+
+| Freeze  | tbd               |
++---------+-------------------+
+| Release | tbd               |
++---------+-------------------+
+
+19.07 Stable Charm Release
+##########################
+
++---------+-------------------+
+| Freeze  | Tue, Jul 16, 2019 |
++---------+-------------------+
+| Release | Tue, Jul 23, 2019 |
++---------+-------------------+
+
+19.04 Stable Charm Release
+##########################
+
++---------+-------------------+
+| Freeze  | Tue, Apr 2, 2019  |
++---------+-------------------+
+| Release | Tue, Apr 9, 2019  |
++---------+-------------------+
+
+
 18.11 Stable Charm Release
 ##########################
 
