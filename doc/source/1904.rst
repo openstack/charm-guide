@@ -14,15 +14,14 @@ Supported Charms
 
 * aodh
 * barbican
+* barbican-vault
 * ceilometer
 * ceilometer-agent
-* ceph-fs
 * ceph-mon
 * ceph-osd
 * ceph-proxy
 * ceph-radosgw
 * cinder
-* cinder-backup
 * cinder-ceph
 * designate
 * designate-bind
@@ -33,14 +32,13 @@ Supported Charms
 * keystone
 * keystone-ldap
 * lxd
-* manila
-* manila-generic
 * neutron-api
 * neutron-openvswitch
 * neutron-gateway
 * neutron-dynamic-routing
 * nova-cloud-controller
 * nova-compute
+* octavia
 * openstack-dashboard
 * percona-cluster
 * rabbitmq-server
@@ -50,8 +48,10 @@ Supported Charms
 
 Pre-Release Charms
 ~~~~~~~~~~~~~~~~~~
-* octavia
-* barbican-vault
+* ceph-fs
+* cinder-backup
+* manila
+* manila-generic
 
 Removed Charms
 ~~~~~~~~~~~~~~
