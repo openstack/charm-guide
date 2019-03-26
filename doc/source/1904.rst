@@ -116,6 +116,13 @@ Reference:
  - https://review.openstack.org/#/c/639333
  - https://review.openstack.org/#/q/topic:bug/1817672+(status:open+OR+status:merged)
 
+neutron-api: FWaaS v2
+~~~~~~~~~~~~~~~~~~~~~
+
+For the OpenStack Stein release FWaaS v1 has been dropped; FWaaS v2
+will be automatically enabled and existing FWaaS v1 definitions migrated
+to v2 on upgrade.
+
 
 Upgrading charms
 ================
