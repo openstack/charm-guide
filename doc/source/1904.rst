@@ -21,6 +21,7 @@ Supported Charms
 * ceph-osd
 * ceph-proxy
 * ceph-radosgw
+* ceph-rbd-mirror
 * cinder
 * cinder-ceph
 * designate
@@ -88,6 +89,20 @@ ceph-radosgw: multisite replication
 The ceph-radosgw charm now features support for replication between RADOS Gateway
 deployments; please refer to `Appendix J <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-rgw-multisite.html>`_
 of the charm deployment guide for more details.
+
+ceph-rbd-mirror: Mirroring of RBD images
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-rbd-mirror charm allows you to mirror RBD images across Ceph clusters;
+please refer to `Appendix K <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ceph-rbd-mirror.html>`_
+of the charm deployment guide for more details.
+
+.. note::
+
+    There exist bugs in Ceph Luminous that can make the available status
+    information about RBD Mirror inaccurate.  While we regard these bugs to
+    be cosmetic, it is useful to be aware of them.  These issues are not
+    present with Ceph Mimic.
 
 
 rabbitmq integration refactor
