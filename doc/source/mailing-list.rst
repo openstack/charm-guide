@@ -1,4 +1,4 @@
-.. _mailing_list:
+.. _mailing_list: http://lists.openstack.org/cgi-bin/mailman/listinfo/openstack-discuss
 
 ============
 Mailing list
@@ -10,4 +10,3 @@ question can search for (and find) those answers.
 
 All communication regarding charms should contain **[charms]** in the subject line when sending to the `mailing_list`_.
 
-.. _mailing list: http://lists.openstack.org/cgi-bin/mailman/listinfo/openstack-discuss
