@@ -53,6 +53,9 @@ Pre-Release Charms
 * cinder-backup
 * manila
 * manila-generic
+* masakari
+* masakari-monitors
+* pacemaker-remote
 
 Removed Charms
 ~~~~~~~~~~~~~~
@@ -104,6 +107,17 @@ of the charm deployment guide for more details.
     be cosmetic, it is useful to be aware of them.  These issues are not
     present with Ceph Mimic.
 
+
+OpenStack Automated Instance Recovery with Masakari
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Three new charms are being previewed: masakari, masakari-monitors and pacemaker-remote.
+Together they provide automated instance recovery in the event of an individual
+guest crashing or an entire compute node going offline. These charms are for
+use in development environemnts or PoC work they should not be treated as
+ready for production for this cycle. Please refer to
+`Appendix L <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-masakari.html>`_
+of the charm deployment guide for more details.
 
 rabbitmq integration refactor
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
