@@ -218,8 +218,45 @@ If the charm is running in an HA deployment, a relation to memcached must be add
 
     juju add-relation nova-cloud-controller memcached
 
+.. warning::
+
+    See known issues below: Adding nova-cloud-controller memcached relation
+
 Known Issues
 ============
+
+Adding nova-cloud-controller memcached relation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. warning::
+
+    If a memcached application already exists in the model it is possible that the
+    nova-cloud-controller and memcached applications have different default spaces
+    or the cache relation is not bound to a matching network space.
+
+    This leads to `bug 1823740`_ where memcached units have the wrong IP addresses
+    for the nova-cloud-controller units in the iptables rules used to restrict access.
+
+The symptom is the command "openstack availability zone" list timing out and SYN_SENT connections on the nova-cloud-controller unit to the memcached unit.  Launching new instances will also fail.
+
+Because Juju does not currently allow network space binding post-deployment (`bug 1796653`_) memcached must be (re-)deployed with the correct network space bindings to support access from the nova-cloud-controller units.
+
+There are two approaches. The safest of which is to deploy a new set of memcached units either with their cache relationship bound to nova-cloud-controllers default space or their default space set to the same as nova-cloud-controllers.
+
+.. code:: bash
+
+    juju deploy -n 2 cs:memcached --to lxd:1,lxd:2 --bind "cache=<NCC's DEFAULT SPACE>" ncc-memcached
+
+or
+
+.. code:: bash
+
+    juju deploy -n 2 cs:memcached --to lxd:1,lxd:2 --bind "<NCC's DEFAULT SPACE>" ncc-memcached
+
+The alternative is to remove the existing memcached application entirely and redeploy it using the same approach.
+
+.. _bug 1823740: https://bugs.launchpad.net/charm-nova-cloud-controller/+bug/1823740
+.. _bug 1796653: https://bugs.launchpad.net/juju/+bug/1796653
 
 Bugs Fixed
 ==========
