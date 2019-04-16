@@ -196,6 +196,11 @@ resources, such as cinder, glance and nova-compute:
 
 See https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html for more details.
 
+.. note::
+
+    See Known Issues: Cinder auto-resume after openstack upgrade action below.
+
+
 New Bundle Features
 ===================
 
@@ -257,6 +262,30 @@ The alternative is to remove the existing memcached application entirely and red
 
 .. _bug 1823740: https://bugs.launchpad.net/charm-nova-cloud-controller/+bug/1823740
 .. _bug 1796653: https://bugs.launchpad.net/juju/+bug/1796653
+
+
+Cinder auto-resume after openstack upgrade action
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There was a conflict between the way the cinder charm handled series-upgrade and action managed openstack upgrades as described in (`bug 1824545`_).
+
+When an cinder unit was paused and an action managed openstack upgrade was performed certain necessary steps were accidentally skipped. The solution is to run an automatic resume immediately after openstack upgrade, which the charm now does.
+
+This note is to point out this behavior is different than the other charms. We may change the other charms to match this behavior at some point in the future.
+
+After the following actions:
+
+.. code:: bash
+
+    juju config cinder action-managed-upgrade=True openstack-origin=$NEW_ORIGIN
+    juju run-action --wait cinder/0 pause
+    juju run-action --wait cinder/0 openstack-upgrade
+
+The cinder charm will be upgraded and resumed. It is no longer necessary to run the resume action post openstack upgrade.
+
+.. _bug 1824545: https://bugs.launchpad.net/charm-cinder/+bug/1824545
+
+
 
 Bugs Fixed
 ==========
