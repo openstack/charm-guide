@@ -3,6 +3,13 @@
 Charms
 ======
 
+Each stable release of OpenStack Charms is backwards-compatible to cover all
+currently-supported combinations of Ubuntu + OpenStack.  The latest stable
+charm revision should be used before proceeding with topological changes,
+charm application migrations, workload upgrades, series upgrades, or
+bug reports.
+
+
 OpenStack Charms
 ~~~~~~~~~~~~~~~~
 
@@ -29,6 +36,7 @@ These charms have stable releases with ongoing maintenance and testing.
 * `nova-cloud-controller <https://git.openstack.org/cgit/openstack/charm-nova-cloud-controller/>`_
 * `nova-compute <https://git.openstack.org/cgit/openstack/charm-nova-compute/>`_
 * `octavia <https://git.openstack.org/cgit/openstack/charm-octavia/>`_
+* `octavia-dashboard <https://git.openstack.org/cgit/openstack/charm-octavia-dashboard/>`_
 * `openstack-dashboard <https://git.openstack.org/cgit/openstack/charm-openstack-dashboard/>`_
 * `swift-proxy <https://git.openstack.org/cgit/openstack/charm-swift-proxy/>`_
 * `swift-storage <https://git.openstack.org/cgit/openstack/charm-swift-storage/>`_
@@ -61,8 +69,12 @@ make a stable release for production use.
 * `barbican-softhsm <https://git.openstack.org/cgit/openstack/charm-barbican-softhsm/>`_
 * `ceph-fs <https://git.openstack.org/cgit/openstack/charm-ceph-fs/>`_
 * `cinder-backup <https://git.openstack.org/cgit/openstack/charm-cinder-backup/>`_
+* `keystone-saml-mellon <https://github.com/openstack-charmers/charm-keystone-saml-mellon/>`_
 * `manila <https://git.openstack.org/cgit/openstack/charm-manila/>`_
 * `manila-generic <https://git.openstack.org/cgit/openstack/charm-manila-generic/>`_
+* `masakari <https://git.openstack.org/cgit/openstack/charm-masakari/>`_
+* `masakari-monitors <https://git.openstack.org/cgit/openstack/charm-masakari-monitors/>`_
+* `pacemaker-remote <https://git.openstack.org/cgit/openstack/charm-pacemaker-remote/>`_
 * `tempest <https://git.openstack.org/cgit/openstack/charm-tempest/>`_
 
 Maintenance-Mode Charms
@@ -80,6 +92,11 @@ Deprecated Charms
 These charms have reached EOL and are deprecated.
 
 * `ceph <https://git.openstack.org/cgit/openstack/charm-ceph/>`_ - Use ceph-osd + ceph-mon instead.
+* `glusterfs <https://git.openstack.org/cgit/openstack/charm-glusterfs/>`_
+* `manila-glusterfs <https://git.openstack.org/cgit/openstack/charm-manila-glusterfs/>`_
+* `murano <https://git.openstack.org/cgit/openstack/charm-murano/>`_
 * `neutron-api-odl <https://git.openstack.org/cgit/openstack/charm-neutron-api-odl/>`_
+* `nova-compute-proxy <https://git.openstack.org/cgit/openstack/charm-nova-compute-proxy/>`_
 * `openvswitch-odl <https://git.openstack.org/cgit/openstack/charm-openvswitch-odl/>`_
 * `odl-controller <https://git.openstack.org/cgit/openstack/charm-odl-controller/>`_
+* `trove <https://git.openstack.org/cgit/openstack/charm-trove/>`_

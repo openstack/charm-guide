@@ -7,7 +7,14 @@
 Summary
 =======
 
-The 19.04 OpenStack Charm release includes updates for the following charms.  Additional charm support status information is published in the main `charm guide <openstack-charms.html>`__ which ultimately supersedes release note contents.
+The 19.04 OpenStack Charm release includes updates for the following charms.
+Additional charm support status information is published in the main
+`charm guide <openstack-charms.html>`__ which ultimately supersedes release
+note contents.
+
+Always use the latest stable charm revision before proceeding with topological
+changes, application migrations, workload upgrades, series upgrades, or bug
+reports.
 
 Supported Charms
 ~~~~~~~~~~~~~~~~
@@ -50,6 +57,7 @@ Supported Charms
 Preview Charms
 ~~~~~~~~~~~~~~
 
+* barbican-softhsm
 * ceph-fs
 * cinder-backup
 * keystone-saml-mellon
@@ -58,6 +66,7 @@ Preview Charms
 * masakari
 * masakari-monitors
 * pacemaker-remote
+* tempest
 
 Removed Charms
 ~~~~~~~~~~~~~~
@@ -76,6 +85,11 @@ The following charms have been removed as part of this charm release:
 
 New Charm Features
 ==================
+
+With each new feature, there is a corresponding example bundle in the form of
+a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`_ 
+section which details the use of the feature.  For example test bundles, see the
+src/tests/bundles/ directory within the relevant charm repository.
 
 PCI passthrough for GPU and other devices
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -167,8 +181,6 @@ of the charm deployment guide for more details.
     however, this may not be the desired behaviour. `Bug 1823331 <https://bugs.launchpad.net/charm-hacluster/+bug/1823331>`_
     tracks exposing the stonith behaviour as a configuration option.
 
-
-
 Keystone Federation With SAML Mellon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -202,10 +214,12 @@ Please refer to
 `README  <https://jujucharms.com/u/openstack-charmers/keystone-saml-mellon/>`_
 of the charm for more details.
 
-
-
 Upgrading charms
 ================
+
+Always use the latest stable charm revision before proceeding with topological
+changes, charm application migrations, workload upgrades, series upgrades, or
+bug reports.
 
 Please ensure that the keystone charm is upgraded first.
 
@@ -216,15 +230,19 @@ To upgrade an existing deployment to the latest charm version simply use the
 
     juju upgrade-charm keystone
 
-Charm upgrades and OpenStack upgrades are two distinctly different things. Charm upgrades ensure that the deployment is using the latest charm revision, containing the latest charm fixes and charm features available for a given deployment.
+Charm upgrades and OpenStack upgrades are two distinctly different things.
+Charm upgrades ensure that the deployment is using the latest charm
+revision, containing the latest charm fixes and charm features available
+for a given deployment.
 
-Charm upgrades do not cause OpenStack versions to upgrade, however OpenStack upgrades do require the latest Charm version as pre-requisite.
+Charm upgrades do not cause OpenStack versions to upgrade, however OpenStack
+upgrades do require the latest Charm version as pre-requisite.
 
 Upgrading OpenStack
 ===================
 
-Before upgrading OpenStack, all OpenStack Charms should be running the latest stable
-charm revision.
+Before upgrading OpenStack, all OpenStack Charms should be running the latest
+stable charm revision.
 
 To upgrade an existing Queens based deployment on Ubuntu 18.04 to the Stein
 release, re-configure the charm with a new openstack-origin
@@ -248,7 +266,8 @@ resources, such as cinder, glance and nova-compute:
    be tested in pre-production testing environments prior to production deployment
    upgrades.
 
-See https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html for more details.
+See https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
+for more details.
 
 .. note::
 
@@ -266,11 +285,16 @@ Removed Features
 nova-cloud-controller: single-nova-consoleauth
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The 'single-nova-consoleauth' feature has been removed from the nova-cloud-controller charm; this legacy feature has been superceeded by the use of nova-consoleauth daemons on all nova-cloud-controller units, sharing authentication tokens using memcached.
+The 'single-nova-consoleauth' feature has been removed from the
+nova-cloud-controller charm; this legacy feature has been superceeded by the
+use of nova-consoleauth daemons on all nova-cloud-controller units, sharing
+authentication tokens using memcached.
 
-Cluster resources associated with this feature will be cleaned up up during charm upgrade.
+Cluster resources associated with this feature will be cleaned up up during
+charm upgrade.
 
-If the charm is running in an HA deployment, a relation to memcached must be added to the nova-cloud-controller application:
+If the charm is running in an HA deployment, a relation to memcached must
+be added to the nova-cloud-controller application:
 
 .. code:: bash
 
@@ -295,11 +319,18 @@ Adding nova-cloud-controller memcached relation
     This leads to `bug 1823740`_ where memcached units have the wrong IP addresses
     for the nova-cloud-controller units in the iptables rules used to restrict access.
 
-The symptom is the command "openstack availability zone" list timing out and SYN_SENT connections on the nova-cloud-controller unit to the memcached unit.  Launching new instances will also fail.
+The symptom is the command "openstack availability zone" list timing out and
+SYN_SENT connections on the nova-cloud-controller unit to the memcached unit.
+Launching new instances will also fail.
 
-Because Juju does not currently allow network space binding post-deployment (`bug 1796653`_) memcached must be (re-)deployed with the correct network space bindings to support access from the nova-cloud-controller units.
+Because Juju does not currently allow network space binding post-deployment
+(`bug 1796653`_) memcached must be (re-)deployed with the correct network
+space bindings to support access from the nova-cloud-controller units.
 
-There are two approaches. The safest of which is to deploy a new set of memcached units either with their cache relationship bound to nova-cloud-controllers default space or their default space set to the same as nova-cloud-controllers.
+There are two approaches. The safest of which is to deploy a new set of
+memcached units either with their cache relationship bound to
+nova-cloud-controllers default space or their default space set to the same as
+nova-cloud-controllers.
 
 .. code:: bash
 
@@ -311,7 +342,8 @@ or
 
     juju deploy -n 2 cs:memcached --to lxd:1,lxd:2 --bind "<NCC's DEFAULT SPACE>" ncc-memcached
 
-The alternative is to remove the existing memcached application entirely and redeploy it using the same approach.
+The alternative is to remove the existing memcached application entirely and
+redeploy it using the same approach.
 
 Related to this issue, is an upstream oslo.cache bug which is working its way through backport at the time of this writing (`bug 1812935`_).
 
@@ -322,11 +354,17 @@ Related to this issue, is an upstream oslo.cache bug which is working its way th
 Cinder auto-resume after openstack upgrade action
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There was a conflict between the way the cinder charm handled series-upgrade and action managed openstack upgrades as described in (`bug 1824545`_).
+There was a conflict between the way the cinder charm handled series-upgrade
+and action managed openstack upgrades as described in (`bug 1824545`_).
 
-When an cinder unit was paused and an action managed openstack upgrade was performed certain necessary steps were accidentally skipped. The solution is to run an automatic resume immediately after openstack upgrade, which the charm now does.
+When a cinder unit was paused and an action managed openstack upgrade was
+performed certain necessary steps were accidentally skipped. The solution is
+to run an automatic resume immediately after openstack upgrade, which the
+charm now does.
 
-This note is to point out this behavior is different than the other charms. We may change the other charms to match this behavior at some point in the future.
+This note is to point out this behavior is different than the other charms.
+We may change the other charms to match this behavior at some point in the
+future.
 
 After the following actions:
 
@@ -336,14 +374,16 @@ After the following actions:
     juju run-action --wait cinder/0 pause
     juju run-action --wait cinder/0 openstack-upgrade
 
-The cinder charm will be upgraded and resumed. It is no longer necessary to run the resume action post openstack upgrade.
+The cinder charm will be upgraded and resumed. It is no longer necessary to run
+the resume action post openstack upgrade.
 
 .. _bug 1824545: https://bugs.launchpad.net/charm-cinder/+bug/1824545
 
 Bugs Fixed
 ==========
 
-This release includes 247 bug fixes. For the full list of bugs resolved for the 19.04 charms release please refer to https://launchpad.net/openstack-charms/+milestone/19.04.
+This release includes 247 bug fixes. For the full list of bugs resolved for the
+19.04 charms release please refer to https://launchpad.net/openstack-charms/+milestone/19.04.
 
 Next Release Info
 =================
