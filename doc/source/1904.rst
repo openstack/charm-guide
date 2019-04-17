@@ -91,6 +91,16 @@ a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/proj
 section which details the use of the feature.  For example test bundles, see the
 src/tests/bundles/ directory within the relevant charm repository.
 
+OpenStack Stein
+~~~~~~~~~~~~~~~
+
+The 19.04 OpenStack Charms release introduces support for OpenStack Stein on
+Ubuntu 18.04 (LTS) and Ubuntu 19.04.
+
+Additional charm support status information is published in the main
+`charm guide <openstack-charms.html>`__ which ultimately supersedes release
+note contents.
+
 PCI passthrough for GPU and other devices
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
