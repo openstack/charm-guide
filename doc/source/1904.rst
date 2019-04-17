@@ -154,6 +154,11 @@ ready for production for this cycle. Please refer to
 `Appendix L <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-masakari.html>`_
 of the charm deployment guide for more details.
 
+.. note::
+
+    When a stonith operation is triggered the default is to reboot the lost node,
+    however, this may not be the desired behaviour. `Bug 1823331 <https://bugs.launchpad.net/charm-hacluster/+bug/1823331>`_
+    tracks exposing the stonith behaviour as a configuration option.
 
 Upgrading charms
 ================
