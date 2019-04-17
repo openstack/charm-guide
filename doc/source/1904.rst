@@ -174,21 +174,21 @@ Charm upgrades do not cause OpenStack versions to upgrade, however OpenStack upg
 Upgrading OpenStack
 ===================
 
-To upgrade an existing Queens based deployment on Ubuntu 18.04 to the Rocky
+To upgrade an existing Queens based deployment on Ubuntu 18.04 to the Stein
 release, re-configure the charm with a new openstack-origin
 configuration:
 
 .. code:: bash
 
-    juju config nova-cloud-controller openstack-origin=cloud:bionic-rocky
+    juju config nova-cloud-controller openstack-origin=cloud:bionic-stein
 
 Please ensure that ceph services are upgraded before services that consume ceph
 resources, such as cinder, glance and nova-compute:
 
 .. code:: bash
 
-    juju config ceph-mon source=cloud:bionic-rocky
-    juju config ceph-osd source=cloud:bionic-rocky
+    juju config ceph-mon source=cloud:bionic-stein
+    juju config ceph-osd source=cloud:bionic-stein
 
 .. note::
 
