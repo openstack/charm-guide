@@ -10,6 +10,11 @@ on the charms in terms of development and testing.
 The OpenStack Charms team produces a release every 3 months, with every other release
 aligned to the main OpenStack release.
 
+Each stable release of OpenStack Charms is backwards-compatible to cover all currently-supported
+combinations of Ubuntu + OpenStack.  It follows that the latest stable charm revision should
+be used before proceeding with topological changes, charm application migrations, workload
+upgrades, series upgrades, or bug reports.
+
 To be included as part of a release, the (sub)team supporting a charm must meet the
 following release requirements:
 
