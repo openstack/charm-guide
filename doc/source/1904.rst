@@ -148,9 +148,14 @@ OpenStack Automated Instance Recovery with Masakari
 
 Three new charms are being previewed: masakari, masakari-monitors and pacemaker-remote.
 Together they provide automated instance recovery in the event of an individual
-guest crashing or an entire compute node going offline. These charms are for
-use in development environemnts or PoC work they should not be treated as
-ready for production for this cycle. Please refer to
+guest crashing or an entire compute node going offline.
+
+These charms bring forward upstream Masakari features which need to be carefully considered
+and pre-validated in test labs by cloud operators.  Further upstream Masakari development,
+charm feature work and scenario validation is likely going to be necessary before the solution
+can be considered mature on the whole.
+
+Please refer to
 `Appendix L <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-masakari.html>`_
 of the charm deployment guide for more details.
 
@@ -178,6 +183,9 @@ Charm upgrades do not cause OpenStack versions to upgrade, however OpenStack upg
 
 Upgrading OpenStack
 ===================
+
+Before upgrading OpenStack, all OpenStack Charms should be running the latest stable
+charm revision.
 
 To upgrade an existing Queens based deployment on Ubuntu 18.04 to the Stein
 release, re-configure the charm with a new openstack-origin
