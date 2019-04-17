@@ -52,6 +52,7 @@ Preview Charms
 
 * ceph-fs
 * cinder-backup
+* keystone-saml-mellon
 * manila
 * manila-generic
 * masakari
@@ -165,6 +166,43 @@ of the charm deployment guide for more details.
     When a stonith operation is triggered the default is to reboot the lost node,
     however, this may not be the desired behaviour. `Bug 1823331 <https://bugs.launchpad.net/charm-hacluster/+bug/1823331>`_
     tracks exposing the stonith behaviour as a configuration option.
+
+
+
+Keystone Federation With SAML Mellon
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The new charm, keystone-saml-mellon, implements the SAML Mellon Apache2 module.
+This enables Keystone federation with a third party Identity Provider via SAML.
+The Identity Provider may be another Keystone or it may be another identity
+service technology.
+
+SAML Mellon and federation allow a user to log in through the Horizon dashboard
+using credentials held in a third party Identity Provider. The SAML exchange
+follows this workflow: Horizon checks with Keystone as the Service Provider,
+which refers the browser to the Identity Provider, which confirms the users
+credentials back to Keystone, which grants access to the browser user in
+Horizon for OpenStack resources.
+
+Federation and SAML are complicated technologies with a number of moving parts
+including Keystone as the Service Provider, a third party Identity Provider, and
+Horizon. As such one should read as much of the documentation as possible
+before attempting to deploy a SAML enabled Keystone federation. The
+keystone-saml-mellon's README is considered the primary source for
+documentation for the deployment and configuration of keystone-saml-mellon
+charm. It includes many upstream documentation sources all of which should be
+read and understood.
+
+.. note::
+
+    SAML is a browser based technology. As such, although it may be technically
+    possible, it is not practical as a solution for users of the CLI.
+
+Please refer to
+`README  <https://jujucharms.com/u/openstack-charmers/keystone-saml-mellon/>`_
+of the charm for more details.
+
+
 
 Upgrading charms
 ================
