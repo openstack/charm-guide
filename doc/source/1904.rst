@@ -275,8 +275,11 @@ or
 
 The alternative is to remove the existing memcached application entirely and redeploy it using the same approach.
 
+Related to this issue, is an upstream oslo.cache bug which is working its way through backport at the time of this writing (`bug 1812935`_).
+
 .. _bug 1823740: https://bugs.launchpad.net/charm-nova-cloud-controller/+bug/1823740
 .. _bug 1796653: https://bugs.launchpad.net/juju/+bug/1796653
+.. _bug 1812935: https://bugs.launchpad.net/oslo.cache/+bug/1812935
 
 Cinder auto-resume after openstack upgrade action
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
