@@ -14,6 +14,7 @@ to the OpenStack Charms.
    :titlesonly:
    :maxdepth: 1
 
+   feature-specification
    coding-guidelines
    testing
    making-a-change
