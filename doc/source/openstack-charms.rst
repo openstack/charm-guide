@@ -15,31 +15,31 @@ OpenStack Charms
 
 These charms have stable releases with ongoing maintenance and testing.
 
-* `aodh <https://git.openstack.org/cgit/openstack/charm-aodh/>`_
-* `barbican <https://git.openstack.org/cgit/openstack/charm-barbican/>`_
-* `barbican-vault <https://git.openstack.org/cgit/openstack/charm-barbican-vault/>`_
-* `ceilometer <https://git.openstack.org/cgit/openstack/charm-ceilometer/>`_
-* `ceilometer-agent <https://git.openstack.org/cgit/openstack/charm-ceilometer-agent/>`_
-* `cinder <https://git.openstack.org/cgit/openstack/charm-cinder/>`_
-* `cinder-backup <https://git.openstack.org/cgit/openstack/charm-cinder-backup/>`_
-* `cinder-ceph <https://git.openstack.org/cgit/openstack/charm-cinder-ceph/>`_
-* `designate <https://git.openstack.org/cgit/openstack/charm-designate/>`_
-* `glance <https://git.openstack.org/cgit/openstack/charm-glance/>`_
-* `heat <https://git.openstack.org/cgit/openstack/charm-heat/>`_
-* `keystone <https://git.openstack.org/cgit/openstack/charm-keystone/>`_
-* `keystone-ldap <https://git.openstack.org/cgit/openstack/charm-keystone-ldap/>`_
-* `neutron-api <https://git.openstack.org/cgit/openstack/charm-neutron-api/>`_
-* `neutron-dynamic-routing <https://git.openstack.org/cgit/openstack/charm-neutron-dynamic-routing/>`_
-* `neutron-gateway <https://git.openstack.org/cgit/openstack/charm-neutron-gateway/>`_
-* `neutron-openvswitch <https://git.openstack.org/cgit/openstack/charm-neutron-openvswitch/>`_
-* `nova-cell-controller <https://git.openstack.org/cgit/openstack/charm-nova-cell-controller/>`_
-* `nova-cloud-controller <https://git.openstack.org/cgit/openstack/charm-nova-cloud-controller/>`_
-* `nova-compute <https://git.openstack.org/cgit/openstack/charm-nova-compute/>`_
-* `octavia <https://git.openstack.org/cgit/openstack/charm-octavia/>`_
-* `octavia-dashboard <https://git.openstack.org/cgit/openstack/charm-octavia-dashboard/>`_
-* `openstack-dashboard <https://git.openstack.org/cgit/openstack/charm-openstack-dashboard/>`_
-* `swift-proxy <https://git.openstack.org/cgit/openstack/charm-swift-proxy/>`_
-* `swift-storage <https://git.openstack.org/cgit/openstack/charm-swift-storage/>`_
+* `aodh <https://opendev.org/openstack/charm-aodh/>`_
+* `barbican <https://opendev.org/openstack/charm-barbican/>`_
+* `barbican-vault <https://opendev.org/openstack/charm-barbican-vault/>`_
+* `ceilometer <https://opendev.org/openstack/charm-ceilometer/>`_
+* `ceilometer-agent <https://opendev.org/openstack/charm-ceilometer-agent/>`_
+* `cinder <https://opendev.org/openstack/charm-cinder/>`_
+* `cinder-backup <https://opendev.org/openstack/charm-cinder-backup/>`_
+* `cinder-ceph <https://opendev.org/openstack/charm-cinder-ceph/>`_
+* `designate <https://opendev.org/openstack/charm-designate/>`_
+* `glance <https://opendev.org/openstack/charm-glance/>`_
+* `heat <https://opendev.org/openstack/charm-heat/>`_
+* `keystone <https://opendev.org/openstack/charm-keystone/>`_
+* `keystone-ldap <https://opendev.org/openstack/charm-keystone-ldap/>`_
+* `neutron-api <https://opendev.org/openstack/charm-neutron-api/>`_
+* `neutron-dynamic-routing <https://opendev.org/openstack/charm-neutron-dynamic-routing/>`_
+* `neutron-gateway <https://opendev.org/openstack/charm-neutron-gateway/>`_
+* `neutron-openvswitch <https://opendev.org/openstack/charm-neutron-openvswitch/>`_
+* `nova-cell-controller <https://opendev.org/openstack/charm-nova-cell-controller/>`_
+* `nova-cloud-controller <https://opendev.org/openstack/charm-nova-cloud-controller/>`_
+* `nova-compute <https://opendev.org/openstack/charm-nova-compute/>`_
+* `octavia <https://opendev.org/openstack/charm-octavia/>`_
+* `octavia-dashboard <https://opendev.org/openstack/charm-octavia-dashboard/>`_
+* `openstack-dashboard <https://opendev.org/openstack/charm-openstack-dashboard/>`_
+* `swift-proxy <https://opendev.org/openstack/charm-swift-proxy/>`_
+* `swift-storage <https://opendev.org/openstack/charm-swift-storage/>`_
 
 Other Supporting Charms
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,17 +47,17 @@ Other Supporting Charms
 These charms have stable releases with ongoing maintenance and testing.  They're
 classified differently because the payload of each is not technically an OpenStack project.
 
-* `percona-cluster <https://git.openstack.org/cgit/openstack/charm-percona-cluster/>`_
-* `rabbitmq-server <https://git.openstack.org/cgit/openstack/charm-rabbitmq-server/>`_
-* `lxd <https://git.openstack.org/cgit/openstack/charm-lxd/>`_
-* `ceph-osd <https://git.openstack.org/cgit/openstack/charm-ceph-osd/>`_
-* `ceph-mon <https://git.openstack.org/cgit/openstack/charm-ceph-mon/>`_
-* `ceph-proxy <https://git.openstack.org/cgit/openstack/charm-ceph-proxy/>`_
-* `ceph-radosgw <https://git.openstack.org/cgit/openstack/charm-ceph-radosgw/>`_
-* `hacluster <https://git.openstack.org/cgit/openstack/charm-hacluster/>`_
-* `designate-bind <https://git.openstack.org/cgit/openstack/charm-designate-bind/>`_
-* `gnocchi <https://git.openstack.org/cgit/openstack/charm-gnocchi/>`_
-* `vault <https://git.openstack.org/cgit/openstack/charm-vault/>`_
+* `percona-cluster <https://opendev.org/openstack/charm-percona-cluster/>`_
+* `rabbitmq-server <https://opendev.org/openstack/charm-rabbitmq-server/>`_
+* `lxd <https://opendev.org/openstack/charm-lxd/>`_
+* `ceph-osd <https://opendev.org/openstack/charm-ceph-osd/>`_
+* `ceph-mon <https://opendev.org/openstack/charm-ceph-mon/>`_
+* `ceph-proxy <https://opendev.org/openstack/charm-ceph-proxy/>`_
+* `ceph-radosgw <https://opendev.org/openstack/charm-ceph-radosgw/>`_
+* `hacluster <https://opendev.org/openstack/charm-hacluster/>`_
+* `designate-bind <https://opendev.org/openstack/charm-designate-bind/>`_
+* `gnocchi <https://opendev.org/openstack/charm-gnocchi/>`_
+* `vault <https://opendev.org/openstack/charm-vault/>`_
 
 Development / Preview Charms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -66,16 +66,16 @@ These charms are either in development or are released as a beta/preview.  This
 is to indicate that additional validation, and further work may be necessary to
 make a stable release for production use.
 
-* `barbican-softhsm <https://git.openstack.org/cgit/openstack/charm-barbican-softhsm/>`_
-* `ceph-fs <https://git.openstack.org/cgit/openstack/charm-ceph-fs/>`_
-* `cinder-backup <https://git.openstack.org/cgit/openstack/charm-cinder-backup/>`_
+* `barbican-softhsm <https://opendev.org/openstack/charm-barbican-softhsm/>`_
+* `ceph-fs <https://opendev.org/openstack/charm-ceph-fs/>`_
+* `cinder-backup <https://opendev.org/openstack/charm-cinder-backup/>`_
 * `keystone-saml-mellon <https://github.com/openstack-charmers/charm-keystone-saml-mellon/>`_
-* `manila <https://git.openstack.org/cgit/openstack/charm-manila/>`_
-* `manila-generic <https://git.openstack.org/cgit/openstack/charm-manila-generic/>`_
-* `masakari <https://git.openstack.org/cgit/openstack/charm-masakari/>`_
-* `masakari-monitors <https://git.openstack.org/cgit/openstack/charm-masakari-monitors/>`_
-* `pacemaker-remote <https://git.openstack.org/cgit/openstack/charm-pacemaker-remote/>`_
-* `tempest <https://git.openstack.org/cgit/openstack/charm-tempest/>`_
+* `manila <https://opendev.org/openstack/charm-manila/>`_
+* `manila-generic <https://opendev.org/openstack/charm-manila-generic/>`_
+* `masakari <https://opendev.org/openstack/charm-masakari/>`_
+* `masakari-monitors <https://opendev.org/openstack/charm-masakari-monitors/>`_
+* `pacemaker-remote <https://opendev.org/openstack/charm-pacemaker-remote/>`_
+* `tempest <https://opendev.org/openstack/charm-tempest/>`_
 
 Maintenance-Mode Charms
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -91,12 +91,12 @@ Deprecated Charms
 
 These charms have reached EOL and are deprecated.
 
-* `ceph <https://git.openstack.org/cgit/openstack/charm-ceph/>`_ - Use ceph-osd + ceph-mon instead.
-* `glusterfs <https://git.openstack.org/cgit/openstack/charm-glusterfs/>`_
-* `manila-glusterfs <https://git.openstack.org/cgit/openstack/charm-manila-glusterfs/>`_
-* `murano <https://git.openstack.org/cgit/openstack/charm-murano/>`_
-* `neutron-api-odl <https://git.openstack.org/cgit/openstack/charm-neutron-api-odl/>`_
-* `nova-compute-proxy <https://git.openstack.org/cgit/openstack/charm-nova-compute-proxy/>`_
-* `openvswitch-odl <https://git.openstack.org/cgit/openstack/charm-openvswitch-odl/>`_
-* `odl-controller <https://git.openstack.org/cgit/openstack/charm-odl-controller/>`_
-* `trove <https://git.openstack.org/cgit/openstack/charm-trove/>`_
+* `ceph <https://opendev.org/openstack/charm-ceph/>`_ - Use ceph-osd + ceph-mon instead.
+* `glusterfs <https://opendev.org/openstack/charm-glusterfs/>`_
+* `manila-glusterfs <https://opendev.org/openstack/charm-manila-glusterfs/>`_
+* `murano <https://opendev.org/openstack/charm-murano/>`_
+* `neutron-api-odl <https://opendev.org/openstack/charm-neutron-api-odl/>`_
+* `nova-compute-proxy <https://opendev.org/openstack/charm-nova-compute-proxy/>`_
+* `openvswitch-odl <https://opendev.org/openstack/charm-openvswitch-odl/>`_
+* `odl-controller <https://opendev.org/openstack/charm-odl-controller/>`_
+* `trove <https://opendev.org/openstack/charm-trove/>`_

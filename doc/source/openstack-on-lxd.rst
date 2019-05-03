@@ -41,7 +41,7 @@ You'll need to clone the repository with the bundles and configuration for the d
 
 .. code:: bash
 
-    git clone https://github.com/openstack-charmers/openstack-on-lxd
+    git clone https://opendev.org/openstack-charmers/openstack-on-lxd
 
 All commands in this document assume they are being made from within the local copy of this repo.
 
@@ -450,6 +450,8 @@ In your SSH session, press the ~C key combo to initiate an SSH command console o
 
 Then visit the following URL from a browser on your local machine:
 
+.. code:: rest
+
     http://localhost:10080/horizon
 
 .. code:: bash
@@ -476,7 +478,9 @@ The IP address of the Juju GUI will be locally accessible.
 
 The URL provided should work directly, and it should look something like:
 
-https://10.0.8.x:17070/gui/u/admin/default
+.. code:: rest
+
+    https://10.0.8.x:17070/gui/u/admin/default
 
 
 OpenStack-on-LXD is deployed on a remote machine
@@ -491,6 +495,8 @@ In your SSH session, press the ~C key combo to initiate an SSH command console o
     -L 10070:<ip address of juju-gui>:17070
 
 Then visit the following URL from a browser on your local machine:
+
+.. code:: rest
 
     https://localhost:10070/gui/login/u/admin/default
 

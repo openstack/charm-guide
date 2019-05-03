@@ -168,8 +168,7 @@ https://jujucharms.com/openstack-base
 
 https://jujucharms.com/openstack-telemetry
 
-https://jujucharms.com/ceph-base
-
+https://jujucharms.com/u/openstack-charmers/ceph-base/
 
 
 Deprecation Notices

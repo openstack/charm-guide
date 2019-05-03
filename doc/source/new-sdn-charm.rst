@@ -43,8 +43,8 @@ During the charm generation charm tools asks a few questions about the charm.
 
 .. _`build_sdn_charm`:
 
-Build Charm
-===========
+Build SDN Charm
+===============
 
 The charm now needs to be built to pull down all the interfaces and layers the
 charm depends on and rolled into the built charm which can be deployed.
@@ -75,7 +75,7 @@ During the initial install of this SDN charm, the standard charms.openstack
 default installer will install the packages specified in the class
 CharmName.packages, but it will not do any other configuration.
 In order to update nova.conf in the nova-compute principal charm, this
-virtual-token-ring subordinate charm will need to access the `neutron plugin <https://github.com/openstack/charm-interface-neutron-plugin>`__
+virtual-token-ring subordinate charm will need to access the `neutron plugin <https://opendev.org/openstack/charm-interface-neutron-plugin>`__
 interface, which will allow it to send configuration information to the
 nova-computer principal charm for inclusion in nova.conf on the co-located
 machine.

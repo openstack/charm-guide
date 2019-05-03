@@ -81,7 +81,7 @@ The implementation for the *interface* is typical.  If you look at the
 ``..available`` state/flags are *continuous* from the moment the conditions for
 them are met.
 
-.. _`interfaces.juju.solutions`: https://interfaces.juju.solutions/
+.. _`interfaces.juju.solutions`: https://github.com/juju-solutions/
 .. _`interface-etcd`: https://github.com/juju-solutions/interface-etcd
 
 By now you will have probably seen the issue; once the ``<name>.connected``

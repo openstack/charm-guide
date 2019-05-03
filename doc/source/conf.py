@@ -32,7 +32,7 @@ from jinja2.utils import Markup
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.todo',
               'sphinx.ext.viewcode',
-              'oslosphinx'
+              'openstackdocstheme'
              ]
 
 todo_include_todos = True
@@ -51,7 +51,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'OpenStack Charms Guide'
-copyright = Markup(u'%s, OpenStack Contributors '
+copyright = (u'%s, OpenStack Contributors '
                    u'- use the <a href="https://git.openstack.org/cgit/'
                    u'openstack/charm-guide">openstack/charm-guide git repo</a> '
                    u'to propose changes' % datetime.date.today().year)
@@ -100,7 +100,7 @@ man_pages = []
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'nature'
+html_theme = 'openstackdocs'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -128,8 +128,7 @@ html_theme = 'nature'
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
-git_cmd = "git log --pretty=format:'%ad, commit %h' --date=local -n1"
-html_last_updated_fmt = os.popen(git_cmd).read()
+# html_last_updated_fmt = '%Y-%m-%d %H:%M'
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.

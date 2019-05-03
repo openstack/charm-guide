@@ -6,8 +6,8 @@ New API Charm
 
 The example below will walk through the creation of a basic API charm for the
 Openstack `Congress <https://wiki.openstack.org/wiki/Congress>`__ service.
-The charm will use prewritten Openstack `layers <https://github.com/openstack?query=charm-layer>`__
-and `interfaces <https://github.com/openstack?query=charm-interface>`__. Once the charm
+The charm will use prewritten Openstack `layers <https://opendev.org/explore/repos?q=charm-layer>`__
+and `interfaces <https://opendev.org/explore/repos?q=charm-interface>`__. Once the charm
 is written it will be composed using `charm tools <https://github.com/juju/charm-tools/>`__.
 For more details of the internal of a charm see Charm Anatomy.
 
@@ -93,10 +93,10 @@ the following contents:
 
 
 
-.. _`Build Charm`:
+.. _`Build API Charm`:
 
-Build Charm
-~~~~~~~~~~~
+Build API Charm
+~~~~~~~~~~~~~~~
 
 The charm now needs to be built to pull down all the interfaces and layers the
 charm depends on and rolled into the built charm which can be deployed.

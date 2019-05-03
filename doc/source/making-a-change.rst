@@ -19,7 +19,7 @@ Broadly the work flow for making a change to a charm is:
 
 .. code:: bash
 
-    git clone https://github.com/openstack/charm-cinder
+    git clone https://opendev.org/openstack/charm-cinder
     cd charm-cinder
     git checkout -b bug/XXXXXX master
 
@@ -61,7 +61,7 @@ Finally, submit your change for review (if they pass pep8 and unit tests!):
     git review
 
 This will push your proposed changes to Gerrit and provide you with a URL for the
-review board on https://review.openstack.org/.
+review board on https://review.opendev.org/.
 
 To make amendments to your proposed change, update your local branch and then:
 
@@ -94,7 +94,7 @@ charm-helpers style charms
 
 In a charm-helpers style charm, **charm-helpers** is synced into the charm using
 a *make* command.  Inspecting the ``Makefile`` of, say, `charm-keystone
-<https://github.com/openstack/charm-keystone>`_ shows:
+<https://opendev.org/openstack/charm-keystone>`_ shows:
 
 .. code:: Makefile
 

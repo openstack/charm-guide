@@ -75,28 +75,28 @@ for use by the charm.
 OpenStack Layer
 ~~~~~~~~~~~~~~~
 
-The `Openstack Layer <https://github.com/openstack/charm-layer-openstack>`__
+The `Openstack Layer <https://opendev.org/openstack/charm-layer-openstack>`__
 provides the base OpenStack configuration options, templates, template
 fragments and dependencies for authoring OpenStack Charms. Typically this layer
 is used for subordinate charms. The openstack-api or openstack-principle layers
 are probably more appropriate for principle charms and both of those layers
 inherit this one.
 
-This layer includes a wheelhouse to pull in `charms.openstack <https://github.com/openstack/charms.openstack>`__
+This layer includes a wheelhouse to pull in `charms.openstack <https://opendev.org/openstack/charms.openstack>`__
 . See `charms.openstack`_  for more details.
 
 
 Openstack Principle Layer
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The `Openstack Principle Layer <https://github.com/openstack/charm-layer-openstack-principle>`__
+The `Openstack Principle Layer <https://opendev.org/openstack/charm-layer-openstack-principle>`__
 provides the base layer for OpenStack charms that are intended for
 use as principle (rather than subordinate)
 
 Openstack API Layer
 ~~~~~~~~~~~~~~~~~~~
 
-The `Openstack API Layer <https://github.com/openstack/charm-layer-openstack-api>`__
+The `Openstack API Layer <https://opendev.org/openstack/charm-layer-openstack-api>`__
 provides the base layer for OpenStack charms that are will deploy API services,
 and provides all of the core functionality for:
 
@@ -115,42 +115,42 @@ OpenStack Interfaces
 
 Interfaces define the data exchange between each of the charms. A list of all
 available interfaces is available `here <https://github.com/juju/layer-index>`__.
-A list of OpenStack specific interfaces can be found `here <https://github.com/openstack?q=charm-interface>`__
+A list of OpenStack specific interfaces can be found `here <https://opendev.org/openstack?q=charm-interface>`__
 
 The interfaces a charm needs are defines in the `layers.yaml`_. Below is a list
 of the typical interfaces needed by different OpenStack charm types:
 
 **API Charm**
 
-- `mysql-shared <https://github.com/openstack/charm-interface-mysql-shared>`__
-- `rabbitmq <https://github.com/openstack/charm-interface-rabbitmq>`__
-- `keystone <https://github.com/openstack/charm-interface-keystone>`__
+- `mysql-shared <https://opendev.org/openstack/charm-interface-mysql-shared>`__
+- `rabbitmq <https://opendev.org/openstack/charm-interface-rabbitmq>`__
+- `keystone <https://opendev.org/openstack/charm-interface-keystone>`__
 
 **Neutron SDN Plugin**
 
-- `neutron-plugin <https://github.com/openstack/charm-interface-neutron-plugin>`__
-- `service-control <https://github.com/openstack/charm-interface-service-control>`__
+- `neutron-plugin <https://opendev.org/openstack/charm-interface-neutron-plugin>`__
+- `service-control <https://opendev.org/openstack/charm-interface-service-control>`__
 
 **Neutron ODL Based SDN Plugin**
 
-- `neutron-plugin <https://github.com/openstack/charm-interface-neutron-plugin>`__
-- `service-control <https://github.com/openstack/charm-interface-service-control>`__
-- `ovsdb-manager <https://github.com/openstack/charm-interface-ovsdb-manager>`__
-- `odl-controller-api <https://github.com/openstack/charm-interface-odl-controller-api>`__
+- `neutron-plugin <https://opendev.org/openstack/charm-interface-neutron-plugin>`__
+- `service-control <https://opendev.org/openstack/charm-interface-service-control>`__
+- `ovsdb-manager <https://opendev.org/openstack/charm-interface-ovsdb-manager>`__
+- `odl-controller-api <https://opendev.org/openstack/charm-interface-odl-controller-api>`__
 
 **Neutron API Plugin**
 
-- `neutron-plugin-api-subordinate <https://github.com/openstack/charm-interface-neutron-plugin-api-subordinate>`__
-- `service-control <https://github.com/openstack/charm-interface-service-control>`__
+- `neutron-plugin-api-subordinate <https://opendev.org/openstack/charm-interface-neutron-plugin-api-subordinate>`__
+- `service-control <https://opendev.org/openstack/charm-interface-service-control>`__
 
 .. _`charms.openstack`:
 
 charms.openstack
 ----------------
 
-The `charms.openstack <https://github.com/openstack/charms.openstack>`__ python
+The `charms.openstack <https://opendev.org/openstack/charms.openstack>`__ python
 module provides helpers for building layered, reactive OpenStack charms. It is
-installed by the `OpenStack Layer <https://github.com/openstack/charm-layer-openstack>`_ .
+installed by the `OpenStack Layer <https://opendev.org/openstack/charm-layer-openstack>`_ .
 
 Defining the Charm
 ------------------
@@ -253,7 +253,7 @@ Template properties from Interfaces
 By default some interfaces are automatically allocated a namespace within the
 template context. Those namespaces are also automatically populated with some
 options directly from the interface. For example if a charm is related to
-Keystone's `keystone interface <https://github.com/openstack/charm-interface-keystone>`__
+Keystone's `keystone interface <https://opendev.org/openstack/charm-interface-keystone>`__
 then a number of **service\_** variables are set in the
 identity\_service namespace. So, charm template could contain the following to
 access those variables:
@@ -264,7 +264,7 @@ access those variables:
     www_authenticate_uri = {{ identity_service.service_protocol }}://{{ identity_service.service_host }}:{{ identity_service.service_port }}
     auth_url = {{ identity_service.auth_protocol }}://{{ identity_service.auth_host }}:{{ identity_service.auth_port }}
 
-See the **auto\_accessors** list in `charm-interface-keystone <https://github.com/openstack/charm-interface-keystone/blob/master/requires.py>`__
+See the **auto\_accessors** list in `charm-interface-keystone <https://opendev.org/openstack/charm-interface-keystone/src/master/requires.py>`__
 for a complete list
 
 However, most interface data is accessed via Adapters...
@@ -274,7 +274,7 @@ Template properties from Adapters
 
 Adapters are used to take the data from an interface and create new variables
 in the template context. For example the **RabbitMQRelationAdapter** (which can
-be found in the `adapters.py <https://github.com/openstack/charms.openstack/blob/master/charms_openstack/adapters.py>`__
+be found in the `adapters.py <https://opendev.org/openstack/charms.openstack/src/master/charms_openstack/adapters.py>`__
 from charms.openstack.) adds an **ssl\_ca\_file** variable to the amqp
 namespace. This setting is really independent of the interface with rabbit but
 should be consistent across the OpenStack deployment. This variable can then
@@ -388,7 +388,7 @@ Sending data via an Interface
 
 Some interfaces are used to send as well as receive data. The interface will
 expose a method for sending data to a remote application if it is supported.
-For example the `neutron-plugin interface <https://github.com/openstack/charm-interface-neutron-plugin>`__
+For example the `neutron-plugin interface <https://opendev.org/openstack/charm-interface-neutron-plugin>`__
 can be used to send configuration to the principle charm.
 
 The handler below waits for the neutron-plugin relation with the principle to

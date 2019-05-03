@@ -20,10 +20,3 @@ deployments with loose coupling between OpenStack services.
    release-policy
    release-schedule
    release-notes
-
-====================
- Indices and tables
-====================
-
-* :ref:`genindex`
-* :ref:`search`

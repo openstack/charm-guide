@@ -110,7 +110,8 @@ to Nova KVM instances are now detailed in the charm deployment guide.
 A common use case for this configuration is to provide direct access to a
 GPGPU device within a virtual machine.
 
-Please refer to the `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-pci-passthrough-gpu.html>`_ for more details.
+Please refer to the `app pci section in the charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-pci-passthrough-gpu.html>`_
+ for more details.
 
 ceph-radosgw: multisite replication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -156,8 +157,8 @@ For example:
 
 Reference:
  - https://launchpad.net/bugs/1817672
- - https://review.openstack.org/#/c/639333
- - https://review.openstack.org/#/q/topic:bug/1817672+(status:open+OR+status:merged)
+ - https://review.opendev.org/c/639333
+ - https://review.opendev.org/q/topic:bug/1817672+(status:open+OR+status:merged)
 
 neutron-api: FWaaS v2
 ~~~~~~~~~~~~~~~~~~~~~

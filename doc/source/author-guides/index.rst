@@ -14,11 +14,3 @@ have some potential pitfalls that these notes address.
    :includehidden:
 
    reactive-handlers-optimization
-
-
-====================
- Indices and tables
-====================
-
-* :ref:`genindex`
-* :ref:`search`

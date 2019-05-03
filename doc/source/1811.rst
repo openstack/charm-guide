@@ -174,7 +174,7 @@ https://jujucharms.com/openstack-telemetry
 
 https://jujucharms.com/openstack-lxd
 
-https://jujucharms.com/ceph-base
+https://jujucharms.com/u/openstack-charmers/ceph-base/
 
 Deprecation Notices
 ===================
@@ -190,13 +190,14 @@ Glance v1 removed in Rocky, Glance v2 required
 As of the Rocky OpenStack release the glance v1 API has been removed. Glance v2 is the only available API version. Two known issues from this have emerged.
 
 One, when using swift store as a back end for glance, glance fails to set the ACLs on the swift container properly:
+
 https://bugs.launchpad.net/glance/+bug/1789748
 
 The workaround is to manually set the read ACL on the glance container
 
 .. code:: bash
 
-   swift post glance --read-acl ".r:*,.rlistings"
+    swift post glance --read-acl ".r:*,.rlistings"
 
 Two, the glance-simplestreams-sync charm relies on simplestreams which is not yet glance v2 aware:
 https://bugs.launchpad.net/simplestreams/+bug/1790904

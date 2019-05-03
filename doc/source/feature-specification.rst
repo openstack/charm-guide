@@ -45,5 +45,5 @@ Recommended work flow for introducing a new feature specification:
 
 .. _published charm specs: https://specs.openstack.org/openstack/charm-specs/
 .. _charm-specs source repository: https://opendev.org/openstack/charm-specs
-.. _charm-specs history: https://review.opendev.org/#/q/project:openstack/charm-specs+status:merged
+.. _charm-specs history: https://review.opendev.org/q/project:openstack/charm-specs+status:merged
 .. _charm-specs template: https://opendev.org/openstack/charm-specs/src/branch/master/specs/template.rst

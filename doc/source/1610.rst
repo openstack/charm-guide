@@ -99,9 +99,9 @@ Rewrite of neutron-api-odl and openvswitch-odl
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The neutron-api-odl and openvswitch-odl charms have both been rewritten using
-the `reactive framework <https://pythonhosted.org/charms.reactive>`__  and the
-`OpenStack charm layers <https://github.com/openstack?query=charm-layer>`__
-and `interfaces <https://github.com/openstack?query=charm-interface>`__.
+the `reactive framework <https://pypi.org/project/charms.reactive>`__  and the
+`OpenStack charm layers <https://opendev.org/explore/repos?q=charm-layer>`__
+and `interfaces <https://opendev.org/explore/repos?q=charm-interface>`__.
 
 Upgrading an existing deployment which uses previous versions of these charms is
 not supported.
