@@ -1,4 +1,4 @@
-.. _release_notes_18.08
+.. _release_notes_18.08:
 
 =====
 18.08
@@ -204,7 +204,8 @@ https://bugs.launchpad.net/glance/+bug/1789748
 The workaround is to manually set the read ACL on the glance container
 
 .. code:: bash
-    swift post glance --read-acl ".r:*,.rlistings"
+
+   swift post glance --read-acl ".r:*,.rlistings"
 
 Two, the glance-simplestreams-sync charm relies on simplestreams which is not yet glance v2 aware:
 

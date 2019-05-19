@@ -1,4 +1,4 @@
-.. _release_notes_1805
+.. _release_notes_1805:
 
 =====
 18.05

@@ -1,4 +1,4 @@
-.. _release_notes_19.04
+.. _release_notes_19.04:
 
 =====
 19.04
@@ -87,7 +87,7 @@ New Charm Features
 ==================
 
 With each new feature, there is a corresponding example bundle in the form of
-a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`_ 
+a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`__ 
 section which details the use of the feature.  For example test bundles, see the
 src/tests/bundles/ directory within the relevant charm repository.
 

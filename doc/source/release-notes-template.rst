@@ -1,4 +1,4 @@
-.. _release_notes_<CHARM_RELEASE>
+.. _release_notes_<CHARM_RELEASE>:
 
 **** This is a template file for future release notes and its contents should not be linked or referenced.  Use actual release notes instead. ****
 

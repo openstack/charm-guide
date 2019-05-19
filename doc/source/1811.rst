@@ -1,4 +1,4 @@
-.. _release_notes_18.11
+.. _release_notes_18.11:
 
 =====
 18.11
@@ -193,7 +193,10 @@ One, when using swift store as a back end for glance, glance fails to set the AC
 https://bugs.launchpad.net/glance/+bug/1789748
 
 The workaround is to manually set the read ACL on the glance container
-swift post glance --read-acl ".r:*,.rlistings"
+
+.. code:: bash
+
+   swift post glance --read-acl ".r:*,.rlistings"
 
 Two, the glance-simplestreams-sync charm relies on simplestreams which is not yet glance v2 aware:
 https://bugs.launchpad.net/simplestreams/+bug/1790904

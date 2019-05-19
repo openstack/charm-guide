@@ -41,7 +41,7 @@ During the charm generation charm tools asks a few questions about the charm.
     What is the earliest OpenStack release this charm is compatible with? liberty
     What packages should this charm install (space separated list)?
 
-.. _`Build Charm`:
+.. _`build_sdn_charm`:
 
 Build Charm
 ===========
@@ -104,7 +104,7 @@ setting in nova.conf.
             })
 
 This tells the charm to send that configuration to the principle where the
-**neutron-plugin.connected** event has been raised. Then repeat the `Build Charm`_
+**neutron-plugin.connected** event has been raised. Then repeat the `build_sdn_charm`_
 steps.
 
 Deploy Update

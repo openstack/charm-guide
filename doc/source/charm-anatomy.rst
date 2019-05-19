@@ -23,7 +23,7 @@ layers.yaml
 ~~~~~~~~~~~
 
 The **src/layers.yaml** file defines what layers and interfaces will be imported
-and included in the charm when the charm is built. See the `OpenStack Layers`_
+and included in the charm when the charm is built. See the `Openstack Layers`_
 section and `OpenStack Interfaces`_ section below.  If additional interfaces or
 layers add them to the **includes** list within **src/layers.yaml**.
 
@@ -60,8 +60,6 @@ describes the charm and how it relates to other charms. This is also
 constructed from each layer that defines a metadata.yaml
 
 
-.. _`OpenStack Layers`:
-
 OpenStack Layers
 ----------------
 
@@ -73,8 +71,6 @@ base layer for all charms built using layers. It provides all of the standard
 Juju hooks and runs the charms.reactive.main loop for them. It also bootstraps
 the charm-helpers and charms.reactive libraries and all of their dependencies
 for use by the charm.
-
-.. _`OpenStack Layer`:
 
 OpenStack Layer
 ~~~~~~~~~~~~~~~

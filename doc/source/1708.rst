@@ -1,4 +1,4 @@
-.. _release_notes_17.08
+.. _release_notes_17.08:
 
 =====
 17.08
