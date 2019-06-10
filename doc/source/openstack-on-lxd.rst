@@ -41,7 +41,7 @@ You'll need to clone the repository with the bundles and configuration for the d
 
 .. code:: bash
 
-    git clone https://opendev.org/openstack-charmers/openstack-on-lxd
+    git clone https://github.com/openstack-charmers/openstack-on-lxd.git
 
 All commands in this document assume they are being made from within the local copy of this repo.
 
