@@ -46,6 +46,87 @@ or updated to cover the changes you are making.
 Unit tests are written in Python using standard mocking techniques to isolate
 the unit tests from the underlying host operating system.
 
+Writing Unit Tests
+~~~~~~~~~~~~~~~~~~
+
+Writing software, and functions, is an art.  It's a balance of conciseness,
+simplicity, ergonomics and readability.  To produce software that *only* meets
+the feature needs, whilst being maintainable and correct for the life of the
+program.
+
+Writing unit tests is, similarly, an art.  The objective is to write tests that
+correctly determine that what a function *does* is correct, rather than *how*
+the function achieves it - with the exception, in some cases, of performance.
+But that's another whole ball-game.
+
+The goal is, for each function under test, is to verify that the *outputs* of
+the function are correct for comprehensive sets of *inputs* to the function.
+What is not the objective is to test the *internal* implementation of the
+function.
+
+It's worth exploring what are the *inputs* and *outputs* of a function, and
+that depends on whether the function is *pure* or *impure*.
+
+A *pure* function is one that is always returns the same results for the same
+set of values passed to the function.  This means that there are no (input)
+side-effects or dependencies on any other state outside of the function.
+A pure function is analogous, algorithimically, to a mathematical function.
+*Pure* functions also can only call other pure functions.  i.e. a pure function
+isn't pure if *it* calls a function that is impure.  Impurity at a particular
+level 'infects' every caller of that function.
+
+An *impure* function is basically a function that is not a pure function. i.e.
+it may depend on a global variable, or obtain inputs from side-effects (such as
+reading IO functions).  It is also impure if it has any output side-effects.
+
+So, in addition to the parameters passed to a function, other inputs (within
+a function) are accessing functions that access global state.  e.g. the
+``config()`` function, relation functions, and reading from files, or the
+network.
+
+Also, in addition to the return value of a function, other outputs (within the
+function) are writing to files, using the network, calling subprocess calls,
+and other IO operations.
+
+So the goal with unit-testing a function depends on the purity of the function:
+
+* Pure functions require no mocking.  The object is to verify that for
+  combinations of input parameter values, that the correct return values are
+  presented.  As pure functions are pure 'all the way down', no mocking is
+  required, as they will always be consistent for any set of inputs.  Pure
+  functions are also fantastic opportunities to use property-based testing.
+  However, most of the work in a charm is *all about side-effects*, so most
+  functions are *impure*.
+
+* Impure functions require mocking.  The goal is to isolate the
+  function-under-test from it's side-effects so that *only* the function is
+  being checked.  If the function calls *other* impure functions, they should
+  be mocked out.  Tests for a function should *only* test that function, and
+  not other functions as a by-product.
+
+Strategies for writing Unit Tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It's important to test *what* a function does, not *how* the function does it.
+This is basically a re-statement of the idea to not test the implementation of
+a function, but rather the output (and with respect to impure functions) the
+side-effects.
+
+If the unit test is dependent on the implementation of the function (not with
+respect to side-effects), then that *locks in* the implementation, which makes
+refactoring much harder.  i.e. To refactor a function that does the *same*
+thing, the unit test would also have to change.  This is the sign of a poor
+unit test.
+
+Individual unit tests should be small and test *one* activation of the
+function-under-test.  This way, behaviour changes during refactoring, or adding
+features, will break the smallest number of tests, and show what behaviour has
+changed quickly.  Complex unit tests are more fragile and tend to therefore
+come with a higher maintenance burden.
+
+With impure functions, it's important to mock out the side-effects so that the
+test doesn't also test other side-effect functions.
+
 Functional Testing
 ==================
 
