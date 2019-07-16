@@ -1,4 +1,4 @@
-.. _testing:
+p.. _testing:
 
 =======
 Testing
@@ -32,12 +32,16 @@ Ensure that any non-compliance is corrected prior to raising/updating a review.
 Unit Testing
 ============
 
-Execute the synthetic code checks (unit tests) for a charm using the tox py27
-environment:
+Execute the synthetic code checks (unit tests) for a charm using the tox
+environment specific for the version of Python you wish to test.
 
 .. code:: bash
 
-    tox -e py27
+    tox -e py36
+
+.. note:: The environment name specified in the above example is a moving
+   target, and you may need to adapt it depending on what is the current
+   version of Python used in the test gate.
 
 Unit tests are stored in the ``unit_tests`` folder; when adding features or
 changing existing code, please ensure that appropriate unit tests are added
@@ -129,6 +133,10 @@ test doesn't also test other side-effect functions.
 
 Functional Testing
 ==================
+
+.. note:: This section is out of date, we are moving to the Zaza_ framework as
+   part of our effort to modernize the test suite and as a consequence of the
+   Python 2 language nearing is end of life.
 
 Amulet
 ~~~~~~
@@ -227,3 +235,4 @@ replying on the Gerrit review with one of the recognized magic phrases below.
     OpenStack Infra tests.  *This will take several hours.*
 
 .. _Amulet: https://jujucharms.com/docs/devel/tools-amulet
+.. _Zaza: https://zaza.readthedocs.io/en/latest/
