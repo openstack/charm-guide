@@ -89,6 +89,47 @@ Feature 1
 
 Feature description...
 
+nova-cloud-controller: improved SSH host key handling
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Nova compute service uses direct (machine-to-machine) SSH connections to
+perform instance migrations. Each compute host must therefore be in possession
+of every other compute host's SSH host key via the knownhosts file.
+
+This release of the nova-cloud-controller charm has improved the host key
+discovery and distribution algorithm, the net effect being that the addition of
+a nova-compute unit will be faster than before and the nova-cloud-controller
+upgrade-charm hook will be significantly improved for large deployments.
+
+The rest of this section covers an EXPERIMENTAL option involving the caching of
+SSH host lookups (knownhosts) on each nova-compute unit.
+
+There is a new Boolean configuration key ``cache-known-hosts`` that allows any
+given host lookup to be performed just once.
+
+.. note:: A cloud can be deployed with the ``cache-known-hosts`` key set to ``false``,
+	  and be set to ``true`` post-deployment. At that point the hosts will have
+	  been cached. The key only controls *whether* the cache is used or not.
+
+If the above key is set, a new Juju action ``clear-unit-knownhost-cache`` is provided
+to clear the cache. This can be applied to a unit, service, or an entire
+nova-cloud-controller application. This would be needed if DNS resolution had
+changed in an existing cloud or during a cloud deployment. Not clearing the
+cache in such cases would result in an inconsistent set of knownhosts files.
+
+This action will cause DNS resolution to be performed (for unit/service/application),
+thus potentially triggering a relation-set on the nova-cloud-controller unit(s) and
+subsequent changed hook on the related nova-compute units.
+
+The action is used as follows, based on unit, service, or application, respectively:
+
+   juju run-action nova-cloud-controller/0 clear-unit-knownhost-cache target=nova-compute/2
+   juju run-action nova-cloud-controller/0 clear-unit-knownhost-cache target=nova-compute
+   juju run-action nova-cloud-controller/0 clear-unit-knownhost-cache
+
+In a high-availability setup, the action **must** be run on all
+nova-cloud-controller units.
+
 Preview Charm Features
 ======================
 
