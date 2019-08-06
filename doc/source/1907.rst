@@ -74,13 +74,13 @@ Removed Charms
 
 The following charms have been removed as part of this charm release:
 
-* nova-lxd (retired)
+* nova-lxd
 
 New Charm Features
 ==================
 
 With each new feature, there is a corresponding example bundle in the form of
-a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`__ 
+a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`__
 section which details the use of the feature. For example test bundles, see the
 src/tests/bundles/ directory within the relevant charm repository.
 
@@ -88,69 +88,36 @@ Percona Cluster Cold Start
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The percona-cluster charm now contains new logic and actions to assist with
-operational tasks surrounding a database shutdown scenario. However, human
-interaction is still required.
-
-In the event of an unexpected power outage and cold boot, the cluster will be
-unable to re-establish itself without manual intervention. In such situation
-determine the node with the highest sequence number by verifying information
-from the '/var/lib/percona-xtradb-cluster/grastate.dat' file or 'juju status'
-output, and bootstrap the node by running the following action:
-
-   juju run-action --wait percona-cluster/<unit-number> bootstrap-pxc
-
-In order to notify the cluster of the new bootstrap UUID run the following
-action:
-
-   juju run-action --wait percona-cluster/<unit-number> notify-bootstrapped
-
-The percona-cluster is now back to a clustered and healthy state.
+operational tasks surrounding an unexpected database cluster shutdown.
+Human interaction is still required to recover the cluster.
 
 For more information about the introduced improvements refer to the "Cold Boot"
-section at the `charm documentation <https://jaas.ai/u/openstack-charmers/percona-cluster/349>`.
-
-For more information about Percona recovery refer to the `upstream documentation <https://www.percona.com/blog/2014/09/01/galera-replication-how-to-recover-a-pxc-cluster/>`.
+section in the `charm documentation <https://jaas.ai/percona-cluster>`__.
 
 DVR SNAT
 ~~~~~~~~
 
-TODO:  Writeme.
+The neutron-openvswitch charm now supports deployment of DVR based routers
+with combined SNAT functionality, removing the need to use the neutron-gateway
+charm in some types of deployment.
+
+This implicitly requires that 'external' networks are routable to all
+hypervisors within the deployment to allow effective load balancing of
+SNAT routers and DVR services across a deployment.
+
+For more details refer to the documentation of the ``use-dvr-snat``
+configuration option of the `neutron-openvswitch <https://jaas.ai/neutron-openvswitch>`__ charm
 
 
 Octavia Image Lifecycle Management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This release introduces the octavia-diskimage-retrofit charm which provides
-a tool for retrofitting cloud images for use as Octavia Amphora. One of the
-problems with Octavia was that it needs a method for generating base images to
-be deployed as load balancing entities. The octavia-diskimage-retrofit charm
-solves this problem by providing an action which, upon end user request,
-downloads the most recent Ubuntu Server or Minimal Cloud image from Glance,
-applies OpenStack Diskimage-builder elements from OpenStack Octavia and turns
-it into an image suitable for use by Octavia.
-
-The charm can be deployed as a subordinate application as follows:
-
-   juju deploy glance-simplestreams-sync \
-       --config source=ppa:simplestreams-dev/trunk
-   juju deploy octavia-diskimage-retrofit \
-       --config amp-image-tag=octavia-amphora
-
-   juju add-relation glance-simplestreams-sync keystone
-   juju add-relation glance-simplestreams-sync rabbitmq-server
-   juju add-relation octavia-diskimage-retrofit glance-simplestreams-sync
-   juju add-relation octavia-diskimage-retrofit keystone
-
-Once deployed the retrofitting process can be triggered as follows:
-
-   juju run-action octavia-diskimage-retrofit/leader retrofit-image
+a tool for retro-fitting cloud images for use as Octavia Amphora.
 
 For more information about the octavia-diskimage-retrofit charm refer to the
-`charm home page <https://jaas.ai/u/openstack-charmers/octavia-diskimage-retrofit/5>`.
-
-For the project home page visit https://github.com/openstack/charm-octavia-diskimage-retrofit.
-
-For a detailed deployment guide visit `OpenStack Documentation <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-octavia.html#amphora-image>`.
+`charm home page <https://jaas.ai/octavia-diskimage-retrofit/>`__ and the
+`charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-octavia.html#amphora-image>`__.
 
 Nova Live Migration: Streamline SSH Host Key Handling
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -164,39 +131,8 @@ discovery and distribution algorithm, the net effect being that the addition of
 a nova-compute unit will be faster than before and the nova-cloud-controller
 upgrade-charm hook will be significantly improved for large deployments.
 
-TODO: Remove the following text once the README of nova-cloud-controller is updated.
-
-The rest of this section covers an EXPERIMENTAL option involving the caching of
-SSH host lookups (knownhosts) on each nova-compute unit.
-
-There is a new Boolean configuration option - ``cache-known-hosts`` - that allows any
-given host lookup to be performed just once.
-
-.. note:: A cloud can be deployed with the ``cache-known-hosts`` key set to ``false``,
-	  and be set to ``true`` post-deployment. At that point the hosts will have
-	  been cached. The key only controls *whether* the cache is used or not.
-
-If the above key is set, a new Juju action ``clear-unit-knownhost-cache`` is provided
-to clear the cache. This can be applied to a unit, service, or an entire
-nova-cloud-controller application. This would be needed if DNS resolution had
-changed in an existing cloud or during a cloud deployment. Not clearing the
-cache in such cases would result in an inconsistent set of knownhosts files.
-
-This action will cause DNS resolution to be performed (for unit/service/application),
-thus potentially triggering a relation-set on the nova-cloud-controller unit(s) and
-subsequent changed hook on the related nova-compute units.
-
-The action is used as follows, based on unit, service, or application, respectively:
-
-   juju run-action nova-cloud-controller/0 clear-unit-knownhost-cache target=nova-compute/2
-   juju run-action nova-cloud-controller/0 clear-unit-knownhost-cache target=nova-compute
-   juju run-action nova-cloud-controller/0 clear-unit-knownhost-cache
-
-In a high-availability setup, the action **must** be run on all
-nova-cloud-controller units.
-
 For more information about the cache-known-hosts option refer to the
-`charm documentation <https://jaas.ai/u/openstack-charmers/nova-cloud-controller/435#charm-config-cache-known-hosts>`.
+`charm documentation <https://jaas.ai/nova-cloud-controller#charm-config-cache-known-hosts>`__.
 
 Preview Charm Features
 ======================
@@ -206,8 +142,6 @@ Vault-Keystone Cross-Model Relations
 
 The vault and keystone charms now support use of the identity-service and
 vault-kv interface types when using cross model relations.
-
-For more information on the vault-kv interface visit the `project home page <https://github.com/openstack-charmers/charm-interface-vault-kv>`.
 
 Upgrading charms
 ================
@@ -255,28 +189,20 @@ Deprecation Notices
 Nova LXD Charm
 ~~~~~~~~~~~~~~
 
-Inline with the `retirement of the nova compute driver for lxd <https://opendev.org/x/nova-lxd/>`, the nova-lxd
-charm has been deprecated with this release. Git repos and branches, as well as
-charm store historical revisions remain in place for community efforts and
-existing users. The OpenStack Charms team will no longer focus on backports or
-bug fixes to the nova lxd driver or the corresponding charm.
-
-The purpose of the nova lxd charm was to provide nova api access to lxd
-hypervisors, in place or alongside kvm hypervisors.
-
-This has no bearing on the lxd project itself, which has its own healthy
-ecosystem with an aggressive feature roadmap, and is under active development.
-
-For more information about LXD visit the `project home page <https://linuxcontainers.org/>`.
+Inline with the `retirement of the nova compute driver for lxd <https://opendev.org/x/nova-lxd/>`__,
+the nova-lxd charm has been deprecated with this release. Git repos and branches,
+as well as charm store historical revisions remain in place for community efforts
+and existing users. The OpenStack Charms team will no longer focus on backports
+or bug fixes to the nova lxd driver or the corresponding charm.
 
 Removed Features
 ================
 
-Percona-Cluster Charm Trusty Series Removed
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Percona-Cluster Charm Trusty Support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Percona-Cluster Charm has had the Trusty series removed. This, and future
-releases of the Percona-Cluster Charm will no longer function on Trusty. The
+The Percona-Cluster Charm has dropped support for Trusty. This, and future
+releases of the Percona-Cluster Charm will no longer support Trusty. The
 git branches and charm store revisions remain in place for those who need to
 remain on Trusty for this database charm.
 
@@ -306,27 +232,28 @@ network for hosting the load balancer VIP and connecting it to a FIP.
 
 The payload- and loadbalancer- instances can stay in a distributed
 network, only the VIP must be in a non-distributed network.
-although the actual hosting of said router can be on a compute host
+(although the actual hosting of said router can be on a compute host
 acting as a "centralized" snat router in a DVR deployment.)
 
 For more information refer to the following pages:
 
-https://www.openstack.org/assets/presentation-media/Neutron-Port-Binding-and-Impact-of-unbound-ports-on-DVR-Routers-with-FloatingIP.pdf
-https://bugs.launchpad.net/neutron/+bug/1583694
-https://bugs.launchpad.net/neutron/+bug/1667877
-https://review.opendev.org/#/c/437970/
-https://review.opendev.org/#/c/437986/
-https://review.opendev.org/#/c/466434/
+* https://www.openstack.org/assets/presentation-media/Neutron-Port-Binding-and-Impact-of-unbound-ports-on-DVR-Routers-with-FloatingIP.pdf
+* https://bugs.launchpad.net/neutron/+bug/1583694
+* https://bugs.launchpad.net/neutron/+bug/1667877
+* https://review.opendev.org/#/c/437970/
+* https://review.opendev.org/#/c/437986/
+* https://review.opendev.org/#/c/466434/
 
 
 Bugs Fixed
 ==========
 
-TODO: Update the number of bugs fixed.
+This release includes 48 bug fixes.
 
-This release includes 48 bug fixes. For the full list of bugs resolved for the
-19.07 charms release please refer to https://launchpad.net/openstack-charms/+milestone/19.07.
+For the full list of bugs resolved for the 19.07 charms release please refer
+to `Launchpad <https://launchpad.net/openstack-charms/+milestone/19.07>`__.
 
 Next Release Info
 =================
-Please see https://docs.openstack.org/charm-guide/latest for current information.
+
+Please see the `charm guide <https://docs.openstack.org/charm-guide/latest>`__ for current information.
