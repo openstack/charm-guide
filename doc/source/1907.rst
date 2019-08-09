@@ -264,6 +264,16 @@ For more information refer to the following pages:
 * https://review.opendev.org/#/c/437986/
 * https://review.opendev.org/#/c/466434/
 
+Designate and Vault at Ocata and earlier
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Designate charm at Ocata and earlier OpenStack releases does not yet
+support SSL via Vault and the certificates relation.
+
+Current versions of OpenStack with Vault and the certificates relation are
+supported by the Designate charm.
+
+* https://bugs.launchpad.net/charm-designate/+bug/1839019
 
 Bugs Fixed
 ==========
