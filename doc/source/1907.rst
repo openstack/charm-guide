@@ -182,6 +182,26 @@ stable charm revision.
 See the `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html>`__
 for more details.
 
+Series Upgrade Issues
+=====================
+
+Bug: #1839021: hacluster charm "Resource; res_ks_haproxy not running"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For an HA deployment, when performing a Trusty to Xenial upgrade, it's
+possible, if the keystone unit takes a long time to reboot and restart its
+service, that keystone's hacluster crm monitor may exhaust its retries and
+show a ``blocked`` state with the status message ``Resource: res_ks_haproxy not
+running``.
+
+In this case, running the following against the affected hacluster unit should
+resolve the issue once the associated keystone unit has completed its upgrade:
+
+.. code:: bash
+
+   juju run --unit <unit> sudo crm resource refresh
+
+where ``<unit>`` is (say) keystone/0.
 
 Deprecation Notices
 ===================
