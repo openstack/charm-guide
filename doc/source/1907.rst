@@ -1,7 +1,7 @@
 .. _release_notes_19.07:
 
 ===========================
-19.07 (DRAFT Release Notes)
+19.07
 ===========================
 
 Summary
@@ -108,7 +108,6 @@ SNAT routers and DVR services across a deployment.
 For more details refer to the documentation of the ``use-dvr-snat``
 configuration option of the `neutron-openvswitch <https://jaas.ai/neutron-openvswitch>`__ charm
 
-
 Octavia Image Lifecycle Management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -209,7 +208,7 @@ Deprecation Notices
 Nova LXD Charm
 ~~~~~~~~~~~~~~
 
-Inline with the `retirement of the nova compute driver for lxd <https://opendev.org/x/nova-lxd/>`__,
+Accordant with the `retirement of the nova compute driver for lxd <https://opendev.org/x/nova-lxd/>`__,
 the nova-lxd charm has been deprecated with this release. Git repos and branches,
 as well as charm store historical revisions remain in place for community efforts
 and existing users. The OpenStack Charms team will no longer focus on backports
@@ -230,7 +229,6 @@ The main driver for this decision was the lack of a Python 3.4 mysqldb module
 on 14.04. With the widespread upstream and distro Python3-only efforts well
 underway, the Percona-Cluster charm now supports (and requires) a Python3-only
 runtime.
-
 
 Known Issues
 ============
