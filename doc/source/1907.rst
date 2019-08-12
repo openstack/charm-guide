@@ -235,6 +235,13 @@ runtime.
 Known Issues
 ============
 
+Masakari and Masakari Monitors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Both Masakari charms remain as previews. Bugs `1728527 <https://bugs.launchpad.net/masakari-monitors/+bug/1728527>`__
+and `1839715 <https://bugs.launchpad.net/masakari/+bug/1839715>`__ are both
+in progress and need to land for a successful Instance HA deployment.
+
 Octavia Load Balancer in conjunction with DVR
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
