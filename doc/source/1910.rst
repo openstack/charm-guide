@@ -1,0 +1,181 @@
+.. _release_notes_19.10:
+
+=============
+19.10 (DRAFT)
+=============
+
+Summary
+=======
+
+The 19.10 OpenStack Charm release includes updates for the following charms.
+Additional charm support status information is published in the main
+`charm guide <openstack-charms.html>`__ which ultimately supersedes release
+note contents.
+
+Always use the latest stable charm revision before proceeding with topological
+changes, application migrations, workload upgrades, series upgrades, or bug
+reports.
+
+Supported Charms
+~~~~~~~~~~~~~~~~
+
+* aodh
+* barbican
+* barbican-vault
+* ceilometer
+* ceilometer-agent
+* ceph-mon
+* ceph-osd
+* ceph-proxy
+* ceph-radosgw
+* ceph-rbd-mirror
+* cinder
+* cinder-ceph
+* designate
+* designate-bind
+* glance
+* gnocchi
+* hacluster
+* heat
+* keystone
+* keystone-ldap
+* lxd
+* neutron-api
+* neutron-openvswitch
+* neutron-gateway
+* neutron-dynamic-routing
+* nova-cloud-controller
+* nova-compute
+* octavia
+* openstack-dashboard
+* percona-cluster
+* rabbitmq-server
+* swift-proxy
+* swift-storage
+* vault
+
+Preview Charms
+~~~~~~~~~~~~~~
+
+* barbican-softhsm
+* ceph-fs
+* cinder-backup
+* keystone-saml-mellon
+* manila
+* manila-generic
+* masakari
+* masakari-monitors
+* pacemaker-remote
+* tempest
+
+Removed Charms
+~~~~~~~~~~~~~~
+
+The following charms have been removed as part of this charm release:
+
+New Charm Features
+==================
+
+With each new feature, there is a corresponding example bundle in the form of
+a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`__ 
+section which details the use of the feature.  For example test bundles, see the
+src/tests/bundles/ directory within the relevant charm repository.
+
+OpenStack Train
+~~~~~~~~~~~~~~~
+
+The 19.10 OpenStack Charms release introduces support for OpenStack Train on
+Ubuntu 18.04 (LTS) and Ubuntu 19.10.
+
+Additional charm support status information is published in the main
+`charm guide <openstack-charms.html>`__ which ultimately supersedes release
+note contents.
+
+Preview Charm Features
+======================
+
+Feature 1
+~~~~~~~~~
+
+Feature details tbd.
+
+Please refer to
+`Appendix L <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`_
+of the charm deployment guide for more details.
+
+Upgrading charms
+================
+
+Always use the latest stable charm revision before proceeding with topological
+changes, charm application migrations, workload upgrades, series upgrades, or
+bug reports.
+
+Please ensure that the keystone charm is upgraded first.
+
+To upgrade an existing deployment to the latest charm version simply use the
+'upgrade-charm' command, for example:
+
+.. code:: bash
+
+    juju upgrade-charm keystone
+
+Charm upgrades and OpenStack upgrades are two distinctly different things.
+Charm upgrades ensure that the deployment is using the latest charm
+revision, containing the latest charm fixes and charm features available
+for a given deployment.
+
+Charm upgrades do not cause OpenStack versions to upgrade, however OpenStack
+upgrades do require the latest Charm version as pre-requisite.
+
+Upgrading OpenStack
+===================
+
+Before upgrading OpenStack, all OpenStack Charms should be running the latest
+stable charm revision.
+
+To upgrade an existing Steins based deployment on Ubuntu 18.04 to the Train
+release, re-configure the charm with a new openstack-origin
+configuration:
+
+.. code:: bash
+
+    juju config nova-cloud-controller openstack-origin=cloud:bionic-train
+
+Please ensure that ceph services are upgraded before services that consume ceph
+resources, such as cinder, glance and nova-compute:
+
+.. code:: bash
+
+    juju config ceph-mon source=cloud:bionic-train
+    juju config ceph-osd source=cloud:bionic-train
+
+.. note::
+
+   Upgrading an OpenStack cloud is not without risk; upgrades should be tested
+   in pre-production testing environments prior to production deployment
+   upgrades.
+
+See https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
+for more details.
+
+New Bundle Features
+===================
+
+Deprecation Notices
+===================
+
+Removed Features
+================
+
+Known Issues
+============
+
+Bugs Fixed
+==========
+
+This release includes NNN bug fixes. For the full list of bugs resolved for the
+19.10 charms release please refer to https://launchpad.net/openstack-charms/+milestone/19.04.
+
+Next Release Info
+=================
+Please see https://docs.openstack.org/charm-guide/latest for current information.
