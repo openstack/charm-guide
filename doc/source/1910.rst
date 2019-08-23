@@ -77,7 +77,7 @@ New Charm Features
 ==================
 
 With each new feature, there is a corresponding example bundle in the form of
-a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`__ 
+a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`__
 section which details the use of the feature.  For example test bundles, see the
 src/tests/bundles/ directory within the relevant charm repository.
 
@@ -166,6 +166,12 @@ Deprecation Notices
 
 Removed Features
 ================
+
+Ceph Nautilus has removed support for directory backed OSDs. The
+charms will allow for the creation of directory backed OSDs on
+older Ceph releases but will log a warning about their use from
+Nautilus onwards. Existing directory backed OSDs will continue to
+function after an upgrade to Nautilus.
 
 Known Issues
 ============
