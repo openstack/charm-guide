@@ -5,17 +5,36 @@ Release Schedule
 Per the cadence and other requirements defined in the OpenStack Charms `Release Policy <release-policy.html>`__
 section, the following outlines the up-coming feature freeze and stable
 charm release dates.  Dates are estimated and anticipated, and are subject
-to being blocked or delayed by critical regressions or critical bugs
-introduced at master.
+to being blocked or delayed if critical regressions or critical bugs
+are introduced or discovered at master.
+
+
+20.04 Stable Charm Release
+##########################
+
++---------+-------------------+
+| Freeze  | Tue, Apr 14, 2020 |
++---------+-------------------+
+| Release | Thu, Apr 23, 2020 |
++---------+-------------------+
+
+20.01 Stable Charm Release
+##########################
+
++---------+-------------------+
+| Freeze  | Tue, Jan 21, 2020 |
++---------+-------------------+
+| Release | Thu, Jan 30, 2020 |
++---------+-------------------+
 
 
 19.10 Stable Charm Release
 ##########################
 
 +---------+-------------------+
-| Freeze  | tbd               |
+| Freeze  | Tue, Oct 8, 2019  |
 +---------+-------------------+
-| Release | tbd               |
+| Release | Thu, Oct 17, 2019 |
 +---------+-------------------+
 
 19.07 Stable Charm Release
