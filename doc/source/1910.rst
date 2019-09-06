@@ -159,6 +159,17 @@ deployments on Ceph Nautilus to enable the autoscaler, but older releases
 upgraded to Nautilus will need to explicitly opt-in by setting pg-autotune
 to "true".
 
+Neutron Port Forwarding
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Neutron Port forwarding extension can now be optionally enabled with 19.10
+charms for OpenStack Rocky and later. Be aware that the Train openstack-client
+version (or later) may be required in order to interact with the feature from the
+command line.
+
+For more information on this feature see the `Neutron documentation <https://docs.openstack.org/neutron/latest/admin/config-fip-port-forwardings.html>`__.
+
+
 Preview Charm Features
 ======================
 
