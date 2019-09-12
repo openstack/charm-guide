@@ -77,7 +77,7 @@ New Charm Features
 ==================
 
 With each new feature, there is a corresponding example bundle in the form of
-a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`__ 
+a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`__
 section which details the use of the feature.  For example test bundles, see the
 src/tests/bundles/ directory within the relevant charm repository.
 
@@ -139,6 +139,25 @@ of the Charm Deployment Guide.
 
 Please consult the README for each charm to determine exactly what is provided
 with respect to this feature.
+
+Ceph Nautilus
+-------------
+
+Along with OpenStack Train, the 19.10 charm release includes support for
+the Nautilus release of Ceph.
+
+Ceph Placement Group Autotuning
+-------------------------------
+
+In Ceph Nautilus, the OpenStack Charms now support autotuning of placement groups.
+The new pg_autoscaler module allows the cluster to consider the amount of data
+stored, or expected, in each pool and manage the correct pg_num values automatically.
+
+This feature can be disabled entirely by setting a new configuration option,
+pg-autotune, to "false". This option defaults to "auto" which will cause new
+deployments on Ceph Nautilus to enable the autoscaler, but older releases
+upgraded to Nautilus will need to explicitly opt-in by setting pg-autotune
+to "true".
 
 Preview Charm Features
 ======================
