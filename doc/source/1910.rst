@@ -81,6 +81,25 @@ a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/proj
 section which details the use of the feature.  For example test bundles, see the
 src/tests/bundles/ directory within the relevant charm repository.
 
+nova-cloud-controller: instance migration - DNS caching is now the default
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. note:: This has nothing to do with Designate or Neutron DNS
+
+The 19.07 release introduced the option to enable caching of DNS lookups
+of the nova-compute units which are used by nova to perform migrations of
+tenant instances between nova-compute units.  This was not enabled by
+default.  The 19.10 release "flips the swtich" and enables this option by
+default so that after upgrade, if the option was not explicitly set, DNS
+results will be cached automatically.  New clouds will also, unless the
+option is explicitly set to false, cache DNS host lookups.
+
+The reason for caching DNS host lookups is to reduce the time to add
+nova-compute units to an existing cloud, or during first deployment.
+
+Please see the config option ``cache-known-hosts`` on the
+nova-cloud-controller charm for further details.
+
 OpenStack Train
 ~~~~~~~~~~~~~~~
 
