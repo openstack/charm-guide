@@ -110,6 +110,36 @@ Additional charm support status information is published in the main
 `charm guide <openstack-charms.html>`__ which ultimately supersedes release
 note contents.
 
+Policy Overrides
+~~~~~~~~~~~~~~~~
+
+The Policy Overrides feature provides operators with a mechanism to override
+policy defaults on a per-service basis.
+
+Policy defaults for an OpenStack service are defined via "policy-in-code"
+and/or via a default policy YAML file provided by the charm. The operator can
+use the new feature by providing a ZIP file consisting of at least one YAML
+file which contains policy rules that the service will observe when responding
+to API queries.  This allows operators to selectively override the default
+policies of that service.
+
+This feature is being provided in the following charms:
+
+- cinder
+- designate
+- glance
+- keystone
+- openstack-dashboard (horizon)
+- neutron-api
+- nova-cloud-controller
+
+For further details consult `Appendix N: Policy Overrides
+<https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-policy-overrides.html>`_
+of the Charm Deployment Guide.
+
+Please consult the README for each charm to determine exactly what is provided
+with respect to this feature.
+
 Preview Charm Features
 ======================
 
