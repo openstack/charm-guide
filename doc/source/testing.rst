@@ -1,4 +1,4 @@
-p.. _testing:
+.. _testing:
 
 =======
 Testing
@@ -37,7 +37,7 @@ environment specific for the version of Python you wish to test.
 
 .. code:: bash
 
-    tox -e py36
+    tox -e py3
 
 .. note:: The environment name specified in the above example is a moving
    target, and you may need to adapt it depending on what is the current
@@ -134,52 +134,48 @@ test doesn't also test other side-effect functions.
 Functional Testing
 ==================
 
-.. note:: This section is out of date, we are moving to the Zaza_ framework as
-   part of our effort to modernize the test suite and as a consequence of the
-   Python 2 language nearing is end of life.
+.. note:: Most of the OpenStack Charms have been converted to use the Zaza_
+   (Py3) functional test framework, though some may still use the legacy
+   Amulet_ (Py2) framework.  Naturally, with the sunset of Py2 overall, newly
+   authored tests should be in the Zaza_ framework.
 
-Amulet
-~~~~~~
+Zaza - Functional Tests
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Functional tests for a charm are written using the Amulet_ test framework and
+Functional tests for a charm are written using the Zaza_ test framework and
 should exercise the target charm with a subset of a full OpenStack deployment
 to ensure that the charm is able to correctly deploy and configure the
 service that is encapsulates.
 
-The OpenStack charm helpers provide some Amulet deployment helpers to ease
-testing of different OpenStack release combinations; typically each charm will
-test the OpenStack and Ubuntu release combinations currently supported by
-Ubuntu.
+Typically each charm will test the OpenStack and Ubuntu release combinations
+currently supported by Ubuntu.
 
-The OpenStack Charms Amulet tests in their current form may be specific to
+The OpenStack Charms tests in their current form may be specific to
 execution within a tenant on an OpenStack cloud, via the Juju OpenStack
 provider, and that is how the third-party-CI executes them.  Future functional
-test enhancements include the ability run the tests against the Juju OpenStack
-provider (a cloud) or the Juju LXD provider (all on one machine).
+test enhancements may include the ability run the tests against the Juju
+OpenStack provider (a cloud) or the Juju LXD provider (all on one machine).
 
-:Full Amulet: Executes all Amulet gate tests (may take several hours).  The
-    full Amulet test set does not run automatically on each proposed change.
-    After the lower-cost lint, unit, charm-single and Amulet-smoke tests have
+:Full Tests: Executes all Zaza_ gate tests (may take several hours).  The
+    full test set does not run automatically on each proposed change.
+    After the lower-cost lint, unit, charm-single and smoke tests have
     completed, reviewers can conduct code reviews then optionally trigger the
-    full set of Amulet tests (see Rechecking).
+    full set of Zaza_ tests (see Rechecking).
 
-    To manually trigger execution of all Amulet tests on your locally-defined
-    cloud:
-
-.. code:: bash
-
-    tox -e func27
-
-:Amulet Smoke: Executes a subset (generaly one) of the Amulet deployment test
-    sets. The Amulet smoke test set does run automatically on every proposed
-    patchset.
-    
-    To manually trigger execution of the Amulet smoke test on your
-    locally-defined cloud:
+    To manually execute of all Zaza_ tests on your locally-defined cloud:
 
 .. code:: bash
 
-    tox -e func27-smoke
+    tox -e func
+
+:Smoke Tests: Executes a subset (generaly one) of the Zaza_ deployment test
+    sets. The smoke test set runs automatically on every proposed patchset.
+
+    To manually execute the Zaza smoke test on your locally-defined cloud:
+
+.. code:: bash
+
+    tox -e func-smoke
 
 :No-Op: Builds a Python virtualenv per definitions in ``tox.ini``,
     which can be useful in test authoring.
@@ -189,7 +185,7 @@ provider (a cloud) or the Juju LXD provider (all on one machine).
 
 .. code:: bash
 
-    tox -e func27-noop
+    tox -e func-noop
 
 Test methods are called in lexical sort order, as with most test runners.
 However, each individual test method should be idempotent and expected
@@ -199,12 +195,12 @@ on another test method.
 
 Some tests may need to download files from the Internet, such as glance
 images. If a web proxy server is required in the environment, the
-``AMULET_HTTP_PROXY`` environment variable must be set. This is unrelated
+``OS_HTTP_PROXY`` environment variable must be set. This is unrelated
 to Juju's http-proxy settings.
 
 See ``tox.ini`` to determine specifically which test targets will be executed by
-each tox target.  Amulet tests reside in the ``tests/`` directory for classic
-charms, and in the ``src/tests/`` directory for layered source charms.
+each tox target.  Zaza_ test calls are defined in the ``tests/`` directory for
+classic charms, and in the ``src/tests/`` directory for layered source charms.
 
 
 Rechecking
