@@ -235,6 +235,12 @@ Deprecation Notices
 Removed Features
 ================
 
+Ceph Nautilus has removed support for directory backed OSDs. The
+charms will allow for the creation of directory backed OSDs on
+older Ceph releases but will log a warning about their use from
+Nautilus onwards. Existing directory backed OSDs will continue to
+function after an upgrade to Nautilus.
+
 Known Issues
 ============
 
