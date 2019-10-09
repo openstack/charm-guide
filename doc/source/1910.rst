@@ -169,6 +169,29 @@ command line.
 
 For more information on this feature see the `Neutron documentation <https://docs.openstack.org/neutron/latest/admin/config-fip-port-forwardings.html>`__.
 
+Migration to FQDN for agent registration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Starting with the 19.10 charms when deploying OpenStack Stein or newer, the
+Nova Compute agent as deployed by the ``nova-compute`` charm and Neutron
+agents as deployed by the ``neutron-openvswitch`` charm will use a fully
+qualified domain name (FQDN) when registering with the API services.
+
+As the name an agent registers with is referenced across multiple services in a
+OpenStack cloud this change will only apply to newly deployed units.  Upgrading
+the above two charms or upgrading OpenStack will not trigger the new behaviour.
+
+The backdrop of the change is:
+
+- Fix bugs in third party services relating to consistency of hypervisor naming
+  in Nova.
+
+- Avoid deploy time issues in the event a node is configured without a search
+  domain, and also support clouds with a segregated DNS layout.
+
+- Switch to a more sensible default mode of operation enabling easier
+  integration with new technologies such as OVN.
+
 
 Preview Charm Features
 ======================
