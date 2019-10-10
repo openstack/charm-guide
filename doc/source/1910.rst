@@ -129,7 +129,6 @@ This feature is being provided in the following charms:
 - designate
 - glance
 - keystone
-- openstack-dashboard (horizon)
 - neutron-api
 - nova-cloud-controller
 
