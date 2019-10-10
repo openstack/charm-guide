@@ -191,6 +191,24 @@ The backdrop of the change is:
 - Switch to a more sensible default mode of operation enabling easier
   integration with new technologies such as OVN.
 
+Ceph RADOS Gateway tenant namespacing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``ceph-radosgw`` charm now supports deployment with tenant namespaces.
+This is enabled during initial deployment using the ``namespace-tenants``
+configuration option.  Enabling this option post deployment will
+have no effect as it is not possible to migrate a deployment without
+tenant namespacing to one with tenant namespacing enabled.
+
+Endpoint URL's for object storage will contain the tenant ID in the
+form:
+
+.. code:: bash
+
+    http://<cephradosgw-unit-ip-or-vip>:80/swift/v1/AUTH_<tenant-id>
+
+This feature allows per-tenant bucket namespaces, rather than a global
+bucket namespace, which is aligned to the behaviour of OpenStack Swift.
 
 Preview Charm Features
 ======================
