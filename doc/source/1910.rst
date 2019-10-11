@@ -49,6 +49,7 @@ Supported Charms
 * octavia
 * openstack-dashboard
 * percona-cluster
+* placement
 * rabbitmq-server
 * swift-proxy
 * swift-storage
@@ -109,6 +110,10 @@ Ubuntu 18.04 (LTS) and Ubuntu 19.10.
 Additional charm support status information is published in the main
 `charm guide <openstack-charms.html>`__ which ultimately supersedes release
 note contents.
+
+Please note the placement charm must be deployed and related to the
+nova-cloud-controller charm as of OpenStack Train. See `Placement Charm`
+for more details.
 
 Policy Overrides
 ~~~~~~~~~~~~~~~~
@@ -210,6 +215,16 @@ form:
 This feature allows per-tenant bucket namespaces, rather than a global
 bucket namespace, which is aligned to the behaviour of OpenStack Swift.
 
+Placement Charm
+---------------
+
+The 19.10 OpenStack Charms release introduces a new charm for the placement API.
+The `placement API <https://docs.openstack.org/placement/train/>` service was extracted from the Nova project in OpenStack Train and
+moved to its own project. Therefore, the placement charm must be deployed and related
+to the nova-cloud-controller charm for OpenStack Train deployments. Please see
+`Upgrading OpenStack` for more details on how to introduce the placement charm into
+existing deployments when upgrading to OpenStack Train.
+
 Preview Charm Features
 ======================
 
@@ -252,12 +267,36 @@ Upgrading OpenStack
 Before upgrading OpenStack, all OpenStack Charms should be running the latest
 stable charm revision.
 
-To upgrade an existing Steins based deployment on Ubuntu 18.04 to the Train
-release, re-configure the charm with a new openstack-origin
-configuration:
+To upgrade an existing Stein-based deployment on Ubuntu 18.04 to the Train
+release, re-configure the charm with a new openstack-origin configuration:
 
 .. code:: bash
 
+    juju config nova-compute openstack-origin=cloud:bionic-train
+
+As of Train, the placement API is managed by the new placement charm and is no
+longer managed by the nova-cloud-controller charm. The upgrade to Train
+requires some coordination to transition to the new API endpoints.
+
+Prior to upgrading nova-cloud-controller to Train, the placement charm must be
+deployed for Train and related to the Stein-based nova-cloud-controller. It is
+important that nova-cloud-controller is paused while the API transition occurs
+(pause prior to adding relations for the placement charm) as the placement
+charm will migrate existing placement tables from the nova_api database to a
+new placement database. Once the new placement endpoints are registered,
+nova-cloud-controller can be resumed. After all of the steps have completed,
+nova-cloud-controller can then be upgraded to Train. Here's an example of the
+steps that were just described:
+
+.. code:: bash
+
+    juju deploy --series bionic --config openstack-origin=cloud:bionic-train cs:placement
+    juju run-action nova-cloud-controller/0 pause
+    juju add-relation placement mysql
+    juju add-relation placement keystone
+    juju add-relation placement nova-cloud-controller
+    openstack endpoint list # ensure placement endpoints are listening on new placment IP address
+    juju run-action nova-cloud-controller/0 resume
     juju config nova-cloud-controller openstack-origin=cloud:bionic-train
 
 Please ensure that ceph services are upgraded before services that consume ceph
