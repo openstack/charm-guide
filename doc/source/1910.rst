@@ -89,7 +89,7 @@ nova-cloud-controller: instance migration - DNS caching is now the default
 The 19.07 release introduced the option to enable caching of DNS lookups
 of the nova-compute units which are used by nova to perform migrations of
 tenant instances between nova-compute units.  This was not enabled by
-default.  The 19.10 release "flips the swtich" and enables this option by
+default.  The 19.10 release "flips the switch" and enables this option by
 default so that after upgrade, if the option was not explicitly set, DNS
 results will be cached automatically.  New clouds will also, unless the
 option is explicitly set to false, cache DNS host lookups.
@@ -303,6 +303,13 @@ and `1839715 <https://bugs.launchpad.net/masakari/+bug/1839715>`__ are both
 in progress and need to land for a successful Instance HA deployment. Bug `1773765 <https://bugs.launchpad.net/masakari/+bug/1773765>`__
 is still open and is likely to affect on-going support of a Masakari
 deployment.
+
+Glance Simplestreams Sync
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When deploying the glance-simplestreams-sync charm on Bionic use
+`source=ppa:simplestreams-dev/trunk`. See bug `1790904
+<https://bugs.launchpad.net/simplestreams/+bug/1790904>`.
 
 Bugs Fixed
 ==========
