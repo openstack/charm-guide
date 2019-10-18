@@ -66,6 +66,8 @@ Preview Charms
 * manila-generic
 * masakari
 * masakari-monitors
+* mysql-innodb-cluster
+* mysql-router
 * pacemaker-remote
 * tempest
 
@@ -228,14 +230,40 @@ existing deployments when upgrading to OpenStack Train.
 Preview Charm Features
 ======================
 
-Feature 1
-~~~~~~~~~
+mysql-innodb-cluster and mysql-router
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Feature details tbd.
+The 19.10 OpenStack Charms release introduces two new charms to deploy MySQL 8
+for OpenStack: mysql-innodb-cluster and mysql-router.
 
-Please refer to
-`Appendix L <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`_
-of the charm deployment guide for more details.
+.. note :: These charms are in preview state and are not production-ready. The
+           charms are ready for **testing** in OpenStack clouds.
+
+.. note :: Both charms are only deployable on Ubuntu 19.10 and greater.
+
+The mysql-innodb-cluster charm deploys MySQL 8 in an InnoDB cluster with a
+read/write node and N number of read-only nodes.
+
+.. note :: The mysql-innodb-cluster charm is intended for deploying a cluster
+           and therefore does not support single-unit or non-clustered
+           deployments.
+
+The mysql-router charm deploys MySQL 8 mysqlrouter which will proxy database
+requests from the principle charm application to a MySQL 8 InnoDB Cluster.
+MySQL Router handles cluster communication and understands the cluster schema.
+
+.. note :: The mysql-router charm is deployed as a subordinate on the principle
+           charm application.
+
+A simple example deployment:
+
+.. code:: bash
+
+     juju deploy cs:keystone
+     juju deploy cs:~openstack-charmers-next/mysql-router
+     juju deploy -n 3 cs:~openstack-charmers-next/mysql-innodb-cluster
+     juju add-relation mysql-router:db-router mysql-innodb-cluster:db-router
+
 
 Upgrading charms
 ================
@@ -348,7 +376,7 @@ Glance Simplestreams Sync
 
 When deploying the glance-simplestreams-sync charm on Bionic use
 `source=ppa:simplestreams-dev/trunk`. See bug `1790904
-<https://bugs.launchpad.net/simplestreams/+bug/1790904>`.
+<https://bugs.launchpad.net/simplestreams/+bug/1790904>`__.
 
 Bugs Fixed
 ==========
