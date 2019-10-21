@@ -7,10 +7,9 @@
 Summary
 =======
 
-The 19.10 OpenStack Charm release includes updates for the following charms.
-Additional charm support status information is published in the main
-`charm guide <openstack-charms.html>`__ which ultimately supersedes release
-note contents.
+The 19.10 OpenStack Charms release includes updates for the following charms.
+Additional charm support status information is published in the `OpenStack
+Charm Guide`_ which ultimately supersedes Release Notes contents.
 
 Always use the latest stable charm revision before proceeding with topological
 changes, application migrations, workload upgrades, series upgrades, or bug
@@ -74,48 +73,44 @@ Preview Charms
 Removed Charms
 ~~~~~~~~~~~~~~
 
-The following charms have been removed as part of this charm release:
+n/a
 
 New Charm Features
 ==================
 
-With each new feature, there is a corresponding example bundle in the form of
-a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`__
-section which details the use of the feature.  For example test bundles, see the
+With each new feature, there is a corresponding example bundle in the form of a
+test bundle, and/or a `OpenStack Charms Deployment Guide`_ section which
+details the use of the feature. For example test bundles, see the
 src/tests/bundles/ directory within the relevant charm repository.
-
-nova-cloud-controller: instance migration - DNS caching is now the default
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. note:: This has nothing to do with Designate or Neutron DNS
-
-The 19.07 release introduced the option to enable caching of DNS lookups
-of the nova-compute units which are used by nova to perform migrations of
-tenant instances between nova-compute units.  This was not enabled by
-default.  The 19.10 release "flips the switch" and enables this option by
-default so that after upgrade, if the option was not explicitly set, DNS
-results will be cached automatically.  New clouds will also, unless the
-option is explicitly set to false, cache DNS host lookups.
-
-The reason for caching DNS host lookups is to reduce the time to add
-nova-compute units to an existing cloud, or during first deployment.
-
-Please see the config option ``cache-known-hosts`` on the
-nova-cloud-controller charm for further details.
 
 OpenStack Train
 ~~~~~~~~~~~~~~~
 
 The 19.10 OpenStack Charms release introduces support for OpenStack Train on
-Ubuntu 18.04 (LTS) and Ubuntu 19.10.
-
-Additional charm support status information is published in the main
-`charm guide <openstack-charms.html>`__ which ultimately supersedes release
-note contents.
+Ubuntu 18.04 LTS (via UCA) and Ubuntu 19.10.
 
 Please note the placement charm must be deployed and related to the
-nova-cloud-controller charm as of OpenStack Train. See `Placement Charm`
-for more details.
+``nova-cloud-controller`` charm as of OpenStack Train. See section `Placement
+Charm`_ for more details.
+
+nova-cloud-controller: instance migration - DNS caching is now the default
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. note:: This has nothing to do with Designate or Neutron DNS.
+
+The 19.07 release introduced the option to enable caching of DNS lookups of the
+nova-compute units which are used by nova to perform migrations of tenant
+instances between nova-compute units. This was not enabled by default. The
+19.10 release "flips the switch" and enables this option by default so that
+after upgrade, if the option was not explicitly set, DNS results will be cached
+automatically. New clouds will also, unless the option is explicitly set to
+false, cache DNS host lookups.
+
+The reason for caching DNS host lookups is to reduce the time to add
+nova-compute units to an existing cloud, or during first deployment.
+
+Please see the config option ``cache-known-hosts`` on the
+``nova-cloud-controller`` charm for further details.
 
 Policy Overrides
 ~~~~~~~~~~~~~~~~
@@ -127,7 +122,7 @@ Policy defaults for an OpenStack service are defined via "policy-in-code"
 and/or via a default policy YAML file provided by the charm. The operator can
 use the new feature by providing a ZIP file consisting of at least one YAML
 file which contains policy rules that the service will observe when responding
-to API queries.  This allows operators to selectively override the default
+to API queries. This allows operators to selectively override the default
 policies of that service.
 
 This feature is being provided in the following charms:
@@ -139,52 +134,52 @@ This feature is being provided in the following charms:
 - neutron-api
 - nova-cloud-controller
 
-For further details consult `Appendix N: Policy Overrides
-<https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-policy-overrides.html>`_
-of the Charm Deployment Guide.
+For further details consult appendix `Policy Overrides`_ in the `OpenStack
+Charms Deployment Guide`_.
 
 Please consult the README for each charm to determine exactly what is provided
 with respect to this feature.
 
 Ceph Nautilus
--------------
+~~~~~~~~~~~~~
 
-Along with OpenStack Train, the 19.10 charm release includes support for
-the Nautilus release of Ceph.
+Along with OpenStack Train, the 19.10 charm release includes support for the
+Nautilus release of Ceph.
 
 Ceph Placement Group Autotuning
--------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In Ceph Nautilus, the OpenStack Charms now support autotuning of placement groups.
-The new pg_autoscaler module allows the cluster to consider the amount of data
-stored, or expected, in each pool and manage the correct pg_num values automatically.
+In Ceph Nautilus, the OpenStack Charms now support autotuning of placement
+groups. The new pg_autoscaler module allows the cluster to consider the amount
+of data stored, or expected, in each pool and manage the correct pg_num values
+automatically.
 
 This feature can be disabled entirely by setting a new configuration option,
 pg-autotune, to "false". This option defaults to "auto" which will cause new
 deployments on Ceph Nautilus to enable the autoscaler, but older releases
-upgraded to Nautilus will need to explicitly opt-in by setting pg-autotune
-to "true".
+upgraded to Nautilus will need to explicitly opt-in by setting pg-autotune to
+"true".
 
 Neutron Port Forwarding
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Neutron Port forwarding extension can now be optionally enabled with 19.10
 charms for OpenStack Rocky and later. Be aware that the Train openstack-client
-version (or later) may be required in order to interact with the feature from the
-command line.
+version (or later) may be required in order to interact with the feature from
+the command line.
 
-For more information on this feature see the `Neutron documentation <https://docs.openstack.org/neutron/latest/admin/config-fip-port-forwardings.html>`__.
+For more information on this feature see the `Neutron documentation`_.
 
 Migration to FQDN for agent registration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Starting with the 19.10 charms when deploying OpenStack Stein or newer, the
-Nova Compute agent as deployed by the ``nova-compute`` charm and Neutron
-agents as deployed by the ``neutron-openvswitch`` charm will use a fully
-qualified domain name (FQDN) when registering with the API services.
+Nova Compute agent as deployed by the ``nova-compute`` charm and Neutron agents
+as deployed by the ``neutron-openvswitch`` charm will use a fully qualified
+domain name (FQDN) when registering with the API services.
 
 As the name an agent registers with is referenced across multiple services in a
-OpenStack cloud this change will only apply to newly deployed units.  Upgrading
+OpenStack cloud this change will only apply to newly deployed units. Upgrading
 the above two charms or upgrading OpenStack will not trigger the new behaviour.
 
 The backdrop of the change is:
@@ -203,29 +198,29 @@ Ceph RADOS Gateway tenant namespacing
 
 The ``ceph-radosgw`` charm now supports deployment with tenant namespaces.
 This is enabled during initial deployment using the ``namespace-tenants``
-configuration option.  Enabling this option post deployment will
-have no effect as it is not possible to migrate a deployment without
-tenant namespacing to one with tenant namespacing enabled.
+configuration option. Enabling this option post deployment will have no effect
+as it is not possible to migrate a deployment without tenant namespacing to one
+with tenant namespacing enabled.
 
-Endpoint URL's for object storage will contain the tenant ID in the
-form:
+Endpoint URLs for object storage will contain the tenant ID in the form:
 
 .. code:: bash
 
     http://<cephradosgw-unit-ip-or-vip>:80/swift/v1/AUTH_<tenant-id>
 
-This feature allows per-tenant bucket namespaces, rather than a global
-bucket namespace, which is aligned to the behaviour of OpenStack Swift.
+This feature allows per-tenant bucket namespaces, rather than a global bucket
+namespace, which is aligned to the behaviour of OpenStack Swift.
 
 Placement Charm
----------------
+~~~~~~~~~~~~~~~
 
-The 19.10 OpenStack Charms release introduces a new charm for the placement API.
-The `placement API <https://docs.openstack.org/placement/train/>` service was extracted from the Nova project in OpenStack Train and
-moved to its own project. Therefore, the placement charm must be deployed and related
-to the nova-cloud-controller charm for OpenStack Train deployments. Please see
-`Upgrading OpenStack` for more details on how to introduce the placement charm into
-existing deployments when upgrading to OpenStack Train.
+The 19.10 OpenStack Charms release introduces a new charm for the placement
+API. The `placement API`_ service was extracted from the Nova project in
+OpenStack Train and moved to its own project. Therefore, the new ``placement``
+charm must be deployed and related to the ``nova-cloud-controller`` charm for
+OpenStack Train deployments. See section `Upgrading OpenStack`_ for more
+details on how to introduce the placement charm into existing deployments when
+upgrading to OpenStack Train.
 
 Preview Charm Features
 ======================
@@ -272,68 +267,26 @@ Always use the latest stable charm revision before proceeding with topological
 changes, charm application migrations, workload upgrades, series upgrades, or
 bug reports.
 
-Please ensure that the keystone charm is upgraded first.
+Please ensure that the ``keystone`` charm is upgraded first.
 
 To upgrade an existing deployment to the latest charm version simply use the
-'upgrade-charm' command, for example:
+``upgrade-charm`` command. For example:
 
 .. code:: bash
 
     juju upgrade-charm keystone
 
-Charm upgrades and OpenStack upgrades are two distinctly different things.
-Charm upgrades ensure that the deployment is using the latest charm
-revision, containing the latest charm fixes and charm features available
-for a given deployment.
+Charm upgrades and OpenStack upgrades are functionally different. Charm
+upgrades ensure that the deployment has the latest charm revision, containing
+the latest charm fixes and charm features available for that deployment,
+whereas OpenStack upgrades influence the software package versions of OpenStack
+itself.
 
-Charm upgrades do not cause OpenStack versions to upgrade, however OpenStack
-upgrades do require the latest Charm version as pre-requisite.
+Charm upgrades do not trigger OpenStack upgrades. However, OpenStack upgrades
+do require the latest charm version as pre-requisite.
 
 Upgrading OpenStack
 ===================
-
-Before upgrading OpenStack, all OpenStack Charms should be running the latest
-stable charm revision.
-
-To upgrade an existing Stein-based deployment on Ubuntu 18.04 to the Train
-release, re-configure the charm with a new openstack-origin configuration:
-
-.. code:: bash
-
-    juju config nova-compute openstack-origin=cloud:bionic-train
-
-As of Train, the placement API is managed by the new placement charm and is no
-longer managed by the nova-cloud-controller charm. The upgrade to Train
-requires some coordination to transition to the new API endpoints.
-
-Prior to upgrading nova-cloud-controller to Train, the placement charm must be
-deployed for Train and related to the Stein-based nova-cloud-controller. It is
-important that nova-cloud-controller is paused while the API transition occurs
-(pause prior to adding relations for the placement charm) as the placement
-charm will migrate existing placement tables from the nova_api database to a
-new placement database. Once the new placement endpoints are registered,
-nova-cloud-controller can be resumed. After all of the steps have completed,
-nova-cloud-controller can then be upgraded to Train. Here's an example of the
-steps that were just described:
-
-.. code:: bash
-
-    juju deploy --series bionic --config openstack-origin=cloud:bionic-train cs:placement
-    juju run-action nova-cloud-controller/0 pause
-    juju add-relation placement mysql
-    juju add-relation placement keystone
-    juju add-relation placement nova-cloud-controller
-    openstack endpoint list # ensure placement endpoints are listening on new placment IP address
-    juju run-action nova-cloud-controller/0 resume
-    juju config nova-cloud-controller openstack-origin=cloud:bionic-train
-
-Please ensure that ceph services are upgraded before services that consume ceph
-resources, such as cinder, glance and nova-compute:
-
-.. code:: bash
-
-    juju config ceph-mon source=cloud:bionic-train
-    juju config ceph-osd source=cloud:bionic-train
 
 .. note::
 
@@ -341,8 +294,52 @@ resources, such as cinder, glance and nova-compute:
    in pre-production testing environments prior to production deployment
    upgrades.
 
-See https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
+See appendix `OpenStack Upgrades`_ in the `OpenStack Charms Deployment Guide`_
 for more details.
+
+Before upgrading OpenStack, all OpenStack Charms should be running the latest
+stable charm revision.
+
+To upgrade an existing Stein-based deployment on Ubuntu 18.04 to the Train
+release, re-configure the charm with a new openstack-origin configuration. For
+example:
+
+.. code:: bash
+
+    juju config nova-compute openstack-origin=cloud:bionic-train
+
+As of Train, the placement API is managed by the new ``placement`` charm and is
+no longer managed by the ``nova-cloud-controller`` charm. The upgrade to Train
+therefore requires some coordination to transition to the new API endpoints.
+
+Prior to upgrading nova-cloud-controller to Train, the placement charm must be
+deployed for Train and related to the Stein-based nova-cloud-controller. It is
+important that the nova-cloud-controller unit leader is paused while the API
+transition occurs (paused prior to adding relations for the placement charm) as
+the placement charm will migrate existing placement tables from the nova_api
+database to a new placement database. Once the new placement endpoints are
+registered, nova-cloud-controller can be resumed.
+
+Here's an example of the steps just described:
+
+.. code:: bash
+
+    juju deploy --series bionic --config openstack-origin=cloud:bionic-train cs:placement
+    juju run-action nova-cloud-controller/leader pause
+    juju add-relation placement mysql
+    juju add-relation placement keystone
+    juju add-relation placement nova-cloud-controller
+    openstack endpoint list # ensure placement endpoints are listening on new placment IP address
+    juju run-action nova-cloud-controller/leader resume
+
+Only after these steps have been completed can nova-cloud-controller be
+upgraded. Here we upgrade all units simultaneously but see `HA with
+pause/resume`_ in the `OpenStack Charms Deployment Guide`_ for a more
+controlled approach:
+
+.. code:: bash
+
+    juju config nova-cloud-controller openstack-origin=cloud:bionic-train
 
 New Bundle Features
 ===================
@@ -353,11 +350,10 @@ Deprecation Notices
 Removed Features
 ================
 
-Ceph Nautilus has removed support for directory backed OSDs. The
-charms will allow for the creation of directory backed OSDs on
-older Ceph releases but will log a warning about their use from
-Nautilus onwards. Existing directory backed OSDs will continue to
-function after an upgrade to Nautilus.
+Ceph Nautilus has removed support for directory backed OSDs. The charms will
+allow for the creation of directory backed OSDs on older Ceph releases but will
+log a warning about their use from Nautilus onwards. Existing directory backed
+OSDs will continue to function after an upgrade to Nautilus.
 
 Known Issues
 ============
@@ -365,25 +361,46 @@ Known Issues
 Masakari and Masakari Monitors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Both Masakari charms remain as previews. Bugs `1728527 <https://bugs.launchpad.net/masakari-monitors/+bug/1728527>`__
-and `1839715 <https://bugs.launchpad.net/masakari/+bug/1839715>`__ are both
-in progress and need to land for a successful Instance HA deployment. Bug `1773765 <https://bugs.launchpad.net/masakari/+bug/1773765>`__
-is still open and is likely to affect on-going support of a Masakari
+Both Masakari charms remain as previews. Bugs `LP #1728527`_ and `LP #1839715`_
+need to be resolved in order to arrive at a successful instance HA deployment.
+Bug `LP #1773765`_ is likely to affect on-going support of a Masakari
 deployment.
 
 Glance Simplestreams Sync
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When deploying the glance-simplestreams-sync charm on Bionic use
-`source=ppa:simplestreams-dev/trunk`. See bug `1790904
-<https://bugs.launchpad.net/simplestreams/+bug/1790904>`__.
+When deploying the ``glance-simplestreams-sync`` charm on Bionic a more recent
+version of the simplestreams package must be installed by configuring a PPA:
+
+.. code:: bash
+
+    juju config glance-simplestreams-sync source=ppa:simplestreams-dev/trunk
+
+See bug `LP #1790904`_ for details.
 
 Bugs Fixed
 ==========
 
 This release includes NNN bug fixes. For the full list of bugs resolved for the
-19.10 charms release please refer to https://launchpad.net/openstack-charms/+milestone/19.04.
+19.10 charms release please refer to the `19.10 milestone`_ in Launchpad.
 
 Next Release Info
 =================
-Please see https://docs.openstack.org/charm-guide/latest for current information.
+
+Please see the `OpenStack Charm Guide`_ for current information.
+
+.. LINKS
+.. _OpenStack Upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
+.. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
+.. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
+.. _19.10 milestone: https://launchpad.net/openstack-charms/+milestone/19.10
+.. _Policy Overrides: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-policy-overrides.html
+.. _Neutron documentation: https://docs.openstack.org/neutron/latest/admin/config-fip-port-forwardings.html
+.. _placement API: https://docs.openstack.org/placement/train/
+.. _HA with pause/resume: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#ha-with-pause-resume
+
+.. BUGS
+.. _LP #1728527: https://bugs.launchpad.net/masakari-monitors/+bug/1728527
+.. _LP #1839715: https://bugs.launchpad.net/masakari/+bug/1839715
+.. _LP #1773765: https://bugs.launchpad.net/masakari/+bug/1773765
+.. _LP #1790904: https://bugs.launchpad.net/simplestreams/+bug/1790904
