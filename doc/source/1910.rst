@@ -31,6 +31,7 @@ Supported Charms
 * ceph-rbd-mirror
 * cinder
 * cinder-ceph
+* cinder-purestorage
 * designate
 * designate-bind
 * glance
@@ -224,6 +225,31 @@ moved to its own project. Therefore, the placement charm must be deployed and re
 to the nova-cloud-controller charm for OpenStack Train deployments. Please see
 `Upgrading OpenStack` for more details on how to introduce the placement charm into
 existing deployments when upgrading to OpenStack Train.
+
+Cinder Integration with Pure Storage Array
+------------------------------------------
+
+The 19.10 OpenStack Charms release introduces a new charm which can be used
+to integrate cinder with a Pure Storage array. To use the new subordinate
+charm:
+
+.. code:: bash
+
+    juju deploy cinder
+    juju deploy cinder-purestorage
+    juju add-relation cinder-purestorage cinder
+
+The cinder-purestorage charm needs to be configured with the IP address of the
+storage array and provided with an API token for authentication.
+Typically the settings that need configuring are:
+
+.. code:: yaml
+
+    protocol: iscsi
+    volume-backend-name: cinder-pure
+    san-ip: PURESTORAGE_IP
+    pure-api-token: API_TOKEN
+
 
 Preview Charm Features
 ======================
