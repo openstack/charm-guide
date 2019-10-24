@@ -1,8 +1,8 @@
 .. _release_notes_19.10:
 
-=============
-19.10 (DRAFT)
-=============
+=====
+19.10
+=====
 
 Summary
 =======
@@ -47,6 +47,8 @@ Supported Charms
 * nova-cloud-controller
 * nova-compute
 * octavia
+* octavia-dashboard
+* octavia-diskimage-retrofit
 * openstack-dashboard
 * percona-cluster
 * placement
@@ -228,7 +230,7 @@ details on how to introduce the placement charm into existing deployments when
 upgrading to OpenStack Train.
 
 Cinder Integration with Pure Storage Array
-------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The 19.10 OpenStack Charms release introduces a new charm which can be used
 to integrate cinder with a Pure Storage array. To use the new subordinate
@@ -498,6 +500,17 @@ services once certificates have been issued:
 
     juju run --application nova-compute "systemctl restart nova-compute"
     juju run --application nova-cloud-controller "systemctl restart nova-scheduler"
+
+
+Juju Version
+~~~~~~~~~~~~
+
+The 19.10 set of OpenStack charms was validated with Juju 2.6.9 and 2.6.10
+(candidate).  While some validation has been done with edge versions of Juju
+2.7.x, a full qualification of Eoan series and cross-model-relation remains
+to be done.  This validation is considered important, and will be covered
+in conjunction with 2.7.x RCs or beta versions.
+
 
 Bugs Fixed
 ==========
