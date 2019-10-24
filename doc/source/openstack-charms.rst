@@ -4,10 +4,9 @@ Charms
 ======
 
 Each stable release of OpenStack Charms is backwards-compatible to cover all
-currently-supported combinations of Ubuntu + OpenStack.  The latest stable
-charm revision should be used before proceeding with topological changes,
-charm application migrations, workload upgrades, series upgrades, or
-bug reports.
+currently-supported combinations of Ubuntu + OpenStack. The latest stable
+charm revision should be used before proceeding with topological changes, charm
+application migrations, workload upgrades, series upgrades, or bug reports.
 
 OpenStack Charms
 ~~~~~~~~~~~~~~~~
@@ -36,6 +35,7 @@ These charms have stable releases with ongoing maintenance and testing.
 * `octavia <https://opendev.org/openstack/charm-octavia/>`_
 * `octavia-dashboard <https://opendev.org/openstack/charm-octavia-dashboard/>`_
 * `octavia-diskimage-retrofit <https://opendev.org/openstack/charm-octavia-diskimage-retrofit/>`_
+* `placement <https://opendev.org/openstack/charm-placement>`_
 * `openstack-dashboard <https://opendev.org/openstack/charm-openstack-dashboard/>`_
 * `swift-proxy <https://opendev.org/openstack/charm-swift-proxy/>`_
 * `swift-storage <https://opendev.org/openstack/charm-swift-storage/>`_
@@ -43,8 +43,9 @@ These charms have stable releases with ongoing maintenance and testing.
 Other Supporting Charms
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-These charms have stable releases with ongoing maintenance and testing.  They're
-classified differently because the payload of each is not technically an OpenStack project.
+These charms have stable releases with ongoing maintenance and testing.
+They're classified differently because the payload of each is not technically
+an OpenStack project.
 
 * `ceph-mon <https://opendev.org/openstack/charm-ceph-mon/>`_
 * `ceph-osd <https://opendev.org/openstack/charm-ceph-osd/>`_
@@ -62,7 +63,7 @@ classified differently because the payload of each is not technically an OpenSta
 Development / Preview Charms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-These charms are either in development or are released as a beta/preview.  This
+These charms are either in development or are released as a beta/preview. This
 is to indicate that additional validation, and further work may be necessary to
 make a stable release for production use.
 
@@ -74,15 +75,21 @@ make a stable release for production use.
 * `manila-generic <https://opendev.org/openstack/charm-manila-generic/>`_
 * `masakari <https://opendev.org/openstack/charm-masakari/>`_
 * `masakari-monitors <https://opendev.org/openstack/charm-masakari-monitors/>`_
+* `mysql-innodb-cluster <https://opendev.org/openstack/charm-mysql-innodb-cluster>`_
+* `mysql-router <https://opendev.org/openstack/charm-mysql-router>`_
+* `neutron-api-plugin-ovn <https://opendev.org/openstack/charm-neutron-api-plugin-ovn>`_
+* `ovn-central <https://opendev.org/x/charm-ovn-central>`_
+* `ovn-chassis <https://opendev.org/x/charm-ovn-chassis>`_
+* `ovn-dedicated-chassis <https://opendev.org/x/charm-ovn-dedicated-chassis>`_
 * `pacemaker-remote <https://opendev.org/openstack/charm-pacemaker-remote/>`_
 * `tempest <https://opendev.org/openstack/charm-tempest/>`_
 
 Maintenance-Mode Charms
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-These charms are in maintenance mode, meaning that new features and new releases
-are not actively being added or tested with them.  Generally, these were produced
-for demo, PoC, or as examples.
+These charms are in maintenance mode, meaning that new features and new
+releases are not actively being added or tested with them. Generally, these
+were produced for demo, PoC, or as examples.
 
 * None at this time.
 
