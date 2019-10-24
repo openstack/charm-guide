@@ -413,6 +413,22 @@ support SSL via Vault and the certificates relation. See bug `1839019 <https://b
 Current versions of OpenStack with Vault and the certificates relation are
 supported by the Designate charm.
 
+Restart Nova services after adding certificates relation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A race condition exists with the use of the 'certificates' relation.
+When SSL certificates are issued Nova services may attempt to talk
+to the placement API over HTTP while the API has already changed to
+HTTPS. See bug `1826382 <https://bugs.launchpad.net/nova/+bug/1826382>`__.
+
+To mitigate against this, restart nova-compute and nova-scheduler
+services once certificates have been issued:
+
+.. code:: bash
+
+    juju run --application nova-compute "systemctl restart nova-compute"
+    juju run --application nova-cloud-controller "systemctl restart nova-scheduler"
+
 Bugs Fixed
 ==========
 
