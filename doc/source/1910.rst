@@ -404,6 +404,15 @@ version of the simplestreams package must be installed by configuring a PPA:
 
 See bug `LP #1790904`_ for details.
 
+Designate and Vault at Ocata and earlier
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Designate charm for OpenStack releases Pike and earlier does not yet
+support SSL via Vault and the certificates relation. See bug `1839019 <https://bugs.launchpad.net/charm-designate/+bug/1839019>`__
+
+Current versions of OpenStack with Vault and the certificates relation are
+supported by the Designate charm.
+
 Bugs Fixed
 ==========
 
