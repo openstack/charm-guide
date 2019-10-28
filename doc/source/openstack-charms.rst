@@ -51,6 +51,7 @@ an OpenStack project.
 * `ceph-osd <https://opendev.org/openstack/charm-ceph-osd/>`_
 * `ceph-proxy <https://opendev.org/openstack/charm-ceph-proxy/>`_
 * `ceph-radosgw <https://opendev.org/openstack/charm-ceph-radosgw/>`_
+* `ceph-rbd-mirror <https://opendev.org/openstack/charm-ceph-rbd-mirror/>`_
 * `designate-bind <https://opendev.org/openstack/charm-designate-bind/>`_
 * `glance-simplestreams-sync <https://opendev.org/openstack/charm-glance-simplestreams-sync/>`_
 * `gnocchi <https://opendev.org/openstack/charm-gnocchi/>`_
