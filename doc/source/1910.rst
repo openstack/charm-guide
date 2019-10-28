@@ -516,7 +516,7 @@ in conjunction with 2.7.x RCs or beta versions.
 Bugs Fixed
 ==========
 
-This release includes 59 bug fixes. For the full list of bugs resolved for the
+This release includes 41 bug fixes. For the full list of bugs resolved for the
 19.10 charms release please refer to the `19.10 milestone`_ in Launchpad.
 
 Next Release Info
