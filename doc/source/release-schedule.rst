@@ -9,22 +9,22 @@ to being blocked or delayed if critical regressions or critical bugs
 are introduced or discovered at master.
 
 
-20.04 Stable Charm Release
+20.05 Stable Charm Release
 ##########################
 
 +---------+-------------------+
-| Freeze  | Tue, Apr 14, 2020 |
+| Freeze  | Fri, May 8, 2020  |
 +---------+-------------------+
-| Release | Thu, Apr 23, 2020 |
+| Release | Wed, May 20, 2020 |
 +---------+-------------------+
 
-20.01 Stable Charm Release
+20.02 Stable Charm Release
 ##########################
 
 +---------+-------------------+
-| Freeze  | Tue, Jan 21, 2020 |
+| Freeze  | Fri, Jan 31, 2020 |
 +---------+-------------------+
-| Release | Thu, Jan 30, 2020 |
+| Release | Wed, Feb 12, 2020 |
 +---------+-------------------+
 
 
