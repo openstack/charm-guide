@@ -329,11 +329,10 @@ Known feature gaps at this point in time:
   may be possible to configure unsupported combinations of features with
   undefined results.
 
-* There are unresolved issues with how security groups get handled in the
-  context of the ordering of resource creation through the OpenStack API / CLI.
-  If you are unable to get ingress traffic to flow to your instances after
-  initial post-deployment configuration, try to remove the default security
-  group rules and re-create them.
+* There is an unresolved issue with security groups rules that reference
+  remote security groups.  Please remove any such rules while testing.
+
+Example of how you could reset your default security group rules:
 
 .. code:: bash
 
@@ -343,10 +342,6 @@ Known feature gaps at this point in time:
         | awk '/default/{print$2}')
     openstack security group rule delete \
         $(openstack security group rule list $SECGRP_ID| awk '/IPv./{print$2}')
-    openstack security group rule create --ingress --protocol any \
-        --ethertype IPv4 --remote-group $SECGRP_ID $SECGRP_ID
-    openstack security group rule create --ingress --protocol any \
-        --ethertype IPv6 --remote-group $SECGRP_ID $SECGRP_ID
     openstack security group rule create --egress --protocol any \
         --ethertype IPv4 $SECGRP_ID
     openstack security group rule create --egress --protocol any \
