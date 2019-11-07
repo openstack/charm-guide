@@ -14,6 +14,7 @@ to the OpenStack Charms.
    :titlesonly:
    :maxdepth: 1
 
+   Bug reporting and triage <rotas>
    feature-specification
    coding-guidelines
    testing
