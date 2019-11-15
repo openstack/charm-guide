@@ -413,11 +413,12 @@ The method of accessing the GUI IP addresses varies, depending on where the clou
 OpenStack Dashboard
 ~~~~~~~~~~~~~~~~~~~
 
-First, find the IP address of the openstack-dashboard unit by querying juju status:
+First, find the IP address of the openstack-dashboard unit and ``admin``'s password by querying juju:
 
 .. code:: bash
 
     juju status openstack-dashboard
+    juju run --unit keystone/leader 'leader-get admin_passwd'
 
 
 Then, choose your adventure:
