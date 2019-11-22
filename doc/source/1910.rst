@@ -424,9 +424,9 @@ Here's an example of the steps just described:
     juju run-action nova-cloud-controller/leader resume
 
 Only after these steps have been completed can nova-cloud-controller be
-upgraded. Here we upgrade all units simultaneously but see `HA with
-pause/resume`_ in the `OpenStack Charms Deployment Guide`_ for a more
-controlled approach:
+upgraded. Here we upgrade all units simultaneously but see the
+`Paused-single-unit`_ method in the `OpenStack Charms Deployment Guide`_ for a
+more controlled approach:
 
 .. code:: bash
 
@@ -528,7 +528,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Policy Overrides: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-policy-overrides.html
 .. _Neutron documentation: https://docs.openstack.org/neutron/latest/admin/config-fip-port-forwardings.html
 .. _placement API: https://docs.openstack.org/placement/train/
-.. _HA with pause/resume: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#ha-with-pause-resume
+.. _Paused-single-unit: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#paused-single-unit
 
 .. BUGS
 .. _LP #1728527: https://bugs.launchpad.net/masakari-monitors/+bug/1728527
