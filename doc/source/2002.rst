@@ -1,0 +1,304 @@
+.. _release_notes_20.04:
+
+==============================
+20.02 (Work in progress DRAFT)
+==============================
+
+Summary
+=======
+
+The 20.04 OpenStack Charms release includes updates for the following charms.
+Additional charm support status information is published in the `OpenStack
+Charm Guide`_ which ultimately supersedes Release Notes contents.
+
+Always use the latest stable charm revision before proceeding with topological
+changes, application migrations, workload upgrades, series upgrades, or bug
+reports.
+
+Supported Charms
+~~~~~~~~~~~~~~~~
+
+* aodh
+* barbican
+* barbican-vault
+* ceilometer
+* ceilometer-agent
+* ceph-mon
+* ceph-osd
+* ceph-proxy
+* ceph-radosgw
+* ceph-rbd-mirror
+* cinder
+* cinder-ceph
+* cinder-purestorage
+* designate
+* designate-bind
+* glance
+* gnocchi
+* hacluster
+* heat
+* keystone
+* keystone-ldap
+* lxd
+* neutron-api
+* neutron-openvswitch
+* neutron-gateway
+* neutron-dynamic-routing
+* nova-cloud-controller
+* nova-compute
+* octavia
+* octavia-dashboard
+* octavia-diskimage-retrofit
+* openstack-dashboard
+* percona-cluster
+* placement
+* rabbitmq-server
+* swift-proxy
+* swift-storage
+* vault
+
+Preview Charms
+~~~~~~~~~~~~~~
+
+* barbican-softhsm
+* ceph-fs
+* cinder-backup
+* keystone-saml-mellon
+* manila
+* manila-generic
+* masakari
+* masakari-monitors
+* mysql-innodb-cluster
+* mysql-router
+* neutron-api-plugin-ovn
+* ovn-central
+* ovn-chassis
+* ovn-dedicated-chassis
+* pacemaker-remote
+* tempest
+
+Removed Charms
+~~~~~~~~~~~~~~
+
+n/a
+
+New Charm Features
+==================
+
+With each new feature, there is a corresponding example bundle in the form of a
+test bundle, and/or a `OpenStack Charms Deployment Guide`_ section which
+details the use of the feature. For example test bundles, see the
+src/tests/bundles/ directory within the relevant charm repository.
+
+Preview Charm Features
+======================
+
+mysql-innodb-cluster and mysql-router
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The 20.02 OpenStack Charms release updates two tech preview charms to deploy
+MySQL 8 for OpenStack: mysql-innodb-cluster and mysql-router.
+
+.. note :: These charms are in preview state and are not production-ready. The
+           charms are ready for **testing** in OpenStack clouds.
+
+.. note :: Both charms are only deployable on Ubuntu 19.10 and greater.
+
+The mysql-innodb-cluster charm deploys MySQL 8 in an InnoDB cluster with a
+read/write node and N number of read-only nodes.
+
+.. note :: The mysql-innodb-cluster charm is intended for deploying a cluster
+           and therefore does not support single-unit or non-clustered
+           deployments.
+
+The mysql-router charm deploys MySQL 8 mysqlrouter which will proxy database
+requests from the principle charm application to a MySQL 8 InnoDB Cluster.
+MySQL Router handles cluster communication and understands the cluster schema.
+
+.. note :: The mysql-router charm is deployed as a subordinate on the principle
+           charm application.
+
+A simple example deployment:
+
+.. code:: bash
+
+     juju deploy cs:keystone
+     juju deploy cs:~openstack-charmers-next/mysql-router
+     juju deploy -n 3 cs:~openstack-charmers-next/mysql-innodb-cluster
+     juju add-relation mysql-router:db-router mysql-innodb-cluster:db-router
+
+OVN
+~~~
+
+The 20.04 OpenStack Charms release updates the tech preview suite of charms
+that allows you to model Open Virtual Network (OVN).  OVN provides open source
+network virtualization for Open vSwitch (OVS).
+
+One of the main drivers for this enablement work is the prospect of being able
+to hardware-offload everything.  This is possible due to how OVN programs
+everything in Open vSwitch with OpenFlow rules.  This in turn provides a
+uniform way of programming the hardware forwarding tables of supported NICs.
+
+Hardware-offloading is a prerequisite for effective handling of workloads with
+high bandwidth consumption.
+
+OVN also provides a more flexible way of configuring external Layer3 networking
+as OVN does not require every node (``Chassis`` in OVN terminology) in a
+deployment to have direct external connectivity.  This plays nicely with
+Layer3-only datacenter fabrics (RFC 7938).
+
+East/West traffic is distributed by default. North/South traffic is highly
+available by default.  Liveness detection is done using the Bidirectional
+Forwarding Detection (BFD) protocol.
+
+Please refer to appendix `Open Virtual Network (OVN)`_ in the `OpenStack Charms
+Deployment Guide`_ for more details.
+
+Known feature gaps at this point in time:
+
+* No validation has been done with DPDK, SR-IOV or hardware-offloading in the
+  charms.
+
+* Support for the Octavia OVN provider driver has not been implemented in the
+  charms and no validation has been done with LBaaS in general.
+
+* Only limited validation has been done with other Neutron extensions, and it
+  may be possible to configure unsupported combinations of features with
+  undefined results.
+
+* There is an unresolved issue with security groups rules that reference
+  remote security groups.  Please remove any such rules while testing.
+
+Example of how you could reset your default security group rules:
+
+.. code:: bash
+
+    PROJECT_ID=$(openstack project list -f value -c ID \
+                   --domain admin_domain)
+    SECGRP_ID=$(openstack security group list --project $PROJECT_ID \
+        | awk '/default/{print$2}')
+    openstack security group rule delete \
+        $(openstack security group rule list $SECGRP_ID| awk '/IPv./{print$2}')
+    openstack security group rule create --egress --protocol any \
+        --ethertype IPv4 $SECGRP_ID
+    openstack security group rule create --egress --protocol any \
+        --ethertype IPv6 $SECGRP_ID
+    openstack security group rule create --ingress --protocol any \
+        --ethertype IPv4 $SECGRP_ID --remote-ip YOUR_IPV4_LAB_NETWORK_CIDR
+    openstack security group rule create --ingress --protocol any \
+        --ethertype IPv6 $SECGRP_ID --remote-ip YOUR_IPV6_LAB_NETWORK_CIDR
+
+Upgrading charms
+================
+
+Always use the latest stable charm revision before proceeding with topological
+changes, charm application migrations, workload upgrades, series upgrades, or
+bug reports.
+
+Please ensure that the ``keystone`` charm is upgraded first.
+
+To upgrade an existing deployment to the latest charm version simply use the
+``upgrade-charm`` command. For example:
+
+.. code:: bash
+
+    juju upgrade-charm keystone
+
+Charm upgrades and OpenStack upgrades are functionally different. Charm
+upgrades ensure that the deployment has the latest charm revision, containing
+the latest charm fixes and charm features available for that deployment,
+whereas OpenStack upgrades influence the software package versions of OpenStack
+itself.
+
+Charm upgrades do not trigger OpenStack upgrades. However, OpenStack upgrades
+do require the latest charm version as pre-requisite.
+
+New Bundle Features
+===================
+
+n/a
+
+Deprecation Notices
+===================
+
+n/a
+
+Removed Features
+================
+
+Known Issues
+============
+
+Masakari and Masakari Monitors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Both Masakari charms remain as previews. Bugs `LP #1728527`_ and `LP #1839715`_
+need to be resolved in order to arrive at a successful instance HA deployment.
+Bug `LP #1773765`_ is likely to affect on-going support of a Masakari
+deployment.
+
+Glance Simplestreams Sync
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When deploying the ``glance-simplestreams-sync`` charm on Bionic a more recent
+version of the simplestreams package must be installed by configuring a PPA:
+
+.. code:: bash
+
+    juju config glance-simplestreams-sync source=ppa:simplestreams-dev/trunk
+
+See bug `LP #1790904`_ for details.
+
+Designate and Vault at Ocata and earlier
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``designate`` charm for OpenStack releases Pike and earlier does not yet
+support SSL via Vault and the certificates relation. See bug `LP #1839019
+<https://bugs.launchpad.net/charm-designate/+bug/1839019>`__
+
+Current versions of OpenStack with Vault and the certificates relation are
+supported by the Designate charm.
+
+Restart Nova services after adding certificates relation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A race condition exists with the use of the 'certificates' relation.
+When SSL certificates are issued Nova services may attempt to talk
+to the placement API over HTTP while the API has already changed to
+HTTPS. See bug `LP #1826382 <https://bugs.launchpad.net/nova/+bug/1826382>`__.
+
+To mitigate against this, restart nova-compute and nova-scheduler
+services once certificates have been issued:
+
+.. code:: bash
+
+    juju run --application nova-compute "systemctl restart nova-compute"
+    juju run --application nova-cloud-controller "systemctl restart nova-scheduler"
+
+Bugs Fixed
+==========
+
+This release includes NNN bug fixes. For the full list of bugs resolved for the
+20.02 charms release please refer to the `20.02 milestone`_ in Launchpad.
+
+Next Release Info
+=================
+
+Please see the `OpenStack Charm Guide`_ for current information.
+
+.. LINKS
+.. _OpenStack Upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
+.. _Open Virtual Network (OVN): https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html
+.. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
+.. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
+.. _20.02 milestone: https://launchpad.net/openstack-charms/+milestone/20.02
+.. _Policy Overrides: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-policy-overrides.html
+.. _Neutron documentation: https://docs.openstack.org/neutron/latest/admin/config-fip-port-forwardings.html
+.. _placement API: https://docs.openstack.org/placement/ussuri/
+.. _HA with pause/resume: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#ha-with-pause-resume
+
+.. BUGS
+.. _LP #1728527: https://bugs.launchpad.net/masakari-monitors/+bug/1728527
+.. _LP #1839715: https://bugs.launchpad.net/masakari/+bug/1839715
+.. _LP #1773765: https://bugs.launchpad.net/masakari/+bug/1773765
+.. _LP #1790904: https://bugs.launchpad.net/simplestreams/+bug/1790904
