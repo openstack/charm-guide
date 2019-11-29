@@ -229,6 +229,17 @@ Removed Features
 Known Issues
 ============
 
+Swift-Proxy and Policy.d overrides
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The is no policy.d override mechanism available for Swift (and, therefore, the
+swift-proxy charm) as Swift does not use the ``oslo.policy`` library.  Swift
+uses its own authentication system that connects with Keystone and validates
+according to Swift's own configuration files.  The ``operator-roles``
+configuration option allows the operator to control which Swift operator roles
+will be authenticated, as usual. See the `Swift Auth System`_ for further
+details.
+
 Masakari and Masakari Monitors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -296,6 +307,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Neutron documentation: https://docs.openstack.org/neutron/latest/admin/config-fip-port-forwardings.html
 .. _placement API: https://docs.openstack.org/placement/ussuri/
 .. _HA with pause/resume: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#ha-with-pause-resume
+.. _Swift Auth system: https://docs.openstack.org/swift/latest/overview_auth.html
 
 .. BUGS
 .. _LP #1728527: https://bugs.launchpad.net/masakari-monitors/+bug/1728527
