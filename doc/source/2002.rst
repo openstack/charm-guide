@@ -1,4 +1,4 @@
-.. _release_notes_20.04:
+.. _release_notes_20.02:
 
 ==============================
 20.02 (Work in progress DRAFT)
@@ -7,7 +7,7 @@
 Summary
 =======
 
-The 20.04 OpenStack Charms release includes updates for the following charms.
+The 20.02 OpenStack Charms release includes updates for the following charms.
 Additional charm support status information is published in the `OpenStack
 Charm Guide`_ which ultimately supersedes Release Notes contents.
 
@@ -90,6 +90,31 @@ test bundle, and/or a `OpenStack Charms Deployment Guide`_ section which
 details the use of the feature. For example test bundles, see the
 src/tests/bundles/ directory within the relevant charm repository.
 
+Policy Overrides
+~~~~~~~~~~~~~~~~
+
+The policy overrides feature provides operators with a mechanism to override
+policy defaults on a per-service basis.
+
+Policy defaults for an OpenStack service are defined via “policy-in-code”
+and/or via a default policy YAML file provided by the charm. The operator can
+use the new feature by providing a ZIP file consisting of at least one YAML
+file which contains policy rules that the service will observe when responding
+to API queries. This allows operators to selectively override the default
+policies of that service.
+
+The last release (19.10) introduced the feature for a number of charms.  This
+release adds the following charms:
+
+* openstack-dashboard (Horizon)
+* octavia
+
+For further details consult appendix `Policy Overrides`_ in the `OpenStack
+Charms Deployment Guide`_.
+
+Please consult the README for each charm to determine exactly what is provided
+with respect to this feature.
+
 Preview Charm Features
 ======================
 
@@ -130,7 +155,7 @@ A simple example deployment:
 OVN
 ~~~
 
-The 20.04 OpenStack Charms release updates the tech preview suite of charms
+The 20.02 OpenStack Charms release updates the tech preview suite of charms
 that allows you to model Open Virtual Network (OVN).  OVN provides open source
 network virtualization for Open vSwitch (OVS).
 
