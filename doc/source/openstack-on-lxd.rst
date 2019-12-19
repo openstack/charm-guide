@@ -140,97 +140,82 @@ OpenStack
 Deploy
 ~~~~~~
 
-Next, deploy the OpenStack cloud using the provided bundle.
+Deploy OpenStack using one of the provided bundles.
 
-Note: Bundles should be deployed on the 'default' named model. That's
-to ensure that the 'juju-default' lxd profile is applied on
-containers.
+You can watch deployment progress using the :command:`juju status` command.
+The time required will depend on your system's resources: memory, CPU, disk
+subsystem, and network speed.
 
-For amd64, arm64, or ppc64el Mitaka:
+.. important::
 
-.. code:: bash
+   The deployment must occur within the 'default' model. This is to ensure that
+   the 'juju-default' LXD profile is applied to the containers.
 
-    juju deploy bundle-xenial-mitaka.yaml
+amd64, arm64, or ppc64el
+++++++++++++++++++++++++
 
-For amd64, arm64, or ppc64el Newton:
+For the amd64, arm64, or ppc64el architectures choose from among the available
+combinations of OpenStack release and Ubuntu series.
 
-.. code:: bash
++-------------------+---------------+-----------------------------------------------+
+| OpenStack release | Ubuntu series | Deploy command                                |
++===================+===============+===============================================+
+| Mitaka            | Xenial        | ``juju deploy ./bundle-xenial-mitaka.yaml``   |
++-------------------+---------------+-----------------------------------------------+
+| Newton            | Xenial        | ``juju deploy ./bundle-xenial-newton.yaml``   |
++-------------------+---------------+-----------------------------------------------+
+| Ocata             | Xenial        | ``juju deploy ./bundle-xenial-ocata.yaml``    |
++-------------------+---------------+-----------------------------------------------+
+| Pike              | Xenial        | ``juju deploy ./bundle-xenial-pike.yaml``     |
++-------------------+---------------+-----------------------------------------------+
+| Queens            | Xenial        | ``juju deploy ./bundle-xenial-queens.yaml``   |
++-------------------+---------------+-----------------------------------------------+
+| Queens            | Bionic        | ``juju deploy ./bundle-bionic-queens.yaml``   |
++-------------------+---------------+-----------------------------------------------+
+| Rocky             | Bionic        | ``juju deploy ./bundle-bionic-rocky.yaml``    |
++-------------------+---------------+-----------------------------------------------+
+| Stein             | Bionic        | ``juju deploy ./bundle-bionic-stein.yaml``    |
++-------------------+---------------+-----------------------------------------------+
+| Train             | Bionic        | ``juju deploy ./bundle-bionic-train.yaml``    |
++-------------------+---------------+-----------------------------------------------+
+| Train             | Eoan          | ``juju deploy ./bundle-eoan-train.yaml``      |
++-------------------+---------------+-----------------------------------------------+
 
-    juju deploy bundle-xenial-newton.yaml
+.. important::
 
-For amd64, arm64, or ppc64el Ocata:
+   Train deployments will have Ceph Mimic configured in the bundle until a
+   solution has been devised to address the dropping of directory backed OSD
+   support in Ceph Nautilus. See bug `GH #72`_.
 
-.. code:: bash
+s390x
++++++
 
-    juju deploy bundle-xenial-ocata.yaml
+For the s390x architecture choose from among the available combinations of
+OpenStack release and Ubuntu series.
 
-For amd64, arm64, or ppc64el Pike:
-
-.. code:: bash
-
-    juju deploy bundle-xenial-pike.yaml
-
-For amd64, arm64, or ppc64el Queens on Xenial:
-
-.. code:: bash
-
-    juju deploy bundle-xenial-queens.yaml
-
-For amd64, arm64, or ppc64el Queens on Bionic:
-
-.. code:: bash
-
-    juju deploy bundle-bionic-queens.yaml
-
-For amd64, arm64, or ppc64el Rocky:
-
-.. code:: bash
-
-    juju deploy bundle-bionic-rocky.yaml
-
-For s390x Mitaka:
-
-.. code:: bash
-
-    juju deploy bundle-xenial-mitaka-s390x.yaml
-
-For s390x Newton:
-
-.. code:: bash
-
-    juju deploy bundle-xenial-newton-s390x.yaml
-
-For s390x Ocata:
-
-.. code:: bash
-
-    juju deploy bundle-xenial-ocata-s390x.yaml
-
-For s390x Pike:
-
-.. code:: bash
-
-    juju deploy bundle-xenial-pike-s390x.yaml
-
-For s390x Queens on Xenial:
-
-.. code:: bash
-
-    juju deploy bundle-xenial-queens-s390x.yaml
-
-For s390x Queens on Bionic:
-
-.. code:: bash
-
-    juju deploy bundle-bionic-queens-s390x.yaml
-
-For s390x Rocky:
-
-.. code:: bash
-
-    juju deploy bundle-bionic-rocky-s390x.yaml
-
-You can watch deployment progress using the 'juju status' command.  This may take some time depending on the speed of your system; CPU, disk and network speed will all effect deployment time.
++-------------------+---------------+---------------------------------------------------+
+| OpenStack release | Ubuntu series | Deploy command                                    |
++===================+===============+===================================================+
+| Mitaka            | Xenial        | ``juju deploy ./bundle-xenial-mitaka-s390x.yaml`` |
++-------------------+---------------+---------------------------------------------------+
+| Newton            | Xenial        | ``juju deploy ./bundle-xenial-newton-s390x.yaml`` |
++-------------------+---------------+---------------------------------------------------+
+| Ocata             | Xenial        | ``juju deploy ./bundle-xenial-ocata-s390x.yaml``  |
++-------------------+---------------+---------------------------------------------------+
+| Pike              | Xenial        | ``juju deploy ./bundle-xenial-pike-s390x.yaml``   |
++-------------------+---------------+---------------------------------------------------+
+| Queens            | Xenial        | ``juju deploy ./bundle-xenial-queens-s390x.yaml`` |
++-------------------+---------------+---------------------------------------------------+
+| Queens            | Bionic        | ``juju deploy ./bundle-bionic-queens-s390x.yaml`` |
++-------------------+---------------+---------------------------------------------------+
+| Rocky             | Bionic        | ``juju deploy ./bundle-bionic-rocky-s390x.yaml``  |
++-------------------+---------------+---------------------------------------------------+
+| Stein             | Bionic        | ``juju deploy ./bundle-bionic-stein-s390x.yaml``  |
++-------------------+---------------+---------------------------------------------------+
+| Train             | Bionic        | ``juju deploy ./bundle-bionic-train-s390x.yaml``  |
++-------------------+---------------+---------------------------------------------------+
+| Train             | Eoan          | ``juju deploy ./bundle-eoan-train-s390x.yaml``    |
++-------------------+---------------+---------------------------------------------------+
 
 Using the Cloud
 ~~~~~~~~~~~~~~~
@@ -255,7 +240,7 @@ Upload an image
 
 Before we can boot an instance, we need an image to boot in Glance.
 
-Note: If you are using a ZFS backend for this deployment, force-raw-images must be disabled on the nova-compute charm in Pike and later. 
+Note: If you are using a ZFS backend for this deployment, force-raw-images must be disabled on the nova-compute charm in Pike and later.
 We have made this the default in our bundles - however, be aware that using this setting in a production environment is discouraged as it may have an impact on performance.
 
 For amd64:
@@ -518,3 +503,6 @@ Known Limitations
 Currently is not possible to run Cinder with iSCSI/LVM based storage under LXD; this limits use of block storage options to those that are 100% userspace, such as Ceph.
 
 .. _production-setup: https://github.com/lxc/lxd/blob/master/doc/production-setup.md
+
+.. BUGS
+.. _GH #72: https://github.com/openstack-charmers/openstack-on-lxd/issues/72
