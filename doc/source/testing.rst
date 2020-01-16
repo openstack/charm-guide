@@ -63,7 +63,7 @@ correctly determine that what a function *does* is correct, rather than *how*
 the function achieves it - with the exception, in some cases, of performance.
 But that's another whole ball-game.
 
-The goal is, for each function under test, is to verify that the *outputs* of
+The goal is, for each function under test, to verify that the *outputs* of
 the function are correct for comprehensive sets of *inputs* to the function.
 What is not the objective is to test the *internal* implementation of the
 function.
@@ -71,7 +71,7 @@ function.
 It's worth exploring what are the *inputs* and *outputs* of a function, and
 that depends on whether the function is *pure* or *impure*.
 
-A *pure* function is one that is always returns the same results for the same
+A *pure* function is one that always returns the same results for the same
 set of values passed to the function.  This means that there are no (input)
 side-effects or dependencies on any other state outside of the function.
 A pure function is analogous, algorithimically, to a mathematical function.
@@ -94,8 +94,8 @@ and other IO operations.
 
 So the goal with unit-testing a function depends on the purity of the function:
 
-* Pure functions require no mocking.  The object is to verify that for
-  combinations of input parameter values, that the correct return values are
+* Pure functions require no mocking.  The objective is to verify that for
+  combinations of input parameter values, the correct return values are
   presented.  As pure functions are pure 'all the way down', no mocking is
   required, as they will always be consistent for any set of inputs.  Pure
   functions are also fantastic opportunities to use property-based testing.
