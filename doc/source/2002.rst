@@ -23,6 +23,7 @@ Supported Charms
 * barbican-vault
 * ceilometer
 * ceilometer-agent
+* ceph-fs
 * ceph-mon
 * ceph-osd
 * ceph-proxy
@@ -40,6 +41,8 @@ Supported Charms
 * keystone
 * keystone-ldap
 * lxd
+* manila
+* manila-ganesha
 * neutron-api
 * neutron-openvswitch
 * neutron-gateway
@@ -61,10 +64,8 @@ Preview Charms
 ~~~~~~~~~~~~~~
 
 * barbican-softhsm
-* ceph-fs
 * cinder-backup
 * keystone-saml-mellon
-* manila
 * manila-generic
 * masakari
 * masakari-monitors
@@ -127,6 +128,20 @@ show up in the Launch Instance modal diaglog box.
 
 This option works from the Newton release, and has no effect on earlier
 OpenStack releases.
+
+New Charms
+==================
+
+CephFS, Manila, and Manila-Ganesha
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The 20.02 OpenStack Charms release includes a new charm to support Ganesha
+for use with Manila and CephFS. Manila and CephFS are also moving to supported
+status.
+
+.. note :: The manila-ganesha charm only supports OpenStack releases starting
+          at Rocky. Manila and CephFS are both supported back to Xenial
+          Mitaka.
 
 Preview Charm Features
 ======================
