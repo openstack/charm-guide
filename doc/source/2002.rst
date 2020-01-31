@@ -144,6 +144,15 @@ status.
    The manila-ganesha charm only supports OpenStack releases starting at Rocky.
    Manila and CephFS are both supported back to Mitaka (on Ubuntu 16.04 LTS).
 
+Vault
+~~~~~
+
+The vault charm now supports actions ``pause`` and ``resume`` to
+respectively stop and start the Vault process on units.
+
+For further details consult appendix `Vault`_ in the `OpenStack
+Charms Deployment Guide`_.
+
 Preview charm features
 ----------------------
 
@@ -384,6 +393,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Swift Auth system: https://docs.openstack.org/swift/latest/overview_auth.html
 .. _Swift Global Cluster: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-swift-gc.html
 .. _Toward Convergence of ML2+OVS+DVR and OVN: http://specs.openstack.org/openstack/neutron-specs/specs/ussuri/ml2ovs-ovn-convergence.html
+.. _Vault: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
 
 .. BUGS
 .. _LP #1728527: https://bugs.launchpad.net/masakari-monitors/+bug/1728527
