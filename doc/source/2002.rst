@@ -224,6 +224,21 @@ Example of how you could reset your default security group rules:
     openstack security group rule create --ingress --protocol any \
         --ethertype IPv6 $SECGRP_ID --remote-ip YOUR_IPV6_LAB_NETWORK_CIDR
 
+Swift Global Replication
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+As of the 20.02 charm release, with OpenStack Newton or later, support for
+a global cluster in Swift is available as a tech preview. Please see the
+`Swift global cluster appendix`_ in the charm deployment guide for more
+information on enabling the feature.
+
+.. warning ::
+
+   If a fork of the Swift charms is in use which has this feature enabled
+   then a charm upgrade will almost certainly cause issues. This is due to
+   changes in charm config options and the way the swift init scripts are
+   configured.
+
 Upgrading charms
 ================
 
@@ -344,6 +359,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _placement API: https://docs.openstack.org/placement/ussuri/
 .. _HA with pause/resume: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#ha-with-pause-resume
 .. _Swift Auth system: https://docs.openstack.org/swift/latest/overview_auth.html
+.. _Swift global cluster appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-swift-gc.html
 
 .. BUGS
 .. _LP #1728527: https://bugs.launchpad.net/masakari-monitors/+bug/1728527
