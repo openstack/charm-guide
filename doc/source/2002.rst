@@ -152,16 +152,43 @@ requests from the principle charm application to a MySQL 8 InnoDB Cluster.
 MySQL Router handles cluster communication and understands the cluster schema.
 
 .. note :: The mysql-router charm is deployed as a subordinate on the principle
-           charm application.
+           charm application and should be named for the application.
+           i.e. <application-name>-mysql-router
 
 A simple example deployment:
 
 .. code:: bash
 
      juju deploy cs:keystone
-     juju deploy cs:~openstack-charmers-next/mysql-router
+     juju deploy cs:~openstack-charmers-next/mysql-router keystone-mysql-router
      juju deploy -n 3 cs:~openstack-charmers-next/mysql-innodb-cluster
-     juju add-relation mysql-router:db-router mysql-innodb-cluster:db-router
+     juju add-relation keystone-mysql-router:shared-db keystone:shared-db
+     juju add-relation keystone-mysql-router:db-router mysql-innodb-cluster:db-router
+
+
+.. warning ::
+
+           In Ubuntu 20.04 LTS (Focal) percona-cluster will no longer be
+           available. Therefore, Charmed OpenStack clouds will need to migrate
+           from percona-cluster to the mysql-router and mysql-innodb-cluster
+           charms.
+
+The mysql-router and mysql-innodb-cluster charms will replace the
+percona-cluster charm completely in the 20.05 Charms release. Both charms are
+available now in the 20.02 Charms release for use with Ubuntu 19.10 (Eoan).
+
+The migration process is currently under development in the charms to ease the
+number of required steps. A high level overview is as follows:
+
+* Deploy mysql-innodb-cluster alongside an existing deployment
+* Remove the relation between the application charm and the percona-cluster
+  charm
+* Dump the existing database from percona-cluster
+* Import the database into mysql-innodb-cluster
+* Deploy and relate an instantiation of mysql-router to the client charm
+  i.e. <application-name>-mysql-router
+* Relate <application-name>-mysql-router to mysql-innodb-cluster
+
 
 OVN
 ~~~
