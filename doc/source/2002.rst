@@ -299,7 +299,38 @@ n/a
 Deprecation Notices
 ===================
 
-n/a
+Upcoming change of default behaviour for Neutron API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The neutron-api charm will have a change in default behaviour when deploying
+OpenStack Ussuri (or newer) with the upcoming 20.05 OpenStack Charms release
+(May 2020). The value of configuration option
+``manage-neutron-plugin-legacy-mode`` will change from 'True' to 'False'.
+
+When 'True' the network management plugin is chosen via the ``neutron-plugin``
+configuration option. When 'False' plugin is chosen through the deployment of a
+subordinate charm and relating it to the neutron-api application.
+
+The most prominent effect of the change is that you will need to set up a
+subordinate plugin charm (and possibly associated charms) to get a functional
+network service. Sample bundles will be updated to enable OVN by default. See
+`Open Virtual Network (OVN)`_ in the `OpenStack Charms Deployment Guide`_ for
+details on OVN.
+
+This change will be made within the following upstream context:
+
+- During the Ussuri cycle the upstream Neutron project will switch to promote
+  ML2+OVN as its default reference implementation, replacing the traditional
+  ML2+OVS and ML2+OVS+DVR implementations. See the
+  `Toward Convergence of ML2+OVS+DVR and OVN`_ Neutron specification for more
+  information.
+
+- The desire for a more sensible default mode of operation enabling easier
+  integration with the rich plugin ecosystem available for OpenStack Neutron.
+
+Upgrading neutron-api or upgrading OpenStack will not trigger the new
+behaviour. Documentation on migrating existing clouds to OVN will be provided.
+
 
 Removed Features
 ================
@@ -387,6 +418,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _HA with pause/resume: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#ha-with-pause-resume
 .. _Swift Auth system: https://docs.openstack.org/swift/latest/overview_auth.html
 .. _Swift global cluster appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-swift-gc.html
+.. _Toward Convergence of ML2+OVS+DVR and OVN: http://specs.openstack.org/openstack/neutron-specs/specs/ussuri/ml2ovs-ovn-convergence.html
 
 .. BUGS
 .. _LP #1728527: https://bugs.launchpad.net/masakari-monitors/+bug/1728527
