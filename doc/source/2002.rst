@@ -76,6 +76,8 @@ Preview Charms
 * ovn-dedicated-chassis
 * pacemaker-remote
 * tempest
+* watcher
+* watcher-dashboard
 
 Removed Charms
 ~~~~~~~~~~~~~~
