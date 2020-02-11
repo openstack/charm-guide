@@ -25,6 +25,8 @@ These charms have stable releases with ongoing maintenance and testing.
 * `heat <https://opendev.org/openstack/charm-heat/>`_
 * `keystone <https://opendev.org/openstack/charm-keystone/>`_
 * `keystone-ldap <https://opendev.org/openstack/charm-keystone-ldap/>`_
+* `manila <https://opendev.org/openstack/charm-manila/>`_
+* `manila-ganesha <https://opendev.org/openstack/charm-manila-ganesha/>`_
 * `neutron-api <https://opendev.org/openstack/charm-neutron-api/>`_
 * `neutron-dynamic-routing <https://opendev.org/openstack/charm-neutron-dynamic-routing/>`_
 * `neutron-gateway <https://opendev.org/openstack/charm-neutron-gateway/>`_
@@ -47,6 +49,7 @@ These charms have stable releases with ongoing maintenance and testing.
 They're classified differently because the payload of each is not technically
 an OpenStack project.
 
+* `ceph-fs <https://opendev.org/openstack/charm-ceph-fs/>`_
 * `ceph-mon <https://opendev.org/openstack/charm-ceph-mon/>`_
 * `ceph-osd <https://opendev.org/openstack/charm-ceph-osd/>`_
 * `ceph-proxy <https://opendev.org/openstack/charm-ceph-proxy/>`_
@@ -69,10 +72,8 @@ is to indicate that additional validation, and further work may be necessary to
 make a stable release for production use.
 
 * `barbican-softhsm <https://opendev.org/openstack/charm-barbican-softhsm/>`_
-* `ceph-fs <https://opendev.org/openstack/charm-ceph-fs/>`_
 * `cinder-backup <https://opendev.org/openstack/charm-cinder-backup/>`_
 * `keystone-saml-mellon <https://github.com/openstack-charmers/charm-keystone-saml-mellon/>`_
-* `manila <https://opendev.org/openstack/charm-manila/>`_
 * `manila-generic <https://opendev.org/openstack/charm-manila-generic/>`_
 * `masakari <https://opendev.org/openstack/charm-masakari/>`_
 * `masakari-monitors <https://opendev.org/openstack/charm-masakari-monitors/>`_
