@@ -371,8 +371,8 @@ once certificates have been issued:
 Bugs fixed
 ----------
 
-The 20.02 OpenStack Charms release includes 49 bug fixes. For the full list of
-resolved bugs refer to the `20.02 milestone`_ in Launchpad.
+The 20.02 OpenStack Charms release includes 53 bug fixes. Refer to the `20.02
+milestone`_ in Launchpad for the list of resolved bugs.
 
 Next release info
 -----------------
