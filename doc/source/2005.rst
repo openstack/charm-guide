@@ -1,0 +1,255 @@
+.. _release_notes_20.05:
+
+=================================
+20.05 (Draft version in progress)
+=================================
+
+Summary
+-------
+
+The 20.05 OpenStack Charms release includes updates for the following charms.
+Additional charm support status information is published in the `OpenStack
+Charm Guide`_ which ultimately supersedes Release Notes contents.
+
+Always use the latest stable charm revision before proceeding with topological
+changes, application migrations, workload upgrades, series upgrades, or bug
+reports.
+
+Supported charms
+~~~~~~~~~~~~~~~~
+
+* aodh
+* barbican
+* barbican-vault
+* ceilometer
+* ceilometer-agent
+* ceph-fs
+* ceph-mon
+* ceph-osd
+* ceph-proxy
+* ceph-radosgw
+* ceph-rbd-mirror
+* cinder
+* cinder-ceph
+* cinder-purestorage
+* designate
+* designate-bind
+* glance
+* gnocchi
+* hacluster
+* heat
+* keystone
+* keystone-ldap
+* lxd
+* manila
+* manila-ganesha
+* neutron-api
+* neutron-openvswitch
+* neutron-gateway
+* neutron-dynamic-routing
+* nova-cloud-controller
+* nova-compute
+* octavia
+* octavia-dashboard
+* octavia-diskimage-retrofit
+* openstack-dashboard
+* percona-cluster
+* placement
+* rabbitmq-server
+* swift-proxy
+* swift-storage
+* vault
+
+Preview charms
+~~~~~~~~~~~~~~
+
+* barbican-softhsm
+* cinder-backup
+* keystone-saml-mellon
+* manila-generic
+* masakari
+* masakari-monitors
+* mysql-innodb-cluster
+* mysql-router
+* neutron-api-plugin-ovn
+* ovn-central
+* ovn-chassis
+* ovn-dedicated-chassis
+* pacemaker-remote
+* tempest
+* watcher
+* watcher-dashboard
+
+Removed charms
+~~~~~~~~~~~~~~
+
+n/a
+
+New charm features
+------------------
+
+With each new feature, there is a corresponding example bundle in the form of a
+test bundle, and/or a `OpenStack Charms Deployment Guide`_ section which
+details the use of the feature. For example test bundles, see the
+``src/tests/bundles`` directory within the relevant charm repository.
+
+NEW CHARM FEATURE GOES HERE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Change of default behaviour for Neutron API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Swift global cluster
+~~~~~~~~~~~~~~~~~~~~
+
+New charms
+----------
+
+NEW CHARM GOES HERE
+~~~~~~~~~~~~~~~~~~~
+
+mysql-innodb-cluster and mysql-router
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+OVN charms
+~~~~~~~~~~
+
+Preview charm features
+----------------------
+
+PREVIEW CHARM FEATURE GOES HERE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Upgrading charms
+----------------
+
+Always use the latest stable charm revision before proceeding with topological
+changes, charm application migrations, workload upgrades, series upgrades, or
+bug reports.
+
+Please ensure that the keystone charm is upgraded first.
+
+To upgrade an existing deployment to the latest charm version simply use the
+:command:`upgrade-charm` command. For example:
+
+.. code-block:: none
+
+   juju upgrade-charm keystone
+
+Charm upgrades and OpenStack upgrades are functionally different. Charm
+upgrades ensure that the deployment has the latest charm revision, containing
+the latest charm fixes and features, whereas OpenStack upgrades influence the
+software package versions of OpenStack itself.
+
+A charm upgrade does not trigger an OpenStack upgrade. An OpenStack upgrade is
+a separate process. However, an OpenStack upgrade does require the latest charm
+revision. Please refer to `OpenStack upgrades`_ in the `OpenStack Charms
+Deployment Guide`_ for more details.
+
+New bundle features
+-------------------
+
+n/a
+
+Deprecation notices
+-------------------
+
+n/a
+
+Removed features
+----------------
+
+n/a
+
+Known issues
+------------
+
+Swift-Proxy and Policy.d overrides
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The is no policy.d override mechanism available for Swift (and, therefore, the
+swift-proxy charm) as Swift does not use the ``oslo.policy`` library.  Swift
+uses its own authentication system that connects with Keystone and validates
+according to Swift's own configuration files.  The ``operator-roles``
+configuration option allows the operator to control which Swift operator roles
+will be authenticated, as usual. See the `Swift Auth System`_ for further
+details.
+
+Masakari and Masakari Monitors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Both Masakari charms remain as previews. Bugs `LP #1728527`_ and `LP #1839715`_
+need to be resolved in order to arrive at a successful instance HA deployment.
+Bug `LP #1773765`_ is likely to affect on-going support of a Masakari
+deployment.
+
+Glance Simplestreams Sync
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When deploying the glance-simplestreams-sync charm on Bionic a more recent
+version of the simplestreams package must be installed by configuring a PPA:
+
+.. code-block:: none
+
+   juju config glance-simplestreams-sync source=ppa:simplestreams-dev/trunk
+
+See bug `LP #1790904`_ for details.
+
+Designate and Vault at Ocata and earlier
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The designate charm for OpenStack releases Pike and earlier does not yet
+support SSL via Vault and the certificates relation. See bug `LP #1839019`_.
+
+Current versions of OpenStack with Vault and the certificates relation are
+supported by the Designate charm.
+
+Restart Nova services after adding certificates relation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A race condition exists with the use of the 'certificates' relation. When SSL
+certificates are issued Nova services may attempt to talk to the placement API
+over HTTP while the API has already changed to HTTPS. See bug `LP #1826382`_.
+
+To mitigate against this, restart the nova-compute and nova-scheduler services
+once certificates have been issued:
+
+.. code-block:: none
+
+   juju run --application nova-compute "systemctl restart nova-compute"
+   juju run --application nova-cloud-controller "systemctl restart nova-scheduler"
+
+Bugs fixed
+----------
+
+The 20.05 OpenStack Charms release includes NN bug fixes. Refer to the `20.05
+milestone`_ in Launchpad for the list of resolved bugs.
+
+Next release info
+-----------------
+
+Please see the `OpenStack Charm Guide`_ for current information.
+
+.. LINKS
+.. _OpenStack Upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
+.. _Open Virtual Network (OVN): https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html
+.. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
+.. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
+.. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
+.. _20.05 milestone: https://launchpad.net/openstack-charms/+milestone/20.05
+.. _Policy Overrides: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-policy-overrides.html
+.. _Neutron documentation: https://docs.openstack.org/neutron/latest/admin/config-fip-port-forwardings.html
+.. _placement API: https://docs.openstack.org/placement/ussuri/
+.. _HA with pause/resume: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#ha-with-pause-resume
+.. _Swift Auth system: https://docs.openstack.org/swift/latest/overview_auth.html
+.. _Swift Global Cluster: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-swift-gc.html
+.. _Toward Convergence of ML2+OVS+DVR and OVN: http://specs.openstack.org/openstack/neutron-specs/specs/ussuri/ml2ovs-ovn-convergence.html
+.. _Vault: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
+
+.. BUGS
+.. _LP #1728527: https://bugs.launchpad.net/masakari-monitors/+bug/1728527
+.. _LP #1773765: https://bugs.launchpad.net/masakari/+bug/1773765
+.. _LP #1790904: https://bugs.launchpad.net/simplestreams/+bug/1790904
+.. _LP #1826382: https://bugs.launchpad.net/nova/+bug/1826382
+.. _LP #1839019: https://bugs.launchpad.net/charm-designate/+bug/1839019
+.. _LP #1839715: https://bugs.launchpad.net/masakari/+bug/1839715
