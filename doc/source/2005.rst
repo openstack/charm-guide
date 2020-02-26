@@ -93,6 +93,26 @@ test bundle, and/or a `OpenStack Charms Deployment Guide`_ section which
 details the use of the feature. For example test bundles, see the
 ``src/tests/bundles`` directory within the relevant charm repository.
 
+Configuring Security Compliance for Keystone
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Keystone has several configuration options available in order to comply with
+standards such as the Payment Card Industry -- Data Security Standard (PCI-DSS)
+v3.1.  The keystone charm can now set these options.
+
+The ``password-security-compliance`` charm option sets Keystone service options for the
+``[security_compliance]`` section of Keystone's configuration file.
+
+
+.. note::
+
+   Please ensure that the page `Security compliance and PCI-DSS`_ is consulted
+   before setting these options.  The charm does set the
+   `ignore_change_password_upon_first_use` and `ignore_password_expiry` options
+   to `true` for the service accounts to prevent lockout of service users.
+
+Please consult the `Keystone charm README`_ for more details on the option.
+
 NEW CHARM FEATURE GOES HERE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -245,6 +265,8 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Swift Global Cluster: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-swift-gc.html
 .. _Toward Convergence of ML2+OVS+DVR and OVN: http://specs.openstack.org/openstack/neutron-specs/specs/ussuri/ml2ovs-ovn-convergence.html
 .. _Vault: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
+.. _Security compliance and PCI-DSS: https://docs.openstack.org/keystone/train/admin/configuration.html#security-compliance-and-pci-dss
+.. _Keystone charm README: https://github.com/openstack/charm-keystone/blob/master/README.md
 
 .. BUGS
 .. _LP #1728527: https://bugs.launchpad.net/masakari-monitors/+bug/1728527
