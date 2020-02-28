@@ -174,7 +174,16 @@ n/a
 Deprecation notices
 -------------------
 
-n/a
+Neutron Firewall-as-a-Service (FWaaS)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Due to lack of maintainers the `Neutron FWaaS project has been deprecated`_ in
+the Neutron stadium and will be removed in the W cycle. Subsequently the charm
+support for FWaaS is deprecated for Ussuri and onwards.
+
+Charm support for FWaaS will be retained for enabled OpenStack releases and
+configuration options will have no effect when deployed with the W release and
+onwards.
 
 Removed features
 ----------------
@@ -267,6 +276,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Vault: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
 .. _Security compliance and PCI-DSS: https://docs.openstack.org/keystone/train/admin/configuration.html#security-compliance-and-pci-dss
 .. _Keystone charm README: https://github.com/openstack/charm-keystone/blob/master/README.md
+.. _Neutron FWaaS project has been deprecated: https://review.opendev.org/#/c/708675/
 
 .. BUGS
 .. _LP #1728527: https://bugs.launchpad.net/masakari-monitors/+bug/1728527
