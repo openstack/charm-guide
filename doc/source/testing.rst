@@ -202,6 +202,14 @@ See ``tox.ini`` to determine specifically which test targets will be executed by
 each tox target.  Zaza_ test calls are defined in the ``tests/`` directory for
 classic charms, and in the ``src/tests/`` directory for layered source charms.
 
+.. note:: Layered source charms must be built before the Zaza_ tests can be run:
+
+   .. code:: bash
+
+       tox -e build
+       cd build/builds/mycharm/
+       tox -e func
+
 
 Rechecking
 ==========
