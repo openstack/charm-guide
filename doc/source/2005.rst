@@ -138,6 +138,22 @@ Deployment Guide`_.
 Bug `LP #1773765`_ is likely to affect on-going support of a Masakari
 deployment.
 
+Enable counting of quota usage from Placement service
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The upstream configuration parameter 'count_usage_from_placement' introduced
+in OpenStack Train is now supported. This boolean parameter enables the
+counting of quota usage from the placement service instead of from the cell
+databases.
+
+The parameter is set via ``quota-count-usage-from-placement`` option in the
+nova-cloud-controller charm. The default value of this option is 'False'.
+
+.. note::
+
+   Please ensure to consult the page `Nova Train configuration options`_ in the
+   OpenStack documentation before setting the charm option.
+
 NEW CHARM FEATURE GOES HERE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -337,6 +353,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _TrilioVault appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-trilio-vault.html
 .. _Automated Instance Recovery appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-masakari.html
 .. _Ceph iSCSI Gateway README: https://github.com/openstack-charmers/charm-ceph-iscsi/blob/master/README.md
+.. _Nova Train configuration options: https://docs.openstack.org/nova/train/configuration/config.html#quota.count_usage_from_placement
 
 .. BUGS
 .. _LP #1773765: https://bugs.launchpad.net/masakari/+bug/1773765
