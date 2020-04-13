@@ -35,26 +35,26 @@ Bug triage
 
 Review `new bugs`_ across the OpenStack Charms.
 
-+--------+------------+-----------+------------+--------------+
-| Monday |  Tuesday   | Wednesday | Thursday   | Friday       |
-+========+============+===========+============+==============+
-| gnuoy  |  fnordahl  |  thedac   | james-page | billy-olsen  |
-+--------+------------+-----------+------------+--------------+
-|        | chris-icey |           | coreycb    | alex-tinwood |
-+--------+------------+-----------+------------+--------------+
++-----------------+------------+-----------+------------+--------------+
+| Monday          |  Tuesday   | Wednesday | Thursday   | Friday       |
++=================+============+===========+============+==============+
+| gnuoy           |  fnordahl  |  thedac   | james-page | billy-olsen  |
++-----------------+------------+-----------+------------+--------------+
+| aurelien-lourot | chris-icey | dmitriis  | coreycb    | alex-tinwood |
++-----------------+------------+-----------+------------+--------------+
 
 Charm review
 ++++++++++++
 
 Review `open changes`_ across the OpenStack Charms.
 
-+--------+------------+--------------+-------------+------------+
-| Monday | Tuesday    | Wednesday    | Thursday    |  Friday    |
-+========+============+==============+=============+============+
-| thedac | james-page | fnordahl     | billy-olsen | chris-icey |
-+--------+------------+--------------+-------------+------------+
-|        | coreycb    | alex-tinwood | gnuoy       |            |
-+--------+------------+--------------+-------------+------------+
++----------+------------+--------------+-------------+-----------------+
+| Monday   | Tuesday    | Wednesday    | Thursday    |  Friday         |
++==========+============+==============+=============+=================+
+| thedac   | james-page | fnordahl     | billy-olsen | chris-icey      |
++----------+------------+--------------+-------------+-----------------+
+| dmitriis | coreycb    | alex-tinwood | gnuoy       | aurelien-lourot |
++----------+------------+--------------+-------------+-----------------+
 
 Filtering in Gerrit
 ~~~~~~~~~~~~~~~~~~~
