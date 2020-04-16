@@ -113,6 +113,12 @@ The ``password-security-compliance`` charm option sets Keystone service options 
 
 Please consult the `Keystone charm README`_ for more details on the option.
 
+Cinder charm support for Juju storage
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The cinder charm has now grown support for Juju storage. Please see `Juju storage`_
+and the `Cinder charm README`_ for more details.
+
 NEW CHARM FEATURE GOES HERE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -277,6 +283,9 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Security compliance and PCI-DSS: https://docs.openstack.org/keystone/train/admin/configuration.html#security-compliance-and-pci-dss
 .. _Keystone charm README: https://github.com/openstack/charm-keystone/blob/master/README.md
 .. _Neutron FWaaS project has been deprecated: https://review.opendev.org/#/c/708675/
+.. _Cinder charm README: https://github.com/openstack/charm-cinder/blob/master/README.md
+.. _Juju storage: https://juju.is/docs/storage
+
 
 .. BUGS
 .. _LP #1728527: https://bugs.launchpad.net/masakari-monitors/+bug/1728527
