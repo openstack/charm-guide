@@ -1,22 +1,22 @@
 .. _rotas:
 
+=====
 Rotas
 =====
 
-The OpenStack Charms development team operates two rotas; one associated
-with triage of new, incoming bugs and the other related to the charm
-review queue in Gerrit.
+The OpenStack Charms development team operates two rotas: one associated with
+triage of new, incoming bugs and the other related to the charm review queue in
+Gerrit.
 
 The development and user community are encouraged to sign up to both rotas.
 
 Please coordinate activities in #openstack-charms on Freenode IRC.
 
-
 Bug tags
-++++++++
+--------
 
-When triaging or filing bugs on the OpenStack Charms `projects`_, please use
-the following Launchpad tags to classify relevant bugs:
+When triaging or filing bugs for OpenStack Charms `projects`_, please use the
+following Launchpad tags to classify relevant bugs:
 
 * `openstack-upgrade`_ - Issues upgrading the charm payload (OpenStack
   version), such as Train to Ussuri.
@@ -30,26 +30,32 @@ the following Launchpad tags to classify relevant bugs:
 * `cold-start`_ - Issues in recovering the charm payload functionality after a
   power event such as a reboot or shutdown.
 
-Bug triage
-++++++++++
+Rota schedules
+--------------
 
-Review `new bugs`_ across the OpenStack Charms.
+People are assigned to the rotas using an alternating daily schedule. The names
+in the tables are Launchpad IDs.
+
+Bug triage
+~~~~~~~~~~
+
+For triaging `new bugs`_ across the OpenStack Charms.
 
 +-----------------+------------+-----------+------------+--------------+
-| Monday          |  Tuesday   | Wednesday | Thursday   | Friday       |
+| Monday          | Tuesday    | Wednesday | Thursday   | Friday       |
 +=================+============+===========+============+==============+
-| gnuoy           |  fnordahl  |  thedac   | james-page | billy-olsen  |
+| gnuoy           | fnordahl   | thedac    | james-page | billy-olsen  |
 +-----------------+------------+-----------+------------+--------------+
 | aurelien-lourot | chris-icey | dmitriis  | coreycb    | alex-tinwood |
 +-----------------+------------+-----------+------------+--------------+
 
 Charm review
-++++++++++++
+~~~~~~~~~~~~
 
-Review `open changes`_ across the OpenStack Charms.
+For reviewing `open changes`_ across the OpenStack Charms.
 
 +----------+------------+--------------+-------------+-----------------+
-| Monday   | Tuesday    | Wednesday    | Thursday    |  Friday         |
+| Monday   | Tuesday    | Wednesday    | Thursday    | Friday          |
 +==========+============+==============+=============+=================+
 | thedac   | james-page | fnordahl     | billy-olsen | chris-icey      |
 +----------+------------+--------------+-------------+-----------------+
@@ -57,12 +63,12 @@ Review `open changes`_ across the OpenStack Charms.
 +----------+------------+--------------+-------------+-----------------+
 
 Filtering in Gerrit
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 Sophisticated `filtering`_ is possible in Gerrit. For instance, to find open
-changes to YAML files that have been sitting in the queue for less than two
-months and do not have a value of '-1' for the Workflow label: `open changes to
-YAML files`_.
+changes to YAML files that have been in the queue for less than two months and
+do not have a value of '-1' for the Workflow label: `open changes to YAML
+files`_.
 
 .. LINKS
 .. _`new bugs`: https://bugs.launchpad.net/openstack-charms/+bugs?search=Search&field.status=New&orderby=-id&start=0
