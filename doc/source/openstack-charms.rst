@@ -4,14 +4,18 @@ Charms
 ======
 
 Each stable release of OpenStack Charms is backwards-compatible to cover all
-currently-supported combinations of Ubuntu + OpenStack. The latest stable
-charm revision should be used before proceeding with topological changes, charm
-application migrations, workload upgrades, series upgrades, or bug reports.
+currently-supported combinations of Ubuntu + OpenStack, relative to the
+specific payload of each charm. The latest stable charm revision should be
+used before proceeding with topological changes, charm application migrations,
+workload upgrades, series upgrades, or bug reports.
 
-OpenStack Charms
-~~~~~~~~~~~~~~~~
+OpenStack Charms (Stable)
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-These charms have stable releases with ongoing maintenance and testing.
+These charms have stable releases with ongoing maintenance and testing. They
+meet the requirements of payload project health, payload packaging,
+upgradability, charm test gates, and the general release guidelines of
+the OpenStack Charms project.
 
 * `aodh <https://opendev.org/openstack/charm-aodh/>`_
 * `barbican <https://opendev.org/openstack/charm-barbican/>`_
@@ -19,12 +23,14 @@ These charms have stable releases with ongoing maintenance and testing.
 * `ceilometer <https://opendev.org/openstack/charm-ceilometer/>`_
 * `ceilometer-agent <https://opendev.org/openstack/charm-ceilometer-agent/>`_
 * `cinder <https://opendev.org/openstack/charm-cinder/>`_
+* `cinder-backup <https://opendev.org/openstack/charm-cinder-backup/>`_
 * `cinder-ceph <https://opendev.org/openstack/charm-cinder-ceph/>`_
 * `designate <https://opendev.org/openstack/charm-designate/>`_
 * `glance <https://opendev.org/openstack/charm-glance/>`_
 * `heat <https://opendev.org/openstack/charm-heat/>`_
 * `keystone <https://opendev.org/openstack/charm-keystone/>`_
 * `keystone-ldap <https://opendev.org/openstack/charm-keystone-ldap/>`_
+* `keystone-saml-mellon <https://github.com/openstack-charmers/charm-keystone-saml-mellon/>`_
 * `manila <https://opendev.org/openstack/charm-manila/>`_
 * `manila-ganesha <https://opendev.org/openstack/charm-manila-ganesha/>`_
 * `neutron-api <https://opendev.org/openstack/charm-neutron-api/>`_
@@ -42,8 +48,8 @@ These charms have stable releases with ongoing maintenance and testing.
 * `swift-proxy <https://opendev.org/openstack/charm-swift-proxy/>`_
 * `swift-storage <https://opendev.org/openstack/charm-swift-storage/>`_
 
-Other Supporting Charms
-~~~~~~~~~~~~~~~~~~~~~~~
+Other Supporting Charms (Stable)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 These charms have stable releases with ongoing maintenance and testing.
 They're classified differently because the payload of each is not technically
@@ -59,22 +65,21 @@ an OpenStack project.
 * `glance-simplestreams-sync <https://opendev.org/openstack/charm-glance-simplestreams-sync/>`_
 * `gnocchi <https://opendev.org/openstack/charm-gnocchi/>`_
 * `hacluster <https://opendev.org/openstack/charm-hacluster/>`_
-* `lxd <https://opendev.org/openstack/charm-lxd/>`_
 * `percona-cluster <https://opendev.org/openstack/charm-percona-cluster/>`_
 * `rabbitmq-server <https://opendev.org/openstack/charm-rabbitmq-server/>`_
 * `vault <https://opendev.org/openstack/charm-vault/>`_
 
-Development / Preview Charms
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tech-Preview Charms (Beta)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-These charms are either in development or are released as a beta/preview. This
-is to indicate that additional validation, and further work may be necessary to
-make a stable release for production use.
+While these charms may technically have "stable/yy.mm" branches, they are not
+considered stable releases that are intended for production.
 
-* `barbican-softhsm <https://opendev.org/openstack/charm-barbican-softhsm/>`_
-* `cinder-backup <https://opendev.org/openstack/charm-cinder-backup/>`_
-* `keystone-saml-mellon <https://github.com/openstack-charmers/charm-keystone-saml-mellon/>`_
-* `manila-generic <https://opendev.org/openstack/charm-manila-generic/>`_
+They may have ongoing maintenance and testing, but this classification
+indicates that there may be one or more major blocking bugs, payload package
+issues, or project issues that need to be addressed before the charm can be
+considered for use in production.
+
 * `masakari <https://opendev.org/openstack/charm-masakari/>`_
 * `masakari-monitors <https://opendev.org/openstack/charm-masakari-monitors/>`_
 * `mysql-innodb-cluster <https://opendev.org/openstack/charm-mysql-innodb-cluster>`_
@@ -84,7 +89,20 @@ make a stable release for production use.
 * `ovn-chassis <https://opendev.org/x/charm-ovn-chassis>`_
 * `ovn-dedicated-chassis <https://opendev.org/x/charm-ovn-dedicated-chassis>`_
 * `pacemaker-remote <https://opendev.org/openstack/charm-pacemaker-remote/>`_
+
+Alpha Charms (Edge)
+~~~~~~~~~~~~~~~~~~~
+
+This classification of charms includes those which may be a proof-of-concept,
+a test fixture, or one which is in active development.  They are not intended
+to be used in production.  Supportability, upgradability, testability may be
+lacking, either from a charm perspective, or from the workload package
+perspective.
+
+* `barbican-softhsm <https://opendev.org/openstack/charm-barbican-softhsm/>`_
+* `manila-generic <https://opendev.org/openstack/charm-manila-generic/>`_
 * `tempest <https://opendev.org/openstack/charm-tempest/>`_
+
 
 Maintenance-Mode Charms
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -94,6 +112,7 @@ releases are not actively being added or tested with them. Generally, these
 were produced for demo, PoC, or as examples.
 
 * None at this time.
+
 
 Deprecated Charms
 ~~~~~~~~~~~~~~~~~
