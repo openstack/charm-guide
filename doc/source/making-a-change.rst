@@ -70,6 +70,25 @@ To make amendments to your proposed change, update your local branch and then:
     git commit --amend
     git review
 
+Functional test changes
+~~~~~~~~~~~~~~~~~~~~~~~
+
+When writing new functional tests with Zaza, it is often necessary to run
+the functional tests with changes to the tests not yet landed. It is therefore
+possible to run the tests in CI and pull in an open GitHub Pull Request. This
+is accomplished via specific text in the commit message, specifically:
+``func-test-pr:``. The command is not case sensitive, and should contain a
+link to a GitHub PR, for example:
+
+.. code:: bash
+
+   func-test-pr: https://github.com/openstack-charmers/zaza-openstack-tests/pull/5
+
+When OpenStack Charm CI runs the functional gate on a commit with the above in
+its message, the git ref that the above PR references will be
+substituted in place of the zaza-openstack package that is in the charm's
+``test-requirements.txt``.
+
 Stable charm updates
 ~~~~~~~~~~~~~~~~~~~~
 
