@@ -21,7 +21,7 @@ Next meeting
 - Every two weeks (on even weeks) on Monday @ 1700 UTC on ``#openstack-meeting-4`` on freenode
 - Every two weeks (on odd weeks) on Monday @ 1000 UTC on ``#openstack-meeting-4`` on freenode
 
-`Week Numbers <https://www.epochconverter.com/weeknumbers>`_ 
+`Week Numbers <https://www.epochconverter.com/weeknumbers>`_
 
 Agenda
 ======
@@ -40,7 +40,7 @@ https://etherpad.openstack.org/p/openstack-charms-weekly-meeting
 Meeting organizers
 ==================
 
-- Alex Kavanagh (tinwood)
-- David Ames (thedace)
-- James Page (jamespage)
-- Ryan Beisner (beisner)
+- Alex Kavanagh (IRC: tinwood)
+- David Ames (IRC: thedac)
+- James Page (IRC: jamespage)
+- Ryan Beisner (IRC: beisner)

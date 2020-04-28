@@ -4,7 +4,7 @@ Getting started
 
 * The OpenStack Charms use Juju to deploy and manage OpenStack services, so
   getting to know Juju_ is a great first step.
-* You might want to tryout the charms on your laptop using the Juju LXD
+* You might want to try out the charms on your local machine (or virtual machine) using the Juju LXD
   provider and the
   `OpenStack on LXD bundle <openstack-on-lxd.html>`__
   if you don't have physical servers to use or just want to contribute a fix
