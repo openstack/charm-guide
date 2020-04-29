@@ -77,6 +77,10 @@ Preview charms
 * ovn-dedicated-chassis
 * pacemaker-remote
 * tempest
+* trilio-data-mover
+* trilio-dm-api
+* trilio-horizon-plugin
+* trilio-wlm
 * watcher
 * watcher-dashboard
 
@@ -145,6 +149,20 @@ Preview charm features
 
 PREVIEW CHARM FEATURE GOES HERE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TrilioVault support
+~~~~~~~~~~~~~~~~~~~
+
+New charms are provided for the deployment of TrilioVault providing an
+OpenStack integrated snapshot and restore service for workloads.
+
+For more details see the `TrilioVault appendix`_ in the `OpenStack Charms
+Deployment Guide`_.
+
+.. note::
+
+   TrilioVault is a commerical snapshot and restore solution for OpenStack
+   and does not form part of the OpenStack project.
 
 Upgrading charms
 ----------------
@@ -254,6 +272,21 @@ once certificates have been issued:
    juju run --application nova-compute "systemctl restart nova-compute"
    juju run --application nova-cloud-controller "systemctl restart nova-scheduler"
 
+
+TrilioVault Data Mover charm upgrade
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For deployments using prior versions of the trilio-data-mover charm (as provided
+by Trilio) the relation between the trilio-data-mover charm and rabbitmq-server
+must be removed and re-added to ensure that specific access for the data-mover
+service is provided for RabbitMQ.
+
+.. code-block:: none
+
+   juju remove-relation trilio-data-mover rabbitmq-server
+   juju add-relation trilio-data-mover rabbitmq-server
+
+
 Bugs fixed
 ----------
 
@@ -285,6 +318,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Neutron FWaaS project has been deprecated: https://review.opendev.org/#/c/708675/
 .. _Cinder charm README: https://github.com/openstack/charm-cinder/blob/master/README.md
 .. _Juju storage: https://juju.is/docs/storage
+.. _TrilioVault appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-trilio-vault.html
 
 
 .. BUGS
