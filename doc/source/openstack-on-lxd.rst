@@ -55,7 +55,7 @@ This type of deployment creates numerous containers on a single host which leads
 
 Some of the default system thresholds may not be high enough for this use case, potentially leading to issues such as `Too many open files`.
 
-To address this, the host system should be configured according to the LXD production-setup_ guide, specifically the `/etc/sysctl.conf` bits:
+To address this, the host system should be configured according to the LXD production-setup_ guide, specifically the ``/etc/sysctl.conf`` bits:
 
 .. code:: bash
 
@@ -66,13 +66,13 @@ To address this, the host system should be configured according to the LXD produ
     echo vm.swappiness=1 | sudo tee -a /etc/sysctl.conf
     sudo sysctl -p
 
-In order to allow the OpenStack Cloud to function, you'll need to reconfigure the default LXD bridge to support IPv4 networking; is also recommended that you use a fast storage backend such as ZFS on a SSD based block device.  Use the lxd provided configuration tool to help do this:
+In order to allow the OpenStack Cloud to function, you'll need to reconfigure the default LXD bridge to support IPv4 networking; is also recommended that you use a fast storage backend such as ZFS on a SSD based block device.  Use the :command:`lxd` provided configuration tool to help do this:
 
 .. code:: bash
 
     sudo lxd init
 
-The referenced config.yaml uses an apt proxy to improve installation performance.  The network that you create during the lxd init procedure should accomodate that address.  Also ensure that you leave a range of IP addresses free to use for floating IP addresses for OpenStack instances; The following are the values which are used in this example procedure:
+The referenced ``config.yaml`` uses an apt proxy to improve installation performance.  The network that you create during the :command:`lxd init` procedure should accomodate that address.  Also ensure that you leave a range of IP addresses free to use for floating IP addresses for OpenStack instances. The following are the values which are used in this example procedure:
 
     Network and IP: 10.0.8.1/24
     DHCP range: 10.0.8.2 -> 10.0.8.200
@@ -106,7 +106,7 @@ Bootstrap the Juju Controller
 
 Prior to deploying the OpenStack on LXD bundle, you'll need to bootstrap a controller to manage your Juju models.
 
-Review the contents of the config.yaml prior to running the following command and edit as appropriate; this configures some defaults for containers created in the model including setting up things like APT proxy to improve performance of network operations.
+Review the contents of the ``config.yaml`` prior to running the following command and edit as appropriate; this configures some defaults for containers created in the model including setting up things like APT proxy to improve performance of network operations.
 
 .. code:: bash
 
@@ -116,7 +116,7 @@ Review the contents of the config.yaml prior to running the following command an
 Juju Profile Update
 ~~~~~~~~~~~~~~~~~~~
 
-Juju creates a couple of profiles for the models that it creates by default.  After bootstrapping is complete, update the juju-default lxc profile:
+Juju creates a couple of profiles for the models that it creates by default.  After bootstrapping is complete, update the ``juju-default`` :command:`lxc` profile:
 
 .. code:: bash
 
@@ -127,7 +127,7 @@ This will ensure that containers created by LXD for Juju have the correct permis
 Configure a PowerNV (ppc64el) Host
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When deployed directly to metal, the nova-compute charm sets smt=off, as is necessary for libvirt usage.  However, when nova-compute is in a container, the containment prevents ppc64_cpu from modifying the host's smt value.  It is necessary to pre-configure the host smt setting for nova-compute (libvirt + qemu) in ppc64el scenarios.
+When deployed directly to metal, the nova-compute charm sets ``smt=off``, as is necessary for libvirt usage.  However, when nova-compute is in a container, the containment prevents :command:`ppc64_cpu` from modifying the host's smt value.  It is necessary to pre-configure the host ``smt`` setting for nova-compute (libvirt + qemu) in ``ppc64el`` scenarios.
 
 .. code:: bash
 
@@ -148,8 +148,8 @@ subsystem, and network speed.
 
 .. important::
 
-   The deployment must occur within the 'default' model. This is to ensure that
-   the 'juju-default' LXD profile is applied to the containers.
+   The deployment must occur within the ``default`` model. This is to ensure that
+   the ``juju-default`` LXD profile is applied to the containers.
 
 amd64, arm64, or ppc64el
 ++++++++++++++++++++++++
@@ -223,7 +223,7 @@ Using the Cloud
 Check Access
 ++++++++++++
 
-Once deployment has completed (units should report a ready state in the status output), check that you can access the deployed cloud OK:
+Once deployment has completed (units should report a ready state in the status output), check that you can access the deployed cloud without issues:
 
 .. code:: bash
 
@@ -240,8 +240,10 @@ Upload an image
 
 Before we can boot an instance, we need an image to boot in Glance.
 
-Note: If you are using a ZFS backend for this deployment, force-raw-images must be disabled on the nova-compute charm in Pike and later.
-We have made this the default in our bundles - however, be aware that using this setting in a production environment is discouraged as it may have an impact on performance.
+.. note:: 
+
+   If you are using a ZFS backend for this deployment, force-raw-images must be disabled on the nova-compute charm in Pike and later.
+   We have made this the default in our bundles - however, be aware that using this setting in a production environment is discouraged as it may have an impact on performance.
 
 For amd64:
 
@@ -384,7 +386,7 @@ Permit SSH and ping quite liberally, by allowing both on all default security gr
         openstack security group rule create $i --protocol tcp --remote-ip 0.0.0.0/0 --dst-port 22; \
     done
 
-After running these commands you should be able to access the instance from the lxd host:
+After running these commands you should be able to access the instance from the LXD host:
 
 .. code:: bash
 
@@ -398,7 +400,7 @@ The method of accessing the GUI IP addresses varies, depending on where the clou
 OpenStack Dashboard
 ~~~~~~~~~~~~~~~~~~~
 
-First, find the IP address of the openstack-dashboard unit and ``admin``'s password by querying juju:
+First, find the IP address of the openstack-dashboard unit and admin's password by querying Juju:
 
 .. code:: bash
 
@@ -426,9 +428,9 @@ Adjust and visit the following URL from a browser your local machine:
 OpenStack-on-LXD is deployed on a remote machine
 ++++++++++++++++++++++++++++++++++++++++++++++++
 
-The IP address of the GUI will not be directly accessible. You can forward a tcp port across an existing ssh session, then access the dashboard on your localhost.
+The IP address of the GUI will not be directly accessible. You can forward a TCP port across an existing SSH session, then access the dashboard on your localhost.
 
-In your SSH session, press the ~C key combo to initiate an SSH command console on-the-fly.  Adjust and issue the following command to forward localhost:10080 to openstack-dashboard:80 across that existing SSH session:
+In your SSH session, press the ~C key combo to initiate an SSH command console on-the-fly.  Adjust and issue the following command to forward ``localhost:10080`` to ``openstack-dashboard:80`` across that existing SSH session:
 
 .. code:: bash
 
@@ -472,9 +474,9 @@ The URL provided should work directly, and it should look something like:
 OpenStack-on-LXD is deployed on a remote machine
 ++++++++++++++++++++++++++++++++++++++++++++++++
 
-The IP address of the Juju GUI will not be directly accessible. You can forward a tcp port across an existing ssh session, then access the Juju GUI on your localhost.
+The IP address of the Juju GUI will not be directly accessible. You can forward a TCP port across an existing SSH session, then access the Juju GUI on your localhost.
 
-In your SSH session, press the ~C key combo to initiate an SSH command console on-the-fly.  Adjust and issue the following command to forward localhost:10070 to juju-gui:17070 across that existing SSH session:
+In your SSH session, press the ~C key combo to initiate an SSH command console on-the-fly.  Adjust and issue the following command to forward ``localhost:10070`` to ``juju-gui:17070`` across that existing SSH session:
 
 .. code:: bash
 
@@ -495,7 +497,7 @@ Now that you have a running OpenStack deployment on your machine, you can switch
 
     juju upgrade-charm --switch <path-to-your-charm> cinder
 
-The charm will be upgraded with your local development changes; alternatively you can update the bundle.yaml to reference your local charm so that its used from the start of cloud deployment.
+The charm will be upgraded with your local development changes; alternatively you can update the ``bundle.yaml`` to reference your local charm so that its used from the start of cloud deployment.
 
 Known Limitations
 =================
