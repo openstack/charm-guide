@@ -43,6 +43,8 @@ Supported charms
 * lxd
 * manila
 * manila-ganesha
+* masakari
+* masakari-monitors
 * neutron-api
 * neutron-openvswitch
 * neutron-gateway
@@ -53,6 +55,7 @@ Supported charms
 * octavia-dashboard
 * octavia-diskimage-retrofit
 * openstack-dashboard
+* pacemaker-remote
 * percona-cluster
 * placement
 * rabbitmq-server
@@ -64,18 +67,16 @@ Preview charms
 ~~~~~~~~~~~~~~
 
 * barbican-softhsm
+* ceph-iscsi
 * cinder-backup
 * keystone-saml-mellon
 * manila-generic
-* masakari
-* masakari-monitors
 * mysql-innodb-cluster
 * mysql-router
 * neutron-api-plugin-ovn
 * ovn-central
 * ovn-chassis
 * ovn-dedicated-chassis
-* pacemaker-remote
 * tempest
 * trilio-data-mover
 * trilio-dm-api
@@ -123,6 +124,20 @@ Cinder charm support for Juju storage
 The cinder charm has now grown support for Juju storage. Please see `Juju storage`_
 and the `Cinder charm README`_ for more details.
 
+Masakari and Masakari Monitors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Masakari and Masakari monitors are both now considered to be suppported charms.
+From Stein onwards the charms can be used to provide instance failover in the
+event of hypervisor failure. From Ussuri onwards the charms can also restart
+an instance if it fails. The charms do not support using Masakari to manage
+processes on the hypervisor. Details on how to deploy the Masakari charms can
+be found in the `Automated Instance Recovery appendix`_ in the `OpenStack Charms
+Deployment Guide`_.
+
+Bug `LP #1773765`_ is likely to affect on-going support of a Masakari
+deployment.
+
 NEW CHARM FEATURE GOES HERE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -163,6 +178,15 @@ Deployment Guide`_.
 
    TrilioVault is a commerical snapshot and restore solution for OpenStack
    and does not form part of the OpenStack project.
+
+ceph-iscsi
+~~~~~~~~~~
+
+The new preview ceph-iscsi charm can be used to deploy Ceph iSCSI gateways.
+These gateways provide iSCSI targets backed by a Ceph cluster. The charm
+requires Focal (Ubuntu 20.04 LTS) and cannot be deployed in a LXD container. It
+can, however, co-exist with the ceph-osd charm. For more details see the
+`_Ceph iSCSI Gateway README`.
 
 Upgrading charms
 ----------------
@@ -227,14 +251,6 @@ according to Swift's own configuration files.  The ``operator-roles``
 configuration option allows the operator to control which Swift operator roles
 will be authenticated, as usual. See the `Swift Auth System`_ for further
 details.
-
-Masakari and Masakari Monitors
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Both Masakari charms remain as previews. Bugs `LP #1728527`_ and `LP #1839715`_
-need to be resolved in order to arrive at a successful instance HA deployment.
-Bug `LP #1773765`_ is likely to affect on-going support of a Masakari
-deployment.
 
 Glance Simplestreams Sync
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -319,12 +335,11 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Cinder charm README: https://github.com/openstack/charm-cinder/blob/master/README.md
 .. _Juju storage: https://juju.is/docs/storage
 .. _TrilioVault appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-trilio-vault.html
-
+.. _Automated Instance Recovery appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-masakari.html
+.. _Ceph iSCSI Gateway README: https://github.com/openstack-charmers/charm-ceph-iscsi/blob/master/README.md
 
 .. BUGS
-.. _LP #1728527: https://bugs.launchpad.net/masakari-monitors/+bug/1728527
 .. _LP #1773765: https://bugs.launchpad.net/masakari/+bug/1773765
 .. _LP #1790904: https://bugs.launchpad.net/simplestreams/+bug/1790904
 .. _LP #1826382: https://bugs.launchpad.net/nova/+bug/1826382
 .. _LP #1839019: https://bugs.launchpad.net/charm-designate/+bug/1839019
-.. _LP #1839715: https://bugs.launchpad.net/masakari/+bug/1839715
