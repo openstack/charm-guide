@@ -154,6 +154,17 @@ nova-cloud-controller charm. The default value of this option is 'False'.
    Please ensure to consult the page `Nova Train configuration options`_ in the
    OpenStack documentation before setting the charm option.
 
+OVS hardware offload with Mellanox ConnectX-5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Neutron charms (neutron-api and neutron-openvswitch) now support hardware
+offload of network connectivity for instances via Open vSwitch with Mellanox
+ConnectX-5 (or later) network cards.
+
+Details on how to deploy Neutron with this feature can be found
+in the `NIC hardware offload appendix`_ in the `OpenStack Charms Deployment
+Guide`_.
+
 NEW CHARM FEATURE GOES HERE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -354,6 +365,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Automated Instance Recovery appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-masakari.html
 .. _Ceph iSCSI Gateway README: https://github.com/openstack-charmers/charm-ceph-iscsi/blob/master/README.md
 .. _Nova Train configuration options: https://docs.openstack.org/nova/train/configuration/config.html#quota.count_usage_from_placement
+.. _NIC hardware offload appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-hardware-offload.html
 
 .. BUGS
 .. _LP #1773765: https://bugs.launchpad.net/masakari/+bug/1773765
