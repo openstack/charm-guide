@@ -45,6 +45,8 @@ Supported charms
 * manila-ganesha
 * masakari
 * masakari-monitors
+* mysql-innodb-cluster
+* mysql-router
 * neutron-api
 * neutron-openvswitch
 * neutron-gateway
@@ -71,8 +73,6 @@ Preview charms
 * cinder-backup
 * keystone-saml-mellon
 * manila-generic
-* mysql-innodb-cluster
-* mysql-router
 * neutron-api-plugin-ovn
 * ovn-central
 * ovn-chassis
@@ -182,6 +182,40 @@ NEW CHARM GOES HERE
 
 mysql-innodb-cluster and mysql-router
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The 20.05 OpenStack Charms release introduces two new supported charms to deploy
+MySQL 8 for OpenStack: mysql-innodb-cluster and mysql-router.
+
+These two charms will replace the percona-cluster charm completely for Ubuntu
+20.04 LTS (Focal) and newer deployments.
+
+The mysql-innodb-cluster charm deploys MySQL 8 in an InnoDB cluster with a
+read/write node and N number of read-only nodes. This charm does not support
+single-unit or non-clustered deployments.
+
+The mysql-router charm deploys MySQL 8 mysqlrouter which will proxy database
+requests from the principle charm application to a MySQL 8 InnoDB cluster.
+MySQL Router handles cluster communication and understands the cluster schema.
+
+The mysql-router charm is deployed as a subordinate on the principle charm
+application and should be named accordingly at deploy time (e.g.
+<application-name>-mysql-router).
+
+A simple example deployment:
+
+.. code-block:: none
+
+   juju deploy keystone
+   juju deploy mysql-router keystone-mysql-router
+   juju deploy -n 3 mysql-innodb-cluster
+   juju add-relation keystone-mysql-router:shared-db keystone:shared-db
+   juju add-relation keystone-mysql-router:db-router mysql-innodb-cluster:db-router
+
+A more complex exmple bundle is available in `OpenStack bundles Focal Ussuri`_.
+
+In Ubuntu 20.04 LTS (Focal) percona-cluster will no longer be available. The
+migration process is documented in the Series Specific Procedures section of
+the `Series upgrade`_ document.
 
 OVN charms
 ~~~~~~~~~~
@@ -347,11 +381,13 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
+.. _OpenStack bundles Focal Ussuri: https://github.com/openstack-charmers/openstack-bundles/blob/master/development/openstack-base-focal-ussuri-ovn/bundle.yaml
 .. _20.05 milestone: https://launchpad.net/openstack-charms/+milestone/20.05
 .. _Policy Overrides: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-policy-overrides.html
 .. _Neutron documentation: https://docs.openstack.org/neutron/latest/admin/config-fip-port-forwardings.html
 .. _placement API: https://docs.openstack.org/placement/ussuri/
 .. _HA with pause/resume: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#ha-with-pause-resume
+.. _Series upgrade: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-series-upgrade.html
 .. _Swift Auth system: https://docs.openstack.org/swift/latest/overview_auth.html
 .. _Swift Global Cluster: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-swift-gc.html
 .. _Toward Convergence of ML2+OVS+DVR and OVN: http://specs.openstack.org/openstack/neutron-specs/specs/ussuri/ml2ovs-ovn-convergence.html
