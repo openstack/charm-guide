@@ -165,6 +165,19 @@ Details on how to deploy Neutron with this feature can be found
 in the `NIC hardware offload appendix`_ in the `OpenStack Charms Deployment
 Guide`_.
 
+Networking tools for Charms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+As a result of refactoring the charm codebase responsible for configuration
+of SR-IOV VF functions and to support the new OVS hardware offload features
+for Mellanox network cards the neutron-openvswitch charm now makes use of
+two networking tools (sriov-netplan-shim and mlnx-switchdev-mode) provided
+via the `Networking Tools PPA`_.
+
+This PPA can be mirrored for offline deployments - the neutron-openvswitch
+charm may be configured to use a mirror for these packages using the
+'networking-tools-source' configuration option.
+
 NEW CHARM FEATURE GOES HERE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -402,6 +415,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Ceph iSCSI Gateway README: https://github.com/openstack-charmers/charm-ceph-iscsi/blob/master/README.md
 .. _Nova Train configuration options: https://docs.openstack.org/nova/train/configuration/config.html#quota.count_usage_from_placement
 .. _NIC hardware offload appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-hardware-offload.html
+.. _Networking Tools PPA: https://launchpad.net/~openstack-charmers/+archive/ubuntu/networking-tools
 
 .. BUGS
 .. _LP #1773765: https://bugs.launchpad.net/masakari/+bug/1773765
