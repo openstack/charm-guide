@@ -48,6 +48,7 @@ Supported charms
 * mysql-innodb-cluster
 * mysql-router
 * neutron-api
+* neutron-api-plugin-ovn
 * neutron-openvswitch
 * neutron-gateway
 * neutron-dynamic-routing
@@ -57,6 +58,9 @@ Supported charms
 * octavia-dashboard
 * octavia-diskimage-retrofit
 * openstack-dashboard
+* ovn-central
+* ovn-chassis
+* ovn-dedicated-chassis
 * pacemaker-remote
 * percona-cluster
 * placement
@@ -73,10 +77,6 @@ Preview charms
 * cinder-backup
 * keystone-saml-mellon
 * manila-generic
-* neutron-api-plugin-ovn
-* ovn-central
-* ovn-chassis
-* ovn-dedicated-chassis
 * tempest
 * trilio-data-mover
 * trilio-dm-api
@@ -178,11 +178,64 @@ This PPA can be mirrored for offline deployments - the neutron-openvswitch
 charm may be configured to use a mirror for these packages using the
 'networking-tools-source' configuration option.
 
+OVN charms feature parity with OVS charms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The OVN charms have been brought up to feature parity with the OVS charms and
+the ovn-chassis charm can now configure DPDK, SR-IOV and hardware offload
+support.
+
+.. note::
+
+   There are feature `gaps from ML2/OVS`_ and deploying legacy ML2/OVS with
+   the OpenStack Charms is still available if you require any of the missing
+   features.
+
+.. warning::
+
+   Support for hardware offload in conjunction with OVN is an experimental
+   feature. OVN programs flow tables in a different way than legacy
+   ML2+OVS and this has had less exposure to validation in NIC firmware and
+   driver support.
+
+Documentation on and automation for migrating existing clouds to OVN will be
+delivered as part of the 20.10 OpenStack Charms release.
+
+
 NEW CHARM FEATURE GOES HERE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Change of default behaviour for Neutron API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The neutron-api charm has a change in default behaviour when deploying
+OpenStack Ussuri (or newer).  The value of configuration option
+``manage-neutron-plugin-legacy-mode`` has changed from 'True' to 'False'.
+
+When 'True' the network management plugin is chosen via the ``neutron-plugin``
+configuration option. When 'False' plugin is chosen through the deployment of a
+subordinate charm and relating it to the neutron-api application.
+
+The most prominent effect of the change is that you will need to set up a
+subordinate plugin charm (and possibly associated charms) to get a functional
+network service. Sample bundles will be updated to enable OVN by default. See
+`Open Virtual Network (OVN)`_ in the `OpenStack Charms Deployment Guide`_ for
+details on OVN.
+
+This is made within the following upstream context:
+
+- During the Ussuri cycle the upstream Neutron project has promoted the ML2+OVN
+  to an in-tree driver and moving forward it will be the default reference
+  implementation, replacing the traditional ML2+OVS and ML2+OVS+DVR
+  implementations. See the `Toward Convergence of ML2+OVS+DVR and OVN`_ Neutron
+  specification for more information.
+
+- The desire for a more sensible default mode of operation enabling easier
+  integration with the rich plugin ecosystem available for OpenStack Neutron.
+
+Upgrading neutron-api or upgrading OpenStack will not trigger the new
+behaviour.
+
 
 Swift global cluster
 ~~~~~~~~~~~~~~~~~~~~
@@ -307,6 +360,13 @@ Charm support for FWaaS will be retained for enabled OpenStack releases and
 configuration options will have no effect when deployed with the W release and
 onwards.
 
+.. note::
+
+   A side effect of the FWaaS deprecation is that no new development has
+   occurred upstream in a while. Subsequently there exists no support for FWaaS
+   for use with OVN. Depending on your requirements instance security groups
+   may be used instead.
+
 Removed features
 ----------------
 
@@ -422,3 +482,4 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _LP #1790904: https://bugs.launchpad.net/simplestreams/+bug/1790904
 .. _LP #1826382: https://bugs.launchpad.net/nova/+bug/1826382
 .. _LP #1839019: https://bugs.launchpad.net/charm-designate/+bug/1839019
+.. _gaps from ML2/OVS: https://docs.openstack.org/neutron/ussuri/ovn/gaps.html
