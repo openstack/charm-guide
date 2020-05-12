@@ -370,7 +370,18 @@ onwards.
 Removed features
 ----------------
 
-n/a
+Keystone support for admin-token
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``admin-token`` configuration option has been removed from the keystone
+charm. The use of the Keystone admin token feature is not recommended and is at
+odds with the `Identity service Security Checklist`_.
+
+.. note::
+
+   There was no deprecation warning for removal of this configuration option as
+   its removal was required to fix a long standing Keystone charm bug.  See
+   `LP #1859844`_ for details.
 
 Known issues
 ------------
@@ -476,10 +487,12 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Nova Train configuration options: https://docs.openstack.org/nova/train/configuration/config.html#quota.count_usage_from_placement
 .. _NIC hardware offload appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-hardware-offload.html
 .. _Networking Tools PPA: https://launchpad.net/~openstack-charmers/+archive/ubuntu/networking-tools
+.. _gaps from ML2/OVS: https://docs.openstack.org/neutron/ussuri/ovn/gaps.html
+.. _Identity service Security Checklist: https://docs.openstack.org/security-guide/identity/checklist.html
 
 .. BUGS
 .. _LP #1773765: https://bugs.launchpad.net/masakari/+bug/1773765
 .. _LP #1790904: https://bugs.launchpad.net/simplestreams/+bug/1790904
 .. _LP #1826382: https://bugs.launchpad.net/nova/+bug/1826382
 .. _LP #1839019: https://bugs.launchpad.net/charm-designate/+bug/1839019
-.. _gaps from ML2/OVS: https://docs.openstack.org/neutron/ussuri/ovn/gaps.html
+.. _LP #1859844: https://bugs.launchpad.net/charm-keystone/+bug/1859844
