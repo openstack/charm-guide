@@ -33,10 +33,10 @@ problems with testing as *depending on the load time ordering* it might not be
 clear which particular module path you're trying to mock out and which one is
 first in the module path map.
 
-So only every have ONE root for your python code in a charm.  e.g. put it in
+So only ever have ONE root for your python code in a charm.  e.g. put it in
 ``/lib`` and add that to path by ``sys.path.append('lib').``
 
-Incidentally, if you **are** mocking out code in charmhelpers in you charms,
+Incidentally, if you **are** mocking out code in charmhelpers in your charms,
 **it's probably not a good idea**.  Only mock code in the target object file,
 rather than an included module.
 
