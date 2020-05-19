@@ -1,21 +1,22 @@
 .. _openstack-charms:
 
+======
 Charms
 ======
 
-Each stable release of OpenStack Charms is backwards-compatible to cover all
-currently-supported combinations of Ubuntu + OpenStack, relative to the
-specific payload of each charm. The latest stable charm revision should be
+Each stable release of the OpenStack Charms project is backwards-compatible to
+cover all currently-supported combinations of Ubuntu + OpenStack, relative to
+the specific payload of each charm. The latest stable charm revision should be
 used before proceeding with topological changes, charm application migrations,
 workload upgrades, series upgrades, or bug reports.
 
-OpenStack Charms (Stable)
-~~~~~~~~~~~~~~~~~~~~~~~~~
+OpenStack charms (Stable)
+-------------------------
 
 These charms have stable releases with ongoing maintenance and testing. They
 meet the requirements of payload project health, payload packaging,
-upgradability, charm test gates, and the general release guidelines of
-the OpenStack Charms project.
+upgradability, charm test gates, and the general release guidelines of the
+OpenStack Charms project.
 
 * `aodh <https://opendev.org/openstack/charm-aodh/>`_
 * `barbican <https://opendev.org/openstack/charm-barbican/>`_
@@ -30,10 +31,15 @@ the OpenStack Charms project.
 * `heat <https://opendev.org/openstack/charm-heat/>`_
 * `keystone <https://opendev.org/openstack/charm-keystone/>`_
 * `keystone-ldap <https://opendev.org/openstack/charm-keystone-ldap/>`_
-* `keystone-saml-mellon <https://github.com/openstack-charmers/charm-keystone-saml-mellon/>`_
+* `keystone-saml-mellon <https://opendev.org/openstack/charm-keystone-saml-mellon/>`_
 * `manila <https://opendev.org/openstack/charm-manila/>`_
 * `manila-ganesha <https://opendev.org/openstack/charm-manila-ganesha/>`_
+* `masakari <https://opendev.org/openstack/charm-masakari/>`_
+* `masakari-monitors <https://opendev.org/openstack/charm-masakari-monitors/>`_
+* `mysql-innodb-cluster <https://opendev.org/openstack/charm-mysql-innodb-cluster>`_
+* `mysql-router <https://opendev.org/openstack/charm-mysql-router>`_
 * `neutron-api <https://opendev.org/openstack/charm-neutron-api/>`_
+* `neutron-api-plugin-ovn <https://opendev.org/openstack/charm-neutron-api-plugin-ovn>`_
 * `neutron-dynamic-routing <https://opendev.org/openstack/charm-neutron-dynamic-routing/>`_
 * `neutron-gateway <https://opendev.org/openstack/charm-neutron-gateway/>`_
 * `neutron-openvswitch <https://opendev.org/openstack/charm-neutron-openvswitch/>`_
@@ -48,12 +54,12 @@ the OpenStack Charms project.
 * `swift-proxy <https://opendev.org/openstack/charm-swift-proxy/>`_
 * `swift-storage <https://opendev.org/openstack/charm-swift-storage/>`_
 
-Other Supporting Charms (Stable)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Other supporting charms (Stable)
+--------------------------------
 
-These charms have stable releases with ongoing maintenance and testing.
-They're classified differently because the payload of each is not technically
-an OpenStack project.
+These charms have stable releases with ongoing maintenance and testing. They
+are classified differently because the payload of each is not technically an
+OpenStack project.
 
 * `ceph-fs <https://opendev.org/openstack/charm-ceph-fs/>`_
 * `ceph-mon <https://opendev.org/openstack/charm-ceph-mon/>`_
@@ -65,57 +71,55 @@ an OpenStack project.
 * `glance-simplestreams-sync <https://opendev.org/openstack/charm-glance-simplestreams-sync/>`_
 * `gnocchi <https://opendev.org/openstack/charm-gnocchi/>`_
 * `hacluster <https://opendev.org/openstack/charm-hacluster/>`_
-* `percona-cluster <https://opendev.org/openstack/charm-percona-cluster/>`_
-* `rabbitmq-server <https://opendev.org/openstack/charm-rabbitmq-server/>`_
-* `vault <https://opendev.org/openstack/charm-vault/>`_
-
-Tech-Preview Charms (Beta)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-While these charms may technically have "stable/yy.mm" branches, they are not
-considered stable releases that are intended for production.
-
-They may have ongoing maintenance and testing, but this classification
-indicates that there may be one or more major blocking bugs, payload package
-issues, or project issues that need to be addressed before the charm can be
-considered for use in production.
-
-* `masakari <https://opendev.org/openstack/charm-masakari/>`_
-* `masakari-monitors <https://opendev.org/openstack/charm-masakari-monitors/>`_
-* `mysql-innodb-cluster <https://opendev.org/openstack/charm-mysql-innodb-cluster>`_
-* `mysql-router <https://opendev.org/openstack/charm-mysql-router>`_
-* `neutron-api-plugin-ovn <https://opendev.org/openstack/charm-neutron-api-plugin-ovn>`_
 * `ovn-central <https://opendev.org/x/charm-ovn-central>`_
 * `ovn-chassis <https://opendev.org/x/charm-ovn-chassis>`_
 * `ovn-dedicated-chassis <https://opendev.org/x/charm-ovn-dedicated-chassis>`_
 * `pacemaker-remote <https://opendev.org/openstack/charm-pacemaker-remote/>`_
+* `percona-cluster <https://opendev.org/openstack/charm-percona-cluster/>`_
+* `rabbitmq-server <https://opendev.org/openstack/charm-rabbitmq-server/>`_
+* `vault <https://opendev.org/openstack/charm-vault/>`_
 
-Alpha Charms (Edge)
-~~~~~~~~~~~~~~~~~~~
+Tech-preview charms (Beta)
+--------------------------
 
-This classification of charms includes those which may be a proof-of-concept,
-a test fixture, or one which is in active development.  They are not intended
-to be used in production.  Supportability, upgradability, testability may be
+These charms do not have stable releases, even though they may technically have
+"stable/yy.mm" branches. Regardless of any maintenance and testing that these
+charms may receive, some work (major bugs, payload packaging issues, project
+issues, general QA) is still required before the charms are ready for
+production use (promoted to Stable).
+
+* `ceph-iscsi <https://github.com/openstack-charmers/charm-ceph-iscsi/>`_
+* `trilio-data-mover <https://opendev.org/openstack/charm-trilio-data-mover/>`_
+* `trilio-dm-api <https://opendev.org/openstack/charm-trilio-dm-api/>`_
+* `trilio-horizon-plugin <https://opendev.org/openstack/charm-trilio-horizon-plugin/>`_
+* `trilio-wlm <https://opendev.org/openstack/charm-trilio-wlm/>`_
+
+Alpha charms (Edge)
+-------------------
+
+This classification of charms includes those which may be a proof-of-concept, a
+test fixture, or one which is in active development. They are not intended to
+be used in production. Supportability, upgradability, testability may be
 lacking, either from a charm perspective, or from the workload package
 perspective.
 
 * `barbican-softhsm <https://opendev.org/openstack/charm-barbican-softhsm/>`_
 * `manila-generic <https://opendev.org/openstack/charm-manila-generic/>`_
 * `tempest <https://opendev.org/openstack/charm-tempest/>`_
+* `watcher <https://opendev.org/openstack/charm-watcher/>`_
+* `watcher-dashboard <https://opendev.org/openstack/charm-watcher-dashboard/>`_
 
-
-Maintenance-Mode Charms
-~~~~~~~~~~~~~~~~~~~~~~~
+Maintenance-mode charms
+-----------------------
 
 These charms are in maintenance mode, meaning that new features and new
 releases are not actively being added or tested with them. Generally, these
-were produced for demo, PoC, or as examples.
+were produced for a demo, PoC, or as an example.
 
 * None at this time.
 
-
-Deprecated Charms
-~~~~~~~~~~~~~~~~~
+Deprecated charms
+-----------------
 
 These charms have reached EOL and are deprecated.
 
