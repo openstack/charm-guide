@@ -448,6 +448,18 @@ service is provided for RabbitMQ.
    juju add-relation trilio-data-mover rabbitmq-server
 
 
+Designate Upgrades to Train
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When upgrading Designate to Train, there is an encoding issue between the
+designate-producer and memcached that causes the designate-producer to crash.
+See bug `LP #1828534`_. This can be resolved by restarting the memcached service.
+
+.. code-block:: none
+
+   juju run --application=memcached 'sudo systemctl restart memcached'
+
+
 Bugs fixed
 ----------
 
@@ -496,3 +508,4 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _LP #1826382: https://bugs.launchpad.net/nova/+bug/1826382
 .. _LP #1839019: https://bugs.launchpad.net/charm-designate/+bug/1839019
 .. _LP #1859844: https://bugs.launchpad.net/charm-keystone/+bug/1859844
+.. _LP #1828534: https://bugs.launchpad.net/charm-designate/+bug/1828534
