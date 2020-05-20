@@ -542,6 +542,26 @@ Due to an unresolved permission issue the ceph-rbd-mirror charm will stay in a
 blocked state after configuring mirroring for pools when connected to a Ceph
 Octopus cluster. We are tracking this issue in `LP #1879749`_.
 
+Minimum Juju version for deploying Octavia
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Juju 2.7 and above should be used for deployments with the octavia charm
+since it has dependencies that require the ``LANG`` environment variable to be
+set during package installation. Juju versions prior to 2.7 do not set the
+``LANG`` variable in hook executions which leads to the default python decoder
+being set to ASCII - this results in decoding issues when one of the dependent
+package's ``setup.py`` script gets executed and reads a source file containing
+UTF-8 code units. As a result, the following error can be seen in a hook error:
+
+.. code-block:: console
+
+   UnicodeDecodeError: 'ascii' codec can't decode byte 0xc8 in position 129: ordinal not in range(128)
+
+See bug `LP #1879184`_ for more information.
+
+This issue affects existing Juju 2.6 environments as well if a charm upgrade is
+performed. It will be addressed by fixing `GH #173`_.
+
 Bugs fixed
 ----------
 
@@ -595,3 +615,5 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
 .. _LP #1877642: https://bugs.launchpad.net/bugs/1877642
 .. _LP #1863021: https://bugs.launchpad.net/bugs/1863021
+.. _LP #1879184: https://bugs.launchpad.net/charm-octavia/+bug/1879184/comments/9
+.. _GH #173: https://github.com/juju-solutions/layer-basic/issues/173
