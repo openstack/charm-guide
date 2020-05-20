@@ -515,6 +515,13 @@ In order to work around the error an operator needs to make sure the
 respective neutron-openvswitch unit is present. After that the unit error
 can be resolved.
 
+Ceph RBD Mirror and Ceph Octopus
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Due to an unresolved permission issue the ceph-rbd-mirror charm will stay in a
+blocked state after configuring mirroring for pools when connected to a Ceph
+Octopus cluster. We are tracking this issue in `LP #1879749`_.
+
 Bugs fixed
 ----------
 
@@ -565,3 +572,4 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _LP #1859844: https://bugs.launchpad.net/charm-keystone/+bug/1859844
 .. _LP #1828534: https://bugs.launchpad.net/charm-designate/+bug/1828534
 .. _LP #1876849: https://bugs.launchpad.net/charm-neutron-openvswitch/+bug/1876849
+.. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
