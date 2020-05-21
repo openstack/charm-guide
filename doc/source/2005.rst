@@ -138,6 +138,18 @@ test bundle, and/or a `OpenStack Charms Deployment Guide`_ section which
 details the use of the feature. For example test bundles, see the
 ``src/tests/bundles`` directory within the relevant charm repository.
 
+OpenStack Ussuri
+~~~~~~~~~~~~~~~~
+
+The charms now support OpenStack Ussuri on Ubuntu 18.04 LTS (via UCA) and
+Ubuntu 20.04 LTS natively. See below note `OpenStack Ussuri packages for Ubuntu
+20.04 LTS`_.
+
+Ceph Octopus
+~~~~~~~~~~~~
+
+On OpenStack Ussuri, the Octopus release of Ceph is now supported.
+
 Configuring security compliance for Keystone
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -430,18 +442,17 @@ OpenStack Ussuri packages for Ubuntu 20.04 LTS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Due to the slightly-offset release dates of OpenStack Ussuri and Ubuntu 20.04
-LTS, the final upstream stable release of Ussuri is undergoing a stable
-release update (SRU) into Ubuntu 20.04 LTS as of the date of this charms
-release.
+LTS, the final upstream stable release of Ussuri is undergoing a stable release
+update (SRU) into Ubuntu 20.04 LTS as of the release date of these charms.
 
 Testing and validation for this OpenStack Charms release has taken place using
 the packages that are currently in ``distro-proposed``. The status of the SRU
-process can be tracked in the following bugs:
+process is tracked in the following bugs:
 
 * `LP #1877642`_
 * `LP #1863021`_
 
-To consume the proposed packages in a deployment, use ``distro-proposed`` as
+It is possible to consume the proposed packages by using 'distro-proposed' as
 the value for the ``openstack-origin`` and ``source`` charm configuration
 options.
 
