@@ -338,7 +338,9 @@ TrilioVault support
 ~~~~~~~~~~~~~~~~~~~
 
 New charms are provided for the deployment of TrilioVault, which provides an
-OpenStack integrated snapshot and restore service for workloads.
+OpenStack integrated snapshot and restore service for workloads.  Note that
+this set of preview charms are targeted only to Bionic (Ubuntu 18.04 LTS)
+series at this time.
 
 For more details see the `TrilioVault appendix`_ in the `OpenStack Charms
 Deployment Guide`_.
