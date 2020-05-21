@@ -25,6 +25,7 @@ OpenStack Charms project.
 * `ceilometer-agent <https://opendev.org/openstack/charm-ceilometer-agent/>`_
 * `cinder <https://opendev.org/openstack/charm-cinder/>`_
 * `cinder-backup <https://opendev.org/openstack/charm-cinder-backup/>`_
+* `cinder-backup-swift-proxy <https://opendev.org/openstack/charm-cinder-backup-swift-proxy/>`_
 * `cinder-ceph <https://opendev.org/openstack/charm-cinder-ceph/>`_
 * `designate <https://opendev.org/openstack/charm-designate/>`_
 * `glance <https://opendev.org/openstack/charm-glance/>`_
