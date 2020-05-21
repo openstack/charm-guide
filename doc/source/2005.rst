@@ -423,6 +423,26 @@ odds with the `Identity service Security Checklist`_.
 Known issues
 ------------
 
+OpenStack Ussuri Packages for Ubuntu 20.04 LTS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Due to the slightly-offset release dates of OpenStack Ussuri and Ubuntu 20.04
+LTS, the final upstream stable release of Ussuri is undergoing a stable
+release update (SRU) into Ubuntu 20.04 LTS as of the date of this charms
+release.
+
+Testing and validation for this OpenStack Charms release has taken place
+using the packages that are currently in ``distro-proposed``.  The status
+of the stable release update processes can be tracked in the following
+bugs:
+
+* `LP #1877642`_
+* `LP #1863021`_
+
+To consume the proposed packages in a deployment, use ``distro-proposed`` as
+the value for the ``openstack-origin`` and ``source`` charm configuration
+options.
+
 Swift-Proxy and Policy.d overrides
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -573,3 +593,5 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _LP #1828534: https://bugs.launchpad.net/charm-designate/+bug/1828534
 .. _LP #1876849: https://bugs.launchpad.net/charm-neutron-openvswitch/+bug/1876849
 .. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
+.. _LP #1877642: https://bugs.launchpad.net/bugs/1877642
+.. _LP #1863021: https://bugs.launchpad.net/bugs/1863021
