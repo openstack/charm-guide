@@ -517,6 +517,20 @@ service is provided for RabbitMQ.
    juju remove-relation trilio-data-mover rabbitmq-server
    juju add-relation trilio-data-mover rabbitmq-server
 
+TrilioVault package upgrades
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changing the value of the 'triliovault-pkg-source' option does not currently
+trigger a package upgrade although the apt sources for the unit are updated.
+
+Packages can be manually upgraded after changing this option - for example:
+
+.. code-block:: none
+
+   juju run --application trilio-dm-api "sudo apt -y dist-upgrade"
+
+See bug `LP #1879904`_ for more details.
+
 Designate upgrades to Train
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -631,3 +645,4 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _LP #1863021: https://bugs.launchpad.net/bugs/1863021
 .. _LP #1879184: https://bugs.launchpad.net/charm-octavia/+bug/1879184/comments/9
 .. _GH #173: https://github.com/juju-solutions/layer-basic/issues/173
+.. _LP #1879904: https://bugs.launchpad.net/charm-trilio-horizon-plugin/+bug/1879904
