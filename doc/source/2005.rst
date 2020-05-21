@@ -1,8 +1,8 @@
 .. _release_notes_20.05:
 
-=================================
-20.05 (Draft version in progress)
-=================================
+=====
+20.05
+=====
 
 Summary
 -------
@@ -289,10 +289,10 @@ deployment.
 OVN charms
 ~~~~~~~~~~
 
-Four new supported charms to deploy OVN are introduced:
-neutron-api-plugin-ovn, ovn-central, ovn-chassis and ovn-dedicated-chassis.
-These charms provide the underlying networking facilities for, and integrate
-with, OpenStack Neutron through the OVN ML2 driver.
+Four new supported charms to deploy OVN are introduced: neutron-api-plugin-ovn,
+ovn-central, ovn-chassis and ovn-dedicated-chassis. These charms provide the
+underlying networking facilities for, and integrate with, OpenStack Neutron
+through the OVN ML2 driver.
 
 Key differences from the legacy ML2+OVS solution:
 
@@ -338,8 +338,8 @@ TrilioVault support
 ~~~~~~~~~~~~~~~~~~~
 
 New charms are provided for the deployment of TrilioVault, which provides an
-OpenStack integrated snapshot and restore service for workloads.  Note that
-this set of preview charms are targeted only to Bionic (Ubuntu 18.04 LTS)
+OpenStack integrated snapshot and restore service for workloads. Note that
+this set of preview charms are targeted only to the Bionic (Ubuntu 18.04 LTS)
 series at this time.
 
 For more details see the `TrilioVault appendix`_ in the `OpenStack Charms
@@ -347,8 +347,8 @@ Deployment Guide`_.
 
 .. note::
 
-   TrilioVault is a commerical snapshot and restore solution for OpenStack
-   and does not form part of the OpenStack project.
+   TrilioVault is a commerical snapshot and restore solution for OpenStack and
+   does not form part of the OpenStack project.
 
 ceph-iscsi
 ~~~~~~~~~~
@@ -425,7 +425,7 @@ odds with the `Identity service Security Checklist`_.
 Known issues
 ------------
 
-OpenStack Ussuri Packages for Ubuntu 20.04 LTS
+OpenStack Ussuri packages for Ubuntu 20.04 LTS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Due to the slightly-offset release dates of OpenStack Ussuri and Ubuntu 20.04
@@ -433,10 +433,9 @@ LTS, the final upstream stable release of Ussuri is undergoing a stable
 release update (SRU) into Ubuntu 20.04 LTS as of the date of this charms
 release.
 
-Testing and validation for this OpenStack Charms release has taken place
-using the packages that are currently in ``distro-proposed``.  The status
-of the stable release update processes can be tracked in the following
-bugs:
+Testing and validation for this OpenStack Charms release has taken place using
+the packages that are currently in ``distro-proposed``. The status of the SRU
+process can be tracked in the following bugs:
 
 * `LP #1877642`_
 * `LP #1863021`_
@@ -506,12 +505,13 @@ service is provided for RabbitMQ.
    juju remove-relation trilio-data-mover rabbitmq-server
    juju add-relation trilio-data-mover rabbitmq-server
 
-Designate Upgrades to Train
+Designate upgrades to Train
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When upgrading Designate to Train, there is an encoding issue between the
-designate-producer and memcached that causes the designate-producer to crash.
-See bug `LP #1828534`_. This can be resolved by restarting the memcached service.
+When upgrading Designate to OpenStack Train, there is an encoding issue between
+the designate-producer and memcached that causes the designate-producer to
+crash. See bug `LP #1828534`_. This can be resolved by restarting the
+memcached service.
 
 .. code-block:: none
 
@@ -520,40 +520,40 @@ See bug `LP #1828534`_. This can be resolved by restarting the memcached service
 Octavia and neutron-openvswitch in LXD
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The octavia charm requires a neutron-openvswitch subordinate which
-means that if it runs in a container, the openvswitch kernel module must be
-loaded before the container starts. Module loading is done by LXD based on the
-profile applied by Juju and taken from the neutron-openvswitch charm.
-However, due to `LP #1876849`_ in Juju, there is no guarantee that the profile
-will be applied before neutron-openvswitch execution starts in a container.
+The octavia charm requires a neutron-openvswitch subordinate which means that
+if it runs in a container, the openvswitch kernel module must be loaded before
+the container starts. Module loading is done by LXD based on the profile
+applied by Juju and taken from the neutron-openvswitch charm. However, due to
+`LP #1876849`_ in Juju, there is no guarantee that the profile will be applied
+before neutron-openvswitch execution starts in a container.
 
-The issue is more likely to happen on disaggregated deployments where
-octavia units run in LXD containers on machines that do not have any units
-of neutron-openvswitch running on bare metal.
+The issue is more likely to happen on disaggregated deployments where octavia
+units run in LXD containers on machines that do not have any units of
+neutron-openvswitch running on bare metal.
 
 In order to work around the error an operator needs to make sure the
 ``openswitch`` module is loaded on the host and then restart the
 ``openvswitch-switch.service`` service inside the LXD container where the
-respective neutron-openvswitch unit is present. After that the unit error
-can be resolved.
+respective neutron-openvswitch unit is present. After that the unit error can
+be resolved.
 
 Ceph RBD Mirror and Ceph Octopus
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Due to an unresolved permission issue the ceph-rbd-mirror charm will stay in a
 blocked state after configuring mirroring for pools when connected to a Ceph
-Octopus cluster. We are tracking this issue in `LP #1879749`_.
+Octopus cluster. See bug `LP #1879749`_ for details.
 
 Minimum Juju version for deploying Octavia
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Juju 2.7 and above should be used for deployments with the octavia charm
-since it has dependencies that require the ``LANG`` environment variable to be
-set during package installation. Juju versions prior to 2.7 do not set the
-``LANG`` variable in hook executions which leads to the default python decoder
-being set to ASCII - this results in decoding issues when one of the dependent
-package's ``setup.py`` script gets executed and reads a source file containing
-UTF-8 code units. As a result, the following error can be seen in a hook error:
+Juju 2.7 and above should be used for deployments with the octavia charm since
+it has dependencies that require the ``LANG`` environment variable to be set
+during package installation. Juju versions prior to 2.7 do not set the ``LANG``
+variable in hook executions which leads to the default python decoder being set
+to ASCII - this results in decoding issues when one of the dependent package's
+``setup.py`` script gets executed and reads a source file containing UTF-8 code
+units. As a result, the following error can be seen in a hook error:
 
 .. code-block:: console
 

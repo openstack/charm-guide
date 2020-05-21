@@ -4,14 +4,15 @@ Release Notes
 
 **Pending Release Notes**
 
-* `20.05 release <2005>`_
+* 20.08 release
 
 **Latest Release Notes**
 
-* `20.02 release <2002>`_
+* `20.05 release <2005>`_
 
 **Older Release Notes**
 
+* `20.02 release <2002>`_
 * `19.10 release <1910>`_
 * `19.07 release <1907>`_
 * `19.04 release <1904>`_
