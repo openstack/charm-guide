@@ -14,7 +14,7 @@ unit tests locally before submitting patches to reduce load on the OpenStack
 CI infrastructure.
 
 The OpenStack Charms are compliant with the OpenStack
-`Consistent Testing Interface <https://governance.openstack.org/reference/cti/python_cti.html>`__;
+Project Testing Interface (PTI_);
 take a read on how this works to understand in full.
 
 Lint
@@ -240,3 +240,4 @@ replying on the Gerrit review with one of the recognized magic phrases below.
 
 .. _Amulet: https://jujucharms.com/docs/devel/tools-amulet
 .. _Zaza: https://zaza.readthedocs.io/en/latest/
+.. _PTI: https://governance.openstack.org/tc/reference/project-testing-interface.html
