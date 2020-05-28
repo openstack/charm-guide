@@ -4,40 +4,41 @@ Release Notes
 
 **Pending Release Notes**
 
-* 20.08 release
+* `20.08 release`_
 
 **Latest Release Notes**
 
-* `20.05 release <2005>`_
+* `20.05 release`_
 
 **Older Release Notes**
 
-* `20.02 release <2002>`_
-* `19.10 release <1910>`_
-* `19.07 release <1907>`_
-* `19.04 release <1904>`_
-* `18.11 release <1811>`_
-* `18.08 release <1808>`_
-* `18.05 release <1805>`_
-* `18.02 release <1802>`_
-* `17.11 release <1711>`_
-* `17.08 release <1708>`_
-* `17.02 release <1702>`_
-* `16.10 release <1610>`_
-* `16.07 release <https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1607>`__
-* `16.04 release <https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1604>`__
-* `16.01 release <https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1601>`__
-* `15.10 release <https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1510>`__
-* `15.07 release <https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1507>`__
-* `15.04 release <https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1504>`__
-* `15.01 release <https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1501>`__
-* `14.10 release <https://wiki.ubuntu.com/UtopicUnicorn/ReleaseNotes/OpenStackCharms>`__
-* `14.04 release <https://wiki.ubuntu.com/TrustyTahr/ReleaseNotes/OpenStackCharms>`__
+* `20.02 release`_
+* `19.10 release`_
+* `19.07 release`_
+* `19.04 release`_
+* `18.11 release`_
+* `18.08 release`_
+* `18.05 release`_
+* `18.02 release`_
+* `17.11 release`_
+* `17.08 release`_
+* `17.02 release`_
+* `16.10 release`_
+* `16.07 release`_
+* `16.04 release`_
+* `16.01 release`_
+* `15.10 release`_
+* `15.07 release`_
+* `15.04 release`_
+* `15.01 release`_
+* `14.10 release`_
+* `14.04 release`_
 
 .. toctree::
    :maxdepth: 1
    :hidden:
 
+   2008
    2005
    2002
    1910
@@ -51,3 +52,28 @@ Release Notes
    1708
    1702
    1610
+
+.. LINKS
+.. _20.08 release: 2008
+.. _20.05 release: 2005
+.. _20.02 release: 2002
+.. _19.10 release: 1910
+.. _19.07 release: 1907
+.. _19.04 release: 1904
+.. _18.11 release: 1811
+.. _18.08 release: 1808
+.. _18.05 release: 1805
+.. _18.02 release: 1802
+.. _17.11 release: 1711
+.. _17.08 release: 1708
+.. _17.02 release: 1702
+.. _16.10 release: 1610
+.. _16.07 release: https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1607
+.. _16.04 release: https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1604
+.. _16.01 release: https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1601
+.. _15.10 release: https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1510
+.. _15.07 release: https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1507
+.. _15.04 release: https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1504
+.. _15.01 release: https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1501
+.. _14.10 release: https://wiki.ubuntu.com/UtopicUnicorn/ReleaseNotes/OpenStackCharms
+.. _14.04 release: https://wiki.ubuntu.com/TrustyTahr/ReleaseNotes/OpenStackCharms

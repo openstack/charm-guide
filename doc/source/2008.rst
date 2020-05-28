@@ -1,0 +1,359 @@
+.. _release_notes_20.08:
+
+=================================
+20.08 (Draft version in progress)
+=================================
+
+Summary
+-------
+
+The 20.08 OpenStack Charms project release includes updates for the following
+charms. Additional charm support status information is published in the
+`OpenStack Charm Guide`_ which ultimately supersedes Release Notes contents.
+
+Always use the latest stable charm revision before proceeding with topological
+changes, application migrations, workload upgrades, series upgrades, or bug
+reports.
+
+OpenStack charms (Stable)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+These charms have stable releases with ongoing maintenance and testing. They
+meet the requirements of payload project health, payload packaging,
+upgradability, charm test gates, and the general release guidelines of the
+OpenStack Charms project.
+
+* `aodh <https://opendev.org/openstack/charm-aodh/>`_
+* `barbican <https://opendev.org/openstack/charm-barbican/>`_
+* `barbican-vault <https://opendev.org/openstack/charm-barbican-vault/>`_
+* `ceilometer <https://opendev.org/openstack/charm-ceilometer/>`_
+* `ceilometer-agent <https://opendev.org/openstack/charm-ceilometer-agent/>`_
+* `cinder <https://opendev.org/openstack/charm-cinder/>`_
+* `cinder-backup <https://opendev.org/openstack/charm-cinder-backup/>`_
+* `cinder-backup-swift-proxy <https://opendev.org/openstack/charm-cinder-backup-swift-proxy/>`_
+* `cinder-ceph <https://opendev.org/openstack/charm-cinder-ceph/>`_
+* `designate <https://opendev.org/openstack/charm-designate/>`_
+* `glance <https://opendev.org/openstack/charm-glance/>`_
+* `heat <https://opendev.org/openstack/charm-heat/>`_
+* `keystone <https://opendev.org/openstack/charm-keystone/>`_
+* `keystone-ldap <https://opendev.org/openstack/charm-keystone-ldap/>`_
+* `keystone-saml-mellon <https://opendev.org/openstack/charm-keystone-saml-mellon/>`_
+* `manila <https://opendev.org/openstack/charm-manila/>`_
+* `manila-ganesha <https://opendev.org/openstack/charm-manila-ganesha/>`_
+* `masakari <https://opendev.org/openstack/charm-masakari/>`_
+* `masakari-monitors <https://opendev.org/openstack/charm-masakari-monitors/>`_
+* `mysql-innodb-cluster <https://opendev.org/openstack/charm-mysql-innodb-cluster>`_
+* `mysql-router <https://opendev.org/openstack/charm-mysql-router>`_
+* `neutron-api <https://opendev.org/openstack/charm-neutron-api/>`_
+* `neutron-api-plugin-ovn <https://opendev.org/openstack/charm-neutron-api-plugin-ovn>`_
+* `neutron-dynamic-routing <https://opendev.org/openstack/charm-neutron-dynamic-routing/>`_
+* `neutron-gateway <https://opendev.org/openstack/charm-neutron-gateway/>`_
+* `neutron-openvswitch <https://opendev.org/openstack/charm-neutron-openvswitch/>`_
+* `nova-cell-controller <https://opendev.org/openstack/charm-nova-cell-controller/>`_
+* `nova-cloud-controller <https://opendev.org/openstack/charm-nova-cloud-controller/>`_
+* `nova-compute <https://opendev.org/openstack/charm-nova-compute/>`_
+* `octavia <https://opendev.org/openstack/charm-octavia/>`_
+* `octavia-dashboard <https://opendev.org/openstack/charm-octavia-dashboard/>`_
+* `octavia-diskimage-retrofit <https://opendev.org/openstack/charm-octavia-diskimage-retrofit/>`_
+* `openstack-dashboard <https://opendev.org/openstack/charm-openstack-dashboard/>`_
+* `placement <https://opendev.org/openstack/charm-placement>`_
+* `swift-proxy <https://opendev.org/openstack/charm-swift-proxy/>`_
+* `swift-storage <https://opendev.org/openstack/charm-swift-storage/>`_
+
+Other supporting charms (Stable)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+These charms have stable releases with ongoing maintenance and testing. They
+are classified differently because the payload of each is not technically an
+OpenStack project.
+
+* `ceph-fs <https://opendev.org/openstack/charm-ceph-fs/>`_
+* `ceph-mon <https://opendev.org/openstack/charm-ceph-mon/>`_
+* `ceph-osd <https://opendev.org/openstack/charm-ceph-osd/>`_
+* `ceph-proxy <https://opendev.org/openstack/charm-ceph-proxy/>`_
+* `ceph-radosgw <https://opendev.org/openstack/charm-ceph-radosgw/>`_
+* `ceph-rbd-mirror <https://opendev.org/openstack/charm-ceph-rbd-mirror/>`_
+* `cinder-purestorage <https://opendev.org/openstack/charm-cinder-purestorage/>`_
+* `designate-bind <https://opendev.org/openstack/charm-designate-bind/>`_
+* `glance-simplestreams-sync <https://opendev.org/openstack/charm-glance-simplestreams-sync/>`_
+* `gnocchi <https://opendev.org/openstack/charm-gnocchi/>`_
+* `hacluster <https://opendev.org/openstack/charm-hacluster/>`_
+* `ovn-central <https://opendev.org/x/charm-ovn-central>`_
+* `ovn-chassis <https://opendev.org/x/charm-ovn-chassis>`_
+* `ovn-dedicated-chassis <https://opendev.org/x/charm-ovn-dedicated-chassis>`_
+* `pacemaker-remote <https://opendev.org/openstack/charm-pacemaker-remote/>`_
+* `percona-cluster <https://opendev.org/openstack/charm-percona-cluster/>`_
+* `rabbitmq-server <https://opendev.org/openstack/charm-rabbitmq-server/>`_
+* `vault <https://opendev.org/openstack/charm-vault/>`_
+
+Tech-preview charms (Beta)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+These charms do not have stable releases, even though they may technically have
+"stable/yy.mm" branches. Regardless of any maintenance and testing that these
+charms may receive, some work (major bugs, payload packaging issues, project
+issues, general QA) is still required before the charms are ready for
+production use (promoted to Stable).
+
+* `ceph-iscsi <https://github.com/openstack-charmers/charm-ceph-iscsi/>`_
+* `trilio-data-mover <https://opendev.org/openstack/charm-trilio-data-mover/>`_
+* `trilio-dm-api <https://opendev.org/openstack/charm-trilio-dm-api/>`_
+* `trilio-horizon-plugin <https://opendev.org/openstack/charm-trilio-horizon-plugin/>`_
+* `trilio-wlm <https://opendev.org/openstack/charm-trilio-wlm/>`_
+
+Alpha charms (Edge)
+~~~~~~~~~~~~~~~~~~~
+
+This classification of charms includes those which may be a proof-of-concept, a
+test fixture, or one which is in active development. They are not intended to
+be used in production. Supportability, upgradability, testability may be
+lacking, either from a charm perspective, or from the workload package
+perspective.
+
+* `barbican-softhsm <https://opendev.org/openstack/charm-barbican-softhsm/>`_
+* `manila-generic <https://opendev.org/openstack/charm-manila-generic/>`_
+* `tempest <https://opendev.org/openstack/charm-tempest/>`_
+* `watcher <https://opendev.org/openstack/charm-watcher/>`_
+* `watcher-dashboard <https://opendev.org/openstack/charm-watcher-dashboard/>`_
+
+Maintenance-mode charms
+~~~~~~~~~~~~~~~~~~~~~~~
+
+These charms are in maintenance mode, meaning that new features and new
+releases are not actively being added or tested with them. Generally, these
+were produced for a demo, PoC, or as an example.
+
+* None at this time.
+
+Removed charms
+~~~~~~~~~~~~~~
+
+n/a
+
+New charm features
+------------------
+
+With each new feature, there is a corresponding example bundle in the form of a
+test bundle, and/or a `OpenStack Charms Deployment Guide`_ section which
+details the use of the feature. For example test bundles, see the
+``src/tests/bundles`` directory within the relevant charm repository.
+
+New charms
+----------
+
+Preview charm features
+----------------------
+
+Upgrading charms
+----------------
+
+Always use the latest stable charm revision before proceeding with topological
+changes, charm application migrations, workload upgrades, series upgrades, or
+bug reports.
+
+Please ensure that the keystone charm is upgraded first.
+
+To upgrade an existing deployment to the latest charm version simply use the
+:command:`upgrade-charm` command. For example:
+
+.. code-block:: none
+
+   juju upgrade-charm keystone
+
+Charm upgrades and OpenStack upgrades are functionally different. Charm
+upgrades ensure that the deployment has the latest charm revision, containing
+the latest charm fixes and features, whereas OpenStack upgrades influence the
+software package versions of OpenStack itself.
+
+A charm upgrade does not trigger an OpenStack upgrade. An OpenStack upgrade is
+a separate process. However, an OpenStack upgrade does require the latest charm
+revision. Please refer to `OpenStack upgrades`_ in the `OpenStack Charms
+Deployment Guide`_ for more details.
+
+Deprecation notices
+-------------------
+
+Removed features
+----------------
+
+Known issues
+------------
+
+Glance Simplestreams Sync
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When deploying the glance-simplestreams-sync charm on Bionic a more recent
+version of the simplestreams package must be installed by configuring a PPA:
+
+.. code-block:: none
+
+   juju config glance-simplestreams-sync source=ppa:simplestreams-dev/trunk
+
+See bug `LP #1790904`_ for details.
+
+Designate and Vault at Ocata and earlier
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The designate charm for OpenStack releases Pike and earlier does not yet
+support SSL via Vault and the certificates relation. See bug `LP #1839019`_.
+
+Current versions of OpenStack with Vault and the certificates relation are
+supported by the Designate charm.
+
+Restart Nova services after adding certificates relation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A race condition exists with the use of the 'certificates' relation. When SSL
+certificates are issued Nova services may attempt to talk to the placement API
+over HTTP while the API has already changed to HTTPS. See bug `LP #1826382`_.
+
+To mitigate against this, restart the nova-compute and nova-scheduler services
+once certificates have been issued:
+
+.. code-block:: none
+
+   juju run --application nova-compute "systemctl restart nova-compute"
+   juju run --application nova-cloud-controller "systemctl restart nova-scheduler"
+
+TrilioVault Data Mover charm upgrade
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For deployments using prior versions of the trilio-data-mover charm (as
+provided by Trilio) the relation between the trilio-data-mover charm and
+rabbitmq-server must be removed and re-added to ensure that specific access for
+the data-mover service is provided for RabbitMQ.
+
+.. code-block:: none
+
+   juju remove-relation trilio-data-mover rabbitmq-server
+   juju add-relation trilio-data-mover rabbitmq-server
+
+TrilioVault package upgrades
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Changing the value of the 'triliovault-pkg-source' option does not currently
+trigger a package upgrade although the apt sources for the unit are updated.
+
+Packages can be manually upgraded after changing this option - for example:
+
+.. code-block:: none
+
+   juju run --application trilio-dm-api "sudo apt -y dist-upgrade"
+
+See bug `LP #1879904`_ for more details.
+
+Designate upgrades to Train
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When upgrading Designate to OpenStack Train, there is an encoding issue between
+the designate-producer and memcached that causes the designate-producer to
+crash. See bug `LP #1828534`_. This can be resolved by restarting the memcached
+service.
+
+.. code-block:: none
+
+   juju run --application=memcached 'sudo systemctl restart memcached'
+
+Octavia and neutron-openvswitch in LXD
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The octavia charm requires a neutron-openvswitch subordinate which means that
+if it runs in a container, the openvswitch kernel module must be loaded before
+the container starts. Module loading is done by LXD based on the profile
+applied by Juju and taken from the neutron-openvswitch charm. However, due to
+`LP #1876849`_ in Juju, there is no guarantee that the profile will be applied
+before neutron-openvswitch execution starts in a container.
+
+The issue is more likely to happen on disaggregated deployments where octavia
+units run in LXD containers on machines that do not have any units of
+neutron-openvswitch running on bare metal.
+
+In order to work around the error an operator needs to make sure the
+``openswitch`` module is loaded on the host and then restart the
+``openvswitch-switch.service`` service inside the LXD container where the
+respective neutron-openvswitch unit is present. After that the unit error can
+be resolved.
+
+Ceph RBD Mirror and Ceph Octopus
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Due to an unresolved permission issue the ceph-rbd-mirror charm will stay in a
+blocked state after configuring mirroring for pools when connected to a Ceph
+Octopus cluster. See bug `LP #1879749`_ for details.
+
+Minimum Juju version for deploying Octavia
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Juju 2.7 and above should be used for deployments with the octavia charm since
+it has dependencies that require the ``LANG`` environment variable to be set
+during package installation. Juju versions prior to 2.7 do not set the ``LANG``
+variable in hook executions which leads to the default python decoder being set
+to ASCII - this results in decoding issues when one of the dependent package's
+``setup.py`` script gets executed and reads a source file containing UTF-8 code
+units. As a result, the following error can be seen in a hook error:
+
+.. code-block:: console
+
+   UnicodeDecodeError: 'ascii' codec can't decode byte 0xc8 in position 129: ordinal not in range(128)
+
+See bug `LP #1879184`_ for more information.
+
+This issue affects existing Juju 2.6 environments as well if a charm upgrade is
+performed. It will be addressed by fixing `GH #173`_.
+
+Bugs fixed
+----------
+
+The 20.08 OpenStack Charms release includes XX bug fixes. Refer to the `20.08
+milestone`_ in Launchpad for the list of resolved bugs.
+
+Next release info
+-----------------
+
+Please see the `OpenStack Charm Guide`_ for current information.
+
+.. LINKS
+.. _OpenStack Upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
+.. _Open Virtual Network (OVN): https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html
+.. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
+.. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
+.. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
+.. _OpenStack bundles Focal Ussuri: https://github.com/openstack-charmers/openstack-bundles/blob/master/development/openstack-base-focal-ussuri-ovn/bundle.yaml
+.. _20.08 milestone: https://launchpad.net/openstack-charms/+milestone/20.08
+.. _Policy Overrides: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-policy-overrides.html
+.. _Neutron documentation: https://docs.openstack.org/neutron/latest/admin/config-fip-port-forwardings.html
+.. _placement API: https://docs.openstack.org/placement/ussuri/
+.. _HA with pause/resume: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#ha-with-pause-resume
+.. _Specific series upgrade procedures: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-series-upgrade-specific-procedures.html#percona-series-upgrade-to-focal
+.. _Swift Auth system: https://docs.openstack.org/swift/latest/overview_auth.html
+.. _Swift Global Cluster: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-swift-gc.html
+.. _Toward Convergence of ML2+OVS+DVR and OVN: http://specs.openstack.org/openstack/neutron-specs/specs/ussuri/ml2ovs-ovn-convergence.html
+.. _Vault deployment and configuration: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
+.. _Security compliance and PCI-DSS: https://docs.openstack.org/keystone/train/admin/configuration.html#security-compliance-and-pci-dss
+.. _Keystone charm README: https://github.com/openstack/charm-keystone/blob/master/README.md
+.. _Neutron FWaaS project has been deprecated: https://review.opendev.org/#/c/708675/
+.. _Cinder charm README: https://github.com/openstack/charm-cinder/blob/master/README.md
+.. _Juju storage: https://juju.is/docs/storage
+.. _TrilioVault appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-trilio-vault.html
+.. _Automated instance recovery: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-masakari.html
+.. _Ceph iSCSI Gateway README: https://github.com/openstack-charmers/charm-ceph-iscsi/blob/master/README.md
+.. _Nova Train configuration options: https://docs.openstack.org/nova/train/configuration/config.html#quota.count_usage_from_placement
+.. _NIC hardware offload appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-hardware-offload.html
+.. _Networking Tools PPA: https://launchpad.net/~openstack-charmers/+archive/ubuntu/networking-tools
+.. _gaps from ML2+OVS: https://docs.openstack.org/neutron/ussuri/ovn/gaps.html
+.. _Identity service Security Checklist: https://docs.openstack.org/security-guide/identity/checklist.html
+
+.. BUGS
+.. _GH #173: https://github.com/juju-solutions/layer-basic/issues/173
+.. _LP #1773765: https://bugs.launchpad.net/masakari/+bug/1773765
+.. _LP #1790904: https://bugs.launchpad.net/simplestreams/+bug/1790904
+.. _LP #1826382: https://bugs.launchpad.net/nova/+bug/1826382
+.. _LP #1839019: https://bugs.launchpad.net/charm-designate/+bug/1839019
+.. _LP #1859844: https://bugs.launchpad.net/charm-keystone/+bug/1859844
+.. _LP #1828534: https://bugs.launchpad.net/charm-designate/+bug/1828534
+.. _LP #1876849: https://bugs.launchpad.net/charm-neutron-openvswitch/+bug/1876849
+.. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
+.. _LP #1877642: https://bugs.launchpad.net/bugs/1877642
+.. _LP #1863021: https://bugs.launchpad.net/bugs/1863021
+.. _LP #1879184: https://bugs.launchpad.net/charm-octavia/+bug/1879184/comments/9
+.. _LP #1879904: https://bugs.launchpad.net/charm-trilio-horizon-plugin/+bug/1879904
