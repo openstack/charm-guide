@@ -54,9 +54,9 @@ master_doc = 'index'
 copyright = u'2016, OpenStack contributors'
 
 # Settings for openstackdocstheme
-repository_name = 'openstack/charm-guide'
-bug_project = 'charm-guide'
-bug_tag = u'charm-guide'
+openstackdocs_repo_name = 'openstack/charm-guide'
+openstackdocs_bug_project = 'charm-guide'
+openstackdocs_bug_tag = u'charm-guide'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
