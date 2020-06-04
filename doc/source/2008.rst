@@ -138,6 +138,33 @@ test bundle, and/or a `OpenStack Charms Deployment Guide`_ section which
 details the use of the feature. For example test bundles, see the
 ``src/tests/bundles`` directory within the relevant charm repository.
 
+Charm cinder-ceph now requires 'ceph-access' relation to Charm nova-compute
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In order to ensure a functional nova-compute application, the 'ceph-access'
+relation is now required between the cinder-ceph charm and the nova-compute
+charm when cinder-ceph is related to the cinder charm. Otherwise, the charm
+will go into the blocked state.
+
+This is due to this change:
+
+   Without a relation to at least one nova-compute application a cinder-ceph
+   backend will not be functional as the libvirt secrets will not have been
+   created to allow access to the ceph cluster from libvirt/qemu.
+
+   -- `Require relation to nova-compute application`_
+
+This probably won't affect most existing, deployed, clouds, but *may* affect
+test bundles that now won't complete deployment.
+
+To add the relation:
+
+.. code-block:: none
+
+   juju add-relation nova-compute:ceph-access cinder-ceph:ceph-access
+
+All bundles that use cinder-ceph should be checked and the relation added.
+
 New charms
 ----------
 
@@ -342,6 +369,9 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Networking Tools PPA: https://launchpad.net/~openstack-charmers/+archive/ubuntu/networking-tools
 .. _gaps from ML2+OVS: https://docs.openstack.org/neutron/ussuri/ovn/gaps.html
 .. _Identity service Security Checklist: https://docs.openstack.org/security-guide/identity/checklist.html
+
+.. COMMITS
+.. _Require relation to nova-compute application: https://review.opendev.org/#/c/731437/
 
 .. BUGS
 .. _GH #173: https://github.com/juju-solutions/layer-basic/issues/173
