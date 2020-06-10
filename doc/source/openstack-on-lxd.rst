@@ -5,181 +5,298 @@ OpenStack on LXD
 ================
 
 Overview
-========
+--------
 
-A production OpenStack deployment is typically made over a number of physical servers, using LXD containers where appropriate for control plane services.
-
-However, the average developer probably does not have, or want to have, access to such infrastructure for day-to-day charm development.
-
-Its possible to deploy OpenStack using the OpenStack Charms in LXD containers on a single machine; this allows for faster, localized charm development and testing.
-
-The scenarios presented here are for development, testing and demonstration, and should not be used in place of multiple-machine, highly-available OpenStack deployment topologies and configurations more suitable for production use cases.
-
-Host Setup
-==========
-
-The tools in the openstack-on-lxd git repository require the use of Juju 2.x, which provides full support for the LXD local provider.
-
-Ubuntu 18.04 (Bionic) is the current LTS release and should be used for this procedure.
-
-.. code:: bash
-
-    sudo snap install juju --classic
-
-    sudo apt install zfsutils-linux squid-deb-proxy bridge-utils \
-        python-novaclient python-keystoneclient python-glanceclient \
-        python-neutronclient python-openstackclient curl
-
-
-You'll need a well specified machine with at least 8G of RAM and a SSD; for reference the author uses Lenovo x240 with an Intel i5 processor, 16G RAM and a 500G Samsung SSD (split into two - one partition for the OS and one partition for a ZFS pool).
-
-For s390x, this has been validated on an LPAR with 12 CPUs, 40GB RAM, 2 ~40GB disks (one disk for the OS and one disk for the ZFS pool).
-
-For arm64, this has been validated on a single Gigabyte R120-T33 with 48 cores, 64GB RAM, 1 240GB SSD (for the operating system), 2 1TB SAS disks (for the ZFS pool).
-
-You'll need to clone the repository with the bundles and configuration for the deployment:
-
-.. code:: bash
-
-    git clone https://github.com/openstack-charmers/openstack-on-lxd.git
-
-All commands in this document assume they are being made from within the local copy of this repo.
-
-LXD
-===
-
-Base Configuration
-~~~~~~~~~~~~~~~~~~
-
-This type of deployment creates numerous containers on a single host which leads to many thousands of file handles.
-
-Some of the default system thresholds may not be high enough for this use case, potentially leading to issues such as `Too many open files`.
-
-To address this, the host system should be configured according to the LXD production-setup_ guide, specifically the ``/etc/sysctl.conf`` bits:
-
-.. code:: bash
-
-    echo fs.inotify.max_queued_events=1048576 | sudo tee -a /etc/sysctl.conf
-    echo fs.inotify.max_user_instances=1048576 | sudo tee -a /etc/sysctl.conf
-    echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.conf
-    echo vm.max_map_count=262144 | sudo tee -a /etc/sysctl.conf
-    echo vm.swappiness=1 | sudo tee -a /etc/sysctl.conf
-    sudo sysctl -p
-
-In order to allow the OpenStack Cloud to function, you'll need to reconfigure the default LXD bridge to support IPv4 networking; is also recommended that you use a fast storage backend such as ZFS on a SSD based block device.  Use the :command:`lxd` provided configuration tool to help do this:
-
-.. code:: bash
-
-    sudo lxd init
-
-The referenced ``config.yaml`` uses an apt proxy to improve installation performance.  The network that you create during the :command:`lxd init` procedure should accomodate that address.  Also ensure that you leave a range of IP addresses free to use for floating IP addresses for OpenStack instances. The following are the values which are used in this example procedure:
-
-    Network and IP: 10.0.8.1/24
-    DHCP range: 10.0.8.2 -> 10.0.8.200
-
-Also update the default profile to use Jumbo frames for all network connections into containers:
-
-.. code:: bash
-
-    lxc profile device set default eth0 mtu 9000
-
-This will ensure you avoid any packet fragmentation type problems with overlay networks.
-
-Test out your configuration prior to launching an entire cloud:
-
-.. code:: bash
-
-    lxc launch ubuntu-daily:bionic
-
-This should result in a running container you can exec into and back out of:
-
-.. code:: bash
-
-    lxc exec <container-name> bash
-    exit
-
-Juju
-====
-
-Bootstrap the Juju Controller
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Prior to deploying the OpenStack on LXD bundle, you'll need to bootstrap a controller to manage your Juju models.
-
-Review the contents of the ``config.yaml`` prior to running the following command and edit as appropriate; this configures some defaults for containers created in the model including setting up things like APT proxy to improve performance of network operations.
-
-.. code:: bash
-
-    juju bootstrap --config config.yaml localhost lxd
-
-
-Juju Profile Update
-~~~~~~~~~~~~~~~~~~~
-
-Juju creates a couple of profiles for the models that it creates by default.  After bootstrapping is complete, update the ``juju-default`` :command:`lxc` profile:
-
-.. code:: bash
-
-    cat lxd-profile.yaml | lxc profile edit juju-default
-
-This will ensure that containers created by LXD for Juju have the correct permissions to run your OpenStack cloud.
-
-Configure a PowerNV (ppc64el) Host
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-When deployed directly to metal, the nova-compute charm sets ``smt=off``, as is necessary for libvirt usage.  However, when nova-compute is in a container, the containment prevents :command:`ppc64_cpu` from modifying the host's smt value.  It is necessary to pre-configure the host ``smt`` setting for nova-compute (libvirt + qemu) in ``ppc64el`` scenarios.
-
-.. code:: bash
-
-    sudo ppc64_cpu --smt=off
-
-
-OpenStack
-=========
-
-Deploy
-~~~~~~
-
-Deploy OpenStack using one of the provided bundles.
-
-You can watch deployment progress using the :command:`juju status` command.
-The time required will depend on your system's resources: memory, CPU, disk
-subsystem, and network speed.
+A production OpenStack deployment is typically backed by multiple physical
+servers, which may use LXD containers where appropriate (e.g. control plane
+services). With the OpenStack charms it is possible however to deploy a cloud
+based solely on LXD containers, all on a single machine. This is called
+"OpenStack on LXD", which calls for Juju to be backed by the `LXD cloud type`_
+as opposed to the standard `MAAS cloud type`_.
 
 .. important::
 
-   The deployment must occur within the ``default`` model. This is to ensure that
-   the ``juju-default`` LXD profile is applied to the containers.
+   The use case for OpenStack on LXD is for development, testing, and
+   demonstration purposes only. It is not suitable for production-grade usage.
 
-amd64, arm64, or ppc64el
-++++++++++++++++++++++++
+Requirements
+~~~~~~~~~~~~
 
-For the amd64, arm64, or ppc64el architectures choose from among the available
-combinations of OpenStack release and Ubuntu series.
+Given that the entire cloud will be running on a single machine, that chosen
+machine (henceforth known as the "host") is expected to be well resourced in
+terms of CPU, memory, and storage backend. The resources available to the host
+will dictate the deploy time of the cloud.
 
-+-------------------+---------------+-----------------------------------------------+
-| OpenStack release | Ubuntu series | Deploy command                                |
-+===================+===============+===============================================+
-| Mitaka            | Xenial        | ``juju deploy ./bundle-xenial-mitaka.yaml``   |
-+-------------------+---------------+-----------------------------------------------+
-| Newton            | Xenial        | ``juju deploy ./bundle-xenial-newton.yaml``   |
-+-------------------+---------------+-----------------------------------------------+
-| Ocata             | Xenial        | ``juju deploy ./bundle-xenial-ocata.yaml``    |
-+-------------------+---------------+-----------------------------------------------+
-| Pike              | Xenial        | ``juju deploy ./bundle-xenial-pike.yaml``     |
-+-------------------+---------------+-----------------------------------------------+
-| Queens            | Xenial        | ``juju deploy ./bundle-xenial-queens.yaml``   |
-+-------------------+---------------+-----------------------------------------------+
-| Queens            | Bionic        | ``juju deploy ./bundle-bionic-queens.yaml``   |
-+-------------------+---------------+-----------------------------------------------+
-| Rocky             | Bionic        | ``juju deploy ./bundle-bionic-rocky.yaml``    |
-+-------------------+---------------+-----------------------------------------------+
-| Stein             | Bionic        | ``juju deploy ./bundle-bionic-stein.yaml``    |
-+-------------------+---------------+-----------------------------------------------+
-| Train             | Bionic        | ``juju deploy ./bundle-bionic-train.yaml``    |
-+-------------------+---------------+-----------------------------------------------+
-| Train             | Eoan          | ``juju deploy ./bundle-eoan-train.yaml``      |
-+-------------------+---------------+-----------------------------------------------+
+The below specifications are considered sufficient to deploy the cloud (does
+not include workloads):
+
+* 16 GiB memory
+* 4 CPU cores (minimally i5 gen.)
+
+It is important to have a fast disk subsystem. This can be achieved in various
+ways:
+
+* dedicated SSD block device
+* traditional RAID array
+* ZFS pool backed by multiple block devices
+* btrfs array backed by multiple block devices
+
+The instructions provided here have been validated for a host running either
+Ubuntu 18.04 LTS (Bionic) or Ubuntu 20.04 LTS (Focal).
+
+Known limitations
+~~~~~~~~~~~~~~~~~
+
+Currently is not possible to run Cinder with iSCSI/LVM based storage under LXD.
+This limits the use of block storage options to those that are 100% userspace,
+such as Ceph.
+
+Networking environment
+~~~~~~~~~~~~~~~~~~~~~~
+
+This section describes the networking environment that will be used in this
+example cloud.
+
+The LXD network definition is summarised in this table:
+
+.. list-table::
+   :widths: 33 33 33
+
+   * - **LXD bridge name**
+     - lxdbr0
+     - Can also denote the network
+
+   * - **LXD network address**
+     - 10.0.8.0/24
+     - --
+
+   * - **LXD bridge address**
+     - 10.0.8.1/24
+     - --
+
+   * - **LXD DHCP range**
+     - 10.0.8.2 -> 10.0.8.200
+     - Cloud node addresses
+
+Other network parameters:
+
+* The OpenStack floating IP range is 10.0.8.201 -> 10.0.8.254.
+
+* The OpenStack internal network address is 192.168.20.0/24 and its IP range is
+  192.168.20.10 -> 192.168.20.99.
+
+* IPv6 will be disabled on the container DHCP network (undercloud) as it can
+  interfere with the host network (overcloud).
+
+* Jumbo frames will be enabled for network connections into the containers.
+  This will help avoid packet fragmentation type problems that can occur with
+  overlay networks (overcloud and undercloud).
+
+Host
+----
+
+Install the software
+~~~~~~~~~~~~~~~~~~~~
+
+Install Juju and the OpenStack CLI clients on the host:
+
+.. code-block:: none
+
+   sudo snap install juju --classic
+   sudo snap install openstackclients --classic
+
+Install ZFS if you will be using it to manage pools outside of LXD:
+
+.. code-block:: none
+
+   sudo apt install zfsutils-linux
+
+On Bionic, LXD is installed by default via apt packages, yet it is recommended
+to use the snap. **Providing you are not using the apt-based LXD**, install the
+snap and remove the packages:
+
+.. code-block:: none
+
+   sudo snap install lxd
+   sudo apt purge liblxc1 lxcfs lxd lxd-client
+
+The snap also includes a tool to migrate containers over from the apt-based
+deployment: :command:`sudo lxd.migrate`. Once done it will offer to remove the
+old software.
+
+.. note::
+
+   Ubuntu releases that are more recent than Bionic ship with LXD installed as
+   a snap. There is nothing to do regarding LXD installation on these releases.
+
+Download the ``openstack-on-lxd`` repository that contains the Juju bundles for
+our scenario:
+
+.. code-block:: none
+
+   git clone https://github.com/openstack-charmers/openstack-on-lxd.git ~/openstack-on-lxd
+
+Set kernel options
+~~~~~~~~~~~~~~~~~~
+
+OpenStack on LXD requires many thousands of file handles and the default kernel
+thresholds should be increased accordingly. Not doing so may lead to issues
+such as "too many open files". Kernel options should therefore be set as per
+the `LXD production setup`_ guide, specifically those related to the
+``/etc/sysctl.conf`` file. Note that swap usage will also be turned down to a
+very low level.
+
+.. tip::
+
+   Make a copy of file ``/etc/sysctl.conf`` before making changes so you can
+   easily revert back to the original configuration.
+
+Change the kernel's behaviour in real-time like this:
+
+.. code-block:: none
+
+   echo fs.inotify.max_queued_events=1048576 | sudo tee -a /etc/sysctl.conf
+   echo fs.inotify.max_user_instances=1048576 | sudo tee -a /etc/sysctl.conf
+   echo fs.inotify.max_user_watches=1048576 | sudo tee -a /etc/sysctl.conf
+   echo vm.max_map_count=262144 | sudo tee -a /etc/sysctl.conf
+   echo vm.swappiness=1 | sudo tee -a /etc/sysctl.conf
+   sudo sysctl -p
+
+LXD
+---
+
+Configure LXD
+~~~~~~~~~~~~~
+
+LXD needs to be initialised and configured.
+
+.. code-block:: none
+
+   lxd init --auto
+
+If the above fails, ensure your user is recognised as a member of the 'lxd'
+group by issuing the :command:`newgrp lxd` command.
+
+.. note::
+
+   An interactive user session will result if the ``--auto`` option is omitted.
+
+Configure the LXD network as described earlier:
+
+.. code-block:: none
+
+   lxc network set lxdbr0 ipv4.address 10.0.8.1/24
+   lxc network set lxdbr0 ipv4.dhcp.ranges 10.0.8.2-10.0.8.200
+   lxc network set lxdbr0 bridge.mtu 9000
+   lxc network unset lxdbr0 ipv6.address
+   lxc network unset lxdbr0 ipv6.nat
+
+The third command enables Jumbo frames for the host's lxdbr0 bridge. We will
+later configure Jumbo frames for containers by updating the LXD profile that
+Juju will use when creating them.
+
+Optionally set up a ZFS storage backend. For example, to do this for a pool
+called 'lxd-zfs' that spans three unused block devices:
+
+.. code-block:: none
+
+   sudo zpool create lxd-zfs sdb sdc sdd
+   lxc storage create lxd-zfs zfs source=lxd-zfs
+
+The LXD network configuration can be viewed with the command :command:`lxc
+network show lxdbr0`.
+
+Verify LXD
+~~~~~~~~~~
+
+It is recommended to verify that LXD itself is in good working order before
+continuing. Do this by creating a test container ('focal-1'), issuing a remote
+command on it, and then removing the container.
+
+.. code-block:: none
+
+   lxc launch ubuntu-daily:focal focal-1
+   lxc exec focal-1 whoami
+   lxc delete -f focal-1
+
+Juju
+----
+
+Create the Juju controller
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Create a Juju controller based on the 'lxd' cloud type to manage the
+deployment:
+
+.. code-block:: none
+
+   juju bootstrap localhost lxd
+
+This will also create the model 'default' and the corresponding LXD profile
+'juju-default'. These will respectively be used to contain and configure the
+cloud containers.
+
+.. tip::
+
+   An APT proxy, such as ``squid-deb-proxy``, can be used to improve cloud
+   installation performance. Define the proxy setting for the container
+   'default' model with the command :command:`juju model-config -m default
+   apt-http-proxy=http://<host>:<port>`. See the `Juju proxy documentation`_
+   for guidance.
+
+Update the LXD cloud container profile
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Update the 'juju-default' profile with the help of file ``lxd-profile.yaml``
+provided by the repository downloaded earlier:
+
+.. code-block:: none
+
+   cd ~/openstack-on-lxd
+   cat lxd-profile.yaml | lxc profile edit juju-default
+
+This will ensure that the containers will have the permissions they need for
+a successful OpenStack deployment. It will also complete the enablement of
+Jumbo frames for the containers.
+
+You will also need to update this profile if you are using ZFS. In this
+example deployment, the 'lxd-zfs' pool was previously set up:
+
+.. code-block:: none
+
+   lxc profile device set juju-default root pool=lxd-zfs
+
+The resulting profile can be viewed with the command :command:`lxc profile show
+juju-default`.
+
+.. note::
+
+   There is nothing special about the Juju 'default' model nor the LXD
+   'juju-default' profile. For instance, you can create the model 'train' and
+   then update the auto-created profile with :command:`juju add-model train`
+   and :command:`cat lxd-profile.yaml | lxc profile edit juju-train`.
+
+OpenStack
+---------
+
+Select a bundle
+~~~~~~~~~~~~~~~
+
+The bundles are located in the ``~/openstack-on-lxd`` directory. Choose one
+that is appropriate for the host's architecture.
+
+For amd64, arm64, and ppc64el the bundle filenames are of this format:
+
+``bundle-<ubuntu-series>-<openstack-release>.yaml``
+
+For s390x the bundle filenames have the '-s390x' suffix appended:
+
+``bundle-<ubuntu-series>-<openstack-release>-s390x.yaml``
+
+As an example, if the host is amd64 and we want to deploy OpenStack Stein
+running on Bionic containers the following bundle will be selected:
+
+``bundle-bionic-stein.yaml``
 
 .. important::
 
@@ -187,324 +304,310 @@ combinations of OpenStack release and Ubuntu series.
    solution has been devised to address the dropping of directory backed OSD
    support in Ceph Nautilus. See bug `GH #72`_.
 
-s390x
-+++++
+Deploy the cloud
+~~~~~~~~~~~~~~~~
 
-For the s390x architecture choose from among the available combinations of
-OpenStack release and Ubuntu series.
+Deploy the cloud now. Using our above example:
 
-+-------------------+---------------+---------------------------------------------------+
-| OpenStack release | Ubuntu series | Deploy command                                    |
-+===================+===============+===================================================+
-| Mitaka            | Xenial        | ``juju deploy ./bundle-xenial-mitaka-s390x.yaml`` |
-+-------------------+---------------+---------------------------------------------------+
-| Newton            | Xenial        | ``juju deploy ./bundle-xenial-newton-s390x.yaml`` |
-+-------------------+---------------+---------------------------------------------------+
-| Ocata             | Xenial        | ``juju deploy ./bundle-xenial-ocata-s390x.yaml``  |
-+-------------------+---------------+---------------------------------------------------+
-| Pike              | Xenial        | ``juju deploy ./bundle-xenial-pike-s390x.yaml``   |
-+-------------------+---------------+---------------------------------------------------+
-| Queens            | Xenial        | ``juju deploy ./bundle-xenial-queens-s390x.yaml`` |
-+-------------------+---------------+---------------------------------------------------+
-| Queens            | Bionic        | ``juju deploy ./bundle-bionic-queens-s390x.yaml`` |
-+-------------------+---------------+---------------------------------------------------+
-| Rocky             | Bionic        | ``juju deploy ./bundle-bionic-rocky-s390x.yaml``  |
-+-------------------+---------------+---------------------------------------------------+
-| Stein             | Bionic        | ``juju deploy ./bundle-bionic-stein-s390x.yaml``  |
-+-------------------+---------------+---------------------------------------------------+
-| Train             | Bionic        | ``juju deploy ./bundle-bionic-train-s390x.yaml``  |
-+-------------------+---------------+---------------------------------------------------+
-| Train             | Eoan          | ``juju deploy ./bundle-eoan-train-s390x.yaml``    |
-+-------------------+---------------+---------------------------------------------------+
+.. code-block:: none
 
-Using the Cloud
-~~~~~~~~~~~~~~~
+   cd ~/openstack-on-lxd
+   juju deploy ./bundle-bionic-stein.yaml
 
-Check Access
-++++++++++++
+You can watch deployment progress with the command :command:`watch -n 5 -c
+juju status --color`. This will take a while to complete.
 
-Once deployment has completed (units should report a ready state in the status output), check that you can access the deployed cloud without issues:
+It is normal for the ceilometer application to be blocked at the end of the
+process. Overcome this with an action:
 
-.. code:: bash
+.. code-block:: none
 
-    source openrcv3_project
-    openstack catalog list
-    openstack service list
-    openstack network agent list
-    openstack volume service list
+   juju run-action --wait ceilometer/0 ceilometer-upgrade
 
-The openstack client commands should all succeed and you should get a feel as to how the various OpenStack components are deployed in each container.
+Sample :command:`juju status` output of a successful deployment is given
+:ref:`here <openstack_on_lxd_juju_status>`.
 
-Upload an image
-+++++++++++++++
+At this time it is recommended to verify that you can successfully query the
+cloud's resources. Begin by sourcing the supplied init file:
 
-Before we can boot an instance, we need an image to boot in Glance.
+.. code-block:: none
 
-.. note:: 
+   source openrcv3_project
+   openstack catalog list
+   openstack service list
+   openstack network agent list
+   openstack volume service list
 
-   If you are using a ZFS backend for this deployment, force-raw-images must be disabled on the nova-compute charm in Pike and later.
-   We have made this the default in our bundles - however, be aware that using this setting in a production environment is discouraged as it may have an impact on performance.
-
-For amd64:
-
-.. code:: bash
-
-    curl https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img | \
-        openstack image create --public --container-format=bare --disk-format=qcow2 xenial
-
-For arm64:
-
-.. code:: bash
-
-    curl https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-arm64-uefi1.img | \
-        openstack image create --public --container-format=bare --disk-format=qcow2 --property hw_firmware_type=uefi xenial
-
-For s390x:
-
-.. code:: bash
-
-    curl https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-s390x-disk1.img | \
-        openstack image create --public --container-format=bare --disk-format=qcow2 xenial
-
-For ppc64el:
-
-.. code:: bash
-
-    curl https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-ppc64el-disk1.img | \
-        openstack image create --public --container-format=bare --disk-format=qcow2 xenial
-
-
-Configure the network - Queens and Later
-++++++++++++++++++++++++++++++++++++++++
-
-First, create the 'external' network which actually maps directly to the LXD bridge:
-
-.. code:: bash
-
-    ./neutron-ext-net-ksv3 --network-type flat \
-        -g 10.0.8.1 -c 10.0.8.0/24 \
-        -f 10.0.8.201:10.0.8.254 ext_net
-
-and then create an internal overlay network for the instances to actually attach to:
-
-.. code:: bash
-
-    ./neutron-tenant-net-ksv3 -p admin -r provider-router \
-        -N 10.0.8.1 internal 192.168.20.0/24
-
-Configure the network - Pike and Earlier
-++++++++++++++++++++++++++++++++++++++++
-
-First, create the 'external' network which actually maps directly to the LXD bridge:
-
-.. code:: bash
-
-    ./neutron-ext-net --network-type flat \
-        -g 10.0.8.1 -c 10.0.8.0/24 \
-        -f 10.0.8.201:10.0.8.254 ext_net
-
-and then create an internal overlay network for the instances to actually attach to:
-
-.. code:: bash
-
-    ./neutron-tenant-net -t admin -r provider-router \
-        -N 10.0.8.1 internal 192.168.20.0/24
-
-
-Create a key-pair
-+++++++++++++++++
-
-Upload your local public key into the cloud so you can access instances:
-
-.. code:: bash
-
-    openstack keypair create --public-key ~/.ssh/id_rsa.pub mykey
-
-
-Create Flavors
-++++++++++++++
-
-It's safe to skip this for Mitaka.  For Newton and later, there are no pre-populated flavors.  Check if flavors exist, and if not, create them:
-
-.. code:: bash
-
-    openstack flavor list
-
-.. code:: bash
-
-    openstack flavor create --public --ram 512 --disk 1 --ephemeral 0 --vcpus 1 m1.tiny
-    openstack flavor create --public --ram 1024 --disk 20 --ephemeral 40 --vcpus 1 m1.small
-    openstack flavor create --public --ram 2048 --disk 40 --ephemeral 40 --vcpus 2 m1.medium
-    openstack flavor create --public --ram 8192 --disk 40 --ephemeral 40 --vcpus 4 m1.large
-    openstack flavor create --public --ram 16384 --disk 80 --ephemeral 40 --vcpus 8 m1.xlarge
-
-Boot an instance
-++++++++++++++++
-
-You can now boot an instance on your cloud:
-
-.. code:: bash
-
-    openstack server create --image xenial --flavor m1.small --key-name mykey \
-       --wait --nic net-id=$(openstack network list | grep internal | awk '{ print $2 }') \
-       openstack-on-lxd-ftw
-
-Attaching a volume
-++++++++++++++++++
-
-First, create a volume in cinder:
-
-.. code:: bash
-
-    openstack volume create --size 10 testvolume
-
-then attach it to the instance we just booted in nova:
-
-.. code:: bash
-
-    openstack server add volume openstack-on-lxd-ftw testvolume
-    openstack volume show testvolume
-
-The attached volume will be accessible once you login to the instance (see below).  It will need to be formatted and mounted!
-
-Accessing your instance
-+++++++++++++++++++++++
-
-In order to access the instance you just booted on the cloud, you'll need to assign a floating IP address to the instance:
-
-.. code:: bash
-
-    openstack floating ip create ext_net
-    openstack server add floating ip <uuid-of-instance> <new-floating-ip>
-
-Permit SSH and ping quite liberally, by allowing both on all default security groups. This only needs to be done once on the deployed cloud:
-
-.. code:: bash
-
-    for i in $(openstack security group list | awk '/default/{ print $2 }'); do \
-        openstack security group rule create $i --protocol icmp --remote-ip 0.0.0.0/0; \
-        openstack security group rule create $i --protocol tcp --remote-ip 0.0.0.0/0 --dst-port 22; \
-    done
-
-After running these commands you should be able to access the instance from the LXD host:
-
-.. code:: bash
-
-    ssh ubuntu@<new-floating-ip>
-
-Access the GUIs
-===============
-
-The method of accessing the GUI IP addresses varies, depending on where the cloud was deployed.  The "public" addresses of the deployed cloud are actually 10.0.8.x addresses, sitting behind NAT.
-
-OpenStack Dashboard
+Configure OpenStack
 ~~~~~~~~~~~~~~~~~~~
 
-First, find the IP address of the openstack-dashboard unit and admin's password by querying Juju:
+Import an image
+^^^^^^^^^^^^^^^
 
-.. code:: bash
+You'll need to import a boot image into Glance in order to create instances.
+The image architecture should match that of the host. Here we import a Bionic
+amd64 image and call it 'bionic-amd64':
 
-    juju status openstack-dashboard
-    juju run --unit keystone/leader 'leader-get admin_passwd'
+.. code-block:: none
 
+   curl http://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img | \
+      openstack image create --public --container-format=bare --disk-format=qcow2 \
+      bionic-amd64
 
-Then, choose your adventure:
+Images for other Ubuntu releases and architectures can be obtained in a similar
+way, but for the ARM 64-bit (arm64) architecture you will need to configure the
+image to boot in UEFI mode:
 
-OpenStack-on-LXD is deployed on your local machine
-++++++++++++++++++++++++++++++++++++++++++++++++++
+.. code-block:: none
 
-The IP address of the OpenStack Dashboard will be locally accessible.
+   curl http://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-arm64.img | \
+      openstack image create --public --container-format=bare --disk-format=qcow2 \
+      --property hw_firmware_type=uefi bionic-arm64
 
-Adjust and visit the following URL from a browser your local machine:
+.. note::
 
-.. code:: bash
+   If you are using a ZFS storage backend, the nova-compute charm's
+   ``force-raw-images`` option is automatically disabled for OpenStack Pike and
+   later. Be aware that using this setting in a production environment is
+   discouraged as it may have an impact on performance.
 
-    http://<ip address of openstack-dashboard>/horizon
+Configure the network
+^^^^^^^^^^^^^^^^^^^^^
 
-    domain:  admin_domain
-    user:  admin
-    password:  ??????????
+First, create the external network 'ext_net' and external subnet 'ext_subnet'
+which map directly to the LXD bridge:
 
-OpenStack-on-LXD is deployed on a remote machine
-++++++++++++++++++++++++++++++++++++++++++++++++
+.. code-block:: none
 
-The IP address of the GUI will not be directly accessible. You can forward a TCP port across an existing SSH session, then access the dashboard on your localhost.
+   openstack network create ext_net --external --share --default \
+      --provider-network-type flat --provider-physical-network physnet1
 
-In your SSH session, press the ~C key combo to initiate an SSH command console on-the-fly.  Adjust and issue the following command to forward ``localhost:10080`` to ``openstack-dashboard:80`` across that existing SSH session:
+   openstack subnet create ext_subnet --allocation-pool start=10.0.8.201,end=10.0.8.254 \
+      --subnet-range 10.0.8.0/24 --no-dhcp --gateway 10.0.8.1 --network ext_net
 
-.. code:: bash
+Then create the internal network 'int_net' and internal subnet 'int_subnet' for
+the instances to attach to:
 
-    -L 10080:<ip address of openstack-dashboard>:80
+.. code-block:: none
 
-Then visit the following URL from a browser on your local machine:
+   openstack network create int_net --internal
 
-.. code:: rest
+   openstack subnet create int_subnet \
+      --allocation-pool start=192.168.20.10,end=192.168.20.99 \
+      --subnet-range 192.168.20.0/24 \
+      --gateway 192.168.20.1 --dns-nameserver 10.0.8.1 \
+      --network int_net
 
-    http://localhost:10080/horizon
+Finally, connect the internal and external networks by means of router
+'router1':
 
-.. code:: bash
+.. code-block:: none
 
-    domain:  admin_domain
-    user:  admin
-    password:  ??????????
+   openstack router create router1
+   openstack router add subnet router1 int_subnet
+   openstack router set router1 --external-gateway ext_net
 
-Juju GUI
-~~~~~~~~
+Create a flavor
+^^^^^^^^^^^^^^^
 
-First, find the IP address and credentials for the Juju GUI:
+Create at least one flavor to define a hardware profile for new instances. Here
+we create one called 'm1.tiny':
 
-.. code:: bash
+.. code-block:: none
 
-    juju gui
+   openstack flavor create --public --ram 512 --disk 5 --ephemeral 0 --vcpus 1 m1.tiny
 
-Then, choose your adventure:
+Import an SSH keypair
+^^^^^^^^^^^^^^^^^^^^^
 
-OpenStack-on-LXD is deployed on your local machine
-++++++++++++++++++++++++++++++++++++++++++++++++++
+An SSH keypair needs to be imported into the cloud in order to access your
+instances.
 
-The IP address of the Juju GUI will be locally accessible.
+Generate one first if you do not yet have one. This command creates a
+passphraseless keypair (remove the ``-N`` option to avoid that):
 
-The URL provided should work directly, and it should look something like:
+.. code-block:: none
 
-.. code:: rest
+   ssh-keygen -q -N '' -f ~/.ssh/id_mykey
 
-    https://10.0.8.x:17070/gui/u/admin/default
+To import a keypair called 'mykey':
 
+.. code-block:: none
 
-OpenStack-on-LXD is deployed on a remote machine
-++++++++++++++++++++++++++++++++++++++++++++++++
+   openstack keypair create --public-key ~/.ssh/id_mykey.pub mykey
 
-The IP address of the Juju GUI will not be directly accessible. You can forward a TCP port across an existing SSH session, then access the Juju GUI on your localhost.
+Configure security groups
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In your SSH session, press the ~C key combo to initiate an SSH command console on-the-fly.  Adjust and issue the following command to forward ``localhost:10070`` to ``juju-gui:17070`` across that existing SSH session:
+Allow ICMP (ping) and SSH traffic to flow to cloud instances by creating
+corresponding rules for each default security group:
 
-.. code:: bash
+.. code-block:: none
 
-    -L 10070:<ip address of juju-gui>:17070
+   for i in $(openstack security group list | awk '/default/{ print $2 }'); do
+       openstack security group rule create $i --protocol icmp --remote-ip 0.0.0.0/0;
+       openstack security group rule create $i --protocol tcp --remote-ip 0.0.0.0/0 --dst-port 22;
+   done
 
-Then visit the following URL from a browser on your local machine:
+You only need to perform this step once.
 
-.. code:: rest
+Use OpenStack
+~~~~~~~~~~~~~
 
-    https://localhost:10070/gui/login/u/admin/default
+Create an instance
+^^^^^^^^^^^^^^^^^^
 
-Switching in a dev charm
-========================
+.. note::
 
-Now that you have a running OpenStack deployment on your machine, you can switch in your development changes to one of the charms in the deployment:
+   For OpenStack on LXD, if the host is PowerNV (ppc64el) you will need to
+   disable ``smt`` manually before creating instances:
 
-.. code:: bash
+   ``juju ssh nova-compute/0 sudo ppc64_cpu --smt=off``
 
-    juju upgrade-charm --switch <path-to-your-charm> cinder
+Create a Bionic instance called 'bionic-1' using the 'bionic-amd64' image and
+the 'm1.tiny' flavor:
 
-The charm will be upgraded with your local development changes; alternatively you can update the ``bundle.yaml`` to reference your local charm so that its used from the start of cloud deployment.
+.. code-block:: none
 
-Known Limitations
-=================
+   NET_ID=$(openstack network show int_net -f value -c id)
+   openstack server create --image bionic-amd64 --flavor m1.tiny --key-name mykey \
+      --network=$NET_ID bionic-1
 
-Currently is not possible to run Cinder with iSCSI/LVM based storage under LXD; this limits use of block storage options to those that are 100% userspace, such as Ceph.
+Attach a volume
+^^^^^^^^^^^^^^^
 
-.. _production-setup: https://github.com/lxc/lxd/blob/master/doc/production-setup.md
+This step is optional.
+
+To create a 10GiB volume called 'vol-10g' in Cinder and attach it to instance
+'bionic-1':
+
+.. code-block:: none
+
+   openstack volume create --size=10 vol-10g
+   openstack server add volume bionic-1 vol-10g
+   openstack volume show vol-10g
+
+The volume becomes immediately available to the instance. It will however need
+to be formatted and mounted before usage.
+
+Assign a floating IP address
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Request a floating IP address and assign it to instance 'bionic-1':
+
+.. code-block:: none
+
+   FLOATING_IP=$(openstack floating ip create -f value -c floating_ip_address ext_net)
+   openstack server add floating ip bionic-1 $FLOATING_IP
+
+Log in to an instance
+^^^^^^^^^^^^^^^^^^^^^
+
+Log in to an instance by connecting to its floating IP address:
+
+.. code-block:: none
+
+   ssh -i ~/.ssh/id_mykey ubuntu@$FLOATING_IP
+
+Troubleshooting
+...............
+
+Here are a few troubleshooting tips if the SSH connection fails:
+
+* Ensure that the instance has booted correctly with :command:`openstack
+  console log show <instance-name>`.
+
+* Ensure that the metadata service is running with :command:`openstack network
+  agent list`.
+
+Access the dashboards
+~~~~~~~~~~~~~~~~~~~~~
+
+There are two web UIs available out of the box. These are the OpenStack
+dashboard and the Juju dashboard.
+
+OpenStack dashboard
+^^^^^^^^^^^^^^^^^^^
+
+To access the OpenStack dashboard you'll need to determine its IP address and
+the admin user's credentials. These two commands will provide them,
+respectively:
+
+.. code-block:: none
+
+   juju status openstack-dashboard | grep -A1 'Public address'
+   juju run --unit keystone/leader 'leader-get admin_passwd'
+
+Our example cloud yields an address of '10.0.8.69'.
+
+Point your browser at the below URL and use the credentials (use your own IP
+address):
+
+.. code-block:: console
+
+   http://10.0.8.69/horizon
+
+   domain:  admin_domain
+   user:  admin
+   password:  ??????????
+
+If the host is remote you can use SSH local port forwarding to access it (use
+your own IP address):
+
+.. code-block:: none
+
+   ssh -N -L 10080:10.0.8.69:80 <remote-host>
+
+The URL then becomes: http://localhost:10080/horizon
+
+Juju dashboard
+^^^^^^^^^^^^^^
+
+To access the Juju dashboard you'll need to determine its URL and credentials.
+Do so like this:
+
+.. code-block:: none
+
+   juju dashboard
+
+Our example cloud shows:
+
+.. code-block:: console
+
+   Dashboard 0.1.7 for controller "lxd" is enabled at:
+     https://10.0.8.18:17070/dashboard
+   Your login credential is:
+     username: admin
+     password: 86f650892c26180a6bf2a116fb7df486
+
+If the host is remote you can use SSH local port forwarding to access it (use
+your own IP address):
+
+.. code-block:: none
+
+   ssh -N -L 10070:10.0.8.18:17070 <remote-host>
+
+The URL then becomes: https://localhost:10070/dashboard
+
+Charm development
+-----------------
+
+A newly developed charm can be swapped in to an existing deployment. For
+example, you can replace the current cinder application with your own charm
+like this:
+
+.. code-block:: none
+
+   juju upgrade-charm --switch <path-to-your-charm> cinder
+
+Alternatively you can update a bundle file to reference your local charm
+so that it can be used for a new cloud deployment.
+
+.. LINKS
+.. _LXD production setup: https://github.com/lxc/lxd/blob/master/doc/production-setup.md
+.. _LXD cloud type: https://juju.is/docs/lxd-cloud
+.. _MAAS cloud type: https://juju.is/docs/maas-cloud
+.. _Juju proxy documentation: https://juju.is/docs/offline-mode-strategies
 
 .. BUGS
 .. _GH #72: https://github.com/openstack-charmers/openstack-on-lxd/issues/72
