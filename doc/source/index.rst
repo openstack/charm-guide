@@ -13,6 +13,7 @@ deployments with loose coupling between OpenStack services.
    find-us
    deployment
    openstack-charms
+   support-notes
    creating-charms
    how-to-contribute
    author-guides/index
