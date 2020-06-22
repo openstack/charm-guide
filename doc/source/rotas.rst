@@ -29,6 +29,8 @@ following Launchpad tags to classify relevant bugs:
 * `scaleback`_ - Issues removing a unit, shrinking a cluster, replacing a unit.
 * `cold-start`_ - Issues in recovering the charm payload functionality after a
   power event such as a reboot or shutdown.
+* `cross-model`_ - Issues with Cross-Model Relations.
+
 
 Rota schedules
 --------------
@@ -82,3 +84,4 @@ files`_.
 .. _`ceph-upgrade`: https://bugs.launchpad.net/bugs/+bugs?field.tag=ceph-upgrade
 .. _`scaleback`: https://bugs.launchpad.net/bugs/+bugs?field.tag=scaleback
 .. _`cold-start`: https://bugs.launchpad.net/bugs/+bugs?field.tag=cold-start
+.. _`cross-model`: https://bugs.launchpad.net/bugs/+bugs?field.tag=cross-model
