@@ -259,6 +259,13 @@ Deployment Guide`_ for more details.
 Deprecation notices
 -------------------
 
+ceph-osd charm ``autotune`` option
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``autotune`` configuration option for the ceph-osd charm is deprecated and
+will be removed in the 20.10 release of OpenStack Charms. See bug `LP
+#1798794`_ for a full discussion.
+
 Removed features
 ----------------
 
@@ -370,3 +377,4 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _LP #1876849: https://bugs.launchpad.net/charm-neutron-openvswitch/+bug/1876849
 .. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
 .. _LP #1890628: https://bugs.launchpad.net/charm-neutron-api-plugin-arista/+bug/1890628
+.. _LP #1798794: https://bugs.launchpad.net/charm-ceph-osd/+bug/1798794
