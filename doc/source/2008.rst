@@ -165,6 +165,13 @@ To add the relation:
 
 All bundles that use cinder-ceph should be checked and the relation added.
 
+Glance Simplestreams Sync
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The glance-simplestreams-sync charm now installs simplestreams as a snap.
+As such it no longer has a 'source' configuration option - the snapstore
+channel to use for the snap can be configured using the 'channel' option.
+
 New charms
 ----------
 
@@ -202,6 +209,13 @@ Deprecation notices
 
 Removed features
 ----------------
+
+Glance Simplestreams Sync
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The glance-simplestreams-sync charm no longer supports deployment with
+the rabbitmq-server charm. Bundles which specify this relation will need
+to be updated.
 
 Known issues
 ------------
