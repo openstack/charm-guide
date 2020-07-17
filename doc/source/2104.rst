@@ -54,6 +54,19 @@ OpenStack charms. Instead, they will be released shortly after releases of the
 Trilio code. For instance, Trilio 4.1 is due in February and the Trilio charms
 will be released shortly thereafter.
 
+hacluster charm: scaling down
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The hacluster charm has a new action: ``update-ring``.
+
+When a clustered application (working alongside the hacluster application) is
+scaled down (i.e. ``remove-unit``) nodes in the corosync ring will not be
+removed. The ``update-ring`` action performs the removal and updates the
+corosync configuration accordingly. Failure to run this action will leave the
+cluster in an "incomplete" state. The corosync ring does not need to be updated
+when scaling up; it is automatically extended. See the `hacluster charm`_
+README for more information.
+
 New charms
 ----------
 
@@ -225,6 +238,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _Release schedule: release-schedule.html
 .. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
 .. _vault charm: https://opendev.org/openstack/charm-vault/src/branch/master/src/README.md#unseal-vault
+.. _hacluster charm: https://opendev.org/openstack/charm-hacluster/src/branch/master/README.md#update-ring-action
 .. _Cinder volume type: https://docs.openstack.org/cinder/latest/contributor/replication.html#volume-types-extra-specs
 .. _Cinder-Ceph replication development notes: https://github.com/ionutbalutoiu/cinder-ceph-replication
 .. _MicroStack: https://microstack.run
