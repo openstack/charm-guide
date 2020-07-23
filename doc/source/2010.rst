@@ -160,6 +160,19 @@ Arista - Supported releases
 The neutron-api-plugin-arista charm now supports all OpenStack releases starting
 with Queens. See `LP #1890628`_ for more details.
 
+Neutron Gateway and additional data on ports and bridges
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The neutron-gateway charm now marks the openvswitch ports and bridges it creates
+as managed by the charm. It does so by setting an ``external-id`` on them. See
+the `Open vSwitch Integration Guide for Centralized Control`_ for details.
+
+Even the ports and bridges created before upgrading to this release will be
+be marked. Marking our ports and bridges will allow us to implement some
+cleanup mechanism without risking removing too much.
+
+See bug `LP #1809190`_ for details.
+
 New charms
 ----------
 
@@ -171,6 +184,20 @@ Deprecation notices
 
 Removed features
 ----------------
+
+Neutron Gateway and network bridges
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The neutron-gateway charm no longer supports adding a Linux bridge to an
+openvswitch bridge.
+
+Rationale: this feature relied on the NetworkManager (a.k.a. ifupdown) feature
+``veth``. Unfortunately starting from Bionic (18.04) ifupdown isn't shipped by
+default anymore as it is being replaced by netplan.io, which doesn't implement
+this feature yet (see bug `LP #1876730`_). Using ifupdown on Bionic also causes
+issues with LXD containers (see bug`LP #1877594`_).
+
+See bug `LP #1877594`_ for details on how to migrate away from this feature.
 
 Known issues
 ------------
@@ -338,14 +365,18 @@ Deployment Guide`_ for more details.
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
 .. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
 .. _Arista test bundles: https://github.com/openstack/charm-neutron-api-plugin-arista/tree/master/src/tests/bundles
+.. _Open vSwitch Integration Guide for Centralized Control: https://docs.openvswitch.org/en/latest/topics/integration/
 
 .. COMMITS
 .. _Require relation to nova-compute application: https://review.opendev.org/#/c/731437/
 
 .. BUGS
+.. _LP #1809190: https://bugs.launchpad.net/charm-neutron-gateway/+bug/1809190
 .. _LP #1826382: https://bugs.launchpad.net/nova/+bug/1826382
 .. _LP #1839019: https://bugs.launchpad.net/charm-designate/+bug/1839019
 .. _LP #1876849: https://bugs.launchpad.net/charm-neutron-openvswitch/+bug/1876849
+.. _LP #1877594: https://bugs.launchpad.net/charm-neutron-gateway/+bug/1877594
+.. _LP #1876730: https://bugs.launchpad.net/netplan/+bug/1876730
 .. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
 .. _LP #1890628: https://bugs.launchpad.net/charm-neutron-api-plugin-arista/+bug/1890628
 .. _LP #1889396: https://bugs.launchpad.net/networking-arista/+bug/1889396
