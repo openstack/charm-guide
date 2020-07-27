@@ -45,6 +45,7 @@ OpenStack Charms project.
 * `mysql-innodb-cluster <https://opendev.org/openstack/charm-mysql-innodb-cluster>`_
 * `mysql-router <https://opendev.org/openstack/charm-mysql-router>`_
 * `neutron-api <https://opendev.org/openstack/charm-neutron-api/>`_
+* `neutron-api-plugin-arista <https://opendev.org/openstack/charm-neutron-api-plugin-arista>`_
 * `neutron-api-plugin-ovn <https://opendev.org/openstack/charm-neutron-api-plugin-ovn>`_
 * `neutron-dynamic-routing <https://opendev.org/openstack/charm-neutron-dynamic-routing/>`_
 * `neutron-gateway <https://opendev.org/openstack/charm-neutron-gateway/>`_
@@ -174,6 +175,27 @@ channel to use for the snap can be configured using the 'channel' option.
 
 New charms
 ----------
+
+Arista
+~~~~~~
+
+The neutron-api-plugin-arista charm is now an officially supported charm.
+
+.. note::
+
+   For now the neutron-api-plugin-arista charm is only supported up to OpenStack
+   Queens.
+
+This subordinate charm provides the Arista ML2 Plugin support to the OpenStack
+Neutron API service.
+
+When this charm is related to the neutron-api charm it will install the
+Arista Neutron packages on each neutron-api unit in the region and supply the
+desired configuration to the neutron-api service.
+
+For more details see the `neutron-api-plugin-arista charm README`_.
+
+For upgrading from earlier prototypes see `Upgrading to stable Arista charm`_.
 
 Preview charm features
 ----------------------
@@ -383,6 +405,8 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Networking Tools PPA: https://launchpad.net/~openstack-charmers/+archive/ubuntu/networking-tools
 .. _gaps from ML2+OVS: https://docs.openstack.org/neutron/ussuri/ovn/gaps.html
 .. _Identity service Security Checklist: https://docs.openstack.org/security-guide/identity/checklist.html
+.. _neutron-api-plugin-arista charm README: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/README.md
+.. _Upgrading to stable Arista charm: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/docs/upgrading-to-stable.md
 
 .. COMMITS
 .. _Require relation to nova-compute application: https://review.opendev.org/#/c/731437/
