@@ -173,6 +173,25 @@ The glance-simplestreams-sync charm now installs simplestreams as a snap.
 As such it no longer has a 'source' configuration option - the snapstore
 channel to use for the snap can be configured using the 'channel' option.
 
+
+MySQL InnoDB Cluster TLS communication
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TLS communication between MySQL InnoDB Cluster and its cloud clients is now
+supported. Previously, TLS was only enabled for inter-MySQL client
+communication by way of a self-signed certificate.
+
+Due to the circular dependency between the vault and mysql-innodb-cluster
+applications, the enablement of this feature can only be done
+post-deployment (once vault has been initialised and has a root Certificate
+Authority).
+
+Database TLS communication is enabled with this relation:
+
+.. code-block:: none
+
+   juju add-relation mysql-innodb-cluster:certificates vault:certificates
+
 New charms
 ----------
 
