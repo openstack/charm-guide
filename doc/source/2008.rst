@@ -173,6 +173,15 @@ The glance-simplestreams-sync charm now installs simplestreams as a snap.
 As such it no longer has a 'source' configuration option - the snapstore
 channel to use for the snap can be configured using the 'channel' option.
 
+Gnocchi S3 support
+~~~~~~~~~~~~~~~~~~
+
+The gnocchi charm can now be configured to use S3 as a storage backend. By
+default it uses Ceph. For more details see the `gnocchi charm README`_.
+
+.. note::
+
+   S3 storage support for Gnocchi is available starting with OpenStack Stein.
 
 MySQL InnoDB Cluster TLS communication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -254,9 +263,9 @@ Removed features
 Glance Simplestreams Sync
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The glance-simplestreams-sync charm no longer supports deployment with
-the rabbitmq-server charm. Bundles which specify this relation will need
-to be updated.
+The glance-simplestreams-sync charm no longer supports deployment with the
+rabbitmq-server charm. Bundles which specify this relation will need to be
+updated.
 
 Known issues
 ------------
@@ -426,6 +435,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Identity service Security Checklist: https://docs.openstack.org/security-guide/identity/checklist.html
 .. _neutron-api-plugin-arista charm README: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/README.md
 .. _Upgrading to stable Arista charm: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/docs/upgrading-to-stable.md
+.. _gnocchi charm README: https://github.com/openstack/charm-gnocchi/blob/master/src/README.md
 
 .. COMMITS
 .. _Require relation to nova-compute application: https://review.opendev.org/#/c/731437/
