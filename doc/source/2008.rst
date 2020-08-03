@@ -139,24 +139,15 @@ test bundle, and/or a `OpenStack Charms Deployment Guide`_ section which
 details the use of the feature. For example test bundles, see the
 ``src/tests/bundles`` directory within the relevant charm repository.
 
-Charm cinder-ceph now requires 'ceph-access' relation to Charm nova-compute
+Charm cinder-ceph now requires 'ceph-access' relation to charm nova-compute
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In order to ensure a functional nova-compute application, the 'ceph-access'
-relation is now required between the cinder-ceph charm and the nova-compute
-charm when cinder-ceph is related to the cinder charm. Otherwise, the charm
-will go into the blocked state.
-
-This is due to this change:
-
-   Without a relation to at least one nova-compute application a cinder-ceph
-   backend will not be functional as the libvirt secrets will not have been
-   created to allow access to the ceph cluster from libvirt/qemu.
-
-   -- `Require relation to nova-compute application`_
-
-This probably won't affect most existing, deployed, clouds, but *may* affect
-test bundles that now won't complete deployment.
+When both the nova-compute and cinder-ceph applications are deployed a new
+relation is now required. In this context, if the 'ceph-access' relation
+endpoint is not present between cinder-ceph and nova-compute the latter charm
+will go into the blocked state. This should not affect most currently deployed
+clouds, but it will affect new deployments. See commit `Require relation to
+nova-compute application`_ for details.
 
 To add the relation:
 
@@ -164,14 +155,12 @@ To add the relation:
 
    juju add-relation nova-compute:ceph-access cinder-ceph:ceph-access
 
-All bundles that use cinder-ceph should be checked and the relation added.
-
 Glance Simplestreams Sync
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The glance-simplestreams-sync charm now installs simplestreams as a snap.
-As such it no longer has a 'source' configuration option - the snapstore
-channel to use for the snap can be configured using the 'channel' option.
+The glance-simplestreams-sync charm now installs simplestreams as a snap. As
+such it no longer has a 'source' configuration option - the snapstore channel
+to use for the snap can be configured using the 'channel' option.
 
 Gnocchi S3 support
 ~~~~~~~~~~~~~~~~~~
@@ -191,9 +180,8 @@ supported. Previously, TLS was only enabled for inter-MySQL client
 communication by way of a self-signed certificate.
 
 Due to the circular dependency between the vault and mysql-innodb-cluster
-applications, the enablement of this feature can only be done
-post-deployment (once vault has been initialised and has a root Certificate
-Authority).
+applications, the enablement of this feature can only be done post-deployment
+(once vault has been initialised and has a root Certificate Authority).
 
 Database TLS communication is enabled with this relation:
 
@@ -217,9 +205,9 @@ The neutron-api-plugin-arista charm is now an officially supported charm.
 This subordinate charm provides the Arista ML2 Plugin support to the OpenStack
 Neutron API service.
 
-When this charm is related to the neutron-api charm it will install the
-Arista Neutron packages on each neutron-api unit in the region and supply the
-desired configuration to the neutron-api service.
+When this charm is related to the neutron-api charm it will install the Arista
+Neutron packages on each neutron-api unit in the region and supply the desired
+configuration to the neutron-api service.
 
 For more details see the `neutron-api-plugin-arista charm README`_.
 
@@ -270,18 +258,6 @@ updated.
 Known issues
 ------------
 
-Glance Simplestreams Sync
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-When deploying the glance-simplestreams-sync charm on Bionic a more recent
-version of the simplestreams package must be installed by configuring a PPA:
-
-.. code-block:: none
-
-   juju config glance-simplestreams-sync source=ppa:simplestreams-dev/trunk
-
-See bug `LP #1790904`_ for details.
-
 Designate and Vault at Ocata and earlier
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -319,34 +295,12 @@ the data-mover service is provided for RabbitMQ.
    juju remove-relation trilio-data-mover rabbitmq-server
    juju add-relation trilio-data-mover rabbitmq-server
 
-TrilioVault package upgrades
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Changing the value of the 'triliovault-pkg-source' option does not currently
-trigger a package upgrade although the apt sources for the unit are updated.
-
-Packages can be manually upgraded after changing this option - for example:
-
-.. code-block:: none
-
-   juju run --application trilio-dm-api "sudo apt -y dist-upgrade"
-
-See bug `LP #1879904`_ for more details.
-
-Designate upgrades to Train
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-When upgrading Designate to OpenStack Train, there is an encoding issue between
-the designate-producer and memcached that causes the designate-producer to
-crash. See bug `LP #1828534`_. This can be resolved by restarting the memcached
-service.
-
-.. code-block:: none
-
-   juju run --application=memcached 'sudo systemctl restart memcached'
-
 Octavia and neutron-openvswitch in LXD
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. note::
+
+   This issue is due to a Juju bug, which was fixed in Juju 2.8.1.
 
 The octavia charm requires a neutron-openvswitch subordinate which means that
 if it runs in a container, the openvswitch kernel module must be loaded before
@@ -372,26 +326,6 @@ Due to an unresolved permission issue the ceph-rbd-mirror charm will stay in a
 blocked state after configuring mirroring for pools when connected to a Ceph
 Octopus cluster. See bug `LP #1879749`_ for details.
 
-Minimum Juju version for deploying Octavia
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Juju 2.7 and above should be used for deployments with the octavia charm since
-it has dependencies that require the ``LANG`` environment variable to be set
-during package installation. Juju versions prior to 2.7 do not set the ``LANG``
-variable in hook executions which leads to the default python decoder being set
-to ASCII - this results in decoding issues when one of the dependent package's
-``setup.py`` script gets executed and reads a source file containing UTF-8 code
-units. As a result, the following error can be seen in a hook error:
-
-.. code-block:: console
-
-   UnicodeDecodeError: 'ascii' codec can't decode byte 0xc8 in position 129: ordinal not in range(128)
-
-See bug `LP #1879184`_ for more information.
-
-This issue affects existing Juju 2.6 environments as well if a charm upgrade is
-performed. It will be addressed by fixing `GH #173`_.
-
 Bugs fixed
 ----------
 
@@ -405,34 +339,10 @@ Please see the `OpenStack Charm Guide`_ for current information.
 
 .. LINKS
 .. _OpenStack Upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
-.. _Open Virtual Network (OVN): https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
-.. _OpenStack bundles Focal Ussuri: https://github.com/openstack-charmers/openstack-bundles/blob/master/development/openstack-base-focal-ussuri-ovn/bundle.yaml
 .. _20.08 milestone: https://launchpad.net/openstack-charms/+milestone/20.08
-.. _Policy Overrides: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-policy-overrides.html
-.. _Neutron documentation: https://docs.openstack.org/neutron/latest/admin/config-fip-port-forwardings.html
-.. _placement API: https://docs.openstack.org/placement/ussuri/
-.. _HA with pause/resume: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#ha-with-pause-resume
-.. _Specific series upgrade procedures: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-series-upgrade-specific-procedures.html#percona-series-upgrade-to-focal
-.. _Swift Auth system: https://docs.openstack.org/swift/latest/overview_auth.html
-.. _Swift Global Cluster: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-swift-gc.html
-.. _Toward Convergence of ML2+OVS+DVR and OVN: http://specs.openstack.org/openstack/neutron-specs/specs/ussuri/ml2ovs-ovn-convergence.html
-.. _Vault deployment and configuration: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
-.. _Security compliance and PCI-DSS: https://docs.openstack.org/keystone/train/admin/configuration.html#security-compliance-and-pci-dss
-.. _Keystone charm README: https://github.com/openstack/charm-keystone/blob/master/README.md
-.. _Neutron FWaaS project has been deprecated: https://review.opendev.org/#/c/708675/
-.. _Cinder charm README: https://github.com/openstack/charm-cinder/blob/master/README.md
-.. _Juju storage: https://juju.is/docs/storage
-.. _TrilioVault appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-trilio-vault.html
-.. _Automated instance recovery: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-masakari.html
-.. _Ceph iSCSI Gateway README: https://github.com/openstack-charmers/charm-ceph-iscsi/blob/master/README.md
-.. _Nova Train configuration options: https://docs.openstack.org/nova/train/configuration/config.html#quota.count_usage_from_placement
-.. _NIC hardware offload appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-hardware-offload.html
-.. _Networking Tools PPA: https://launchpad.net/~openstack-charmers/+archive/ubuntu/networking-tools
-.. _gaps from ML2+OVS: https://docs.openstack.org/neutron/ussuri/ovn/gaps.html
-.. _Identity service Security Checklist: https://docs.openstack.org/security-guide/identity/checklist.html
 .. _neutron-api-plugin-arista charm README: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/README.md
 .. _Upgrading to stable Arista charm: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/docs/upgrading-to-stable.md
 .. _gnocchi charm README: https://github.com/openstack/charm-gnocchi/blob/master/src/README.md
@@ -441,16 +351,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Require relation to nova-compute application: https://review.opendev.org/#/c/731437/
 
 .. BUGS
-.. _GH #173: https://github.com/juju-solutions/layer-basic/issues/173
-.. _LP #1773765: https://bugs.launchpad.net/masakari/+bug/1773765
-.. _LP #1790904: https://bugs.launchpad.net/simplestreams/+bug/1790904
 .. _LP #1826382: https://bugs.launchpad.net/nova/+bug/1826382
 .. _LP #1839019: https://bugs.launchpad.net/charm-designate/+bug/1839019
-.. _LP #1859844: https://bugs.launchpad.net/charm-keystone/+bug/1859844
-.. _LP #1828534: https://bugs.launchpad.net/charm-designate/+bug/1828534
 .. _LP #1876849: https://bugs.launchpad.net/charm-neutron-openvswitch/+bug/1876849
 .. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
-.. _LP #1877642: https://bugs.launchpad.net/bugs/1877642
-.. _LP #1863021: https://bugs.launchpad.net/bugs/1863021
-.. _LP #1879184: https://bugs.launchpad.net/charm-octavia/+bug/1879184/comments/9
-.. _LP #1879904: https://bugs.launchpad.net/charm-trilio-horizon-plugin/+bug/1879904
