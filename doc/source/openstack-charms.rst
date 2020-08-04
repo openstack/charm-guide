@@ -40,6 +40,7 @@ OpenStack Charms project.
 * `mysql-innodb-cluster <https://opendev.org/openstack/charm-mysql-innodb-cluster>`_
 * `mysql-router <https://opendev.org/openstack/charm-mysql-router>`_
 * `neutron-api <https://opendev.org/openstack/charm-neutron-api/>`_
+* `neutron-api-plugin-arista <https://opendev.org/openstack/charm-neutron-api-plugin-arista>`_
 * `neutron-api-plugin-ovn <https://opendev.org/openstack/charm-neutron-api-plugin-ovn>`_
 * `neutron-dynamic-routing <https://opendev.org/openstack/charm-neutron-dynamic-routing/>`_
 * `neutron-gateway <https://opendev.org/openstack/charm-neutron-gateway/>`_
@@ -50,8 +51,8 @@ OpenStack Charms project.
 * `octavia <https://opendev.org/openstack/charm-octavia/>`_
 * `octavia-dashboard <https://opendev.org/openstack/charm-octavia-dashboard/>`_
 * `octavia-diskimage-retrofit <https://opendev.org/openstack/charm-octavia-diskimage-retrofit/>`_
-* `placement <https://opendev.org/openstack/charm-placement>`_
 * `openstack-dashboard <https://opendev.org/openstack/charm-openstack-dashboard/>`_
+* `placement <https://opendev.org/openstack/charm-placement>`_
 * `swift-proxy <https://opendev.org/openstack/charm-swift-proxy/>`_
 * `swift-storage <https://opendev.org/openstack/charm-swift-storage/>`_
 
@@ -68,6 +69,7 @@ OpenStack project.
 * `ceph-proxy <https://opendev.org/openstack/charm-ceph-proxy/>`_
 * `ceph-radosgw <https://opendev.org/openstack/charm-ceph-radosgw/>`_
 * `ceph-rbd-mirror <https://opendev.org/openstack/charm-ceph-rbd-mirror/>`_
+* `cinder-purestorage <https://opendev.org/openstack/charm-cinder-purestorage/>`_
 * `designate-bind <https://opendev.org/openstack/charm-designate-bind/>`_
 * `glance-simplestreams-sync <https://opendev.org/openstack/charm-glance-simplestreams-sync/>`_
 * `gnocchi <https://opendev.org/openstack/charm-gnocchi/>`_
@@ -89,7 +91,7 @@ charms may receive, some work (major bugs, payload packaging issues, project
 issues, general QA) is still required before the charms are ready for
 production use (promoted to Stable).
 
-* `ceph-iscsi <https://github.com/openstack-charmers/charm-ceph-iscsi/>`_
+* `ceph-iscsi <https://opendev.org/openstack/charm-ceph-iscsi/>`_
 * `trilio-data-mover <https://opendev.org/openstack/charm-trilio-data-mover/>`_
 * `trilio-dm-api <https://opendev.org/openstack/charm-trilio-dm-api/>`_
 * `trilio-horizon-plugin <https://opendev.org/openstack/charm-trilio-horizon-plugin/>`_

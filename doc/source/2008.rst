@@ -96,7 +96,7 @@ charms may receive, some work (major bugs, payload packaging issues, project
 issues, general QA) is still required before the charms are ready for
 production use (promoted to Stable).
 
-* `ceph-iscsi <https://github.com/openstack-charmers/charm-ceph-iscsi/>`_
+* `ceph-iscsi <https://opendev.org/openstack/charm-ceph-iscsi/>`_
 * `trilio-data-mover <https://opendev.org/openstack/charm-trilio-data-mover/>`_
 * `trilio-dm-api <https://opendev.org/openstack/charm-trilio-dm-api/>`_
 * `trilio-horizon-plugin <https://opendev.org/openstack/charm-trilio-horizon-plugin/>`_
@@ -338,7 +338,6 @@ Next release info
 Please see the `OpenStack Charm Guide`_ for current information.
 
 .. LINKS
-.. _OpenStack Upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
