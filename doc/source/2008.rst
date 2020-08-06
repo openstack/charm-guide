@@ -347,6 +347,39 @@ Due to an unresolved permission issue the ceph-rbd-mirror charm will stay in a
 blocked state after configuring mirroring for pools when connected to a Ceph
 Octopus cluster. See bug `LP #1879749`_ for details.
 
+Series upgrade - percona-cluster and vault charms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+percona-cluster
+^^^^^^^^^^^^^^^
+
+During a series upgrade from Xenial (16.04) to Bionic (18.04) the
+percona-cluster charm may fail during the ``post-series-upgrade`` hook. This
+appears to be because the percona-cluster charm may erroneously delete the file
+``/var/lib/percona-xtradb-cluster/seeded`` (see bug `LP #1868326`_). If this
+occurs, then executing the following commands on the failed unit will recover
+the hook and allow it to complete the series upgrade:
+
+.. code-block:: none
+
+   juju run percona-cluster/N 'echo "done" > /var/lib/percona-xtradb-cluster/seeded'
+   juju resolved percona-cluster/N
+
+This may be required for each percona-cluster unit.
+
+vault
+^^^^^
+
+If a series upgrade is attempted while Vault is sealed then manual intervention
+will be required (see bugs `LP #1886083`_ and `LP #1890106`_). The vault leader
+unit (which will be in error) will need to be unsealed and the hook error
+resolved. The `Vault section`_ in the `OpenStack Charms Deployment Guide`_ has
+detailed unsealing instructions and the hook error can be resolved with:
+
+.. code-block:: none
+
+   juju resolved vault/N
+
 Bugs fixed
 ----------
 
@@ -367,6 +400,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Upgrading to stable Arista charm: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/docs/upgrading-to-stable.md
 .. _gnocchi charm README: https://github.com/openstack/charm-gnocchi/blob/master/src/README.md
 .. _keystone-kerberos charm README: https://opendev.org/openstack/charm-keystone-kerberos/src/branch/master/src/README.md
+.. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
 
 .. COMMITS
 .. _Require relation to nova-compute application: https://review.opendev.org/#/c/731437/
@@ -378,3 +412,6 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
 .. _LP #1890628: https://bugs.launchpad.net/charm-neutron-api-plugin-arista/+bug/1890628
 .. _LP #1798794: https://bugs.launchpad.net/charm-ceph-osd/+bug/1798794
+.. _LP #1868326: https://bugs.launchpad.net/charm-percona-cluster/+bug/1868326
+.. _LP #1890106: https://bugs.launchpad.net/vault-charm/+bug/1890106
+.. _LP #1886083: https://bugs.launchpad.net/vault-charm/+bug/1886083
