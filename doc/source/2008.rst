@@ -201,7 +201,8 @@ The neutron-api-plugin-arista charm is now an officially supported charm.
 .. note::
 
    For now the neutron-api-plugin-arista charm is only supported up to
-   OpenStack Queens.
+   OpenStack Queens. The ongoing work for supporting other releases is tracked
+   in `LP #1890628`_.
 
 This subordinate charm provides the Arista ML2 Plugin support to the OpenStack
 Neutron API service.
@@ -368,3 +369,4 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _LP #1839019: https://bugs.launchpad.net/charm-designate/+bug/1839019
 .. _LP #1876849: https://bugs.launchpad.net/charm-neutron-openvswitch/+bug/1876849
 .. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
+.. _LP #1890628: https://bugs.launchpad.net/charm-neutron-api-plugin-arista/+bug/1890628
