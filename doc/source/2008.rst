@@ -86,6 +86,10 @@ OpenStack project.
 * `percona-cluster <https://opendev.org/openstack/charm-percona-cluster/>`_
 * `rabbitmq-server <https://opendev.org/openstack/charm-rabbitmq-server/>`_
 * `vault <https://opendev.org/openstack/charm-vault/>`_
+* `trilio-data-mover <https://opendev.org/openstack/charm-trilio-data-mover/>`_
+* `trilio-dm-api <https://opendev.org/openstack/charm-trilio-dm-api/>`_
+* `trilio-horizon-plugin <https://opendev.org/openstack/charm-trilio-horizon-plugin/>`_
+* `trilio-wlm <https://opendev.org/openstack/charm-trilio-wlm/>`_
 
 Tech-preview charms (Beta)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -98,10 +102,6 @@ production use (promoted to Stable).
 
 * `ceph-iscsi <https://opendev.org/openstack/charm-ceph-iscsi/>`_
 * `keystone-kerberos <https://opendev.org/openstack/charm-keystone-kerberos/>`_
-* `trilio-data-mover <https://opendev.org/openstack/charm-trilio-data-mover/>`_
-* `trilio-dm-api <https://opendev.org/openstack/charm-trilio-dm-api/>`_
-* `trilio-horizon-plugin <https://opendev.org/openstack/charm-trilio-horizon-plugin/>`_
-* `trilio-wlm <https://opendev.org/openstack/charm-trilio-wlm/>`_
 
 Alpha charms (Edge)
 ~~~~~~~~~~~~~~~~~~~
@@ -215,6 +215,19 @@ For more details see the `neutron-api-plugin-arista charm README`_.
 
 For upgrading from earlier prototypes see `Upgrading to stable Arista charm`_.
 
+Trilio charms
+~~~~~~~~~~~~~
+
+The trilio-data-mover, trilio-dm-api, trilio-horizon-plugin, and trilio-wlm
+charms are now officially supported. These charms deploy TrilioVault, a
+commercial snapshot and restore solution for OpenStack. For details see the
+`TrilioVault Data Protection`_ section of the `OpenStack Charms Deployment
+Guide`_.
+
+.. note::
+
+   The Trilio charms are currently only supported on Ubuntu 18.04 LTS (Bionic).
+
 Preview charm features
 ----------------------
 
@@ -316,6 +329,13 @@ the data-mover service is provided for RabbitMQ.
    juju remove-relation trilio-data-mover rabbitmq-server
    juju add-relation trilio-data-mover rabbitmq-server
 
+TrilioVault File Recovery Manager
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Mounting snapshots using the File Recovery Manager appliance fails due to
+permissions errors encountered during the libvirt/qemu snapshot mount process
+on compute nodes. See bug `LP #1888389`_ for details.
+
 Octavia and neutron-openvswitch in LXD
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -401,6 +421,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _gnocchi charm README: https://github.com/openstack/charm-gnocchi/blob/master/src/README.md
 .. _keystone-kerberos charm README: https://opendev.org/openstack/charm-keystone-kerberos/src/branch/master/src/README.md
 .. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
+.. _TrilioVault Data Protection: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-trilio-vault.html
 
 .. COMMITS
 .. _Require relation to nova-compute application: https://review.opendev.org/#/c/731437/
@@ -415,3 +436,4 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _LP #1868326: https://bugs.launchpad.net/charm-percona-cluster/+bug/1868326
 .. _LP #1890106: https://bugs.launchpad.net/vault-charm/+bug/1890106
 .. _LP #1886083: https://bugs.launchpad.net/vault-charm/+bug/1886083
+.. _LP #1888389: https://bugs.launchpad.net/charm-trilio-data-mover/+bug/1888389
