@@ -92,6 +92,7 @@ issues, general QA) is still required before the charms are ready for
 production use (promoted to Stable).
 
 * `ceph-iscsi <https://opendev.org/openstack/charm-ceph-iscsi/>`_
+* `keystone-kerberos <https://opendev.org/openstack/charm-keystone-kerberos/>`_
 * `trilio-data-mover <https://opendev.org/openstack/charm-trilio-data-mover/>`_
 * `trilio-dm-api <https://opendev.org/openstack/charm-trilio-dm-api/>`_
 * `trilio-horizon-plugin <https://opendev.org/openstack/charm-trilio-horizon-plugin/>`_

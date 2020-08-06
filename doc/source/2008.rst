@@ -97,6 +97,7 @@ issues, general QA) is still required before the charms are ready for
 production use (promoted to Stable).
 
 * `ceph-iscsi <https://opendev.org/openstack/charm-ceph-iscsi/>`_
+* `keystone-kerberos <https://opendev.org/openstack/charm-keystone-kerberos/>`_
 * `trilio-data-mover <https://opendev.org/openstack/charm-trilio-data-mover/>`_
 * `trilio-dm-api <https://opendev.org/openstack/charm-trilio-dm-api/>`_
 * `trilio-horizon-plugin <https://opendev.org/openstack/charm-trilio-horizon-plugin/>`_
@@ -199,8 +200,8 @@ The neutron-api-plugin-arista charm is now an officially supported charm.
 
 .. note::
 
-   For now the neutron-api-plugin-arista charm is only supported up to OpenStack
-   Queens.
+   For now the neutron-api-plugin-arista charm is only supported up to
+   OpenStack Queens.
 
 This subordinate charm provides the Arista ML2 Plugin support to the OpenStack
 Neutron API service.
@@ -215,6 +216,18 @@ For upgrading from earlier prototypes see `Upgrading to stable Arista charm`_.
 
 Preview charm features
 ----------------------
+
+Keystone Kerberos support
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The new preview keystone-kerberos subordinate charm can be used to add Kerberos
+support to Keystone by authenticating to an OpenStack domain. An external
+Kerberos server is needed. For more details see the `keystone-kerberos charm
+README`_.
+
+.. note::
+
+   Keystone Kerberos is supported starting with OpenStack Queens.
 
 Upgrading charms
 ----------------
@@ -345,6 +358,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _neutron-api-plugin-arista charm README: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/README.md
 .. _Upgrading to stable Arista charm: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/docs/upgrading-to-stable.md
 .. _gnocchi charm README: https://github.com/openstack/charm-gnocchi/blob/master/src/README.md
+.. _keystone-kerberos charm README: https://opendev.org/openstack/charm-keystone-kerberos/src/branch/master/src/README.md
 
 .. COMMITS
 .. _Require relation to nova-compute application: https://review.opendev.org/#/c/731437/
