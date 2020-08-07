@@ -360,12 +360,20 @@ In order to work around the error an operator needs to make sure the
 respective neutron-openvswitch unit is present. After that the unit error can
 be resolved.
 
-Ceph RBD Mirror and Ceph Octopus
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+OpenStack os-brick, Ceph Octopus, and Focal
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Due to an unresolved permission issue the ceph-rbd-mirror charm will stay in a
-blocked state after configuring mirroring for pools when connected to a Ceph
-Octopus cluster. See bug `LP #1879749`_ for details.
+The Ceph RBD Mirror and Cinder Backup Swift Proxy charms do not work with Ceph
+Octopus due to an issue with the upstream OpenStack os-brick library (see bug
+`LP #1865754`_). As Octopus is the default Ceph version on Ubuntu 20.04 LTS
+(Focal) these charms cannot be used on Focal until the issue is resolved. Here
+are the resulting charm-specific behaviours:
+
+* ceph-rbd-mirror charm: The charm will enter a blocked state after configuring
+  pool mirroring (see bug `LP #1879749`_).
+* cinder-backup-swift-proxy charm: If a backup volume operation is performed
+  the resulting volume will be in error (see bug `LP #1890821`_).
+
 
 Series upgrade - percona-cluster and vault charms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -437,3 +445,6 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _LP #1890106: https://bugs.launchpad.net/vault-charm/+bug/1890106
 .. _LP #1886083: https://bugs.launchpad.net/vault-charm/+bug/1886083
 .. _LP #1888389: https://bugs.launchpad.net/charm-trilio-data-mover/+bug/1888389
+.. _LP #1865754: https://bugs.launchpad.net/tripleo/+bug/1865754
+.. _LP #1890821: https://bugs.launchpad.net/charm-cinder-backup-swift-proxy/+bug/1890821
+.. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
