@@ -160,8 +160,11 @@ Glance Simplestreams Sync
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The glance-simplestreams-sync charm now installs simplestreams as a snap. As
-such it no longer has a 'source' configuration option - the snapstore channel
-to use for the snap can be configured using the 'channel' option.
+such it no longer has a ``source`` configuration option (the new
+``snap-channel`` option is used to select a channel in the Snap store).
+
+There is now a Juju action to perform a one-time sync of images:
+``sync-images``.
 
 Gnocchi S3 support
 ~~~~~~~~~~~~~~~~~~
@@ -288,6 +291,15 @@ Glance Simplestreams Sync
 The glance-simplestreams-sync charm no longer supports deployment with the
 rabbitmq-server charm. Bundles which specify this relation will need to be
 updated.
+
+To prevent possible race conditions during the deployment of a cloud, the
+behaviour of enabling synchronisation via Cron by default has changed. You will
+now need to manually enable this feature (via the ``run`` configuration
+option):
+
+.. code-block:: none
+
+   juju config glance-simplestreams-sync run=true
 
 Known issues
 ------------
