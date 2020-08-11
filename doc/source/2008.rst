@@ -282,6 +282,16 @@ The ``autotune`` configuration option for the ceph-osd charm is deprecated and
 will be removed in the 20.10 release of OpenStack Charms. See bug `LP
 #1798794`_ for a full discussion.
 
+glance-simplestreams-sync charm ``use_swift`` option
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``use_swift`` configuration option for the glance-simplestreams-sync charm
+is deprecated and will be removed in the 20.10 release of OpenStack Charms.
+
+This option allowed simplestreams metadata to be hosted on an Apache server
+local to a glance-simplestreams-sync unit. Object storage will become the only
+way to store this metadata.
+
 Removed features
 ----------------
 
