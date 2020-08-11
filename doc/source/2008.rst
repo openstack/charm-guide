@@ -376,6 +376,14 @@ are the resulting charm-specific behaviours:
 * cinder-backup-swift-proxy charm: If a backup volume operation is performed
   the resulting volume will be in error (see bug `LP #1890821`_).
 
+Rabbitmq Scale-Out
+~~~~~~~~~~~~~~~~~~
+
+The 20.08 OpenStack Charms release contains a fix to bug `LP #1796886`_ which
+is a bug relating to scaling-out rabbitmq-server. Please upgrade the
+rabbitmq-server charm and all charms with an amqp relation before scaling-out
+rabbitmq-server.
+
 Series upgrade - percona-cluster and vault charms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -465,3 +473,4 @@ Deployment Guide`_ for more details.
 .. _LP #1865754: https://bugs.launchpad.net/tripleo/+bug/1865754
 .. _LP #1890821: https://bugs.launchpad.net/charm-cinder-backup-swift-proxy/+bug/1890821
 .. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
+.. _LP #1796886: https://bugs.launchpad.net/charm-rabbitmq-server/+bug/1796886
