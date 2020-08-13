@@ -42,6 +42,7 @@ OpenStack Charms project.
 * `glance <https://opendev.org/openstack/charm-glance/>`_
 * `heat <https://opendev.org/openstack/charm-heat/>`_
 * `keystone <https://opendev.org/openstack/charm-keystone/>`_
+* `keystone-kerberos <https://opendev.org/openstack/charm-keystone-kerberos/>`_
 * `keystone-ldap <https://opendev.org/openstack/charm-keystone-ldap/>`_
 * `keystone-saml-mellon <https://opendev.org/openstack/charm-keystone-saml-mellon/>`_
 * `manila <https://opendev.org/openstack/charm-manila/>`_
@@ -107,7 +108,6 @@ issues, general QA) is still required before the charms are ready for
 production use (promoted to Stable).
 
 * `ceph-iscsi <https://opendev.org/openstack/charm-ceph-iscsi/>`_
-* `keystone-kerberos <https://opendev.org/openstack/charm-keystone-kerberos/>`_
 
 Alpha charms (Edge)
 ~~~~~~~~~~~~~~~~~~~
@@ -182,6 +182,18 @@ default it uses Ceph. For more details see the `gnocchi charm README`_.
 
    S3 storage support for Gnocchi is available starting with OpenStack Stein.
 
+Keystone Kerberos support
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The new keystone-kerberos subordinate charm can be used to add Kerberos
+support to Keystone by authenticating to an OpenStack domain. An external
+Kerberos server is needed. For more details see the `keystone-kerberos charm
+README`_.
+
+.. note::
+
+   Keystone Kerberos is supported starting with OpenStack Queens.
+
 MySQL InnoDB Cluster TLS communication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -239,18 +251,6 @@ Guide`_.
 
 Preview charm features
 ----------------------
-
-Keystone Kerberos support
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The new preview keystone-kerberos subordinate charm can be used to add Kerberos
-support to Keystone by authenticating to an OpenStack domain. An external
-Kerberos server is needed. For more details see the `keystone-kerberos charm
-README`_.
-
-.. note::
-
-   Keystone Kerberos is supported starting with OpenStack Queens.
 
 Deprecation notices
 -------------------
