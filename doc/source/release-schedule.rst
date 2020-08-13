@@ -1,12 +1,19 @@
-=================
-Release schedules
-=================
+================
+Release schedule
+================
 
 Per the cadence and other requirements defined in the OpenStack Charms `Release
 Policy <release-policy.html>`__ section, the following outlines the up-coming
 feature freeze and stable charm release dates. Dates are estimated and
 anticipated, and are subject to being blocked or delayed if critical
 regressions or critical bugs are introduced or discovered at master.
+
+.. COMMENT
+   Possible values for Status column:
+	'next release'
+	'under development'
+	'current stable'
+	'--'
 
 .. list-table:: **OpenStack Charms releases**
    :header-rows: 1
@@ -16,22 +23,22 @@ regressions or critical bugs are introduced or discovered at master.
      - Status
      - Freeze date
      - Release date
-     - Release schedule
+     - Release timeline
 
    * - 20.10
-     - next release
+     - under development
      - Fri, Oct 9, 2020
      - Wed, Oct 21, 2020
-     - `20.10 release schedule`_
+     - `20.10 release timeline`_
 
    * - 20.08
-     - under development
+     - current stable
      - Fri, Jul 24, 2020
      - Wed, Aug 5, 2020
-     - `20.08 release schedule`_
+     - `20.08 release timeline`_
 
    * - 20.05
-     - current stable
+     - --
      - Fri, May 8, 2020
      - Wed, May 20, 2020
      - --
@@ -91,5 +98,5 @@ regressions or critical bugs are introduced or discovered at master.
      - --
 
 .. LINKS
-.. _20.08 release schedule: release-schedule-2008.html
-.. _20.10 release schedule: release-schedule-2010.html
+.. _20.08 release timeline: release-timeline-2008.html
+.. _20.10 release timeline: release-timeline-2010.html

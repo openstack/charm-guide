@@ -1,14 +1,14 @@
-.. _release_notes_20.08:
+.. _release_notes_20.10:
 
-=====
-20.08
-=====
+=================================
+20.10 (Draft version in progress)
+=================================
 
 Summary
 -------
 
-The 20.08 OpenStack Charms project release includes updates for the charms
-described in the following sections. Refer to the `20.08 milestone`_ in
+The 20.10 OpenStack Charms project release includes updates for the charms
+described in the following sections. Refer to the `20.10 milestone`_ in
 Launchpad for the list of resolved bugs and see the `Release schedule`_ for
 past and future releases.
 
@@ -146,150 +146,17 @@ test bundle, and/or a `OpenStack Charms Deployment Guide`_ section which
 details the use of the feature. For example test bundles, see the
 ``src/tests/bundles`` directory within the relevant charm repository.
 
-Charm cinder-ceph now requires 'ceph-access' relation to charm nova-compute
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-When both the nova-compute and cinder-ceph applications are deployed a new
-relation is now required. In this context, if the 'ceph-access' relation
-endpoint is not present between cinder-ceph and nova-compute the latter charm
-will go into the blocked state. This should not affect most currently deployed
-clouds, but it will affect new deployments. See commit `Require relation to
-nova-compute application`_ for details.
-
-To add the relation:
-
-.. code-block:: none
-
-   juju add-relation nova-compute:ceph-access cinder-ceph:ceph-access
-
-Glance Simplestreams Sync
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The glance-simplestreams-sync charm now installs simplestreams as a snap. As
-such it no longer has a ``source`` configuration option (the new
-``snap-channel`` option is used to select a channel in the Snap store).
-
-There is now a Juju action to perform a one-time sync of images:
-``sync-images``.
-
-Gnocchi S3 support
-~~~~~~~~~~~~~~~~~~
-
-The gnocchi charm can now be configured to use S3 as a storage backend. By
-default it uses Ceph. For more details see the `gnocchi charm README`_.
-
-.. note::
-
-   S3 storage support for Gnocchi is available starting with OpenStack Stein.
-
-MySQL InnoDB Cluster TLS communication
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-TLS communication between MySQL InnoDB Cluster and its cloud clients is now
-supported. Previously, TLS was only enabled for inter-MySQL client
-communication by way of a self-signed certificate.
-
-Due to the circular dependency between the vault and mysql-innodb-cluster
-applications, the enablement of this feature can only be done post-deployment
-(once vault has been initialised and has a root Certificate Authority).
-
-Database TLS communication is enabled with this relation:
-
-.. code-block:: none
-
-   juju add-relation mysql-innodb-cluster:certificates vault:certificates
-
 New charms
 ----------
-
-Arista
-~~~~~~
-
-The neutron-api-plugin-arista charm is now an officially supported charm.
-
-.. note::
-
-   For now the neutron-api-plugin-arista charm is only supported up to
-   OpenStack Queens. The ongoing work for supporting other releases is tracked
-   in `LP #1890628`_.
-
-This subordinate charm provides the Arista ML2 Plugin support to the OpenStack
-Neutron API service.
-
-When this charm is related to the neutron-api charm it will install the Arista
-Neutron packages on each neutron-api unit in the region and supply the desired
-configuration to the neutron-api service.
-
-For more details see the `neutron-api-plugin-arista charm README`_.
-
-For upgrading from earlier prototypes see `Upgrading to stable Arista charm`_.
-
-Trilio charms
-~~~~~~~~~~~~~
-
-The trilio-data-mover, trilio-dm-api, trilio-horizon-plugin, and trilio-wlm
-charms are now officially supported. These charms deploy TrilioVault, a
-commercial snapshot and restore solution for OpenStack. For details see the
-`TrilioVault Data Protection`_ section of the `OpenStack Charms Deployment
-Guide`_.
-
-.. note::
-
-   The Trilio charms are currently only supported on Ubuntu 18.04 LTS (Bionic).
 
 Preview charm features
 ----------------------
 
-Keystone Kerberos support
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The new preview keystone-kerberos subordinate charm can be used to add Kerberos
-support to Keystone by authenticating to an OpenStack domain. An external
-Kerberos server is needed. For more details see the `keystone-kerberos charm
-README`_.
-
-.. note::
-
-   Keystone Kerberos is supported starting with OpenStack Queens.
-
 Deprecation notices
 -------------------
 
-ceph-osd charm ``autotune`` option
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The ``autotune`` configuration option for the ceph-osd charm is deprecated and
-will be removed in the 20.10 release of OpenStack Charms. See bug `LP
-#1798794`_ for a full discussion.
-
-glance-simplestreams-sync charm ``use_swift`` option
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The ``use_swift`` configuration option for the glance-simplestreams-sync charm
-is deprecated and will be removed in the 20.10 release of OpenStack Charms.
-
-This option allowed simplestreams metadata to be hosted on an Apache server
-local to a glance-simplestreams-sync unit. Object storage will become the only
-way to store this metadata.
-
 Removed features
 ----------------
-
-Glance Simplestreams Sync
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The glance-simplestreams-sync charm no longer supports deployment with the
-rabbitmq-server charm. Bundles which specify this relation will need to be
-updated.
-
-To prevent possible race conditions during the deployment of a cloud, the
-behaviour of enabling synchronisation via Cron by default has changed. You will
-now need to manually enable this feature (via the ``run`` configuration
-option):
-
-.. code-block:: none
-
-   juju config glance-simplestreams-sync run=true
 
 Known issues
 ------------
@@ -436,17 +303,14 @@ revision. Please refer to `OpenStack upgrades`_ in the `OpenStack Charms
 Deployment Guide`_ for more details.
 
 .. LINKS
-.. _20.08 milestone: https://launchpad.net/openstack-charms/+milestone/20.08
+.. _20.10 milestone: https://launchpad.net/openstack-charms/+milestone/20.10
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _Release schedule: release-schedule.html
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
 .. _neutron-api-plugin-arista charm README: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/README.md
 .. _Upgrading to stable Arista charm: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/docs/upgrading-to-stable.md
-.. _gnocchi charm README: https://github.com/openstack/charm-gnocchi/blob/master/src/README.md
-.. _keystone-kerberos charm README: https://opendev.org/openstack/charm-keystone-kerberos/src/branch/master/src/README.md
 .. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
-.. _TrilioVault Data Protection: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-trilio-vault.html
 
 .. COMMITS
 .. _Require relation to nova-compute application: https://review.opendev.org/#/c/731437/

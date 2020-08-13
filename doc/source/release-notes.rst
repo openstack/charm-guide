@@ -4,14 +4,15 @@ Release Notes
 
 **Pending Release Notes**
 
-* `20.08 release`_
+* `20.10 release`_
 
 **Latest Release Notes**
 
-* `20.05 release`_
+* `20.08 release`_
 
 **Older Release Notes**
 
+* `20.05 release`_
 * `20.02 release`_
 * `19.10 release`_
 * `19.07 release`_
@@ -38,6 +39,7 @@ Release Notes
    :maxdepth: 1
    :hidden:
 
+   2010
    2008
    2005
    2002
@@ -54,20 +56,21 @@ Release Notes
    1610
 
 .. LINKS
-.. _20.08 release: 2008
-.. _20.05 release: 2005
-.. _20.02 release: 2002
-.. _19.10 release: 1910
-.. _19.07 release: 1907
-.. _19.04 release: 1904
-.. _18.11 release: 1811
-.. _18.08 release: 1808
-.. _18.05 release: 1805
-.. _18.02 release: 1802
-.. _17.11 release: 1711
-.. _17.08 release: 1708
-.. _17.02 release: 1702
-.. _16.10 release: 1610
+.. _20.10 release: 2010.html
+.. _20.08 release: 2008.html
+.. _20.05 release: 2005.html
+.. _20.02 release: 2002.html
+.. _19.10 release: 1910.html
+.. _19.07 release: 1907.html
+.. _19.04 release: 1904.html
+.. _18.11 release: 1811.html
+.. _18.08 release: 1808.html
+.. _18.05 release: 1805.html
+.. _18.02 release: 1802.html
+.. _17.11 release: 1711.html
+.. _17.08 release: 1708.html
+.. _17.02 release: 1702.html
+.. _16.10 release: 1610.html
 .. _16.07 release: https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1607
 .. _16.04 release: https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1604
 .. _16.01 release: https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1601
