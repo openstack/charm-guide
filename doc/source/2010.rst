@@ -154,6 +154,12 @@ trusted-external-ca-cert. This option installs and configures an external root
 CA in the gnocchi units. This is useful when an encrypted S3 (storage backend)
 endpoint uses certificates that are not managed by Vault.
 
+Arista - Supported releases
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The neutron-api-plugin-arista charm now supports all OpenStack releases starting
+with Queens. See `LP #1890628`_ for more details.
+
 New charms
 ----------
 
@@ -284,6 +290,20 @@ detailed unsealing instructions and the hook error can be resolved with:
 
    juju resolved vault/N
 
+Arista requires a special PPA
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Because of `LP #1889396`_ the official networking-arista package can't be used.
+A bugfix is currently under review. For the time being some unofficial packages
+containing this fix have been published to the following PPAs:
+
+* https://launchpad.net/~aurelien-lourot/+archive/ubuntu/arista-rocky
+* https://launchpad.net/~aurelien-lourot/+archive/ubuntu/arista-stein
+* https://launchpad.net/~aurelien-lourot/+archive/ubuntu/arista-train
+* https://launchpad.net/~aurelien-lourot/+archive/ubuntu/arista-ussuri
+
+The `Arista test bundles`_ are good examples of how to make use of these PPAs.
+
 Upgrading charms
 ----------------
 
@@ -316,9 +336,8 @@ Deployment Guide`_ for more details.
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _Release schedule: release-schedule.html
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
-.. _neutron-api-plugin-arista charm README: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/README.md
-.. _Upgrading to stable Arista charm: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/docs/upgrading-to-stable.md
 .. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
+.. _Arista test bundles: https://github.com/openstack/charm-neutron-api-plugin-arista/tree/master/src/tests/bundles
 
 .. COMMITS
 .. _Require relation to nova-compute application: https://review.opendev.org/#/c/731437/
@@ -329,6 +348,7 @@ Deployment Guide`_ for more details.
 .. _LP #1876849: https://bugs.launchpad.net/charm-neutron-openvswitch/+bug/1876849
 .. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
 .. _LP #1890628: https://bugs.launchpad.net/charm-neutron-api-plugin-arista/+bug/1890628
+.. _LP #1889396: https://bugs.launchpad.net/networking-arista/+bug/1889396
 .. _LP #1798794: https://bugs.launchpad.net/charm-ceph-osd/+bug/1798794
 .. _LP #1868326: https://bugs.launchpad.net/charm-percona-cluster/+bug/1868326
 .. _LP #1890106: https://bugs.launchpad.net/vault-charm/+bug/1890106
@@ -336,4 +356,3 @@ Deployment Guide`_ for more details.
 .. _LP #1888389: https://bugs.launchpad.net/charm-trilio-data-mover/+bug/1888389
 .. _LP #1865754: https://bugs.launchpad.net/tripleo/+bug/1865754
 .. _LP #1890821: https://bugs.launchpad.net/charm-cinder-backup-swift-proxy/+bug/1890821
-.. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
