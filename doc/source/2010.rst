@@ -146,6 +146,14 @@ test bundle, and/or a `OpenStack Charms Deployment Guide`_ section which
 details the use of the feature. For example test bundles, see the
 ``src/tests/bundles`` directory within the relevant charm repository.
 
+Gnocchi and external root CA for S3
+-----------------------------------
+
+The gnocchi charm now supports an additional configuration option:
+trusted-external-ca-cert. This option installs and configures an external root
+CA in the gnocchi units. This is useful when an encrypted S3 (storage backend)
+endpoint uses certificates that are not managed by Vault.
+
 New charms
 ----------
 
