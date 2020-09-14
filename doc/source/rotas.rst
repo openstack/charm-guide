@@ -30,6 +30,8 @@ following Launchpad tags to classify relevant bugs:
 * `cold-start`_ - Issues in recovering the charm payload functionality after a
   power event such as a reboot or shutdown.
 * `cross-model`_ - Issues with Cross-Model Relations.
+* `unstable-test`_ - Issues that result in `automated tests`_ producing false
+  negatives or positives.
 
 
 Rota schedules
@@ -85,3 +87,5 @@ files`_.
 .. _`scaleback`: https://bugs.launchpad.net/bugs/+bugs?field.tag=scaleback
 .. _`cold-start`: https://bugs.launchpad.net/bugs/+bugs?field.tag=cold-start
 .. _`cross-model`: https://bugs.launchpad.net/bugs/+bugs?field.tag=cross-model
+.. _`unstable-test`: https://bugs.launchpad.net/bugs/+bugs?field.tag=unstable-test
+.. _`automated tests`: testing.html
