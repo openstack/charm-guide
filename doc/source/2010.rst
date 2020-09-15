@@ -173,6 +173,15 @@ cleanup mechanism without risking removing too much.
 
 See bug `LP #1809190`_ for details.
 
+cinder charm: Allow specifying the default_volume type
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A new feature has been added to allow setting the default volume type, via the
+new configuration parameter ``default-volume-type``, for new volumes if one is
+not specified at creation time. This is to support scenarios where multiple
+storage backends are to be used with cinder. Please see related Bug `LP #1884548`_
+for more details and consult the cinder charm.
+
 New charms
 ----------
 
@@ -387,3 +396,5 @@ Deployment Guide`_ for more details.
 .. _LP #1888389: https://bugs.launchpad.net/charm-trilio-data-mover/+bug/1888389
 .. _LP #1865754: https://bugs.launchpad.net/tripleo/+bug/1865754
 .. _LP #1890821: https://bugs.launchpad.net/charm-cinder-backup-swift-proxy/+bug/1890821
+.. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
+.. _LP #1884548: https://bugs.launchpad.net/charm-cinder/+bug/1884548
