@@ -326,20 +326,6 @@ detailed unsealing instructions and the hook error can be resolved with:
 
    juju resolved vault/N
 
-Arista requires a special PPA
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Because of `LP #1889396`_ the official networking-arista package can't be used.
-A bugfix is currently under review. For the time being some unofficial packages
-containing this fix have been published to the following PPAs:
-
-* https://launchpad.net/~aurelien-lourot/+archive/ubuntu/arista-rocky
-* https://launchpad.net/~aurelien-lourot/+archive/ubuntu/arista-stein
-* https://launchpad.net/~aurelien-lourot/+archive/ubuntu/arista-train
-* https://launchpad.net/~aurelien-lourot/+archive/ubuntu/arista-ussuri
-
-The `Arista test bundles`_ are good examples of how to make use of these PPAs.
-
 Upgrading charms
 ----------------
 
@@ -373,7 +359,6 @@ Deployment Guide`_ for more details.
 .. _Release schedule: release-schedule.html
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
 .. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
-.. _Arista test bundles: https://github.com/openstack/charm-neutron-api-plugin-arista/tree/master/src/tests/bundles
 .. _Open vSwitch Integration Guide for Centralized Control: https://docs.openvswitch.org/en/latest/topics/integration/
 
 .. COMMITS
@@ -388,7 +373,6 @@ Deployment Guide`_ for more details.
 .. _LP #1876730: https://bugs.launchpad.net/netplan/+bug/1876730
 .. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
 .. _LP #1890628: https://bugs.launchpad.net/charm-neutron-api-plugin-arista/+bug/1890628
-.. _LP #1889396: https://bugs.launchpad.net/networking-arista/+bug/1889396
 .. _LP #1798794: https://bugs.launchpad.net/charm-ceph-osd/+bug/1798794
 .. _LP #1868326: https://bugs.launchpad.net/charm-percona-cluster/+bug/1868326
 .. _LP #1890106: https://bugs.launchpad.net/vault-charm/+bug/1890106
