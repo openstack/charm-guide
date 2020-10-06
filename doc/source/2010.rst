@@ -191,6 +191,13 @@ Preview charm features
 Deprecation notices
 -------------------
 
+ceph-radosgw charm: Deprecate the pool-prefix config option
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``pool-prefix`` configuration option for ceph-radosgw charm is deprecated and
+will be removed. See bug `LP #1856106`_ for a full discussion.
+
+
 Removed features
 ----------------
 
@@ -382,3 +389,4 @@ Deployment Guide`_ for more details.
 .. _LP #1890821: https://bugs.launchpad.net/charm-cinder-backup-swift-proxy/+bug/1890821
 .. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
 .. _LP #1884548: https://bugs.launchpad.net/charm-cinder/+bug/1884548
+.. _LP #1856106: https://bugs.launchpad.net/charm-ceph-radosgw/+bug/1856106
