@@ -218,6 +218,20 @@ See bug `LP #1877594`_ for details on how to migrate away from this feature.
 Known issues
 ------------
 
+Barbican DB migration
+~~~~~~~~~~~~~~~~~~~~~
+
+With Focal Ussuri, running command ``barbican-manage db upgrade`` against a
+barbican application that is backed by a MySQL InnoDB Cluster will lead to a
+failure (see `LP #1899104`_). This was discovered while resolving `LP
+#1827690`_.
+
+Both the charm bug `LP #1827690`_ and the package bug `LP #1899104`_ are known
+issues that will de addressed shortly after the 20.10 release.
+
+The package bug only affects Focal Ussuri and is not present in Victoria nor is
+it present when using (Bionic) Percona Cluster as the back-end DB.
+
 Designate and Vault at Ocata and earlier
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -390,3 +404,5 @@ Deployment Guide`_ for more details.
 .. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
 .. _LP #1884548: https://bugs.launchpad.net/charm-cinder/+bug/1884548
 .. _LP #1856106: https://bugs.launchpad.net/charm-ceph-radosgw/+bug/1856106
+.. _LP #1827690: https://bugs.launchpad.net/charm-barbican/+bug/1827690
+.. _LP #1899104: https://bugs.launchpad.net/ubuntu/+source/barbican/+bug/1899104
