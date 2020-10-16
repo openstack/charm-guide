@@ -241,6 +241,24 @@ support SSL via Vault and the certificates relation. See bug `LP #1839019`_.
 Current versions of OpenStack with Vault and the certificates relation are
 supported by the Designate charm.
 
+
+IP SAN sym links
+~~~~~~~~~~~~~~~~
+
+When using the vault certificates relation and vault is configured with
+``auto-generate-root-ca-cert`` set to True (and/or the deprecated setting,
+``totally-unsecure-auto-unlock`` set to true) some charms may be susceptible to
+`LP #1893847`_.
+
+The symptom is missing sym links to certificates for Subject Alternative Name
+(SAN) IP addresses. For example, for Virtual IP (VIP) addresses for services.
+Apache configuration may fail as it will point to a certificate for the VIP(s).
+
+The workaround is to set the above settings to False and utilize the
+post-deployment actions for preparing vault as documented in the `Vault
+section`_ and the `Certificate Lifecycle Management`_ section of the charm
+deployment guide.
+
 Restart Nova services after adding certificates relation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -347,6 +365,7 @@ detailed unsealing instructions and the hook error can be resolved with:
 
    juju resolved vault/N
 
+
 Upgrading charms
 ----------------
 
@@ -381,6 +400,7 @@ Deployment Guide`_ for more details.
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
 .. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
 .. _Open vSwitch Integration Guide for Centralized Control: https://docs.openvswitch.org/en/latest/topics/integration/
+.. _Certificate Lifecycle Management: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
 
 .. COMMITS
 .. _Require relation to nova-compute application: https://review.opendev.org/#/c/731437/
@@ -406,3 +426,4 @@ Deployment Guide`_ for more details.
 .. _LP #1856106: https://bugs.launchpad.net/charm-ceph-radosgw/+bug/1856106
 .. _LP #1827690: https://bugs.launchpad.net/charm-barbican/+bug/1827690
 .. _LP #1899104: https://bugs.launchpad.net/ubuntu/+source/barbican/+bug/1899104
+.. _LP #1893847: https://bugs.launchpad.net/charm-helpers/+bug/1893847
