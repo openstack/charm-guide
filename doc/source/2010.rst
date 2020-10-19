@@ -182,6 +182,16 @@ not specified at creation time. This is to support scenarios where multiple
 storage backends are to be used with cinder. Please see related Bug `LP #1884548`_
 for more details and consult the cinder charm.
 
+Action based migration from Neutron ML2+OVS to ML2+OVN
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+New actions have been introduced to enable migration of a Neutron ML2+OVS
+based deployment to ML2+OVN.
+
+Please refer to the `Migration from Neutron ML2+OVS to ML2+OVN section of the
+OVN`_ appendix in the `OpenStack Charms Deployment Guide`_ for more
+information.
+
 New charms
 ----------
 
@@ -197,6 +207,13 @@ ceph-radosgw charm: Deprecate the pool-prefix config option
 The ``pool-prefix`` configuration option for ceph-radosgw charm is deprecated and
 will be removed. See bug `LP #1856106`_ for a full discussion.
 
+Octavia: Spares pool support is deprecated
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Spares pool support is deprecated upstream, pending removal in the X release.
+The charm will retain support for the feature for OpenStack releases up until
+the X release. Please refer to `Octavia deprecation notes for Victoria`_ for
+more information.
 
 Removed features
 ----------------
@@ -401,6 +418,8 @@ Deployment Guide`_ for more details.
 .. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
 .. _Open vSwitch Integration Guide for Centralized Control: https://docs.openvswitch.org/en/latest/topics/integration/
 .. _Certificate Lifecycle Management: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
+.. _Migration from Neutron ML2+OVS to ML2+OVN section of the OVN: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html#migration-from-neutron-ml2-ovs-to-ml2-ovn
+.. _Octavia deprecation notes for Victoria: https://docs.openstack.org/releasenotes/octavia/victoria.html#deprecation-notes
 
 .. COMMITS
 .. _Require relation to nova-compute application: https://review.opendev.org/#/c/731437/
