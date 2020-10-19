@@ -192,6 +192,24 @@ Please refer to the `Migration from Neutron ML2+OVS to ML2+OVN section of the
 OVN`_ appendix in the `OpenStack Charms Deployment Guide`_ for more
 information.
 
+Ceph BlueStore compression support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Charms that allow for the configuration of Ceph storage can now optionally
+enable Ceph BlueStore compression for the pools they manage. These are:
+
+* ceph-radosgw
+* cinder-ceph
+* gnocchi
+* glance
+* nova-compute
+
+Configuration options have also been added to the ceph-osd charm which allow
+overriding compression settings for the deployment as a whole.
+
+Please refer to individual charm documentation for a description of the
+configuration options.
+
 New charms
 ----------
 
