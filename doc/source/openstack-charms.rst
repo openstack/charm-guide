@@ -113,7 +113,7 @@ OpenStack Charms project.
      - < 16.10
 
    * - `nova-cell-controller`_
-     - 20.05
+     - 18.11
 
    * - `nova-cloud-controller`_
      - < 16.10
@@ -125,7 +125,7 @@ OpenStack Charms project.
      - 19.04
 
    * - `octavia-dashboard`_
-     - 19.10
+     - 19.04
 
    * - `octavia-diskimage-retrofit`_
      - 19.07
@@ -184,7 +184,7 @@ OpenStack project.
      - < 16.10
 
    * - `glance-simplestreams-sync`_
-     - 20.05
+     - 18.05
 
    * - `gnocchi`_
      - 17.08

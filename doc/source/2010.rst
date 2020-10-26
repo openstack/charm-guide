@@ -37,7 +37,8 @@ directory of the relevant charm repository.
 OpenStack Victoria
 ~~~~~~~~~~~~~~~~~~
 
-The charms now support OpenStack Victoria on Ubuntu 20.04 LTS (via UCA).
+The charms now support OpenStack Victoria on Ubuntu 20.10 (natively) and Ubuntu
+20.04 LTS (via UCA).
 
 Gnocchi and external root CA for S3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
