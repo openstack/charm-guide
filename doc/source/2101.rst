@@ -1,17 +1,17 @@
-.. _release_notes_20.10:
+.. _release_notes_21.01:
 
-=====
-20.10
-=====
+=================================
+21.01 (Draft version in progress)
+=================================
 
 Summary
 -------
 
-The 20.10 OpenStack Charms project release includes updates for the charms
+The 21.01 OpenStack Charms project release includes updates for the charms
 described on the `Charms`_ page. As of this release, the project consists of 60
 supported (stable) charms.
 
-For the list of bugs resolved in this release refer to the `20.10 milestone`_
+For the list of bugs resolved in this release refer to the `21.01 milestone`_
 in Launchpad.
 
 For scheduling information of past and future releases see the `Release
@@ -34,86 +34,8 @@ test bundle, and/or a section in the `OpenStack Charms Deployment Guide`_, that
 details its usage. Test bundles are located in the ``src/tests/bundles``
 directory of the relevant charm repository.
 
-OpenStack Victoria
-~~~~~~~~~~~~~~~~~~
-
-The charms now support OpenStack Victoria on Ubuntu 20.10 (natively) and Ubuntu
-20.04 LTS (via UCA).
-
-Gnocchi and external root CA for S3
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The gnocchi charm now supports an additional configuration option:
-``trusted-external-ca-cert``. This option installs and configures an external
-root CA in the gnocchi units. This is useful when an encrypted S3 (storage
-backend) endpoint uses certificates that are not managed by Vault.
-
-Arista - Supported releases
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The neutron-api-plugin-arista charm now supports all OpenStack releases
-starting with Queens. See bug `LP #1890628`_ for more details.
-
-Neutron Gateway and additional data on ports and bridges
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The neutron-gateway charm now marks the openvswitch ports and bridges it
-creates as managed by the charm. It does so by setting an ``external-id`` on
-them. See the `Open vSwitch Integration Guide for Centralized Control`_ for
-details.
-
-Even the ports and bridges created before upgrading to this release will be
-marked. Marking our ports and bridges will allow us to implement some cleanup
-mechanism without risking removing too much.
-
-See bug `LP #1809190`_ for details.
-
-cinder charm: Allow specifying the default_volume type
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-A new feature has been added to allow setting the default volume type, via the
-new configuration parameter ``default-volume-type``, for new volumes if one is
-not specified at creation time. This is to support scenarios where multiple
-storage backends are to be used with cinder. Please see related bug `LP
-#1884548`_ for more details and consult the cinder charm.
-
-Action based migration from Neutron ML2+OVS to ML2+OVN
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-New actions have been introduced to enable migration of a Neutron ML2+OVS
-based deployment to ML2+OVN.
-
-Please refer to the `Migration from Neutron ML2+OVS to ML2+OVN section of the
-OVN`_ appendix in the `OpenStack Charms Deployment Guide`_ for more
-information.
-
-Ceph BlueStore compression support
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Charms that allow for the configuration of Ceph storage can now optionally
-enable Ceph BlueStore compression for the pools they manage. These are:
-
-* ceph-fs
-* ceph-radosgw
-* cinder-ceph
-* glance
-* gnocchi
-* nova-compute
-
-Configuration options have also been added to the ceph-osd charm which allow
-overriding compression settings for the deployment as a whole.
-
-Please refer to individual charm documentation for a description of the
-configuration options.
-
 New charms
 ----------
-
-ceph-iscsi
-~~~~~~~~~~
-
-The ceph-iscsi charm is now a supported charm. This charm implements the Ceph
-iSCSI gateway, which provides iSCSI targets backed by a Ceph cluster.
 
 Preview charm features
 ----------------------
@@ -123,35 +45,8 @@ n/a
 Deprecation notices
 -------------------
 
-ceph-radosgw charm: Deprecate the pool-prefix config option
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The ``pool-prefix`` configuration option for the ceph-radosgw charm is
-deprecated and will be removed. See bug `LP #1856106`_ for a full discussion.
-
-Octavia: Spares pool support is deprecated
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Spares pool support is deprecated upstream, pending removal in the X release.
-The charm will retain support for the feature for OpenStack releases up until
-the X release. Please refer to `Octavia deprecation notes for Victoria`_ for
-more information.
-
 Removed features
 ----------------
-
-Neutron Gateway and network bridges
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The neutron-gateway charm no longer supports adding a Linux bridge to an
-openvswitch bridge. This ability was dependent upon the veth peer links feature
-of NetworkManager (a.k.a. ifupdown). Yet starting with Ubuntu 18.04 LTS
-(Bionic) ifupdown has been replaced by Netplan, which has a feature gap in this
-area (see bug `LP #1876730`_).
-
-Using ifupdown on Bionic also causes issues with LXD containers (see bug `LP
-#1877594`_). The latter issue has details on migrating away from veth peer
-links.
 
 Removed charms
 --------------
@@ -318,7 +213,7 @@ Deployment Guide`_ for more details.
 
 .. LINKS
 .. _Charms: openstack-charms.html
-.. _20.10 milestone: https://launchpad.net/openstack-charms/+milestone/20.10
+.. _21.01 milestone: https://launchpad.net/openstack-charms/+milestone/21.01
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _Release schedule: release-schedule.html
