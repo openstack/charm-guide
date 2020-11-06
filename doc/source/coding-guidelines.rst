@@ -568,9 +568,9 @@ understand the types of the parameters and the return type helps to understand
 the code *much more quickly* than hunting through other code trying to
 understand what types of things might be sent to the function.
 
-In futher, types in docstrings will become part of the *linting* of the code
-(as part of PEP8) and so, good practice now, will help with more maintainable
-code in the future.
+In the future, types in docstrings will become part of the *linting* of the
+code (as part of PEP8). Good practice now will help with more maintainable code
+going forward.
 
 Comments are important to help the reader of the code understand what is being
 implemented, rather than just repeating what the code does.  A good comment is
@@ -580,6 +580,13 @@ Docstring formats are slightly complicated by whether we are doing Python 2
 code, Python 3 code, or a shared library.  For Python 2 and Python 2 AND 3
 compatible code (e.g. charm-helpers) there is a preferred approach, and for
 Python 3 only code there is a separate preferred approach.
+
+Hyphenated configuration option names
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the name of a configuration option has multiple words hyphens should be used
+to separate them (not underscores). For example, use ``pool-type`` instead of
+``pool_type``.
 
 Python 2 code and Python 2/3 compatible code
 --------------------------------------------
