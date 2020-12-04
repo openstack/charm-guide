@@ -1,32 +1,16 @@
 ================
-Charm Deployment
+Charm deployment
 ================
 
-In order to test or develop using the OpenStack charms, you'll need to prepare
-an environment where you can deploy and test OpenStack services deployed using
-charms.
+In order to develop an OpenStack charm you'll first need a Juju-deployed
+OpenStack cloud as a working environment. The `OpenStack Charms Deployment
+Guide`_ provides guidance on how to deploy OpenStack with Juju, MAAS, and the
+OpenStack charms. Alternatively, the `OpenStack on LXD`_ repository has
+instructions on deploying a cloud on a single host with just LXD containers.
 
-The `OpenStack-on-LXD <openstack-on-lxd.html>`__ procedure provides an
-all-in-one machine approach to deploying for the purpose of charm testing,
-package exercises, and architecture validation.
+The :ref:`Deploying from the Charm Store <charm_store>` page describes the
+basics on deploying a bundle or charm from the online Charm Store.
 
-The `Deploying from the Charm Store <charm-store.html>`__ section describes
-the basics on deploying a bundle or charm from the charm store.
-
-The `Charm Deployment Guide`_ provides a more in-depth guide to deploying a
-multi-node OpenStack cloud with Juju, MAAS, and OpenStack Charms.
-
-This part of the Charm guide details methods for getting started in this area,
-with anything from a single laptop, through to a full multi-server environment
-managed using MAAS.
-
-
-.. toctree::
-   :titlesonly:
-   :maxdepth: 1
-
-   openstack-on-lxd
-   charm-store
-   Charm Deployment Guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>
-
-.. _Charm Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
+.. LINKS
+.. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
+.. _OpenStack on LXD: https://github.com/openstack-charmers/openstack-on-lxd

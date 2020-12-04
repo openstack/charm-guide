@@ -1,4 +1,6 @@
-.. _charm-store:
+:orphan:
+
+.. _charm_store:
 
 ==============================
 Deploying from the Charm Store
