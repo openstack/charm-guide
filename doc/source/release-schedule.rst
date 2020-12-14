@@ -25,11 +25,17 @@ regressions or critical bugs are introduced or discovered at master.
      - Release date
      - Release timeline
 
+   * - 21.04
+     - next release
+     - Fri, Apr 9, 2021
+     - Wed, Apr 21, 2021
+     - `21.04 release timeline`_
+
    * - 21.01
      - under development
      - Fri, Jan 15, 2021
      - Wed, Jan 27, 2021
-     - --
+     - `21.01 release timeline`_
 
    * - 20.10
      - current stable
@@ -106,3 +112,5 @@ regressions or critical bugs are introduced or discovered at master.
 .. LINKS
 .. _20.08 release timeline: release-timeline-2008.html
 .. _20.10 release timeline: release-timeline-2010.html
+.. _21.01 release timeline: release-timeline-2101.html
+.. _21.04 release timeline: release-timeline-2104.html
