@@ -34,6 +34,20 @@ test bundle, and/or a section in the `OpenStack Charms Deployment Guide`_, that
 details its usage. Test bundles are located in the ``src/tests/bundles``
 directory of the relevant charm repository.
 
+Cinder-Ceph - Image mirroring
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The cinder-ceph charm now supports image replication to a second Ceph cluster.
+This is achieved by connecting its new relation ``ceph-replication-device`` to
+the second Ceph cluster and setting its new ``rbd-mirroring-mode``
+configuration option to `image`.
+
+Whether a particular Cinder Ceph image is replicated or not is determined by
+its `Cinder volume type`_.
+
+For implementation details see the `Cinder-Ceph replication development
+notes`_.
+
 New charms
 ----------
 
@@ -185,6 +199,8 @@ Deployment Guide`_ for more details.
 .. _Release schedule: release-schedule.html
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
 .. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
+.. _Cinder volume type: https://docs.openstack.org/cinder/latest/contributor/replication.html#volume-types-extra-specs
+.. _Cinder-Ceph replication development notes: https://github.com/ionutbalutoiu/cinder-ceph-replication
 .. _MicroStack: https://microstack.run
 .. _openstack-on-lxd: https://github.com/openstack-charmers/openstack-on-lxd
 
