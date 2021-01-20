@@ -84,23 +84,6 @@ The designate charm for OpenStack Ocata (and earlier) does not yet support SSL
 via Vault and the certificates relation. See bug `LP #1839019`_. The charm
 works as intended in this scenario starting with OpenStack Pike.
 
-IP SAN sym links
-~~~~~~~~~~~~~~~~
-
-When using the vault certificates relation and vault is configured with
-``auto-generate-root-ca-cert`` set to True (and/or the deprecated setting,
-``totally-unsecure-auto-unlock`` set to true) some charms may be susceptible to
-bug `LP #1893847`_.
-
-The symptom is missing sym links to certificates for Subject Alternative Name
-(SAN) IP addresses. For example, for Virtual IP (VIP) addresses for services.
-Apache configuration may fail as it will point to a certificate for the VIP(s).
-
-The workaround is to set the above settings to False and utilize the
-post-deployment actions for preparing vault as documented in the `Vault
-section`_ and the `Certificate Lifecycle Management`_ section of the `OpenStack
-Charms Deployment Guide`_.
-
 TrilioVault Data Mover charm upgrade
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -202,7 +185,6 @@ Deployment Guide`_ for more details.
 .. _Release schedule: release-schedule.html
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
 .. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
-.. _Certificate Lifecycle Management: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
 .. _MicroStack: https://microstack.run
 .. _openstack-on-lxd: https://github.com/openstack-charmers/openstack-on-lxd
 
@@ -224,4 +206,3 @@ Deployment Guide`_ for more details.
 .. _LP #1856106: https://bugs.launchpad.net/charm-ceph-radosgw/+bug/1856106
 .. _LP #1827690: https://bugs.launchpad.net/charm-barbican/+bug/1827690
 .. _LP #1899104: https://bugs.launchpad.net/ubuntu/+source/barbican/+bug/1899104
-.. _LP #1893847: https://bugs.launchpad.net/charm-helpers/+bug/1893847
