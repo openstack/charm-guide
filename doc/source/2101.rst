@@ -48,6 +48,14 @@ its `Cinder volume type`_.
 For implementation details see the `Cinder-Ceph replication development
 notes`_.
 
+Trilio Charms
+~~~~~~~~~~~~~
+
+Trilio charms will no longer be released with the same cadence as the other
+OpenStack charms. Instead, they will be released shortly after releases of the
+Trilio code. Trilio 4.1 release is due in Febuary and the Trilio charms will be
+released shortly thereafter.
+
 New charms
 ----------
 
@@ -97,26 +105,6 @@ Designate and Vault at Ocata and earlier
 The designate charm for OpenStack Ocata (and earlier) does not yet support SSL
 via Vault and the certificates relation. See bug `LP #1839019`_. The charm
 works as intended in this scenario starting with OpenStack Pike.
-
-TrilioVault Data Mover charm upgrade
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-For deployments using prior versions of the trilio-data-mover charm (as
-provided by Trilio) the relation between the trilio-data-mover charm and
-rabbitmq-server must be removed and re-added to ensure that specific access for
-the data-mover service is provided for RabbitMQ.
-
-.. code-block:: none
-
-   juju remove-relation trilio-data-mover rabbitmq-server
-   juju add-relation trilio-data-mover rabbitmq-server
-
-TrilioVault File Recovery Manager
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Mounting snapshots using the File Recovery Manager appliance fails due to
-permissions errors encountered during the libvirt/qemu snapshot mount process
-on compute nodes. See bug `LP #1888389`_ for details.
 
 OpenStack os-brick, Ceph Octopus, and Focal
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
