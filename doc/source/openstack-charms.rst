@@ -234,6 +234,9 @@ charms may receive, some work (major bugs, payload packaging issues, project
 issues, general QA) is still required before the charms are ready for
 production use (promoted to Stable).
 
+* `ironic`_
+* `ironic-api`_
+* `ironic-conductor`_
 * `keystone-kerberos`_
 
 Alpha charms (Edge)
@@ -339,6 +342,9 @@ These charms have reached EOL and are deprecated.
 .. _trilio-wlm: https://opendev.org/openstack/charm-trilio-wlm/
 .. _vault: https://opendev.org/openstack/charm-vault/
 
+.. _ironic: https://opendev.org/openstack/charm-ironic
+.. _ironic-api: https://opendev.org/openstack/charm-ironic-api
+.. _ironic-conductor: https://opendev.org/openstack/charm-ironic-conductor
 .. _keystone-kerberos: https://opendev.org/openstack/charm-keystone-kerberos/
 
 .. _barbican-softhsm: https://opendev.org/openstack/charm-barbican-softhsm/

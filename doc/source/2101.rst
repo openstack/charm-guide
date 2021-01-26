@@ -40,7 +40,7 @@ Cinder-Ceph - Image mirroring
 The cinder-ceph charm now supports image replication to a second Ceph cluster.
 This is achieved by connecting its new relation ``ceph-replication-device`` to
 the second Ceph cluster and setting its new ``rbd-mirroring-mode``
-configuration option to `image`.
+configuration option to 'image'.
 
 Whether a particular Cinder Ceph image is replicated or not is determined by
 its `Cinder volume type`_.
@@ -48,34 +48,47 @@ its `Cinder volume type`_.
 For implementation details see the `Cinder-Ceph replication development
 notes`_.
 
-Trilio Charms
+Trilio charms
 ~~~~~~~~~~~~~
 
-Trilio charms will no longer be released with the same cadence as the other
+The Trilio charms will no longer be released with the same cadence as the other
 OpenStack charms. Instead, they will be released shortly after releases of the
-Trilio code. Trilio 4.1 release is due in Febuary and the Trilio charms will be
-released shortly thereafter.
+Trilio code. For instance, Trilio 4.1 is due in February and the Trilio charms
+will be released shortly thereafter.
 
 New charms
 ----------
 
+n/a
+
 Preview charm features
 ----------------------
 
-n/a
+Ironic charms
+~~~~~~~~~~~~~
+
+Three new tech-preview charms are now available for the deployment of OpenStack
+Ironic:
+
+* ironic
+* ironic-api
+* ironic-conductor
+
+Ironic provisions bare metal, as opposed to virtual, machines.
 
 Deprecation notices
 -------------------
 
-OpenStack on LXD documentation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Trusty series
+~~~~~~~~~~~~~
 
-The OpenStack on LXD documentation was moved from the OpenStack Charm Guide to
-the `openstack-on-lxd`_ repository. Users wishing to use an all-in-one
-OpenStack solution should explore the `MicroStack`_ project.
+The 'trusty' series is no longer actively tested and is now EOL in terms of
+bug fixes for the OpenStack charms.
 
 Removed features
 ----------------
+
+n/a
 
 Removed charms
 --------------
@@ -84,6 +97,17 @@ n/a
 
 Known issues
 ------------
+
+Lack of FQDN for containers on physical MAAS nodes may affect running services
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When Juju deploys to a LXD container on a physical MAAS node, the container is
+not informed of its FQDN. The services running in the container will therefore
+be unable to determine the FQDN on initial deploy and on reboot.
+
+Adverse effects are service dependent. This issue is tracked in bug `LP
+#1896630`_ in an OVN and Octavia context. Several workarounds are documented in
+the bug.
 
 Barbican DB migration
 ~~~~~~~~~~~~~~~~~~~~~
@@ -99,85 +123,55 @@ issues that will be addressed shortly after the 20.10 release.
 The package bug only affects Focal Ussuri and is not present in Victoria, nor
 is it present when using (Bionic) Percona Cluster as the back-end DB.
 
-Designate and Vault at Ocata and earlier
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The designate charm for OpenStack Ocata (and earlier) does not yet support SSL
-via Vault and the certificates relation. See bug `LP #1839019`_. The charm
-works as intended in this scenario starting with OpenStack Pike.
-
-OpenStack os-brick, Ceph Octopus, and Focal
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The Ceph RBD Mirror and Cinder Backup Swift Proxy charms do not work with Ceph
-Octopus due to an issue with the upstream OpenStack os-brick library (see
-bug `LP #1865754`_). As Octopus is the default Ceph version on Ubuntu 20.04 LTS
-(Focal) these charms cannot be used on Focal until the issue is resolved. Here
-are the resulting charm-specific behaviours:
-
-* ceph-rbd-mirror charm: The charm will enter a blocked state after configuring
-  pool mirroring (see bug `LP #1879749`_).
-* cinder-backup-swift-proxy charm: If a backup volume operation is performed
-  the resulting volume will be in error (see bug `LP #1890821`_).
-
-Series upgrade - percona-cluster and vault charms
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-percona-cluster
-^^^^^^^^^^^^^^^
-
-During a series upgrade from Xenial (16.04) to Bionic (18.04) the
-percona-cluster charm may fail during the ``post-series-upgrade`` hook. This
-appears to be because the percona-cluster charm may erroneously delete the file
-``/var/lib/percona-xtradb-cluster/seeded`` (see bug `LP #1868326`_). If this
-occurs, then executing the following commands on the failed unit will recover
-the hook and allow it to complete the series upgrade:
-
-.. code-block:: none
-
-   juju run percona-cluster/N 'echo "done" > /var/lib/percona-xtradb-cluster/seeded'
-   juju resolved percona-cluster/N
-
-This may be required for each percona-cluster unit.
-
-vault
-^^^^^
+Series upgrade - vault charm
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If a series upgrade is attempted while Vault is sealed then manual intervention
 will be required (see bugs `LP #1886083`_ and `LP #1890106`_). The vault leader
 unit (which will be in error) will need to be unsealed and the hook error
-resolved. The `Vault section`_ in the `OpenStack Charms Deployment Guide`_ has
-detailed unsealing instructions and the hook error can be resolved with:
+resolved. The `vault charm`_ README has unsealing instructions, and the hook
+error can be resolved with:
 
 .. code-block:: none
 
    juju resolved vault/N
 
+Documentation updates
+---------------------
+
+A summary of documentation updates is given below.
+
+* `OpenStack Charms Deployment Guide`_ (aka "deploy guide"):
+
+  * The deploy guide has been completely refactored.
+  * The install section has been updated to OpenStack Victoria.
+  * The upgrades section has received an `Upgrades overview`_ page.
+
+* `OpenStack Charm Guide`_ (aka "charm guide"):
+
+  * The OpenStack on LXD documentation was moved from the charm guide to the
+    `openstack-on-lxd`_ repository. Users wishing to use an all-in-one OpenStack
+    solution should explore the `MicroStack`_ project.
+
+* Charm READMEs:
+
+  * cinder
+  * glance
+  * keystone
+  * keystone-ldap
+  * vault
+
 Upgrading charms
 ----------------
 
-Always use the latest stable charm revision before proceeding with topological
-changes, application migrations, workload upgrades, series upgrades, or
-bug report filing.
+Upgrading charms will making available new features and bug fixes. However, the
+latest stable charm revision should also be used prior to making any
+topological changes, application migrations, workload upgrades, or series
+upgrades. Bug reports should also be filed against the most recent revision.
 
-Please ensure that the keystone charm is upgraded first.
-
-To upgrade an existing deployment to the latest charm version simply use the
-:command:`upgrade-charm` command. For example:
-
-.. code-block:: none
-
-   juju upgrade-charm keystone
-
-Charm upgrades and OpenStack upgrades are functionally different. Charm
-upgrades ensure that the deployment has the latest charm revision, containing
-the latest charm fixes and features, whereas OpenStack upgrades influence the
-software package versions of OpenStack itself.
-
-A charm upgrade does not trigger an OpenStack upgrade. An OpenStack upgrade is
-a separate process. However, an OpenStack upgrade does require the latest charm
-revision. Please refer to `OpenStack upgrades`_ in the `OpenStack Charms
-Deployment Guide`_ for more details.
+Note that charm upgrades and OpenStack upgrades are functionally different. For
+instructions on performing the different upgrade types see `Upgrades overview`_
+in the `OpenStack Charms Deployment Guide`_.
 
 .. LINKS
 .. _Charms: openstack-charms.html
@@ -185,8 +179,8 @@ Deployment Guide`_ for more details.
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _Release schedule: release-schedule.html
-.. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
-.. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
+.. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
+.. _vault charm: https://opendev.org/openstack/charm-vault/src/branch/master/src/README.md#unseal-vault
 .. _Cinder volume type: https://docs.openstack.org/cinder/latest/contributor/replication.html#volume-types-extra-specs
 .. _Cinder-Ceph replication development notes: https://github.com/ionutbalutoiu/cinder-ceph-replication
 .. _MicroStack: https://microstack.run
@@ -195,18 +189,9 @@ Deployment Guide`_ for more details.
 .. COMMITS
 
 .. BUGS
-.. _LP #1839019: https://bugs.launchpad.net/charm-designate/+bug/1839019
-.. _LP #1877594: https://bugs.launchpad.net/charm-neutron-gateway/+bug/1877594
-.. _LP #1876730: https://bugs.launchpad.net/netplan/+bug/1876730
-.. _LP #1890628: https://bugs.launchpad.net/charm-neutron-api-plugin-arista/+bug/1890628
-.. _LP #1868326: https://bugs.launchpad.net/charm-percona-cluster/+bug/1868326
 .. _LP #1890106: https://bugs.launchpad.net/vault-charm/+bug/1890106
 .. _LP #1886083: https://bugs.launchpad.net/vault-charm/+bug/1886083
-.. _LP #1888389: https://bugs.launchpad.net/charm-trilio-data-mover/+bug/1888389
-.. _LP #1865754: https://bugs.launchpad.net/tripleo/+bug/1865754
-.. _LP #1890821: https://bugs.launchpad.net/charm-cinder-backup-swift-proxy/+bug/1890821
-.. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
 .. _LP #1884548: https://bugs.launchpad.net/charm-cinder/+bug/1884548
-.. _LP #1856106: https://bugs.launchpad.net/charm-ceph-radosgw/+bug/1856106
 .. _LP #1827690: https://bugs.launchpad.net/charm-barbican/+bug/1827690
 .. _LP #1899104: https://bugs.launchpad.net/ubuntu/+source/barbican/+bug/1899104
+.. _LP #1896630: https://bugs.launchpad.net/charm-layer-ovn/+bug/1896630
