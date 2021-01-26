@@ -88,7 +88,13 @@ bug fixes for the OpenStack charms.
 Removed features
 ----------------
 
-n/a
+RabbitMQ Ceph relation
+~~~~~~~~~~~~~~~~~~~~~~
+
+The `ceph` relation in the rabbitmq-server charm is deprecated and will be
+removed in the 21.04 charm release. The relation exists to support an obsolete
+method of RabbitMQ clustering which involved sharing queue data between the
+units using RBD volumes.
 
 Removed charms
 --------------
