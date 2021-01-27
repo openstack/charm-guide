@@ -136,6 +136,13 @@ error can be resolved with:
 
    juju resolved vault/N
 
+Octavia load balancers using OVN provider on Victoria
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With OpenStack Victoria, creating an Octavia load balancer that uses the OVN
+provider will fail due to bug `LP #1896603`_. Ths bug does not affect load
+balancers that use the Amphora provider.
+
 Documentation updates
 ---------------------
 
@@ -195,3 +202,4 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _LP #1827690: https://bugs.launchpad.net/charm-barbican/+bug/1827690
 .. _LP #1899104: https://bugs.launchpad.net/ubuntu/+source/barbican/+bug/1899104
 .. _LP #1896630: https://bugs.launchpad.net/charm-layer-ovn/+bug/1896630
+.. _LP #1896603: https://bugs.launchpad.net/ubuntu/+source/ovn-octavia-provider/+bug/1896603
