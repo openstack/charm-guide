@@ -114,7 +114,7 @@ charm.
 
 .. code:: bash
 
-    juju deploy ~/congress-charm/congress/build/builds/congress
+    juju deploy ~/congress-charm/congress/build/congress
     juju add-relation congress keystone
     juju add-relation congress rabbitmq-server
     juju add-relation congress mysql

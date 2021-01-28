@@ -267,7 +267,7 @@ test session might look something like:
 
 .. code:: bash
 
-    cd build/builds/{package-name}
+    cd build/{package-name}
     tox -e func27-smoke   # this will run the gate-basic-xenial-mitaka
 
 This will get an OpenStack fragment running.  The gate-basic-xenial-mitaka may
@@ -284,7 +284,7 @@ Then if there are errors:
     juju remove-relation manila {package-name}
     # wait until the subordinate is removed/and or destroy the manila unit.
     # If destroying the manila unit, then remember to redploy it
-    juju upgrade-charm --path=build/builds/{package-name} {package-name}
+    juju upgrade-charm --path=build/{package-name} {package-name}
     juju add-relation manila {package-name}
 
 This will re-install the subordinate charm which may show further errors, etc.

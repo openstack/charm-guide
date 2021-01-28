@@ -61,7 +61,7 @@ Deploy Charm
 
     cd build
     juju deploy cs:xenial/nova-compute
-    juju deploy ~/sdn-charm/virtual-token-ring/build/builds/virtual-token-ring
+    juju deploy ~/sdn-charm/virtual-token-ring/build/virtual-token-ring
     juju add-relation nova-compute virtual-token-ring
 
 ``juju status`` will now show both charms deployed. The ``nova-compute`` status
@@ -115,7 +115,7 @@ the environment.
 
 .. code:: bash
 
-    juju upgrade-charm --path ~/sdn-charm/virtual-token-ring/build/builds/virtual-token-ring virtual-token-ring
+    juju upgrade-charm --path ~/sdn-charm/virtual-token-ring/build/virtual-token-ring virtual-token-ring
 
 
 Check Update

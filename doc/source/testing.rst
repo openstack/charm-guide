@@ -207,7 +207,7 @@ classic charms, and in the ``src/tests/`` directory for layered source charms.
    .. code:: bash
 
        tox -e build
-       cd build/builds/mycharm/
+       cd build/mycharm/
        tox -e func
 
 
