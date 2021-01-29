@@ -149,6 +149,23 @@ With OpenStack Victoria, creating an Octavia load balancer that uses the OVN
 provider will fail due to bug `LP #1896603`_. Ths bug does not affect load
 balancers that use the Amphora provider.
 
+Ceph iSCSI on Ubuntu 20.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-iscsi charm can't be deployed on Ubuntu 20.10 (Groovy) due to a Python
+library issue. See bug `LP #1904199`_ for details.
+
+Charm upgrade - rabbitmq-server charm
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A timing issue has been observed during the upgrade of the rabbitmq-server
+charm (see bug `LP #1912638`_ for tracking). If it occurs the resulting hook
+error can be resolved with:
+
+.. code-block:: none
+
+   juju resolved rabbitmq-server/N
+
 Documentation updates
 ---------------------
 
@@ -206,6 +223,8 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _LP #1886083: https://bugs.launchpad.net/vault-charm/+bug/1886083
 .. _LP #1884548: https://bugs.launchpad.net/charm-cinder/+bug/1884548
 .. _LP #1827690: https://bugs.launchpad.net/charm-barbican/+bug/1827690
+.. _LP #1904199: https://bugs.launchpad.net/charm-ceph-iscsi/+bug/1904199
+.. _LP #1912638: https://bugs.launchpad.net/charm-rabbitmq-server/+bug/1912638
 .. _LP #1899104: https://bugs.launchpad.net/ubuntu/+source/barbican/+bug/1899104
 .. _LP #1896630: https://bugs.launchpad.net/charm-layer-ovn/+bug/1896630
 .. _LP #1896603: https://bugs.launchpad.net/ubuntu/+source/ovn-octavia-provider/+bug/1896603
