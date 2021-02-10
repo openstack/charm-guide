@@ -4,14 +4,15 @@ Release Notes
 
 **Pending Release Notes**
 
-* `21.01 release`_
+* `21.04 release`_
 
 **Latest Release Notes**
 
-* `20.10 release`_
+* `21.01 release`_
 
 **Older Release Notes**
 
+* `20.10 release`_
 * `20.08 release`_
 * `20.05 release`_
 * `20.02 release`_
@@ -40,6 +41,7 @@ Release Notes
    :maxdepth: 1
    :hidden:
 
+   2104
    2101
    2010
    2008
@@ -58,6 +60,7 @@ Release Notes
    1610
 
 .. LINKS
+.. _21.04 release: 2104.html
 .. _21.01 release: 2101.html
 .. _20.10 release: 2010.html
 .. _20.08 release: 2008.html

@@ -1,17 +1,17 @@
-.. _release_notes_21.01:
+.. _release_notes_21.04:
 
-=====
-21.01
-=====
+=================================
+21.04 (Draft version in progress)
+=================================
 
 Summary
 -------
 
-The 21.01 OpenStack Charms project release includes updates for the charms
+The 21.04 OpenStack Charms project release includes updates for the charms
 described on the `Charms`_ page. As of this release, the project consists of 60
 supported (stable) charms.
 
-For the list of bugs resolved in this release refer to the `21.01 milestone`_
+For the list of bugs resolved in this release refer to the `21.04 milestone`_
 in Launchpad.
 
 For scheduling information of past and future releases see the `Release
@@ -34,20 +34,6 @@ test bundle, and/or a section in the `OpenStack Charms Deployment Guide`_, that
 details its usage. Test bundles are located in the ``src/tests/bundles``
 directory of the relevant charm repository.
 
-Cinder-Ceph - Image mirroring
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The cinder-ceph charm now supports image replication to a second Ceph cluster.
-This is achieved by connecting its new relation ``ceph-replication-device`` to
-the second Ceph cluster and setting its new ``rbd-mirroring-mode``
-configuration option to 'image'.
-
-Whether a particular Cinder Ceph image is replicated or not is determined by
-its `Cinder volume type`_.
-
-For implementation details see the `Cinder-Ceph replication development
-notes`_.
-
 Trilio charms
 ~~~~~~~~~~~~~
 
@@ -64,26 +50,8 @@ n/a
 Preview charm features
 ----------------------
 
-Ironic charms
-~~~~~~~~~~~~~
-
-Three new tech-preview charms are now available for the deployment of OpenStack
-Ironic:
-
-* ironic
-* ironic-api
-* ironic-conductor
-
-Ironic provisions bare metal, as opposed to virtual, machines.
-
 Deprecation notices
 -------------------
-
-Trusty series
-~~~~~~~~~~~~~
-
-The 'trusty' series is no longer actively tested and is now EOL in terms of
-bug fixes for the OpenStack charms.
 
 Removed features
 ----------------
@@ -193,22 +161,6 @@ service after resuming the ovn-chassis charm in step 15:
 Documentation updates
 ---------------------
 
-A summary of documentation updates is given below.
-
-* `OpenStack Charms Deployment Guide`_ (aka "deploy guide"):
-
-  * The deploy guide has been completely refactored.
-  * The install section has been updated to OpenStack Victoria.
-  * The upgrades section has received an `Upgrades overview`_ page.
-
-* `OpenStack Charm Guide`_ (aka "charm guide"):
-
-  * The OpenStack on LXD documentation was moved from the charm guide to the
-    `openstack-on-lxd`_ repository. Users wishing to use an all-in-one OpenStack
-    solution should explore the `MicroStack`_ project.
-
-* Charm READMEs: cinder, glance, keystone, keystone-ldap, and vault.
-
 Upgrading charms
 ----------------
 
@@ -223,7 +175,7 @@ in the `OpenStack Charms Deployment Guide`_.
 
 .. LINKS
 .. _Charms: openstack-charms.html
-.. _21.01 milestone: https://launchpad.net/openstack-charms/+milestone/21.01
+.. _21.04 milestone: https://launchpad.net/openstack-charms/+milestone/21.04
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _Release schedule: release-schedule.html
