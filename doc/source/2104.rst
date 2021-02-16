@@ -84,6 +84,30 @@ removed in the 21.04 charm release. The relation exists to support an obsolete
 method of RabbitMQ clustering which involved sharing queue data between the
 units using RBD volumes.
 
+Runtime configuration of SR-IOV and acceleration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Neutron Open vSwitch and OVN charms will no longer perform runtime
+configuration of SR-IOV Virtual Functions (VFs) or hardware acceleration.
+
+Changes made to configuration options ``enable-hardware-offload``,
+``enable-sriov`` and ``sriov-numvfs`` must be followed by a reboot of any
+neutron-openvswitch or ovn-chassis units in order for the changes to take
+effect. This is true regardless of when the changes were made (i.e. at
+deploy-time or post-deploy).
+
+This change of charm behaviour is necessary for two reasons:
+
+1. Changing the number of VFs on a running system breaks connectivity to any
+   running virtual machines.
+2. For Hardware acceleration support there is a particular order in which
+   components of the system must be set up for successful operation. Applying
+   or changing the configuration at runtime would involve operations like
+   removing and re-applying host network configuration, and could also lead to
+   NIC firmware malfunction. As such, runtime application of configuration
+   changes for the above mentioned configuration options falls outside the
+   domain of what the charms can control.
+
 Removed charms
 --------------
 
