@@ -34,6 +34,18 @@ test bundle, and/or a section in the `OpenStack Charms Deployment Guide`_, that
 details its usage. Test bundles are located in the ``src/tests/bundles``
 directory of the relevant charm repository.
 
+ceph-osd charm: marking individual OSDs as 'out' or 'in'
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-osd charm actions ``osd-out`` and ``osd-in`` can now target individual
+OSD volumes. The previous behaviour was to act on all volumes - there is a new
+keyword 'all' for that use case. For example:
+
+.. code-block:: none
+
+   juju run-action --wait ceph-osd/0 osd-out osds=osd.0,osd.1
+   juju run-action --wait ceph-osd/1 osd-out osds=all
+
 Trilio charms
 ~~~~~~~~~~~~~
 
