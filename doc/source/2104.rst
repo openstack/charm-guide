@@ -65,6 +65,14 @@ Preview charm features
 Deprecation notices
 -------------------
 
+hacluster charm ``stonith_enabled`` option
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``stonith_enabled`` configuration option for the hacluster charm is
+deprecated and will be removed in the next release of the OpenStack Charms.
+Resource fencing (aka STONITH) is now always enabled for every node in the
+cluster. See bug `LP #1881114`_ and `What is STONITH?`_ for more details.
+
 Removed features
 ----------------
 
@@ -198,6 +206,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _MicroStack: https://microstack.run
 .. _openstack-on-lxd: https://github.com/openstack-charmers/openstack-on-lxd
 .. _Migration from Neutron ML2+OVS to ML2+OVN: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html#migration-from-neutron-ml2-ovs-to-ml2-ovn
+.. _What is STONITH?: https://clusterlabs.org/pacemaker/doc/en-US/Pacemaker/1.1/html/Clusters_from_Scratch/ch08.html
 
 .. COMMITS
 
@@ -208,6 +217,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _LP #1827690: https://bugs.launchpad.net/charm-barbican/+bug/1827690
 .. _LP #1904199: https://bugs.launchpad.net/charm-ceph-iscsi/+bug/1904199
 .. _LP #1912638: https://bugs.launchpad.net/charm-rabbitmq-server/+bug/1912638
+.. _LP #1881114: https://bugs.launchpad.net/charm-hacluster/+bug/1881114
 .. _LP #1899104: https://bugs.launchpad.net/ubuntu/+source/barbican/+bug/1899104
 .. _LP #1896630: https://bugs.launchpad.net/charm-layer-ovn/+bug/1896630
 .. _LP #1896603: https://bugs.launchpad.net/ubuntu/+source/ovn-octavia-provider/+bug/1896603
