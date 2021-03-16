@@ -1,13 +1,13 @@
 .. _release_notes_trilio_21.03:
 
-========================================
-21.03 Trilio (Draft version in progress)
-========================================
+============
+21.03 Trilio
+============
 
 Summary
 -------
 
-The 21.03 release of the TrilioVault charms adds support for Trilio 4.1.
+The 21.03 release of the Trilio charms adds support for TrilioVault 4.1.
 
 .. important::
 
@@ -18,17 +18,17 @@ The 21.03 release of the TrilioVault charms adds support for Trilio 4.1.
 Supported combinations
 ----------------------
 
-Below is a table showing the support status of versions of Trilio for each
+The below table shows the support status for versions of TrilioVault for each
 version of Ubuntu and OpenStack.
 
 .. list-table:: **Supported combinations**
    :header-rows: 1
    :widths: 12 12 20 20
 
-   * - Ubuntu Release
-     - OpenStack Release
-     - Trilio 4.0 Release
-     - Trilio 4.1 Release
+   * - Ubuntu
+     - OpenStack
+     - TrilioVault 4.0
+     - TrilioVault 4.1
 
    * - Bionic
      - Queens
@@ -55,7 +55,6 @@ version of Ubuntu and OpenStack.
      - X
      - ✔
 
-
 Upgrading to 21.03 Trilio charms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -68,9 +67,9 @@ The Trilio charms are upgraded in the usual way:
    juju upgrade-charm trilio-horizon-plugin
    juju upgrade-charm trilio-wlm
 
-Once all the charms are upgraded, the trilio-data-mover charm will
-go into a blocked state as it now requires a relation with the cloud database.
-To add the relation:
+Once all the charms are upgraded, the trilio-data-mover charm will go into a
+blocked state as it now requires a relation with the cloud database. To add
+the relation:
 
 .. code-block:: none
 
@@ -79,9 +78,9 @@ To add the relation:
 Upgrading to TrilioVault 4.1
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The deployed TrilioVault version is controlled by the ``triliovault-pkg-source``
-charm configuration option. To upgrade, update this option's value for each of
-the deployed Trilio applications:
+The deployed TrilioVault version is controlled by the
+``triliovault-pkg-source`` charm configuration option. To upgrade, update this
+option's value for each of the deployed Trilio applications:
 
 .. code-block:: none
 
