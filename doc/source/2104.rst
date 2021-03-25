@@ -75,6 +75,28 @@ n/a
 Preview charm features
 ----------------------
 
+Magnum charms
+~~~~~~~~~~~~~
+
+Two new tech-preview charms are now available for the deployment of OpenStack
+Magnum:
+
+* magnum
+* magnum-dashboard
+
+Magnum deploys Container Orchestration Engines (COE) such as Kubernetes, Docker
+Swarm, and Apache Mesos onto OpenStack instances.
+
+Manila charms
+~~~~~~~~~~~~~
+
+Two new tech-preview charms are added to the current list of Manila charms:
+
+* manila-dashboard
+* manila-netapp
+
+Manila is OpenStack's shared filesystem service.
+
 Deprecation notices
 -------------------
 
