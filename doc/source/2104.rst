@@ -67,6 +67,20 @@ cluster in an "incomplete" state. The corosync ring does not need to be updated
 when scaling up; it is automatically extended. See the `hacluster charm`_
 README for more information.
 
+nova-compute charm: scaling down
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-compute charm has two new actions: ``remove-from-cloud`` and
+``register-to-cloud``.
+
+These actions assist with the downscaling of a nova-compute cluster. The
+``remove-from-cloud`` action unregisters a Compute service from the cloud and
+is run prior to unit removal (``juju remove-unit``). This ensures that "dead"
+services do not linger at the OpenStack level. The ``register-to-cloud``
+action allows the operator to revert the process by re-registering the service
+(providing unit removal has not been made). See the `nova-compute charm`_
+README for more information.
+
 New charms
 ----------
 
@@ -267,6 +281,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _openstack-on-lxd: https://github.com/openstack-charmers/openstack-on-lxd
 .. _Migration from Neutron ML2+OVS to ML2+OVN: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html#migration-from-neutron-ml2-ovs-to-ml2-ovn
 .. _What is STONITH?: https://clusterlabs.org/pacemaker/doc/en-US/Pacemaker/1.1/html/Clusters_from_Scratch/ch08.html
+.. _nova-compute charm: https://opendev.org/openstack/charm-nova-compute/src/branch/master/README.md#cloud-downscaling
 
 .. COMMITS
 
