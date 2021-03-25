@@ -238,6 +238,10 @@ production use (promoted to Stable).
 * `ironic-api`_
 * `ironic-conductor`_
 * `keystone-kerberos`_
+* `magnum`_
+* `magnum-dashboard`_
+* `manila-dashboard`_
+* `manila-netapp`_
 
 Alpha charms (Edge)
 -------------------
@@ -346,6 +350,10 @@ These charms have reached EOL and are deprecated.
 .. _ironic-api: https://opendev.org/openstack/charm-ironic-api
 .. _ironic-conductor: https://opendev.org/openstack/charm-ironic-conductor
 .. _keystone-kerberos: https://opendev.org/openstack/charm-keystone-kerberos/
+.. _magnum: https://opendev.org/openstack/charm-magnum
+.. _magnum-dashboard: https://opendev.org/openstack/charm-magnum-dashboard
+.. _manila-dashboard: https://opendev.org/openstack/charm-manila-dashboard
+.. _manila-netapp: https://opendev.org/openstack/charm-manila-netapp
 
 .. _barbican-softhsm: https://opendev.org/openstack/charm-barbican-softhsm/
 .. _manila-generic: https://opendev.org/openstack/charm-manila-generic/
