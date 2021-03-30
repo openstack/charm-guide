@@ -173,6 +173,21 @@ service after resuming the ovn-chassis charm in step 15:
 Documentation updates
 ---------------------
 
+Upgrade notes
+-------------
+
+Global cap to worker-multiplier
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Previously the number of workers in each service was capped at 4 when
+there is no explicit config to "worker-multiplier" is provided and the
+application is deployed into LXD containers. With this charm release,
+the cap as 4 workers gets applied to all of the services regardless
+where the application is deployed into.
+
+Operators can always override the number of workers by setting any value
+to "worker-multiplier" explicitly.
+
 Upgrading charms
 ----------------
 
