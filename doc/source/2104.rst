@@ -81,6 +81,20 @@ action allows the operator to revert the process by re-registering the service
 (providing unit removal has not been made). See the `nova-compute charm`_
 README for more information.
 
+openstack-dashboard charm: new option ``use-internal-endpoints``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The openstack-dashboard charm has a new configuration option:
+``use-internal-endpoints``.
+
+Horizon's default behaviour is to use Keystone's public endpoint. When this
+new option is set to 'true' Keystone's internal endpoint will be used instead.
+This could be used when a cloud's topology restricts Horizon's access to the
+public network.
+
+This option is already available in other charms (e.g. nova-cloud-controller
+and heat).
+
 New charms
 ----------
 
