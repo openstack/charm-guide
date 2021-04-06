@@ -4,12 +4,36 @@
 21.04 (Draft version in progress)
 =================================
 
-Summary
--------
+Summary of changes
+------------------
 
-The 21.04 OpenStack Charms project release includes updates for the charms
-described on the `Charms`_ page. As of this release, the project consists of 60
-supported (stable) charms.
+* New charm features
+   * `ceph-osd charm: marking individual OSDs as 'out' or 'in'`_
+   * `hacluster charm: scaling down`_
+   * `nova-compute charm: scaling down`_
+   * `openstack-dashboard charm: new option 'use-internal-endpoints'`_
+   * `Global cap to charm option 'worker-multiplier'`_
+
+* New tech-preview charms
+   * `Magnum charms`_
+   * `Manila charms`_
+
+* Informational notices
+   * `Trilio charms release cadence`_
+
+* Deprecation notices
+   * `hacluster charm: option 'stonith_enabled'`_
+
+* Removed features
+   * `RabbitMQ Ceph relation`_
+   * `Runtime configuration of SR-IOV and acceleration`_
+
+Overview
+--------
+
+The 21.04 OpenStack Charms release includes updates for the charms described on
+the `Charms`_ page. As of this release, the project consists of 60 supported
+(stable) charms.
 
 For the list of bugs resolved in this release refer to the `21.04 milestone`_
 in Launchpad.
@@ -32,7 +56,7 @@ New charm features
 With each new feature, there is a corresponding example bundle in the form of a
 test bundle, and/or a section in the `OpenStack Charms Deployment Guide`_, that
 details its usage. Test bundles are located in the ``src/tests/bundles``
-directory of the relevant charm repository.
+directory of the relevant charm repository (see all `charm repositories`_).
 
 ceph-osd charm: marking individual OSDs as 'out' or 'in'
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -45,14 +69,6 @@ keyword 'all' for that use case. For example:
 
    juju run-action --wait ceph-osd/0 osd-out osds=osd.0,osd.1
    juju run-action --wait ceph-osd/1 osd-out osds=all
-
-Trilio charms
-~~~~~~~~~~~~~
-
-The Trilio charms will no longer be released with the same cadence as the other
-OpenStack charms. Instead, they will be released shortly after releases of the
-Trilio code. For instance, Trilio 4.1 is due in February and the Trilio charms
-will be released shortly thereafter.
 
 hacluster charm: scaling down
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -81,8 +97,8 @@ action allows the operator to revert the process by re-registering the service
 (providing unit removal has not been made). See the `nova-compute charm`_
 README for more information.
 
-openstack-dashboard charm: new option ``use-internal-endpoints``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+openstack-dashboard charm: new option 'use-internal-endpoints'
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The openstack-dashboard charm has a new configuration option:
 ``use-internal-endpoints``.
@@ -95,13 +111,19 @@ public network.
 This option is already available in other charms (e.g. nova-cloud-controller
 and heat).
 
-New charms
-----------
+Global cap to charm option 'worker-multiplier'
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-n/a
+For thos charms that provide service workers their number is determined by the
+``worker-multiplier`` charm option. There is a maximum number (a "cap") of four
+workers that is applied when the option is not explicitly set. Previously the
+cap was enforced only when an application was deployed to a LXD container. With
+this new charm release, the cap is always applied.
 
-Preview charm features
-----------------------
+This new behaviour takes effect upon charm upgrade.
+
+New tech-preview charms
+-----------------------
 
 Magnum charms
 ~~~~~~~~~~~~~
@@ -109,8 +131,8 @@ Magnum charms
 Two new tech-preview charms are now available for the deployment of OpenStack
 Magnum:
 
-* magnum
-* magnum-dashboard
+* `magnum`_
+* `magnum-dashboard`_
 
 Magnum deploys Container Orchestration Engines (COE) such as Kubernetes, Docker
 Swarm, and Apache Mesos onto OpenStack instances.
@@ -120,16 +142,31 @@ Manila charms
 
 Two new tech-preview charms are added to the current list of Manila charms:
 
-* manila-dashboard
-* manila-netapp
+* `manila-dashboard`_
+* `manila-netapp`_
 
 Manila is OpenStack's shared filesystem service.
+
+.. COMMENT
+   Documentation updates
+   ---------------------
+
+Informational notices
+---------------------
+
+Trilio charms release cadence
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Trilio charms will no longer be released with the same cadence as the other
+OpenStack charms. Instead, they will be released shortly after releases of the
+Trilio code. For instance, Trilio 4.1 is due in February and the Trilio charms
+will be released shortly thereafter.
 
 Deprecation notices
 -------------------
 
-hacluster charm ``stonith_enabled`` option
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+hacluster charm: option 'stonith_enabled'
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``stonith_enabled`` configuration option for the hacluster charm is
 deprecated and will be removed in the next release of the OpenStack Charms.
@@ -142,7 +179,7 @@ Removed features
 RabbitMQ Ceph relation
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The `ceph` relation in the rabbitmq-server charm is deprecated and will be
+The ``ceph`` relation in the rabbitmq-server charm is deprecated and will be
 removed in the 21.04 charm release. The relation exists to support an obsolete
 method of RabbitMQ clustering which involved sharing queue data between the
 units using RBD volumes.
@@ -171,117 +208,9 @@ This change of charm behaviour is necessary for two reasons:
    changes for the above mentioned configuration options falls outside the
    domain of what the charms can control.
 
-Removed charms
---------------
-
-n/a
-
-Known issues
-------------
-
-Lack of FQDN for containers on physical MAAS nodes may affect running services
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-When Juju deploys to a LXD container on a physical MAAS node, the container is
-not informed of its FQDN. The services running in the container will therefore
-be unable to determine the FQDN on initial deploy and on reboot.
-
-Adverse effects are service dependent. This issue is tracked in bug `LP
-#1896630`_ in an OVN and Octavia context. Several workarounds are documented in
-the bug.
-
-Barbican DB migration
-~~~~~~~~~~~~~~~~~~~~~
-
-With Focal Ussuri, running command ``barbican-manage db upgrade`` against a
-barbican application that is backed by a MySQL InnoDB Cluster will lead to a
-failure (see bug `LP #1899104`_). This was discovered while resolving bug `LP
-#1827690`_.
-
-Both the charm bug `LP #1827690`_ and the package bug `LP #1899104`_ are known
-issues that will be addressed shortly after the 20.10 release.
-
-The package bug only affects Focal Ussuri and is not present in Victoria, nor
-is it present when using (Bionic) Percona Cluster as the back-end DB.
-
-Series upgrade - vault charm
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-If a series upgrade is attempted while Vault is sealed then manual intervention
-will be required (see bugs `LP #1886083`_ and `LP #1890106`_). The vault leader
-unit (which will be in error) will need to be unsealed and the hook error
-resolved. The `vault charm`_ README has unsealing instructions, and the hook
-error can be resolved with:
-
-.. code-block:: none
-
-   juju resolved vault/N
-
-Octavia load balancers using OVN provider on Victoria
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-With OpenStack Victoria, creating an Octavia load balancer that uses the OVN
-provider will fail due to bug `LP #1896603`_. This bug does not affect load
-balancers that use the Amphora provider.
-
-Ceph iSCSI on Ubuntu 20.10
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The ceph-iscsi charm can't be deployed on Ubuntu 20.10 (Groovy) due to a Python
-library issue. See bug `LP #1904199`_ for details.
-
-Charm upgrade - rabbitmq-server charm
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-A timing issue has been observed during the upgrade of the rabbitmq-server
-charm (see bug `LP #1912638`_ for tracking). If it occurs the resulting hook
-error can be resolved with:
-
-.. code-block:: none
-
-   juju resolved rabbitmq-server/N
-
-Adding Glance storage backends
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-When a storage backend is added to Glance a service restart may be necessary in
-order for the new backend to be registered. This issue is tracked in bug `LP
-#1914819`_.
-
-OVS to OVN migration procedure on Ubuntu 20.10
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-When performed on Ubuntu 20.10 (Groovy), the procedure for migrating an
-OpenStack cloud from ML2+OVS to ML2+OVN may require an extra step due to Open
-vSwitch bug `LP #1852221`_.
-
-Following the procedure in the `Migration from Neutron ML2+OVS to ML2+OVN`_
-section of the deploy guide, the workaround is to restart the `ovs-vswitchd`
-service after resuming the ovn-chassis charm in step 15:
-
-.. code-block:: none
-
-   juju run-action --wait neutron-openvswitch/0 cleanup
-   juju run-action --wait ovn-chassis/0 resume
-   juju run --unit ovn-chassis/0 'systemctl restart ovs-vswitchd'
-
-Documentation updates
----------------------
-
-Upgrade notes
--------------
-
-Global cap to worker-multiplier
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Previously the number of workers in each service was capped at 4 when
-there is no explicit config to "worker-multiplier" is provided and the
-application is deployed into LXD containers. With this charm release,
-the cap as 4 workers gets applied to all of the services regardless
-where the application is deployed into.
-
-Operators can always override the number of workers by setting any value
-to "worker-multiplier" explicitly.
+.. COMMENT
+   Known issues discovered during this release cycle
+   -------------------------------------------------
 
 Upgrading charms
 ----------------
@@ -304,26 +233,16 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
 .. _vault charm: https://opendev.org/openstack/charm-vault/src/branch/master/src/README.md#unseal-vault
 .. _hacluster charm: https://opendev.org/openstack/charm-hacluster/src/branch/master/README.md#update-ring-action
-.. _Cinder volume type: https://docs.openstack.org/cinder/latest/contributor/replication.html#volume-types-extra-specs
-.. _Cinder-Ceph replication development notes: https://github.com/ionutbalutoiu/cinder-ceph-replication
-.. _MicroStack: https://microstack.run
-.. _openstack-on-lxd: https://github.com/openstack-charmers/openstack-on-lxd
 .. _Migration from Neutron ML2+OVS to ML2+OVN: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html#migration-from-neutron-ml2-ovs-to-ml2-ovn
 .. _What is STONITH?: https://clusterlabs.org/pacemaker/doc/en-US/Pacemaker/1.1/html/Clusters_from_Scratch/ch08.html
 .. _nova-compute charm: https://opendev.org/openstack/charm-nova-compute/src/branch/master/README.md#cloud-downscaling
+.. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
+.. _magnum: https://opendev.org/openstack/charm-magnum
+.. _magnum-dashboard: https://opendev.org/openstack/charm-magnum-dashboard
+.. _manila-dashboard: https://opendev.org/openstack/charm-manila-dashboard
+.. _manila-netapp: https://opendev.org/openstack/charm-manila-netapp
 
 .. COMMITS
 
 .. BUGS
-.. _LP #1890106: https://bugs.launchpad.net/vault-charm/+bug/1890106
-.. _LP #1886083: https://bugs.launchpad.net/vault-charm/+bug/1886083
-.. _LP #1884548: https://bugs.launchpad.net/charm-cinder/+bug/1884548
-.. _LP #1827690: https://bugs.launchpad.net/charm-barbican/+bug/1827690
-.. _LP #1904199: https://bugs.launchpad.net/charm-ceph-iscsi/+bug/1904199
-.. _LP #1912638: https://bugs.launchpad.net/charm-rabbitmq-server/+bug/1912638
 .. _LP #1881114: https://bugs.launchpad.net/charm-hacluster/+bug/1881114
-.. _LP #1899104: https://bugs.launchpad.net/ubuntu/+source/barbican/+bug/1899104
-.. _LP #1896630: https://bugs.launchpad.net/charm-layer-ovn/+bug/1896630
-.. _LP #1896603: https://bugs.launchpad.net/ubuntu/+source/ovn-octavia-provider/+bug/1896603
-.. _LP #1914819: https://bugs.launchpad.net/charm-glance/+bug/1914819
-.. _LP #1852221: https://bugs.launchpad.net/ubuntu/+source/openvswitch/+bug/1852221

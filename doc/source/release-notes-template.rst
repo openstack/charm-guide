@@ -1,173 +1,121 @@
 .. _release_notes_<CHARM_RELEASE>:
 
-**** This is a template file for future release notes and its contents should not be linked or referenced.  Use actual release notes instead. ****
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*                                                             *
+* This is a template to be used for future release notes.     *
+* Make a copy, remove this notice, and use the placeholders.  *
+*                                                             *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-===========================
-<release version goes here>
-===========================
+===========================================
+<CHARM_RELEASE> (Draft version in progress)
+===========================================
 
-Summary
-=======
+Summary of changes
+------------------
 
-The <CHARM_RELEASE> OpenStack Charm release includes updates for the following charms.  Additional charm support status information is published in the main `charm guide <openstack-charms.html>`__ which ultimately supersedes release note contents.
+* New charm features
+   * `<TITLE>`_
 
-Supported Charms
-~~~~~~~~~~~~~~~~
+* New tech-preview charms
+   * `<TITLE>`_
 
-* aodh
-* barbican
-* ceilometer
-* ceilometer-agent
-* ceph-fs
-* ceph-mon
-* ceph-osd
-* ceph-proxy
-* ceph-radosgw
-* cinder
-* cinder-backup
-* cinder-ceph
-* designate
-* designate-bind
-* glance
-* gnocchi
-* hacluster
-* heat
-* keystone
-* keystone-ldap
-* lxd
-* manila
-* manila-generic
-* neutron-api
-* neutron-openvswitch
-* neutron-gateway
-* neutron-dynamic-routing
-* nova-cloud-controller
-* nova-compute
-* openstack-dashboard
-* percona-cluster
-* rabbitmq-server
-* swift-proxy
-* swift-storage
-* vault
+* Deprecation notices
+   * `<TITLE>`_
 
-Pre-Release Charms
-~~~~~~~~~~~~~~~~~~
+* Removed features
+   * `<TITLE>`_
 
-Deprecated Charms
-~~~~~~~~~~~~~~~~~
+Overview
+--------
 
-New Charm Features
-==================
+The <CHARM_RELEASE> OpenStack Charms release includes updates for the charms
+described on the `Charms`_ page. As of this release, the project consists of
+<NUMBER-OF-STABLE-CHARMS> supported (stable) charms.
 
-OpenStack <O7K_RELEASE> Support
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The charms provide full support for OpenStack <O7K_RELEASE>. For further details and documentation on Openstack <O7K_RELEASE> please check out https://releases.openstack.org/<O7K_RELEASE>.
+For the list of bugs resolved in this release refer to the `<CHARM_RELEASE>
+milestone`_ in Launchpad.
 
-Use the 'openstack-origin' charm configuration option to declare the intended OpenStack version, for example:
+For scheduling information of past and future releases see the `Release
+schedule`_.
 
-.. code:: bash
+General charm information is published in the `OpenStack Charm Guide`_ (this
+guide) which ultimately supersedes Release Notes contents.
 
-    cat > config.yaml << EOF
-    nova-cloud-controller:
-      openstack-origin: cloud:bionic-<O7K_RELEASE>
-    EOF
+.. important::
 
-    juju deploy --config config.yaml nova-cloud-controller
+   Always upgrade to the latest stable charms before making any major changes
+   to your cloud and before filing bug reports. Refer to section `Upgrading
+   charms`_ below for details.
 
-Also see the published example bundles.
+New charm features
+------------------
 
-Feature Title 1
-~~~~~~~~~~~~~~~
+With each new feature, there is a corresponding example bundle in the form of a
+test bundle, and/or a section in the `OpenStack Charms Deployment Guide`_, that
+details its usage. Test bundles are located in the ``src/tests/bundles``
+directory of the relevant charm repository (see all `charm repositories`_).
 
-Feature Title 2
-~~~~~~~~~~~~~~~
+<NEW-FEATURE-TITLE>
+~~~~~~~~~~~~~~~~~~~
 
+.. COMMENT
+   New stable charms
+   -----------------
+
+.. COMMENT
+   New tech-preview charms
+   -----------------------
+
+.. COMMENT
+   Preview charm features
+   ----------------------
+
+.. COMMENT
+   Documentation updates
+   ---------------------
+
+.. COMMENT
+   Informational notices
+   ---------------------
+
+.. COMMENT
+   Deprecation notices
+   -------------------
+
+.. COMMENT
+   Removed features
+   ----------------
+
+.. COMMENT
+   Removed charms
+   --------------
+
+.. COMMENT
+   Issues discovered during this release cycle
+   -------------------------------------------
 
 Upgrading charms
-================
+----------------
 
-Please ensure that the keystone charm is upgraded first.
+Upgrading charms will making available new features and bug fixes. However, the
+latest stable charm revision should also be used prior to making any
+topological changes, application migrations, workload upgrades, or series
+upgrades. Bug reports should also be filed against the most recent revision.
 
-To upgrade an existing deployment to the latest charm version simply use the
-'upgrade-charm' command, for example:
+Note that charm upgrades and OpenStack upgrades are functionally different. For
+instructions on performing the different upgrade types see `Upgrades overview`_
+in the `OpenStack Charms Deployment Guide`_.
 
-.. code:: bash
+.. LINKS
+.. _Charms: openstack-charms.html
+.. _<CHARM_RELEASE> milestone: https://launchpad.net/openstack-charms/+milestone/<CHARM_RELEASE>
+.. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
+.. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
+.. _Release schedule: release-schedule.html
+.. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
+.. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 
-    juju upgrade-charm keystone
+.. COMMITS
 
-Charm upgrades and OpenStack upgrades are two distinctly different things. Charm upgrades ensure that the deployment is using the latest charm revision, containing the latest charm fixes and charm features available for a given deployment.
-
-Charm upgrades do not cause OpenStack versions to upgrade, however OpenStack upgrades do require the latest Charm version as pre-requisite.
-
-Upgrading OpenStack
-===================
-
-To upgrade an existing <O7K_PREVIOUS_RELEASE> based deployment on Ubuntu <UBUNTU_RELEASE> to the <O7K_RELEASE>
-release, re-configure the charm with a new openstack-origin
-configuration:
-
-.. code:: bash
-
-    juju config nova-cloud-controller openstack-origin=cloud:bionic-<O7K_RELEASE>
-
-Please ensure that ceph services are upgraded before services that consume ceph
-resources, such as cinder, glance and nova-compute:
-
-.. code:: bash
-
-    juju config ceph-mon source=cloud:bionic-<O7K_RELEASE>
-    juju config ceph-osd source=cloud:bionic-<O7K_RELEASE>
-
-.. note::
-
-   Upgrading an OpenStack cloud is still not without risk; upgrades should
-   be tested in pre-production testing environments prior to production deployment
-   upgrades.
-
-See https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html for more details.
-
-
-New Bundle Features
-===================
-
-<O7K_RELEASE> Support in Example Bundles
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-<O7K_RELEASE> versions of the example bundles are published in the charm store under cs:openstack-base, cs:openstack-telemetry. The stand-alone ceph bundle is also updated at cs:ceph-base. These bundles have been validated on x86_64, arm64, s390x and ppc64el architectures with Juju 2.3.3 and MAAS 2.3.0.
-
-https://jujucharms.com/openstack-base
-
-https://jujucharms.com/openstack-telemetry
-
-https://jujucharms.com/ceph-base
-
-
-
-Deprecation Notices
-===================
-
-Notice 1
-~~~~~~~~
-
-Notice 2
-~~~~~~~~
-
-
-Known Issues
-============
-
-Issue 1
-~~~~~~~
-
-Issue 2
-~~~~~~~
-
-
-Bugs Fixed
-==========
-
-This release includes NNNN bugs fixes. For the full list of bugs resolved for the <CHARM_RELEASE> charms release please refer to https://launchpad.net/openstack-charms/+milestone/????.
-
-Next Release Info
-=================
-The next OpenStack Charms release is currently scheduled for ????, and is subject to change.  Please see https://docs.openstack.org/charm-guide/latest for current information.
+.. BUGS
