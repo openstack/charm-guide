@@ -13,6 +13,7 @@ Summary of changes
    * `nova-compute charm: scaling down`_
    * `openstack-dashboard charm: new option 'use-internal-endpoints'`_
    * `Global cap to charm option 'worker-multiplier'`_
+   * `Denying service restarts and hook calls`_
 
 * New tech-preview charms
    * `Magnum charms`_
@@ -121,6 +122,25 @@ cap was enforced only when an application was deployed to a LXD container. With
 this new charm release, the cap is always applied.
 
 This new behaviour takes effect upon charm upgrade.
+
+Denying service restarts and hook calls
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The deferred service events feature can be enabled on a per-charm basis to
+avoid sudden service interruptions caused by maintenance and operational
+procedures applied to the cloud.
+
+This feature is currently supported by the following charms:
+
+* neutron-gateway
+* neutron-openvswitch
+* ovn-central
+* ovn-chassis
+* ovn-dedicated-chassis
+* rabbitmq-server
+
+See the `Deferred service events`_ page in the `OpenStack Charms Deployment
+Guide`_ for more information.
 
 New tech-preview charms
 -----------------------
@@ -241,6 +261,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _magnum-dashboard: https://opendev.org/openstack/charm-magnum-dashboard
 .. _manila-dashboard: https://opendev.org/openstack/charm-manila-dashboard
 .. _manila-netapp: https://opendev.org/openstack/charm-manila-netapp
+.. _Deferred service events: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/deferred-events.html
 
 .. COMMITS
 
