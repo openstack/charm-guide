@@ -1,17 +1,22 @@
-.. _find-us:
-
 ==========
 Talk to us
 ==========
 
-* Talk to us on IRC channel ``#openstack-charms`` on Freenode.
-* Join the conversation on our `Mailing list <https://docs.openstack.org/charm-guide/latest/mailing-list.html>`_.
-* Participate to our `Online Meetings <meetings.html>`_.
+We'd love to hear from you!
 
+IRC
+---
 
-.. toctree::
-   :maxdepth: 1
-   :hidden:
+Ask us questions on our IRC channel on Freenode: ``#openstack-charms``.
 
-   mailing-list
-   meetings
+Mailing list
+------------
+
+For more lengthy discussions, converse by email on the upstream OpenStack
+mailing list: `openstack-discuss`_
+
+Please begin the subject with **[charms]** to differentiate the thread from the
+many other topics that are discussed on this list.
+
+.. LINKS
+.. _openstack-discuss: http://lists.openstack.org/cgi-bin/mailman/listinfo/openstack-discuss

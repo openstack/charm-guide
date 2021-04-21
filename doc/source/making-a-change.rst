@@ -145,5 +145,5 @@ are core features of all of the related charms.
 For details on getting started with `Launchpad`_ development, please read the `Launchpad code page
 <https://help.launchpad.net/Code>`_ after you have registered your account.
 
-Also please do reach out to us on IRC or the mailing list. You can find more
-details in the :ref:`find-us` page.
+Also please do reach out to us on IRC or the mailing list (see the :doc:`Talk
+to us <find-us>` page).
