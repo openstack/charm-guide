@@ -142,6 +142,20 @@ This feature is currently supported by the following charms:
 See the `Deferred service events`_ page in the `OpenStack Charms Deployment
 Guide`_ for more information.
 
+nova-cloud-controller charm: sync compute availability zones
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-cloud-controller charm has a new action: ``sync-compute-availability-zones``.
+
+This new action will configure host aggregates in Nova with availability zones of
+related nova-compute units. This action will add hypervisors to the appropriate
+host aggregate but will not remove hypervisors from existing host aggregates. The
+hypervisors are placed into the appropriate availability zone as determined by
+the nova-compute charm. See `Availability Zones in the nova-compute charm`_ README
+for more information on configuring availability zones for compute services.
+
+This action is supported on OpenStack Stein and newer.
+
 New tech-preview charms
 -----------------------
 
@@ -256,6 +270,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _Migration from Neutron ML2+OVS to ML2+OVN: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html#migration-from-neutron-ml2-ovs-to-ml2-ovn
 .. _What is STONITH?: https://clusterlabs.org/pacemaker/doc/en-US/Pacemaker/1.1/html/Clusters_from_Scratch/ch08.html
 .. _nova-compute charm: https://opendev.org/openstack/charm-nova-compute/src/branch/master/README.md#cloud-downscaling
+.. _Availability Zones in the nova-compute charm: https://opendev.org/openstack/charm-nova-compute/src/branch/master/README.md#availability-zones
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _magnum: https://opendev.org/openstack/charm-magnum
 .. _magnum-dashboard: https://opendev.org/openstack/charm-magnum-dashboard
