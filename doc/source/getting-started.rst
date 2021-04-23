@@ -2,22 +2,16 @@
 Getting started
 ===============
 
-* The OpenStack Charms use Juju to deploy and manage OpenStack services, so
-  getting to know Juju_ is a great first step.
-* You might want to try out the charms on your local machine (or virtual machine) using the Juju LXD
-  provider and the
-  `OpenStack on LXD bundle <openstack-on-lxd.html>`__
-  if you don't have physical servers to use or just want to contribute a fix
-  or change.
-* For bare-metal deployment, Juju uses MAAS_ to provision and configure
-  physical servers, so that's a good next step.
-* Once you have MAAS setup, you can try out the
-  `OpenStack Base bundle <https://jujucharms.com/openstack-base>`__ from
-  the Juju charm store.
+In order to develop an OpenStack charm you'll need a working Charmed OpenStack
+environment. See the `OpenStack Charms Deployment Guide`_ for deployment (and
+charm usage) information. Alternatively, the `OpenStack on LXD`_ repository has
+instructions for deploying a cloud on a single host with just LXD containers.
 
-.. _Juju: https://jujucharms.com/docs/devel/getting-started
-.. _MAAS: https://maas.io/get-started
+To learn specifically about OpenStack charms and bundles see the
+:doc:`OpenStack charms and bundles <charms-and-bundles>` page. For charm and
+bundle guidance of a generic nature see the `Juju documentation`_
 
-.. toctree::
-   :maxdepth: 1
-   :hidden:
+.. LINKS
+.. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
+.. _OpenStack on LXD: https://github.com/openstack-charmers/openstack-on-lxd
+.. _Juju documentation: https://juju.is/docs

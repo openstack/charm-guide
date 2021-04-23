@@ -1,9 +1,14 @@
-====================================
-Welcome to the OpenStack Charm Guide
-====================================
+=====================
+OpenStack Charm Guide
+=====================
 
-The OpenStack charms deliver fast and repeatable OpenStack deployments with
-loose coupling between OpenStack services.
+Charmed OpenStack is an enterprise grade OpenStack distribution that leverages
+MAAS, Juju, and the `OpenStack Charms`_ to simplify the deployment and
+management of an OpenStack cloud.
+
+The OpenStack Charm Guide is the main source of information for the development
+of the OpenStack Charms. Release notes and support notes are also to be
+found here.
 
 .. toctree::
    :maxdepth: 2
@@ -11,7 +16,6 @@ loose coupling between OpenStack services.
 
    getting-started
    find-us
-   deployment
    openstack-charms
    support-notes
    creating-charms
@@ -21,3 +25,6 @@ loose coupling between OpenStack services.
    release-policy
    release-schedule
    release-notes
+
+.. LINKS
+.. _OpenStack Charms: https://launchpad.net/openstack-charms
