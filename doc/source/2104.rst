@@ -11,6 +11,7 @@ Summary of changes
    * `ceph-osd charm: marking individual OSDs as 'out' or 'in'`_
    * `hacluster charm: scaling down`_
    * `nova-compute charm: scaling down`_
+   * `nova-compute charm: query name of compute node`_
    * `openstack-dashboard charm: new option 'use-internal-endpoints'`_
    * `Global cap to charm option 'worker-multiplier'`_
    * `Denying service restarts and hook calls`_
@@ -97,6 +98,13 @@ services do not linger at the OpenStack level. The ``register-to-cloud``
 action allows the operator to revert the process by re-registering the service
 (providing unit removal has not been made). See the `nova-compute charm`_
 README for more information.
+
+nova-compute charm: query name of compute node
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-compute charm has a new action: ``node-name``.
+
+This action prints the node name of the nova-compute unit it is run against.
 
 openstack-dashboard charm: new option 'use-internal-endpoints'
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
