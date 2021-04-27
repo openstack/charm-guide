@@ -97,8 +97,8 @@ Openstack API Layer
 ~~~~~~~~~~~~~~~~~~~
 
 The `Openstack API Layer <https://opendev.org/openstack/charm-layer-openstack-api>`__
-provides the base layer for OpenStack charms that are will deploy API services,
-and provides all of the core functionality for:
+provides the base layer for OpenStack charms that deploy API services, and
+provides all of the core functionality for:
 
 - HA (using the hacluster charm)
 - SSL (using configuration options or keystone for certificates)
@@ -117,7 +117,7 @@ Interfaces define the data exchange between each of the charms. A list of all
 available interfaces is available `here <https://github.com/juju/layer-index>`__.
 A list of OpenStack specific interfaces can be found `here <https://opendev.org/openstack?q=charm-interface>`__
 
-The interfaces a charm needs are defines in the `layers.yaml`_. Below is a list
+The interfaces a charm needs are defined in the `layers.yaml`_. Below is a list
 of the typical interfaces needed by different OpenStack charm types:
 
 **API Charm**
@@ -244,7 +244,7 @@ context used to populate the template has a number of namespaces which are
 populated from different sources. Below outlines those namespaces.
 
 .. NOTE::
-   Hypens are always automatically converted to underscores in the template
+   Hyphens are always automatically converted to underscores in the template
    context.
 
 Template properties from Interfaces
@@ -333,7 +333,7 @@ This can be accessed in the templates with ``{{ identity_service.charm_pipeline 
 Templates Directory
 ~~~~~~~~~~~~~~~~~~~
 
-Template are loaded from several places in the following order:
+Templates are loaded from several places in the following order:
 
 - From the most recent OS release-specific template dir (if one exists)
 - Working back through the template directories for each earlier OpenStack Release
