@@ -12,6 +12,7 @@ Summary of changes
    * `hacluster charm: scaling down`_
    * `nova-compute charm: scaling down`_
    * `nova-compute charm: query name of compute node`_
+   * `nova-compute charm: list compute nodes`_
    * `openstack-dashboard charm: new option 'use-internal-endpoints'`_
    * `Global cap to charm option 'worker-multiplier'`_
    * `Denying service restarts and hook calls`_
@@ -105,6 +106,13 @@ nova-compute charm: query name of compute node
 The nova-compute charm has a new action: ``node-name``.
 
 This action prints the node name of the nova-compute unit it is run against.
+
+nova-compute charm: list compute nodes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-compute charm has a new action: ``list-compute-nodes``.
+
+This action prints a list of all compute nodes registered in the cloud.
 
 openstack-dashboard charm: new option 'use-internal-endpoints'
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
