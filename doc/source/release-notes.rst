@@ -4,15 +4,16 @@ Release Notes
 
 **Pending Release Notes**
 
-* `21.04 release`_
+* ...
 
 **Latest Release Notes**
 
+* `21.04 release`_
 * `21.03 Trilio release`_
-* `21.01 release`_
 
 **Older Release Notes**
 
+* `21.01 release`_
 * `20.10 release`_
 * `20.08 release`_
 * `20.05 release`_
