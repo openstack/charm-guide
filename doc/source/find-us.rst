@@ -4,19 +4,24 @@ Talk to us
 
 We'd love to hear from you!
 
-IRC
----
+Forum
+-----
 
-Ask us questions on our IRC channel on Freenode: ``#openstack-charms``.
+Find us on the Juju Discourse site: `OpenStack`_. Mark the forum post (topic)
+with the ``openstack`` tag.
 
 Mailing list
 ------------
 
-For more lengthy discussions, converse by email on the upstream OpenStack
-mailing list: `openstack-discuss`_
-
+We are present on the upstream OpenStack mailing list: `openstack-discuss`_.
 Please begin the subject with **[charms]** to differentiate the thread from the
 many other topics that are discussed on this list.
 
+IRC
+---
+
+IRC on Freenode also works: ``#openstack-charms``
+
 .. LINKS
+.. _OpenStack: https://discourse.charmhub.io/c/juju/
 .. _openstack-discuss: http://lists.openstack.org/cgi-bin/mailman/listinfo/openstack-discuss
