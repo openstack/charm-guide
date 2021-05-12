@@ -1,15 +1,8 @@
-.. _release_notes_<CHARM_RELEASE>:
+.. _release_notes_21.10:
 
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-*                                                             *
-* This is a template to be used for future release notes.     *
-* Make a copy, remove this notice, and use the placeholders.  *
-*                                                             *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-===========================================
-<CHARM_RELEASE> (Draft version in progress)
-===========================================
+=================================
+21.10 (Draft version in progress)
+=================================
 
 Summary of changes
 ------------------
@@ -32,12 +25,12 @@ Summary of changes
 Overview
 --------
 
-The <CHARM_RELEASE> OpenStack Charms release includes updates for the charms
-described on the `Charms`_ page. As of this release, the project consists of
+The 21.10 OpenStack Charms release includes updates for the charms described on
+the `Charms`_ page. As of this release, the project consists of
 <NUMBER-OF-STABLE-CHARMS> supported (stable) charms.
 
-For the list of bugs resolved in this release refer to the `<CHARM_RELEASE>
-milestone`_ in Launchpad.
+For the list of bugs resolved in this release refer to the `21.10 milestone`_
+in Launchpad.
 
 For scheduling information of past and future releases see the `Release
 schedule`_.
@@ -130,7 +123,7 @@ in the `OpenStack Charms Deployment Guide`_.
 
 .. LINKS
 .. _Charms: openstack-charms.html
-.. _<CHARM_RELEASE> milestone: https://launchpad.net/openstack-charms/+milestone/<CHARM_RELEASE>
+.. _21.10 milestone: https://launchpad.net/openstack-charms/+milestone/21.10
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _Release schedule: release-schedule.html

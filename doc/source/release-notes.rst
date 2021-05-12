@@ -4,7 +4,7 @@ Release Notes
 
 **Pending Release Notes**
 
-* ...
+* `21.10 release`_
 
 **Latest Release Notes**
 
@@ -43,6 +43,7 @@ Release Notes
    :maxdepth: 1
    :hidden:
 
+   2110
    2104
    2103_Trilio
    2101
@@ -63,6 +64,7 @@ Release Notes
    1610
 
 .. LINKS
+.. _21.10 release: 2110.html
 .. _21.04 release: 2104.html
 .. _21.03 Trilio release: 2103_Trilio.html
 .. _21.01 release: 2101.html
