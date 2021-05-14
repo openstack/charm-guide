@@ -10,6 +10,7 @@ Summary of changes
 * New charm features
    * `ceilometer-agent charm: new polling configuration options`_
    * `cinder-purestorage charm: new configuration options`_
+   * `ceph-mon charm: disk capacity alert threshold configuration`_
 
 * New tech-preview charms
    * `<TITLE>`_
@@ -88,7 +89,7 @@ collected by the compute polling agent. The meters that can be collected via
 cinder-purestorage charm: new configuration options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The cinder-purestorage charm has a number of new options:
+The cinder-purestorage charm has a number of new configuration options:
 
 * ``eradicate-on-delete``
 * ``automatic-max-oversubscription``
@@ -120,7 +121,7 @@ of these configuration options.
 neutron-api charm: FWaaS option
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The neutron-api charm has a new option: ``enable-fwaas``.
+The neutron-api charm has a new configuration option: ``enable-fwaas``.
 
 This option controls the enablement of the Neutron FWaaS service. It defaults
 to 'true' to retain past behaviour but only takes effect for OpenStack releases
@@ -129,6 +130,16 @@ neutron-api units.
 
 See deprecation notice `neutron-api charm: FWaaS removal`_ for background
 information.
+
+ceph-mon charm: disk capacity alert threshold configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-mon charm has two new configuration options:
+``monitor-data-available-warning`` and ``monitor-data-available-critical``.
+
+These options can be used to configure the thresholds at which the Ceph cluster
+goes into HEALTH_WARN and HEALTH_ERR states based on the available disk
+capacity.
 
 New stable charms
 -----------------
