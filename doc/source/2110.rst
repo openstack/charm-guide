@@ -52,8 +52,18 @@ test bundle, and/or a section in the `OpenStack Charms Deployment Guide`_, that
 details its usage. Test bundles are located in the ``src/tests/bundles``
 directory of the relevant charm repository (see all `charm repositories`_).
 
-<TITLE>
-~~~~~~~
+glance charm: external S3 compatible storage support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The glance charm has new config options as:
+* s3-store-host
+* s3-store-access-key
+* s3-store-secret-key
+* s3-store-bucket
+
+Those options can be used for setting an external S3 compatible storage
+as one of the supported Glance backend. S3 support in the charm is
+enabled only for Ussuri and later releases.
 
 New stable charms
 -----------------
