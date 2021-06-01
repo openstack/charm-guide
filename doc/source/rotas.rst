@@ -10,7 +10,7 @@ Gerrit.
 
 The development and user community are encouraged to sign up to both rotas.
 
-Please coordinate activities in #openstack-charms on Freenode IRC.
+Please coordinate activities in #openstack-charms on OFTC IRC.
 
 Bug tags
 --------

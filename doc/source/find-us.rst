@@ -20,7 +20,7 @@ many other topics that are discussed on this list.
 IRC
 ---
 
-IRC on Freenode also works: ``#openstack-charms``
+IRC on OFTC also works: ``#openstack-charms``
 
 .. LINKS
 .. _OpenStack: https://discourse.charmhub.io/c/juju/
