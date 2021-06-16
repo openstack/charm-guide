@@ -98,8 +98,11 @@ Informational notices
 Deprecation notices
 -------------------
 
-<TITLE>
-~~~~~~~
+Barbican SoftHSM2 Plugin
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The `barbican-softhsm`_ test charm is now deprecated and will have no further
+releases. Support has ended for it. Please use `barbican-vault`_ instead.
 
 Removed features
 ----------------
@@ -139,6 +142,9 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _Release schedule: release-schedule.html
 .. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
+.. _barbican-softhsm: https://jaas.ai/u/openstack-charmers/barbican-softhsm
+.. _barbican-vault: https://jaas.ai/barbican-vault
+
 
 .. COMMITS
 

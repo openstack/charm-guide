@@ -252,7 +252,6 @@ be used in production. Supportability, upgradability, testability may be
 lacking, either from a charm perspective, or from the workload package
 perspective.
 
-* `barbican-softhsm`_
 * `manila-generic`_
 * `tempest`_
 * `watcher`_
@@ -272,6 +271,7 @@ Deprecated charms
 
 These charms have reached EOL and are deprecated.
 
+* `barbican-softhsm`_
 * `ceph`_ - Use ceph-osd + ceph-mon instead.
 * `glusterfs`_
 * `manila-glusterfs`_
@@ -355,12 +355,12 @@ These charms have reached EOL and are deprecated.
 .. _manila-dashboard: https://opendev.org/openstack/charm-manila-dashboard
 .. _manila-netapp: https://opendev.org/openstack/charm-manila-netapp
 
-.. _barbican-softhsm: https://opendev.org/openstack/charm-barbican-softhsm/
 .. _manila-generic: https://opendev.org/openstack/charm-manila-generic/
 .. _tempest: https://opendev.org/openstack/charm-tempest/
 .. _watcher: https://opendev.org/openstack/charm-watcher/
 .. _watcher-dashboard: https://opendev.org/openstack/charm-watcher-dashboard/
 
+.. _barbican-softhsm: https://opendev.org/openstack/charm-barbican-softhsm/
 .. _ceph: https://opendev.org/openstack/charm-ceph/
 .. _glusterfs: https://opendev.org/openstack/charm-glusterfs/
 .. _manila-glusterfs: https://opendev.org/openstack/charm-manila-glusterfs/
