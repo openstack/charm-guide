@@ -253,7 +253,6 @@ lacking, either from a charm perspective, or from the workload package
 perspective.
 
 * `manila-generic`_
-* `tempest`_
 * `watcher`_
 * `watcher-dashboard`_
 
@@ -281,6 +280,7 @@ These charms have reached EOL and are deprecated.
 * `nova-lxd`_
 * `odl-controller`_
 * `openvswitch-odl`_
+* `tempest`_
 * `trove`_
 
 .. LINKS
@@ -356,7 +356,6 @@ These charms have reached EOL and are deprecated.
 .. _manila-netapp: https://opendev.org/openstack/charm-manila-netapp
 
 .. _manila-generic: https://opendev.org/openstack/charm-manila-generic/
-.. _tempest: https://opendev.org/openstack/charm-tempest/
 .. _watcher: https://opendev.org/openstack/charm-watcher/
 .. _watcher-dashboard: https://opendev.org/openstack/charm-watcher-dashboard/
 
@@ -370,4 +369,5 @@ These charms have reached EOL and are deprecated.
 .. _nova-lxd: https://opendev.org/openstack/charm-nova-lxd/
 .. _odl-controller: https://opendev.org/openstack/charm-odl-controller/
 .. _openvswitch-odl: https://opendev.org/openstack/charm-openvswitch-odl/
+.. _tempest: https://opendev.org/openstack/charm-tempest/
 .. _trove: https://opendev.org/openstack/charm-trove/

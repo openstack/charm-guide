@@ -104,6 +104,13 @@ Barbican SoftHSM2 Plugin
 The `barbican-softhsm`_ test charm is now deprecated and will have no further
 releases. Support has ended for it. Please use `barbican-vault`_ instead.
 
+Tempest charm
+~~~~~~~~~~~~~
+
+The `tempest`_ test charm is now deprecated and will have no further
+releases. Support has ended for it. Please use the `tempest Python package`_
+instead.
+
 Removed features
 ----------------
 
@@ -144,6 +151,8 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _barbican-softhsm: https://jaas.ai/u/openstack-charmers/barbican-softhsm
 .. _barbican-vault: https://jaas.ai/barbican-vault
+.. _tempest: https://jaas.ai/u/openstack-charmers/tempest
+.. _tempest Python package: https://pypi.org/project/tempest/
 
 
 .. COMMITS
