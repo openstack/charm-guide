@@ -55,15 +55,23 @@ directory of the relevant charm repository (see all `charm repositories`_).
 glance charm: external S3 compatible storage support
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The glance charm has new config options as:
+The glance charm has acquired some new configuration options:
+
 * s3-store-host
 * s3-store-access-key
 * s3-store-secret-key
 * s3-store-bucket
 
-Those options can be used for setting an external S3 compatible storage
-as one of the supported Glance backend. S3 support in the charm is
-enabled only for Ussuri and later releases.
+These options are used to set an external S3 compatible storage backend for
+Glance. S3 support in the charm is enabled only for Ussuri and later releases.
+
+nova-compute charm: number of hosted VMs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-compute charm has a new action: ``instance-count``.
+
+This action returns the number of VMs hosted on a nova-compute unit, whether
+they be running, suspended, or stopped.
 
 New stable charms
 -----------------
