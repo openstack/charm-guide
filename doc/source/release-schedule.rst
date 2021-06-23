@@ -10,10 +10,10 @@ regressions or critical bugs are introduced or discovered at master.
 
 .. COMMENT
    Possible values for Status column:
-	'next release'
-	'under development'
-	'current stable'
-	'--'
+        'next release'
+        'under development' - release date: add '(estimated)'
+        'current stable'
+        '--'
 
 .. list-table:: **OpenStack Charms releases**
    :header-rows: 1
@@ -25,14 +25,20 @@ regressions or critical bugs are introduced or discovered at master.
      - Release date
      - Release timeline
 
-   * - 21.04
+   * - 21.10
      - under development
+     - Fri, Oct 1, 2021
+     - Wed, Oct 20, 2021 (estimated)
+     - --
+
+   * - 21.04
+     - current stable
      - Fri, Apr 9, 2021
      - Wed, Apr 21, 2021
      - `21.04 release timeline`_
 
    * - 21.01
-     - current stable
+     - --
      - Fri, Jan 15, 2021
      - Wed, Jan 27, 2021
      - `21.01 release timeline`_
