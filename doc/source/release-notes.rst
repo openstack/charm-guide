@@ -8,11 +8,12 @@ Release Notes
 
 **Latest Release Notes**
 
+* `21.06 Trilio release`_
 * `21.04 release`_
-* `21.03 Trilio release`_
 
 **Older Release Notes**
 
+* `21.03 Trilio release`_
 * `21.01 release`_
 * `20.10 release`_
 * `20.08 release`_
@@ -45,6 +46,7 @@ Release Notes
 
    2110
    2104
+   2106_Trilio
    2103_Trilio
    2101
    2010
@@ -66,6 +68,7 @@ Release Notes
 .. LINKS
 .. _21.10 release: 2110.html
 .. _21.04 release: 2104.html
+.. _21.06 Trilio release: 2106_Trilio.html
 .. _21.03 Trilio release: 2103_Trilio.html
 .. _21.01 release: 2101.html
 .. _20.10 release: 2010.html
