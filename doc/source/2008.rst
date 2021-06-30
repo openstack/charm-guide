@@ -341,16 +341,14 @@ on compute nodes. See bug `LP #1888389`_ for details.
 Octavia and neutron-openvswitch in LXD
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note::
-
-   This issue is due to a Juju bug, which was fixed in Juju 2.8.1.
-
 The octavia charm requires a neutron-openvswitch subordinate which means that
 if it runs in a container, the openvswitch kernel module must be loaded before
 the container starts. Module loading is done by LXD based on the profile
-applied by Juju and taken from the neutron-openvswitch charm. However, due to
-`LP #1876849`_ in Juju, there is no guarantee that the profile will be applied
-before neutron-openvswitch execution starts in a container.
+applied by Juju and taken from the neutron-openvswitch charm. However, due to a
+combination of bugs (`LP #1876849`_ in Juju and `LP #1906280`_ in the
+ovn-chassis/neutron-openvswitch charms) there is no guarantee that the profile
+will be applied before neutron-openvswitch (or ovn-chassis) execution starts in
+a container.
 
 The issue is more likely to happen on disaggregated deployments where octavia
 units run in LXD containers on machines that do not have any units of
@@ -474,3 +472,4 @@ Deployment Guide`_ for more details.
 .. _LP #1890821: https://bugs.launchpad.net/charm-cinder-backup-swift-proxy/+bug/1890821
 .. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
 .. _LP #1796886: https://bugs.launchpad.net/charm-rabbitmq-server/+bug/1796886
+.. _LP #1906280: https://bugs.launchpad.net/charm-ovn-chassis/+bug/1906280
