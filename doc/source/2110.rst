@@ -8,7 +8,7 @@ Summary of changes
 ------------------
 
 * New charm features
-   * `<TITLE>`_
+   * `ceilometer-agent charm: new polling configuration options`_
 
 * New tech-preview charms
    * `<TITLE>`_
@@ -72,6 +72,17 @@ The nova-compute charm has a new action: ``instance-count``.
 
 This action returns the number of VMs hosted on a nova-compute unit, whether
 they be running, suspended, or stopped.
+
+ceilometer-agent charm: new polling configuration options
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceilometer-agent charm has two new options: ``polling-interval`` and
+``enable-all-pollsters``.
+
+These can be used to control the polling frequency and the set of meters
+collected by the compute polling agent. The meters that can be collected via
+``enable-all-pollsters`` are listed in `Compute meters documentation`_ with
+'Pollster' in the origin column.
 
 New stable charms
 -----------------
@@ -161,7 +172,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _barbican-vault: https://jaas.ai/barbican-vault
 .. _tempest: https://jaas.ai/u/openstack-charmers/tempest
 .. _tempest Python package: https://pypi.org/project/tempest/
-
+.. _Compute meters documentation: https://docs.openstack.org/ceilometer/latest/admin/telemetry-measurements.html#telemetry-compute-meters
 
 .. COMMITS
 
