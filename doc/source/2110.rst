@@ -9,6 +9,7 @@ Summary of changes
 
 * New charm features
    * `ceilometer-agent charm: new polling configuration options`_
+   * `cinder-purestorage charm: new configuration options`_
 
 * New tech-preview charms
    * `<TITLE>`_
@@ -83,6 +84,38 @@ These can be used to control the polling frequency and the set of meters
 collected by the compute polling agent. The meters that can be collected via
 ``enable-all-pollsters`` are listed in `Compute meters documentation`_ with
 'Pollster' in the origin column.
+
+cinder-purestorage charm: new configuration options
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The cinder-purestorage charm has a number of new options:
+
+* ``eradicate-on-delete``
+* ``automatic-max-oversubscription``
+* ``iscsi-cidr``
+* ``use-chap``
+* ``use-replication``
+* ``replication-target-name``
+* ``replication-target-address``
+* ``replication-target-api-token``
+* ``replication-type``
+* ``replication-sync-uniform``
+* ``replica-interval``
+* ``replica-retention-short``
+* ``replica-retention-per-day``
+* ``replica-retention-long``
+* ``replication-pgname``
+* ``replication-pod``
+* ``use-image-cache``
+* ``image-volume-cache-max-size-gb``
+* ``image-volume-cache-max-count``
+
+These options are used to enable and configure Cinder replication and
+Glance Image Cache for Cinder, along with a number of Pure Storage
+driver specific features.
+
+Please refer to the `cinder-purestorage`_ charm documentation for a description
+of these configuration options.
 
 New stable charms
 -----------------
@@ -170,6 +203,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _barbican-softhsm: https://jaas.ai/u/openstack-charmers/barbican-softhsm
 .. _barbican-vault: https://jaas.ai/barbican-vault
+.. _cinder-purestorage: https://jaas.ai/cinder-purestorage
 .. _tempest: https://jaas.ai/u/openstack-charmers/tempest
 .. _tempest Python package: https://pypi.org/project/tempest/
 .. _Compute meters documentation: https://docs.openstack.org/ceilometer/latest/admin/telemetry-measurements.html#telemetry-compute-meters
