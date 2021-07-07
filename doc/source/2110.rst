@@ -117,6 +117,19 @@ driver specific features.
 Please refer to the `cinder-purestorage`_ charm documentation for a description
 of these configuration options.
 
+neutron-api charm: FWaaS option
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The neutron-api charm has a new option: ``enable-fwaas``.
+
+This option controls the enablement of the Neutron FWaaS service. It defaults
+to 'true' to retain past behaviour but only takes effect for OpenStack releases
+older than Victoria. Setting it to 'false' will disable the service on all
+neutron-api units.
+
+See deprecation notice `neutron-api charm: FWaaS removal`_ for background
+information.
+
 New stable charms
 -----------------
 
@@ -155,6 +168,16 @@ Barbican SoftHSM2 Plugin
 
 The `barbican-softhsm`_ test charm is now deprecated and will have no further
 releases. Support has ended for it. Please use `barbican-vault`_ instead.
+
+neutron-api charm: FWaaS removal
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Firewall-as-a-Service (FWaaS) OpenStack project is `retired`_ and will not
+receive updates beyond ``v16.0.0``. Consequently, the neutron-api charm will no
+longer make this service available starting with OpenStack Victoria.
+
+See new charm feature `neutron-api charm: FWaaS option`_ resulting as a
+consequence of this.
 
 Tempest charm
 ~~~~~~~~~~~~~
@@ -207,6 +230,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _tempest: https://jaas.ai/u/openstack-charmers/tempest
 .. _tempest Python package: https://pypi.org/project/tempest/
 .. _Compute meters documentation: https://docs.openstack.org/ceilometer/latest/admin/telemetry-measurements.html#telemetry-compute-meters
+.. _retired: https://docs.openstack.org/releasenotes/neutron-fwaas-dashboard/ussuri.html
 
 .. COMMITS
 
