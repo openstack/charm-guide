@@ -139,8 +139,17 @@ New stable charms
 New tech-preview charms
 -----------------------
 
-<TITLE>
-~~~~~~~
+Ironic charms
+~~~~~~~~~~~~~
+
+The following tech-preview charms are available for the deployment of OpenStack
+Ironic:
+
+* ironic-api
+* ironic-conductor
+* neutron-api-plugin-ironic
+
+Ironic provisions bare metal, as opposed to virtual, machines.
 
 Preview charm features
 ----------------------
@@ -151,8 +160,10 @@ Preview charm features
 Documentation updates
 ---------------------
 
-<TITLE>
-~~~~~~~
+In the `OpenStack Charms Deployment Guide`_ (aka "deploy guide"):
+
+* A new page on OpenStack Ironic support has been added.
+* A new section on cloud operations has been started.
 
 Informational notices
 ---------------------
