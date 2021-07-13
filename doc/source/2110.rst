@@ -17,7 +17,7 @@ Summary of changes
    * `<TITLE>`_
 
 * Informational notices
-   * `<TITLE>`_
+   * `neutron-openvswitch charm: DHCP service restarts in DPDK environments`_
 
 * Deprecation notices
    * `<TITLE>`_
@@ -193,15 +193,13 @@ Documentation updates
 Informational notices
 ---------------------
 
-Manila-Ganesha requires updates package
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+neutron-openvswitch charm: DHCP service restarts in DPDK environments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To fix long-standing issues in the manila-ganesha charm's service related to
-`manila exporting shares after restart`_, updates to both the charm and
-Ubuntu packages were required. 
-
-It is necessary to ensure that the nfs-ganesha package is up to date before
-upgrading the manila-ganesha charm.
+When DPDK is enabled and DHCP is running locally on a compute node, the
+neutron-dhcp-agent service now restarts during charm upgrades or when any
+configuration change that triggers the restart of the neutron-openvswitch
+agent.
 
 Deprecation notices
 -------------------
@@ -279,4 +277,3 @@ in the `OpenStack Charms Deployment Guide`_.
 
 .. BUGS
 
-.. _manila exporting shares after restart: https://bugs.launchpad.net/charm-manila-ganesha/+bug/1889287
