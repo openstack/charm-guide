@@ -168,8 +168,15 @@ Documentation updates
 Informational notices
 ---------------------
 
-<TITLE>
-~~~~~~~
+Manila-Ganesha requires updates package
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To fix long-standing issues in the manila-ganesha charm's service related to
+`manila exporting shares after restart`_, updates to both the charm and
+Ubuntu packages were required. 
+
+It is necessary to ensure that the nfs-ganesha package is up to date before
+upgrading the manila-ganesha charm.
 
 Deprecation notices
 -------------------
@@ -246,3 +253,5 @@ in the `OpenStack Charms Deployment Guide`_.
 .. COMMITS
 
 .. BUGS
+
+.. _manila exporting shares after restart: https://bugs.launchpad.net/charm-manila-ganesha/+bug/1889287
