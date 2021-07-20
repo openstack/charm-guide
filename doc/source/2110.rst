@@ -141,6 +141,16 @@ These options can be used to configure the thresholds at which the Ceph cluster
 goes into HEALTH_WARN and HEALTH_ERR states based on the available disk
 capacity.
 
+ceph-radosgw charm: use of beast HTTP frontend
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-radosgw charm has a new configuration option ``http-frontend`` to
+allow selection of the HTTP frontend to use for the Ceph RADOS Gateway.
+
+The charm will automatically select the best frontend to use if no explicit
+configuration is provided. For Ceph Octopus and later the beast frontend
+will be used and for older releases civetweb will continue to be the default.
+
 New stable charms
 -----------------
 
