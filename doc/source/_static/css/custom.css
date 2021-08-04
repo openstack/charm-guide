@@ -1,0 +1,6 @@
+/* Get rid of the double header on the page. This should really be fixed
+ * in the openstackdocstheme, but this is a temporary fix. */
+.docs-body h1 {
+  display: none;
+}
+
