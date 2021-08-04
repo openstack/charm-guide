@@ -11,6 +11,7 @@ Summary of changes
    * `ceilometer-agent charm: new polling configuration options`_
    * `cinder-purestorage charm: new configuration options`_
    * `ceph-mon charm: disk capacity alert threshold configuration`_
+   * `designate charm: new options for creating DNS records`_
 
 * New tech-preview charms
    * `<TITLE>`_
@@ -150,6 +151,20 @@ allow selection of the HTTP frontend to use for the Ceph RADOS Gateway.
 The charm will automatically select the best frontend to use if no explicit
 configuration is provided. For Ceph Octopus and later the beast frontend
 will be used and for older releases civetweb will continue to be the default.
+
+designate charm: new options for creating DNS records
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The designate charm has some new configuration options:
+
+* ``default-ttl``
+* ``default-soa-minimum``
+* ``default-soa-refresh-min``
+* ``default-soa-refresh-max``
+* ``default-soa-retry``
+
+These options are used to define default settings for the creation of DNS
+records. They have no effect on existing records.
 
 New stable charms
 -----------------
