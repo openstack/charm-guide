@@ -48,7 +48,7 @@ For triaging `new bugs`_ across the OpenStack Charms.
 +-----------------+------------+-----------+------------+--------------+
 | Monday          | Tuesday    | Wednesday | Thursday   | Friday       |
 +=================+============+===========+============+==============+
-| gnuoy           | fnordahl   | thedac    | james-page | billy-olsen  |
+| gnuoy           | fnordahl   | freyes    | james-page | billy-olsen  |
 +-----------------+------------+-----------+------------+--------------+
 | aurelien-lourot | chris-icey | dmitriis  | coreycb    | alex-tinwood |
 +-----------------+------------+-----------+------------+--------------+
@@ -61,7 +61,7 @@ For reviewing `open changes`_ across the OpenStack Charms.
 +----------+------------+--------------+-------------+-----------------+
 | Monday   | Tuesday    | Wednesday    | Thursday    | Friday          |
 +==========+============+==============+=============+=================+
-| thedac   | james-page | fnordahl     | billy-olsen | chris-icey      |
+| freyes   | james-page | fnordahl     | billy-olsen | chris-icey      |
 +----------+------------+--------------+-------------+-----------------+
 | dmitriis | coreycb    | alex-tinwood | gnuoy       | aurelien-lourot |
 +----------+------------+--------------+-------------+-----------------+
