@@ -12,6 +12,7 @@ Summary of changes
    * `cinder-purestorage charm: new configuration options`_
    * `ceph-mon charm: disk capacity alert threshold configuration`_
    * `designate charm: new options for creating DNS records`_
+   * `nova-compute charm: new options for neutron physnets NUMA affinity`_
 
 * New tech-preview charms
    * `<TITLE>`_
@@ -166,6 +167,17 @@ The designate charm has some new configuration options:
 These options are used to define default settings for the creation of DNS
 records. They have no effect on existing records.
 
+nova-compute charm: new options for neutron physnets NUMA affinity
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova charm has some new configuration options:
+
+* ``neutron-physnets``
+* ``neutron-tunnel``
+
+These options are used to define NUMA affinity for neutron physnets and
+tunneled networks.
+
 New stable charms
 -----------------
 
@@ -287,4 +299,3 @@ in the `OpenStack Charms Deployment Guide`_.
 .. COMMITS
 
 .. BUGS
-
