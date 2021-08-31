@@ -2,11 +2,10 @@
 Release schedule
 ================
 
-Per the cadence and other requirements defined in the OpenStack Charms `Release
-Policy <release-policy.html>`__ section, the following outlines the up-coming
-feature freeze and stable charm release dates. Dates are estimated and
-anticipated, and are subject to being blocked or delayed if critical
-regressions or critical bugs are introduced or discovered at master.
+Per the cadence and other requirements defined in the OpenStack Charms
+:doc:`Release Policy <release-policy>`, the following table outlines the
+release schedule history and current development cycle milestone dates. The
+latter dates are estimated and subject to revision.
 
 .. COMMENT
    Possible values for Status column:
@@ -29,7 +28,7 @@ regressions or critical bugs are introduced or discovered at master.
      - under development
      - Fri, Oct 1, 2021
      - Wed, Oct 20, 2021 (estimated)
-     - --
+     - `21.10 release timeline`_
 
    * - 21.04
      - current stable
@@ -120,3 +119,4 @@ regressions or critical bugs are introduced or discovered at master.
 .. _20.10 release timeline: release-timeline-2010.html
 .. _21.01 release timeline: release-timeline-2101.html
 .. _21.04 release timeline: release-timeline-2104.html
+.. _21.10 release timeline: release-timeline-2110.html
