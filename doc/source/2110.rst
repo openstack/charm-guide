@@ -227,6 +227,14 @@ agent.
 Deprecation notices
 -------------------
 
+Xenial Series
+~~~~~~~~~~~~~
+
+The Ubuntu 'Xenial' series will be removed from general gate testing following
+this release and maintenance will be limited to critical and high security
+fixes only. Users are strongly encouraged to upgrade their clouds to a newer
+platform.
+
 Barbican SoftHSM2 Plugin
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
