@@ -13,6 +13,7 @@ Summary of changes
    * `ceph-mon charm: disk capacity alert threshold configuration`_
    * `designate charm: new options for creating DNS records`_
    * `nova-compute charm: new options for neutron physnets NUMA affinity`_
+   * `ceph-osd charm: new action to display availability zones information`_
 
 * New tech-preview charms
    * `<TITLE>`_
@@ -177,6 +178,15 @@ The nova charm has some new configuration options:
 
 These options are used to define NUMA affinity for neutron physnets and
 tunneled networks.
+
+ceph-osd charm: new action to display availability zones information
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-osd charm has a new action: ``get-availability-zone``.
+
+This action returns availability zone information that contains CRUSH structure
+information. Specifically 'rack', 'row', etc.
+
 
 New stable charms
 -----------------
