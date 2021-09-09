@@ -14,7 +14,8 @@ Summary of changes
    * `designate charm: new options for creating DNS records`_
    * `nova-compute charm: new options for neutron physnets NUMA affinity`_
    * `ceph-osd charm: new action to display availability zones information`_
-   * `manila charm: new relation nrpe-external-master to nrpe charm` 
+   * `manila charm: new relation nrpe-external-master to nrpe charm`
+   * `ceph-mon charm: new parameter for list-pools action`_
 
 * New tech-preview charms
    * `<TITLE>`_
@@ -195,6 +196,19 @@ The manila charm has a new relation to nrpe charm.
 
 This relation adds nrpe checks for services managed by manila charm
 to be monitored with Nagios.
+
+ceph-mon charm: new parameter for list-pools action
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-mon charm's list-pools action has a new `format` parameter that
+accepts the following values:
+
+* ``text`` - provides less information [default]
+* ``text-full`` - provides more information in json with indents
+* ``json`` - provides more information in json
+
+The default `text` provides the same output as previous version.
+
 
 New stable charms
 -----------------
