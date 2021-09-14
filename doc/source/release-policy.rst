@@ -24,7 +24,7 @@ following release requirements:
 
 2. Charms must include functional tests to be eligible for inclusion in the official
    OpenStack Charm release every 3 months; these are typically implemented as
-   Amulet tests within each charm.
+   Zaza tests within each charm.
 
 3. Charms must have an active and responsive community of developers.
 
