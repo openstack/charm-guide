@@ -16,6 +16,7 @@ Summary of changes
    * `ceph-osd charm: new action to display availability zones information`_
    * `manila charm: new relation nrpe-external-master to nrpe charm`
    * `ceph-mon charm: new parameter for list-pools action`_
+   * `neutron-gateway charm: new actions to display routers/networks/loadbalancers`_
 
 * New tech-preview charms
    * `<TITLE>`_
@@ -209,6 +210,15 @@ accepts the following values:
 
 The default `text` provides the same output as previous version.
 
+neutron-gateway charm: new actions to display routers/networks/loadbalancers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The `neutron-gateway` charm has three new actions that enable listing neutron
+resources hosted on the unit.
+
+* ``show-routers`` - Lists neutron routers on the unit
+* ``show-dhcp-networks`` - Lists DHCP networks on the unit
+* ``show-loadbalancers`` - Lists LBaaS v2 loadbalancers on the unit
 
 New stable charms
 -----------------
