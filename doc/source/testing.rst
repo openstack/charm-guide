@@ -134,11 +134,6 @@ test doesn't also test other side-effect functions.
 Functional Testing
 ==================
 
-.. note:: Most of the OpenStack Charms have been converted to use the Zaza_
-   (Py3) functional test framework, though some may still use the legacy
-   Amulet_ (Py2) framework.  Naturally, with the sunset of Py2 overall, newly
-   authored tests should be in the Zaza_ framework.
-
 Zaza - Functional Tests
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -232,12 +227,7 @@ replying on the Gerrit review with one of the recognized magic phrases below.
 ``charm-recheck``
     Re-triggers only the default set of OpenStack Charms third-party-ci tests,
     but not the OpenStack Infra tests.  *Depending on system load and which
-    charm is under test, this will typically take 30 to 60 minutes.*
+    charm is under test, this will typically take 30 to 120 minutes.*
 
-``charm-recheck-full``
-    Triggers a full set of OpenStack Charms third-party-ci tests, but not the
-    OpenStack Infra tests.  *This will take several hours.*
-
-.. _Amulet: https://jujucharms.com/docs/devel/tools-amulet
 .. _Zaza: https://zaza.readthedocs.io/en/latest/
 .. _PTI: https://governance.openstack.org/tc/reference/project-testing-interface.html
