@@ -14,10 +14,11 @@ Summary of changes
    * `designate charm: new options for creating DNS records`_
    * `nova-compute charm: new options for neutron physnets NUMA affinity`_
    * `ceph-osd charm: new action to display availability zones information`_
-   * `manila charm: new relation nrpe-external-master to nrpe charm`
+   * `manila charm: new relation nrpe-external-master to nrpe charm`_
    * `ceph-mon charm: new parameter for list-pools action`_
    * `neutron-gateway charm: new actions to display routers/networks/loadbalancers`_
    * `cinder charm: image volume caching`_
+   * `ceph-mon charm: new action to display quorum status`_
 
 * New tech-preview charms
    * `<TITLE>`_
@@ -233,6 +234,15 @@ The cinder charm has the following new configuration options:
 These will allow the enablement of a Cinder image cache as well as set its
 maximum size and its maximum number of entries. These options are
 supported on OpenStack Ocata and newer.
+
+ceph-mon charm: new action to display quorum status
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-mon charm has a new action: ``get-quorum-status``.
+
+The `get-quorum-status` action returns some distilled info from
+'ceph quorum_status', primarily for verification of which mon units are online.
+
 
 New stable charms
 -----------------
