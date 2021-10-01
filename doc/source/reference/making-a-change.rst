@@ -146,4 +146,4 @@ For details on getting started with `Launchpad`_ development, please read the `L
 <https://help.launchpad.net/Code>`_ after you have registered your account.
 
 Also please do reach out to us on IRC or the mailing list (see the :doc:`Talk
-to us <find-us>` page).
+to us </community>` page).

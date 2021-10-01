@@ -1,0 +1,57 @@
+# This file contains tests for redirects to handle existing URLs for
+# documentation that has been moved. See
+# https://docs.openstack.org/whereto/latest/ for details.
+
+# No redirects
+/ 200
+/charm-guide 200
+/charm-guide/index.html 200
+/some/other/project/config-openstack.html 200
+
+/charm-guide/latest/find-us.html 301 /charm-guide/latest/community.html
+/charm-guide/latest/charm-anatomy.html 301 /charm-guide/latest/concepts/charm-anatomy.html
+/charm-guide/latest/charms-and-bundles.html 301 /charm-guide/latest/getting-started/charms-and-bundles.html
+/charm-guide/latest/getting-started.html 301 /charm-guide/latest/getting-started/index.html
+/charm-guide/latest/new-api-charm.html 301 /charm-guide/latest/howto/new-api-charm.html
+/charm-guide/latest/new-manila-charm.html 301 /charm-guide/latest/howto/new-manila-charm.html
+/charm-guide/latest/new-sdn-charm.html 301 /charm-guide/latest/howto/new-sdn-charm.html
+/charm-guide/latest/backport-policy.html 301 /charm-guide/latest/reference/backport-policy.html
+/charm-guide/latest/coding-guidelines.html 301 /charm-guide/latest/reference/coding-guidelines.html
+/charm-guide/latest/creating-charms.html 301 /charm-guide/latest/reference/creating-charms.html
+/charm-guide/latest/feature-specification.html 301 /charm-guide/latest/reference/feature-specification.html
+/charm-guide/latest/how-to-contribute.html 301 /charm-guide/latest/reference/how-to-contribute.html
+/charm-guide/latest/making-a-change.html 301 /charm-guide/latest/reference/making-a-change.html
+/charm-guide/latest/openstack-charms.html 301 /charm-guide/latest/reference/openstack-charms.html
+/charm-guide/latest/author-guides/reactive-handlers-optimization.html 301 /charm-guide/latest/reference/reactive-handlers-optimization.html
+/charm-guide/latest/release-policy.html 301 /charm-guide/latest/reference/release-policy.html
+/charm-guide/latest/release-schedule.html 301 /charm-guide/latest/reference/release-schedule.html
+/charm-guide/latest/release-timeline-2008.html 301 /charm-guide/latest/reference/release-timeline-2008.html
+/charm-guide/latest/release-timeline-2010.html 301 /charm-guide/latest/reference/release-timeline-2010.html
+/charm-guide/latest/release-timeline-2101.html 301 /charm-guide/latest/reference/release-timeline-2101.html
+/charm-guide/latest/release-timeline-2104.html 301 /charm-guide/latest/reference/release-timeline-2104.html
+/charm-guide/latest/release-timeline-2110.html 301 /charm-guide/latest/reference/release-timeline-2110.html
+/charm-guide/latest/rotas.html 301 /charm-guide/latest/reference/rotas.html
+/charm-guide/latest/support-notes.html 301 /charm-guide/latest/reference/support-notes.html
+/charm-guide/latest/testing.html 301 /charm-guide/latest/reference/testing.html
+/charm-guide/latest/1610.html 301 /charm-guide/latest/release-notes/1610.html
+/charm-guide/latest/1702.html 301 /charm-guide/latest/release-notes/1702.html
+/charm-guide/latest/1708.html 301 /charm-guide/latest/release-notes/1708.html
+/charm-guide/latest/1711.html 301 /charm-guide/latest/release-notes/1711.html
+/charm-guide/latest/1802.html 301 /charm-guide/latest/release-notes/1802.html
+/charm-guide/latest/1805.html 301 /charm-guide/latest/release-notes/1805.html
+/charm-guide/latest/1808.html 301 /charm-guide/latest/release-notes/1808.html
+/charm-guide/latest/1811.html 301 /charm-guide/latest/release-notes/1811.html
+/charm-guide/latest/1904.html 301 /charm-guide/latest/release-notes/1904.html
+/charm-guide/latest/1907.html 301 /charm-guide/latest/release-notes/1907.html
+/charm-guide/latest/1910.html 301 /charm-guide/latest/release-notes/1910.html
+/charm-guide/latest/2002.html 301 /charm-guide/latest/release-notes/2002.html
+/charm-guide/latest/2005.html 301 /charm-guide/latest/release-notes/2005.html
+/charm-guide/latest/2008.html 301 /charm-guide/latest/release-notes/2008.html
+/charm-guide/latest/2010.html 301 /charm-guide/latest/release-notes/2010.html
+/charm-guide/latest/2101.html 301 /charm-guide/latest/release-notes/2101.html
+/charm-guide/latest/2103_Trilio.html 301 /charm-guide/latest/release-notes/2103_Trilio.html
+/charm-guide/latest/2104.html 301 /charm-guide/latest/release-notes/2104.html
+/charm-guide/latest/2106_Trilio.html 301 /charm-guide/latest/release-notes/2106_Trilio.html
+/charm-guide/latest/2110.html 301 /charm-guide/latest/release-notes/2110.html
+/charm-guide/latest/release-notes.html 301 /charm-guide/latest/release-notes/index.html
+/charm-guide/latest/release-notes-template.html 301 /charm-guide/latest/release-notes/release-notes-template.html

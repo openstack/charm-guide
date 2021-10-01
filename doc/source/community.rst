@@ -1,6 +1,6 @@
-==========
-Talk to us
-==========
+=========
+Community
+=========
 
 We'd love to hear from you!
 

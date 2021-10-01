@@ -21,7 +21,7 @@ to use as a base for new specs.
 
 Recommended work flow for introducing a new feature specification:
 
-1. Have a :doc:`conversation <find-us>` with core charmers to avoid overlapping
+1. Have a :doc:`conversation </community>` with core charmers to avoid overlapping
    or duplicate work.
 
 2. Discuss the high-level design with core charmers to arrive at an optimal
@@ -37,10 +37,10 @@ Recommended work flow for introducing a new feature specification:
 5. Support the proposal by including relevant bug references in the
    specification.
 
-6. Circulate the proposal on the :doc:`mailing list <find-us>` to ensure wider
+6. Circulate the proposal on the :doc:`mailing list </community>` to ensure wider
    visibility.
 
-7. Engage in :doc:`further discussion <find-us>` surrounding the spec proposal
+7. Engage in :doc:`further discussion </community>` surrounding the spec proposal
    and the mailing list post so that it can be reviewed and landed.
 
 .. LINKS

@@ -48,7 +48,7 @@ source_suffix = '.rst'
 # source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = 'contents'
 
 # General information about the project.
 copyright = u'2016, OpenStack contributors'
@@ -83,7 +83,7 @@ release = ''
 
 exclude_patterns = [
      "_build",
-     "release-notes-template.rst"
+     "release-notes/release-notes-template.rst"
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
