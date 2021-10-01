@@ -7,7 +7,11 @@
 Summary of changes
 ------------------
 
-* New charm features
+* New stable charms
+   * `cinder-lvm`_
+   * `cinder-netapp`_
+
+* New stable charm features
    * `ceilometer-agent charm: new polling configuration options`_
    * `cinder-purestorage charm: new configuration options`_
    * `ceph-mon charm: disk capacity alert threshold configuration`_
@@ -21,13 +25,21 @@ Summary of changes
    * `ceph-mon charm: new action to display quorum status`_
 
 * New tech-preview charms
+   * `ceph-dashboard`_
+   * `openstack-loadbalancer`_
+
+* New tech-preview charm features
    * `<TITLE>`_
 
 * Informational notices
    * `neutron-openvswitch charm: DHCP service restarts in DPDK environments`_
 
 * Deprecation notices
-   * `<TITLE>`_
+   * `Xenial series`_
+   * `Barbican SoftHSM2 Plugin`_
+   * `neutron-api charm: FWaaS removal`_
+   * `Tempest charm`_
+   * `Built-in Cinder LVM backend`_
 
 * Removed features
    * `<TITLE>`_
@@ -54,8 +66,26 @@ guide) which ultimately supersedes Release Notes contents.
    to your cloud and before filing bug reports. Refer to section `Upgrading
    charms`_ below for details.
 
-New charm features
-------------------
+New stable charms
+-----------------
+
+Two new stable charms are now available.
+
+cinder-lvm
+~~~~~~~~~~
+
+The `cinder-lvm charm`_ enables an LVM backend for Cinder. It is a subordinate
+charm used in conjunction with the cinder principle charm. The cinder-lvm charm
+deprecates the LVM functionality of the cinder charm.
+
+cinder-netapp
+~~~~~~~~~~~~~
+
+The `cinder-netapp charm`_ enables a NetApp backend for Cinder. It is a
+subordinate charm used in conjunction with the cinder principle charm.
+
+New stable charm features
+-------------------------
 
 With each new feature, there is a corresponding example bundle in the form of a
 test bundle, and/or a section in the `OpenStack Charms Deployment Guide`_, that
@@ -243,15 +273,23 @@ The ceph-mon charm has a new action: ``get-quorum-status``.
 The `get-quorum-status` action returns some distilled info from
 'ceph quorum_status', primarily for verification of which mon units are online.
 
-
-New stable charms
------------------
-
-<TITLE>
-~~~~~~~
-
 New tech-preview charms
 -----------------------
+
+ceph-dashboard
+~~~~~~~~~~~~~~
+
+The ceph-dashboard charm deploys the Ceph Dashboard, a built-in web-based Ceph
+management and monitoring application.
+
+openstack-loadbalancer
+~~~~~~~~~~~~~~~~~~~~~~
+
+The openstack-loadbalancer charm provides a load balancer for units of an
+OpenStack application. It can manage multiple such applications providing that
+each application supports the load balancer charm. It has the potential
+therefore of deprecating the current practice of deploying hacluster for each
+application under HA.
 
 Ironic charms
 ~~~~~~~~~~~~~
@@ -265,8 +303,8 @@ Ironic:
 
 Ironic provisions bare metal, as opposed to virtual, machines.
 
-Preview charm features
-----------------------
+New tech-preview charm features
+-------------------------------
 
 <TITLE>
 ~~~~~~~
@@ -293,12 +331,12 @@ agent.
 Deprecation notices
 -------------------
 
-Xenial Series
+Xenial series
 ~~~~~~~~~~~~~
 
-The Ubuntu 'Xenial' series will be removed from general gate testing following
-this release and maintenance will be limited to critical and high security
-fixes only. Users are strongly encouraged to upgrade their clouds to a newer
+The 'xenial' series will be removed from general gate testing following this
+release and maintenance will be limited to critical and high security fixes
+only. Users are strongly encouraged to upgrade their clouds to a newer
 platform.
 
 Barbican SoftHSM2 Plugin
@@ -323,6 +361,12 @@ Tempest charm
 The `tempest`_ test charm is now deprecated and will have no further
 releases. Support has ended for it. Please use the `tempest Python package`_
 instead.
+
+Built-in Cinder LVM backend
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The LVM-based volume feature of the cinder charm is now deprecated. This
+functionality has been replaced by the new subordinate `cinder-lvm`_ charm.
 
 Removed features
 ----------------
@@ -365,6 +409,8 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _barbican-softhsm: https://jaas.ai/u/openstack-charmers/barbican-softhsm
 .. _barbican-vault: https://jaas.ai/barbican-vault
 .. _cinder-purestorage: https://jaas.ai/cinder-purestorage
+.. _cinder-lvm charm: https://jaas.ai/cinder-lvm
+.. _cinder-netapp charm: https://jaas.ai/cinder-netapp
 .. _tempest: https://jaas.ai/u/openstack-charmers/tempest
 .. _tempest Python package: https://pypi.org/project/tempest/
 .. _Compute meters documentation: https://docs.openstack.org/ceilometer/latest/admin/telemetry-measurements.html#telemetry-compute-meters
