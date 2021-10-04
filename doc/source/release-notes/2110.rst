@@ -23,6 +23,7 @@ Summary of changes
    * `neutron-gateway charm: new actions to display routers/networks/loadbalancers`_
    * `cinder charm: image volume caching`_
    * `ceph-mon charm: new action to display quorum status`_
+   * `barbican charm: new options for request and secret sizes`_
 
 * New tech-preview charms
    * `ceph-dashboard`_
@@ -272,6 +273,20 @@ The ceph-mon charm has a new action: ``get-quorum-status``.
 
 The `get-quorum-status` action returns some distilled info from
 'ceph quorum_status', primarily for verification of which mon units are online.
+
+barbican charm: new options for request and secret sizes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The barbican charm has some new configuration options:
+
+* ``max-allowed-request-size``
+* ``max-allowed-secret-size``
+
+These options are used to limit the maximum size of a request sent to the
+barbican-api service and a secret respectively. Scenarios where the users will
+need to upload large certificate chains the 20 kB limit will need to be
+increased otherwise the barbican-api service will reply with a 413 Error
+"Request Entity Too Large".
 
 New tech-preview charms
 -----------------------
