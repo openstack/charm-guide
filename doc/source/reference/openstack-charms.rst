@@ -177,6 +177,12 @@ OpenStack project.
    * - `ceph-rbd-mirror`_
      - 19.04
 
+   * - `cinder-lvm`_
+     - 21.10
+
+   * - `cinder-netapp`_
+     - 21.10
+
    * - `cinder-purestorage`_
      - 19.10
 
@@ -295,6 +301,8 @@ These charms have reached EOL and are deprecated.
 .. _cinder-backup: https://opendev.org/openstack/charm-cinder-backup/
 .. _cinder-backup-swift-proxy: https://opendev.org/openstack/charm-cinder-backup-swift-proxy/
 .. _cinder-ceph: https://opendev.org/openstack/charm-cinder-ceph/
+.. _cinder-lvm: https://opendev.org/openstack/charm-cinder-lvm/
+.. _cinder-netapp: https://opendev.org/openstack/charm-cinder-netapp/
 .. _designate: https://opendev.org/openstack/charm-designate/
 .. _glance: https://opendev.org/openstack/charm-glance/
 .. _heat: https://opendev.org/openstack/charm-heat/
