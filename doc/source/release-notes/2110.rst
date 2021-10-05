@@ -26,6 +26,8 @@ Summary of changes
    * `barbican charm: new options for request and secret sizes`_
    * `OVN chassis charms: New option to influence scheduling of gateways`_
 
+* `Documentation updates`_
+
 * New tech-preview charms
    * `ceph-dashboard`_
    * `openstack-loadbalancer`_
@@ -79,7 +81,8 @@ cinder-lvm
 
 The `cinder-lvm charm`_ enables an LVM backend for Cinder. It is a subordinate
 charm used in conjunction with the cinder principle charm. The cinder-lvm charm
-deprecates the LVM functionality of the cinder charm.
+deprecates the LVM functionality of the cinder charm. A migration path is
+available as a `special charm procedure`_.
 
 cinder-netapp
 ~~~~~~~~~~~~~
@@ -302,6 +305,25 @@ gateways. It defaults to 'false' which will make the Cloud Management System
 (CMS) schedule gateways to any chassis with appropriate bridge mappings
 configured.
 
+Documentation updates
+---------------------
+
+A summary of the most significant documentation updates is given below.
+
+* In the `OpenStack Charm Guide`_ (aka "charm guide"):
+
+  * The guide has been refactored to better reflect the Diataxis framework.
+  * A section on cloud operations has been started.
+
+* In the `OpenStack Charms Deployment Guide`_ (aka "deploy guide"):
+
+  * A page on OpenStack Ironic support has been added.
+  * The install section has been updated to OpenStack Xena (with OVS bridge).
+
+* Full review of these charms: ceph-dashboard, cinder-lvm, cinder-netapp,
+  neutron-gateway, nova-cloud-controller, nova-compute, and
+  openstack-loadbalancer.
+
 New tech-preview charms
 -----------------------
 
@@ -337,14 +359,6 @@ New tech-preview charm features
 
 <TITLE>
 ~~~~~~~
-
-Documentation updates
----------------------
-
-In the `OpenStack Charms Deployment Guide`_ (aka "deploy guide"):
-
-* A new page on OpenStack Ironic support has been added.
-* A new section on cloud operations has been started.
 
 Informational notices
 ---------------------
@@ -465,6 +479,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _tempest Python package: https://pypi.org/project/tempest/
 .. _Compute meters documentation: https://docs.openstack.org/ceilometer/latest/admin/telemetry-measurements.html#telemetry-compute-meters
 .. _retired: https://docs.openstack.org/releasenotes/neutron-fwaas-dashboard/ussuri.html
+.. _special charm procedure: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/cinder-lvm-migration.html
 
 .. COMMITS
 
