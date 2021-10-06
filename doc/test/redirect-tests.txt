@@ -8,6 +8,7 @@
 /charm-guide/index.html 200
 /some/other/project/config-openstack.html 200
 
+# Added due to the refactorisation of the guide (Oct 5, 2021).
 /charm-guide/latest/find-us.html 301 /charm-guide/latest/community.html
 /charm-guide/latest/charm-anatomy.html 301 /charm-guide/latest/concepts/charm-anatomy.html
 /charm-guide/latest/charms-and-bundles.html 301 /charm-guide/latest/getting-started/charms-and-bundles.html
