@@ -56,3 +56,10 @@
 /charm-guide/latest/2110.html 301 /charm-guide/latest/release-notes/2110.html
 /charm-guide/latest/release-notes.html 301 /charm-guide/latest/release-notes/index.html
 /charm-guide/latest/release-notes-template.html 301 /charm-guide/latest/release-notes/release-notes-template.html
+
+/charm-guide/latest/release-notes/release-schedule.html 301 /charm-guide/latest/reference/release-schedule.html
+/charm-guide/latest/release-notes/openstack-charms.html 301 /charm-guide/latest/reference/openstack-charms.html
+/charm-guide/latest/reference/2008.html 301 /charm-guide/latest/release-notes/2008.html
+/charm-guide/latest/reference/2010.html 301 /charm-guide/latest/release-notes/2010.html
+/charm-guide/latest/reference/2101.html 301 /charm-guide/latest/release-notes/2101.html
+/charm-guide/latest/reference/2110.html 301 /charm-guide/latest/release-notes/2110.html
