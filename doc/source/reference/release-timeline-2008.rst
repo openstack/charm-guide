@@ -33,4 +33,4 @@ The weeks and countdown labels are not contiguous because some internal
 development stages have not been included.
 
 .. LINKS
-.. _20.08 release notes: 2008.html
+.. _20.08 release notes: ../release-notes/2008.html

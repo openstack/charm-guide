@@ -26,7 +26,7 @@
 | Apr 12 - Apr 16 | C-1       | Wed, Apr 14    | OpenStack Wallaby release                       |
 +-----------------+-----------+----------------+-------------------------------------------------+
 | Apr 19 - Apr 23 | C-0       | Wed, Apr 21    | 21.04 charm release                             |
-|                 |           |                |  * 21.04 release notes                          |
+|                 |           |                |  * `21.04 release notes`_                       |
 |                 |           +----------------+-------------------------------------------------+
 |                 |           | Thu, Apr 22    | Ubuntu Hirsute release                          |
 +-----------------+-----------+----------------+-------------------------------------------------+
@@ -35,4 +35,4 @@ The weeks and countdown labels are not contiguous because some internal
 development stages have not been included.
 
 .. LINKS
-.. _21.04 release notes: 2104.html
+.. _21.04 release notes: ../release-notes/2104.html

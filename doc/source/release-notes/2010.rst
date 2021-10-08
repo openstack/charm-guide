@@ -315,11 +315,11 @@ revision. Please refer to `OpenStack upgrades`_ in the `OpenStack Charms
 Deployment Guide`_ for more details.
 
 .. LINKS
-.. _Charms: openstack-charms.html
+.. _Charms: ../reference/openstack-charms.html
 .. _20.10 milestone: https://launchpad.net/openstack-charms/+milestone/20.10
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
-.. _Release schedule: release-schedule.html
+.. _Release schedule: ../reference/release-schedule.html
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
 .. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
 .. _Open vSwitch Integration Guide for Centralized Control: https://docs.openvswitch.org/en/latest/topics/integration/
