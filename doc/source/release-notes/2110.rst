@@ -399,11 +399,11 @@ instructions on performing the different upgrade types see `Upgrades overview`_
 in the `OpenStack Charms Deployment Guide`_.
 
 .. LINKS
-.. _Charms: openstack-charms.html
+.. _Charms: ../reference/openstack-charms.html
 .. _21.10 milestone: https://launchpad.net/openstack-charms/+milestone/21.10
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
-.. _Release schedule: release-schedule.html
+.. _Release schedule: ../reference/release-schedule.html
 .. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _barbican-softhsm: https://jaas.ai/u/openstack-charmers/barbican-softhsm

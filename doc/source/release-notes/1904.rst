@@ -8,9 +8,9 @@ Summary
 =======
 
 The 19.04 OpenStack Charm release includes updates for the following charms.
-Additional charm support status information is published in the main
-`charm guide <openstack-charms.html>`__ which ultimately supersedes release
-note contents.
+Additional charm support status information is published in the main `charm
+guide <../reference/openstack-charms.html>`__ which ultimately supersedes
+release note contents.
 
 Always use the latest stable charm revision before proceeding with topological
 changes, application migrations, workload upgrades, series upgrades, or bug
@@ -87,7 +87,7 @@ New Charm Features
 ==================
 
 With each new feature, there is a corresponding example bundle in the form of
-a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`__ 
+a test bundle, and/or a `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/>`__
 section which details the use of the feature.  For example test bundles, see the
 src/tests/bundles/ directory within the relevant charm repository.
 
@@ -97,9 +97,9 @@ OpenStack Stein
 The 19.04 OpenStack Charms release introduces support for OpenStack Stein on
 Ubuntu 18.04 (LTS) and Ubuntu 19.04.
 
-Additional charm support status information is published in the main
-`charm guide <openstack-charms.html>`__ which ultimately supersedes release
-note contents.
+Additional charm support status information is published in the main `charm
+guide <../reference/openstack-charms.html>`__ which ultimately supersedes
+release note contents.
 
 PCI passthrough for GPU and other devices
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

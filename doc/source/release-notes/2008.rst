@@ -445,7 +445,7 @@ Deployment Guide`_ for more details.
 .. _20.08 milestone: https://launchpad.net/openstack-charms/+milestone/20.08
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
-.. _Release schedule: release-schedule.html
+.. _Release schedule: ../reference/release-schedule.html
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
 .. _neutron-api-plugin-arista charm README: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/README.md
 .. _Upgrading to stable Arista charm: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/docs/upgrading-to-stable.md
