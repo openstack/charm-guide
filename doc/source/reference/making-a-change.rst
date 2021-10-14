@@ -1,5 +1,4 @@
-.. _making-a-change:
-
+===============
 Making a change
 ===============
 
@@ -145,5 +144,4 @@ are core features of all of the related charms.
 For details on getting started with `Launchpad`_ development, please read the `Launchpad code page
 <https://help.launchpad.net/Code>`_ after you have registered your account.
 
-Also please do reach out to us on IRC or the mailing list (see the :doc:`Talk
-to us </community>` page).
+Please do reach out to us. See our :doc:`Contact us <../community/contact>` page.

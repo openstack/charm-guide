@@ -1,8 +1,8 @@
 .. _new_manila_charm:
 
-=====================================
-New Manila Plugin Configuration Charm
-=====================================
+===========================================
+Develop a Manila plugin configuration charm
+===========================================
 
 Typically, a Manila backend configuration simply needs to provide one or more
 configuration sections to the ``manila.conf`` file.  It might also need to

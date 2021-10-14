@@ -1,6 +1,5 @@
-.. _charm-release:
-
-Release Policy
+==============
+Release policy
 ==============
 
 The OpenStack charm repositories are all tagged as `release:independent`; however the

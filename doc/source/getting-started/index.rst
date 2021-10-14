@@ -9,7 +9,7 @@ instructions for deploying a cloud on a single host with just LXD containers.
 
 To learn specifically about OpenStack charms and bundles see the
 :doc:`OpenStack charms and bundles <charms-and-bundles>` page. For charm and
-bundle guidance of a generic nature see the `Juju documentation`_
+bundle guidance of a generic nature see the `Juju documentation`_.
 
 .. LINKS
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/

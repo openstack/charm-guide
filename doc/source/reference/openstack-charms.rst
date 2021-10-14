@@ -1,8 +1,6 @@
-.. _openstack-charms:
-
-======
-Charms
-======
+================
+Supported charms
+================
 
 This page lists the charms that make up the OpenStack Charms project.
 

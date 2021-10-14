@@ -1,8 +1,8 @@
 .. _new_api_charm:
 
-=============
-New API Charm
-=============
+====================
+Develop an API charm
+====================
 
 The example below will walk through the creation of a basic API charm for the
 Openstack `Congress <https://wiki.openstack.org/wiki/Congress>`__ service.

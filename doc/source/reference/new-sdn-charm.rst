@@ -1,8 +1,8 @@
 .. _new_sdn_charm:
 
-=============
-New SDN Charm
-=============
+====================
+Develop an SDN charm
+====================
 
 Before writing the charm the charm author needs to have a clear idea of what
 applications the charm is going to need to relate to, what files and services
