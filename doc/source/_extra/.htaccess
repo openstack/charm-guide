@@ -46,3 +46,10 @@ RedirectMatch 301 ^/charm-guide/([^/]+)/2106_Trilio.html$ /charm-guide/$1/releas
 RedirectMatch 301 ^/charm-guide/([^/]+)/2110.html$ /charm-guide/$1/release-notes/2110.html
 RedirectMatch 301 ^/charm-guide/([^/]+)/release-notes.html$ /charm-guide/$1/release-notes/index.html
 RedirectMatch 301 ^/charm-guide/([^/]+)/release-notes-template.html$ /charm-guide/$1/release-notes/release-notes-template.html
+
+RedirectMatch 301 ^/charm-guide/([^/]+)/release-notes/release-schedule.html$ /charm-guide/$1/reference/release-schedule.html
+RedirectMatch 301 ^/charm-guide/([^/]+)/release-notes/openstack-charms.html$ /charm-guide/$1/reference/openstack-charms.html
+RedirectMatch 301 ^/charm-guide/([^/]+)/reference/2008.html$ /charm-guide/$1/release-notes/2008.html
+RedirectMatch 301 ^/charm-guide/([^/]+)/reference/2010.html$ /charm-guide/$1/release-notes/2010.html
+RedirectMatch 301 ^/charm-guide/([^/]+)/reference/2101.html$ /charm-guide/$1/release-notes/2101.html
+RedirectMatch 301 ^/charm-guide/([^/]+)/reference/2110.html$ /charm-guide/$1/release-notes/2110.html
