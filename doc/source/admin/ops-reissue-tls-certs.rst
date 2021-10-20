@@ -4,8 +4,8 @@
 Reissue TLS certificates across the cloud
 =========================================
 
-Preamble
---------
+Introduction
+------------
 
 New certificates can be reissued to all cloud clients that are currently
 TLS-enabled. This is easily done with an action available to the vault charm.

@@ -4,8 +4,8 @@
 Implement automatic Glance image updates
 ========================================
 
-Preamble
---------
+Introduction
+------------
 
 An OpenStack cloud generally benefits from making available the most recent
 cloud images as it minimizes the need to perform software updates on its VMs.

@@ -3,8 +3,7 @@
 [![tags][image-badge-cg]][image-link-openstack-tags]
 
 The [OpenStack Charm Guide][cg] is the main source of information for the
-development of the [OpenStack Charms][openstack-charms]. Release notes and
-support notes are also to be found here.
+the [OpenStack Charms][openstack-charms].
 
 ## Building
 

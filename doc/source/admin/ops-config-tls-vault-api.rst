@@ -4,8 +4,8 @@
 Configure TLS for the Vault API
 ===============================
 
-Preamble
---------
+Introduction
+------------
 
 Configuring the Vault API with TLS assures the identity of the Vault service
 and encrypts all the information Vault sends over the network. For instance,

@@ -4,8 +4,8 @@
 Scale out the nova-compute application
 ======================================
 
-Preamble
---------
+Introduction
+------------
 
 Scaling out the nova-compute application implies the addition of one or more
 nova-compute units (i.e. compute nodes). It is a straightforward operation

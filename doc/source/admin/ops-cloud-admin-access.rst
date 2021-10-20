@@ -4,8 +4,8 @@
 Set up admin access to a cloud
 ==============================
 
-Preamble
---------
+Introduction
+------------
 
 In order to configure a newly deployed OpenStack cloud for production use one
 must first gain native administrative control of it. Although this refers to
@@ -157,8 +157,7 @@ This sets a suite of variables. Here is an example:
 Some of the above variables were not covered in the manual method but can be
 required in certain situations. For instance, Swift needs ``OS_AUTH_VERSION``,
 Gnocchi looks for ``OS_AUTH_TYPE``, and when backing Juju with OpenStack one
-needs to know the values of multiple variables (see cloud operation :doc:`Use
-OpenStack as a backing cloud for Juju <ops-use-openstack-to-back-juju>`).
+needs to know the values of multiple variables.
 
 .. note::
 

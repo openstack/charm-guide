@@ -4,8 +4,8 @@
 Live migrate VMs from a running compute node
 ============================================
 
-Preamble
---------
+Introduction
+------------
 
 A VM migration is the relocation of a VM from one hypervisor to another.
 
