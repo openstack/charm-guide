@@ -1,7 +1,5 @@
-.. _coding_guidelines:
-
 =================
-Coding Guidelines
+Coding guidelines
 =================
 
 Introduction

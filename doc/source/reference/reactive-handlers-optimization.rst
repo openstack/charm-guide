@@ -1,7 +1,5 @@
-.. _reactive-handlers-optimization:
-
 =======================================
-Optimizing Reactive Handlers in a Charm
+Optimising reactive handlers in a charm
 =======================================
 
 One of the issues often encountered when writing reactive charms is the

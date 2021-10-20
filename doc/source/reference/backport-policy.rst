@@ -1,6 +1,5 @@
-.. _backporting:
-
-Backporting Policy
+==================
+Backporting policy
 ==================
 
 This page documents the OpenStack Charms backport policy.

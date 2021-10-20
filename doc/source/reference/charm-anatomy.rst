@@ -1,7 +1,5 @@
-.. _charm_anatomy:
-
 =============
-Charm Anatomy
+Charm anatomy
 =============
 
 Overview
