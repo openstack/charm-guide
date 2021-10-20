@@ -24,6 +24,7 @@ Summary of changes
    * `cinder charm: image volume caching`_
    * `ceph-mon charm: new action to display quorum status`_
    * `barbican charm: new options for request and secret sizes`_
+   * `OVN chassis charms: New option to influence scheduling of gateways`_
 
 * New tech-preview charms
    * `ceph-dashboard`_
@@ -34,6 +35,7 @@ Summary of changes
 
 * Informational notices
    * `neutron-openvswitch charm: DHCP service restarts in DPDK environments`_
+   * `OVN chassis charms: Change of behaviour for gateway chassis scheduling`_
 
 * Deprecation notices
    * `Xenial series`_
@@ -288,6 +290,18 @@ need to upload large certificate chains the 20 kB limit will need to be
 increased otherwise the barbican-api service will reply with a 413 Error
 "Request Entity Too Large".
 
+OVN chassis charms: New option to influence scheduling of gateways
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Both the ovn-chassis and ovn-dedicated-chassis charms have a new configuration
+option: ``prefer-chassis-as-gw``.
+
+For a deployment with multiple named OVN chassis applications, this option
+specified which application should have its units preferred when scheduling
+gateways. It defaults to 'false' which will make the Cloud Management System
+(CMS) schedule gateways to any chassis with appropriate bridge mappings
+configured.
+
 New tech-preview charms
 -----------------------
 
@@ -342,6 +356,15 @@ When DPDK is enabled and DHCP is running locally on a compute node, the
 neutron-dhcp-agent service now restarts during charm upgrades or when any
 configuration change that triggers the restart of the neutron-openvswitch
 agent.
+
+OVN chassis charms: Change of behaviour for gateway chassis scheduling
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To improve the control of gateway chassis scheduling for the cloud operator,
+a new configuration option was introduced as detailed in `OVN chassis charms:
+New option to influence scheduling of gateways`_. A side effect of this change
+is that the CMS may reschedule gateway chassis for its routers on charm
+upgrade. Since OVN routers are HA by default, the impact should be minimal.
 
 Deprecation notices
 -------------------
@@ -398,8 +421,20 @@ Removed charms
 Issues discovered during this release cycle
 -------------------------------------------
 
-<TITLE>
-~~~~~~~
+OVN and SR-IOV: servicing external DHCP and metadata requests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When instances are deployed with SR-IOV networking in an OVN deployment a
+change of configuration may be required to retain servicing of DHCP and
+metadata requests.
+
+If your deployment has SR-IOV instances, make sure that at least one of the
+OVN chassis named applications has the ``prefer-chassis-as-gw`` configuration
+option set to 'true'.
+
+The root of the issue is in how Neutron handles scheduling of gateway chassis
+for L3 routers and external services differently, and is tracked in bug
+`LP #1946456`_.
 
 Upgrading charms
 ----------------
@@ -434,3 +469,4 @@ in the `OpenStack Charms Deployment Guide`_.
 .. COMMITS
 
 .. BUGS
+.. _LP #1946456: https://bugs.launchpad.net/bugs/1946456
