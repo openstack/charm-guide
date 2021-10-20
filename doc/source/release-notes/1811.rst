@@ -175,9 +175,9 @@ https://jujucharms.com/openstack-base
 
 https://jujucharms.com/openstack-telemetry
 
-https://jujucharms.com/openstack-lxd
+https://github.com/openstack-charmers/openstack-on-lxd
 
-https://jujucharms.com/u/openstack-charmers/ceph-base/
+https://jaas.ai/ceph-base/
 
 Deprecation Notices
 ===================

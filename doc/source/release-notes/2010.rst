@@ -321,7 +321,7 @@ Deployment Guide`_ for more details.
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _Release schedule: ../reference/release-schedule.html
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
-.. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
+.. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
 .. _Open vSwitch Integration Guide for Centralized Control: https://docs.openvswitch.org/en/latest/topics/integration/
 .. _Certificate Lifecycle Management: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
 .. _Migration from Neutron ML2+OVS to ML2+OVN section of the OVN: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html#migration-from-neutron-ml2-ovs-to-ml2-ovn

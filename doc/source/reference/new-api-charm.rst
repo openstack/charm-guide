@@ -256,7 +256,7 @@ used please review the copyright files.
 Metadata Description
 ~~~~~~~~~~~~~~~~~~~~
 
-The `src/metadata.yaml <https://jujucharms.com/docs/2.0/authors-charm-metadata>`__
+The `src/metadata.yaml <https://juju.is/docs/sdk/metadata-reference>`__
 describes the charm. Update the description and tags in here.
 
 

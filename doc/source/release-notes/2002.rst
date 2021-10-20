@@ -226,8 +226,8 @@ Swift Global Replication
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 As of the 20.02 charm release, with OpenStack Newton or later, support for a
-global cluster in Swift is available as a tech preview. Please see `Swift
-Global Cluster`_ in the `OpenStack Charms Deployment Guide`_ for more
+global cluster in Swift is available as a tech preview. Please see
+`Multi-region cluster`_ in the `OpenStack Charms Deployment Guide`_ for more
 information on enabling the feature.
 
 .. warning::
@@ -400,7 +400,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _placement API: https://docs.openstack.org/placement/ussuri/
 .. _HA with pause/resume: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#ha-with-pause-resume
 .. _Swift Auth system: https://docs.openstack.org/swift/latest/overview_auth.html
-.. _Swift Global Cluster: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-swift-gc.html
+.. _Multi-region cluster: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/swift.html#multi-region-cluster
 .. _Toward Convergence of ML2+OVS+DVR and OVN: http://specs.openstack.org/openstack/neutron-specs/specs/ussuri/ml2ovs-ovn-convergence.html
 .. _Vault: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
 
