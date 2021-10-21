@@ -4,8 +4,8 @@
 Start MySQL InnoDB Cluster from a complete outage
 =================================================
 
-Preamble
---------
+Introduction
+------------
 
 Regardless of how MySQL InnoDB Cluster services were shut down (gracefully,
 hard shutdown, or power outage) a special startup procedure is required in

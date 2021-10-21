@@ -4,8 +4,8 @@
 Scale back an application with the hacluster charm
 ==================================================
 
-Preamble
---------
+Introduction
+------------
 
 This article shows how to scale back an application that is made highly
 available by means of the subordinate hacluster charm. It implies the removal

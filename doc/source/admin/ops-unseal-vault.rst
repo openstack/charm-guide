@@ -4,8 +4,8 @@
 Unseal Vault
 ============
 
-Preamble
---------
+Introduction
+------------
 
 The Vault service always starts in a sealed state. Unsealing is the process of
 obtaining the master key necessary to read the decryption key that decrypts the

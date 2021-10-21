@@ -4,8 +4,8 @@
 Change the Keystone admin password
 ==================================
 
-Preamble
---------
+Introduction
+------------
 
 There are valid use cases for resetting the Keystone administrator password on
 a running cloud. For example, the password may have been unintentionally

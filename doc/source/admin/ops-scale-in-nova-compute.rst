@@ -4,8 +4,8 @@
 Scale in the nova-compute application
 =====================================
 
-Preamble
---------
+Introduction
+------------
 
 Scaling in the nova-compute application implies the removal of one or more
 nova-compute units (i.e. compute nodes). This is easily done with generic Juju

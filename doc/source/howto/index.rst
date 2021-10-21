@@ -22,7 +22,6 @@ General cloud operations:
    ../admin/ops-scale-out-nova-compute
    ../admin/ops-start-innodb-from-outage
    ../admin/ops-auto-glance-image-updates
-   ../admin/ops-use-openstack-to-back-juju
    ../admin/ops-implement-ha-with-vip
    ../admin/ops-cloud-admin-access
    ../admin/ops-reissue-tls-certs

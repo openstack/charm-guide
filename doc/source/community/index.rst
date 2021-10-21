@@ -2,11 +2,14 @@
 Community
 =========
 
-Community links can be found here.
+Get involved in the community using the links below. Let us know how you're
+using Charmed OpenStack or any issues you may be encountering. We are
+interested in hearing from you!
 
 .. toctree::
    :maxdepth: 1
 
    contact
-   rotas
    software-contrib
+   doc-contrib
+   rotas

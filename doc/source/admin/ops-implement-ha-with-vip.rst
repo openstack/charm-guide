@@ -4,8 +4,8 @@
 Implement HA with a VIP
 =======================
 
-Preamble
---------
+Introduction
+------------
 
 The subordinate `hacluster charm`_ provides high availability for OpenStack
 applications that lack native (built-in) HA functionality. The clustering
