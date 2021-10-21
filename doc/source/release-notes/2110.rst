@@ -38,6 +38,7 @@ Summary of changes
 * Informational notices
    * `neutron-openvswitch charm: DHCP service restarts in DPDK environments`_
    * `OVN chassis charms: Change of behaviour for gateway chassis scheduling`_
+   * `Cinder charm: Change the method used to configure a clustered Volume service`_
 
 * Deprecation notices
    * `Xenial series`_
@@ -305,6 +306,18 @@ gateways. It defaults to 'false' which will make the Cloud Management System
 (CMS) schedule gateways to any chassis with appropriate bridge mappings
 configured.
 
+Cinder charm: Change the method used to configure a clustered Volume service
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Cinder charm changes the configuration of the Volume service to adhere to
+the recommended upstream (see `High Availability Cinder-Volume`_) of using the
+"cluster" configuration key instead of "host" for storage services that
+support Active-Active setup.
+
+With this change /etc/cinder/cinder.conf for environments running OpenStack
+Ocata or newer will see the "cluster" key set when the configured storage
+backend is stateless (e.g. Ceph).
+
 Documentation updates
 ---------------------
 
@@ -494,6 +507,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _Compute meters documentation: https://docs.openstack.org/ceilometer/latest/admin/telemetry-measurements.html#telemetry-compute-meters
 .. _retired: https://docs.openstack.org/releasenotes/neutron-fwaas-dashboard/ussuri.html
 .. _special charm procedure: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/cinder-lvm-migration.html
+.. _High Availability Cinder-Volume: https://docs.openstack.org/cinder/latest/contributor/high_availability.html#cinder-volume
 
 .. COMMITS
 
