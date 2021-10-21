@@ -3,7 +3,7 @@ Release schedule
 ================
 
 Per the cadence and other requirements defined in the OpenStack Charms
-:doc:`Release Policy <release-policy>`, the following table outlines the
+:doc:`Release policy <release-policy>`, the following table outlines the
 release schedule history and current development cycle milestone dates. The
 latter dates are estimated and subject to revision.
 
@@ -25,13 +25,13 @@ latter dates are estimated and subject to revision.
      - Release timeline
 
    * - 21.10
-     - under development
+     - current stable
      - Fri, Oct 1, 2021
-     - Wed, Oct 20, 2021 (estimated)
+     - Wed, Oct 20, 2021
      - `21.10 release timeline`_
 
    * - 21.04
-     - current stable
+     - --
      - Fri, Apr 9, 2021
      - Wed, Apr 21, 2021
      - `21.04 release timeline`_

@@ -1,61 +1,12 @@
 .. _release_notes_21.10:
 
-=================================
-21.10 (Draft version in progress)
-=================================
-
-Summary of changes
-------------------
-
-* New stable charms
-   * `cinder-lvm`_
-   * `cinder-netapp`_
-
-* New stable charm features
-   * `ceilometer-agent charm: new polling configuration options`_
-   * `cinder-purestorage charm: new configuration options`_
-   * `ceph-mon charm: disk capacity alert threshold configuration`_
-   * `designate charm: new options for creating DNS records`_
-   * `nova-compute charm: new options for neutron physnets NUMA affinity`_
-   * `ceph-osd charm: new action to display availability zones information`_
-   * `manila charm: new relation nrpe-external-master to nrpe charm`_
-   * `ceph-mon charm: new parameter for list-pools action`_
-   * `neutron-gateway charm: new actions to display routers/networks/loadbalancers`_
-   * `cinder charm: image volume caching`_
-   * `ceph-mon charm: new action to display quorum status`_
-   * `barbican charm: new options for request and secret sizes`_
-   * `OVN chassis charms: New option to influence scheduling of gateways`_
-
-* `Documentation updates`_
-
-* New tech-preview charms
-   * `ceph-dashboard`_
-   * `openstack-loadbalancer`_
-
-* New tech-preview charm features
-   * `<TITLE>`_
-
-* Informational notices
-   * `neutron-openvswitch charm: DHCP service restarts in DPDK environments`_
-   * `OVN chassis charms: Change of behaviour for gateway chassis scheduling`_
-   * `Cinder charm: Change the method used to configure a clustered Volume service`_
-
-* Deprecation notices
-   * `Xenial series`_
-   * `Barbican SoftHSM2 Plugin`_
-   * `neutron-api charm: FWaaS removal`_
-   * `Tempest charm`_
-   * `Built-in Cinder LVM backend`_
-
-* Removed features
-   * `<TITLE>`_
-
-Overview
---------
+=====
+21.10
+=====
 
 The 21.10 OpenStack Charms release includes updates for the charms described on
-the `Charms`_ page. As of this release, the project consists of
-<NUMBER-OF-STABLE-CHARMS> supported (stable) charms.
+the `Supported charms`_ page. As of this release, the project consists of 62
+stable charms.
 
 For the list of bugs resolved in this release refer to the `21.10 milestone`_
 in Launchpad.
@@ -71,6 +22,11 @@ guide) which ultimately supersedes Release Notes contents.
    Always upgrade to the latest stable charms before making any major changes
    to your cloud and before filing bug reports. Refer to section `Upgrading
    charms`_ below for details.
+
+.. contents:: Table of contents:
+   :local:
+   :depth: 2
+   :backlinks: top
 
 New stable charms
 -----------------
@@ -104,10 +60,10 @@ glance charm: external S3 compatible storage support
 
 The glance charm has acquired some new configuration options:
 
-* s3-store-host
-* s3-store-access-key
-* s3-store-secret-key
-* s3-store-bucket
+* ``s3-store-host``
+* ``s3-store-access-key``
+* ``s3-store-secret-key``
+* ``s3-store-bucket``
 
 These options are used to set an external S3 compatible storage backend for
 Glance. S3 support in the charm is enabled only for Ussuri and later releases.
@@ -126,7 +82,7 @@ ceilometer-agent charm: new polling configuration options
 The ceilometer-agent charm has two new options: ``polling-interval`` and
 ``enable-all-pollsters``.
 
-These can be used to control the polling frequency and the set of meters
+These options are used to control the polling frequency and the set of meters
 collected by the compute polling agent. The meters that can be collected via
 ``enable-all-pollsters`` are listed in `Compute meters documentation`_ with
 'Pollster' in the origin column.
@@ -234,51 +190,52 @@ manila charm: new relation nrpe-external-master to nrpe charm
 
 The manila charm has a new relation to nrpe charm.
 
-This relation adds nrpe checks for services managed by manila charm
-to be monitored with Nagios.
+This relation adds nrpe checks for services managed by manila charm to be
+monitored with Nagios.
 
 ceph-mon charm: new parameter for list-pools action
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ceph-mon charm's list-pools action has a new `format` parameter that
+The ceph-mon charm's ``list-pools`` action has a new ``format`` parameter that
 accepts the following values:
 
-* ``text`` - provides less information [default]
-* ``text-full`` - provides more information in json with indents
-* ``json`` - provides more information in json
+* 'text' - provides less information [default]
+* 'text-full' - provides more information in json with indents
+* 'json' - provides more information in json
 
-The default `text` provides the same output as previous version.
+The default of 'text' maintains the behaviour of previous charm versions.
 
 neutron-gateway charm: new actions to display routers/networks/loadbalancers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The `neutron-gateway` charm has three new actions that enable listing neutron
-resources hosted on the unit.
+The neutron-gateway charm has three new actions that enable the listing of
+Neutron resources hosted on a neutron-gateway unit:
 
-* ``show-routers`` - Lists neutron routers on the unit
-* ``show-dhcp-networks`` - Lists DHCP networks on the unit
-* ``show-loadbalancers`` - Lists LBaaS v2 loadbalancers on the unit
+* ``show-routers`` - lists Neutron routers
+* ``show-dhcp-networks`` - lists DHCP networks
+* ``show-loadbalancers`` - lists LBaaS v2 loadbalancers
 
 cinder charm: image volume caching
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The cinder charm has the following new configuration options:
 
-``image-volume-cache-enabled``
-``image-volume-cache-max-size-gb``
-``image-volume-cache-max-count``
+* ``image-volume-cache-enabled``
+* ``image-volume-cache-max-size-gb``
+* ``image-volume-cache-max-count``
 
-These will allow the enablement of a Cinder image cache as well as set its
-maximum size and its maximum number of entries. These options are
-supported on OpenStack Ocata and newer.
+These options allow the enablement of a Cinder image cache as well as set its
+maximum size and its maximum number of entries. These options are supported on
+OpenStack Ocata and newer.
 
 ceph-mon charm: new action to display quorum status
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ceph-mon charm has a new action: ``get-quorum-status``.
 
-The `get-quorum-status` action returns some distilled info from
-'ceph quorum_status', primarily for verification of which mon units are online.
+This action returns some distilled information from the :command:`ceph
+quorum_status` command. It is primarily intended for verifying which ceph-mon
+units are online.
 
 barbican charm: new options for request and secret sizes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -301,22 +258,10 @@ Both the ovn-chassis and ovn-dedicated-chassis charms have a new configuration
 option: ``prefer-chassis-as-gw``.
 
 For a deployment with multiple named OVN chassis applications, this option
-specified which application should have its units preferred when scheduling
+specifies which application should have its units preferred when scheduling
 gateways. It defaults to 'false' which will make the Cloud Management System
 (CMS) schedule gateways to any chassis with appropriate bridge mappings
 configured.
-
-Cinder charm: Change the method used to configure a clustered Volume service
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The Cinder charm changes the configuration of the Volume service to adhere to
-the recommended upstream (see `High Availability Cinder-Volume`_) of using the
-"cluster" configuration key instead of "host" for storage services that
-support Active-Active setup.
-
-With this change /etc/cinder/cinder.conf for environments running OpenStack
-Ocata or newer will see the "cluster" key set when the configured storage
-backend is stateless (e.g. Ceph).
 
 Documentation updates
 ---------------------
@@ -339,6 +284,8 @@ A summary of the most significant documentation updates is given below.
 
 New tech-preview charms
 -----------------------
+
+Five new tech-preview charms are now available.
 
 ceph-dashboard
 ~~~~~~~~~~~~~~
@@ -367,12 +314,6 @@ Ironic:
 
 Ironic provisions bare metal, as opposed to virtual, machines.
 
-New tech-preview charm features
--------------------------------
-
-<TITLE>
-~~~~~~~
-
 Informational notices
 ---------------------
 
@@ -393,6 +334,18 @@ New option to influence scheduling of gateways`_. A side effect of this change
 is that the CMS may reschedule gateway chassis for its routers on charm
 upgrade. Since OVN routers are HA by default, the impact should be minimal.
 
+cinder charm: Change of method for configuring a clustered Volume service
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The cinder charm changes the configuration of the Volume service to adhere to
+the recommended upstream method of using the 'cluster' configuration key
+instead of 'host' for storage services that support an Active-Active setup (see
+`High Availability Cinder-Volume`_).
+
+With this change, for environments running OpenStack Ocata or newer, file
+``/etc/cinder/cinder.conf`` will see the 'cluster' key set when the configured
+storage backend is stateless (e.g. Ceph).
+
 Deprecation notices
 -------------------
 
@@ -408,7 +361,8 @@ Barbican SoftHSM2 Plugin
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 The `barbican-softhsm`_ test charm is now deprecated and will have no further
-releases. Support has ended for it. Please use `barbican-vault`_ instead.
+releases. Support has ended for it. Please use the `barbican-vault`_ charm
+instead.
 
 neutron-api charm: FWaaS removal
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -423,27 +377,14 @@ consequence of this.
 Tempest charm
 ~~~~~~~~~~~~~
 
-The `tempest`_ test charm is now deprecated and will have no further
-releases. Support has ended for it. Please use the `tempest Python package`_
-instead.
+The `tempest`_ test charm is now deprecated and will have no further releases.
+Support has ended for it. Please use the `tempest Python package`_ instead.
 
 Built-in Cinder LVM backend
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The LVM-based volume feature of the cinder charm is now deprecated. This
 functionality has been replaced by the new subordinate `cinder-lvm`_ charm.
-
-Removed features
-----------------
-
-<TITLE>
-~~~~~~~
-
-Removed charms
---------------
-
-<TITLE>
-~~~~~~~
 
 Issues discovered during this release cycle
 -------------------------------------------
@@ -463,19 +404,13 @@ The root of the issue is in how Neutron handles scheduling of gateway chassis
 for L3 routers and external services differently, and is tracked in bug
 `LP #1946456`_.
 
-Purestorage: Active-Active configuration is not currently supported
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cinder charm: Pure Storage volumes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When a volume is created in OpenStack releases from Pike to Ussuri (included)
-it will go into error state and print the following message in the logs:
-"Active-Active configuration is not currently supported". this happens
-because the Volume service was configured to use the configuration key
-"cluster" which demands from the driver to claim Active-Active HA support
-explicitly and this feature flag was enabled for Purestorage in the Victoria
-release.
-
-Environments running Purestorage are discouraged from upgrading until the
-issue tracked in bug `LP #1947702`_ is fixed.
+For OpenStack releases Pike through Ussuri (inclusive) there is a problem in
+creating Pure Storage Cinder volumes (charm cinder-purestorage) with the 21.10
+release of the cinder charm. The issue is tracked in bug `LP #1947702`_ and is
+also described on the `Upgrade issues`_ page in the deploy guide.
 
 Upgrading charms
 ----------------
@@ -490,7 +425,7 @@ instructions on performing the different upgrade types see `Upgrades overview`_
 in the `OpenStack Charms Deployment Guide`_.
 
 .. LINKS
-.. _Charms: ../reference/openstack-charms.html
+.. _Supported charms: ../reference/openstack-charms.html
 .. _21.10 milestone: https://launchpad.net/openstack-charms/+milestone/21.10
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
@@ -508,6 +443,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _retired: https://docs.openstack.org/releasenotes/neutron-fwaas-dashboard/ussuri.html
 .. _special charm procedure: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/cinder-lvm-migration.html
 .. _High Availability Cinder-Volume: https://docs.openstack.org/cinder/latest/contributor/high_availability.html#cinder-volume
+.. _Upgrade issues: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-issues.html
 
 .. COMMITS
 
