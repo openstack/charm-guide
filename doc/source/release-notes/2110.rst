@@ -450,6 +450,20 @@ The root of the issue is in how Neutron handles scheduling of gateway chassis
 for L3 routers and external services differently, and is tracked in bug
 `LP #1946456`_.
 
+Purestorage: Active-Active configuration is not currently supported
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When a volume is created in OpenStack releases from Pike to Ussuri (included)
+it will go into error state and print the following message in the logs:
+"Active-Active configuration is not currently supported". this happens
+because the Volume service was configured to use the configuration key
+"cluster" which demands from the driver to claim Active-Active HA support
+explicitly and this feature flag was enabled for Purestorage in the Victoria
+release.
+
+Environments running Purestorage are discouraged from upgrading until the
+issue tracked in bug `LP #1947702`_ is fixed.
+
 Upgrading charms
 ----------------
 
@@ -485,3 +499,4 @@ in the `OpenStack Charms Deployment Guide`_.
 
 .. BUGS
 .. _LP #1946456: https://bugs.launchpad.net/bugs/1946456
+.. _LP #1947702: https://bugs.launchpad.net/bugs/1947702
