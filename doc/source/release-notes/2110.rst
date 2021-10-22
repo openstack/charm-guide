@@ -404,14 +404,6 @@ The root of the issue is in how Neutron handles scheduling of gateway chassis
 for L3 routers and external services differently, and is tracked in bug
 `LP #1946456`_.
 
-cinder charm: Pure Storage volumes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-For OpenStack releases Pike through Ussuri (inclusive) there is a problem in
-creating Pure Storage Cinder volumes (charm cinder-purestorage) with the 21.10
-release of the cinder charm. The issue is tracked in bug `LP #1947702`_ and is
-also described on the `Upgrade issues`_ page in the deploy guide.
-
 Upgrading charms
 ----------------
 
@@ -449,4 +441,3 @@ in the `OpenStack Charms Deployment Guide`_.
 
 .. BUGS
 .. _LP #1946456: https://bugs.launchpad.net/bugs/1946456
-.. _LP #1947702: https://bugs.launchpad.net/bugs/1947702
