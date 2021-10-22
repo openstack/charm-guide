@@ -334,18 +334,6 @@ New option to influence scheduling of gateways`_. A side effect of this change
 is that the CMS may reschedule gateway chassis for its routers on charm
 upgrade. Since OVN routers are HA by default, the impact should be minimal.
 
-cinder charm: Change of method for configuring a clustered Volume service
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The cinder charm changes the configuration of the Volume service to adhere to
-the recommended upstream method of using the 'cluster' configuration key
-instead of 'host' for storage services that support an Active-Active setup (see
-`High Availability Cinder-Volume`_).
-
-With this change, for environments running OpenStack Ocata or newer, file
-``/etc/cinder/cinder.conf`` will see the 'cluster' key set when the configured
-storage backend is stateless (e.g. Ceph).
-
 Deprecation notices
 -------------------
 
@@ -442,7 +430,6 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _Compute meters documentation: https://docs.openstack.org/ceilometer/latest/admin/telemetry-measurements.html#telemetry-compute-meters
 .. _retired: https://docs.openstack.org/releasenotes/neutron-fwaas-dashboard/ussuri.html
 .. _special charm procedure: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/cinder-lvm-migration.html
-.. _High Availability Cinder-Volume: https://docs.openstack.org/cinder/latest/contributor/high_availability.html#cinder-volume
 .. _Upgrade issues: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-issues.html
 
 .. COMMITS
