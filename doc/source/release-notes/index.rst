@@ -44,6 +44,7 @@ Release notes
    :maxdepth: 1
    :hidden:
 
+   2204
    2110
    2104
    2106_Trilio
