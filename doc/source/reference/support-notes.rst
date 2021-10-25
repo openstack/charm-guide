@@ -39,7 +39,7 @@ supported CMR scenario file a Launchpad bug describing your use case. To assist
 in this effort kindly use the `cross-model`_ bug tag.
 
 .. LINKS
-.. _Cross model relations: https://juju.is/docs/cross-model-relations
+.. _Cross model relations: https://juju.is/docs/olm/cross-model-relations
 .. _cross-model: https://bugs.launchpad.net/bugs/+bugs?field.tag=cross-model
 .. _Ceph RBD Mirroring: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ceph-rbd-mirror.html
 .. _Ceph RADOS Gateway Multisite replication: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-rgw-multisite.html

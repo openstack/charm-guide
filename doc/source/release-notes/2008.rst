@@ -451,7 +451,7 @@ Deployment Guide`_ for more details.
 .. _Upgrading to stable Arista charm: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/docs/upgrading-to-stable.md
 .. _gnocchi charm README: https://github.com/openstack/charm-gnocchi/blob/master/src/README.md
 .. _keystone-kerberos charm README: https://opendev.org/openstack/charm-keystone-kerberos/src/branch/master/src/README.md
-.. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
+.. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
 .. _TrilioVault Data Protection: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-trilio-vault.html
 
 .. COMMITS
