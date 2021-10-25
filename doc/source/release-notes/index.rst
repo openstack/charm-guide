@@ -6,7 +6,7 @@ This page lists the Release Notes for every version of OpenStack Charms.
 
 Under development:
 
-* *coming soon*
+* `22.04`_
 
 Latest stable:
 
@@ -125,6 +125,7 @@ Older versions listed by year of release:
    1610
 
 .. LINKS
+.. _22.04: 2204.html
 .. _21.10: 2110.html
 .. _21.04: 2104.html
 .. _21.06 Trilio: 2106_Trilio.html
