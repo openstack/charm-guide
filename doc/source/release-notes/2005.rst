@@ -619,7 +619,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Swift Auth system: https://docs.openstack.org/swift/latest/overview_auth.html
 .. _Swift Global Cluster: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-swift-gc.html
 .. _Toward Convergence of ML2+OVS+DVR and OVN: http://specs.openstack.org/openstack/neutron-specs/specs/ussuri/ml2ovs-ovn-convergence.html
-.. _Vault deployment and configuration: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html
+.. _Vault deployment and configuration: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
 .. _Security compliance and PCI-DSS: https://docs.openstack.org/keystone/train/admin/configuration.html#security-compliance-and-pci-dss
 .. _Keystone charm README: https://github.com/openstack/charm-keystone/blob/master/README.md
 .. _Neutron FWaaS project has been deprecated: https://review.opendev.org/#/c/708675/
