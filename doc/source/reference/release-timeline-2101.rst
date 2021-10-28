@@ -18,11 +18,8 @@
 |                 |           |                |  * documentation submitted                      |
 +-----------------+-----------+----------------+-------------------------------------------------+
 | Jan 25 - Jan 29 | C-0       | Wed, Jan 27    | 21.01 charm release                             |
-|                 |           |                |  * `21.01 release notes`_                       |
+|                 |           |                |  * :doc:`../release-notes/2101`                 |
 +-----------------+-----------+----------------+-------------------------------------------------+
 
 The weeks and countdown labels are not contiguous because some internal
 development stages have not been included.
-
-.. LINKS
-.. _21.01 release notes: ../release-notes/2101.html

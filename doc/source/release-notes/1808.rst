@@ -8,8 +8,8 @@ Summary
 =======
 
 The 18.08 OpenStack Charm release includes updates for the following charms.
-Additional charm support status information is published in the main `charm
-guide <../reference/openstack-charms.html>`__ which ultimately supersedes
+Additional charm support status information is published in the main
+:doc:`charm guide <../reference/openstack-charms>` which ultimately supersedes
 release note contents.
 
 Supported Charms

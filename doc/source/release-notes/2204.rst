@@ -3,14 +3,14 @@
 =================================
 
 The 22.04 OpenStack Charms release includes updates for the charms described on
-the `Supported charms`_ page. As of this release, the project consists of
-62 (...CHANGE IF REQUIRED...) stable charms.
+the :doc:`../reference/openstack-charms` page. As of this release, the project
+consists of 62 (...CHANGE IF REQUIRED...) stable charms.
 
 For the list of bugs resolved in this release refer to the `22.04 milestone`_
 in Launchpad.
 
-For scheduling information of past and future releases see the `Release
-schedule`_.
+For scheduling information of past and future releases see the
+:doc:`../reference/release-schedule`.
 
 .. note::
 
@@ -97,11 +97,9 @@ Issues discovered during this release cycle
 ~~~~~~~
 
 .. LINKS
-.. _Supported charms: ../reference/openstack-charms.html
 .. _22.04 milestone: https://launchpad.net/openstack-charms/+milestone/22.04
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
-.. _Release schedule: ../reference/release-schedule.html
 .. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 
