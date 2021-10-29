@@ -12,4 +12,5 @@ interested in hearing from you!
    contact
    software-contrib
    doc-contrib
+   bug-submitting
    rotas
