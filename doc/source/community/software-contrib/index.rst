@@ -17,6 +17,7 @@ the rest of this section on how to contribute to the OpenStack Charms project.
    testing
    reactive-handlers-optimization
    new-api-charm
+   new-cinder-driver-charm
    new-sdn-charm
    new-manila-charm
    making-a-change
