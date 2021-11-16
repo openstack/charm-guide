@@ -25,6 +25,8 @@ General cloud operations:
    ../admin/ops-implement-ha-with-vip
    ../admin/ops-cloud-admin-access
    ../admin/ops-reissue-tls-certs
+   ../admin/ops-replace-rabbitmq-node
+   ../admin/ops-repair-rabbitmq-node
 
 Ceph storage operations (published in the Charmed Ceph documentation):
 
