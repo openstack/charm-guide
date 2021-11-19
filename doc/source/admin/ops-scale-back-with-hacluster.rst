@@ -111,9 +111,14 @@ unit:
 
 .. code-block:: none
 
-   juju ssh 0/lxd/5 sudo crm status
+   juju ssh vault-hacluster/leader sudo crm status
 
 There should not be any node listed as OFFLINE.
+
+.. note::
+
+   With Juju client < 2.9 a subordinate leader unit must be referenced via its
+   machine ID (e.g. 0/lxd/5) when using the :command:`juju ssh` command.
 
 Verify cloud services
 ~~~~~~~~~~~~~~~~~~~~~
