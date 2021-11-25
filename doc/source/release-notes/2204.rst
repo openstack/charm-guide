@@ -69,8 +69,17 @@ New tech-preview charm features
 Informational notices
 ---------------------
 
-<TITLE>
-~~~~~~~
+nova-cloud-controller: cpu-allocation-ratio default changed to 2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The default value for cpu-allocation-ratio has been reduced from 16
+to 2.  The old default was more appropriate for dev, test or lab type
+environments but is rarely suitable for clouds running production
+workloads.  If you were relying on the previous default of 16 and
+start to see VM scheduling failures after upgrade of this charm, you
+can opt back into a higher contention ratio by running:
+
+``juju config nova-cloud-controller cpu-allocation-ratio=16``
 
 Deprecation notices
 -------------------
