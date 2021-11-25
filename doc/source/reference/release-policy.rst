@@ -6,7 +6,7 @@ The OpenStack charm repositories are all tagged as `release:independent`; howeve
 OpenStack Charms project does have a regular release cadence which makes specific demands
 on the charms in terms of development and testing.
 
-The OpenStack Charms team produces a release every 3 months, with every other release
+The OpenStack Charms team produces a release every 6 months, with every other release
 aligned to the main OpenStack release.
 
 Each stable release of OpenStack Charms is backwards-compatible to cover all currently-supported
@@ -22,7 +22,7 @@ following release requirements:
    supporting releases alongside the main OpenStack release.
 
 2. Charms must include functional tests to be eligible for inclusion in the official
-   OpenStack Charm release every 3 months; these are typically implemented as
+   OpenStack Charm release every 6 months; these are typically implemented as
    Zaza tests within each charm.
 
 3. Charms must have an active and responsive community of developers.
@@ -33,9 +33,9 @@ following release requirements:
    specific vendor hardware or proprietary software.
 
 Charms which don't meet these requirements can continue to be part of the
-OpenStack Charms project, but won't form part of the official 3 monthly charm
+OpenStack Charms project, but won't form part of the official 6 monthly charm
 release.  This approach allows new charms to incubate as part of the wider
-OpenStack Charms project, with inclusion in the 3-monthly release when this
+OpenStack Charms project, with inclusion in the 6-monthly release when this
 policy is met.
 
 Charms may choose to opt-out of the co-ordinated charm release, and follow
