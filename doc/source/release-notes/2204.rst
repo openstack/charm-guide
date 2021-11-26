@@ -118,8 +118,14 @@ installation. These are available in the Ubuntu 22.04 release and are expected
 to be backported to Ubuntu 20.04. The OpenStack Charmers team has included a
 backport of these packages in the ppa:openstack-charmers/swtpm ppa.
 
-<TITLE>
-~~~~~~~
+neutron-api charm has a new configuration option: ``uplink-status-propagation``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This option allows the PF (physical function) link status for an OpenStack
+SR-IOV port on the host to be propagated to the VF (virtual function) link
+status on a cloud instance. To enable this, set the option to 'true' and assign
+attribute 'propagate_uplink_status' to the SR-IOV port during its creation
+(via the flag ``--enable-uplink-status-propagation``).
 
 Documentation updates
 ---------------------
