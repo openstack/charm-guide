@@ -36,7 +36,14 @@ import os
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 # TODO(ajaeger): enable PDF building, for example add 'rst2pdf.pdfbuilder'
-extensions = ['openstackdocstheme']
+extensions = [
+    'openstackdocstheme',
+    'sphinx.ext.intersphinx'
+]
+
+intersphinx_mapping = {
+    'cdg': ('https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest', None)
+}
 
 # Add any paths that contain templates here, relative to this directory.
 # templates_path = ['_templates']
