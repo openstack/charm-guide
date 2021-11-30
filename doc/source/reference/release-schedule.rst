@@ -24,6 +24,12 @@ latter dates are estimated and subject to revision.
      - Release date
      - Release timeline
 
+   * - 22.04
+     - under development
+     - --
+     - Wed, Apr 20, 2022 (estimated)
+     - --
+
    * - 21.10
      - current stable
      - Fri, Oct 1, 2021
