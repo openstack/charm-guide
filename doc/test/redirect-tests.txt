@@ -63,3 +63,5 @@
 /charm-guide/latest/reference/2010.html 301 /charm-guide/latest/release-notes/2010.html
 /charm-guide/latest/reference/2101.html 301 /charm-guide/latest/release-notes/2101.html
 /charm-guide/latest/reference/2110.html 301 /charm-guide/latest/release-notes/2110.html
+
+/charm-guide/xena/admin 301 /charm-guide/xena/howto

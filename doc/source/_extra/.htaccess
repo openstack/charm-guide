@@ -53,3 +53,5 @@ RedirectMatch 301 ^/charm-guide/([^/]+)/reference/2008.html$ /charm-guide/$1/rel
 RedirectMatch 301 ^/charm-guide/([^/]+)/reference/2010.html$ /charm-guide/$1/release-notes/2010.html
 RedirectMatch 301 ^/charm-guide/([^/]+)/reference/2101.html$ /charm-guide/$1/release-notes/2101.html
 RedirectMatch 301 ^/charm-guide/([^/]+)/reference/2110.html$ /charm-guide/$1/release-notes/2110.html
+
+RedirectMatch 301 ^/charm-guide/([^/]+)/admin$ /charm-guide/$1/howto
