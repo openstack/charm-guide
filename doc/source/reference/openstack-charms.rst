@@ -247,6 +247,7 @@ production use (promoted to Stable).
 * `manila-dashboard`_
 * `manila-netapp`_
 * `neutron-api-plugin-ironic`_
+* `nova-compute-nvidia-vgpu`_
 * `openstack-loadbalancer`_
 
 Alpha charms (Edge)
@@ -363,6 +364,7 @@ These charms have reached EOL and are deprecated.
 .. _manila-dashboard: https://opendev.org/openstack/charm-manila-dashboard
 .. _manila-netapp: https://opendev.org/openstack/charm-manila-netapp
 .. _neutron-api-plugin-ironic: https://opendev.org/openstack/charm-neutron-api-plugin-ironic
+.. _nova-compute-nvidia-vgpu: https://opendev.org/openstack/charm-nova-compute-nvidia-vgpu
 .. _openstack-loadbalancer: https://opendev.org/openstack/charm-openstack-loadbalancer
 
 .. _manila-generic: https://opendev.org/openstack/charm-manila-generic/

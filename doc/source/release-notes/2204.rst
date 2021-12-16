@@ -57,8 +57,12 @@ Documentation updates
 New tech-preview charms
 -----------------------
 
-<TITLE>
-~~~~~~~
+nova-compute-nvidia-vgpu
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-compute-nvidia-vgpu charm provides Nvidia vGPU support to the
+OpenStack Nova Compute service. It is a subordinate charm used in conjunction
+with the nova-compute principal charm.
 
 New tech-preview charm features
 -------------------------------
