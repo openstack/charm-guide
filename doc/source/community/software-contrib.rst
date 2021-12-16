@@ -22,6 +22,7 @@ the rest of this section on how to contribute to the OpenStack Charms.
    ../reference/new-api-charm
    ../reference/new-sdn-charm
    ../reference/new-manila-charm
+   ../reference/adding-charm-to-osci
 
 .. LINKS
 .. _development documentation: https://docs.openstack.org/infra/manual/developers.html
