@@ -73,6 +73,21 @@ changes to YAML files that have been in the queue for less than two months and
 do not have a value of '-1' for the Workflow label: `open changes to YAML
 files`_.
 
+Abandonment policy
+^^^^^^^^^^^^^^^^^^
+
+Charm reviews which are either `blocked`_ (> 12 weeks without comment and
+are blocked by a core reviewer with a -2 review) or `failing`_ (> 12 weeks
+without comment and failed tests the last time the review was checked) will
+be automatically marked as abandoned within Gerrit.
+
+Abandoned reviews can always be restored in the event that work on a review
+resumes - reviews that are blocked by a -2 review will also need to be
+discussed with the core reviewer involved.
+
+Any review marked as work in progress (Workflow -1) will be excluded from
+this policy.
+
 .. LINKS
 .. _new bugs: https://bugs.launchpad.net/openstack-charms/+bugs?search=Search&field.status=New&orderby=-id&start=0
 .. _all open changes: https://review.opendev.org/q/project:%22%255Eopenstack/charm.*%22+status:open
@@ -88,3 +103,5 @@ files`_.
 .. _cold-start: https://bugs.launchpad.net/bugs/+bugs?field.tag=cold-start
 .. _cross-model: https://bugs.launchpad.net/bugs/+bugs?field.tag=cross-model
 .. _unstable-test: https://bugs.launchpad.net/bugs/+bugs?field.tag=unstable-test
+.. _failing: https://review.opendev.org/q/status:open+project:%255Eopenstack/charm-.*+age:12w+NOT+label:Verified%253E%253D1%252Cuosci-testing-bot%2540ubuntu.com+NOT+label:Workflow%253C%253D-1
+.. _blocked: https://review.opendev.org/q/status:open+project:%255Eopenstack/charm-.*+age:12w+label:Code-Review%253C%253D-2+NOT+label:Workflow%253C%253D-1
