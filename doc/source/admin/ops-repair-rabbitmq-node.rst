@@ -41,8 +41,8 @@ Below is a comparison of the repair and replacement methods.
 
 \* especially if a new machine must be provisioned
 
-\** can be mitigated with the :doc:`Deferred service events
-<../howto/deferred-events>` feature
+\** can be mitigated with the :doc:`Deferred service events <deferred-events>`
+feature
 
 Initial state of the cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

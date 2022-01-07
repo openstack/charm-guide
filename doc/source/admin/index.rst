@@ -2,31 +2,28 @@
 How-to guides
 =============
 
-Administrators
---------------
-
 Operations
-~~~~~~~~~~
+----------
 
 General cloud operations:
 
 .. toctree::
    :maxdepth: 1
 
-   ../admin/ops-change-keystone-password
-   ../admin/ops-scale-in-nova-compute
-   ../admin/ops-unseal-vault
-   ../admin/ops-config-tls-vault-api
-   ../admin/ops-live-migrate-vms
-   ../admin/ops-scale-back-with-hacluster
-   ../admin/ops-scale-out-nova-compute
-   ../admin/ops-start-innodb-from-outage
-   ../admin/ops-auto-glance-image-updates
-   ../admin/ops-implement-ha-with-vip
-   ../admin/ops-cloud-admin-access
-   ../admin/ops-reissue-tls-certs
-   ../admin/ops-replace-rabbitmq-node
-   ../admin/ops-repair-rabbitmq-node
+   ops-change-keystone-password
+   ops-scale-in-nova-compute
+   ops-unseal-vault
+   ops-config-tls-vault-api
+   ops-live-migrate-vms
+   ops-scale-back-with-hacluster
+   ops-scale-out-nova-compute
+   ops-start-innodb-from-outage
+   ops-auto-glance-image-updates
+   ops-implement-ha-with-vip
+   ops-cloud-admin-access
+   ops-reissue-tls-certs
+   ops-replace-rabbitmq-node
+   ops-repair-rabbitmq-node
 
 Ceph storage operations (published in the Charmed Ceph documentation):
 
@@ -40,7 +37,7 @@ Ceph storage operations (published in the Charmed Ceph documentation):
    Software upgrades <https://ubuntu.com/ceph/docs/software-upgrades>
 
 Management
-~~~~~~~~~~
+----------
 
 Cloud management how-to guides:
 
