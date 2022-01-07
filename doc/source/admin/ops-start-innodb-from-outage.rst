@@ -56,5 +56,5 @@ healthy state:
    mysql-innodb-cluster/2*  active    idle   2/lxd/2  10.0.0.218             Unit is ready: Mode: R/W, Cluster is ONLINE and can tolerate up to ONE failure.
 
 See the :ref:`mysql-innodb-cluster section <mysql_innodb_cluster_startup>` on
-the :doc:`Managing power events <../howto/managing-power-events>` page for full
+the :doc:`Managing power events <managing-power-events>` page for full
 coverage.

@@ -21,7 +21,7 @@ to replace one of its nodes.
    have adverse effects on the cloud's ability to service its current workload.
 
    The above issue can be mitigated through the use of :doc:`Deferred service
-   events <../howto/deferred-events>`. If restarts are deferred, a client will
+   events <deferred-events>`. If restarts are deferred, a client will
    nonetheless experience a slight delay (due to timeouts) if it tries to
    contact a non-existent node.
 

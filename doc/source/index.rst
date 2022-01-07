@@ -38,7 +38,7 @@ Operators, including key tasks for successful deployment and operations.
 .. toctree::
    :maxdepth: 1
 
-   howto/index
+   admin/index
 
 Concepts
 --------

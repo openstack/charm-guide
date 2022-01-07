@@ -64,4 +64,5 @@
 /charm-guide/latest/reference/2101.html 301 /charm-guide/latest/release-notes/2101.html
 /charm-guide/latest/reference/2110.html 301 /charm-guide/latest/release-notes/2110.html
 
-/charm-guide/latest/admin/index.html 301 /charm-guide/latest/howto/index.html
+/charm-guide/latest/howto/managing-power-events.html 301 /charm-guide/latest/admin/managing-power-events.html
+/charm-guide/latest/howto/deferred-events.html 301 /charm-guide/latest/admin/deferred-events.html
