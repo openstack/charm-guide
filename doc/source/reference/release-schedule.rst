@@ -34,31 +34,31 @@ latter dates are estimated and subject to revision.
      - current stable
      - Fri, Oct 1, 2021
      - Wed, Oct 20, 2021
-     - `21.10 release timeline`_
+     - :doc:`release-timeline-2110`
 
    * - 21.04
      - --
      - Fri, Apr 9, 2021
      - Wed, Apr 21, 2021
-     - `21.04 release timeline`_
+     - :doc:`release-timeline-2104`
 
    * - 21.01
      - --
      - Fri, Jan 15, 2021
      - Wed, Jan 27, 2021
-     - `21.01 release timeline`_
+     - :doc:`release-timeline-2101`
 
    * - 20.10
      - --
      - Fri, Oct 9, 2020
      - Wed, Oct 21, 2020
-     - `20.10 release timeline`_
+     - :doc:`release-timeline-2010`
 
    * - 20.08
      - --
      - Fri, Jul 24, 2020
      - Wed, Aug 5, 2020
-     - `20.08 release timeline`_
+     - :doc:`release-timeline-2008`
 
    * - 20.05
      - --
@@ -119,10 +119,3 @@ latter dates are estimated and subject to revision.
      - Tue, Nov 21, 2017
      - Wed, Nov 30, 2017
      - --
-
-.. LINKS
-.. _20.08 release timeline: release-timeline-2008.html
-.. _20.10 release timeline: release-timeline-2010.html
-.. _21.01 release timeline: release-timeline-2101.html
-.. _21.04 release timeline: release-timeline-2104.html
-.. _21.10 release timeline: release-timeline-2110.html

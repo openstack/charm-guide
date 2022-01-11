@@ -8,8 +8,8 @@ Summary
 =======
 
 The 19.04 OpenStack Charm release includes updates for the following charms.
-Additional charm support status information is published in the main `charm
-guide <../reference/openstack-charms.html>`__ which ultimately supersedes
+Additional charm support status information is published in the main
+:doc:`charm guide <../reference/openstack-charms>` which ultimately supersedes
 release note contents.
 
 Always use the latest stable charm revision before proceeding with topological
@@ -97,8 +97,8 @@ OpenStack Stein
 The 19.04 OpenStack Charms release introduces support for OpenStack Stein on
 Ubuntu 18.04 (LTS) and Ubuntu 19.04.
 
-Additional charm support status information is published in the main `charm
-guide <../reference/openstack-charms.html>`__ which ultimately supersedes
+Additional charm support status information is published in the main
+:doc:`charm guide <../reference/openstack-charms>` which ultimately supersedes
 release note contents.
 
 PCI passthrough for GPU and other devices

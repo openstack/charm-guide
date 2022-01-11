@@ -26,11 +26,8 @@
 |                 |           |                |  * documentation submitted                      |
 +-----------------+-----------+----------------+-------------------------------------------------+
 | Aug 03 - Aug 07 | C-0       | Wed, Aug 05    | 20.08 charm release                             |
-|                 |           |                |  * `20.08 release notes`_                       |
+|                 |           |                |  * :doc:`../release-notes/2008`                 |
 +-----------------+-----------+----------------+-------------------------------------------------+
 
 The weeks and countdown labels are not contiguous because some internal
 development stages have not been included.
-
-.. LINKS
-.. _20.08 release notes: ../release-notes/2008.html

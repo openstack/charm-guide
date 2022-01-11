@@ -36,13 +36,10 @@
 | Oct 12 - Oct 16 | C-1       | Wed, Oct 14    | OpenStack Victoria release                      |
 +-----------------+-----------+----------------+-------------------------------------------------+
 | Oct 19 - Oct 23 | C-0       | Wed, Oct 21    | 20.10 charm release                             |
-|                 |           |                |  * `20.10 release notes`_                       |
+|                 |           |                |  * :doc:`../release-notes/2010`                 |
 |                 |           +----------------+-------------------------------------------------+
 |                 |           | Thu, Oct 22    | Ubuntu Groovy release                           |
 +-----------------+-----------+----------------+-------------------------------------------------+
 
 The weeks and countdown labels are not contiguous because some internal
 development stages have not been included.
-
-.. LINKS
-.. _20.10 release notes: ../release-notes/2010.html

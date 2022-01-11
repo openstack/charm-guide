@@ -6,12 +6,12 @@ This page lists the Release Notes for every version of OpenStack Charms.
 
 Under development:
 
-* `22.04`_
+* :doc:`2204`
 
 Latest stable:
 
-* `21.10`_
-* `21.06 Trilio`_
+* :doc:`2110`
+* :doc:`2106_Trilio`
 
 Older versions listed by year of release:
 
@@ -21,9 +21,9 @@ Older versions listed by year of release:
    :stub-columns: 1
 
    * - 2021
-     - `21.01`_
-     - `21.03 Trilio`_
-     - `21.04`_
+     - :doc:`2101`
+     - :doc:`2103_Trilio`
+     - :doc:`2104`
 
 .. list-table::
    :header-rows: 0
@@ -31,10 +31,10 @@ Older versions listed by year of release:
    :stub-columns: 1
 
    * - 2020
-     - `20.02`_
-     - `20.05`_
-     - `20.08`_
-     - `20.10`_
+     - :doc:`2002`
+     - :doc:`2005`
+     - :doc:`2008`
+     - :doc:`2010`
 
 .. list-table::
    :header-rows: 0
@@ -42,9 +42,9 @@ Older versions listed by year of release:
    :stub-columns: 1
 
    * - 2019
-     - `19.04`_
-     - `19.07`_
-     - `19.10`_
+     - :doc:`1904`
+     - :doc:`1907`
+     - :doc:`1910`
 
 .. list-table::
    :header-rows: 0
@@ -52,10 +52,10 @@ Older versions listed by year of release:
    :stub-columns: 1
 
    * - 2018
-     - `18.02`_
-     - `18.05`_
-     - `18.08`_
-     - `18.11`_
+     - :doc:`1802`
+     - :doc:`1805`
+     - :doc:`1808`
+     - :doc:`1811`
 
 .. list-table::
    :header-rows: 0
@@ -63,9 +63,9 @@ Older versions listed by year of release:
    :stub-columns: 1
 
    * - 2017
-     - `17.02`_
-     - `17.08`_
-     - `17.11`_
+     - :doc:`1702`
+     - :doc:`1708`
+     - :doc:`1711`
 
 .. list-table::
    :header-rows: 0
@@ -76,7 +76,7 @@ Older versions listed by year of release:
      - `16.01`_
      - `16.04`_
      - `16.07`_
-     - `16.10`_
+     - :doc:`1610`
 
 .. list-table::
    :header-rows: 0
@@ -125,27 +125,6 @@ Older versions listed by year of release:
    1610
 
 .. LINKS
-.. _22.04: 2204.html
-.. _21.10: 2110.html
-.. _21.04: 2104.html
-.. _21.06 Trilio: 2106_Trilio.html
-.. _21.03 Trilio: 2103_Trilio.html
-.. _21.01: 2101.html
-.. _20.10: 2010.html
-.. _20.08: 2008.html
-.. _20.05: 2005.html
-.. _20.02: 2002.html
-.. _19.10: 1910.html
-.. _19.07: 1907.html
-.. _19.04: 1904.html
-.. _18.11: 1811.html
-.. _18.08: 1808.html
-.. _18.05: 1805.html
-.. _18.02: 1802.html
-.. _17.11: 1711.html
-.. _17.08: 1708.html
-.. _17.02: 1702.html
-.. _16.10: 1610.html
 .. _16.07: https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1607
 .. _16.04: https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1604
 .. _16.01: https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1601

@@ -9,8 +9,8 @@ Summary
 
 The 20.08 OpenStack Charms project release includes updates for the charms
 described in the following sections. Refer to the `20.08 milestone`_ in
-Launchpad for the list of resolved bugs and see the `Release schedule`_ for
-past and future releases.
+Launchpad for the list of resolved bugs and see the
+:doc:`../reference/release-schedule` for past and future releases.
 
 Additional charm information is published in the `OpenStack Charm Guide`_ (this
 guide) which ultimately supersedes Release Notes contents.
@@ -445,7 +445,6 @@ Deployment Guide`_ for more details.
 .. _20.08 milestone: https://launchpad.net/openstack-charms/+milestone/20.08
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
-.. _Release schedule: ../reference/release-schedule.html
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
 .. _neutron-api-plugin-arista charm README: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/README.md
 .. _Upgrading to stable Arista charm: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/docs/upgrading-to-stable.md

@@ -10,14 +10,14 @@
 ===========================================
 
 The <CHARM_RELEASE> OpenStack Charms release includes updates for the charms
-described on the `Supported charms`_ page. As of this release, the project
+described on the :doc:`openstack-charms` page. As of this release, the project
 consists of <NUMBER-OF-STABLE-CHARMS> stable charms.
 
 For the list of bugs resolved in this release refer to the `<CHARM_RELEASE>
 milestone`_ in Launchpad.
 
-For scheduling information of past and future releases see the `Release
-schedule`_.
+For scheduling information of past and future releases see the
+:doc:`release-schedule`.
 
 .. note::
 
@@ -108,6 +108,7 @@ Issues discovered during this release cycle
 .. _<CHARM_RELEASE> milestone: https://launchpad.net/openstack-charms/+milestone/<CHARM_RELEASE>
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _Release schedule: ../reference/release-schedule.html
+.. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 
 .. COMMITS

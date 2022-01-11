@@ -28,11 +28,8 @@
 | Oct 11 - Oct 15 | C-1       | Thu, Oct 14    | Ubuntu Impish release                           |
 +-----------------+-----------+----------------+-------------------------------------------------+
 | Oct 18 - Oct 22 | C-0       | Wed, Oct 20    | 21.10 charm release                             |
-|                 |           |                |  * `21.10 release notes`_                       |
+|                 |           |                |  * :doc:`../release-notes/2110`                 |
 +-----------------+-----------+----------------+-------------------------------------------------+
 
 The weeks and countdown labels are not contiguous because some internal
 development stages have not been included.
-
-.. LINKS
-.. _21.10 release notes: ../release-notes/2110.html
