@@ -96,6 +96,28 @@ in the nova configuration.
 This flag allows to increase the number of retries and hence hosts to schedule
 on and therefore allowing the successful scheduling of instances.
 
+nova-compute charm: new option to add extra-repositories
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-compute charm has a new configuration option for adding extra apt
+repositories to the compute node: ``extra-repositories``. This configuration
+option takes a comma-delimited list of apt source repository spec entries
+to add as apt package repositories. The valid values are those accepted by the
+add-apt-repository command.
+
+nova-compute charm: vTPM Enablement
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-compute charm now allows for installing and configuring for virtual
+TPM (vTPM) support. The nova-compute charm has a new option ``enable-vtpm``
+that when set to True, will configure the nova and libvirt services to be able
+to provide vTPM devices via swtpm.
+
+This requires swtpm, swtpm-tools, and libtpm0 packages to be available for
+installation. These are available in the Ubuntu 22.04 release and are expected
+to be backported to Ubuntu 20.04. The OpenStack Charmers team has included a
+backport of these packages in the ppa:openstack-charmers/swtpm ppa.
+
 <TITLE>
 ~~~~~~~
 
