@@ -45,6 +45,13 @@ test bundle, and/or a section in the `OpenStack Charms Deployment Guide`_, that
 details its usage. Test bundles are located in the ``src/tests/bundles``
 directory of the relevant charm repository (see all `charm repositories`_).
 
+cinder charm: new option to configure ``scheduler_default_filters``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The cinder charm has a new configuration option: ``scheduler-default-filters``.
+This option can be used to set the value of ``scheduler_default_filters``
+in the cinder configuration.
+
 <TITLE>
 ~~~~~~~
 
