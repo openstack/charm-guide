@@ -24,6 +24,7 @@ General cloud operations:
    ops-reissue-tls-certs
    ops-replace-rabbitmq-node
    ops-repair-rabbitmq-node
+   ops-restart-partitioned-rabbitmq-cluster
 
 Ceph storage operations (published in the Charmed Ceph documentation):
 
