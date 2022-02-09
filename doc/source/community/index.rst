@@ -11,6 +11,7 @@ interested in hearing from you!
 
    contact
    software-contrib
+   charm-readme-template
    doc-contrib
    doc-style-guide
    bug-submitting

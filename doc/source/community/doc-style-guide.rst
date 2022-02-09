@@ -15,12 +15,9 @@ project documentation:
 Both the above guides are published using the `Sphinx`_ documentation
 generator. As such, enhanced `reStructuredText`_ (RST) formatting is used.
 
-The charm README files are formatted in Markdown (MD).
-
-.. REPLACE THE ABOVE LINE WITH THIS ONCE THE CITED DOCUMENT IS MERGED
-   The charm README files are formatted in Markdown. The :doc:`Charm README
-   template <charm-readme-template>` provides guidance on how to produce a
-   README file.
+The charm README files are formatted in Markdown. The :doc:`Charm README
+template <charm-readme-template>` provides guidance on how to produce a README
+file.
 
 Other resources
 ~~~~~~~~~~~~~~~
