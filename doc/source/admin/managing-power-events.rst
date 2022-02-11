@@ -380,17 +380,17 @@ cluster
 
    Expected output is null (no output).
 
-5. Mark all of a unit's OSDs as 'out'. Do this on **each** ``ceph-osd`` unit::
+5. Stop all of a unit's OSDs. Do this on **each** ``ceph-osd`` unit::
 
-    juju run-action --wait ceph-osd/1 osd-out
+    juju run-action --wait ceph-osd/1 stop osds=all
 
-   Once done, verify that all of the cluster's OSDs are *out*::
+   Once done, verify that all of the cluster's OSDs are down::
 
     juju ssh ceph-mon/1 sudo ceph status
 
-   Assuming a total of six OSDs, expected partial output ("0 in") is::
+   Assuming a total of six OSDs, expected partial output ("0 up") is::
 
-    osd: 6 osds: 6 up, 0 in; 66 remapped pgs
+    osd: 6 osds: 0 up, 6 in; 66 remapped pgs
 
 6. Stop the MON service on **each** ``ceph-mon`` unit::
 
@@ -425,14 +425,35 @@ component
    b. Do not bring down another MON until the cluster has recovered from the
       loss of the current one (run a status check).
 
-3. **ceph-osd** - To bring down all the OSDs on a single unit:
+3. **ceph-osd** - To take 'out' a single OSD:
 
-   a. Mark all the OSDs on the ``ceph-osd`` unit as 'out'::
+   a. Mark the OSD (with id 2) on a ``ceph-osd`` unit as 'out'::
 
-       juju run-action --wait ceph-osd/2 osd-out
+       juju run-action --wait ceph-osd/2 osd-out osds=2
 
    b. Do not mark OSDs on another unit as 'out' until the cluster has recovered
       from the loss of the current one (run a status check).
+
+4. **ceph-osd** - To stop a single OSD:
+
+   Mark the OSD (with id 2) on a ``ceph-osd`` unit as 'down'::
+
+    juju run-action --wait ceph-osd/2 stop osds=2
+
+5. **ceph-osd** - To take 'out' all the OSDs on a single unit:
+
+   a. Mark all the OSDs on a ``ceph-osd`` unit as 'out'::
+
+       juju run-action --wait ceph-osd/2 osd-out osds=all
+
+   b. Do not mark OSDs on another unit as 'out' until the cluster has recovered
+      from the loss of the current ones (run a status check).
+
+6. **ceph-osd** - To stop all the OSDs on a single unit:
+
+   Mark all the OSDs on a ``ceph-osd`` unit as 'down'::
+
+    juju run-action --wait ceph-osd/2 stop osds=all
 
 startup
 ^^^^^^^
@@ -452,16 +473,11 @@ started in this order:
 
 **Important**: If during cluster shutdown,
 
-a. a unit's OSDs were marked as 'out' then you must re-insert them. Do this for
-   **each** ``ceph-osd`` unit::
-
-    juju run-action --wait ceph-osd/0 osd-in
-
-b. the ``noout`` option was set, you will need to unset it. On any MON unit::
+a. the ``noout`` option was set, you will need to unset it. On any MON unit::
 
     juju run-action --wait ceph-mon/0 unset-noout
 
-c. a RADOS Gateway service was paused, you will need to resume it. Do this for
+b. a RADOS Gateway service was paused, you will need to resume it. Do this for
    **each** ``ceph-radosgw`` unit::
 
     juju run-action --wait ceph-radosgw/0 resume
@@ -478,7 +494,7 @@ component
 
     juju ssh ceph-mon/0 sudo ceph status
 
-2. **ceph-mon** - To bring up a single MON service:
+2. **ceph-mon** - To start a single MON service:
 
    a. Start the MON service on the ``ceph-mon`` unit::
 
@@ -487,19 +503,20 @@ component
    b. Do not bring up another MON until the cluster has recovered from the
       addition of the current one (run a status check).
 
-3. **ceph-osd** - To bring up all the OSDs on a unit:
+3. **ceph-osd** - To set as 'in' a single OSD on a unit:
+
+   a. Re-insert the OSD (with id 2) on the ``ceph-osd`` unit::
+
+       juju run-action --wait ceph-osd/1 osd-in osds=2
+
+4. **ceph-osd** - To set as 'in' all the OSDs on a unit:
 
    a. Re-insert the OSDs on the ``ceph-osd`` unit::
 
-       juju run-action --wait ceph-osd/1 osd-in
+       juju run-action --wait ceph-osd/1 osd-in osds=all
 
    b. Do not re-insert OSDs on another unit until the cluster has recovered
       from the addition of the current ones (run a status check).
-
-.. important::
-
-   Individual OSDs on a unit cannot be started or stopped using
-   actions. They are managed as a collective.
 
 -------------------------------------------------------------------------------
 
