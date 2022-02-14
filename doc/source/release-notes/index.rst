@@ -4,6 +4,13 @@ Release notes
 
 This page lists the Release Notes for every version of OpenStack Charms.
 
+.. note::
+
+   The version naming scheme for OpenStack Charms releases has changed from
+   being time-based (YY/MM) to one that uses the name of the newly-supported
+   OpenStack release. See :doc:`Charm delivery <../project/charm-delivery>` for
+   details.
+
 Under development:
 
 * :doc:`2204`

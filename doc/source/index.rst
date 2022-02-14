@@ -75,8 +75,9 @@ enterprise-grade deployments as well as small development clouds.
 Project and community
 ---------------------
 
-Learn more about the OpenStack Charms project and get involved in the OpenStack
-Charms community!
+Follow the OpenStack Charms project. This is where you will find information
+such as the definitive list of OpenStack charms, support notes, and how the
+charm delivery system works.
 
 .. toctree::
    :maxdepth: 1

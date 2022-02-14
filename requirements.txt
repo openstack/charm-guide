@@ -10,3 +10,4 @@ whereto>=0.3.0 # Apache-2.0
 pyenchant # GNU LGPL
 sphinxcontrib-spelling # Doug Hellmann - permissions granted
 sphinx-panels # MIT
+sphinx-tabs # MIT

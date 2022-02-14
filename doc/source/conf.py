@@ -40,7 +40,8 @@ extensions = [
     'openstackdocstheme',
     'sphinx.ext.intersphinx',
     'sphinxcontrib.spelling',
-    'sphinx_panels'
+    'sphinx_panels',
+    'sphinx_tabs.tabs'
 ]
 
 intersphinx_mapping = {

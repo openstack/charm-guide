@@ -11,6 +11,7 @@ https://docs.openstack.org.
    :maxdepth: 1
 
    openstack-charms
+   charm-delivery
    backport-policy
    support-notes
    release-policy
