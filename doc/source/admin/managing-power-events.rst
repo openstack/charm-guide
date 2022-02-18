@@ -66,8 +66,8 @@ good examples of this.
 Cloud applications are typically made highly available through the use of the
 `hacluster`_ subordinate charm. Some applications, though, achieve HA at the
 software layer (outside of Juju), and can be called *natively HA*. One such
-application is ``rabbitmq-server``. See `Infrastructure high availability`_ in
-the OpenStack Charms Deployment Guide for more information.
+application is ``rabbitmq-server``. See :doc:`Infrastructure high availability
+<ha>` for more information.
 
 Cloud topology
 ~~~~~~~~~~~~~~

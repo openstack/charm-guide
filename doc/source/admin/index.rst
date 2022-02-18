@@ -48,3 +48,4 @@ Cloud management how-to guides:
    managing-power-events
    deferred-events
    policy-overrides
+   ha
