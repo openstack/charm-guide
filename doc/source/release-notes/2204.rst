@@ -52,6 +52,27 @@ The cinder charm has a new configuration option: ``scheduler-default-filters``.
 This option can be used to set the value of ``scheduler_default_filters``
 in the cinder configuration.
 
+glance charm: add support for Cinder iSCSI/FC backend storage
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The glance charm adds support for Cinder iSCSI/FC backend storage through three
+new configuration options:
+
+* ``cinder-volume-types``
+
+Comma separated list of cinder volume_types that can be configured as cinder
+storage backends. The first one in the list will be configured as the default
+backend.
+
+* ``cinder-http-retries``
+
+Number of cinderclient retries on failed http calls.
+
+* ``cinder-state-transition-timeout``
+
+Time period of time in seconds to wait for a cinder volume transition to
+complete.
+
 <TITLE>
 ~~~~~~~
 
