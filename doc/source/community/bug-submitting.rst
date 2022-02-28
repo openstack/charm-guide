@@ -179,19 +179,24 @@ plugin. Install it alongside the Juju client:
 
    sudo snap install juju-crashdump --classic
 
-To analyse the currently active model and store the report under ``~/tmp``:
+For example, to analyse the currently active model and tag the report with a
+unique string (assuming the issue involves the ovn-central charm):
 
 .. code-block:: none
 
-   juju crashdump -o ~/tmp
+   juju crashdump --small -o ~/tmp -u ovn-central
+
+This will produce the file ``~/tmp/juju-crashdump-ovn-central.tar.xz``.
+
+Omitting the ``--small`` option will lead to the inclusion of a massive amount
+of Juju debug information (see `Dealing with large file attachments`_). To get
+more command help: ``juju crashdump --help``.
 
 .. note::
 
    To avoid copying the file across networks in order to attach it to the bug
    (the file is probably not immediately available to your browser), the
    command's ``-b`` option can be used to send it directly to an existing bug.
-
-Use ``juju crashdump --help`` to get more command help.
 
 Logs
 ~~~~
@@ -258,6 +263,42 @@ Screenshots
 
 Screenshots are typically used when the subject is graphical in nature such as
 the web UIs available with MAAS, OpenStack Horizon, and Ceph Dashboard.
+
+Dealing with large file attachments
+-----------------------------------
+
+Attaching an oversized file to the bug can be problematic (Launchpad may time
+out). In such cases, the common :command:`split` utility can be of use.
+Consider the below :command:`juju-crashdump` report:
+
+.. code-block:: console
+
+   -rw-rw-r-- 1 ubuntu ubuntu 167M Feb  7 22:06 juju-crashdump-7c9c30a8-686c-4d28-8765-b31c1791ca85.tar.xz
+
+To break it into 64MiB chunks (and add some prefix and suffix information to
+the resulting files):
+
+.. code-block:: none
+
+   split -b 64M --numeric-suffixes=1 --additional-suffix=-juju-crashdump \
+      juju-crashdump-7c9c30a8-686c-4d28-8765-b31c1791ca85.tar.xz split-
+
+This yields three manageable files:
+
+.. code-block:: console
+
+   -rw-rw-r-- 1 ubuntu ubuntu  64M Feb  8 16:32 split-01-juju-crashdump
+   -rw-rw-r-- 1 ubuntu ubuntu  64M Feb  8 16:32 split-02-juju-crashdump
+   -rw-rw-r-- 1 ubuntu ubuntu  39M Feb  8 16:32 split-03-juju-crashdump
+
+Please include an explanatory bug comment:
+
+::
+
+   I have split a juju-crashdump file into three and attached them. To
+   reconstruct:
+
+   $ cat split-0?-juju-crashdump > juju-crashdump.tar.xz
 
 .. LINKS
 .. _Juju logs: https://juju.is/docs/olm/juju-logs
