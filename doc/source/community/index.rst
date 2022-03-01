@@ -12,5 +12,6 @@ interested in hearing from you!
    contact
    software-contrib
    doc-contrib
+   doc-style-guide
    bug-submitting
    rotas
