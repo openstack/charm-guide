@@ -73,6 +73,13 @@ Number of cinderclient retries on failed http calls.
 Time period of time in seconds to wait for a cinder volume transition to
 complete.
 
+ironic-conductor charm: new option to configure use-ipmitool-retries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ironic-conductor charm has a new configuration option:
+``use-ipmitool-retries``. This option can be used to set the value of
+``use_ipmitool_retries`` in the ironic configuration.
+
 <TITLE>
 ~~~~~~~
 
