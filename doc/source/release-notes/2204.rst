@@ -86,6 +86,16 @@ keystone charm: add get-admin-password action
 The keystone charm has a new ``get-admin-password`` action. This action
 retrieves the admin password of keystone service via juju action. 
 
+nova-cloud-controller charm: new option to configure ``scheduler-max-attempts``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-cloud-controller charm has a new configuration option:
+``scheduler-max-attempts``. This option will set the schedular.max_attempts
+in the nova configuration.
+
+This flag allows to increase the number of retries and hence hosts to schedule
+on and therefore allowing the successful scheduling of instances.
+
 <TITLE>
 ~~~~~~~
 
