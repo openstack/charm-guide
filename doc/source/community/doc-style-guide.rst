@@ -5,31 +5,18 @@ Writing style guide
 Overview
 --------
 
-This guide describes the writing style that is applied to the OpenStack Charms
-project documentation:
+This guide describes the writing style for the OpenStack Charms documentation
+:ref:`sources <doc_sources_summary>`.
 
-* `OpenStack Charm Guide`_
-* `OpenStack Charms Deployment Guide`_
-* `OpenStack charms`_ (README files)
+.. note::
 
-Both the above guides are published using the `Sphinx`_ documentation
-generator. As such, enhanced `reStructuredText`_ (RST) formatting is used.
+   The OpenStack Charms project also abides by these guides:
 
-The charm README files are formatted in Markdown. The :doc:`Charm README
-template <charm-readme-template>` provides guidance on how to produce a README
-file.
+   * the `OpenStack documentation contributor guide`_
+   * the `Ubuntu documentation style guide`_
 
-Other resources
-~~~~~~~~~~~~~~~
-
-The below resources contain a wealth of information that can also be of use:
-
-* the `Canonical documentation style guide`_
-* the `OpenStack documentation contributor guide`_
-
-In general, the OpenStack Charms project abides by these guides. However, in
-cases of disagreement or ambiguity the current document takes precedence over
-them.
+   However, in cases of disagreement or ambiguity, the current document takes
+   precedence.
 
 General guidelines
 ------------------
@@ -135,28 +122,11 @@ All extra whitespace should be removed, especially at the end of lines.
    Two trailing spaces is valid Markdown; it forces a carriage return. This is
    very rarely required and should be avoided whenever possible.
 
-To check a file for trailing spaces (tested with Bash and Zsh):
-
-.. code-block:: none
-
-   grep -n "[[:space:]]$" <file>
-
-To view whitespace with the Vim editor, edit ``~/.vimrc``:
-
-.. code-block:: none
-
-   set listchars=tab:>-,trail:·,eol:$
-   nmap <silent> <leader>w :set nolist!<CR>
-
-The default leader character is the backslash, so toggle your whitespace
-goggles with :command:`\\w` while in command mode.
-
 Snippets
 --------
 
 Some messaging is used repeatedly due to situations that arise regularly. This
 section is an attempt at making a consistent set of snippets for such cases.
-Use the appropriate RST or MD formatting.
 
 Preview charms or functionality
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -839,11 +809,7 @@ An image as hyperlink:
    [image-target-link]: link URL
 
 .. LINKS
-.. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
-.. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
-.. _OpenStack charms: https://github.com/orgs/openstack-charmers/repositories?q=charm-&type=&language=&sort=
-.. _Canonical documentation style guide: https://docs.ubuntu.com/styleguide/en
+.. _Ubuntu documentation style guide: https://docs.ubuntu.com/styleguide/en
 .. _OpenStack documentation contributor guide: https://docs.openstack.org/doc-contrib-guide
 .. _Sphinx: https://www.sphinx-doc.org/en/master/index.html
-.. _reStructuredText: https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html
 .. _RST documentation on images and figures: https://docutils.sourceforge.io/docs/ref/rst/directives.html#images
