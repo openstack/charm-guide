@@ -80,7 +80,7 @@ details:
 * Did the appearance of the problem coincide with a change made to the cloud
   (configuration or topological)?
 * Has `AppArmor`_ configuration been modified on the cloud nodes?
-* Are `Policy overrides`_ in use?
+* Are :doc:`Policy overrides <../admin/policy-overrides>` in use?
 
 Based on all the above, use a descriptive yet succinct bug title.
 
@@ -302,7 +302,6 @@ Please include an explanatory bug comment:
 
 .. LINKS
 .. _Juju logs: https://juju.is/docs/olm/juju-logs
-.. _Policy overrides: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-policy-overrides.html
 .. _AppArmor: https://ubuntu.com/server/docs/security-apparmor
 .. _Existing bugs: https://bugs.launchpad.net/openstack-charms/+bugs?orderby=-id&start=0
 .. _Charms upgrade: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-charms.html
