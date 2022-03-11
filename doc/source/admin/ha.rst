@@ -313,11 +313,8 @@ Deployment of HA applications
 -----------------------------
 
 This section provides instructions for deploying common native HA and
-non-native HA applications. Keystone will be used to demonstrate how to deploy
-a non-native HA application using the hacluster subordinate charm.
-
-The sub-sections are not meant to be followed as a guide on how to deploy a
-cloud. They are a collection of examples only.
+non-native HA applications. Its sub-sections are not meant to be followed as a
+guide on how to deploy a cloud. They are a collection of examples only.
 
 Any relations needed in order for other applications to work with the deployed
 HA applications are not considered unless they aid in demonstrating an
@@ -326,12 +323,11 @@ exceptional aspect of the HA application's deployment.
 Keystone - hacluster
 ~~~~~~~~~~~~~~~~~~~~
 
-Keystone is not natively HA so the hacluster method is used. Many OpenStack
-applications are made highly available in this way.
+Keystone provides a classic use case of a non-native HA application.
 
-In this example the VIP approach is taken. These commands will deploy a
-three-node Keystone HA cluster, with a VIP of 10.246.114.11. Each will reside
-in a container on existing machines 0, 1, and 2:
+These commands will deploy a three-node Keystone HA cluster, with a VIP of
+10.246.114.11. Each node will reside in a container on existing machines 0, 1,
+and 2:
 
 .. code-block:: none
 
@@ -339,8 +335,8 @@ in a container on existing machines 0, 1, and 2:
    juju deploy --config cluster_count=3 hacluster keystone-hacluster
    juju add-relation keystone-hacluster:ha keystone:ha
 
-Here is sample output from the :command:`juju status` command resulting from
-such a deployment:
+This is sample (partial) output from the :command:`juju status` command
+resulting from such a deployment:
 
 .. code-block:: console
 
@@ -366,6 +362,47 @@ OpenStack application proceed as if hacluster was not involved. For Cinder:
 .. code-block:: none
 
    juju add-relation keystone:identity-service cinder:identity-service
+
+Nova Cloud Controller - hacluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Nova Cloud Controller provides a use case of a non-native HA application that
+requires an extra application in addition to hacluster: memcached.
+
+.. note::
+
+   Memcached is needed in order for the nova-cloud-controller units to share
+   authentication tokens, but please see `LP #1958674`_ for more clarity.
+
+These commands will deploy a three-node Nova Cloud Controller HA cluster:
+
+.. code-block:: none
+
+   juju deploy -n 3 --to lxd:0,lxd:1,lxd:2 --config vip=10.246.114.12 nova-cloud-controller
+   juju deploy --config cluster_count=3 hacluster nova-cloud-controller-hacluster
+   juju add-relation nova-cloud-controller-hacluster:ha nova-cloud-controller:ha
+
+The memcached application is then deployed (here containerised on machine 0)
+and related to nova-cloud-controller:
+
+.. code-block:: none
+
+   juju deploy --to lxd:0 memcached
+   juju add-relation memcached:cache nova-cloud-controller:memcache
+
+This is sample (partial) output from the :command:`juju status` command
+resulting from such a deployment:
+
+.. code-block:: console
+
+   Unit                                  Workload  Agent  Machine  Public address  Ports              Message
+   memcached/0*                          active    idle   0/lxd/5  10.246.114.57   11211/tcp          Unit is ready
+   nova-cloud-controller/0*              active    idle   0/lxd/3  10.246.114.32   8774/tcp,8775/tcp  Unit is ready
+     nova-cloud-controller-hacluster/0*  active    idle            10.246.114.32                      Unit is ready and clustered
+   nova-cloud-controller/1               active    idle   1/lxd/5  10.246.114.56   8774/tcp,8775/tcp  Unit is ready
+     nova-cloud-controller-hacluster/2   active    idle            10.246.114.56                      Unit is ready and clustered
+   nova-cloud-controller/2               active    idle   2/lxd/6  10.246.114.55   8774/tcp,8775/tcp  Unit is ready
+     nova-cloud-controller-hacluster/1   active    idle            10.246.114.55                      Unit is ready and clustered
 
 MySQL 5
 ~~~~~~~
@@ -828,9 +865,10 @@ Charms`_ project group.
 .. _Clustered Database Service Model: http://docs.openvswitch.org/en/latest/ref/ovsdb.7/#clustered-database-service-model
 .. _Raft algorithm: https://raft.github.io/
 .. _Ceph bucket type: https://docs.ceph.com/docs/master/rados/operations/crush-map/#types-and-buckets
-.. _Managing TLS certificates: app-certificate-management.html
+.. _Managing TLS certificates: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
 .. _Managing power events: https://docs.openstack.org/charm-guide/latest/howto/managing-power-events.html
 
 .. BUGS
 .. _LP #1234561: https://bugs.launchpad.net/charm-ceph-osd/+bug/1234561
 .. _LP #1882508: https://bugs.launchpad.net/charm-deployment-guide/+bug/1882508
+.. _LP #1958674: https://bugs.launchpad.net/charm-nova-cloud-controller/+bug/1958674
