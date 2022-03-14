@@ -696,7 +696,7 @@ The startup of Landscape should be done in the reverse order.
 
 1. Ensure the RabbitMQ service is started::
 
-    juju run-action --wait rabbitmq-server/0 pause
+    juju run-action --wait rabbitmq-server/0 resume
 
 2. Ensure the PostgreSQL service is started::
 
@@ -704,7 +704,7 @@ The startup of Landscape should be done in the reverse order.
 
 3. Resume the Landscape service::
 
-    juju run-action --wait landscape-server/0 pause
+    juju run-action --wait landscape-server/0 resume
 
 -------------------------------------------------------------------------------
 
