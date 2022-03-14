@@ -12,12 +12,8 @@ the collection of charms. It also helps to reduce the amount of effort needed
 during the commit review phase (for both author and reviewer) when new charms
 are developed.
 
-The writing format is Markdown, which can be validated using a `Markdown
-viewer`_. The README also gets rendered on the charm's landing page in the
-`Charmhub`_ (with the `Mistune`_ Python parser).
-
-Please see the :doc:`Writing style guide <doc-style-guide>` for the OpenStack
-Charms project.
+The writing format is Markdown. Please see the :doc:`Writing style guide
+<doc-style-guide>` for the OpenStack Charms project.
 
 General approach
 ----------------
@@ -30,10 +26,12 @@ Any surplus documentation should be submitted to the `OpenStack Charm Guide`_
 and then linked to (i.e. "For more information see..."). :doc:`Ask <contact>`
 for advice if you're unsure about how to submit this sort of documentation.
 
-When referencing another charm in a general way, link to the charm's Charmhub
-entry. When referring specifically to information in another charm's README,
-link directly to the file, or to a header in the file, by way of the charm's
-repository on `opendev.org`_.
+When referencing another charm in a general way, link to the charm's
+`Charmhub`_ entry for the most recent stable channel (e.g.
+https://charmhub.io/keystone?channel=xena/stable). When referring specifically
+to information in another charm's README, link directly to the file, or to a
+header in the file, by way of the charm's repository on `opendev.org`_ (e.g.
+https://opendev.org/openstack/charm-keystone/src/branch/stable/xena/README.md).
 
 Structure
 ---------
@@ -291,8 +289,6 @@ Put all links at the bottom. For example:
 .. LINKS
 .. _Charmhub: https://charmhub.io
 .. _opendev.org: https://opendev.org/explore/repos?tab=&sort=recentupdate&q=charm-
-.. _Markdown viewer: https://jbt.github.io/markdown-editor
-.. _Mistune: https://mistune.readthedocs.io/en/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide
 .. _rabbitmq-server: https://opendev.org/openstack/charm-rabbitmq-server/src/branch/master/README.md#high-availability
 .. _swift-proxy: https://opendev.org/openstack/charm-swift-proxy/src/branch/master/README.md
