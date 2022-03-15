@@ -1,16 +1,6 @@
-===========================
-Documentation contributions
-===========================
-
-Documentation for the OpenStack Charms project uses the `Docs as Code`_ model
-where the source text is maintained under a version control system, Git in this
-case.
-
-If at any time you are unsure about how to contribute to the documentation do
-not hesitate to :doc:`ask us questions <contact>`.
-
-Documentation as software criteria
-----------------------------------
+==================
+Adding new content
+==================
 
 When software is developed certain documentation criteria must be met in order
 for the software to be considered feature complete. And like software, a
@@ -32,7 +22,7 @@ appropriate. It provides a conceptual approach to writing, which in turn
 affects how documentation is created and how a set of pages is organised.
 Becoming familiar with Diátaxis is the first step to contributing.
 
-.. figure:: ../media/diataxis.png
+.. figure:: ../../media/diataxis.png
    :scale: 80 %
    :alt: The four Diataxis quadrants
 
@@ -61,8 +51,8 @@ Sources
 Assuming that the specific pieces of work have been identified they each need
 to be published in the appropriate location, with the right tools, and in the
 correct format. The following sub-sections provide an outline of each
-documentation source. A :ref:`table <doc_sources_summary>` summarising these
-sources is given in the next section.
+documentation source. A :ref:`summary <doc_sources_summary>` of these sources
+is given on the parent page.
 
 OpenStack Charm Guide
 ^^^^^^^^^^^^^^^^^^^^^
@@ -113,8 +103,8 @@ A charm README file specifically encapsulates a charm's purpose and usage
 (Diátaxis is not applied).
 
 In order to maintain a consistent structure across all charms, a :doc:`README
-template <charm-readme-template>` has been made available and should be
-followed.
+template <../software-contrib/charm-readme-template>` has been made available
+and should be followed.
 
 This documentation is created on OpenDev, where each charm has its own
 repository (see `OpenStack charms`_), and is written in Markdown. A README also
@@ -136,51 +126,6 @@ possibility. Suggested Diátaxis types are Howtos and Concepts.
 
 This documentation is created in Discourse (essentially CommonMark) and is
 viewed in the Charmhub. See the `keystone charm Docs tab`_ for an example.
-
-.. _doc_sources_summary:
-
-Sources summary
-~~~~~~~~~~~~~~~
-
-.. list-table:: **Summary of documentation sources**
-   :header-rows: 1
-   :widths: 22 12 8 8 15
-
-   * - Published
-     - Domain
-     - Platform
-     - Format
-     - Diátaxis
-
-   * - `OpenStack Charm Guide`_
-     - docs.openstack.org
-     - OpenDev
-     - Sphinx RST
-     - Tutorials, Howtos, Concepts, Reference
-
-   * - `OpenStack Charms Deployment Guide`_
-     - docs.openstack.org
-     - OpenDev
-     - Sphinx RST
-     - Howtos
-
-   * - `OpenStack Charms Admin Guide`_
-     - docs.openstack.org
-     - OpenDev
-     - Sphinx RST
-     - Howtos
-
-   * - charm READMEs
-     - charmhub.io
-     - OpenDev
-     - Markdown
-     - n/a
-
-   * - charm developer documentation
-     - charmhub.io
-     - Discourse
-     - Markdown
-     - Howtos, Concepts
 
 Writing style
 ~~~~~~~~~~~~~

@@ -36,14 +36,14 @@ Overview
 --------
 
 The 21.04 OpenStack Charms release includes updates for the charms described on
-the :doc:`../reference/openstack-charms` page. As of this release, the project
+the :doc:`../project/openstack-charms` page. As of this release, the project
 consists of 60 supported (stable) charms.
 
 For the list of bugs resolved in this release refer to the `21.04 milestone`_
 in Launchpad.
 
 For scheduling information of past and future releases see the
-:doc:`../reference/release-schedule`.
+:doc:`../project/release-schedule`.
 
 General charm information is published in the `OpenStack Charm Guide`_ (this
 guide) which ultimately supersedes Release Notes contents.

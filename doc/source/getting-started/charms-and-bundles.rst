@@ -21,7 +21,7 @@ Ubuntu releases. The currently supported combinations of OpenStack and Ubuntu
 are listed on the `Ubuntu Cloud Archive`_ wiki page.
 
 The full list of supported charms is given on the :doc:`Charms
-</reference/openstack-charms>` page in this guide.
+<../project/openstack-charms>` page in this guide.
 
 Charm Store namespaces
 ----------------------

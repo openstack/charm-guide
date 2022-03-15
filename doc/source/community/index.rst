@@ -9,10 +9,8 @@ interested in hearing from you!
 .. toctree::
    :maxdepth: 1
 
-   contact
-   software-contrib
-   charm-readme-template
-   doc-contrib
-   doc-style-guide
-   bug-submitting
+   software-contrib/index
+   doc-contrib/index
+   software-bug
    rotas
+   contact

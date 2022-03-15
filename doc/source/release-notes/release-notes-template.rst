@@ -104,10 +104,10 @@ Issues discovered during this release cycle
 ~~~~~~~
 
 .. LINKS
-.. _Supported charms: ../reference/openstack-charms.html
+.. _Supported charms: ../project/openstack-charms.html
 .. _<CHARM_RELEASE> milestone: https://launchpad.net/openstack-charms/+milestone/<CHARM_RELEASE>
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
-.. _Release schedule: ../reference/release-schedule.html
+.. _Release schedule: ../project/release-schedule.html
 .. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 

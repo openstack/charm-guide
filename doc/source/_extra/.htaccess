@@ -55,3 +55,11 @@ RedirectMatch 301 ^/charm-guide/([^/]+)/reference/2101.html$ /charm-guide/$1/rel
 RedirectMatch 301 ^/charm-guide/([^/]+)/reference/2110.html$ /charm-guide/$1/release-notes/2110.html
 
 RedirectMatch 301 ^/charm-guide/([^/]+)/howto/([^/]+).html$ /charm-guide/$1/admin/$2.html
+
+RedirectMatch 301 ^/charm-guide/([^/]+)/reference/openstack-charms.html$ /charm-guide/$1/project/openstack-charms.html
+RedirectMatch 301 ^/charm-guide/([^/]+)/reference/release-schedule.html$ /charm-guide/$1/project/release-schedule.html
+RedirectMatch 301 ^/charm-guide/([^/]+)/reference/release-timeline-2110.html$ /charm-guide/$1/project/release-timeline-2110.html
+RedirectMatch 301 ^/charm-guide/([^/]+)/reference/release-timeline-2104.html$ /charm-guide/$1/project/release-timeline-2104.html
+RedirectMatch 301 ^/charm-guide/([^/]+)/reference/release-timeline-2101.html$ /charm-guide/$1/project/release-timeline-2101.html
+RedirectMatch 301 ^/charm-guide/([^/]+)/reference/release-timeline-2010.html$ /charm-guide/$1/project/release-timeline-2010.html
+RedirectMatch 301 ^/charm-guide/([^/]+)/reference/release-timeline-2008.html$ /charm-guide/$1/project/release-timeline-2008.html

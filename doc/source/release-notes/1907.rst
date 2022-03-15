@@ -9,7 +9,7 @@ Summary
 
 The 19.07 OpenStack Charm release includes updates for the following charms.
 Additional charm support status information is published in the main
-:doc:`charm guide <../reference/openstack-charms>` which ultimately supersedes
+:doc:`charm guide <../project/openstack-charms>` which ultimately supersedes
 release note contents.
 
 Always use the latest stable charm revision before proceeding with topological

@@ -66,3 +66,11 @@
 
 /charm-guide/latest/howto/managing-power-events.html 301 /charm-guide/latest/admin/managing-power-events.html
 /charm-guide/latest/howto/deferred-events.html 301 /charm-guide/latest/admin/deferred-events.html
+
+/charm-guide/latest/reference/openstack-charms.html 301 /charm-guide/latest/project/openstack-charms.html
+/charm-guide/latest/reference/release-schedule.html 301 /charm-guide/latest/project/release-schedule.html
+/charm-guide/latest/reference/release-timeline-2110.html 301 /charm-guide/latest/project/release-timeline-2110.html
+/charm-guide/latest/reference/release-timeline-2104.html 301 /charm-guide/latest/project/release-timeline-2104.html
+/charm-guide/latest/reference/release-timeline-2101.html 301 /charm-guide/latest/project/release-timeline-2101.html
+/charm-guide/latest/reference/release-timeline-2010.html 301 /charm-guide/latest/project/release-timeline-2010.html
+/charm-guide/latest/reference/release-timeline-2008.html 301 /charm-guide/latest/project/release-timeline-2008.html
