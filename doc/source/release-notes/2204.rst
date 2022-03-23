@@ -80,6 +80,12 @@ The ironic-conductor charm has a new configuration option:
 ``use-ipmitool-retries``. This option can be used to set the value of
 ``use_ipmitool_retries`` in the ironic configuration.
 
+keystone charm: add get-admin-password action
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The keystone charm has a new ``get-admin-password`` action. This action
+retrieves the admin password of keystone service via juju action. 
+
 <TITLE>
 ~~~~~~~
 
