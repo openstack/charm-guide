@@ -84,7 +84,20 @@ keystone charm: add get-admin-password action
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The keystone charm has a new ``get-admin-password`` action. This action
-retrieves the admin password of keystone service via juju action. 
+retrieves the admin password of keystone service via juju action.
+
+ceph-mon charm: add list-crush-rules action
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-mon charm has a new ``list-crush-rules`` action, which provides a list
+of CRUSH rules defined in Ceph clusters.
+
+The action has a ``format`` parameter that accepts the following values:
+
+* 'json' - provides detailed information in json format
+* 'yaml' - provides detailed information in yaml format
+* 'text' - provides less information in human readable format [default]
+
 
 <TITLE>
 ~~~~~~~
