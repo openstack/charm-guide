@@ -10,7 +10,7 @@ Summary
 The 20.08 OpenStack Charms project release includes updates for the charms
 described in the following sections. Refer to the `20.08 milestone`_ in
 Launchpad for the list of resolved bugs and see the
-:doc:`../reference/release-schedule` for past and future releases.
+:doc:`../project/release-schedule` for past and future releases.
 
 Additional charm information is published in the `OpenStack Charm Guide`_ (this
 guide) which ultimately supersedes Release Notes contents.

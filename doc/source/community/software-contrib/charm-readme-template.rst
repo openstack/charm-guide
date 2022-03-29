@@ -13,7 +13,7 @@ during the commit review phase (for both author and reviewer) when new charms
 are developed.
 
 The writing format is Markdown. Please see the :doc:`Writing style guide
-<doc-style-guide>` for the OpenStack Charms project.
+<../doc-contrib/doc-style-guide>` for the OpenStack Charms project.
 
 General approach
 ----------------
@@ -23,8 +23,9 @@ should be streamlined yet informative enough to allow a user to deploy the
 charm and to benefit from the charm's most common use case.
 
 Any surplus documentation should be submitted to the `OpenStack Charm Guide`_
-and then linked to (i.e. "For more information see..."). :doc:`Ask <contact>`
-for advice if you're unsure about how to submit this sort of documentation.
+and then linked to (i.e. "For more information see..."). :doc:`Ask
+<../contact>` for advice if you're unsure about how to submit this sort of
+documentation.
 
 When referencing another charm in a general way, link to the charm's
 `Charmhub`_ entry for the most recent stable channel (e.g.
@@ -181,7 +182,7 @@ This is boilerplate text for a non-native HA service:
 See the `rabbitmq-server`_ charm for an example of a native HA service.
 
 Regardless of the nature of the charm's HA implementation, the section should
-always include this boilerplate text, and :doc:`Alert <contact>` the team if
+always include this boilerplate text, and :doc:`Alert <../contact>` the team if
 your charm is not conceptually covered in the specified resource:
 
 .. code-block:: none

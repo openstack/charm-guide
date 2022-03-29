@@ -30,7 +30,7 @@ following Launchpad tags:
   power event such as a reboot or shutdown.
 * `cross-model`_ - Issues with Cross-Model Relations.
 * `unstable-test`_ - Issues that result in :doc:`automated tests
-  <../reference/testing>` producing false negatives or positives.
+  <software-contrib/testing>` producing false negatives or positives.
 
 Rota schedules
 --------------

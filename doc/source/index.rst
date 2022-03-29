@@ -51,18 +51,6 @@ and managed using OpenStack Charmed Operators.
 
    concepts/index
 
-Reference
----------
-
-Reference material for developers of OpenStack Charmed Operators and
-administrators of Charmed OpenStack clouds, including the definitive list of
-OpenStack charms and the release schedule.
-
-.. toctree::
-   :maxdepth: 1
-
-   reference/index
-
 Release notes
 -------------
 
@@ -77,12 +65,25 @@ currently in development.
 Community
 ---------
 
-Get involved in the OpenStack Charms community!
+Get involved in the OpenStack Charms community! This includes contributing to
+the charms and improving the documentation.
 
 .. toctree::
    :maxdepth: 1
 
    community/index
+
+About the project
+-----------------
+
+Follow the OpenStack Charms project. This is where you will find information
+such as the definitive list of OpenStack charms, support notes, and release
+information.
+
+.. toctree::
+   :maxdepth: 1
+
+   project/index
 
 .. LINKS
 .. _OpenStack Charms: https://launchpad.net/openstack-charms
