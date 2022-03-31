@@ -4,3 +4,8 @@
   display: none;
 }
 
+/* Make the panels (sphinx-panels extension) respect a page's natural
+ * text width. */
+div.sphinx-bs.container.pb-4.docutils {
+    width: auto;
+}

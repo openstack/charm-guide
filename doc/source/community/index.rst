@@ -14,9 +14,3 @@ interested in hearing from you!
    software-bug
    rotas
    contact
-
-The OpenStack Charms project abides by the `OpenInfra Foundation community code
-of conduct`_.
-
-.. LINKS
-.. _OpenInfra Foundation community code of conduct: https://openinfra.dev/legal/code-of-conduct

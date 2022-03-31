@@ -39,7 +39,8 @@ import os
 extensions = [
     'openstackdocstheme',
     'sphinx.ext.intersphinx',
-    'sphinxcontrib.spelling'
+    'sphinxcontrib.spelling',
+    'sphinx_panels'
 ]
 
 intersphinx_mapping = {
