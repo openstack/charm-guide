@@ -23,8 +23,8 @@ schema.
 Create the skeleton charm
 =========================
 
-Prerequists
-~~~~~~~~~~~
+Prerequisites
+~~~~~~~~~~~~~
 
 The charm-tools package and charm-templates-openstack python module are both
 needed to construct the charm from a template and to build the resulting charm.
@@ -59,7 +59,7 @@ All the questions are optional, below are the responses for Congress.
     What port does the primary service listen on ? 1789
     What is the name of the api service? congress-server
     What type of service is this (used for keystone registration)? congress
-    What is the earliest OpenStack release this charm is compatible with? mitaka
+    What is the earliest OpenStack release this charm is compatible with? Mitaka
     Where command is used to sync the database? congress-db-manage --config-file /etc/congress/congress.conf upgrade head
     What packages should this charm install (space separated list)? congress-server congress-common python-antlr3 python-pymysql
     List of config files managed by this charm (space separated) /etc/congress/congress.conf
@@ -71,7 +71,7 @@ Configuration Files
 The charm code searches through the templates directories looking for a
 directory corresponding to the OpenStack release being installed or earlier.
 Since Mitaka is the earliest release the charm is supporting a directory called
-mitaka will house the templates and files.
+Mitaka will house the templates and files.
 
 A template for congress.conf is needed which will have connection
 information for MySQL and Keystone as well as user controllable config options.

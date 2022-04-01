@@ -155,7 +155,7 @@ services that they manage. This includes:
 AppArmor profiles are disabled by default and can be enabled using the
 aa-profile-mode configuration option. Valid settings are 'complain',
 'enforce' or 'disable':
-
+`
 .. code:: bash
 
     juju config neutron-gateway aa-profile-mode=enforce
@@ -263,4 +263,4 @@ Bugs Fixed
 ==========
 
 For the full list of bugs resolved for the 16.10 release please refer to
-https://launchpad.net/charms/+milestone/16.10
+``https://launchpad.net/charms/+milestone/16.10``

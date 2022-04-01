@@ -1,0 +1,4 @@
+# needed for tox env 'spelling'
+enchant-2 [platform:dpkg doc]
+aspell [platform:dpkg doc]
+aspell-en [platform:dpkg doc]

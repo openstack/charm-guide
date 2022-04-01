@@ -274,7 +274,7 @@ read/write node and N number of read-only nodes.
            and therefore does not support single-unit or non-clustered
            deployments.
 
-The mysql-router charm deploys MySQL 8 mysqlrouter which will proxy database
+The mysql-router charm deploys a MySQL 8 Router which will proxy database
 requests from the principle charm application to a MySQL 8 InnoDB Cluster.
 MySQL Router handles cluster communication and understands the cluster schema.
 

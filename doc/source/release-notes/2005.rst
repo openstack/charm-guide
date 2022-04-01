@@ -261,7 +261,7 @@ The mysql-innodb-cluster charm deploys MySQL 8 in an InnoDB cluster with a
 read/write node and N number of read-only nodes. This charm does not support
 single-unit or non-clustered deployments.
 
-The mysql-router charm deploys MySQL 8 mysqlrouter which will proxy database
+The mysql-router charm deploys a MySQL 8 Router which will proxy database
 requests from the principle charm application to a MySQL 8 InnoDB cluster.
 MySQL Router handles cluster communication and understands the cluster schema.
 The charm is deployed as a subordinate on the principle charm application and
@@ -360,7 +360,7 @@ Deployment Guide`_.
 
 .. note::
 
-   TrilioVault is a commerical snapshot and restore solution for OpenStack and
+   TrilioVault is a commercial snapshot and restore solution for OpenStack and
    does not form part of the OpenStack project.
 
 ceph-iscsi

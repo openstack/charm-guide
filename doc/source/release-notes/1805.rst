@@ -80,7 +80,7 @@ The OpenStack Charms now provide support for dynamic route propagation via Neutr
 
 The neutron-dynamic-routing charm provides the BGP speaker for dynamic route propagation of tenant networks and floating IP addresses.
 
-For utilizing the dynamic routing feature of OpenStack see upstream documentation for neutron dynamic routing.
+For utilising the dynamic routing feature of OpenStack see upstream documentation for neutron dynamic routing.
 
 https://docs.openstack.org/neutron-dynamic-routing/latest
 

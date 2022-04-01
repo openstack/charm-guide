@@ -108,7 +108,7 @@ Octavia Load Balancer Charm
 
 The new Octavia charm leverages a lxd container property modeling feature which requires Juju 2.5 or later.
 
-As such, it is classified as a preview charm with this charm release.  When Juju 2.5 releases to stable channels, additional charm validation will takeplace, followed by an update and appendix to the 18.11 OpenStack Charms release notes.  Subsequent charm changes may need to be back-ported to accommodate that staggered release.
+As such, it is classified as a preview charm with this charm release.  When Juju 2.5 releases to stable channels, additional charm validation will take place, followed by an update and appendix to the 18.11 OpenStack Charms release notes.  Subsequent charm changes may need to be back-ported to accommodate that staggered release.
 
 In the mean-time, the feature is available in the stable charms and it can be previewed using beta 2.5 of Juju.
 
@@ -117,7 +117,7 @@ See the deployment guide for important guidance regarding the use of Octavia Cha
 Barbican and Barbican-Vault Charms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Prior to this release, the Barbican Charm was in a preview state, having no production back-end charm until now.  With this charm release, the Barbican Charm is supported for Rocky and later only.  The production use case is to deploy the Barbican-Vault Charm to provide a Vault back-end store (which also leveragesthe Castellan library).  A stable update to the barbican-vault charm is anticipated in coordination with the Juju 2.5 stable release.
+Prior to this release, the Barbican Charm was in a preview state, having no production back-end charm until now.  With this charm release, the Barbican Charm is supported for Rocky and later only.  The production use case is to deploy the Barbican-Vault Charm to provide a Vault back-end store (which also leverages the Castellan library).  A stable update to the barbican-vault charm is anticipated in coordination with the Juju 2.5 stable release.
 
 Upgrading charms
 ================

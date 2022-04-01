@@ -38,7 +38,7 @@ release.  This approach allows new charms to incubate as part of the wider
 OpenStack Charms project, with inclusion in the 6-monthly release when this
 policy is met.
 
-Charms may choose to opt-out of the co-ordinated charm release, and follow
+Charms may choose to opt-out of the coordinated charm release, and follow
 a more independent release approach - this may be appropriate for supporting
 charms in the wider OpenStack ecosystem which are not aligned to the main
 OpenStack release cycle.

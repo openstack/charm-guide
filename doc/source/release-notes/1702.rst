@@ -138,7 +138,7 @@ deployments of 3 or more units.
 ceph-osd availability zone support
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ceph-osd charm now supports an availability zone.  This can be utilized to
+The ceph-osd charm now supports an availability zone.  This can be utilised to
 modify the default of having 1 replica per host.
 
 
@@ -161,7 +161,7 @@ ceph-radsogw FastCGI support
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Inline with the Ceph project, the ceph-radosgw charm has dropped support for
-deployment of the Rados Gateway using Apache and mod_fastcgi; existing deployments
+deployment of the RADOS Gateway using Apache and mod_fastcgi; existing deployments
 will be reconfigured on upgrade to use the embedded webserver support provided
 by the radosgw binaries.
 

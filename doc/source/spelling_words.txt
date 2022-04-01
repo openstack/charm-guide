@@ -1,0 +1,12 @@
+juju
+Juju
+Juju's
+json
+vTPM
+swtpm
+libtpm
+backported
+ppa
+tpm
+crb
+libtpms

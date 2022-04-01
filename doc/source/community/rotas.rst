@@ -22,7 +22,7 @@ following Launchpad tags:
 * `charm-upgrade`_ - Issues upgrading the charm revision, such as cs:foo-100
   to cs:foo-101 (not a payload or OpenStack version upgrade, not a series
   upgrade).
-* `series-upgrade`_ - Issues upgrading from one series to the next, ie. Bionic
+* `series-upgrade`_ - Issues upgrading from one series to the next, i.e. Bionic
   to Focal.
 * `ceph-upgrade`_ - Issues upgrading the Ceph version (not charm upgrade).
 * `scaleback`_ - Issues removing a unit, shrinking a cluster, replacing a unit.

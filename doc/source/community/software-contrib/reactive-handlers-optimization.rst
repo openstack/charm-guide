@@ -23,7 +23,7 @@ Hook handlers run before any state handlers.  Hooks *can't* be combined with
 state/flag handlers.  The state handlers then run until there are no more state
 changes.
 
-The can cause unexpected behavior as it means that state handlers are run
+The can cause unexpected behaviour as it means that state handlers are run
 whenever their condition state/flags evaluate to 'true' for *any* hook that
 runs.
 

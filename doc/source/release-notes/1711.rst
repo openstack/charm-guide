@@ -201,7 +201,7 @@ ZeroMQ messaging support across the charms will be removed during the Queens
 development cycle.
 
 PostgreSQL database support across the charms will be removed during the
-Queens developement cycle.
+Queens development cycle.
 
 Deploy from Source (DFS) support is under review for sustainability and may be
 removed during the Queens development cycle.

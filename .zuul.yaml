@@ -1,3 +1,18 @@
 - project:
     templates:
       - publish-openstack-docs-pti
+    check:
+      jobs:
+        - charm-guide-spellcheck
+    gate:
+      jobs:
+        - charm-guide-spellcheck
+- job:
+    name: charm-guide-spellcheck
+    parent: openstack-tox-py39
+    description: |
+      Run a spellchecker against the docs
+    voting: false
+    vars:
+      tox_envlist: spelling
+      bindep_profile: doc

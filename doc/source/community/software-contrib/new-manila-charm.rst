@@ -49,7 +49,7 @@ further editing to produce the functional charm needed.
     charm-create  -t openstack-manila-plugin new-manila-plugin
     INFO: Generating charm for new-manila-plugin in ./new-manila-plugin
     INFO: No new-manila-plugin in apt cache; creating an empty charm instead.
-    What is the earliest OpenStack release this charm will support? mitaka
+    What is the earliest OpenStack release this charm will support? Mitaka
     What packages should this charm install (space separated list)?
     What is the package to take the version from (manila-api is probably ok)?
 
@@ -139,7 +139,7 @@ src/tox.ini
 
 src/reactive/{package}_handlers.py
   This file contains the reactive handlers for the charm.  If the default
-  behavior of the charm needs to be altered then this is the starting point
+  behaviour of the charm needs to be altered then this is the starting point
   for that change.
 
 src/lib/charm/openstack/{package}.py
@@ -151,7 +151,7 @@ src/templates/{release}/manila.conf
   The template file makes it easier to write out the configuration section that
   will be supplied to the ``manila.conf`` file in the manila charm.  **This
   file will need editing**.  If the earliest release is something other than
-  mitaka, then the folder name will need to be renamed to the earliest release.
+  Mitaka, then the folder name will need to be renamed to the earliest release.
 
 src/tests/*
   These are the functional tests that can be run on the charm to demonstrate

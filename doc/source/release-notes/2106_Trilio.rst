@@ -113,7 +113,7 @@ greater.
    * - trilio-dm-api
      - dmapi-workers
      - New
-     - Number of dmapi workers. This replaces the previous worker-muliplier option.
+     - Number of dmapi workers. This replaces the previous worker-multiplier option.
 
    * - trilio-dm-api
      - worker-multiplier
@@ -144,7 +144,7 @@ greater.
 Using S3 to store backups
 -------------------------
 
-The Trilio charms now support using an S3 compatable storage service to store
+The Trilio charms now support using an S3 compatible storage service to store
 backups. This is achieved by setting the ``backup-target-type`` option of the
 trilio-data-mover and trilio-wlm charms to `S3` and set the following
 configuration options to provide information regarding the S3 service:

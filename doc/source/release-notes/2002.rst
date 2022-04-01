@@ -175,7 +175,7 @@ The mysql-innodb-cluster charm deploys MySQL 8 in an InnoDB cluster with a
 read/write node and N number of read-only nodes. This charm does not support
 single-unit or non-clustered deployments.
 
-The mysql-router charm deploys MySQL 8 mysqlrouter which will proxy database
+The mysql-router charm deploys a MySQL 8 Router which will proxy database
 requests from the principle charm application to a MySQL 8 InnoDB cluster.
 MySQL Router handles cluster communication and understands the cluster schema.
 
@@ -241,7 +241,7 @@ Watcher
 ~~~~~~~
 
 The watcher charm deploys the OpenStack Watcher service, the resource
-optimization service for multi-tenant clouds. The watcher-dashboard charm
+optimisation service for multi-tenant clouds. The watcher-dashboard charm
 provides a dashboard plugin for use with the OpenStack dashboard (Horizon). As
 of the 20.02 OpenStack Charms release these charms are available as a tech
 preview.

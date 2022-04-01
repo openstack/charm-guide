@@ -90,7 +90,7 @@ nova-cloud-controller charm: new option to configure ``scheduler-max-attempts``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The nova-cloud-controller charm has a new configuration option:
-``scheduler-max-attempts``. This option will set the schedular.max_attempts
+``scheduler-max-attempts``. This option will set the scheduler.max_attempts
 in the nova configuration.
 
 This flag allows to increase the number of retries and hence hosts to schedule

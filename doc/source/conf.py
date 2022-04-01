@@ -38,12 +38,22 @@ import os
 # TODO(ajaeger): enable PDF building, for example add 'rst2pdf.pdfbuilder'
 extensions = [
     'openstackdocstheme',
-    'sphinx.ext.intersphinx'
+    'sphinx.ext.intersphinx',
+    'sphinxcontrib.spelling'
 ]
 
 intersphinx_mapping = {
     'cdg': ('https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest', None)
 }
+
+# Spellchecker
+spelling_lang="en_GB"
+spelling_show_whole_line=True
+spelling_word_list_filename = [
+    'spelling_initial_seeding.txt',
+    'spelling_words.txt',
+    'dubious_words.txt'
+]
 
 # Add any paths that contain templates here, relative to this directory.
 # templates_path = ['_templates']

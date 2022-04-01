@@ -74,7 +74,7 @@ that depends on whether the function is *pure* or *impure*.
 A *pure* function is one that always returns the same results for the same
 set of values passed to the function.  This means that there are no (input)
 side-effects or dependencies on any other state outside of the function.
-A pure function is analogous, algorithimically, to a mathematical function.
+A pure function is analogous, algorithmically, to a mathematical function.
 *Pure* functions also can only call other pure functions.  i.e. a pure function
 isn't pure if *it* calls a function that is impure.  Impurity at a particular
 level 'infects' every caller of that function.
@@ -163,7 +163,7 @@ OpenStack provider (a cloud) or the Juju LXD provider (all on one machine).
 
     tox -e func
 
-:Smoke Tests: Executes a subset (generaly one) of the Zaza_ deployment test
+:Smoke Tests: Executes a subset (generally one) of the Zaza_ deployment test
     sets. The smoke test set runs automatically on every proposed patchset.
 
     To manually execute the Zaza smoke test on your locally-defined cloud:
@@ -218,7 +218,7 @@ race conditions or problems introduced by the proposed code changes).*
 *Developers are expected to have executed tests prior to submitting patches.*
 
 Tests can be retriggered, or additional tests can be requested, simply by
-replying on the Gerrit review with one of the recognized magic phrases below.
+replying on the Gerrit review with one of the recognised magic phrases below.
 
 ``recheck``
     Re-triggers events as if a new patchset had been submitted, including

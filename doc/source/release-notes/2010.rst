@@ -194,7 +194,7 @@ The symptom is missing sym links to certificates for Subject Alternative Name
 (SAN) IP addresses. For example, for Virtual IP (VIP) addresses for services.
 Apache configuration may fail as it will point to a certificate for the VIP(s).
 
-The workaround is to set the above settings to False and utilize the
+The workaround is to set the above settings to False and utilise the
 post-deployment actions for preparing vault as documented in the `Vault
 section`_ and the `Certificate Lifecycle Management`_ section of the `OpenStack
 Charms Deployment Guide`_.
