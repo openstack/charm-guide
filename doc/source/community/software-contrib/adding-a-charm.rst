@@ -5,8 +5,9 @@ Adding a charm to the OpenStack ecosystem
 Overview
 --------
 
-After the `initial implementation`_ of a new charm, the charm needs to be added
-to the following systems in order to be fully part of our `release process`_:
+After the :doc:`initial implementation <../../concepts/charm-anatomy>` of a new
+charm, the charm needs to be added to the following systems in order to be
+fully part of our :doc:`release process <../../project/release-schedule>`:
 
 * `Gitea`_, the git server hosting the OpenStack projects.
 * `Gerrit`_, the code review platform for contributing to the OpenStack
@@ -27,8 +28,8 @@ This document will guide you through the necessary steps. If in doubt,
 Initial implementation
 ----------------------
 
-Put the `initial implementation`_ of your new charm in a temporary repository
-on GitHub. This repository will be used when doing the initial import to Gitea.
+Put the initial implementation of your new charm in a temporary repository on
+GitHub. This repository will be used when doing the initial import to Gitea.
 Example: https://github.com/openstack-charmers/charm-nova-compute-nvidia-vgpu
 
 Initial import to Gitea, Gerrit and upstream Zuul
@@ -90,9 +91,6 @@ with the following details:
 * Search for possible duplicate bugs when a new bug is filed
 * Bug supervisor: ``openstack-charmers``
 
-Update your charm's ``README`` file. Example:
-https://review.opendev.org/c/openstack/charm-neutron-api-plugin-arista/+/739467/
-
 OSCI
 ----
 
@@ -126,7 +124,7 @@ The ``release-tools`` repository contains lists of all OpenStack charms:
   implemented using the `Operator framework`_. Example:
   https://github.com/openstack-charmers/release-tools/pull/176
 * ``charms.txt`` and ``source-charms.txt``: add your charm to these lists if it
-  has been implemented using the `Reactive framework`_. Example:
+  has been implemented using the Reactive framework. Example:
   https://github.com/openstack-charmers/release-tools/pull/119
 
 Charmhub and Launchpad builders
@@ -168,19 +166,17 @@ charm.
 Documentation
 -------------
 
-Advertise your new charm to the charm-guide and its `release notes`_. Example:
+Every charm must have a ``README`` file. Construct one by using the :doc:`Charm
+README template <charm-readme-template>`.
+
+Add your charm to the project's list of charms and include a release note for
+the appropriate OpenStack Charms release. Example:
 https://review.opendev.org/c/openstack/charm-guide/+/821962
 
-Add your new charm to the charm-deployment-guide and its upgrade documentation.
-Example: https://review.opendev.org/c/openstack/charm-deployment-guide/+/828183
-
-If your charm has in-depth documentation consider adding a page to the
-charm-deployment-guide (and linking to it from its ``README``).
+Add your charm to the upgrade documentation. Example:
+https://review.opendev.org/c/openstack/charm-deployment-guide/+/828183
 
 .. LINKS
-.. _initial implementation: charm-anatomy.html
-.. _release process: release-schedule.html
-.. _release notes: ../release-notes/index.html
 .. _release tools: https://github.com/openstack-charmers/release-tools
 .. _Gitea: https://opendev.org/openstack
 .. _Gerrit: https://review.opendev.org

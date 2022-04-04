@@ -21,6 +21,7 @@ the rest of this section on how to contribute to the OpenStack Charms project.
    new-manila-charm
    making-a-change
    adding-a-charm
+   charm-readme-template
 
 .. LINKS
 .. _development documentation: https://docs.openstack.org/infra/manual/developers.html
