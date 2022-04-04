@@ -49,3 +49,4 @@ Cloud management how-to guides:
    deferred-events
    policy-overrides
    ha
+   vtpm
