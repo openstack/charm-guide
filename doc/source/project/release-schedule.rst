@@ -27,7 +27,7 @@ latter dates are estimated and subject to revision.
    * - 22.04
      - under development
      - --
-     - Wed, Apr 20, 2022 (estimated)
+     - Wed, Apr 21, 2022 (estimated)
      - --
 
    * - 21.10

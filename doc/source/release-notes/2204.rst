@@ -4,7 +4,7 @@
 
 The 22.04 OpenStack Charms release includes updates for the charms described on
 the :doc:`../project/openstack-charms` page. As of this release, the project
-consists of 62 (...CHANGE IF REQUIRED...) stable charms.
+consists of 62 stable charms.
 
 For the list of bugs resolved in this release refer to the `22.04 milestone`_
 in Launchpad.
@@ -31,60 +31,62 @@ For scheduling information of past and future releases see the
    :depth: 2
    :backlinks: top
 
-New stable charms
------------------
-
-<TITLE>
-~~~~~~~
-
 New stable charm features
 -------------------------
 
 With each new feature, there is a corresponding example bundle in the form of a
-test bundle, and/or a section in the `OpenStack Charms Deployment Guide`_, that
-details its usage. Test bundles are located in the ``src/tests/bundles``
-directory of the relevant charm repository (see all `charm repositories`_).
+test bundle, and/or a section in the documentation that details its usage. Test
+bundles are located in the ``src/tests/bundles`` directory of the relevant
+charm repository (see all `charm repositories`_).
 
-cinder charm: new option to configure ``scheduler_default_filters``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nova-compute charm: vTPM support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The cinder charm has a new configuration option: ``scheduler-default-filters``.
-This option can be used to set the value of ``scheduler_default_filters``
-in the cinder configuration.
+The nova-compute charm now supports virtual TPM (vTPM) devices and is enabled
+via a new configuration option: ``enable-vtpm``. When it is set to 'True', the
+Nova and libvirt services will be configured to provide vTPM devices via swtpm.
 
-glance charm: add support for Cinder iSCSI/FC backend storage
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This requires the swtpm, swtpm-tools, and libtpm0 packages to be available for
+installation on the Compute nodes. These are available in the Ubuntu 22.04 LTS
+release and are expected to be backported to Ubuntu 20.04 LTS. In the interim,
+the OpenStack Charmers team has included a backport of these packages in the
+``ppa:openstack-charmers/swtpm`` PPA.
 
-The glance charm adds support for Cinder iSCSI/FC backend storage through three
-new configuration options:
+glance charm: Cinder iSCSI/FC backend storage support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* ``cinder-volume-types``
+The glance charm adds support for Cinder iSCSI/FC backend storage. This is
+managed through three new configuration options:
 
-Comma separated list of cinder volume_types that can be configured as cinder
-storage backends. The first one in the list will be configured as the default
-backend.
+``cinder-volume-types``
+  A comma-separated list of Cinder volume_types that can be configured as
+  Cinder storage backends. The first one in the list will be configured as the
+  default backend.
 
-* ``cinder-http-retries``
+``cinder-http-retries``
+  The number of cinderclient retries on failed HTTP calls.
 
-Number of cinderclient retries on failed http calls.
+``cinder-state-transition-timeout``
+  The timeout (seconds) of a Cinder volume transition.
 
-* ``cinder-state-transition-timeout``
-
-Time period of time in seconds to wait for a cinder volume transition to
-complete.
-
-ironic-conductor charm: new option to configure use-ipmitool-retries
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The ironic-conductor charm has a new configuration option:
-``use-ipmitool-retries``. This option can be used to set the value of
-``use_ipmitool_retries`` in the ironic configuration.
-
-keystone charm: add get-admin-password action
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keystone charm: new action to query Keystone admin password
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The keystone charm has a new ``get-admin-password`` action. This action
-retrieves the admin password of keystone service via juju action.
+retrieves the admin password of the Keystone service.
+
+cinder charm: new option to expose scheduler_default_filters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The cinder charm has a new configuration option: ``scheduler-default-filters``.
+It sets the value of ``scheduler_default_filters`` in the Cinder configuration.
+
+ironic-conductor charm: new option to expose use_ipmitool_retries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ironic-conductor charm has a new configuration option:
+``use-ipmitool-retries``. This option sets the value of
+``use_ipmitool_retries`` in the Ironic configuration.
 
 ceph-mon charm: add list-crush-rules action
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -98,47 +100,37 @@ The action has a ``format`` parameter that accepts the following values:
 * 'yaml' - provides detailed information in yaml format
 * 'text' - provides less information in human readable format [default]
 
-
-nova-cloud-controller charm: new option to configure ``scheduler-max-attempts``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nova-cloud-controller charm: new option to set scheduling retries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The nova-cloud-controller charm has a new configuration option:
-``scheduler-max-attempts``. This option will set the scheduler.max_attempts
-in the nova configuration.
+``scheduler-max-attempts``. This will allow for an increase in the number of
+retries and hence hosts to schedule on, thereby helping in a successful
+scheduling of instances. It sets the scheduler.max attempts in the Nova
+configuration.
 
-This flag allows to increase the number of retries and hence hosts to schedule
-on and therefore allowing the successful scheduling of instances.
-
-nova-compute charm: new option to add extra-repositories
+nova-compute charm: new option to add extra repositories
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The nova-compute charm has a new configuration option for adding extra apt
-repositories to the compute node: ``extra-repositories``. This configuration
-option takes a comma-delimited list of apt source repository spec entries
-to add as apt package repositories. The valid values are those accepted by the
-add-apt-repository command.
+repositories to Compute nodes: ``extra-repositories``. This option takes a
+comma-delimited list of apt source repository spec entries to add as apt
+package repositories. The valid values are those accepted by the
+:command:`add-apt-repository` command.
 
-nova-compute charm: vTPM Enablement
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+neutron-api charm: new option to enable PF link status propagation to VF
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The nova-compute charm now allows for installing and configuring for virtual
-TPM (vTPM) support. The nova-compute charm has a new option ``enable-vtpm``
-that when set to True, will configure the nova and libvirt services to be able
-to provide vTPM devices via swtpm.
+The neutron-api charm has a new configuration option for allowing the PF
+(physical function) link status for an OpenStack SR-IOV port on the host to be
+propagated to the VF (virtual function) link status on a cloud instance. To
+enable this, set the option to 'true' and assign attribute
+'propagate_uplink_status' to the SR-IOV port during its creation (via the flag
+``--enable-uplink-status-propagation``).
 
-This requires swtpm, swtpm-tools, and libtpm0 packages to be available for
-installation. These are available in the Ubuntu 22.04 release and are expected
-to be backported to Ubuntu 20.04. The OpenStack Charmers team has included a
-backport of these packages in the ppa:openstack-charmers/swtpm ppa.
+.. note::
 
-neutron-api charm has a new configuration option: ``uplink-status-propagation``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This option allows the PF (physical function) link status for an OpenStack
-SR-IOV port on the host to be propagated to the VF (virtual function) link
-status on a cloud instance. To enable this, set the option to 'true' and assign
-attribute 'propagate_uplink_status' to the SR-IOV port during its creation
-(via the flag ``--enable-uplink-status-propagation``).
+   This feature is available starting with OpenStack Stein.
 
 Increase KeepAlive timeout for OpenStack API endpoints and dashboard
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -218,24 +210,33 @@ local environment.
 Documentation updates
 ---------------------
 
-<TITLE>
-~~~~~~~
+A summary of the most significant documentation updates is given below.
+
+In the `OpenStack Charm Guide`_:
+
+* More cloud operations
+* Improvements to the upgrade pages
+* New tutorial for deploying OpenStack
+* New guidelines and resources for documentation and software contributions
+* Add a spellchecker to the build process
+* New page on virtual TPM devices
+* Refactor of the Project and Community sections
 
 New tech-preview charms
 -----------------------
 
 cinder-nimblestorage
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 The cinder-nimblestorage charm provides NimbleStorage storage backend support
 for the Openstack Cinder service. It is a subordinate charm used in conjunction
 with the cinder principal charm.
 
 cinder-solidfire
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 The cinder-solidfire charm provides Solidfire storage backend support for
-the Openstack Cinder service. It is a subordinate charm used in conjunction
+the OpenStack Cinder service. It is a subordinate charm used in conjunction
 with the cinder principal charm.
 
 nova-compute-nvidia-vgpu
@@ -245,50 +246,22 @@ The nova-compute-nvidia-vgpu charm provides Nvidia vGPU support to the
 OpenStack Nova Compute service. It is a subordinate charm used in conjunction
 with the nova-compute principal charm.
 
-New tech-preview charm features
--------------------------------
-
-<TITLE>
-~~~~~~~
-
 Informational notices
 ---------------------
 
 nova-cloud-controller: cpu-allocation-ratio default changed to 2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The default value for cpu-allocation-ratio has been reduced from 16
-to 2.  The old default was more appropriate for dev, test or lab type
-environments but is rarely suitable for clouds running production
-workloads.  If you were relying on the previous default of 16 and
-start to see VM scheduling failures after upgrade of this charm, you
-can opt back into a higher contention ratio by running:
+The default value for cpu-allocation-ratio has been reduced from 16 to 2. The
+old default was more appropriate for dev, test, or lab type environments but is
+rarely suitable for clouds running production workloads. If you were relying on
+the previous default of 16 and start to see VM scheduling failures after the
+upgrade of this charm, you can opt back into a higher contention ratio by
+running:
 
-``juju config nova-cloud-controller cpu-allocation-ratio=16``
+.. code-block:: none
 
-Deprecation notices
--------------------
-
-<TITLE>
-~~~~~~~
-
-Removed features
-----------------
-
-<TITLE>
-~~~~~~~
-
-Removed charms
---------------
-
-<TITLE>
-~~~~~~~
-
-Issues discovered during this release cycle
--------------------------------------------
-
-<TITLE>
-~~~~~~~
+   juju config nova-cloud-controller cpu-allocation-ratio=16
 
 .. LINKS
 .. _22.04 milestone: https://launchpad.net/openstack-charms/+milestone/22.04
