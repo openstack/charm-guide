@@ -159,6 +159,16 @@ timeout of 15 minutes. The previous (inherited upstream) timeout of 3
 minutes resulted in failures when dealing with large guest images (e.g.
 Windows or customised Linux).
 
+nova-cloud-controller charm: new option to expose max_local_block_devices
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-cloud-controller charm has a new option:
+``max-local-block-devices``. It exposes the upstream
+max_local_block_devices flag. In particular, setting it to '0' will
+forbid local block devices, effectively compelling users to request
+volumes instead. For more information, refer to `block device mapping
+FAQ section`_ in the upstream documentation.
+
 Documentation updates
 ---------------------
 
@@ -241,6 +251,7 @@ Issues discovered during this release cycle
 .. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _Network segment ranges: https://docs.openstack.org/neutron/latest/admin/config-network-segment-ranges.html
+.. _block device mapping FAQ section: https://docs.openstack.org/nova/latest/user/block-device-mapping.html#faqs
 
 .. COMMITS
 
