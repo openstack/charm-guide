@@ -130,6 +130,20 @@ Documentation updates
 New tech-preview charms
 -----------------------
 
+cinder-nimblestorage
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The cinder-nimblestorage charm provides NimbleStorage storage backend support
+for the Openstack Cinder service. It is a subordinate charm used in conjunction
+with the cinder principal charm.
+
+cinder-solidfire
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The cinder-solidfire charm provides Solidfire storage backend support for
+the Openstack Cinder service. It is a subordinate charm used in conjunction
+with the cinder principal charm.
+
 nova-compute-nvidia-vgpu
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
