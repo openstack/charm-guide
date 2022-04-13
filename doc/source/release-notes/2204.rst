@@ -145,6 +145,20 @@ allows cloud operators to dynamically manage network segment ranges
 through the Neutron API. For more details, refer to `Network segment
 ranges`_ in the upstream documentation.
 
+nova-compute charm: new options to set block device timeout
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-compute charm has two new options:
+
+* ``block-device-allocate-retries``
+* ``block-device-allocate-retries-interval``
+
+These options configure the block device allocation timeout. The default
+values have been set at 300 and 3 respectively, resulting in an overall
+timeout of 15 minutes. The previous (inherited upstream) timeout of 3
+minutes resulted in failures when dealing with large guest images (e.g.
+Windows or customised Linux).
+
 Documentation updates
 ---------------------
 
