@@ -182,6 +182,14 @@ These options are useful for limiting host aggregates to specific
 tenants. For more information, refer to `Filtering hosts by isolating
 aggregates`_ in the upstream documentation.
 
+nova-compute charm: new option to expose reserved_host_disk_mb
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-compute charm has a new option: ``reserved-host-disk``. It
+takes into account available host disk space when scheduling instances.
+It is similar to existing options ``reserved-host-memory`` and
+``reserved-huge-pages``.
+
 Documentation updates
 ---------------------
 
