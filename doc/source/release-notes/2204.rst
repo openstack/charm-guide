@@ -169,6 +169,19 @@ forbid local block devices, effectively compelling users to request
 volumes instead. For more information, refer to `block device mapping
 FAQ section`_ in the upstream documentation.
 
+nova-cloud-controller charm: new options to filter hosts by isolating aggregates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-cloud-controller charm has three new options:
+
+* ``limit-tenants-to-placement-aggregate``
+* ``placement-aggregate-required-for-tenants``
+* ``enable-isolated-aggregate-filtering``
+
+These options are useful for limiting host aggregates to specific
+tenants. For more information, refer to `Filtering hosts by isolating
+aggregates`_ in the upstream documentation.
+
 Documentation updates
 ---------------------
 
@@ -252,6 +265,7 @@ Issues discovered during this release cycle
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _Network segment ranges: https://docs.openstack.org/neutron/latest/admin/config-network-segment-ranges.html
 .. _block device mapping FAQ section: https://docs.openstack.org/nova/latest/user/block-device-mapping.html#faqs
+.. _Filtering hosts by isolating aggregates: https://docs.openstack.org/nova/latest/reference/isolate-aggregates.html
 
 .. COMMITS
 
