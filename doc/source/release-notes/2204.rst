@@ -190,6 +190,18 @@ takes into account available host disk space when scheduling instances.
 It is similar to existing options ``reserved-host-memory`` and
 ``reserved-huge-pages``.
 
+openstack-dashboard charm: new options to allow for branding
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The openstack-dashboard charm has three new options:
+
+* ``site-branding``
+* ``site-branding-link``
+* ``help-url``
+
+These options are used to set Dashboard parameters that reflect the
+local environment.
+
 Documentation updates
 ---------------------
 
