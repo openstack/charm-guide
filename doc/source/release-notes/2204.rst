@@ -127,6 +127,15 @@ status on a cloud instance. To enable this, set the option to 'true' and assign
 attribute 'propagate_uplink_status' to the SR-IOV port during its creation
 (via the flag ``--enable-uplink-status-propagation``).
 
+Increase KeepAlive timeout for OpenStack API endpoints and dashboard
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The HTTP KeepAlive timeout for OpenStack API endpoints and the Dashboard
+has been changed to 75 seconds. The previous timeout of 5 seconds
+(Apache's default) was causing unnecessary termination of client TCP
+connections, which was also affecting inter-service (OpenStack)
+communication.
+
 Documentation updates
 ---------------------
 
