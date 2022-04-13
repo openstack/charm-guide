@@ -136,6 +136,15 @@ has been changed to 75 seconds. The previous timeout of 5 seconds
 connections, which was also affecting inter-service (OpenStack)
 communication.
 
+neutron-api charm: new option to enable network-segment-range support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The neutron-api charm has a new option for enabling Neutron's 'Network
+Segment Range' service plugin: ``enable-network-segment-range``. It
+allows cloud operators to dynamically manage network segment ranges
+through the Neutron API. For more details, refer to `Network segment
+ranges`_ in the upstream documentation.
+
 Documentation updates
 ---------------------
 
@@ -217,6 +226,7 @@ Issues discovered during this release cycle
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
+.. _Network segment ranges: https://docs.openstack.org/neutron/latest/admin/config-network-segment-ranges.html
 
 .. COMMITS
 
