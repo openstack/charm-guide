@@ -23,5 +23,13 @@ the rest of this section on how to contribute to the OpenStack Charms project.
    adding-a-charm
    charm-readme-template
 
+.. note::
+
+   All new charms should be created with the `Operator framework`_.
+   Please see the Juju documentation for guidance on setting up your development
+   environment: `Development Setup`_.
+
 .. LINKS
 .. _development documentation: https://docs.openstack.org/infra/manual/developers.html
+.. _Operator framework: https://github.com/canonical/operator
+.. _Development Setup: https://juju.is/docs/sdk/dev-setup
