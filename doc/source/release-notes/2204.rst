@@ -220,6 +220,22 @@ track) as the endpoint will not be updated. Check the endpoint (``openstack
 endpoint list``) and verify that the ``product-streams`` URL does *not* have a
 trailing slash.
 
+ceph-osd: new options for disk creation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``add-disk`` action for the ``ceph-osd`` charm has incorporated the
+following options:
+
+* ``osd-ids``
+* ``cache-devices``
+* ``partition-size``
+
+ceph-osd: new action to remove disks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-osd charm has a new ``remove-disk`` action. This action allows
+operator to remove previously created disks.
+
 Documentation updates
 ---------------------
 
