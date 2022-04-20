@@ -254,6 +254,12 @@ In the `OpenStack Charm Guide`_:
 New tech-preview charms
 -----------------------
 
+ceph-nfs
+~~~~~~~~
+
+The ceph-nfs charm provides action-managed NFS storage backed by CephFS. It is
+a principal charm used in conjunction with a deployed Ceph cluster.
+
 cinder-nimblestorage
 ~~~~~~~~~~~~~~~~~~~~
 
