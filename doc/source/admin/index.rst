@@ -15,7 +15,7 @@ General cloud operations:
    ops-unseal-vault
    ops-config-tls-vault-api
    ops-live-migrate-vms
-   ops-scale-back-with-hacluster
+   ops-replace-vault-node
    ops-scale-out-nova-compute
    ops-start-innodb-from-outage
    ops-auto-glance-image-updates

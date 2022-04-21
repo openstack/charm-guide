@@ -51,6 +51,13 @@ For a single unit requiring three keys (``vault/0`` with IP address
    vault operator unseal
    vault operator unseal
 
+.. note::
+
+   If the Vault API is encrypted you will need to inform your Vault client of
+   the associated CA certificate via an additional variable (VAULT_CACERT). See
+   cloud operation :doc:`Configure TLS for the Vault API
+   <ops-config-tls-vault-api>`.
+
 You will be prompted for the unseal keys. The information will not be echoed
 back to the screen nor captured in the shell's history.
 
