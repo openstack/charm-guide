@@ -207,19 +207,6 @@ The openstack-dashboard charm has three new options:
 These options are used to set Dashboard parameters that reflect the
 local environment.
 
-glance-simplestreams-sync endpoint change
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Due to a tightening of handling URLs in a `ceph-radosgw charm change`_, the
-Apache webserver stopped canonicalising paths prior to processing them.  This
-will break the previous version of the glance-simplestreams-sync charm where an
-extra trailing ``/`` appeared in the endpoint provided to keystone for
-``product-streams``. The glance-simplestreams-sync charm has been fixed in this
-release but will cause breakage in upgraded Xena clouds (using the 'yoga' charm
-track) as the endpoint will not be updated. Check the endpoint (``openstack
-endpoint list``) and verify that the ``product-streams`` URL does *not* have a
-trailing slash.
-
 ceph-osd: new options for disk creation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -298,6 +285,18 @@ running:
 
    juju config nova-cloud-controller cpu-allocation-ratio=16
 
+Issues discovered during this release cycle
+-------------------------------------------
+
+glance-simplestreams-sync endpoint change
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ceph-radosgw charm improves how URLs are processed by the RADOS Gateway.
+This change however will lead to breakage for an existing ``product-streams``
+endpoint, set up by the glance-simplestreams-sync application. Manual
+intervention is required - see the :ref:`Upgrade issues
+<cdg:charm_upgrade_issue-radosgw_gss>` page for more information.
+
 .. LINKS
 .. _22.04 milestone: https://launchpad.net/openstack-charms/+milestone/22.04
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
@@ -307,7 +306,6 @@ running:
 .. _Network segment ranges: https://docs.openstack.org/neutron/latest/admin/config-network-segment-ranges.html
 .. _block device mapping FAQ section: https://docs.openstack.org/nova/latest/user/block-device-mapping.html#faqs
 .. _Filtering hosts by isolating aggregates: https://docs.openstack.org/nova/latest/reference/isolate-aggregates.html
-.. _ceph-radosgw charm change: https://review.opendev.org/c/openstack/charm-ceph-radosgw/+/835827
 
 .. COMMITS
 
