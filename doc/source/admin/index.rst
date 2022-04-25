@@ -25,6 +25,7 @@ General cloud operations:
    ops-replace-rabbitmq-node
    ops-repair-rabbitmq-node
    ops-restart-partitioned-rabbitmq-cluster
+   ops-replace-control-plane-service-ha
 
 Ceph storage operations (published in the Charmed Ceph documentation):
 

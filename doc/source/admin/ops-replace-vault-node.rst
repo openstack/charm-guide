@@ -1,8 +1,8 @@
 :orphan:
 
-==================================================
-Scale back an application with the hacluster charm
-==================================================
+==========================
+Replace Vault cluster node
+==========================
 
 Introduction
 ------------
@@ -80,9 +80,8 @@ units).
 Add a principal application unit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Add a principal application unit. We accomplish this by scaling out the
-existing vault application and placing the new (containerised) unit on the same
-host that the removed unit was on (machine 0):
+Scale out the existing vault application and place the new (containerised) unit
+on the same host that the removed unit was on (machine 0):
 
 .. code-block:: none
 
