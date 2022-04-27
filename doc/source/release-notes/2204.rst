@@ -297,6 +297,16 @@ endpoint, set up by the glance-simplestreams-sync application. Manual
 intervention is required - see the :ref:`Upgrade issues
 <cdg:charm_upgrade_issue-radosgw_gss>` page for more information.
 
+Nova fails to parse new libvirt mediated device name format
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The name format of mediated devices in libvirt was recently changed from
+``mdev_<uuid>`` to ``mdev_<uuid>_<parent>``. For users of the new tech-preview
+nova-compute-nvidia-vgpu charm, this will cause new Nova instances to enter
+into an error state subsequent to a vGPU device being attached to an instance.
+This is being tracked in issue `LP #1951656`_. A fix will soon be available as
+an SRU.
+
 .. LINKS
 .. _22.04 milestone: https://launchpad.net/openstack-charms/+milestone/22.04
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
@@ -310,3 +320,4 @@ intervention is required - see the :ref:`Upgrade issues
 .. COMMITS
 
 .. BUGS
+.. _LP #1951656: https://bugs.launchpad.net/nova/+bug/1951656
