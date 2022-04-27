@@ -51,3 +51,4 @@ Cloud management how-to guides:
    policy-overrides
    ha
    vtpm
+   vgpu
