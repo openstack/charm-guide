@@ -34,8 +34,8 @@ Alternatively, the Charmhub web site can be visited: https://charmhub.io/glance
 
 .. important::
 
-   For deployments that are still running legacy non-channel charms, please
-   consult special charm operation "All charms: migrating to channels".
+   For deployments that are running non-channel (legacy) charms, please see
+   special charm operation `All charms - migration to channels`_.
 
 Tracks
 ~~~~~~
@@ -213,3 +213,4 @@ series).
 
 .. LINKS
 .. _Charmhub: https://charmhub.io
+.. _All charms - migration to channels: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/charmhub-migration.html
