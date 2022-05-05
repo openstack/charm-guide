@@ -7,27 +7,24 @@ This page lists the Release Notes for every version of OpenStack Charms.
 .. note::
 
    The version naming scheme for OpenStack Charms releases has changed from
-   being time-based (YY/MM) to one that uses the name of the newly-supported
+   being time-based (YY.MM) to one that uses the name of the newly-supported
    OpenStack release. See :doc:`Charm delivery <../project/charm-delivery>` for
    details.
 
-Under development:
-
-* :doc:`2204`
-
 Latest stable:
 
-* :doc:`2110`
+* :doc:`yoga`
 * :doc:`2106_Trilio`
 
 Older versions listed by year of release:
 
 .. list-table::
    :header-rows: 0
-   :widths: 20 20 40 20
+   :widths: 20 20 20 40 20
    :stub-columns: 1
 
    * - 2021
+     - :doc:`2110`
      - :doc:`2101`
      - :doc:`2103_Trilio`
      - :doc:`2104`
@@ -109,7 +106,7 @@ Older versions listed by year of release:
    :maxdepth: 1
    :hidden:
 
-   2204
+   yoga
    2110
    2104
    2106_Trilio

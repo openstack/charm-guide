@@ -1,8 +1,8 @@
-=================================
-22.04 (Draft version in progress)
-=================================
+====
+Yoga
+====
 
-The 22.04 OpenStack Charms release includes updates for the charms described on
+The Yoga OpenStack Charms release includes updates for the charms described on
 the :doc:`../project/openstack-charms` page. As of this release, the project
 consists of 62 stable charms.
 

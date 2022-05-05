@@ -24,14 +24,14 @@ latter dates are estimated and subject to revision.
      - Release date
      - Release timeline
 
-   * - 22.04
-     - under development
+   * - Yoga
+     - current stable
      - --
-     - Wed, Apr 21, 2022 (estimated)
+     - Thu, May 5, 2022
      - --
 
    * - 21.10
-     - current stable
+     - --
      - Fri, Oct 1, 2021
      - Wed, Oct 20, 2021
      - :doc:`release-timeline-2110`
