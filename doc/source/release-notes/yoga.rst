@@ -285,6 +285,13 @@ running:
 
    juju config nova-cloud-controller cpu-allocation-ratio=16
 
+rabbitmq-server: options removed
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The configuration options ``modulo-nodes`` and ``known-wait`` have been removed
+from the rabbitmq-server charm as development work related to coordinated node
+restarts has made them irrelevant.
+
 Issues discovered during this release cycle
 -------------------------------------------
 

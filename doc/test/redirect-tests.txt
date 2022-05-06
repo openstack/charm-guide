@@ -74,3 +74,5 @@
 /charm-guide/latest/reference/release-timeline-2101.html 301 /charm-guide/latest/project/release-timeline-2101.html
 /charm-guide/latest/reference/release-timeline-2010.html 301 /charm-guide/latest/project/release-timeline-2010.html
 /charm-guide/latest/reference/release-timeline-2008.html 301 /charm-guide/latest/project/release-timeline-2008.html
+
+/charm-guide/latest/release-notes/2204.html 301 /charm-guide/latest/release-notes/yoga.html
