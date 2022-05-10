@@ -18,12 +18,13 @@ command line. Install them now:
 Access the cloud
 ----------------
 
-The downloaded repository includes helper scripts that assist in setting up
-admin access to the cloud. Source a file and then test by querying Keystone:
+This :download:`openrc <openrc>` file will assist in setting up admin access to
+the cloud. Download it under ``~/tutorial``. Then source it and test cloud
+access by querying Keystone:
 
 .. code-block:: none
 
-   source ~/tutorial/openstack-bundles/stable/openstack-base/openrc
+   source ~/tutorial/openrc
    openstack service list
 
 You should get a listing of registered cloud services:
