@@ -50,5 +50,6 @@ Cloud management how-to guides:
    deferred-events
    policy-overrides
    ha
+   instance-ha
    vtpm
    vgpu
