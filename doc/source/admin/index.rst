@@ -52,3 +52,4 @@ Cloud management how-to guides:
    ha
    vtpm
    vgpu
+   trilio
