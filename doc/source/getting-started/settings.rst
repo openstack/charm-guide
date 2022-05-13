@@ -51,11 +51,6 @@ Assign a value to each variable now.
      - EXT_SUBNET
      - a subnet within MAAS
 
-   * - network space
-     - **public-space**
-     - EXT_SPACE
-     - usage is mandatory if it exists
-
    * - gateway
      - **10.246.112.1**
      - EXT_GW
