@@ -211,8 +211,8 @@ built-in capabilities, and can be called *natively HA*.
 .. important::
 
    The nova-compute application cannot be made highly available. However, see
-   :doc:`Charmed Masakari <app-masakari>` for an implementation of cloud
-   instance HA.
+   :doc:`Instance high availability <instance-ha>` for an implementation of
+   cloud instance HA.
 
 Native HA
 ~~~~~~~~~

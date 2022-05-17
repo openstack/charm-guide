@@ -184,13 +184,16 @@ unique string (assuming the issue involves the ovn-central charm):
 
 .. code-block:: none
 
-   juju crashdump --small -o ~/tmp -u ovn-central
+   juju crashdump --small --as-root -o ~/tmp -u ovn-central
 
 This will produce the file ``~/tmp/juju-crashdump-ovn-central.tar.xz``.
 
 Omitting the ``--small`` option will lead to the inclusion of a massive amount
 of Juju debug information (see `Dealing with large file attachments`_). To get
 more command help: ``juju crashdump --help``.
+
+Omitting the ``--as-root`` option will prevent certain logs (and effectively
+more sensitive information) from being collected.
 
 .. note::
 
