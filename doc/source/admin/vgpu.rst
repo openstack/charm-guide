@@ -26,7 +26,8 @@ Pre-requisites
 
 The following requirements must be met in order to use the vGPU feature:
 
-* OpenStack Queens or newer
+* OpenStack Ussuri or newer
+* Ubuntu 20.04 LTS or newer
 * `Nvidia vGPU software`_ (Linux driver ``510.47.03`` or newer; Ubuntu package)
 * a `supported GPU device on Ubuntu`_
 
@@ -99,29 +100,6 @@ Sample output:
 
 .. code-block:: console
 
-   nvidia-256, 0000:41:00.0, GRID RTX6000-1Q, num_heads=4, frl_config=60, framebuffer=1024M, max_resolution=5120x2880, max_instance=24
-   nvidia-257, 0000:41:00.0, GRID RTX6000-2Q, num_heads=4, frl_config=60, framebuffer=2048M, max_resolution=7680x4320, max_instance=12
-   nvidia-258, 0000:41:00.0, GRID RTX6000-3Q, num_heads=4, frl_config=60, framebuffer=3072M, max_resolution=7680x4320, max_instance=8
-   nvidia-259, 0000:41:00.0, GRID RTX6000-4Q, num_heads=4, frl_config=60, framebuffer=4096M, max_resolution=7680x4320, max_instance=6
-   nvidia-260, 0000:41:00.0, GRID RTX6000-6Q, num_heads=4, frl_config=60, framebuffer=6144M, max_resolution=7680x4320, max_instance=4
-   nvidia-261, 0000:41:00.0, GRID RTX6000-8Q, num_heads=4, frl_config=60, framebuffer=8192M, max_resolution=7680x4320, max_instance=3
-   nvidia-262, 0000:41:00.0, GRID RTX6000-12Q, num_heads=4, frl_config=60, framebuffer=12288M, max_resolution=7680x4320, max_instance=2
-   nvidia-263, 0000:41:00.0, GRID RTX6000-24Q, num_heads=4, frl_config=60, framebuffer=24576M, max_resolution=7680x4320, max_instance=1
-   nvidia-343, 0000:41:00.0, GRID RTX6000-4C, num_heads=1, frl_config=60, framebuffer=4096M, max_resolution=4096x2160, max_instance=6
-   nvidia-344, 0000:41:00.0, GRID RTX6000-6C, num_heads=1, frl_config=60, framebuffer=6144M, max_resolution=4096x2160, max_instance=4
-   nvidia-345, 0000:41:00.0, GRID RTX6000-8C, num_heads=1, frl_config=60, framebuffer=8192M, max_resolution=4096x2160, max_instance=3
-   nvidia-346, 0000:41:00.0, GRID RTX6000-12C, num_heads=1, frl_config=60, framebuffer=12288M, max_resolution=4096x2160, max_instance=2
-   nvidia-347, 0000:41:00.0, GRID RTX6000-24C, num_heads=1, frl_config=60, framebuffer=24576M, max_resolution=4096x2160, max_instance=1
-   nvidia-435, 0000:41:00.0, GRID RTX6000-1B, num_heads=4, frl_config=45, framebuffer=1024M, max_resolution=5120x2880, max_instance=24
-   nvidia-436, 0000:41:00.0, GRID RTX6000-2B, num_heads=4, frl_config=45, framebuffer=2048M, max_resolution=5120x2880, max_instance=12
-   nvidia-437, 0000:41:00.0, GRID RTX6000-1A, num_heads=1, frl_config=60, framebuffer=1024M, max_resolution=1280x1024, max_instance=24
-   nvidia-438, 0000:41:00.0, GRID RTX6000-2A, num_heads=1, frl_config=60, framebuffer=2048M, max_resolution=1280x1024, max_instance=12
-   nvidia-439, 0000:41:00.0, GRID RTX6000-3A, num_heads=1, frl_config=60, framebuffer=3072M, max_resolution=1280x1024, max_instance=8
-   nvidia-440, 0000:41:00.0, GRID RTX6000-4A, num_heads=1, frl_config=60, framebuffer=4096M, max_resolution=1280x1024, max_instance=6
-   nvidia-441, 0000:41:00.0, GRID RTX6000-6A, num_heads=1, frl_config=60, framebuffer=6144M, max_resolution=1280x1024, max_instance=4
-   nvidia-442, 0000:41:00.0, GRID RTX6000-8A, num_heads=1, frl_config=60, framebuffer=8192M, max_resolution=1280x1024, max_instance=3
-   nvidia-443, 0000:41:00.0, GRID RTX6000-12A, num_heads=1, frl_config=60, framebuffer=12288M, max_resolution=1280x1024, max_instance=2
-   nvidia-444, 0000:41:00.0, GRID RTX6000-24A, num_heads=1, frl_config=60, framebuffer=24576M, max_resolution=1280x1024, max_instance=1
    nvidia-105, 0000:c1:00.0, GRID V100-1Q, num_heads=4, frl_config=60, framebuffer=1024M, max_resolution=5120x2880, max_instance=16
    nvidia-106, 0000:c1:00.0, GRID V100-2Q, num_heads=4, frl_config=60, framebuffer=2048M, max_resolution=7680x4320, max_instance=8
    nvidia-107, 0000:c1:00.0, GRID V100-4Q, num_heads=4, frl_config=60, framebuffer=4096M, max_resolution=7680x4320, max_instance=4
@@ -140,9 +118,8 @@ Sample output:
    nvidia-300, 0000:c1:00.0, GRID V100-8C, num_heads=1, frl_config=60, framebuffer=8192M, max_resolution=4096x2160, max_instance=2
    nvidia-301, 0000:c1:00.0, GRID V100-16C, num_heads=1, frl_config=60, framebuffer=16384M, max_resolution=4096x2160, max_instance=1
 
-Here, 40 vGPU types are available from among two physical GPU devices:
+Here, 17 vGPU types are available from a single GPU device:
 
-* ``0000:41:00.0``
 * ``0000:c1:00.0``
 
 The last column of each type's entry gives the number of vGPU cards that can be
@@ -153,6 +130,14 @@ vGPU type selection
 
 vGPUs are made available to the cloud based on the selection of one or more
 vGPU types.
+
+The last character of the description of an NVIDIA vGPU type maps to its
+intended purpose and associated NVIDIA GRID license usage:
+
+* Q - NVIDIA RTX Virtual Workstation
+* C - NVIDIA Virtual Compute Server
+* B - NVIDIA Virtual PC
+* A - NVIDIA Virtual Applications
 
 The selection should be based on the knowledge of all types across the cloud.
 The types for each Compute node should therefore first be listed before making
@@ -168,12 +153,13 @@ devices to guests`_) for upstream information.
    On OpenStack releases older than Stein, only one vGPU type can be selected.
 
 The simplest case is a mapping of one vGPU type to a single physical GPU. For
-example, to have three vGPUs become available (``max_instance=3``), vGPU type
-``nvidia-442`` (on physical GPU ``0000:41:00.0``) can be selected:
+example, to have four compute optimized (``GRID V100-4C``) vGPUs become
+available (``max_instance=4``), vGPU type ``nvidia-299`` (on physical GPU
+``0000:c1:00.0``) can be selected:
 
 .. code-block:: none
 
-   juju config nova-compute-nvidia-vgpu vgpu-device-mappings="{'nvidia-442': ['0000:41:00.0']}"
+   juju config nova-compute-nvidia-vgpu vgpu-device-mappings="{'nvidia-299': ['0000:c1:00.0']}"
 
 .. warning::
 
@@ -193,7 +179,7 @@ Start by listing the physical GPUs:
    | uuid                                 | name                              | generation | root_provider_uuid                   | parent_provider_uuid                 |
    +--------------------------------------+-----------------------------------+------------+--------------------------------------+--------------------------------------+
    | e0f99e40-a7a5-42bb-a222-387a540c3725 | node-sparky.maas                  |          3 | e0f99e40-a7a5-42bb-a222-387a540c3725 | None                                 |
-   | 807d28f4-4b30-4f85-a770-1bcebd1236d3 | node-sparky.maas_pci_0000_41_00_0 |          1 | e0f99e40-a7a5-42bb-a222-387a540c3725 | e0f99e40-a7a5-42bb-a222-387a540c3725 |
+   | 807d28f4-4b30-4f85-a770-1bcebd1236d3 | node-sparky.maas_pci_0000_c1_00_0 |          1 | e0f99e40-a7a5-42bb-a222-387a540c3725 | e0f99e40-a7a5-42bb-a222-387a540c3725 |
    +--------------------------------------+-----------------------------------+------------+--------------------------------------+--------------------------------------+
 
 .. important::
