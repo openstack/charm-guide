@@ -1,23 +1,16 @@
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-*                                                             *
-* This is a template to be used for future release notes.     *
-* Make a copy, remove this notice, and use the placeholders.  *
-*                                                             *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+===============================
+Zed (Draft version in progress)
+===============================
 
-===========================================
-<CHARM_RELEASE> (Draft version in progress)
-===========================================
+The Zed OpenStack Charms release includes updates for the charms described on
+the :doc:`../project/openstack-charms` page. As of this release, the project
+consists of 62 stable charms.
 
-The <CHARM_RELEASE> OpenStack Charms release includes updates for the charms
-described on the :doc:`openstack-charms` page. As of this release, the project
-consists of <NUMBER-OF-STABLE-CHARMS> stable charms.
-
-For the list of bugs resolved in this release refer to the `<CHARM_RELEASE>
-milestone`_ in Launchpad.
+For the list of bugs resolved in this release refer to the `Zed milestone`_ in
+Launchpad.
 
 For scheduling information of past and future releases see the
-:doc:`release-schedule`.
+:doc:`../project/release-schedule`.
 
 .. note::
 
@@ -104,7 +97,7 @@ Issues discovered during this release cycle
 ~~~~~~~
 
 .. LINKS
-.. _<CHARM_RELEASE> milestone: https://launchpad.net/openstack-charms/+milestone/<CHARM_RELEASE>
+.. _Zed milestone: https://launchpad.net/openstack-charms/+milestone/Zed
 .. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 

@@ -24,6 +24,12 @@ latter dates are estimated and subject to revision.
      - Release date
      - Release timeline
 
+   * - Zed
+     - under development
+     - --
+     - Thu, Oct 20, 2022 (estimated)
+     - --
+
    * - Yoga
      - current stable
      - --

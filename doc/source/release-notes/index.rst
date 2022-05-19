@@ -11,6 +11,10 @@ This page lists the Release Notes for every version of OpenStack Charms.
    OpenStack release. See :doc:`Charm delivery <../project/charm-delivery>` for
    details.
 
+Under development:
+
+* :doc:`zed`
+
 Latest stable:
 
 * :doc:`yoga`
@@ -106,6 +110,7 @@ Older versions listed by year of release:
    :maxdepth: 1
    :hidden:
 
+   zed
    yoga
    2110
    2104
