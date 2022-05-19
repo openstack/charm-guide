@@ -97,28 +97,35 @@ is provided below.
 .. code-block:: yaml
 
    series: bionic
+
    applications:
+
      trilio-wlm:
-       charm: cs:~openstack-charmers/trilio-wlm
+       charm: ch:openstack-charmers-trilio-wlm
        num_units: 1
        options:
          openstack-origin: cloud:bionic-train
          triliovault-pkg-source: 'deb [trusted=yes] https://apt.fury.io/triliodata-4-1/ /'
+
      trilio-data-mover:
-       charm: cs:~openstack-charmers/trilio-data-mover
+       charm: ch:openstack-charmers-trilio-data-mover
        options:
          triliovault-pkg-source: 'deb [trusted=yes] https://apt.fury.io/triliodata-4-1/ /'
+
      trilio-dm-api:
-       charm: cs:~openstack-charmers/trilio-dm-api
+       charm: ch:openstack-charmers-trilio-dm-api
        num_units: 1
        options:
          openstack-origin: cloud:bionic-train
          triliovault-pkg-source: 'deb [trusted=yes] https://apt.fury.io/triliodata-4-1/ /'
+
      trilio-horizon-plugin:
-       charm: cs:~openstack-charmers/trilio-horizon-plugin
+       charm: ch:openstack-charmers-trilio-horizon-plugin
        options:
          triliovault-pkg-source: 'deb [trusted=yes] https://apt.fury.io/triliodata-4-1/ /'
+
    relations:
+
      - - trilio-horizon-plugin:dashboard-plugin
        - openstack-dashboard:dashboard-plugin
      - - trilio-dm-api:identity-service
@@ -246,7 +253,7 @@ application). This is done with the trilio-wlm charm's
 
 .. code-block:: none
 
-   juju run-action trilio-wlm/leader create-cloud-admin-trust password=cloudadminpassword
+   juju run-action --wait trilio-wlm/leader create-cloud-admin-trust password=cloudadminpassword
 
 Licensing
 ---------
