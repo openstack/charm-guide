@@ -257,7 +257,7 @@ with the cinder principal charm.
 cinder-solidfire
 ~~~~~~~~~~~~~~~~
 
-The cinder-solidfire charm provides Solidfire storage backend support for
+The cinder-solidfire charm provides SolidFire storage backend support for
 the OpenStack Cinder service. It is a subordinate charm used in conjunction
 with the cinder principal charm.
 

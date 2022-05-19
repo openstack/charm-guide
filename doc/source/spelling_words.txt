@@ -10,3 +10,13 @@ ppa
 tpm
 crb
 libtpms
+solidfire
+SolidFire
+nimblestorage
+nfs
+uplink
+xena
+cookiecutter
+vGPUs
+hyperconvergence
+Uncomment
