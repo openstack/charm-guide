@@ -33,6 +33,7 @@ Ceph storage operations (published in the Charmed Ceph documentation):
    :maxdepth: 1
 
    Adding OSDs <https://ubuntu.com/ceph/docs/adding-osds>
+   Removing OSDs <https://ubuntu.com/ceph/docs/removing-osds>
    Adding MONs <https://ubuntu.com/ceph/docs/adding-mons>
    Replacing OSD disks <https://ubuntu.com/ceph/docs/replacing-osd-disks>
    Encryption at Rest <https://ubuntu.com/ceph/docs/encryption-at-rest>
