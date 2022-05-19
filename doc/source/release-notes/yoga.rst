@@ -251,7 +251,7 @@ cinder-nimblestorage
 ~~~~~~~~~~~~~~~~~~~~
 
 The cinder-nimblestorage charm provides NimbleStorage storage backend support
-for the Openstack Cinder service. It is a subordinate charm used in conjunction
+for the OpenStack Cinder service. It is a subordinate charm used in conjunction
 with the cinder principal charm.
 
 cinder-solidfire
