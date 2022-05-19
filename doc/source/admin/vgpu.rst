@@ -178,10 +178,10 @@ example, to have three vGPUs become available (``max_instance=3``), vGPU type
 .. warning::
 
    Changing vGPU types may prevent new VMs from being created. Failure will
-   occur if a new VM uses a type that sollicites the same physical GPU of any
+   occur if a new VM uses a type that solicits the same physical GPU of any
    existing VM. Recall that a physical GPU can only support one vGPU type at
    any given time. This can be mitigated through the strategic use of
-   appilcation groups for nova-compute and/or nova-compute-nvidia-vgpu.
+   application groups for nova-compute and/or nova-compute-nvidia-vgpu.
 
 Once the model has settled, the vGPUs can be listed via the OpenStack CLI.
 Start by listing the physical GPUs:
