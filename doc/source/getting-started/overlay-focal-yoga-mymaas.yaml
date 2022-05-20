@@ -1,0 +1,23 @@
+machines:
+
+  '0':
+    constraints: $CONSTRAINTS
+  '1':
+    constraints: $CONSTRAINTS
+  '2':
+    constraints: $CONSTRAINTS
+
+variables:
+
+  data-port: &data-port br-ex:$OVN_DATA_PORT
+  osd-devices: &osd-devices $OSD_DEVICES
+
+applications:
+
+  ovn-chassis:
+    options:
+      bridge-interface-mappings: *data-port
+
+  ceph-osd:
+    options:
+      osd-devices: *osd-devices

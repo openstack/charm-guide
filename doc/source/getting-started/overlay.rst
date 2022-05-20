@@ -4,104 +4,27 @@ Configure the overlay bundle
 
 The deployment will make use of the ``openstack-base`` bundle, which represents
 the core of a Charmed OpenStack cloud. A separate overlay bundle is used to
-tailor the configuration (possibly overriding the bundle) so that the deploy
-will work within a given environment.
-
-Save the below overlay to
-``~/tutorial/overlay-openstack-base-focal-mymaas.yaml`` and replace the
-variables with the values that were collected in the :doc:`previous step
-<settings>`.
+tailor the configuration (possibly overriding setting in the bundle) so that
+the deploy will work within a given environment.
 
 .. note::
 
-   If constraints are not being used and/or if network spaces do not apply then
-   replace their values ($CONSTRAINTS and/or $EXT_SPACE) with a null value
-   (nothing).
+   Although it is possible to edit the bundle file itself, it is best practice
+   to keep it pristine and to use an overlay instead.
 
-.. code-block:: console
+The overlay file is :download:`overlay-focal-yoga-mymaas.yaml`. Download it and
+save it in the ``~/tutorial`` directory.
 
-   machines:
+Replace the variables in the file with the some of the values that were
+collected in the :doc:`previous step <settings>`.
 
-     '0':
-       constraints: $CONSTRAINTS
-     '1':
-       constraints: $CONSTRAINTS
-     '2':
-       constraints: $CONSTRAINTS
+If constraints are not being used, replace ``$CONSTRAINTS`` with a null value
+(nothing).
 
-   variables:
+.. note::
 
-     data-port: &data-port br-ex:$OVN_DATA_PORT
-     osd-devices: &osd-devices $OSD_DEVICES
-     network-space: &network-space $EXT_SPACE
+   If a network space is configured within MAAS for the cloud's subnet, each
+   charm will need to be informed of it via the ``bindings`` charm parameter.
 
-   applications:
-
-     ovn-chassis:
-       options:
-         bridge-interface-mappings: *data-port
-
-     ceph-osd:
-       options:
-         osd-devices: *osd-devices
-       bindings:
-         "": *network-space
-
-     nova-compute:
-       bindings:
-         "": *network-space
-
-     vault:
-       bindings:
-         "": *network-space
-
-     ceph-mon:
-       bindings:
-         "": *network-space
-
-     ceph-radosgw:
-       bindings:
-         "": *network-space
-
-     glance:
-       bindings:
-         "": *network-space
-
-     keystone:
-       bindings:
-         "": *network-space
-
-     mysql-innodb-cluster:
-       bindings:
-         "": *network-space
-
-     neutron-api:
-       bindings:
-         "": *network-space
-
-     nova-cloud-controller:
-       bindings:
-         "": *network-space
-
-     rabbitmq-server:
-       bindings:
-         "": *network-space
-
-     placement:
-       bindings:
-         "": *network-space
-
-     ovn-central:
-       bindings:
-         "": *network-space
-
-     cinder:
-       bindings:
-         "": *network-space
-
-     openstack-dashboard:
-       bindings:
-         "": *network-space
-
-Once you've substituted in your values and saved the file, proceed to the
-:doc:`Prepare Juju <juju>` page.
+Once you've edited and saved the file, proceed to the :doc:`Prepare Juju
+<juju>` page.

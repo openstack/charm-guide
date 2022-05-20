@@ -3,7 +3,8 @@ Configure OpenStack
 ===================
 
 Now that OpenStack is deployed it must now be configured for it to become
-functional. Use the values collected on the :doc:`settings <settings>` page.
+functional. Use the values collected on the :doc:`Collect local settings
+<settings>` page.
 
 Install the OpenStack clients
 -----------------------------
@@ -13,7 +14,7 @@ command line. Install them now:
 
 .. code-block:: none
 
-   sudo snap install openstackclients --classic
+   sudo snap install openstackclients
 
 Access the cloud
 ----------------

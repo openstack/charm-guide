@@ -5,17 +5,15 @@ Getting started
 Overview
 --------
 
-This tutorial will show how to deploy a Charmed OpenStack cloud with the use of
-a bundle and an overlay. The cloud's major elements are:
+This tutorial shows how to deploy a test Charmed OpenStack cloud. It's major
+elements are:
 
-* Ubuntu 20.04 LTS (Focal)
-* OpenStack Xena
-* Ceph Pacific
+* Ubuntu 20.04 LTS (Focal) for the cloud nodes
+* OpenStack Yoga
+* Ceph Quincy
 
 OpenStack services will include Compute, Network, Block Storage, Object
 Storage, Identity, Image, and Dashboard.
-
-This is a test cloud that will be used by a single (admin) user.
 
 Requirements
 ------------
@@ -35,24 +33,23 @@ You will need a `MAAS`_ cluster with four nodes:
 
    A single network interface is sufficient on the cloud nodes if an Open
    vSwitch bridge is set up in MAAS. See the :doc:`MAAS page
-   <cdg:install-maas>` in the :doc:`OpenStack Charms Deployment Guide
-   <cdg:index>` for details.
+   <cdg:install-maas>` in the Deploy Guide for details.
 
 Software
 ~~~~~~~~
 
 The software versions used in this tutorial are:
 
-* **Ubuntu 20.04 LTS (Focal)** for the cloud nodes
-* **MAAS 2.9.2**
-* **Juju 2.9.27**
+* MAAS 2.9.2
+* Juju 2.9.29
 
 Other prerequisites
 ~~~~~~~~~~~~~~~~~~~
 
 * You should have `Juju`_ installed and be comfortable with its basic usage.
 
-* Create directory ``~/tutorial`` as all tutorial files will be placed there.
+* Create directory ``~/tutorial``. All the files created in this tutorial will
+  be placed there.
 
 * The MAAS server must have Focal amd64 images available.
 
@@ -80,10 +77,7 @@ The procedure consists of the following steps:
 
 .. LINKS
 .. _Juju: https://juju.is
-.. _MicroStack: https://microstack.run
-.. _OpenStack Administrator Guides: http://docs.openstack.org/admin
 .. _MAAS: https://maas.io
 .. _bundles: https://jaas.ai/docs/sdk/manage-bundles
-.. _constraints: https://juju.is/docs/olm/constraints-reference
+.. _constraints: https://juju.is/docs/olm/constraints
 .. _network spaces: https://maas.io/docs/snap/3.1/ui/concepts-and-terms#heading--spaces
-.. _Reserved IP range: https://maas.io/docs/concepts-and-terms#heading--ip-ranges
