@@ -7,7 +7,7 @@ Cinder volume replication custom overlay
 ========================================
 
 The below bundle overlay is used in the instructions given on the :doc:`Cinder
-volume replication <cinder-volume-replication>` page.
+volume replication <cinder-replication>` page.
 
 .. code-block:: yaml
 

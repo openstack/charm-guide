@@ -572,8 +572,8 @@ storage node, thereby satisfying the replica requirement of three.
    The default values for options ``zone-assignment`` and ``replicas`` are
    'manual' and '3' respectively.
 
-Refer to the :doc:`Swift <swift>` page for more information on how to deploy
-Swift.
+Refer to the :doc:`Swift <storage/swift>` page for more information on how to
+deploy Swift.
 
 Vault
 ~~~~~

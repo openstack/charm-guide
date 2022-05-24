@@ -11,7 +11,7 @@ Overview
 
 This is the disaster recovery scenario of a Cinder volume replication
 deployment. It should be read in conjunction with the :doc:`Cinder volume
-replication <cinder-volume-replication>` page.
+replication <cinder-replication>` page.
 
 Scenario description
 --------------------
