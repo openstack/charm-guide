@@ -45,7 +45,7 @@ extensions = [
 ]
 
 intersphinx_mapping = {
-    'cdg': ('https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest', None)
+    'cdg': ('https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/yoga', None)
 }
 
 # Spellchecker
@@ -76,13 +76,14 @@ copyright = u'2016, OpenStack contributors'
 openstackdocs_repo_name = 'openstack/charm-guide'
 openstackdocs_bug_project = 'charm-guide'
 openstackdocs_bug_tag = u'charm-guide'
+openstackdocs_auto_version = False
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = ''
+version = 'yoga'
 # The full version, including alpha/beta/rc tags.
 release = ''
 
