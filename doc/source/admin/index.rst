@@ -55,3 +55,14 @@ Cloud management how-to guides:
    vtpm
    vgpu
    trilio
+
+Compute
+~~~~~~~
+
+.. toctree::
+   :maxdepth: 1
+
+   compute/ironic
+   compute/nova-cells
+   compute/pci-passthrough
+   compute/nfv
