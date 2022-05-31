@@ -66,3 +66,17 @@ Compute
    compute/nova-cells
    compute/pci-passthrough
    compute/nfv
+
+Storage
+~~~~~~~
+
+.. toctree::
+   :maxdepth: 1
+
+   storage/encryption-at-rest
+   storage/ceph-rgw-multisite
+   storage/ceph-rbd-mirror
+   storage/ceph-erasure-coding
+   storage/shared-filesystem-services
+   storage/cinder-replication
+   storage/swift
