@@ -239,6 +239,7 @@ issues, general QA) is still required before the charms are ready for
 production use (promoted to Stable).
 
 * `ceph-dashboard`_
+* `ceph-nfs`_
 * `cinder-nimblestorage`_
 * `cinder-solidfire`_
 * `ironic-api`_
@@ -358,6 +359,7 @@ These charms have reached EOL and are deprecated.
 .. _vault: https://opendev.org/openstack/charm-vault/
 
 .. _ceph-dashboard: https://opendev.org/openstack/charm-ceph-dashboard
+.. _ceph-nfs: https://opendev.org/openstack/charm-ceph-nfs
 .. _cinder-nimblestorage: https://opendev.org/openstack/charm-cinder-nimblestorage
 .. _cinder-solidfire: https://opendev.org/openstack/charm-cinder-solidfire
 .. _ironic-api: https://opendev.org/openstack/charm-ironic-api
