@@ -60,10 +60,9 @@ Each cell requires the following charms:
 .. note::
 
    Prior to Ubuntu 20.04 LTS (Focal) the percona-cluster charm (as opposed to
-   mysql-innodb-cluster) is used for the cloud database
-   (see :doc:`percona-cluster charm: series upgrade to focal
-   <percona-series-upgrade-to-focal>`). The `corresponding page in the Train
-   release`_ of this guide covers percona-cluster instructions.
+   mysql-innodb-cluster) is used for the cloud database (see
+   :doc:`cdg:percona-series-upgrade-to-focal`). The `corresponding page in the
+   Train release`_ of this guide covers percona-cluster instructions.
 
 To allow each application to be configured differently between cells and to
 be able to distinguish which instance of an application goes with which cell it

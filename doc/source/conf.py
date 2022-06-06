@@ -52,9 +52,9 @@ intersphinx_mapping = {
 spelling_lang="en_GB"
 spelling_show_whole_line=True
 spelling_word_list_filename = [
-    'spelling_initial_seeding.txt',
-    'spelling_words.txt',
-    'dubious_words.txt'
+    '_spelling/spelling_initial_seeding.txt',
+    '_spelling/spelling_words.txt',
+    '_spelling/dubious_words.txt'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
