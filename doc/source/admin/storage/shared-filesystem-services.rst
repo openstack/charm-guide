@@ -5,40 +5,53 @@ Shared filesystem services
 Overview
 --------
 
-As of the 20.02 OpenStack Charms release, with OpenStack Rocky or later,
-support for integrating Manila with CephFS to provide shared filesystems is
-available.
+The `Manila`_ project can be integrated with `CephFS`_ to provide shared
+filesystem services. To add such services to a Ceph-backed OpenStack cloud,
+three charms are needed:
 
-Three new charms are needed to deploy this solution: 'manila',
-'manila-ganesha', and 'ceph-fs'. The 'manila' charm provides the Manila API
-service to the OpenStack deployment, the 'ceph-fs' charm provides the Ceph
-services required to provide CephFS, and the 'manila-ganesha' charm integrates
-these two via a Manila managed NFS gateway (Ganesha) to provide access
-controlled NFS mounts to OpenStack instances.
+* ceph-fs
+* manila
+* manila-ganesha
+
+The manila charm provides the Manila API service, the ceph-fs charm exposes the
+Ceph services required by CephFS, and the manila-ganesha charm integrates
+Manila and CephFS via a Manila-managed NFS gateway (Ganesha) to provide
+access-controlled NFS mounts to OpenStack VMs.
 
 Deployment
 ----------
 
-.. warning::
+The below overlay bundle encapsulates what is needed in terms of the
+deployment.
 
-   Throughout this guide make sure ``openstack-origin`` matches the value you
-   used when `deploying OpenStack`_.
+.. important::
 
-One way to add Manila Ganesha is to do so during the bundle deployment of a new
-OpenStack cloud. This is done by means of a bundle overlay, such as
-`manila-ganesha-overlay.yaml`:
+   An overlay's parameters should be adjusted as per the local environment
+   (e.g. the machine mappings). In particular, the following placeholders must
+   be replaced with actual values:
+
+   * ``$SERIES``
+   * ``$OPENSTACK_ORIGIN``
+   * ``$VIP``
+   * ``$CHANNEL_CEPH``
+   * ``$CHANNEL_HACLUSTER``
+   * ``$CHANNEL_OPENSTACK``
+
+   Replace ``$SERIES`` with the Ubuntu release running on the cloud nodes (e.g.
+   'jammy'). For ``$OPENSTACK_ORIGIN`` and ``$VIP`` see the corresponding charm
+   options.  For channel information see the
+   :doc:`../../project/charm-delivery` page.
 
 .. code-block:: yaml
 
+   series: $SERIES
+
    machines:
      '0':
-       series: bionic
      '1':
-       series: bionic
      '2':
-       series: bionic
      '3':
-       series: bionic
+
    relations:
    - - manila:ha
      - manila-hacluster:ha
@@ -62,24 +75,31 @@ OpenStack cloud. This is done by means of a bundle overlay, such as
      - keystone:identity-service
    - - manila:shared-db
      - percona-cluster:shared-db
-   series: bionic
+
    applications:
+
      ceph-fs:
-       charm: cs:ceph-fs
+       charm: ch:ceph-fs
+       channel: $CHANNEL_CEPH
        num_units: 2
        options:
-         source: cloud:bionic-train
+         source: $OPENSTACK_ORIGIN
+
      manila-hacluster:
-       charm: cs:hacluster
+       charm: ch:hacluster
+       channel: $CHANNEL_HACLUSTER
+
      manila-ganesha-hacluster:
-       charm: cs:hacluster
+       charm: ch:hacluster
+       channel: $CHANNEL_OPENSTACK
+
      manila-ganesha:
-       charm: cs:manila-ganesha
-       series: bionic
+       charm: ch:manila-ganesha
+       channel: $CHANNEL_OPENSTACK
        num_units: 3
        options:
-         openstack-origin: cloud:bionic-train
-         vip: <INSERT VIP(S)>
+         openstack-origin: $OPENSTACK_ORIGIN
+         vip: $VIP
        bindings:
          public: public
          admin: admin
@@ -92,13 +112,14 @@ OpenStack cloud. This is done by means of a bundle overlay, such as
        - 'lxd:1'
        - 'lxd:2'
        - 'lxd:3'
+
      manila:
-       charm: cs:manila
-       series: bionic
+       charm: ch:manila
+       channel: $CHANNEL_OPENSTACK
        num_units: 3
        options:
-         openstack-origin: cloud:bionic-train
-         vip: <INSERT VIP(S)>
+         openstack-origin: $OPENSTACK_ORIGIN
+         vip: $VIP
          default-share-backend: cephfsnfs1
          share-protocols: NFS
        bindings:
@@ -112,37 +133,32 @@ OpenStack cloud. This is done by means of a bundle overlay, such as
        - 'lxd:2'
        - 'lxd:3'
 
-.. warning::
-
-   The machine mappings will almost certainly need to be changed.
-
-To deploy OpenStack with Manila Ganesha:
-
-.. code-block:: none
-
-   juju deploy ./base.yaml --overlay ./manila-ganesha-overlay.yaml
-
-Where `base.yaml` is a bundle to deploy OpenStack. See the `Getting started
-tutorial`_ for an introduction to bundle usage.
+The feature should be deployable during (or after) the deployment of a cloud
+- as per the Juju documentation: `How to add an overlay bundle`_.
 
 Configuration
 -------------
 
-To create and access CephFS shares over NFS, you'll need to `create the share`_
-and then you'll need to `grant access`_ to the share.
+To create and access CephFS shares over NFS, first create the share and then
+grant access to the share. See the following upstream Manila resources for
+guidance:
 
-Spaces
-------
+* `Create CephFS NFS share`_
+* `Allow access to CephFS NFS share`_
 
-This charm can optionally dedicate a provider's physical network to serving
-Ganesha NFS shares. It does so through its support for Juju spaces.
+Dedicated physical network
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The charm uses a space called 'tenant-storage' and it should be accessible
-(routed is ok) to all tenants that expect to access the Manila shares. The
-easiest way to ensure this access is to create a provider network in OpenStack
-that is mapped to the same network layer as this space is. For example, the
-storage space is mapped to VLAN 120, then an OpenStack administrator should
-create a provider network that maps to the same VLAN. For example:
+The manila-ganesha charm can optionally dedicate a provider's physical network
+to serving Ganesha NFS shares.
+
+The charm uses a network space called 'tenant-storage' and it should be
+accessible to all tenants that expect to access the Manila shares. The easiest
+way to ensure this access is to create a provider network in OpenStack that is
+mapped to the same network layer as the space is.
+
+For example, if the space is mapped to VLAN 120, then a provider network can be
+created that maps to the same VLAN:
 
 .. code-block:: none
 
@@ -164,14 +180,16 @@ DHCP is disabled in this space. If MAAS performs any additional allocations in
 this space, ensure that the range configured for the subnet in Neutron does not
 overlap with the MAAS subnets.
 
-If dedicating a network space is not desired, it is also possible to use
-Ganesha over a routed network. Manila's IP access restrictions will continue to
-secure access to Ganesha even for a network that is not managed by Neutron. In
-order for the latter to apply, a provider network is required, and guests must
-be attached to that provider network.
+.. note::
+
+   As an alternative to using a network space, Ganesha can be used over a
+   routed network. Manila's IP access restrictions will continue to secure
+   access to Ganesha even for a network that is not managed by Neutron;
+   however, a provider network is required, and guests must be attached to it.
 
 .. LINKS
-.. _deploying OpenStack: install-openstack
-.. _create the share: https://docs.openstack.org/manila/latest/admin/cephfs_driver.html#create-cephfs-nfs-share
-.. _grant access: https://docs.openstack.org/manila/latest/admin/cephfs_driver.html#allow-access-to-cephfs-nfs-share
-.. _Getting started tutorial: https://docs.openstack.org/charm-guide/latest/getting-started/index.html
+.. _Manila: https://docs.openstack.org/manila/latest/
+.. _CephFS: https://docs.ceph.com/en/latest/cephfs/
+.. _Create CephFS NFS share: https://docs.openstack.org/manila/latest/admin/cephfs_driver.html#create-cephfs-nfs-share
+.. _Allow access to CephFS NFS share: https://docs.openstack.org/manila/latest/admin/cephfs_driver.html#allow-access-to-cephfs-nfs-share
+.. _How to add an overlay bundle: https://juju.is/docs/sdk/add-an-overlay-bundle
