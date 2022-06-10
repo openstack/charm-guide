@@ -118,14 +118,13 @@ https://github.com/juju/layer-index/pull/110
 Release Tools
 -------------
 
-The ``release-tools`` repository contains lists of all OpenStack charms:
+The ``release-tools`` repository contains the definitions for the OpenStack,
+Ceph, OVN and supporting charms. Add an entry for the new charm in the
+appropriate file under the ``lp-builder-config`` directory. Example:
+https://github.com/openstack-charmers/release-tools/pull/222
 
-* ``operator-charms.txt``: add your charm to this list if it has been
-  implemented using the `Operator framework`_. Example:
-  https://github.com/openstack-charmers/release-tools/pull/176
-* ``charms.txt`` and ``source-charms.txt``: add your charm to these lists if it
-  has been implemented using the Reactive framework. Example:
-  https://github.com/openstack-charmers/release-tools/pull/119
+The format of the ``lp-builder-config`` files is defined in the
+`CharmProject`_ class.
 
 Charmhub and Launchpad builders
 -------------------------------
@@ -243,3 +242,4 @@ The feature should be deployable during (or after) the deployment of a cloud
 .. _Reactive framework: https://charmsreactive.readthedocs.io/en/latest/
 .. _Operator framework: https://github.com/canonical/operator
 .. _How to add an overlay bundle: https://juju.is/docs/sdk/add-an-overlay-bundle
+.. _CharmProject: https://github.com/openstack-charmers/charmhub-lp-tools/blob/main/charmhub_lp_tools/charm_project.py#L47
