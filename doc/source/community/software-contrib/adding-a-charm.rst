@@ -176,6 +176,56 @@ https://review.opendev.org/c/openstack/charm-guide/+/821962
 Add your charm to the upgrade documentation. Example:
 https://review.opendev.org/c/openstack/charm-deployment-guide/+/828183
 
+Often the introduction of a new charm coincides with a newly supported feature.
+In this case, supporting documentation should be submitted in the form of a
+:ref:`management how-to <howto_management>` (or as an addition to an existing
+how-to). If the deployment of the new feature is non-trivial then a overlay
+bundle that summarises the deployment should be included in the how-to (see
+sub-section `Feature overlay bundles`_).
+
+Feature overlay bundles
+~~~~~~~~~~~~~~~~~~~~~~~
+
+An overlay bundle for a feature should include placeholder variables that are
+intended to be replaced with values that are in accordance with the user's
+local environment and/or the intended cloud design. Consider the following
+overlay excerpt:
+
+.. code-block:: yaml
+
+   series: $SERIES
+
+   applications:
+
+     ceph-fs:
+       charm: ch:ceph-fs
+       channel: $CHANNEL_CEPH
+       num_units: 2
+       options:
+         source: $OPENSTACK_ORIGIN
+
+      manila-ganesha:
+        charm: ch:ganesha
+        channel: $CHANNEL_OPENSTACK
+        vip: $VIP
+
+The overlay may optionally include a variables section that makes use of YAML
+substitution. For example:
+
+.. code-block:: yaml
+
+   variables:
+
+     data-port: &data-port br-ex:$OVN_DATA_PORT
+     osd-devices: &osd-devices $OSD_DEVICES
+     network-space: &network-space $SPACE
+
+Wherever the string, for example, ``*network-space`` appears in the overlay it
+will be replaced by the value given by ``$SPACE``.
+
+The feature should be deployable during (or after) the deployment of a cloud
+- as per the Juju documentation: `How to add an overlay bundle`_.
+
 .. LINKS
 .. _release tools: https://github.com/openstack-charmers/release-tools
 .. _Gitea: https://opendev.org/openstack
@@ -192,3 +242,4 @@ https://review.opendev.org/c/openstack/charm-deployment-guide/+/828183
 .. _charmhub-lp-tools: https://github.com/openstack-charmers/charmhub-lp-tools
 .. _Reactive framework: https://charmsreactive.readthedocs.io/en/latest/
 .. _Operator framework: https://github.com/canonical/operator
+.. _How to add an overlay bundle: https://juju.is/docs/sdk/add-an-overlay-bundle

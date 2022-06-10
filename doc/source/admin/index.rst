@@ -39,6 +39,8 @@ Ceph storage operations (published in the Charmed Ceph documentation):
    Encryption at Rest <https://ubuntu.com/ceph/docs/encryption-at-rest>
    Software upgrades <https://ubuntu.com/ceph/docs/software-upgrades>
 
+.. _howto_management:
+
 Management
 ----------
 
