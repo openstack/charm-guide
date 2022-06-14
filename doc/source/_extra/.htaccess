@@ -63,3 +63,5 @@ RedirectMatch 301 ^/charm-guide/([^/]+)/reference/release-timeline-2104.html$ /c
 RedirectMatch 301 ^/charm-guide/([^/]+)/reference/release-timeline-2101.html$ /charm-guide/$1/project/release-timeline-2101.html
 RedirectMatch 301 ^/charm-guide/([^/]+)/reference/release-timeline-2010.html$ /charm-guide/$1/project/release-timeline-2010.html
 RedirectMatch 301 ^/charm-guide/([^/]+)/reference/release-timeline-2008.html$ /charm-guide/$1/project/release-timeline-2008.html
+
+RedirectMatch 301 ^/charm-guide/([^/]+)/release-notes/2204.html$ /charm-guide/$1/release-notes/yoga.html
