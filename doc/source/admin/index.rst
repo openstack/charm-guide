@@ -11,7 +11,7 @@ General cloud operations:
    :maxdepth: 1
 
    ops-change-keystone-password
-   ops-scale-in-nova-compute
+   ops-scale-back-nova-compute
    ops-unseal-vault
    ops-config-tls-vault-api
    ops-live-migrate-vms
@@ -27,6 +27,7 @@ General cloud operations:
    ops-repair-rabbitmq-node
    ops-restart-partitioned-rabbitmq-cluster
    ops-replace-control-plane-service-ha
+   ops-replace-hyperconverged-compute-node
 
 Ceph storage operations (published in the Charmed Ceph documentation):
 

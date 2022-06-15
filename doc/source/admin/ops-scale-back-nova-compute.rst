@@ -1,11 +1,11 @@
 :orphan:
 
-=====================================
-Scale in the nova-compute application
-=====================================
+=======================================
+Scale back the nova-compute application
+=======================================
 
-Introduction
-------------
+Preamble
+--------
 
 Scaling in the nova-compute application implies the removal of one or more
 nova-compute units (i.e. compute nodes). This is easily done with generic Juju
@@ -61,10 +61,12 @@ assign new VMs to the unit.
    Before continuing, make sure that all VMs hosted on the target compute node
    have been either deleted or migrated to another node.
 
-Remove the node
-~~~~~~~~~~~~~~~
+.. _unregister_compute_node:
 
-Now remove the compute node from the cloud:
+Unregister the node
+~~~~~~~~~~~~~~~~~~~
+
+Now unregister the compute node from the cloud:
 
 .. code-block:: none
 

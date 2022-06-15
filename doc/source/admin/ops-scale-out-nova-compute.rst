@@ -4,8 +4,8 @@
 Scale out the nova-compute application
 ======================================
 
-Introduction
-------------
+Preamble
+--------
 
 Scaling out the nova-compute application implies the addition of one or more
 nova-compute units (i.e. compute nodes). It is a straightforward operation
@@ -110,6 +110,8 @@ The status output should eventually look similar to:
    Machine  State    DNS         Inst id  Series  AZ       Message
    0        started  10.0.0.222  node1    focal   default  Deployed
    3        started  10.0.0.241  node4    focal   default  Deployed
+
+.. _scale_out_nova_compute_verfication:
 
 Verification
 ~~~~~~~~~~~~
