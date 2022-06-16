@@ -195,9 +195,8 @@ The symptom is missing sym links to certificates for Subject Alternative Name
 Apache configuration may fail as it will point to a certificate for the VIP(s).
 
 The workaround is to set the above settings to False and utilise the
-post-deployment actions for preparing vault as documented in the `Vault
-section`_ and the `Certificate Lifecycle Management`_ section of the `OpenStack
-Charms Deployment Guide`_.
+post-deployment actions for preparing vault as documented in the `vault
+charm`_.
 
 TrilioVault Data Mover charm upgrade
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -281,8 +280,8 @@ vault
 If a series upgrade is attempted while Vault is sealed then manual intervention
 will be required (see bugs `LP #1886083`_ and `LP #1890106`_). The vault leader
 unit (which will be in error) will need to be unsealed and the hook error
-resolved. The `Vault section`_ in the `OpenStack Charms Deployment Guide`_ has
-detailed unsealing instructions and the hook error can be resolved with:
+resolved. The `vault charm`_ documentation includes unsealing instructions, and
+the hook error can be resolved with:
 
 .. code-block:: none
 
@@ -319,9 +318,8 @@ Deployment Guide`_ for more details.
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
-.. _Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
 .. _Open vSwitch Integration Guide for Centralized Control: https://docs.openvswitch.org/en/latest/topics/integration/
-.. _Certificate Lifecycle Management: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
+.. _vault charm: https://charmhub.io/vault
 .. _Migration from Neutron ML2+OVS to ML2+OVN section of the OVN: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html#migration-from-neutron-ml2-ovs-to-ml2-ovn
 .. _Octavia deprecation notes for Victoria: https://docs.openstack.org/releasenotes/octavia/victoria.html#deprecation-notes
 

@@ -106,8 +106,7 @@ network space can be used for all Masakari bindings.
 
 If the cloud is TLS-enabled via Vault then a relation is needed between the
 masakari and vault applications. Uncomment the relation in the overlay bundle
-to achieve this. See :doc:`cdg:app-certificate-management` in the Deploy Guide
-for background information.
+to achieve this. See the :doc:`security/tls` page for background information.
 
 .. important::
 

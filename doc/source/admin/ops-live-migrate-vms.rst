@@ -157,8 +157,8 @@ Avoid expired Keystone tokens
 
 Keystone token expiration times should be increased when dealing with oversized
 VMs as expired tokens will prevent the cloud database from being updated. This
-will lead to migration failure and a corrupted database entry. See `Keystone
-tokens`_ in the OpenStack Charms Deployment Guide.
+will lead to migration failure and a corrupted database entry (see
+:ref:`keystone_tokens`).
 
 To set the token expiration time to three hours (from the default one hour):
 
@@ -379,4 +379,3 @@ A failed migration will result in log messages being appended to the
 .. LINKS
 .. _nova-compute charm: https://jaas.ai/nova-compute
 .. _SSH keys and VM migration: https://opendev.org/openstack/charm-nova-compute/src/branch/master/README.md#ssh-keys-and-vm-migration
-.. _Keystone tokens: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/keystone.html#token-support
