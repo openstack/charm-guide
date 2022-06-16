@@ -85,4 +85,4 @@ When you're done, move on to the :doc:`Configure the overlay bundle <overlay>`
 page.
 
 .. LINKS
-.. _Reserved IP range: https://maas.io/docs/concepts-and-terms#heading--ip-ranges
+.. _Reserved IP range: https://maas.io/docs/maas-concepts-and-terms-reference#heading--ip-ranges

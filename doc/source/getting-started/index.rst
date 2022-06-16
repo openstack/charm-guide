@@ -5,7 +5,7 @@ Getting started
 Overview
 --------
 
-This tutorial shows how to deploy a test Charmed OpenStack cloud. It's major
+This tutorial shows how to deploy a test Charmed OpenStack cloud. Its major
 elements are:
 
 * Ubuntu 20.04 LTS (Focal) for the cloud nodes
@@ -51,8 +51,6 @@ Other prerequisites
 * Create directory ``~/tutorial``. All the files created in this tutorial will
   be placed there.
 
-* The MAAS server must have Focal amd64 images available.
-
 * You should be briefly acquainted with these concepts:
 
   * `bundles`_
@@ -78,6 +76,6 @@ The procedure consists of the following steps:
 .. LINKS
 .. _Juju: https://juju.is
 .. _MAAS: https://maas.io
-.. _bundles: https://jaas.ai/docs/sdk/manage-bundles
+.. _bundles: https://juju.is/docs/sdk/manage-bundles
 .. _constraints: https://juju.is/docs/olm/constraints
-.. _network spaces: https://maas.io/docs/snap/3.1/ui/concepts-and-terms#heading--spaces
+.. _network spaces: https://maas.io/docs/maas-concepts-and-terms-reference#heading--spaces
