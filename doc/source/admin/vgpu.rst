@@ -161,6 +161,18 @@ available (``max_instance=4``), vGPU type ``nvidia-299`` (on physical GPU
 
    juju config nova-compute-nvidia-vgpu vgpu-device-mappings="{'nvidia-299': ['0000:c1:00.0']}"
 
+Alternatively, to have two Virtual Workstation optimized (``GRID V100-8Q``) vGPUs
+become available (``max_instances=2``), vGPU type ``nvidia-108`` (on physical
+GPU ``0000:c1:00.0``) can be selected:
+
+.. code-block:: none
+
+   juju config nova-compute-nvidia-vgpu vgpu-device-mappings="{'nvidia-108': ['0000:c1:00.0']}"
+
+Instances provisioned using this vGPU type could then be used as virtual
+workstations and accessed using suitable hardware accelerated remote
+desktop utilities.
+
 .. warning::
 
    Changing vGPU types may prevent new VMs from being created. Failure will
