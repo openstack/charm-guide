@@ -2,9 +2,13 @@
 Prepare Juju
 ============
 
-To use MAAS as a backing cloud we need to add MAAS to Juju, give MAAS
-credentials to Juju, and create a Juju controller. The corresponding Juju
-commands are:
+To use MAAS as a backing cloud we need to:
+
+1. add MAAS to Juju
+1. give MAAS credentials to Juju
+1. create a Juju controller
+
+The corresponding Juju commands are:
 
 .. code-block:: none
 
@@ -13,6 +17,7 @@ commands are:
    juju bootstrap
 
 Please see the Juju documentation for guidance: `How to use MAAS with Juju`_.
+The above commands only give the general idea.
 
 Assuming the controller is called 'maas-controller', create a model called
 'openstack' and give it the desired default series:

@@ -18,13 +18,45 @@ save it in the ``~/tutorial`` directory.
 Replace the variables in the file with the some of the values that were
 collected in the :doc:`previous step <settings>`.
 
-If constraints are not being used, replace ``$CONSTRAINTS`` with a null value
-(nothing).
-
-.. note::
-
-   If a network space is configured within MAAS for the cloud's subnet, each
-   charm will need to be informed of it via the ``bindings`` charm parameter.
-
 Once you've edited and saved the file, proceed to the :doc:`Prepare Juju
 <juju>` page.
+
+Adjustments
+-----------
+
+The overlay file will require further adjustments as per the below scenarios.
+
+Constraints
+~~~~~~~~~~~
+
+Replace ``$CONSTRAINTS`` with a null value (nothing) if constraints are not
+being used.
+
+Network spaces
+~~~~~~~~~~~~~~
+
+Each charm will need to be informed of a network space, via the ``bindings``
+charm parameter, if a network space is configured within MAAS for the cloud's
+subnet.
+
+OVN Chassis data port and hardware addresses
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Comment out the ``data-port`` variable if hardware addresses are being used to
+designate the OVN Chassis interfaces:
+
+.. code-block:: none
+
+   #data-port: &data-port br-ex:$OVN_DATA_PORT
+
+Charm option ``bridge-interface-mappings`` should then be configured in this
+way:
+
+.. code-block:: yaml
+
+   bridge-interface-mappings: >-
+     br-ex:52:54:00:03:01:01
+     br-ex:52:54:00:03:01:02
+     br-ex:52:54:00:03:01:03
+
+Use your own MAC addresses but preserve ``br-ex:``.
