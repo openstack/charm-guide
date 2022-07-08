@@ -255,7 +255,7 @@ Upgrading OpenStack
 Before upgrading OpenStack, all OpenStack Charms should be running the latest
 stable charm revision.
 
-To upgrade an existing Queens based deployment on Ubuntu 18.04 to the Stein
+To upgrade an existing Rocky-based deployment on Ubuntu 18.04 to the Stein
 release, re-configure the charm with a new openstack-origin
 configuration:
 
