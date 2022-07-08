@@ -11,6 +11,21 @@ There are two different architectural approaches to the OpenStack charms:
 charm-helpers-style charms have an extra *gotcha* when it comes to syncing new
 versions of charm-helpers to the charm.  Please see the note at the end.
 
+.. note::
+
+   More detailed information for working with Gerrit can be found in the
+   upstream documenation (e.g. the `OpenDev workflow`_ page).
+
+Install ``git-review``
+~~~~~~~~~~~~~~~~~~~~~~
+
+The Git subcommand tool that you'll need to interface with Gerrit is called
+:command:`git-review`. Install it now:
+
+.. code-block:: none
+
+   sudo apt install git-review
+
 Development Workflow
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -146,3 +161,6 @@ For details on getting started with `Launchpad`_ development, please read the `L
 
 Please do reach out to us. See our :doc:`Contact us <../../community/contact>`
 page.
+
+.. LINKS
+.. _OpenDev workflow: https://docs.opendev.org/opendev/infra-manual/latest/gettingstarted.html
