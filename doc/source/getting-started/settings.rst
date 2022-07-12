@@ -22,20 +22,28 @@ Assign a value to each variable now.
    * - data port interface
      - **bond1**
      - OVN_DATA_PORT
-     - the network interface that the OVN Chassis will bind to - it's the
-       second interface (cabled but unconfigured) that should be present on the
-       three cloud nodes
-
+     - the name of the network interface that the three OVN Chassis will bind
+       to
    * - storage devices
      - **/dev/sda /dev/sdb**
      - OSD_DEVICES
-     - all possible block devices that can be used on all Ceph OSD nodes
+     - all possible block devices that can be used on the three cloud nodes -
+       each cloud node will also act as a Ceph OSD node
 
    * - constraints
      - **cores=4,mem=16**
      - CONSTRAINTS
      - optional - used to filter on MAAS nodes that align with the stated
        hardware requirements
+
+For the OVN Chassis network interface (OVN_DATA_PORT), in terms of its
+configuration, it is convenient for its name to be common across all three
+cloud nodes (as given in the table). If this is not the case, individual
+hardware (MAC) addresses can be used instead. Make note of them.
+
+If a second interface is being used for OVN_DATA_PORT (i.e. Open vSwitch
+bridges are not being used), it must be cabled, reside on the MAAS subnet
+(EXT_SUBNET), and have an IP address status of 'Unconfigured' (within MAAS).
 
 .. list-table::
    :header-rows: 1

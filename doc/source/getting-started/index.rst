@@ -43,19 +43,27 @@ The software versions used in this tutorial are:
 * MAAS 2.9.2
 * Juju 2.9.29
 
-Other prerequisites
-~~~~~~~~~~~~~~~~~~~
+Client
+~~~~~~
 
-* You should have `Juju`_ installed and be comfortable with its basic usage.
+All operations will be performed from a lightly-resourced client host that has
+connectivity to the MAAS cluster.
 
-* Create directory ``~/tutorial``. All the files created in this tutorial will
+On this client you should:
+
+* Install `Juju`_ (the Juju client).
+
+* Create directory ``~/tutorial`` . All the files needed for this tutorial will
   be placed there.
 
-* You should be briefly acquainted with these concepts:
+Concepts
+~~~~~~~~
 
-  * `bundles`_
-  * `constraints`_
-  * `network spaces`_
+You should be briefly acquainted with these concepts:
+
+* `bundles`_
+* `constraints`_
+* `network spaces`_
 
 Procedure
 ---------
