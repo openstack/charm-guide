@@ -295,8 +295,8 @@ restarts has made them irrelevant.
 Issues discovered during this release cycle
 -------------------------------------------
 
-glance-simplestreams-sync endpoint change
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+glance-simplestreams-sync: endpoint change
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ceph-radosgw charm improves how URLs are processed by the RADOS Gateway.
 This change however will lead to breakage for an existing ``product-streams``
@@ -313,6 +313,13 @@ nova-compute-nvidia-vgpu charm, this will cause new Nova instances to enter
 into an error state subsequent to a vGPU device being attached to an instance.
 This is being tracked in issue `LP #1951656`_. A fix will soon be available as
 an SRU.
+
+glance-simplestreams-sync: Juju resources support and snap install
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The glance-simplestreams-sync charm has gained support for Juju resources.
+Since Simplestreams is now installed via a snap, offline environments can
+benefit by being able to supply the snap as a resource.
 
 .. LINKS
 .. _22.04 milestone: https://launchpad.net/openstack-charms/+milestone/22.04
