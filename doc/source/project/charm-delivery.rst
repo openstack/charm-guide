@@ -181,7 +181,7 @@ provided.
       |                          |              | | ``Rocky``    |              |
       |                          |              | | ``Queens``   |              |
       +--------------------------+--------------+----------------+--------------+
-      | openstack-loadbalancer   | ``jammy`` ?? | ``Yoga``       | | ``jammy``  |
+      | openstack-loadbalancer   | ``jammy``    | ``Yoga``       | | ``jammy``  |
       |                          |              |                | | ``focal``  |
       +--------------------------+--------------+----------------+--------------+
       | pacemaker-remote         | ``2.4``      | ``Yoga``       | | ``jammy``  |
