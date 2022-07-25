@@ -15,7 +15,7 @@ See the Neutron documentation on `OVS hardware offload`_ for background
 information.
 
 For OVN-specific information on hardware offloading see the
-:ref:`ovn_configuration` page.
+:doc:`ovn/hardware-offload` page.
 
 .. warning::
 

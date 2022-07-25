@@ -803,8 +803,8 @@ deployment of OVN with MySQL 8:
    vault/0*                       active    idle   3/lxd/2  10.246.114.74   8200/tcp           Unit is ready (active: true, mlock: disabled)
      vault-mysql-router/0*        active    idle            10.246.114.74                      Unit is ready
 
-Refer to the :doc:`networking/ovn` page for more information on how to deploy
-OVN.
+Refer to the :doc:`networking/ovn/index` page for more information on how to
+deploy OVN.
 
 Other items of interest
 -----------------------
