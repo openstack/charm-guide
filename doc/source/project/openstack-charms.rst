@@ -2,11 +2,12 @@
 Supported charms
 ================
 
-This page lists the charms that make up the OpenStack Charms project.
+This page lists the charms that make up the OpenStack Charms project. The
+version of OpenStack Charms when a charm first appeared is provided (see
+:doc:`release-schedule` for details of release times).
 
-Each stable release of OpenStack Charms is backwards-compatible to cover all
-currently-supported combinations of Ubuntu and OpenStack, relative to the
-specific payload of each charm.
+Read :ref:`cdg:charm_types` in the upgrade documentation to understand charm
+support in terms of Ubuntu series and OpenStack release.
 
 .. note::
 
@@ -232,11 +233,10 @@ OpenStack project.
 Tech-preview charms (Beta)
 --------------------------
 
-These charms do not have stable releases, even though they may technically have
-"stable/yy.mm" branches. Regardless of any maintenance and testing that these
-charms may receive, some work (major bugs, payload packaging issues, project
-issues, general QA) is still required before the charms are ready for
-production use (promoted to Stable).
+These charms do not have stable releases. Regardless of any maintenance and
+testing that these charms may receive, some work (major bugs, payload packaging
+issues, project issues, general QA) is still required before the charms are
+ready for production use (promoted to Stable).
 
 * `ceph-dashboard`_
 * `ceph-nfs`_
