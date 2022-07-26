@@ -17,13 +17,13 @@ First consult these resources:
 * `Existing bugs`_ - someone else may have already encountered the issue -
   avoid creating duplicate bugs
 
-The latest release of the OpenStack Charms contain the latest fixes. Ideally,
-upgrade to latest stable charms and confirm whether the problem persists. See
-the `Charms upgrade`_ documentation.
+The observed issue may already be fixed. Ideally, upgrade to the most recent
+revision available and confirm whether the problem persists. See the `Charms
+upgrade`_ documentation.
 
 Consider testing for a regression before submitting a bug as it is an extremely
 valuable data point. The main variables are Ubuntu series, OpenStack release,
-and charm revision.
+and charm revision/channel.
 
 Cloud stack
 ~~~~~~~~~~~
@@ -32,7 +32,7 @@ Understand the cloud stack to ensure you are filing your bug in the right
 place.
 
 Charmed OpenStack is the result of a multi-layered stack, and a problem's root
-cause may reside at any one of its layers:
+cause may reside in any one of its layers:
 
 * **charm payload** - OpenStack service (e.g. Nova Compute)
 * **charms** - OpenStack charm (e.g. nova-compute)
@@ -42,6 +42,11 @@ cause may reside at any one of its layers:
 
 The bug you are submitting is for an individual OpenStack charm (the charms
 layer).
+
+When `filing the bug`_, select the charm (from the 'Project' dropdown menu)
+that you think is most closely related to your problem. For example, if the
+problem seems related to a malfunctioning hypervisor, select **OpenStack Nova
+Compute Charm** (i.e. the nova-compute charm).
 
 Essential information
 ---------------------
@@ -308,3 +313,4 @@ Please include an explanatory bug comment:
 .. _AppArmor: https://ubuntu.com/server/docs/security-apparmor
 .. _Existing bugs: https://bugs.launchpad.net/openstack-charms/+bugs?orderby=-id&start=0
 .. _Charms upgrade: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-charms.html
+.. _filing the bug: https://bugs.launchpad.net/openstack-charms/+filebug
