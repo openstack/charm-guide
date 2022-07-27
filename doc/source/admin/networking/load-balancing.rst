@@ -40,8 +40,7 @@ load balancers. Barbican, in turn, uses Vault to securely store that data.
 .. note::
 
    For Vault deployment instructions see the `vault charm`_. For certificate
-   management information read the :doc:`cdg:app-certificate-management`
-   page of the Deploy Guide.
+   management information read the :doc:`../security/tls` page.
 
 To deploy Barbican:
 

@@ -40,8 +40,7 @@ Certificates must be managed by Vault.
 .. note::
 
    For Vault deployment instructions see the `vault charm`_. For certificate
-   management information read the :doc:`cdg:app-certificate-management`
-   page of the Deploy Guide.
+   management information read the :doc:`../security/tls` page.
 
 To deploy OVN:
 
