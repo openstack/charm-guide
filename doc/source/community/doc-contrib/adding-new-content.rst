@@ -130,9 +130,9 @@ viewed in the Charmhub. See the `keystone charm Docs tab`_ for an example.
 Writing style
 ~~~~~~~~~~~~~
 
-Please use the :doc:`style guide <doc-style-guide>` when creating content.
-Documentation is more clearly understood by users and developers alike when it
-is implemented in a consistent manner.
+Please use the :doc:`styleguide` when creating content. Documentation is more
+clearly understood by users and developers alike when it is implemented in a
+consistent manner.
 
 Technical accuracy
 ~~~~~~~~~~~~~~~~~~

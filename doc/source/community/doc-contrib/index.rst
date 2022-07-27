@@ -13,7 +13,7 @@ addition of new content. The following resources are available:
    :maxdepth: 1
 
    adding-new-content
-   doc-style-guide
+   styleguide
 
 Below is a summary of all documentation sources for the OpenStack Charms
 project.
