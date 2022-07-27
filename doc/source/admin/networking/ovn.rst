@@ -40,8 +40,7 @@ Certificates must be managed by Vault.
 .. note::
 
    For Vault deployment instructions see the `vault charm`_. For certificate
-   management information read the :doc:`cdg:app-certificate-management`
-   page of the Deploy Guide.
+   management information read the :doc:`../security/tls` page.
 
 To deploy OVN:
 
@@ -105,7 +104,7 @@ for use with hardware offloading and make them available to OpenStack.
    This feature is to be considered Tech Preview. OVN has more stringent
    requirements for match/action support in the hardware than for example
    Neutron ML2+OVS. Make sure to acquire hardware with appropriate support.
-   
+
    Depending on hardware vendor, it may be required to install third party
    drivers (DKMS) in order to successfully use this feature.
 

@@ -10,8 +10,8 @@ the collection of charms. It also helps to reduce the amount of effort needed
 during the commit review phase (for both author and reviewer) when new charms
 are developed.
 
-The writing format is Markdown. Please see the :doc:`Writing style guide
-<../doc-contrib/doc-style-guide>` for the OpenStack Charms project.
+The writing format is Markdown. Please see the :doc:`../doc-contrib/styleguide`
+for the OpenStack Charms project.
 
 General approach
 ----------------
