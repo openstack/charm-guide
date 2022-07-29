@@ -24,9 +24,9 @@ machines **3**, **11**, and **12**, each of which are not hyperconverged.
 
 .. note::
 
-    Juju applications can be given custom names at deploy time (see
-    `Application groups`_ in the Juju documentation). This document will call
-    out these `named applications` wherever they occur.
+   A Juju application can be given a custom name (i.e. named application) at
+   deploy time. When multiple units are involved this is referred to as an
+   application group.
 
 **machine 17**
 
@@ -330,5 +330,4 @@ along with their HA status and machine type:
 - ``rabbitmq-server`` (natively HA; metal)
 
 .. LINKS
-.. _Application groups: https://discourse.charmhub.io/t/application-groups
 .. _Landscape project: https://landscape.canonical.com

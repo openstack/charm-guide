@@ -75,7 +75,8 @@ see this `Fernet FAQ`_.
 .. important::
 
    Starting with OpenStack Rocky, only the Fernet format for authentication
-   tokens is supported. This is documented as a `known upgrade issue`_.
+   tokens is supported. This is documented on the
+   :doc:`cdg:upgrade-queens-to-rocky` page in the Deploy Guide.
 
 Fernet keys
 -----------
@@ -202,4 +203,3 @@ therefore advised.
 .. LINKS
 .. _Security compliance and PCI-DSS: https://docs.openstack.org/keystone/latest/admin/configuration.html#security-compliance-and-pci-dss
 .. _Fernet FAQ: https://docs.openstack.org/keystone/pike/admin/identity-fernet-token-faq.html
-.. _known upgrade issue: upgrade-issues.html#keystone-and-fernet-tokens-upgrading-from-queens-to-rocky

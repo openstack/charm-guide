@@ -288,8 +288,8 @@ Deployment
 
 .. warning::
 
-   Throughout this guide make sure ``openstack-origin`` matches the value you
-   used when `deploying OpenStack`_.
+   Throughout this guide make sure ``openstack-origin`` matches the OpenStack
+   release of the cloud.
 
 This example assumes there are two data centres, one in San Francisco (SF) and
 one in New York (NY). These contain Juju models 'swift-sf' and 'swift-ny'
@@ -505,7 +505,6 @@ contains the Juju "offers" that ``swift-sf.yaml`` will consume:
    juju deploy -m swift-sf ./swift-sf.yaml --overlay ./swift-sf-consumer.yaml
 
 .. LINKS
-.. _deploying OpenStack: install-openstack
 .. _Global clusters: https://docs.openstack.org/swift/latest/overview_global_cluster.html
 .. _Cross model relations: https://juju.is/docs/olm/cross-model-relations
 .. _swift-proxy: https://jaas.ai/swift-proxy
