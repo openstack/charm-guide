@@ -4,7 +4,7 @@ Configure the overlay bundle
 
 The deployment will make use of the ``openstack-base`` bundle, which represents
 the core of a Charmed OpenStack cloud. A separate overlay bundle is used to
-tailor the configuration (possibly overriding setting in the bundle) so that
+tailor the configuration (possibly overriding settings in the bundle) so that
 the deploy will work within a given environment.
 
 .. note::

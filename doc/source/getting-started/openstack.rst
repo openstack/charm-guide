@@ -126,7 +126,7 @@ Import an SSH keypair
 An SSH keypair needs to be imported into the cloud in order to access your
 instances.
 
-Generate one first if you do not yet have one. This command creates a
+Generate one first if you do not have one yet. This command creates a
 passphraseless keypair (remove the ``-N`` option to avoid that):
 
 .. code-block:: none

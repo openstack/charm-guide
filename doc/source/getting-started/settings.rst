@@ -5,7 +5,7 @@ Collect local settings
 This stage entails the collection of hardware and networking information from
 the local environment. In the tables below, the Placeholder column contains
 variables (e.g. EXT_GW) that will be referred to (e.g. $EXT_GW) on a later page
-where there are to be replaced by the environment's actual values (e.g.
+where they are to be replaced by the environment's actual values (e.g.
 10.246.112.1).
 
 Assign a value to each variable now.
