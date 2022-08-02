@@ -70,12 +70,12 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-copyright = u'2016, OpenStack contributors'
+copyright = '2016, OpenStack contributors'
 
 # Settings for openstackdocstheme
 openstackdocs_repo_name = 'openstack/charm-guide'
 openstackdocs_bug_project = 'charm-guide'
-openstackdocs_bug_tag = u'charm-guide'
+openstackdocs_bug_tag = 'charm-guide'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -232,8 +232,8 @@ html_copy_source = False
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    ('index', 'CharmGuide.tex', u'Charm Guide',
-     u'OpenStack contributors', 'manual'),
+    ('index', 'CharmGuide.tex', 'Charm Guide',
+     'OpenStack contributors', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -262,8 +262,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'charmguide', u'Charm Guide',
-     [u'OpenStack contributors'], 1)
+    ('index', 'charmguide', 'Charm Guide',
+     ['OpenStack contributors'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -276,8 +276,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'CharmGuide', u'Charm Guide',
-     u'OpenStack contributors', 'CharmGuide',
+    ('index', 'CharmGuide', 'Charm Guide',
+     'OpenStack contributors', 'CharmGuide',
      'This guide shows OpenStack end users how to use and '
      'develop Juju charms.', 'Miscellaneous'),
 ]
@@ -300,6 +300,6 @@ locale_dirs = ['locale/']
 # -- Options for PDF output --------------------------------------------------
 
 pdf_documents = [
-    ('index', u'CharmGuide', u'Charm Guide',
-     u'OpenStack contributors')
+    ('index', 'CharmGuide', 'Charm Guide',
+     'OpenStack contributors')
 ]
