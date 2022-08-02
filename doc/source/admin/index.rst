@@ -91,7 +91,7 @@ Networking
 .. toctree::
    :maxdepth: 1
 
-   networking/ovn
+   networking/ovn/index
    networking/hardware-offloading
    networking/load-balancing
    networking/interface-config
