@@ -9,8 +9,7 @@ leader to operate.
 
 .. note::
 
-   Please see the :doc:`index` page for general information on using OVN with
-   Charmed OpenStack.
+   For general information on OVN, refer to the main :doc:`index` page.
 
 The leader of the Northbound and Southbound databases does not have to coincide
 with the charm leader, so before querying databases you must consult the output
@@ -33,7 +32,7 @@ In the above example 'ovn-central/0' is the leader for the Northbound DB,
 leader for the Southbound DB.
 
 OVSDB Cluster status
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 The cluster status as conveyed through :command:`juju status` is updated each
 time a hook is run, in some circumstances it may be necessary to get an
@@ -49,7 +48,7 @@ To get an immediate view of the database clusters:
        /var/run/ovn/ovnsb_db.ctl cluster/status OVN_Southbound'
 
 Querying DBs
-^^^^^^^^^^^^
+------------
 
 To query the individual databases:
 
@@ -86,9 +85,10 @@ use port number '16642'. This is due to OVN RBAC being enabled on the standard
       show
 
 Data plane flow tracing
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
-SSH into one of the chassis units to get access to various diagnostic tools:
+Connect (by SSH) to one of the chassis units to get access to various
+diagnostic tools:
 
 .. code-block:: none
 
@@ -117,7 +117,7 @@ SSH into one of the chassis units to get access to various diagnostic tools:
 
 .. note::
 
-   OVN makes use of OpenFlow 1.3 or newer and as such the charm configures
+   OVN makes use of OpenFlow 1.3 (and newer) and as such the charm configures
    bridges to use these protocols. To be able to successfully use the
    :command:`ovs-ofctl` command you must specify the OpenFlow version as shown
    in the example above.

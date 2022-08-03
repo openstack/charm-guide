@@ -2,7 +2,7 @@
 Using SR-IOV with OVN
 =====================
 
-Single root I/O virtualization (SR-IOV) enables splitting a single physical
+Single root I/O virtualisation (SR-IOV) enables splitting a single physical
 network port into multiple virtual network ports known as virtual functions
 (VFs). The division is done at the PCI level which allows attaching the VF
 directly to a virtual machine instance, bypassing the networking stack of the
@@ -10,8 +10,7 @@ hypervisor hosting the instance.
 
 .. note::
 
-   Please see the :doc:`index` page for general information on using OVN with
-   Charmed OpenStack.
+   For general information on OVN, refer to the main :doc:`index` page.
 
 The main use case for this feature is to support applications with high
 bandwidth requirements. For such applications the normal plumbing through the
@@ -21,12 +20,12 @@ It is possible to configure chassis to prepare network interface cards (NICs)
 for use with SR-IOV and make them available to OpenStack.
 
 Prerequisites
-^^^^^^^^^^^^^
+-------------
 
 To use the feature you need to use a NIC with support for SR-IOV.
 
 Machines need to be pre-configured with appropriate kernel command-line
-parameters. The charm does not handle this facet of configuration and it is
+parameters. The charms do not handle this facet of configuration and it is
 expected that the user configure this either manually or through the bare metal
 provisioning layer (for example `MAAS`_). Example:
 
@@ -35,10 +34,10 @@ provisioning layer (for example `MAAS`_). Example:
    intel_iommu=on iommu=pt probe_vf=0
 
 Charm configuration
-^^^^^^^^^^^^^^^^^^^
+-------------------
 
 Enable SR-IOV, map physical network name 'physnet2' to the physical port named
-'enp3s0f0' and create 4 virtual functions on it:
+'enp3s0f0' and create four virtual functions on it:
 
 .. code-block:: none
 
@@ -68,7 +67,7 @@ and ``product_id`` of the virtual functions:
 
 In the above example ``vendor_id`` is '8086' and ``product_id`` is '10ed'.
 
-Add mapping between physical network name, physical port and Open vSwitch
+Add a mapping between physical network name, physical port, and Open vSwitch
 bridge:
 
 .. code-block:: none
@@ -79,33 +78,39 @@ bridge:
 .. note::
 
    The above configuration allows OVN to configure an 'external' port on one
-   of the chassis for providing DHCP and metadata to instances connected
+   of the Chassis for providing DHCP and metadata to instances connected
    directly to the network through SR-IOV.
 
-For OpenStack to make use of the VFs the ``neutron-sriov-agent`` needs to talk
+For OpenStack to make use of the VFs, the ``neutron-sriov-agent`` needs to talk
 to RabbitMQ:
 
-.. code:: bash
+.. code-block:: none
 
    juju add-relation ovn-chassis:amqp rabbitmq-server:amqp
 
 OpenStack Nova also needs to know which PCI devices it is allowed to pass
 through to instances:
 
-.. code:: bash
+.. code-block:: none
 
    juju config nova-compute pci-passthrough-whitelist='{"vendor_id":"8086", "product_id":"10ed", "physical_network":"physnet2"}'
 
 Boot an instance
-^^^^^^^^^^^^^^^^
+----------------
 
-Now we can tell OpenStack to boot an instance and attach it to an SR-IOV port.
-This must be done in two stages, first we create a port with ``vnic-type``
-'direct' and then we create an instance connected to the newly created port:
+OpenStack can now be directed to boot an instance and attach it to an SR-IOV
+port.
 
-.. code:: bash
+First create a port with ``vnic-type`` 'direct':
+
+.. code-block:: none
 
    openstack port create --network my-network --vnic-type direct my-port
+
+Then create an instance connected to the newly created port:
+
+.. code-block:: none
+
    openstack server create --flavor my-flavor --key-name my-key \
       --nic port-id=my-port my-instance
 

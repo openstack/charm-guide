@@ -2,23 +2,22 @@
 Enabling DPDK with OVN
 ======================
 
-It is possible to configure chassis to use experimental DPDK userspace network
+The OVN chassis can be configured to use experimental DPDK userspace network
 acceleration.
 
 .. note::
 
-   Please see the :doc:`index` page for general information on using OVN with
-   Charmed OpenStack.
+   For general information on OVN, refer to the main :doc:`index` page.
 
 .. note::
 
-   Currently instances are required to be attached to a external network (also
-   known as provider network) for connectivity.  OVN supports distributed DHCP
-   for provider networks.  For OpenStack workloads use of `Nova config drive`_
+   Instances are required to be attached to a external network (also known as
+   provider network) for connectivity. OVN supports distributed DHCP for
+   provider networks. For OpenStack workloads, the use of `Nova config drive`_
    is required to provide metadata to instances.
 
 Prerequisites
-^^^^^^^^^^^^^
+-------------
 
 To use the feature you need to use a supported CPU architecture and network
 interface card (NIC) hardware. Please consult the `DPDK supported hardware
@@ -31,34 +30,34 @@ provisioning layer (for example `MAAS`_).
 
 Example:
 
-.. code:: bash
+.. code-block:: none
 
    default_hugepagesz=1G hugepagesz=1G hugepages=64 intel_iommu=on iommu=pt
 
 For the communication between the host userspace networking stack and the guest
 virtual NIC driver to work the instances need to be configured to use
-hugepages. For OpenStack this can be accomplished by `Customizing instance huge
+hugepages. For OpenStack this can be accomplished by `Customising instance huge
 pages allocations`_.
 
 Example:
 
-.. code:: bash
+.. code-block:: none
 
    openstack flavor set m1.large --property hw:mem_page_size=large
 
-By default, the charm will configure Open vSwitch/DPDK to consume one processor
-core + 1G of RAM from each NUMA node on the unit being deployed. This can be
-tuned using the ``dpdk-socket-memory`` and ``dpdk-socket-cores`` configuration
-options.
+By default, the charms will configure Open vSwitch/DPDK to consume one
+processor core + 1G of RAM from each NUMA node on the unit being deployed. This
+can be tuned using the ``dpdk-socket-memory`` and ``dpdk-socket-cores``
+configuration options.
 
 .. note::
 
-    Please check that the value of dpdk-socket-memory is large enough to
-    accommodate the MTU size being used. For more information please refer to
-    `DPDK shared memory calculations`_
+   Please check that the value of dpdk-socket-memory is large enough to
+   accommodate the MTU size being used. For more information please refer to
+   `DPDK shared memory calculations`_
 
 The userspace kernel driver can be configured using the ``dpdk-driver``
-configuration option. See config.yaml for more details.
+configuration option. See ``config.yaml`` for more details.
 
 .. note::
 
@@ -66,7 +65,7 @@ configuration option. See config.yaml for more details.
    Open vSwitch, and subsequently interrupt instance connectivity.
 
 Charm configuration
-^^^^^^^^^^^^^^^^^^^
+-------------------
 
 The below example bundle excerpt will enable the use of DPDK for an OVN
 deployment.
@@ -77,6 +76,7 @@ deployment.
      options:
        enable-dpdk: True
        bridge-interface-mappings: br-ex:00:53:00:00:00:42
+
    ovn-chassis:
      options:
        enable-dpdk: False
@@ -98,17 +98,17 @@ deployment.
    DPDK-enabled nodes.
 
 DPDK bonding
-............
+~~~~~~~~~~~~
 
-Once Network interface cards are bound to DPDK they will be invisible to the
-standard Linux kernel network stack and subsequently it is not possible to use
+Once network interface cards are bound to DPDK they will be invisible to the
+standard Linux kernel network stack, and subsequently it is not possible to use
 standard system tools to configure bonding.
 
 For DPDK interfaces the charm supports configuring bonding in Open vSwitch.
-This is accomplished through the ``dpdk-bond-mappings`` and
-``dpdk-bond-config`` configuration options. Example:
+This is accomplished via the ``dpdk-bond-mappings`` and ``dpdk-bond-config``
+configuration options. Example:
 
-.. code:: yaml
+.. code-block:: yaml
 
    ovn-chassis-dpdk:
      options:
@@ -116,6 +116,7 @@ This is accomplished through the ``dpdk-bond-mappings`` and
        bridge-interface-mappings: br-ex:dpdk-bond0
        dpdk-bond-mappings: "dpdk-bond0:00:53:00:00:00:42 dpdk-bond0:00:53:00:00:00:51"
        dpdk-bond-config: ":balance-slb:off:fast"
+
    ovn-chassis:
      options:
        enable-dpdk: False
@@ -130,5 +131,5 @@ addresses provided will be used to build a bond identified by a port named
 .. _Nova config drive: https://docs.openstack.org/nova/latest/user/metadata.html#config-drives
 .. _DPDK supported hardware page: http://core.dpdk.org/supported/
 .. _MAAS: https://maas.io/
-.. _Customizing instance huge pages allocations: https://docs.openstack.org/nova/latest/admin/huge-pages.html#customizing-instance-huge-pages-allocations
+.. _Customising instance huge pages allocations: https://docs.openstack.org/nova/latest/admin/huge-pages.html#customizing-instance-huge-pages-allocations
 .. _DPDK shared memory calculations: https://docs.openvswitch.org/en/latest/topics/dpdk/memory/#shared-memory-calculations

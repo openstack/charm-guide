@@ -5,79 +5,131 @@ Open Virtual Network (OVN)
 Overview
 --------
 
-Open Virtual Network (OVN) can be deployed to provide networking services as
-part of an OpenStack cloud.
+Open Virtual Network (OVN) is an SDN platform. When used with OpenStack the
+overall solution is known as "Neutron ML2+OVN". OVN extends the existing
+capabilities of a solution based solely on Open vSwitch, which is known as
+"Neutron ML2+OVS".
 
-.. note::
-
-   There are feature `gaps from ML2/OVS`_ and deploying legacy ML2/OVS with
-   the OpenStack Charms is still available.
-
-OVN charms:
+OVN is implemented via a suite of charms:
 
 * neutron-api-plugin-ovn
 * ovn-central
-* ovn-chassis
-* ovn-dedicated-chassis
+* ovn-chassis (or ovn-dedicated-chassis)
 
 .. note::
 
-   OVN is supported by Charmed OpenStack starting with OpenStack Train. OVN is
-   the default configuration in the `OpenStack Base bundle`_ reference
-   implementation.
+   The OpenStack Charms project supports OVN starting with OpenStack Train, and
+   uses it by default starting with OpenStack Ussuri.
 
-   Instructions for migrating legacy clouds to OVN are found on the
+   Instructions for migrating non-OVN clouds to OVN are found on the
    :doc:`../../../project/procedures/ovn-migration` page.
+
+   Due to `feature gaps with ML2+OVS`_, the OpenStack Charms project continues
+   to support ML2+OVS.
 
 Deployment
 ----------
 
-OVN makes use of Public Key Infrastructure (PKI) to authenticate and authorize
-control plane communication. The charm requires a Certificate Authority to be
-present in the model as represented by the ``certificates`` relation.
-Certificates must be managed by Vault.
+.. important::
 
-.. note::
+   OVN is typically deployed alongside other core components via a
+   comprehensive cloud bundle. For example, see the `openstack-base bundle`_.
 
-   For Vault deployment instructions see the `vault charm`_. For certificate
-   management information read the :doc:`../../security/tls` page.
+The below overlay bundle encapsulates what is needed in terms of the
+deployment.
 
-To deploy OVN:
+.. important::
 
-.. code-block:: none
+   An overlay's parameters should be adjusted as per the local environment
+   (e.g. the machine mappings). In particular, the following placeholders must
+   be replaced with actual values:
 
-   juju config neutron-api manage-neutron-plugin-legacy-mode=false
+   * ``$SERIES``
+   * ``$OPENSTACK_ORIGIN``
+   * ``$CHANNEL_OVN``
 
-   juju deploy neutron-api-plugin-ovn
-   juju deploy ovn-central -n 3 --config source=cloud:bionic-ussuri
-   juju deploy ovn-chassis
+   Replace ``$SERIES`` with the Ubuntu release running on the cloud nodes (e.g.
+   'jammy'). For ``$OPENSTACK_ORIGIN`` see the corresponding charm options.
+   For channel information see the :doc:`../../../project/charm-delivery` page.
 
-   juju add-relation neutron-api-plugin-ovn:certificates vault:certificates
-   juju add-relation neutron-api-plugin-ovn:neutron-plugin \
-       neutron-api:neutron-plugin-api-subordinate
-   juju add-relation neutron-api-plugin-ovn:ovsdb-cms ovn-central:ovsdb-cms
-   juju add-relation ovn-central:certificates vault:certificates
-   juju add-relation ovn-chassis:ovsdb ovn-central:ovsdb
-   juju add-relation ovn-chassis:certificates vault:certificates
-   juju add-relation ovn-chassis:nova-compute nova-compute:neutron-plugin
+.. code-block:: yaml
 
-The OVN components used for the data plane is deployed by the ovn-chassis
-subordinate charm. A subordinate charm is deployed together with a principle
-charm, nova-compute in the example above.
+   series: $SERIES
 
-If you require a dedicated software gateway you may deploy the data plane
-components as a principle charm through the use of the
-`ovn-dedicated-chassis charm`_.
+   machines:
+     '0':
+     '1':
+     '2':
 
-.. note::
+   relations:
+   - - neutron-api-plugin-ovn:certificates
+     - vault:certificates
+   - - neutron-api-plugin-ovn:neutron-plugin
+     - neutron-api:neutron-plugin-api-subordinate
+   - - neutron-api-plugin-ovn:ovsdb-cms
+     - ovn-central:ovsdb-cms
+   - - ovn-central:certificates
+     - vault:certificates
+   - - ovn-chassis:ovsdb
+     - ovn-central:ovsdb
+   - - ovn-chassis:certificates
+     - vault:certificates
+   - - ovn-chassis:nova-compute
+     - nova-compute:neutron-plugin
 
-   For a concrete example take a look at the `OpenStack Base bundle`_.
+   applications:
+
+     neutron-api:
+       options:
+         manage-neutron-plugin-legacy-mode=false
+
+     neutron-api-plugin-ovn
+       charm: ch:neutron-api-plugin-ovn
+       channel: $CHANNEL_OVN
+
+     ovn-central
+       charm: ch:ovn-central
+       channel: $CHANNEL_OVN
+       num_units: 3
+       options:
+         source: $OPENSTACK_ORIGIN
+       to:
+       - '0'
+       - '1'
+       - '2'
+
+     ovn-chassis
+       charm: ch:ovn-chassis
+       channel: $CHANNEL_OVN
+
+TLS and Vault
+~~~~~~~~~~~~~
+
+With the OpenStack charms, OVN requires Vault, which is the chosen software for
+managing the TLS certificates that secure control plane communication. This is
+achieved via the ``ovn-chassis:certificates vault:certificates`` relation (as
+shown in the overlay).
+
+For certificate management information see the :doc:`../../security/tls` page.
+
+See the `vault charm`_ for details on Vault itself.
+
+Data plane
+~~~~~~~~~~
+
+The OVN components used for the data plane are deployed by the ovn-chassis
+subordinate charm, in conjunction with the nova-compute principal charm. This
+is achieved via the ``ovn-chassis:nova-compute nova-compute:neutron-plugin``
+relation (as shown in the overlay).
+
+To obtain a dedicated software gateway, the data plane components should be
+deployed with the principal `ovn-dedicated-chassis charm`_.
 
 High availability
------------------
+~~~~~~~~~~~~~~~~~
 
-OVN is HA by design; take a look at the `OVN section of the Infrastructure high
-availability`_ page.
+OVN is natively HA. See the :ref:`OVN section <ha_ovn>` of the Infrastructure
+high availability page.
 
 Configuration
 -------------
@@ -94,7 +146,7 @@ and the subset of configuration specific to OVN is done through the
 Usage
 -----
 
-Create networks, routers and subnets through the OpenStack API or CLI as you
+Create networks, routers, and subnets through the OpenStack API or CLI as you
 normally would.
 
 The OVN ML2 driver will translate the OpenStack network constructs into high
@@ -119,12 +171,11 @@ Specific topics on OVN usage are given below:
    queries
 
 .. LINKS
-.. _vault charm: https://jaas.ai/vault/
-.. _Toward Convergence of ML2+OVS+DVR and OVN: http://specs.openstack.org/openstack/neutron-specs/specs/ussuri/ml2ovs-ovn-convergence.html
-.. _ovn-dedicated-chassis charm: https://jaas.ai/u/openstack-charmers/ovn-dedicated-chassis/
+.. _vault charm: https://charmhub.io/vault
+.. _ovn-dedicated-chassis charm: https://charmhub.io/ovn-dedicated-chassis
+.. _neutron-api charm: https://charmhub.io/neutron-api
+.. _neutron-api-plugin-ovn charm: https://charmhub.io/neutron-api-plugin-ovn
 .. _networking-ovn plugin: https://docs.openstack.org/networking-ovn/latest/
-.. _neutron-api charm: https://jaas.ai/neutron-api/
-.. _neutron-api-plugin-ovn charm: https://jaas.ai/u/openstack-charmers/neutron-api-plugin-ovn/
-.. _OpenStack Base bundle: https://github.com/openstack-charmers/openstack-bundles/tree/master/development/openstack-base-bionic-ussuri-ovn
-.. _gaps from ML2/OVS: https://docs.openstack.org/neutron/latest/ovn/gaps.html
-.. _OVN section of the Infrastructure high availability: https://docs.openstack.org/charm-guide/latest/admin/ha.html#ovn
+.. _feature gaps with ML2+OVS: https://docs.openstack.org/neutron/latest/ovn/gaps.html
+.. _Toward Convergence of ML2+OVS+DVR and OVN: http://specs.openstack.org/openstack/neutron-specs/specs/ussuri/ml2ovs-ovn-convergence.html
+.. _openstack-base bundle: https://github.com/openstack-charmers/openstack-bundles/blob/master/stable/openstack-base/bundle.yaml

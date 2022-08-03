@@ -2,21 +2,20 @@
 Implementing hardware offloading with OVN
 =========================================
 
-It is possible to configure chassis to prepare network interface cards (NICs)
-for use with hardware offloading and make them available to OpenStack.
+The OVN chassis can be configured to prepare network interface cards (NICs) for
+use with hardware offloading and make them available to OpenStack.
 
 .. note::
 
-   Please see the :doc:`index` page for general information on using OVN with
-   Charmed OpenStack.
+   For general information on OVN, refer to the main :doc:`index` page.
 
 .. caution::
 
    This feature is to be considered Tech Preview. OVN has more stringent
    requirements for match/action support in the hardware than for example
    Neutron ML2+OVS. Make sure to acquire hardware with appropriate support.
-   
-   Depending on hardware vendor, it may be required to install third party
+
+   Depending on hardware vendor, it may be required to install third-party
    drivers (DKMS) in order to successfully use this feature.
 
 Hardware offload support makes use of SR-IOV as an underlying mechanism to
@@ -24,14 +23,14 @@ accelerate the data path between a virtual machine instance and the NIC
 hardware. But as opposed to traditional SR-IOV support the accelerated ports
 can be connected to the Open vSwitch integration bridge which allows instances
 to take part in regular tenant networks. The NIC also supports hardware
-offloading of tunnel encapsulation and decapsulation.
+offloading of tunnel encapsulation and de-encapsulation.
 
-With OVN the Layer3 routing features are implemented as flow rules in Open
+With OVN, the Layer 3 routing features are implemented as flow rules in Open
 vSwitch. This in turn may allow Layer 3 routing to also be offloaded to NICs
 with appropriate driver and firmware support.
 
 Prerequisites
-^^^^^^^^^^^^^
+-------------
 
 * Ubuntu 22.04 LTS or later
 
@@ -46,7 +45,7 @@ Prerequisites
 Please refer to the :doc:`sriov` page for information on kernel configuration.
 
 Charm configuration
-^^^^^^^^^^^^^^^^^^^
+-------------------
 
 The below example bundle excerpt will enable hardware offloading for an OVN
 deployment.
@@ -54,42 +53,54 @@ deployment.
 .. code-block:: yaml
 
    applications:
+
      ovn-chassis:
-       charm: cs:ovn-chassis
+       charm: ch:ovn-chassis
+       channel: $CHANNEL_OVN
        options:
          enable-hardware-offload: true
-         sriov-numvfs:  "enp3s0f0:32 enp3s0f1:32"
+         sriov-numvfs: "enp3s0f0:32 enp3s0f1:32"
+
      neutron-api:
-       charm: cs:neutron-api
+       charm: ch:neutron-api
+       channel: $CHANNEL_OPENSTACK
        options:
          enable-hardware-offload: true
+
      nova-compute:
-       charm: cs:nova-compute
+       charm: ch:nova-compute
+       channel: $CHANNEL_OPENSTACK
        options:
          pci-passthrough-whitelist: '{"address": "*:03:*", "physical_network": null}'
 
 .. caution::
 
-   After deploying the above example the machines hosting ovn-chassis
+   After deploying the above example, the machines hosting ovn-chassis
    units must be rebooted for the changes to take effect.
 
 Boot an instance
-^^^^^^^^^^^^^^^^
+----------------
 
-Now we can tell OpenStack to boot an instance and attach it to an hardware
-offloaded port. This must be done in two stages, first we create a port with
-``vnic-type`` 'direct' and ``binding-profile`` with 'switchdev' capabilities.
-Then we create an instance connected to the newly created port:
+OpenStack can now be directed to boot an instance and attach it to a hardware
+offloaded port.
+
+First create a port with ``vnic-type`` 'direct' and ``binding-profile`` with
+'switchdev' capabilities:
 
 .. code-block:: none
 
    openstack port create --network my-network --vnic-type direct \
        --binding-profile '{"capabilities": ["switchdev"]}' direct_port1
+
+Then create an instance connected to the newly created port:
+
+.. code-block:: none
+
    openstack server create --flavor my-flavor --key-name my-key \
        --nic port-id=direct_port1 my-instance
 
 Validate that traffic is offloaded
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------
 
 The `traffic control monitor`_ command can be used to observe updates to
 filters which is one of the mechanisms used to program the NIC switch hardware.

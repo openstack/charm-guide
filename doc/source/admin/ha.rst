@@ -692,18 +692,13 @@ availability using DVR`_ in the Neutron documentation for more information.
    that the components needed for their operation are all HA (RabbitMQ, Neutron
    API, and MySQL).
 
+.. _ha_ovn:
+
 OVN
 ~~~
 
-`Open Virtual Network`_ (OVN) complements the existing capabilities of OVS by
-adding native support for virtual network abstractions, such as virtual L2 and
-L3 overlays and security groups.
-
-.. important::
-
-   OVN is available as an option starting with Ubuntu 20.04 LTS on OpenStack
-   Ussuri. The use of OVN obviates the need for the neutron-gateway and
-   neutron-openvswitch charms.
+For general information on OVN, refer to the main :doc:`networking/ovn/index`
+page.
 
 Control plane HA
 ^^^^^^^^^^^^^^^^
@@ -802,9 +797,6 @@ deployment of OVN with MySQL 8:
    ovn-central/2                  active    idle   2/lxd/1  10.246.114.71   6641/tcp,6642/tcp  Unit is ready
    vault/0*                       active    idle   3/lxd/2  10.246.114.74   8200/tcp           Unit is ready (active: true, mlock: disabled)
      vault-mysql-router/0*        active    idle            10.246.114.74                      Unit is ready
-
-Refer to the :doc:`networking/ovn/index` page for more information on how to
-deploy OVN.
 
 Other items of interest
 -----------------------
