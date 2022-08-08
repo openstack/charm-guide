@@ -14,6 +14,7 @@ https://docs.openstack.org.
    charm-delivery
    backport-policy
    support-notes
+   issues-and-procedures
    release-policy
    release-schedule
 
