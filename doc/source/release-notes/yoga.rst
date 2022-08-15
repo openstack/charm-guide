@@ -302,7 +302,7 @@ The ceph-radosgw charm improves how URLs are processed by the RADOS Gateway.
 This change however will lead to breakage for an existing ``product-streams``
 endpoint, set up by the glance-simplestreams-sync application. Manual
 intervention is required - see the :ref:`Upgrade issues
-<cdg:charm_upgrade_issue-radosgw_gss>` page for more information.
+<charm_upgrade_issue-radosgw_gss>` page for more information.
 
 Nova fails to parse new libvirt mediated device name format
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

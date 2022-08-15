@@ -27,7 +27,7 @@ OVN charms:
    implementation.
 
    Instructions for migrating legacy clouds to OVN are found on the
-   :doc:`cdg:ovn-migration` page in the Deploy Guide.
+   :doc:`../../../project/procedures/ovn-migration` page.
 
 Deployment
 ----------

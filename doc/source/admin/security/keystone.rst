@@ -76,7 +76,7 @@ see this `Fernet FAQ`_.
 
    Starting with OpenStack Rocky, only the Fernet format for authentication
    tokens is supported. This is documented on the
-   :doc:`cdg:upgrade-queens-to-rocky` page in the Deploy Guide.
+   :doc:`../../project/issues/upgrade-queens-to-rocky` page.
 
 Fernet keys
 -----------
