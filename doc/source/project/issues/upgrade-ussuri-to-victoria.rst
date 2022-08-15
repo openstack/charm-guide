@@ -3,7 +3,7 @@ Upgrade: Ussuri to Victoria
 ===========================
 
 This page contains notes specific to the Ussuri to Victoria upgrade path. See
-the main :doc:`cdg:upgrade-openstack` page for full coverage.
+the main :doc:`../../admin/upgrades/openstack` page for full coverage.
 
 FWaaS project retired
 ---------------------

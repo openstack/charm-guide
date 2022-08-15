@@ -1,25 +1,25 @@
-:orphan:
+=====================
+OpenStack Charm Guide
+=====================
 
-================
-OpenStack Charms
-================
+The OpenStack Charm Guide is the primary source of documentation for the
+OpenStack Charms project. The project oversees the :doc:`collection of Charmed
+Operators <project/openstack-charms>`, also called simply "charms", used to
+deploy and manage OpenStack clouds using `MAAS`_ and `Juju`_.
 
-The OpenStack charms are a collection of Charmed Operators used to deploy and
-manage OpenStack clouds using `MAAS`_ and `Juju`_.
-
-Charmed Operators, also called simply "charms", contain specific knowledge for
-deployment and lifecycle management of applications and services. The OpenStack
-charms collection consists of one charm per OpenStack service, and also
-includes non-OpenStack services critical to the cloud, such as RabbitMQ and
-MySQL.
+Each of the OpenStack charms is responsible for the deployment and lifecycle
+management of a single cloud service (e.g. the nova-compute charm for the Nova
+Compute service). The project also includes charms for select non-OpenStack
+supporting software, such as Ceph, MySQL, and RabbitMQ.
 
 Deploying and managing an OpenStack cloud is acknowledged among IT
 professionals to be a challenging endeavour. The charms reduce the complexity
 traditionally imposed upon cloud administrators by doing the heavy lifting.
 
 The OpenStack Charms project is designed to meet the needs of cloud
-administrators of varying skill levels. It is appropriate for both large
-enterprise-grade deployments as well as small development clouds.
+administrators of varying skill levels. It is appropriate for public, regional,
+and private clouds, and can satisfy a wide range of use cases: from small
+development environments through to large enterprise-grade solutions.
 
 .. panels::
 
@@ -93,7 +93,6 @@ Search
 :ref:`Search <search>` this guide.
 
 .. LINKS
-.. _OpenStack Charms: https://launchpad.net/openstack-charms
 .. _MAAS: https://maas.io/
 .. _Juju: https://juju.is/
 .. _OpenInfra Foundation community code of conduct: https://openinfra.dev/legal/code-of-conduct

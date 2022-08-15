@@ -6,8 +6,8 @@ percona-cluster charm: series upgrade to focal
 
    This page describes a procedure that may be required when performing an
    upgrade of an OpenStack cloud. Please read the more general
-   :doc:`cdg:upgrade-overview` before attempting any of the instructions given
-   here.
+   :doc:`../../admin/upgrades/overview` before attempting any of the
+   instructions given here.
 
 In Ubuntu 20.04 LTS (Focal) the percona-xtradb-cluster-server package will no
 longer be available. It has been replaced by mysql-server-8.0 and mysql-router

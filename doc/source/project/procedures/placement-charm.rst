@@ -6,8 +6,8 @@ placement charm: OpenStack upgrade to Train
 
    This page describes a procedure that is required when performing an upgrade
    of an OpenStack cloud. Please read the more general
-   :doc:`cdg:upgrade-overview` before attempting any of the instructions given
-   here.
+   :doc:`../../admin/upgrades/overview` before attempting any of the
+   instructions given here.
 
 As of OpenStack Train, the Placement API is managed by the new `placement`_
 charm and is no longer managed by the nova-cloud-controller charm. The upgrade
@@ -41,8 +41,8 @@ placement IP address. Follow this up by resuming nova-cloud-controller:
    juju run-action --wait nova-cloud-controller/leader resume
 
 Finally, upgrade the nova-cloud-controller services. Below all units are
-upgraded simultaneously but see the :ref:`cdg:paused_single_unit` service
-upgrade method for a more controlled approach:
+upgraded simultaneously but see the :ref:`paused_single_unit` service upgrade
+method for a more controlled approach:
 
 .. code-block:: none
 

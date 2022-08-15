@@ -6,7 +6,7 @@ This page lists the charms that make up the OpenStack Charms project. The
 version of OpenStack Charms when a charm first appeared is provided (see
 :doc:`release-schedule` for details of release times).
 
-Read :ref:`cdg:charm_types` in the upgrade documentation to understand charm
+Read :ref:`charm_types` in the upgrade documentation to understand charm
 support in terms of Ubuntu series and OpenStack release.
 
 .. note::

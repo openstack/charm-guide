@@ -6,8 +6,8 @@ ceph charm: migration to ceph-mon and ceph-osd
 
    This page describes a procedure that may be required when performing an
    upgrade of an OpenStack cloud. Please read the more general
-   :doc:`cdg:upgrade-overview` before attempting any of the instructions given
-   here.
+   :doc:`../../admin/upgrades/overview` before attempting any of the
+   instructions given here.
 
 In order to continue to receive updates to newer Ceph versions, and for general
 improvements and features in the charms to deploy Ceph, users of the ceph charm

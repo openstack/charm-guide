@@ -3,7 +3,7 @@ Upgrade: Stein to Train
 =======================
 
 This page contains notes specific to the Stein to Train upgrade path. See the
-main :doc:`cdg:upgrade-openstack` page for full coverage.
+main :doc:`../../admin/upgrades/openstack` page for full coverage.
 
 New placement charm
 -------------------

@@ -3,7 +3,7 @@ Upgrade: Queens to Rocky
 ========================
 
 This page contains notes specific to the Queens to Rocky upgrade path. See the
-main :doc:`cdg:upgrade-openstack` page for full coverage.
+main :doc:`../../admin/upgrades/openstack` page for full coverage.
 
 Keystone and Fernet tokens
 --------------------------

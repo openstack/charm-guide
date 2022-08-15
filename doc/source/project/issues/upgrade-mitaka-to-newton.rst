@@ -3,7 +3,7 @@ Upgrade: Mitaka to Newton
 =========================
 
 This page contains notes specific to the Mitaka to Newton upgrade path. See the
-main :doc:`cdg:upgrade-openstack` page for full coverage.
+main :doc:`../../admin/upgrades/openstack` page for full coverage.
 
 neutron-gateway charm options
 -----------------------------

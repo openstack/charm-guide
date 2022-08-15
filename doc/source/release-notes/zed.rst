@@ -23,8 +23,8 @@ For scheduling information of past and future releases see the
    Always upgrade to the latest stable charms before making any major changes
    to your cloud and before filing bug reports. Note that charm upgrades and
    OpenStack upgrades are functionally different. For instructions on
-   performing the different upgrade types see :doc:`cdg:upgrade-overview` in
-   the :doc:`cdg:index`.
+   performing the different upgrade types see :doc:`../admin/upgrades/overview`
+   page.
 
 .. contents:: Summary of changes:
    :local:
@@ -41,7 +41,7 @@ New stable charm features
 -------------------------
 
 With each new feature, there is a corresponding example bundle in the form of a
-test bundle, and/or a section in the :doc:`cdg:index`, that details its usage.
+test bundle, and/or a section in the :doc:`../index`, that details its usage.
 Test bundles are located in the ``src/tests/bundles`` directory of the relevant
 charm repository (see all `charm repositories`_).
 
