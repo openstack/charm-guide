@@ -60,6 +60,17 @@ Cloud management how-to guides:
    vgpu
    trilio
 
+Upgrades
+~~~~~~~~
+
+.. toctree::
+   :maxdepth: 1
+
+   upgrades/overview
+   upgrades/charms
+   upgrades/series
+   upgrades/openstack
+
 Compute
 ~~~~~~~
 
