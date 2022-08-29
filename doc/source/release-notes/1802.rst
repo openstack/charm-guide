@@ -52,7 +52,7 @@ The legacy ceph charm was deprecated in the 17.11 release, it will receive no fu
 
 The supported approach is to use the ceph-osd and ceph-mon charms together. To upgrade to the ceph-osd and ceph-mon charms, please see:
 
-https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ceph-migration.html.
+:doc:`../project/procedures/ceph-charm-migration`
 
 New Charm Features
 ==================

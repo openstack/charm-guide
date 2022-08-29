@@ -10,10 +10,10 @@ across the entirety of a Charmed OpenStack cloud.
 .. warning::
 
    This document is based upon the foundational knowledge and guidelines set
-   forth on the more general `Series upgrade`_ page. That reference must be
-   studied in-depth prior to attempting the steps outlined here. In particular,
-   ensure that the :ref:`Pre-upgrade requirements <pre-upgrade_requirements>`
-   are satisfied and that the :ref:`Workload specific preparations
+   forth on the more general :doc:`series` page. That reference must be studied
+   in-depth prior to attempting the steps outlined here. In particular, ensure
+   that the :ref:`Pre-upgrade requirements <pre-upgrade_requirements>` are
+   satisfied and that the :ref:`Workload specific preparations
    <workload_specific_preparations>` have been addressed during planning.
 
 Downtime
@@ -375,8 +375,8 @@ the upgrade by bringing the cluster back online.
 
    The eoan series is the last series supported by the percona-cluster charm.
    It is replaced by the `mysql-innodb-cluster`_ and `mysql-router`_ charms in
-   the focal series. The migration steps are documented in `percona-cluster
-   charm - series upgrade to focal`_.
+   the focal series. The migration steps are documented in
+   :doc:`../../project/procedures/percona-series-upgrade-to-focal`.
 
    Do not upgrade the machines hosting percona-cluster units to the focal
    series. To be clear, if percona-cluster is containerised then it is the LXD
@@ -1087,7 +1087,6 @@ and test the series upgrade primitives:
    production cloud.
 
 .. LINKS
-.. _Series upgrade: upgrade-series.html
 .. _Parallel tests: https://github.com/openstack-charmers/zaza-openstack-tests/blob/master/zaza/openstack/charm_tests/series_upgrade/parallel_tests.py
 .. _Upgrade helpers: https://github.com/openstack-charmers/zaza-openstack-tests/blob/master/zaza/openstack/utilities/parallel_series_upgrade.py
 .. _Upgrading Percona XtraDB Cluster: https://www.percona.com/doc/percona-xtradb-cluster/LATEST/howtos/upgrade_guide.html

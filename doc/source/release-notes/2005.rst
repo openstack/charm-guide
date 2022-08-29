@@ -623,7 +623,7 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Keystone charm README: https://github.com/openstack/charm-keystone/blob/master/README.md
 .. _Neutron FWaaS project has been deprecated: https://review.opendev.org/#/c/708675/
 .. _Cinder charm README: https://github.com/openstack/charm-cinder/blob/master/README.md
-.. _Juju storage: https://juju.is/docs/storage
+.. _Juju storage: https://juju.is/docs/olm/defining-and-using-persistent-storage
 .. _TrilioVault appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-trilio-vault.html
 .. _Automated instance recovery: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-masakari.html
 .. _Ceph iSCSI Gateway README: https://github.com/openstack-charmers/charm-ceph-iscsi/blob/master/README.md

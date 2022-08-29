@@ -8,8 +8,7 @@ Overview
 The new OpenStack charms (charms written in 2016 onwards) are written using the
 `reactive framework <https://charmsreactive.readthedocs.io/en/latest/>`__ in Python.
 An introduction on the reactive framework and building charms from layers can
-be found in the `Getting Started with charm development
-<https://docs.jujucharms.com/devel/en/developer-getting-started>`__ .
+be found in the Juju `SDK tutorials <https://juju.is/docs/sdk/tutorials>`_.
 This guide covers only the new reactive charms.
 
 Configuration Files
