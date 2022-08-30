@@ -8,6 +8,10 @@ Overview
 Juju charms are delivered via the online `Charmhub`_. This page provides charm
 delivery information in the context of the OpenStack Charms project.
 
+There are two general types of OpenStack charms: one that does use channels and
+one that does not (legacy) - see the :doc:`../concepts/charm-types` for
+details. This page will focus on channel charms.
+
 Channels
 --------
 
