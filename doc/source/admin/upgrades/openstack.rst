@@ -27,11 +27,19 @@ page.
 Upgradable services
 -------------------
 
-Services whose software is not included in the `Ubuntu Cloud Archive`_ do not
-get upgraded during a charmed OpenStack upgrade. This software is upgraded by
-the administrator (on the units) using other means (e.g. manually via package
-utilities, the Landscape management tool, a snap, or as part of a series
-upgrade). Common charms where this applies are:
+Only services whose software is included in the `Ubuntu Cloud Archive`_ will
+get upgraded during an OpenStack upgrade.
+
+Services that are associated with subordinate charms are upgradable but only
+indirectly. They get upgraded along with their parent principal application.
+Subordinate charms do not support the ``openstack-origin`` (or ``source``)
+configuration option that is, as will be shown, a pre-requisite for initiating
+an OpenStack charm payload upgrade.
+
+Non-UCA software is upgraded by the administrator (on the units) using other
+means (e.g. manually via package utilities, the Landscape management tool, a
+snap, or as part of a series upgrade). Common applications where this applies
+are:
 
 * memcached
 * ntp
@@ -40,12 +48,6 @@ upgrade). Common charms where this applies are:
 * mysql-router
 * rabbitmq-server
 * vault
-
-Services that are associated with subordinate charms are upgradable but only
-indirectly. They get upgraded along with their parent principal application.
-Subordinate charms do not support the ``openstack-origin`` (or ``source``)
-configuration option that is, as will be shown, a pre-requisite for initiating
-an OpenStack charm payload upgrade.
 
 .. _openstack_upgrade_prepare:
 
@@ -219,7 +221,7 @@ along with those of the service being targeted.
 
 .. note::
 
-   At this time, only stable charms are listed in the upgrade order table.
+   Only stable charms are listed in the upgrade order table.
 
 .. list-table::
    :header-rows: 1

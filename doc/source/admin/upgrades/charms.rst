@@ -41,7 +41,7 @@ table.
 
 .. note::
 
-   At this time, only stable charms are listed in the upgrade order table.
+   Only stable charms are listed in the upgrade order table.
 
 .. list-table:: Principal charms
    :header-rows: 1

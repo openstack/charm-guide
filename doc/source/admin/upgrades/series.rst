@@ -51,6 +51,21 @@ Focal was possible starting on August 6, 2020.
    an upgrade candidate is available or not. A cancelled upgrade is not fatal,
    but it will leave erroneous messaging in :command:`juju status` output.
 
+Upgradable services
+-------------------
+
+Only services whose software is not included in the `Ubuntu Cloud Archive`_
+will potentially get upgraded during a series upgrade. This software is sourced
+from the standard Ubuntu package archives associated with the new series.
+Common applications where this applies are:
+
+* memcached
+* ntp
+* percona-cluster
+* mysql-innodb-cluster
+* mysql-router
+* rabbitmq-server
+
 The Juju :command:`upgrade-series` command
 ------------------------------------------
 
@@ -231,6 +246,17 @@ effective response to this.
    plays a negligible role. Applications deployed with the compute and storage
    charms fall into this category.
 
+Upgrade order
+-------------
+
+There is no special order in which to upgrade all machines. However, it is
+recommended that the following components (from the list of `Upgradable
+services`_) be upgraded first:
+
+#. database cluster (`percona-cluster`_ or `mysql-innodb-cluster`_)
+#. if applicable, all database InnoDB router instances (`mysql-router`_)
+#. RabbitMQ cluster (`rabbitmq-server`_)
+
 .. _generic_series_upgrade:
 
 Generic series upgrade
@@ -348,8 +374,13 @@ When you are ready to perform a series upgrade across your cloud proceed to
 the :doc:`series-openstack` page.
 
 .. LINKS
+.. _Ubuntu Cloud Archive: https://wiki.ubuntu.com/OpenStack/CloudArchive
 .. _Ubuntu releases wiki page: https://wiki.ubuntu.com/Releases
 .. _series upgrade: https://juju.is/docs/olm/upgrade-a-machines-series
 .. _Ubuntu OpenStack release cycle: https://ubuntu.com/about/release-cycle#ubuntu-openstack-release-cycle
 .. _Application leadership: https://juju.is/docs/olm/leaders
 .. _ubuntu: https://charmhub.io/ubuntu
+.. _percona-cluster: https://opendev.org/openstack/charm-percona-cluster/
+.. _mysql-innodb-cluster: https://opendev.org/openstack/charm-mysql-innodb-cluster
+.. _mysql-router: https://opendev.org/openstack/charm-mysql-router
+.. _rabbitmq-server: https://opendev.org/openstack/charm-rabbitmq-server/
