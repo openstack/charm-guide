@@ -72,45 +72,15 @@ the administrator for the task of upgrading Charmed OpenStack.
   focal). This is normally due to upstream limitations (e.g Percona XtraDB
   Cluster no longer supported on Focal).
 
+* There are two general types of charms: one that does use channels
+  and one that does not (legacy). This differentiation has consequences for the
+  three types of upgrades. See the :doc:`../../concepts/charm-types` page for
+  an explanation.
+
 .. note::
 
    A charm's limitations concerning OpenStack versions and application features
    are stated in its README file.
-
-.. _charm_types:
-
-Charm types
-~~~~~~~~~~~
-
-There are two general types of OpenStack charms: one that does use channels and
-one that does not (legacy).
-
-.. note::
-
-   For an overview of how charms are distributed to the end-user see the
-   :doc:`../../project/charm-delivery` page.
-
-Channels
-^^^^^^^^
-
-With the channels type, a channel is dedicated to a single OpenStack release
-(release N-1 will be technically supported to assist with upgrades). This means
-that a charm that works for a recent series-openstack combination will
-generally not work on an older combination. Furthermore, there is a need to
-switch to a different channel in order to upgrade to a new OpenStack version
-- but not to a new series.
-
-Legacy
-^^^^^^
-
-For the legacy charms, unless stated otherwise, each new revision of a charm
-includes all the functionality of the previous revision. This means that a
-charm that works for a recent series-openstack combination will also work on an
-older combination.
-
-The development of legacy charms has stopped at the 21.10 release of OpenStack
-Charms (and at the 21.06 release of Trilio Charms). The last supported
-series-openstack combination is ``focal-xena``.
 
 Software release cycles
 -----------------------

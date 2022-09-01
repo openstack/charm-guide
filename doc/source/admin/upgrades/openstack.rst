@@ -20,43 +20,9 @@ Please read the :doc:`overview` page before continuing.
 
 It may be worthwhile to read the upstream OpenStack `Upgrades`_ guide.
 
-Software sources
-----------------
-
-A key part of an OpenStack upgrade is the stipulation of a unit's software
-sources. For an upgrade, the latter will naturally reflect a more recent
-combination of Ubuntu release (series) and OpenStack release. This combination
-is based on the `Ubuntu Cloud Archive`_ and translates to a "cloud archive
-OpenStack release". It takes on the following syntax:
-
-``<ubuntu series>-<openstack-release>``
-
-The value is passed to a charm's ``openstack-origin`` configuration option. For
-example, to select the 'focal-victoria' release:
-
-``openstack-origin=cloud:focal-victoria``
-
-In this way the charm is informed on where to find updates for the packages
-that it is responsible for.
-
-Notes concerning the value of ``openstack-origin``:
-
-* The default is 'distro'. This denotes an Ubuntu release's default archive
-  (e.g. in the case of the focal series it corresponds to OpenStack Ussuri).
-  The value of 'distro' is therefore invalid in the context of an OpenStack
-  upgrade.
-
-* It should normally be the same across all charms.
-
-* Its series component must be that of the series currently in use (i.e. a
-  series upgrade and an OpenStack upgrade are two completely separate
-  procedures).
-
-.. note::
-
-   A few charms use option ``source`` instead of ``openstack-origin`` (both
-   options support identical values). The ``source`` option is used by charms
-   that don't deploy an actual OpenStack service.
+You should also be familiar with how software sources (versioning) are
+specified for cloud services. See the :doc:`../../concepts/software-sources`
+page.
 
 Upgradable services
 -------------------
@@ -350,11 +316,14 @@ Update the charm channel
 
 .. warning::
 
-   This step is only performed for charms that follow a channel (see
-   :ref:`Charm types <charm_types>`).
+   This step is only performed for channel charms - see the
+   :doc:`../../concepts/charm-types` page.
 
-A charm's channel needs to be updated according to the target OpenStack
-release. This is done as per the following syntax:
+A charm's channel needs to be updated according to the target OpenStack release
+and the Ubuntu series currently in use. The :doc:`../../project/charm-delivery`
+page provides guidance on what values to use.
+
+The change is made as per the following syntax:
 
 .. code-block:: none
 
