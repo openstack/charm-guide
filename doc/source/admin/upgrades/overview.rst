@@ -97,7 +97,7 @@ Each software component has a predictable release cycle.
 
    * - OpenStack Charms
      - 6
-     - https://docs.openstack.org/charm-guide/latest/release-schedule.html
+     - :doc:`../../project/release-schedule`
 
    * - OpenStack
      - 6

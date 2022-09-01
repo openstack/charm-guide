@@ -957,7 +957,7 @@ be no units to pause.
 #. Perform any workload maintenance pre-upgrade steps.
 
    All running VMs should be migrated to another hypervisor. See cloud
-   operation `Live migrate VMs from a running compute node`_.
+   operation :doc:`../ops-live-migrate-vms`.
 
 #. Perform a series upgrade of the machine:
 
@@ -1061,8 +1061,8 @@ ensuring the availability of services.
    same placement group is hosted on those machines. For example, if ceph-mon
    is deployed with ``customize-failure-domain`` set to 'true' and the ceph-osd
    units are hosted on machines in three or more separate Juju AZs you can
-   safely reboot ceph-osd machines simultaneously in the same zone. See
-   `Ceph AZ`_ in `Infrastructure high availability`_ for details.
+   safely reboot ceph-osd machines simultaneously in the same zone. See the
+   :ref:`ha_ceph_az` section on the :doc:`../ha` page for details.
 
 Automation
 ----------
@@ -1096,6 +1096,3 @@ and test the series upgrade primitives:
 .. _mysql-innodb-cluster: https://jaas.ai/mysql-innodb-cluster
 .. _mysql-router: https://jaas.ai/mysql-router
 .. _percona-cluster charm - series upgrade to focal: percona-series-upgrade-to-focal.html
-.. _Live migrate VMs from a running compute node: https://docs.openstack.org/charm-guide/latest/admin/ops-live-migrate-vms.html
-.. _Ceph AZ: https://docs.openstack.org/charm-guide/latest/admin/ha.html#ceph-az
-.. _Infrastructure high availability: https://docs.openstack.org/charm-guide/latest/admin/ha.html

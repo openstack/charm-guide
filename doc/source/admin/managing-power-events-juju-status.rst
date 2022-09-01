@@ -7,9 +7,8 @@ Reference cloud
 
 .. note::
 
-    The information on this page is associated with the topic of :ref:`Managing
-    Power Events <managing_power_events>`. See that page for background
-    information.
+   The information on this page is associated with the topic of
+   :doc:`managing-power-events`. See that page for background information.
 
 The cloud is represented in the form of ``juju status`` output.
 

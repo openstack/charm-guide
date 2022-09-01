@@ -17,9 +17,8 @@ This guide will show how to deploy two Ceph clusters with RBD mirroring between
 them with the use of the ceph-rbd-mirror charm. See the `charm's
 documentation`_ for basic information and charm limitations.
 
-RBD mirroring is only one aspect of datacentre redundancy. Refer to `Ceph RADOS
-Gateway Multisite Replication`_ and other work to arrive at a complete
-solution.
+RBD mirroring is only one aspect of datacentre redundancy. Refer to
+:doc:`ceph-rgw-multisite` and other work to arrive at a complete solution.
 
 Performance considerations
 --------------------------
@@ -353,7 +352,6 @@ Here, we make site 'a' be the primary by demoting site 'b' and promoting site
 
 .. LINKS
 .. _charm's documentation: https://opendev.org/openstack/charm-ceph-rbd-mirror/src/branch/master/src/README.md
-.. _Ceph RADOS Gateway Multisite replication: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/rgw-multisite.html
 .. _RBD mirroring: https://docs.ceph.com/en/latest/rbd/rbd-mirroring
 .. _Geographical Redundancy with rbd-mirror: https://youtu.be/ZifNGprBUTA
 .. _Cross model relations: https://juju.is/docs/olm/cross-model-relations

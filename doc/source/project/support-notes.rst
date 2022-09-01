@@ -1,5 +1,3 @@
-.. _support-notes:
-
 =============
 Support notes
 =============
@@ -25,11 +23,11 @@ as follows:
 #. The keystone application in one model, related to the vault application in a
    second model.
 #. The ceph-mon application in one model, related to the ceph-rbd-mirror
-   application in a second model. This scenario is documented in `Ceph RBD
-   mirroring`_.
+   application in a second model. This scenario is documented in
+   :doc:`../admin/storage/ceph-rbd-mirror`.
 #. A ceph-radosgw application in one model, related to another ceph-radosgw
-   application in a second model. This scenario is documented in `Ceph RADOS
-   Gateway multisite replication`_.
+   application in a second model. This scenario is documented in
+   :doc:`../admin/storage/ceph-rgw-multisite`.
 
 Other scenarios may work but are currently not supported. Distinct development
 and testing efforts are required in order to qualify each unique CMR scenario.
@@ -41,5 +39,3 @@ in this effort kindly use the `cross-model`_ bug tag.
 .. LINKS
 .. _Cross model relations: https://juju.is/docs/olm/cross-model-relations
 .. _cross-model: https://bugs.launchpad.net/bugs/+bugs?field.tag=cross-model
-.. _Ceph RBD Mirroring: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ceph-rbd-mirror.html
-.. _Ceph RADOS Gateway Multisite replication: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-rgw-multisite.html

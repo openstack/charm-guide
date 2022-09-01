@@ -7,9 +7,8 @@ Cloud topology example
 
 .. note::
 
-    The information on this page is associated with the topic of :ref:`Managing
-    Power Events <managing_power_events>`. See that page for background
-    information.
+   The information on this page is associated with the topic of
+   :doc:`managing-power-events`. See that page for background information.
 
 This page contains the analysis of cloud machines. The ideal is to do this for
 every machine in a cloud in order to determine the *cloud topology*. Six

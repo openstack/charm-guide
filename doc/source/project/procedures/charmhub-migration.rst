@@ -7,7 +7,7 @@ charms to charms that use a channel.
 
 .. important::
 
-   See `Charm delivery`_ for an overview of how OpenStack charms are
+   See :doc:`../charm-delivery` for an overview of how OpenStack charms are
    distributed.
 
 Background
@@ -97,8 +97,8 @@ Examples:
 Select the channels
 -------------------
 
-`Charm delivery`_ includes a list of all the tracks available to the
-OpenStack charms.
+The :doc:`../charm-delivery` page includes a list of all the tracks available
+to the OpenStack charms.
 
 Examples:
 
@@ -166,4 +166,3 @@ important to:
 .. LINKS
 .. _Charmhub: https://charmhub.io
 .. _Juju documentation: https://juju.is/docs/olm/upgrading
-.. _Charm delivery: https://docs.openstack.org/charm-guide/latest/project/charm-delivery.html

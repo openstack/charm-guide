@@ -30,19 +30,19 @@ project.
      - Format
      - Diátaxis
 
-   * - `OpenStack Charm Guide`_
+   * - :doc:`Charm Guide <../../index>`
      - docs.openstack.org
      - OpenDev
      - Sphinx RST
      - Tutorials, Howtos, Concepts, Reference
 
-   * - `OpenStack Charms Deployment Guide`_
+   * - :doc:`Deploy Guide <cdg:index>`
      - docs.openstack.org
      - OpenDev
      - Sphinx RST
      - Howtos
 
-   * - `OpenStack Charms Admin Guide`_
+   * - :doc:`Admin Guide <../../admin/index>`
      - docs.openstack.org
      - OpenDev
      - Sphinx RST
@@ -65,6 +65,3 @@ not hesitate to :doc:`ask us questions <../contact>`.
 
 .. LINKS
 .. _Docs as Code: https://www.writethedocs.org/guide/docs-as-code
-.. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide
-.. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide
-.. _OpenStack Charms Admin Guide: https://docs.openstack.org/charm-guide/latest/admin

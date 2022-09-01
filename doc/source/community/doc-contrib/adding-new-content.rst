@@ -57,7 +57,7 @@ is given on the parent page.
 OpenStack Charm Guide
 ^^^^^^^^^^^^^^^^^^^^^
 
-The `OpenStack Charm Guide`_ is the main source of information for the
+The :doc:`Charm Guide <../../index>` is the main source of information for the
 OpenStack Charms project. All Diátaxis types are therefore appropriate:
 Tutorials, Howtos, Concepts, and Reference. The Charm Guide also includes
 community and project information - categories that fall outside of the
@@ -69,8 +69,8 @@ and is written in `Sphinx-enhanced reStructuredText`_.
 OpenStack Charms Deployment Guide
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The `OpenStack Charms Deployment Guide`_ is the main source of information for
-the charm-by-charm deployment of a Charmed OpenStack cloud. Due to its focussed
+The :doc:`Deploy Guide <cdg:index>` is the main source of information for the
+charm-by-charm deployment of a Charmed OpenStack cloud. Due to its focussed
 nature, the only suitable Diátaxis type is Howtos.
 
 This documentation is created on OpenDev, is under version control (Git), and
@@ -84,9 +84,9 @@ is written in Sphinx-enhanced reStructuredText.
 OpenStack Charms Admin Guide
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The `OpenStack Charms Admin Guide`_ is the day-2 operations guide for Charmed
-OpenStack. Due to its focussed mandate, the only applicable Diátaxis type is
-Howtos.
+The :doc:`Admin Guide <../../admin/index>` is the day-2 operations guide for
+Charmed OpenStack. Due to its focussed mandate, the only applicable Diátaxis
+type is Howtos.
 
 This documentation is created on OpenDev, is under version control (Git), and
 is written in Sphinx-enhanced reStructuredText.
@@ -145,9 +145,6 @@ verified.
 .. _Docs as Code: https://www.writethedocs.org/guide/docs-as-code
 .. _Diátaxis framework: http://diataxis.fr
 .. _conference talk: https://youtu.be/t4vKPhjcMZg
-.. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide
-.. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide
-.. _OpenStack Charms Admin Guide: https://docs.openstack.org/charm-guide/latest/admin
 .. _OpenStack charms: https://opendev.org/openstack?q=charm&tab=&sort=recentupdate
 .. _Charmhub: https://charmhub.io
 .. _Markdown viewer: https://jbt.github.io/markdown-editor

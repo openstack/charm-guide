@@ -132,9 +132,8 @@ Add a relation between `glance`_ and `ceph-radosgw`_:
 Post-deployment configuration
 -----------------------------
 
-Follow the rest of this deployment guide for the typical post-deployment
-configuration. See `Configure OpenStack`_. The following is specific to Ironic.
-
+This section is specific to Ironic (see the :doc:`cdg:configure-openstack` page
+for a typical post-deployment configuration).
 
 .. note::
 
@@ -439,4 +438,3 @@ Boot a bare metal machine
 .. _ironic deploy interfaces: https://docs.openstack.org/ironic/latest/admin/interfaces/deploy.html
 .. _glance: https://charmhub.io/glance
 .. _ceph-radosgw: https://charmhub.io/ceph-radosgw
-.. _Configure OpenStack: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/configure-openstack.html

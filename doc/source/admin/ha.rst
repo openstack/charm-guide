@@ -147,6 +147,8 @@ client-specified AZ during instance creation, one of these zones will be
 scheduled. When 'true', and MAAS is the backing cloud, this option overrides
 option ``default-availability-zone``.
 
+.. _ha_ceph_az:
+
 Ceph AZ
 ^^^^^^^
 
@@ -201,7 +203,7 @@ requests to the application and the application itself.
 .. note::
 
    Highly available applications may require attention if subjected to a power
-   event (see `Managing power events`_ in the Admin Guide).
+   event (see the :doc:`managing-power-events` page).
 
 Cloud applications are typically made highly available through the use of
 techniques applied externally to the application itself (e.g. using a
@@ -857,7 +859,6 @@ Charms`_ project group.
 .. _Clustered Database Service Model: http://docs.openvswitch.org/en/latest/ref/ovsdb.7/#clustered-database-service-model
 .. _Raft algorithm: https://raft.github.io/
 .. _Ceph bucket type: https://docs.ceph.com/docs/master/rados/operations/crush-map/#types-and-buckets
-.. _Managing power events: https://docs.openstack.org/charm-guide/latest/howto/managing-power-events.html
 
 .. BUGS
 .. _LP #1234561: https://bugs.launchpad.net/charm-ceph-osd/+bug/1234561

@@ -274,8 +274,8 @@ Reissuing of certificates
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 New certificates can be reissued to all TLS-enabled clients by means of the
-``reissue-certificates`` action. See cloud operation `Reissue TLS
-certificates across the cloud`_ in the Admin Guide for details.
+``reissue-certificates`` action. See cloud operation
+:doc:`../ops-reissue-tls-certs` for details.
 
 Switching between different types of CA certificates
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -332,4 +332,3 @@ PKI secrets backend and then generate a root CA certificate:
 .. _RFC5280: https://tools.ietf.org/html/rfc5280#section-3.2
 .. _RFC7468: https://tools.ietf.org/html/rfc7468#section-5
 .. _vault: https://opendev.org/openstack/charm-vault/src/branch/master/src/README.md
-.. _Reissue TLS certificates across the cloud: https://docs.openstack.org/charm-guide/latest/admin/ops-reissue-tls-certs.html

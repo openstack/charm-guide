@@ -18,8 +18,8 @@ First consult these resources:
   avoid creating duplicate bugs
 
 The observed issue may already be fixed. Ideally, upgrade to the most recent
-revision available and confirm whether the problem persists. See the `Charms
-upgrade`_ documentation.
+revision available and confirm whether the problem persists. See the
+:doc:`../admin/upgrades/charms` documentation.
 
 Consider testing for a regression before submitting a bug as it is an extremely
 valuable data point. The main variables are Ubuntu series, OpenStack release,
@@ -312,5 +312,4 @@ Please include an explanatory bug comment:
 .. _Juju logs: https://juju.is/docs/olm/juju-logs
 .. _AppArmor: https://ubuntu.com/server/docs/security-apparmor
 .. _Existing bugs: https://bugs.launchpad.net/openstack-charms/+bugs?orderby=-id&start=0
-.. _Charms upgrade: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-charms.html
 .. _filing the bug: https://bugs.launchpad.net/openstack-charms/+filebug

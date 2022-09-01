@@ -1,5 +1,3 @@
-.. _managing_power_events:
-
 =====================
 Managing power events
 =====================
@@ -66,8 +64,7 @@ good examples of this.
 Cloud applications are typically made highly available through the use of the
 `hacluster`_ subordinate charm. Some applications, though, achieve HA at the
 software layer (outside of Juju), and can be called *natively HA*. One such
-application is ``rabbitmq-server``. See :doc:`Infrastructure high availability
-<ha>` for more information.
+application is ``rabbitmq-server``. See :doc:`ha` for more information.
 
 Cloud topology
 ~~~~~~~~~~~~~~
@@ -1345,7 +1342,6 @@ Charms`_ project group.
 .. _force_boot: https://www.rabbitmq.com/rabbitmqctl.8.html#force_boot
 .. _Restarting Cluster Nodes: https://www.rabbitmq.com/clustering.html#restarting
 .. _Rebooting a Cluster from a Major Outage: https://dev.mysql.com/doc/mysql-shell/8.0/en/troubleshooting-innodb-cluster.html#reboot-outage
-.. _Infrastructure high availability: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ha.html
 
 .. BUGS
 .. _LP #1804261: https://bugs.launchpad.net/charm-ceph-osd/+bug/1804261
