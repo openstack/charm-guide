@@ -24,11 +24,12 @@ here is based on the upgrade order for :ref:`OpenStack upgrades
 <openstack_upgrade_order>`, which, in turn, is the order used by internal
 testing.
 
-.. note::
+.. caution::
 
-   Although it may be possible to upgrade some charms concurrently it is
-   recommended that charm upgrades be performed sequentially (i.e. one at a
-   time). Verify a charm upgrade before moving on to the next.
+   Although it may be possible to upgrade some charms concurrently (i.e.
+   in parallel), it is not recommended. Charm upgrades should be performed
+   sequentially (i.e. one at a time). Also, verify that a charm upgrade has
+   succeeded before moving on to the next.
 
 The general order is:
 
