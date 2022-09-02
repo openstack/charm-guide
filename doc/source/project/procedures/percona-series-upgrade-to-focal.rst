@@ -43,7 +43,8 @@ Procedure
 ^^^^^^^^^
 
 * Leave all the percona-cluster machines on Bionic and upgrade the series of
-  the remaining machines in the cloud per the `Series upgrade OpenStack`_ page.
+  the remaining machines in the cloud per the
+  :doc:`../../admin/upgrades/series-openstack` page.
 
 * Deploy a mysql-innodb-cluster on Focal.
 
@@ -254,5 +255,4 @@ its probable hacluster subordinates) may be removed.
 .. LINKS
 .. _Zaza migration code: https://github.com/openstack-charmers/zaza-openstack-tests/blob/master/zaza/openstack/charm_tests/mysql/tests.py#L556
 .. _Percona strict mode: https://www.percona.com/doc/percona-xtradb-cluster/LATEST/features/pxc-strict-mode.html
-.. _Series upgrade OpenStack: upgrade-series-openstack.html
 .. _`LP #1936210`: https://bugs.launchpad.net/charm-deployment-guide/+bug/1936210

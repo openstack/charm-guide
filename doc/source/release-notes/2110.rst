@@ -39,7 +39,7 @@ cinder-lvm
 The `cinder-lvm charm`_ enables an LVM backend for Cinder. It is a subordinate
 charm used in conjunction with the cinder principle charm. The cinder-lvm charm
 deprecates the LVM functionality of the cinder charm. A migration path is
-available as a `special charm procedure`_.
+available here: :doc:`../project/procedures/cinder-lvm-migration`.
 
 cinder-netapp
 ~~~~~~~~~~~~~
@@ -419,7 +419,6 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _tempest Python package: https://pypi.org/project/tempest/
 .. _Compute meters documentation: https://docs.openstack.org/ceilometer/latest/admin/telemetry-measurements.html#telemetry-compute-meters
 .. _retired: https://docs.openstack.org/releasenotes/neutron-fwaas-dashboard/ussuri.html
-.. _special charm procedure: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/cinder-lvm-migration.html
 .. _Upgrade issues: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-issues.html
 
 .. COMMITS

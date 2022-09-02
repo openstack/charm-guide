@@ -120,13 +120,13 @@ making any changes.
   upgrades).
 
 * The cloud should be running the latest OpenStack release supported by the
-  current series. See `Ubuntu OpenStack release cycle`_ and `OpenStack
-  upgrade`_.
+  current series. See `Ubuntu OpenStack release cycle`_ and the
+  :doc:`openstack` page.
 
 * The cloud should be fully operational and error-free.
 
 * All currently deployed charms should be upgraded to the latest stable charm
-  revision. See `Charms upgrade`_.
+  revision. See the :doc:`charms` page.
 
 * The Juju model comprising the cloud should be error-free (e.g. there should
   be no charm hook errors).
@@ -349,10 +349,7 @@ the :doc:`series-openstack` page.
 
 .. LINKS
 .. _Ubuntu releases wiki page: https://wiki.ubuntu.com/Releases
-.. _Charms upgrade: upgrade-charms.html
-.. _OpenStack upgrade: upgrade-openstack.html
-.. _Known OpenStack upgrade issues: upgrade-issues.html
-.. _series upgrade: https://discourse.charmhub.io/t/upgrading-a-machines-series
+.. _series upgrade: https://juju.is/docs/olm/upgrade-a-machines-series
 .. _Ubuntu OpenStack release cycle: https://ubuntu.com/about/release-cycle#ubuntu-openstack-release-cycle
-.. _Application leadership: https://discourse.charmhub.io/t/implementing-leadership
-.. _ubuntu: https://jaas.ai/ubuntu
+.. _Application leadership: https://juju.is/docs/olm/leaders
+.. _ubuntu: https://charmhub.io/ubuntu
