@@ -38,6 +38,21 @@ See bug `LP #1828534`_. This can be resolved by restarting the memcached service
 
    juju run --application=memcached 'sudo systemctl restart memcached'
 
+Ceph PG auto-scaler not enabled by default
+------------------------------------------
+
+The upgrade to Train implies an upgrade of Ceph from Mimic to Nautilus, which
+in turn includes the new `PG auto-scaler`_ Ceph module. However, this new
+feature is enabled by default only for new deployments. To enable it for an
+upgraded (to Nautilus) cluster:
+
+.. code-block:: none
+
+   juju config ceph-mon pg-autotune=true
+
+.. LINKS
+.. _PG auto-scaler: https://ceph.io/en/news/blog/2019/new-in-nautilus-pg-merging-and-autotuning
+
 .. BUGS
 .. _LP #1828534: https://bugs.launchpad.net/charm-designate/+bug/1828534
 .. _LP #1928992: https://bugs.launchpad.net/charm-deployment-guide/+bug/1928992
