@@ -48,6 +48,12 @@ charm repository (see all `charm repositories`_).
 <TITLE>
 ~~~~~~~
 
+ceph-mon charm: COS Lite support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Support for sending metrics to prometheus-k8s in the `COS Lite
+observability stack`_ has been added.
+
 Documentation updates
 ---------------------
 
@@ -75,6 +81,16 @@ Informational notices
 Deprecation notices
 -------------------
 
+
+ceph-mon charm: prometheus machine charm
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Support for relating to the prometheus2 machine charm is deprecated
+and will be removed at some point in the future.
+
+See new charm feature `ceph-mon charm: COS Lite support`_ above.
+
+
 <TITLE>
 ~~~~~~~
 
@@ -100,6 +116,7 @@ Issues discovered during this release cycle
 .. _Zed milestone: https://launchpad.net/openstack-charms/+milestone/Zed
 .. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
+.. _COS Lite observability stack: https://charmhub.io/cos-lite
 
 .. COMMITS
 
