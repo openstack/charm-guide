@@ -328,7 +328,46 @@ PKI secrets backend and then generate a root CA certificate:
    juju run-action --wait vault/leader disable-pki
    juju run-action --wait vault/leader generate-root-ca
 
+Configuring SSL certificates via charm options
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Some OpenStack charms, such as `cinder`_, provide configuration options for
+specifying a service certificate directly. This allows one to manage
+certificates on a per-application basis.
+
+Taken Cinder as an example, to upload a pair of SSL certificate and key for the
+charm, change the ``ssl_cert`` and ``ssl_key`` config values:
+
+.. code-block:: none
+
+   juju config cinder ssl_cert="$(cat /path/to/cert.pem | base64)" \
+      ssl_key="$(cat /path/to/key.pem | base64)"
+
+If the service certificate is signed by an intermediate CA, it is necessary to
+also include the intermediate certificate in ``ssl_cert`` after the leaf
+certificate:
+
+.. code-block:: none
+
+   juju config cinder \
+      ssl_cert="$(cat /path/to/cert.pem /path/to/intermediate.pem | base64)" \
+      ssl_key="$(cat /path/to/key.pem | base64)"
+
+In the case that the service certificate is privately signed. its CA
+certificate should be uploaded to ``ssl_ca``:
+
+.. code-block:: none
+
+   juju config cinder ssl_ca="$(cat /path/to/myCA.pem | base64)"
+
+.. important::
+
+   Updating a charm's SSL settings will change its status
+   to ``maintenance``. The service will be temporarily unavailable during this
+   short time.
+
 .. LINKS
 .. _RFC5280: https://tools.ietf.org/html/rfc5280#section-3.2
 .. _RFC7468: https://tools.ietf.org/html/rfc7468#section-5
 .. _vault: https://opendev.org/openstack/charm-vault/src/branch/master/src/README.md
+.. _cinder: https://charmhub.io/cinder/
