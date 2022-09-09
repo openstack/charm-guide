@@ -283,7 +283,7 @@ Switching between different types of CA certificates
 It is possible to switch between a self-signed root CA certificate
 and a third-party intermediate CA certificate after deployment.
 
-.. Important::
+.. important::
 
    Switching certificates will cause a short period of downtime for services
    using Vault as the certificate manager. Notably, a TLS-enabled Keystone will
@@ -331,40 +331,48 @@ PKI secrets backend and then generate a root CA certificate:
 Configuring SSL certificates via charm options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Some OpenStack charms, such as `cinder`_, provide configuration options for
-specifying a service certificate directly. This allows one to manage
-certificates on a per-application basis.
-
-Taken Cinder as an example, to upload a pair of SSL certificate and key for the
-charm, change the ``ssl_cert`` and ``ssl_key`` config values:
-
-.. code-block:: none
-
-   juju config cinder ssl_cert="$(cat /path/to/cert.pem | base64)" \
-      ssl_key="$(cat /path/to/key.pem | base64)"
-
-If the service certificate is signed by an intermediate CA, it is necessary to
-also include the intermediate certificate in ``ssl_cert`` after the leaf
-certificate:
-
-.. code-block:: none
-
-   juju config cinder \
-      ssl_cert="$(cat /path/to/cert.pem /path/to/intermediate.pem | base64)" \
-      ssl_key="$(cat /path/to/key.pem | base64)"
-
-In the case that the service certificate is privately signed. its CA
-certificate should be uploaded to ``ssl_ca``:
-
-.. code-block:: none
-
-   juju config cinder ssl_ca="$(cat /path/to/myCA.pem | base64)"
-
 .. important::
 
    Updating a charm's SSL settings will change its status
    to ``maintenance``. The service will be temporarily unavailable during this
    short time.
+
+Some OpenStack charms, such as `cinder`_, provide configuration options for
+specifying a service certificate directly. This allows one to manage
+certificates on a per-application basis.
+
+Taking Cinder as an example, upload the entire certificate chain (
+concatenated in the order of service certificate, chain of intermediate
+certificates if available, and root CA certificate) by using the ``ssl_cert``
+configuration option:
+
+.. code-block:: none
+
+   juju config cinder ssl_cert="$(cat /path/to/cert.pem \
+      /path/to/intermediate.pem /path/to/myCA.pem| base64)"
+
+.. note::
+
+   Uploading the full certificate chain is recommended in all cases for best
+   practices. It is especially required if the service uses Apache2 to
+   communicate with public SSL clients. Nonetheless, if the service is used
+   strictly internally and its certificate was issued directly by a root CA,
+   uploading solely the service certificate is acceptable.
+
+Next, upload the SSL key associated with the service certificate by using the
+``ssl_key`` option:
+
+.. code-block:: none
+
+   juju config cinder ssl_key="$(cat /path/to/key.pem | base64)"
+
+In the case that the service certificate is privately signed, its root CA
+certificate should be uploaded to ``ssl_ca`` to enable system-wise
+authorization:
+
+.. code-block:: none
+
+   juju config cinder ssl_ca="$(cat /path/to/myCA.pem | base64)"
 
 .. LINKS
 .. _RFC5280: https://tools.ietf.org/html/rfc5280#section-3.2
