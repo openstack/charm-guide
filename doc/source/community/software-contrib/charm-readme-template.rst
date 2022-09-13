@@ -121,11 +121,10 @@ example.
 Give any general requirements. For example, whether a pre-existing Ceph cluster
 is assumed.
 
-As exceptions to the above rule, subordinate charms can include the deployment
-steps of a principal charm (e.g. `cinder-ceph`_ and cinder). Also, some charms
-are so closely related that it makes sense for each to show both (e.g.
-`swift-proxy`_ and `swift-storage`_, or `ceph-mon`_ and `ceph-osd`_),
-especially if the space required is minimal. Use common sense.
+As exceptions to the above rule, some charms are so closely related that it
+makes sense for each to show both (e.g. `swift-proxy`_ and `swift-storage`_,
+or `ceph-mon`_ and `ceph-osd`_), especially if the space required is minimal.
+Use common sense.
 
 Section **Actions**
 ~~~~~~~~~~~~~~~~~~~
@@ -149,7 +148,7 @@ Fill in the placeholder for the charm's Charmhub entry.
 
 .. important::
 
-   There is no need to call out specific actions in the README.  However, make
+   There is no need to call out specific actions in the README. However, make
    sure that the ``actions.yaml`` file explains each action well.
 
 Section **<charm feature>**
@@ -180,7 +179,7 @@ This is boilerplate text for a non-native HA service:
 See the `rabbitmq-server`_ charm for an example of a native HA service.
 
 Regardless of the nature of the charm's HA implementation, the section should
-always include this boilerplate text, and :doc:`Alert <../contact>` the team if
+always include this boilerplate text, and :doc:`alert <../contact>` the team if
 your charm is not conceptually covered in the specified resource:
 
 .. code-block:: none
@@ -200,11 +199,9 @@ This is boilerplate text:
 
    This charm supports the policy overrides feature.
 
-   Policy overrides is a feature that allows an operator to override the
-   default policy of an OpenStack service.
-
-   See [Policy overrides][cg-policy-overrides] for more information on this
-   feature.
+   Policy overrides allow an operator to override the default policy of an
+   OpenStack service. See [Policy overrides][cg-policy-overrides] for more
+   information on this feature.
 
 Section **Deferred service events**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -276,11 +273,11 @@ Put all links at the bottom. For example:
    [cg]: https://docs.openstack.org/charm-guide
    [cg-deferred-service-events]: https://docs.openstack.org/charm-guide/latest/admin/deferred-events.html
    [cg-policy-overrides]: https://docs.openstack.org/charm-guide/latest/admin/policy-overrides.html
-   [cg-ha-apps]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/ha.html#ha-applications
+   [cg-ha-apps]: https://docs.openstack.org/charm-guide/latest/admin/ha.html#ha-applications
    [cdg]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide
    [hacluster-charm]: https://charmhub.io/hacluster
    [juju-docs-actions]: https://juju.is/docs/working-with-actions
-   [juju-docs-config-apps]: https://juju.is/docs/configuring-applications
+   [juju-docs-config-apps]: https://juju.is/docs/olm/configure-an-application
    [<charm>-actions]: https://charmhub.io/<charm>/actions
    [<charm>-configure]: https://charmhub.io/<charm>/configure
    [<charm>-filebug]: https://bugs.launchpad.net/charm-<charm>/+filebug
