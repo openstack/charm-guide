@@ -26,11 +26,11 @@ and then linked to (i.e. "For more information see..."). :doc:`Ask
 documentation.
 
 When referencing another charm in a general way, link to the charm's
-`Charmhub`_ entry for the most recent stable channel (e.g.
-https://charmhub.io/keystone?channel=yoga/stable). When referring specifically
-to information in another charm's README, link directly to the file, or to a
-header in the file, by way of the charm's repository on `opendev.org`_ (e.g.
-https://opendev.org/openstack/charm-keystone/src/branch/stable/yoga/README.md).
+`Charmhub`_ entry (e.g. https://charmhub.io/keystone). When referring
+specifically to information in another charm's README, link directly to the
+file, or to a header in the file, by way of the charm's master branch on
+`opendev.org`_ (e.g.
+https://opendev.org/openstack/charm-keystone/src/branch/master/README.md).
 
 Structure
 ---------
