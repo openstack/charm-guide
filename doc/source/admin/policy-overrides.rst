@@ -299,7 +299,7 @@ See the upstream documentation on `Show Server Details`_.
 .. _policy.json: https://docs.openstack.org/oslo.policy/latest/admin/policy-json-file.html
 .. _Nova API: https://docs.openstack.org/nova/latest/configuration/policy.html
 .. _Show Server Details: https://docs.openstack.org/api-ref/compute/?expanded=show-server-details-detail#show-server-details
-.. _Application resource: https://juju.is/docs/sdk/resources#heading--application-resources
+.. _Application resource: https://juju.is/docs/sdk/resources
 
 .. CHARMS
 .. _cinder: https://opendev.org/openstack/charm-cinder/src/branch/master/README.md#user-content-policy-overrides

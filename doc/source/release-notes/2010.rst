@@ -83,8 +83,7 @@ Action based migration from Neutron ML2+OVS to ML2+OVN
 New actions have been introduced to enable migration of a Neutron ML2+OVS
 based deployment to ML2+OVN.
 
-Please refer to the `Migration from Neutron ML2+OVS to ML2+OVN section of the
-OVN`_ appendix in the `OpenStack Charms Deployment Guide`_ for more
+Please refer to the :doc:`../project/procedures/ovn-migration` page for more
 information.
 
 Ceph BlueStore compression support
@@ -320,7 +319,6 @@ Deployment Guide`_ for more details.
 .. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
 .. _Open vSwitch Integration Guide for Centralized Control: https://docs.openvswitch.org/en/latest/topics/integration/
 .. _vault charm: https://charmhub.io/vault
-.. _Migration from Neutron ML2+OVS to ML2+OVN section of the OVN: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html#migration-from-neutron-ml2-ovs-to-ml2-ovn
 .. _Octavia deprecation notes for Victoria: https://docs.openstack.org/releasenotes/octavia/victoria.html#deprecation-notes
 
 .. COMMITS

@@ -282,8 +282,8 @@ A more complex example bundle is available in `OpenStack bundles Focal
 Ussuri`_.
 
 In Ubuntu 20.04 LTS (Focal) percona-cluster will no longer be available. The
-migration process is documented in the `Specific series upgrade procedures`_
-page in the `OpenStack Charms Deployment Guide`_.
+migration process is documented on the
+:doc:`../project/procedures/percona-series-upgrade-to-focal` page.
 
 Masakari charms
 ~~~~~~~~~~~~~~~
@@ -615,7 +615,6 @@ Please see the `OpenStack Charm Guide`_ for current information.
 .. _Neutron documentation: https://docs.openstack.org/neutron/latest/admin/config-fip-port-forwardings.html
 .. _placement API: https://docs.openstack.org/placement/ussuri/
 .. _HA with pause/resume: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#ha-with-pause-resume
-.. _Specific series upgrade procedures: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-series-upgrade-specific-procedures.html#percona-series-upgrade-to-focal
 .. _Swift Auth system: https://docs.openstack.org/swift/latest/overview_auth.html
 .. _Swift Global Cluster: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-swift-gc.html
 .. _Toward Convergence of ML2+OVS+DVR and OVN: http://specs.openstack.org/openstack/neutron-specs/specs/ussuri/ml2ovs-ovn-convergence.html

@@ -180,9 +180,9 @@ When performed on Ubuntu 20.10 (Groovy), the procedure for migrating an
 OpenStack cloud from ML2+OVS to ML2+OVN may require an extra step due to Open
 vSwitch bug `LP #1852221`_.
 
-Following the procedure in the `Migration from Neutron ML2+OVS to ML2+OVN`_
-section of the deploy guide, the workaround is to restart the `ovs-vswitchd`
-service after resuming the ovn-chassis charm in step 15:
+Following the procedure on the :doc:`../project/procedures/ovn-migration` page.
+The workaround is to restart the `ovs-vswitchd` service after resuming the
+ovn-chassis charm in step 15:
 
 .. code-block:: none
 
@@ -231,7 +231,6 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _Cinder-Ceph replication development notes: https://github.com/ionutbalutoiu/cinder-ceph-replication
 .. _MicroStack: https://microstack.run
 .. _openstack-on-lxd: https://github.com/openstack-charmers/openstack-on-lxd
-.. _Migration from Neutron ML2+OVS to ML2+OVN: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html#migration-from-neutron-ml2-ovs-to-ml2-ovn
 
 .. COMMITS
 

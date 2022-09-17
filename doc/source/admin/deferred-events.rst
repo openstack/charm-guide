@@ -155,9 +155,9 @@ action:
 .. LINKS
 
 .. CHARMS
-.. _neutron-gateway: https://opendev.org/openstack/charm-neutron-gateway/src/branch/master/README.md#user-content-deferred-restarts
-.. _neutron-openvswitch: https://opendev.org/openstack/charm-neutron-openvswitch/src/branch/master/README.md#user-content-deferred-restarts
-.. _ovn-central: https://opendev.org/x/charm-ovn-central/src/branch/master/README.md#user-content-deferred-restarts
-.. _ovn-chassis: https://opendev.org/x/charm-ovn-chassis/src/branch/master/README.md#user-content-deferred-restarts
-.. _ovn-dedicated-chassis: https://opendev.org/x/charm-ovn-dedicated-chassis/src/branch/master/README.md#user-content-deferred-restarts
-.. _rabbitmq-server: https://opendev.org/openstack/charm-rabbitmq-server/src/branch/master/README.md#user-content-deferred-restarts
+.. _neutron-gateway: https://opendev.org/openstack/charm-neutron-gateway/src/branch/master/README.md#deferred-service-events
+.. _neutron-openvswitch: https://opendev.org/openstack/charm-neutron-openvswitch/src/branch/master/README.md#deferred-service-events
+.. _ovn-central: https://opendev.org/x/charm-ovn-central/src/branch/master/README.md#deferred-service-events
+.. _ovn-chassis: https://opendev.org/x/charm-ovn-chassis/src/branch/master/README.md#deferred-service-events
+.. _ovn-dedicated-chassis: https://opendev.org/x/charm-ovn-dedicated-chassis/src/branch/master/README.md#deferred-service-events
+.. _rabbitmq-server: https://opendev.org/openstack/charm-rabbitmq-server/src/branch/master/README.md#deferred-service-events

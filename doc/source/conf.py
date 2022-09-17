@@ -57,6 +57,12 @@ spelling_word_list_filename = [
     '_spelling/dubious_words.txt'
 ]
 
+# Linkchecker
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-the-linkcheck-builder
+#linkcheck_anchors=False # disable anchor checks to reduce false positives
+linkcheck_retries=2     # juju.is/docs has trouble - probably Discourse related
+linkcheck_timeout=8     # ditto
+
 # Add any paths that contain templates here, relative to this directory.
 # templates_path = ['_templates']
 

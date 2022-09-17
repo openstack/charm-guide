@@ -275,7 +275,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
 .. _vault charm: https://opendev.org/openstack/charm-vault/src/branch/master/src/README.md#unseal-vault
-.. _hacluster charm: https://opendev.org/openstack/charm-hacluster/src/branch/master/README.md#update-ring-action
+.. _hacluster charm: https://opendev.org/openstack/charm-hacluster/src/branch/master/README.md
 .. _Migration from Neutron ML2+OVS to ML2+OVN: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html#migration-from-neutron-ml2-ovs-to-ml2-ovn
 .. _What is STONITH?: https://clusterlabs.org/pacemaker/doc/en-US/Pacemaker/1.1/html/Clusters_from_Scratch/ch08.html
 .. _nova-compute charm: https://opendev.org/openstack/charm-nova-compute/src/branch/master/README.md#cloud-downscaling

@@ -131,7 +131,9 @@ a nova-compute unit will be faster than before and the nova-cloud-controller
 upgrade-charm hook will be significantly improved for large deployments.
 
 For more information about the cache-known-hosts option refer to the
-`charm documentation <https://jaas.ai/nova-cloud-controller#charm-config-cache-known-hosts>`__.
+`charm-config-cache-known-hosts
+<https://opendev.org/openstack/charm-nova-cloud-controller/src/branch/master/README.md#ssh-host-lookup-caching>`__
+section of the nova-cloud-controller charm README.
 
 Preview Charm Features
 ======================

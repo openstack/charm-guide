@@ -153,5 +153,5 @@ the `data path control tools`_ to monitor offloaded flows.
    recirc_id(0),in_port(7),eth(src=fa:16:3e:b9:db:c8,dst=fa:16:3e:b2:20:82),eth_type(0x0800),ipv4(dst=10.42.0.16/255.255.255.240,proto=6,tos=0/0x3,frag=no),tcp_flags(psh|ack), packets:3873, bytes:31053714, used:0.590s, actions:set(tunnel(tun_id=0x4,dst=10.6.12.8,ttl=64,tp_dst=6081,key6(bad key length 1, expected 0)(01)geneve({class=0x102,type=0x80,len=4,0x70006}),flags(key))),2
 
 .. LINKS
-.. _traffic control monitor: http://manpages.ubuntu.com/manpages/focal/man8/tc.8.html#monitor
-.. _data path control tools: http://manpages.ubuntu.com/manpages/focal/man8/ovs-dpctl.8.html
+.. _traffic control monitor: https://manpages.ubuntu.com/manpages/focal/man8/tc.8.html
+.. _data path control tools: https://manpages.ubuntu.com/manpages/focal/man8/ovs-dpctl.8.html
