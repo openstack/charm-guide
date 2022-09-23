@@ -31,6 +31,8 @@ When a storage backend is added to Glance a service restart may be necessary in
 order for the new backend to be registered. This issue is tracked in bug `LP
 #1914819`_.
 
+.. _ovn_sriov_dhcp:
+
 OVN and SR-IOV: servicing external DHCP and metadata requests
 -------------------------------------------------------------
 

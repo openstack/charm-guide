@@ -2,117 +2,192 @@
 Using SR-IOV with OVN
 =====================
 
-Single root I/O virtualisation (SR-IOV) enables splitting a single physical
-network port into multiple virtual network ports known as virtual functions
-(VFs). The division is done at the PCI level which allows attaching the VF
-directly to a virtual machine instance, bypassing the networking stack of the
-hypervisor hosting the instance.
+Single root I/O virtualisation (SR-IOV) is an open hardware specification that
+enables splitting a single physical network port into multiple virtual network
+ports known as virtual functions (VFs). In this context, the physical port
+becomes known as a physical function (PF). OVN allows for the integration of
+SR-IOV into OpenStack.
 
 .. note::
 
    For general information on OVN, refer to the main :doc:`index` page.
 
-The main use case for this feature is to support applications with high
-bandwidth requirements. For such applications the normal plumbing through the
-userspace virtio driver in QEMU will consume too much resources from the host.
+A VF can then be directly attached to a VM and thereby bypass the networking
+stack of the hosting hypervisor. The main use case is to support applications
+with high bandwidth requirements. For such applications, the normal plumbing
+through the userspace virtio driver in QEMU will consume too much resources
+from the host. For an upstream OpenStack overview see `SR-IOV`_ in the Neutron
+documentation.
 
-It is possible to configure chassis to prepare network interface cards (NICs)
-for use with SR-IOV and make them available to OpenStack.
+.. caution::
 
-Prerequisites
--------------
+   Enabling SR-IOV will necessiate the reboot of the associated physical host.
 
-To use the feature you need to use a NIC with support for SR-IOV.
+Requirements
+------------
 
-Machines need to be pre-configured with appropriate kernel command-line
-parameters. The charms do not handle this facet of configuration and it is
-expected that the user configure this either manually or through the bare metal
-provisioning layer (for example `MAAS`_). Example:
+SR-IOV support must be present in:
 
-.. code-block:: none
+* the PCIe hardware device
+* the host operating system
+* the host BIOS (and be enabled)
 
-   intel_iommu=on iommu=pt probe_vf=0
+An IOMMU driver and any other pertinent features available to the host's CPU
+must be enabled in the kernel manually (e.g. for Intel: ``intel_iommu=on``,
+``iommu=pt``, ``probe_vf=0``) or through a bare metal provisioning layer (for
+example `MAAS`_).
 
-Charm configuration
--------------------
+As per a normal Charmed OpenStack cloud, a mapping between physical network
+name, physical port, and OVS bridge should exist. This document presumes the
+following options are set with certain values (adjust any further instructions
+as per your environment):
 
-Enable SR-IOV, map physical network name 'physnet2' to the physical port named
-'enp3s0f0' and create four virtual functions on it:
+* ``ovn-bridge-mappings=physnet1:br-ex``
+* ``bridge-interface-mappings=br-ex:enp3s0f0``
+
+OpenStack configuration
+-----------------------
+
+There are a number of stages to OpenStack configuration for SR-IOV to become
+usable.
+
+Enable SR-IOV
+~~~~~~~~~~~~~
+
+To enable base SR-IOV support:
 
 .. code-block:: none
 
    juju config neutron-api enable-sriov=true
    juju config ovn-chassis enable-sriov=true
-   juju config ovn-chassis sriov-device-mappings=physnet2:enp3s0f0
-   juju config ovn-chassis sriov-numvfs=enp3s0f0:4
+   juju add-relation ovn-chassis:amqp rabbitmq-server:amqp
 
-.. caution::
+Create VFs
+~~~~~~~~~~
 
-   After deploying the above example the machines hosting ovn-chassis
-   units must be rebooted for the changes to take effect.
-
-After enabling the virtual functions you should take note of the ``vendor_id``
-and ``product_id`` of the virtual functions:
+Map the existing physical network to the physical port and create some VFs on
+it (four here):
 
 .. code-block:: none
 
-   juju run --application ovn-chassis 'lspci -nn | grep "Virtual Function"'
+   juju config ovn-chassis sriov-device-mappings=physnet1:enp3s0f0
+   juju config ovn-chassis sriov-numvfs=enp3s0f0:4
 
-.. code-block:: console
+.. note::
+
+   The total number of VFs supported by a device can be obtained from the
+   device documentation. Post SR-IOV enablement, device files on the host can
+   be inspected. For example:
+
+   .. code-block:: none
+
+      cat /sys/class/net/enp3s0f0/device/sriov_totalvfs
+      63
+
+   Once SR-IOV is enabled, in the advent that option ``srivo-numvfs`` is
+   modified, you can have Netplan attempt to make the necessary changes with
+   command :command:`sudo netplan apply`. However, rebooting the underlying
+   host remains the best method since changing SR-IOV configuration via Netplan
+   is device/driver/configuration specific. 
+
+Reboot physical hosts
+^^^^^^^^^^^^^^^^^^^^^
+
+After analysing your cloud's topology and ascertaining what effects a reboot
+may have, plan to have each each hypervisor that is hosting an affected
+ovn-chassis unit rebooted.
+
+Authorise passthrough devices
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+First gather some device information by querying the ovn-chassis application:
+
+.. code-block:: none
+
+   juju run -a ovn-chassis 'lspci -nn | grep "Virtual Function"'
 
    03:10.0 Ethernet controller [0200]: Intel Corporation 82599 Ethernet Controller Virtual Function [8086:10ed] (rev 01)
    03:10.2 Ethernet controller [0200]: Intel Corporation 82599 Ethernet Controller Virtual Function [8086:10ed] (rev 01)
    03:10.4 Ethernet controller [0200]: Intel Corporation 82599 Ethernet Controller Virtual Function [8086:10ed] (rev 01)
    03:10.6 Ethernet controller [0200]: Intel Corporation 82599 Ethernet Controller Virtual Function [8086:10ed] (rev 01)
 
-In the above example ``vendor_id`` is '8086' and ``product_id`` is '10ed'.
+Here, the physical device vendor_id and product_id are given, respectively, by
+``[8086:10ed]``.
 
-Add a mapping between physical network name, physical port, and Open vSwitch
-bridge:
-
-.. code-block:: none
-
-   juju config ovn-chassis ovn-bridge-mappings=physnet2:br-ex
-   juju config ovn-chassis bridge-interface-mappings br-ex:a0:36:9f:dd:37:a8
-
-.. note::
-
-   The above configuration allows OVN to configure an 'external' port on one
-   of the Chassis for providing DHCP and metadata to instances connected
-   directly to the network through SR-IOV.
-
-For OpenStack to make use of the VFs, the ``neutron-sriov-agent`` needs to talk
-to RabbitMQ:
+Using this information (and the known physical network name), inform the
+Compute service of the PCI device (PF) it can pass through to VMs:
 
 .. code-block:: none
 
-   juju add-relation ovn-chassis:amqp rabbitmq-server:amqp
+   juju config nova-compute pci-passthrough-whitelist=\
+      '{"vendor_id":"8086", "product_id":"10ed", "physical_network":"physnet1"}'
 
-OpenStack Nova also needs to know which PCI devices it is allowed to pass
-through to instances:
+Create a Neutron direct port
+----------------------------
 
-.. code-block:: none
-
-   juju config nova-compute pci-passthrough-whitelist='{"vendor_id":"8086", "product_id":"10ed", "physical_network":"physnet2"}'
-
-Boot an instance
-----------------
-
-OpenStack can now be directed to boot an instance and attach it to an SR-IOV
-port.
-
-First create a port with ``vnic-type`` 'direct':
+Create an SR-IOV port (type ``direct``) in Neutron (as opposed to using a
+traditional port (type ``virtio``). Here it is created on network 'ext_net' and
+named after our intended VM name (jammy-3) as each VM will require its own
+port:
 
 .. code-block:: none
 
-   openstack port create --network my-network --vnic-type direct my-port
+   openstack port create --network ext_net --vnic-type direct sriov-jammy-3
 
-Then create an instance connected to the newly created port:
+Configure for DHCP
+------------------
+
+In an SR-IOV/OVN context, Neutron and the charms take care of making DHCP
+available automatically. The operator should however ensure that:
+
+#. there is a mapping between physical network name, physical port, and OVS
+   bridge as described in the `Requirements`_ section (this allows OVN to
+   configure an 'external' port on one of the Chassis for providing DHCP and
+   metadata to instances connected directly to the network through SR-IOV).
+#. DHCP is enabled in Neutron on the subnet associated with the network on
+   which the direct port was created (i.e. :command:`openstack port create`
+   above)
+#. one of the involved ovn-chassis applications has option
+   ``prefer-chassis-as-gw`` set to 'true' (see issue :ref:`ovn_sriov_dhcp` for
+   the reasoning)
+
+See the Neutron `SR-IOV guide for OVN`_ for more information.
+
+Create a VM
+-----------
+
+Create a VM and attach it to the SR-IOV port:
 
 .. code-block:: none
 
-   openstack server create --flavor my-flavor --key-name my-key \
-      --nic port-id=my-port my-instance
+   openstack server create \
+      --image jammy-amd64 --flavor m1.micro --key-name admin-key \
+      --network int_net --nic port-id=sriov-jammy-3 \
+      jammy-3
+
+Inspect the VM's assigned interface
+-----------------------------------
+
+Query the VM (here 203.0.113.1) for the assigned VF (via the PF):
+
+.. code-block:: none
+
+   ssh -i ~/cloud-keys/admin-key ubuntu@203.0.113.1 | lspci -vnn | grep -A9 '\[8086:10ed\]'
+
+   00:05.0 Ethernet controller [0200]: Intel Corporation 82599 Ethernet Controller Virtual Function [8086:10ed] (rev 01)
+           Subsystem: Intel Corporation 82599 Ethernet Controller Virtual Function [8086:7b11]
+           Physical Slot: 5
+           Flags: bus master, fast devsel, latency 0
+           Memory at febf0000 (64-bit, prefetchable) [size=16K]
+           Memory at febf4000 (64-bit, prefetchable) [size=16K]
+           Capabilities: <access denied>
+           Kernel driver in use: ixgbevf
+           Kernel modules: ixgbevf
+
+Here ``ixgbevf``, the Linux VF driver for Intel is in use.
 
 .. LINKS
-.. _MAAS: https://maas.io/
+.. _MAAS: https://maas.io/docs/about-customising-machines#heading--about-kernel-boot-options
+.. _SR-IOV: https://docs.openstack.org/neutron/latest/admin/config-sriov.html
+.. _SR-IOV guide for OVN: https://docs.openstack.org/neutron/latest/admin/ovn/sriov.html
+.. _LP #1946456: https://bugs.launchpad.net/bugs/1946456
