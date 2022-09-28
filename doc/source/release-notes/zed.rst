@@ -114,7 +114,6 @@ Issues discovered during this release cycle
 
 .. LINKS
 .. _Zed milestone: https://launchpad.net/openstack-charms/+milestone/Zed
-.. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _COS Lite observability stack: https://charmhub.io/cos-lite
 

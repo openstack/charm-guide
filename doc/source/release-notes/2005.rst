@@ -604,30 +604,29 @@ Next release info
 Please see the `OpenStack Charm Guide`_ for current information.
 
 .. LINKS
-.. _OpenStack Upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
-.. _Open Virtual Network (OVN): https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html
+.. _Open Virtual Network (OVN): https://docs.openstack.org/charm-guide/latest/admin/networking/ovn/index.html
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
-.. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
+.. _OpenStack upgrades: https://docs.openstack.org/charm-guide/latest/admin/upgrades/openstack.html
 .. _OpenStack bundles Focal Ussuri: https://github.com/openstack-charmers/openstack-bundles/blob/master/development/openstack-base-focal-ussuri-ovn/bundle.yaml
 .. _20.05 milestone: https://launchpad.net/openstack-charms/+milestone/20.05
-.. _Policy Overrides: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-policy-overrides.html
+.. _Policy Overrides: https://docs.openstack.org/charm-guide/latest/admin/policy-overrides.html
 .. _Neutron documentation: https://docs.openstack.org/neutron/latest/admin/config-fip-port-forwardings.html
 .. _placement API: https://docs.openstack.org/placement/ussuri/
-.. _HA with pause/resume: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#ha-with-pause-resume
+.. _HA with pause/resume: https://docs.openstack.org/charm-guide/latest/admin/upgrades/openstack.html#paused-single-unit
 .. _Swift Auth system: https://docs.openstack.org/swift/latest/overview_auth.html
-.. _Swift Global Cluster: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-swift-gc.html
+.. _Swift Global Cluster: https://docs.openstack.org/charm-guide/latest/admin/storage/swift.html#multi-region-cluster
 .. _Toward Convergence of ML2+OVS+DVR and OVN: http://specs.openstack.org/openstack/neutron-specs/specs/ussuri/ml2ovs-ovn-convergence.html
 .. _Security compliance and PCI-DSS: https://docs.openstack.org/keystone/train/admin/configuration.html#security-compliance-and-pci-dss
 .. _Keystone charm README: https://github.com/openstack/charm-keystone/blob/master/README.md
 .. _Neutron FWaaS project has been deprecated: https://review.opendev.org/#/c/708675/
 .. _Cinder charm README: https://github.com/openstack/charm-cinder/blob/master/README.md
 .. _Juju storage: https://juju.is/docs/olm/defining-and-using-persistent-storage
-.. _TrilioVault appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-trilio-vault.html
-.. _Automated instance recovery: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-masakari.html
+.. _TrilioVault appendix: https://docs.openstack.org/charm-guide/latest/admin/trilio.html
+.. _Automated instance recovery: https://docs.openstack.org/charm-guide/latest/admin/instance-ha.html
 .. _Ceph iSCSI Gateway README: https://github.com/openstack-charmers/charm-ceph-iscsi/blob/master/README.md
 .. _Nova Train configuration options: https://docs.openstack.org/nova/train/configuration/config.html#quota.count_usage_from_placement
-.. _NIC hardware offload appendix: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-hardware-offload.html
+.. _NIC hardware offload appendix: https://docs.openstack.org/charm-guide/latest/admin/networking/hardware-offloading.html
 .. _Networking Tools PPA: https://launchpad.net/~openstack-charmers/+archive/ubuntu/networking-tools
 .. _gaps from ML2+OVS: https://docs.openstack.org/neutron/ussuri/ovn/gaps.html
 .. _Identity service Security Checklist: https://docs.openstack.org/security-guide/identity/checklist.html

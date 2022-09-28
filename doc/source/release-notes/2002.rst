@@ -389,18 +389,17 @@ Next release info
 Please see the `OpenStack Charm Guide`_ for current information.
 
 .. LINKS
-.. _OpenStack Upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
-.. _Open Virtual Network (OVN): https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-ovn.html
+.. _OpenStack upgrades: https://docs.openstack.org/charm-guide/latest/admin/upgrades/openstack.html
+.. _Open Virtual Network (OVN): https://docs.openstack.org/charm-guide/latest/admin/networking/ovn/index.html
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
-.. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
 .. _20.02 milestone: https://launchpad.net/openstack-charms/+milestone/20.02
-.. _Policy Overrides: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-policy-overrides.html
+.. _Policy Overrides: https://docs.openstack.org/charm-guide/latest/admin/policy-overrides.html
 .. _Neutron documentation: https://docs.openstack.org/neutron/latest/admin/config-fip-port-forwardings.html
 .. _placement API: https://docs.openstack.org/placement/ussuri/
-.. _HA with pause/resume: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html#ha-with-pause-resume
+.. _HA with pause/resume: https://docs.openstack.org/charm-guide/latest/admin/upgrades/openstack.html#paused-single-unit
 .. _Swift Auth system: https://docs.openstack.org/swift/latest/overview_auth.html
-.. _Multi-region cluster: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/swift.html#multi-region-cluster
+.. _Multi-region cluster: https://docs.openstack.org/charm-guide/latest/admin/storage/swift.html#multi-region-cluster
 .. _Toward Convergence of ML2+OVS+DVR and OVN: http://specs.openstack.org/openstack/neutron-specs/specs/ussuri/ml2ovs-ovn-convergence.html
 .. _vault charm: https://charmhub.io/vault
 

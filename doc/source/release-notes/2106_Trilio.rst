@@ -164,4 +164,4 @@ configuration options to provide information regarding the S3 service:
 
 
 .. LINKS
-.. _DeploymentGuideTrilio: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-trilio-vault.html
+.. _DeploymentGuideTrilio: https://docs.openstack.org/charm-guide/latest/admin/trilio.html

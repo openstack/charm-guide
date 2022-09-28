@@ -316,7 +316,7 @@ Deployment Guide`_ for more details.
 .. _20.10 milestone: https://launchpad.net/openstack-charms/+milestone/20.10
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
-.. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
+.. _OpenStack upgrades: https://docs.openstack.org/charm-guide/latest/admin/upgrades/openstack.html
 .. _Open vSwitch Integration Guide for Centralized Control: https://docs.openvswitch.org/en/latest/topics/integration/
 .. _vault charm: https://charmhub.io/vault
 .. _Octavia deprecation notes for Victoria: https://docs.openstack.org/releasenotes/octavia/victoria.html#deprecation-notes

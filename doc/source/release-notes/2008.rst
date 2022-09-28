@@ -445,13 +445,13 @@ Deployment Guide`_ for more details.
 .. _20.08 milestone: https://launchpad.net/openstack-charms/+milestone/20.08
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
-.. _OpenStack upgrades: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html
+.. _OpenStack upgrades: https://docs.openstack.org/charm-guide/latest/admin/upgrades/openstack.html
 .. _neutron-api-plugin-arista charm README: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/README.md
 .. _Upgrading to stable Arista charm: https://github.com/openstack/charm-neutron-api-plugin-arista/blob/master/docs/upgrading-to-stable.md
 .. _gnocchi charm README: https://github.com/openstack/charm-gnocchi/blob/master/src/README.md
 .. _keystone-kerberos charm README: https://opendev.org/openstack/charm-keystone-kerberos/src/branch/master/src/README.md
 .. _vault charm: https://charmhub.io/vault
-.. _TrilioVault Data Protection: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-trilio-vault.html
+.. _TrilioVault Data Protection: https://docs.openstack.org/charm-guide/latest/admin/trilio.html
 
 .. COMMITS
 .. _Require relation to nova-compute application: https://review.opendev.org/#/c/731437/

@@ -82,7 +82,8 @@ In the examples below the network node will have three interfaces:
 * enp7s0: External - physnet1
 * enp8s0: Deployment - phystnet2
 
-See the documentation in this guide for `Neutron networking deployment`_.
+See the documentation in the Ussuri version of this guide for `Neutron
+networking deployment`_.
 
 In the bundle the relevant settings for neutron-gateway are:
 
