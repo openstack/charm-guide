@@ -81,7 +81,7 @@ Nova Cells v2 is now supported by the OpenStack Charms, for deployments of Queen
 
 More details and guidance is published in the charm deployment guide:
 
-https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-nova-cells.html
+https://docs.openstack.org/charm-guide/latest/admin/compute/nova-cells.html
 
 Nova metadata service moved to nova-cloud-controller
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -101,7 +101,7 @@ In the mean-time, the feature is available in the stable charms and it can be pr
 
 See the deployment guide for important guidance regarding the use of Juju Series Upgrades with OpenStack Charms.
 
-https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-series-upgrade.html
+https://docs.openstack.org/charm-guide/latest/admin/upgrades/series.html
 
 Octavia Load Balancer Charm
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -160,7 +160,7 @@ resources, such as cinder, glance and nova-compute:
    be tested in pre-production testing environments prior to production deployment
    upgrades.
 
-See https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html for more details.
+See https://docs.openstack.org/charm-guide/latest/admin/upgrades/openstack.html for more details.
 
 
 New Bundle Features

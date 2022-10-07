@@ -116,7 +116,7 @@ a tool for retro-fitting cloud images for use as Octavia Amphora.
 
 For more information about the octavia-diskimage-retrofit charm refer to the
 `charm home page <https://jaas.ai/octavia-diskimage-retrofit/>`__ and the
-`charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-octavia.html#amphora-image>`__.
+`charm deployment guide <https://docs.openstack.org/charm-guide/latest/admin/networking/load-balancing.html#amphora-image>`__.
 
 Nova Live Migration: Streamline SSH Host Key Handling
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -180,7 +180,7 @@ stable charm revision.
    in pre-production testing environments prior to production deployment
    upgrades.
 
-See the `charm deployment guide <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html>`__
+See the `charm deployment guide <https://docs.openstack.org/charm-guide/latest/admin/upgrades/openstack.html>`__
 for more details.
 
 Series Upgrade Issues

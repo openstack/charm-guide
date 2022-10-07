@@ -408,7 +408,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _21.10 milestone: https://launchpad.net/openstack-charms/+milestone/21.10
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
-.. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
+.. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _barbican-softhsm: https://jaas.ai/u/openstack-charmers/barbican-softhsm
 .. _barbican-vault: https://jaas.ai/barbican-vault
@@ -419,7 +419,7 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _tempest Python package: https://pypi.org/project/tempest/
 .. _Compute meters documentation: https://docs.openstack.org/ceilometer/latest/admin/telemetry-measurements.html#telemetry-compute-meters
 .. _retired: https://docs.openstack.org/releasenotes/neutron-fwaas-dashboard/ussuri.html
-.. _Upgrade issues: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-issues.html
+.. _Upgrade issues: https://docs.openstack.org/charm-guide/latest/project/issues/upgrade-issues.html
 
 .. COMMITS
 

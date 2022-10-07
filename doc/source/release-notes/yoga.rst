@@ -325,7 +325,7 @@ benefit by being able to supply the snap as a resource.
 .. _22.04 milestone: https://launchpad.net/openstack-charms/+milestone/22.04
 .. _OpenStack Charms Deployment Guide: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
-.. _Upgrades overview: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/upgrade-overview.html
+.. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _Network segment ranges: https://docs.openstack.org/neutron/latest/admin/config-network-segment-ranges.html
 .. _block device mapping FAQ section: https://docs.openstack.org/nova/latest/user/block-device-mapping.html#faqs

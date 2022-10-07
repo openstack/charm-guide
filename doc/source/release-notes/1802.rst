@@ -153,7 +153,7 @@ resources, such as cinder, glance and nova-compute:
    be tested in pre-production testing environments prior to production deployment
    upgrades.
 
-See https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-upgrade-openstack.html for more details.
+See https://docs.openstack.org/charm-guide/latest/admin/upgrades/openstack.html for more details.
 
 
 New Bundle Features
