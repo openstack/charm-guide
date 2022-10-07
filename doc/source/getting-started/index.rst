@@ -32,8 +32,8 @@ You will need a `MAAS`_ cluster with four nodes:
    controller-creation time.
 
    A single network interface is sufficient on the cloud nodes if an Open
-   vSwitch bridge is set up in MAAS. See the :doc:`MAAS page
-   <cdg:install-maas>` in the Deploy Guide for details.
+   vSwitch bridge is set up in MAAS. See the :ref:`MAAS page <cdg:ovs_bridge>`
+   in the Deploy Guide for details.
 
 Software
 ~~~~~~~~

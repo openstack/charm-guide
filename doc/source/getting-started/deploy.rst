@@ -24,9 +24,21 @@ depending on how the MAAS nodes are resourced. Use the :command:`juju status`
 command to monitor progress.
 
 Vault requires manual intervention in order to become functional. Complete the
-steps described in the `vault charm README`_ when the vault application shows a
-workload status of ``Vault needs to be initialized``. Once that's done, allow
-the model to settle to an error-free state (see this :ref:`example status
+three post-deployment steps described in the `vault charm README`_ when the
+vault application shows a Workload status of ``Vault needs to be initialized``
+(initialisation, unsealing, authorisation).
+
+A CA certificate will then need to be supplied to Vault so it can issue TLS
+certificates to the various cloud services. The easiest approach is to have
+Vault generate the CA certificate:
+
+.. code-block:: none
+
+   juju run-action --wait vault/leader generate-root-ca
+
+See the :doc:`../admin/security/tls` page for further guidance.
+
+Allow the model to settle to an error-free state (see this :ref:`example status
 output <juju_status>`).
 
 When you're ready, go to the :doc:`Configure OpenStack <openstack>` page.

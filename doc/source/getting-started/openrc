@@ -1,7 +1,7 @@
 # Place the cloud's CA certificate in a file readable by the openstackclients snap
 _snap_user_dir=~/snap/openstackclients/common
 if [ ! -d $_snap_user_dir ]; then
-    mkdir $_snap_user_dir
+    mkdir -p $_snap_user_dir
 fi
 _root_ca=$_snap_user_dir/root-ca.crt
 juju run -u vault/leader -- 'leader-get root-ca' | tee $_root_ca >/dev/null 2>&1

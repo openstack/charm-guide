@@ -36,14 +36,19 @@ Assign a value to each variable now.
      - optional - used to filter on MAAS nodes that align with the stated
        hardware requirements
 
-For the OVN Chassis network interface (OVN_DATA_PORT), in terms of its
-configuration, it is convenient for its name to be common across all three
-cloud nodes (as given in the table). If this is not the case, individual
-hardware (MAC) addresses can be used instead. Make note of them.
+Notes on the OVN Chassis network interface (OVN_DATA_PORT) when a second
+interface is used (i.e. Open vSwitch bridge is not set up within MAAS):
 
-If a second interface is being used for OVN_DATA_PORT (i.e. Open vSwitch
-bridges are not being used), it must be cabled, reside on the MAAS subnet
-(EXT_SUBNET), and have an IP address status of 'Unconfigured' (within MAAS).
+* As given in the table, it is convenient for the interface's name to be common
+  across all three cloud nodes. If this is not the case, individual hardware
+  (MAC) addresses can be used instead. Make note of them.
+
+* The interfaces must be cabled on the MAAS subnet. Within the MAAS web UI,
+  the interfaces' subnet name and their IP addresses' status must both remain
+  as 'Unconfigured'.
+
+* The ovn-chassis charm will dynamically create an OVS bridge on each
+  interface. An OVS bridge is always required on each OVN Chassis node.
 
 .. list-table::
    :header-rows: 1
