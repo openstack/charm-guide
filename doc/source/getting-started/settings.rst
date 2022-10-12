@@ -36,19 +36,25 @@ Assign a value to each variable now.
      - optional - used to filter on MAAS nodes that align with the stated
        hardware requirements
 
-Notes on the OVN Chassis network interface (OVN_DATA_PORT) when a second
-interface is used (i.e. Open vSwitch bridge is not set up within MAAS):
+Notes on the OVN Chassis network interface (OVN_DATA_PORT):
 
-* As given in the table, it is convenient for the interface's name to be common
-  across all three cloud nodes. If this is not the case, individual hardware
-  (MAC) addresses can be used instead. Make note of them.
+* When a second interface (per node) *is not* used, an Open vSwitch bridge
+  named 'br-ex' must be set up in MAAS for each node. The bridge name is
+  determined by the ovn-chassis charm's ``ovn-bridge-mappings`` option in the
+  bundle. The value of OVN_DATA_PORT will be the mapping of bridge to original
+  interface (e.g. 'br-ex:enp1s0'). See the :ref:`MAAS page <cdg:ovs_bridge>` in
+  the Deploy Guide for details on creating an OVS bridge in MAAS.
 
-* The interfaces must be cabled on the MAAS subnet. Within the MAAS web UI,
-  the interfaces' subnet name and their IP addresses' status must both remain
+* When a second interface *is* used, the charms will create an OVS bridge on
+  each interface.
+
+* It is convenient for the interface name to be common across the nodes.
+  Individual hardware (MAC) addresses can be used instead if this is not the
+  case. Make note of them.
+
+* Within the MAAS web UI, the interface (e.g. 'br-ex' or 'eth1') should be
+  associated with the subnet (EXT_SUBNET) and its IP address status must remain
   as 'Unconfigured'.
-
-* The ovn-chassis charm will dynamically create an OVS bridge on each
-  interface. An OVS bridge is always required on each OVN Chassis node.
 
 .. list-table::
    :header-rows: 1
@@ -94,8 +100,7 @@ for its nodes plus any that may be used as floating IPs (for SSH connections).
    Since OpenStack manages floating IPs they must not be used by MAAS for any
    other purpose. This can be assured by means of a `Reserved IP range`_.
 
-When you're done, move on to the :doc:`Configure the overlay bundle <overlay>`
-page.
+When you're done, move on to the :doc:`overlay` page.
 
 .. LINKS
 .. _Reserved IP range: https://maas.io/docs/maas-concepts-and-terms-reference#heading--ip-ranges

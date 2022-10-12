@@ -2,9 +2,8 @@
 Configure OpenStack
 ===================
 
-Now that OpenStack is deployed it must now be configured for it to become
-functional. Use the values collected on the :doc:`Collect local settings
-<settings>` page.
+Now that OpenStack is deployed, in order for it to become functional you must
+configure it. Use the values collected on the :doc:`settings` page.
 
 Install the OpenStack clients
 -----------------------------
@@ -19,9 +18,12 @@ command line. Install them now:
 Access the cloud
 ----------------
 
-This :download:`openrc <openrc>` file will assist in setting up admin access to
-the cloud. Download it under ``~/tutorial``. Then source it and test cloud
-access by querying Keystone:
+Download cloud init file :download:`openrc <openrc>` and save it in the
+``~/tutorial`` directory. It will assist you in setting up admin access to the
+cloud.
+
+Now source the file and test cloud access by querying the Keystone service
+catalogue:
 
 .. code-block:: none
 
@@ -35,30 +37,29 @@ You should get a listing of registered cloud services:
    +----------------------------------+-----------+--------------+
    | ID                               | Name      | Type         |
    +----------------------------------+-----------+--------------+
-   | 1510cd32376e4b2783970c292255fee2 | cinderv3  | volumev3     |
-   | 1e3f5eb0e1e24d82a683d421adbba85c | cinderv2  | volumev2     |
-   | 27fadff76abe4f829a25081aa8bbd98b | placement | placement    |
-   | 685053e8c6f04ccc992ac1809437d4e5 | nova      | compute      |
-   | 8e65d64be77240539e4d44409aa3bbca | s3        | s3           |
-   | 94e467ff95124e9c8b4c608077e61376 | glance    | image        |
-   | aeba7526d4064b2f97e9f5c72e0688c1 | keystone  | identity     |
-   | b79d5dddc89847419c131deaf333daf1 | neutron   | network      |
-   | f1d4699a8bbd40b793a151ecb3ca8de6 | swift     | object-store |
+   | 2bc94f2e4adc4596a23843311b929748 | swift     | object-store |
+   | 2caa7c057158428ca89090314293081a | glance    | image        |
+   | 5b4a922d629b4704ad0d634d6ec68c6c | placement | placement    |
+   | 6b1f2d914f7548f09718e630773616d3 | s3        | s3           |
+   | 99aa18a7eab94560ba11b445b32818f0 | neutron   | network      |
+   | b94900f898d54f9c8e77f3f65b64ba66 | nova      | compute      |
+   | ece643f6b65a4b57a98cb689cf54139b | keystone  | identity     |
+   | f76d49932bcd4801aaca9ccb47e6f5bb | cinderv3  | volumev3     |
    +----------------------------------+-----------+--------------+
 
 Import an image
 ---------------
 
-Import a boot image into Glance in order to create instances.
+You will need a boot image in order to create VMs.
 
 First download a Focal amd64 image:
 
 .. code-block:: none
 
-   curl http://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img \
-      --output ~/tutorial/focal-amd64.img
+   wget http://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img \
+      -O ~/tutorial/focal-amd64.img
 
-Now import it (calling it 'focal-amd64'):
+Then import it into Glance. Here we've called it 'focal-amd64':
 
 .. code-block:: none
 
@@ -70,7 +71,13 @@ Now import it (calling it 'focal-amd64'):
 Configure networking
 --------------------
 
-Create the external network and external subnet:
+We'll create internal networking so that OpenStack can assign internal IP
+addresses to the VMs it creates. We'll also create external networking that
+will allow access to those VMs from outside the cloud. A router is used to
+connect the two together.
+
+Create the external network and external subnet. We've called them 'ext_net'
+and 'ext_subnet' respectively:
 
 .. code-block:: none
 
@@ -84,7 +91,8 @@ Create the external network and external subnet:
       --subnet-range $EXT_SUBNET --no-dhcp --gateway $EXT_GW --network ext_net \
       ext_subnet
 
-Create the internal network and internal subnet:
+Create the internal network and internal subnet. We've called them 'int_net'
+and 'int_subnet' respectively:
 
 .. code-block:: none
 
@@ -95,11 +103,16 @@ Create the internal network and internal subnet:
       --subnet-range 192.168.0.0/24 --dns-nameserver $EXT_DNS --network int_net \
       int_subnet
 
-Create the router and configure it:
+Create the router. Here we've called it 'router1':
 
 .. code-block:: none
 
    openstack router create router1
+
+Then connect the router to the internal subnet and set the external network as
+its default gateway.
+
+.. code-block:: none
 
    openstack router add subnet router1 int_subnet
 
@@ -108,8 +121,8 @@ Create the router and configure it:
 Create a flavor
 ---------------
 
-Create at least one flavor to define a hardware profile for new instances.
-Here, to save resources, we create a minimal one called 'm1.micro':
+Create at least one flavor to define a hardware profile for new VMs. Here, to
+save resources, we create a minimal one called 'm1.micro':
 
 .. code-block:: none
 
@@ -124,9 +137,9 @@ Import an SSH keypair
 ---------------------
 
 An SSH keypair needs to be imported into the cloud in order to access your
-instances.
+VMs.
 
-Generate one first if you do not have one yet. This command creates a
+Generate one first if you do not yet have one. This command creates a
 passphraseless keypair (remove the ``-N`` option to avoid that):
 
 .. code-block:: none
@@ -142,7 +155,7 @@ To import a keypair:
 Configure security groups
 -------------------------
 
-To access instances over SSH create a rule for each existing security group:
+To access VMs over SSH, create a rule for each existing security group:
 
 .. code-block:: none
 
@@ -150,4 +163,4 @@ To access instances over SSH create a rule for each existing security group:
       openstack security group rule create $i --protocol tcp --remote-ip 0.0.0.0/0 --dst-port 22;
    done
 
-Proceed to the :doc:`Verify the cloud <verify>` page.
+Proceed to the :doc:`verify` page.

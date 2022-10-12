@@ -10,18 +10,29 @@ To access the dashboard (Horizon) first obtain its IP address:
 
 In this example, the address is '10.246.114.75'.
 
-The password can be queried with:
+The dashboard URL is then: **http://10.246.114.75/horizon**
+
+Now query for the admin password:
 
 .. code-block:: none
 
    juju run --unit keystone/leader leader-get admin_passwd
 
-The dashboard URL then becomes:
-
-**http://10.246.114.75/horizon**
+   ****************
 
 The final credentials needed to log in are:
 
 | User Name: **admin**
 | Password: ****************
 | Domain: **admin_domain**
+
+.. tip::
+
+   If this tutorial was performed on a host remote to your browser, you may
+   need to use SSH local port forwarding to access Horizon. For example:
+
+   .. code-block:: none
+
+      sudo ssh -i <personal-key> -N -L 8002:10.246.114.75:80 <remote-host>
+
+   In this case, the URL becomes: **http://localhost:8002/horizon**

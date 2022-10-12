@@ -6,7 +6,7 @@ Overview
 --------
 
 This tutorial shows how to deploy a test Charmed OpenStack cloud. Its major
-elements are:
+software elements are:
 
 * Ubuntu 20.04 LTS (Focal) for the cloud nodes
 * OpenStack Yoga
@@ -18,30 +18,44 @@ Storage, Identity, Image, and Dashboard.
 Requirements
 ------------
 
+Knowledge
+~~~~~~~~~
+
+The assumed reader skill set is that of an intermediate system administrator,
+especially in terms of networking. General familiarity with OpenStack itself is
+also recommended.
+
+In particular, you should be acquainted with these concepts:
+
+* `bundles`_
+* `constraints`_
+* `network spaces`_
+
 Hardware
 ~~~~~~~~
 
-You will need a `MAAS`_ cluster with four nodes:
+`MAAS`_ is an integral component of Charmed OpenStack. You will therefore need
+a MAAS cluster with at least four nodes:
 
 * 1 x Juju controller node: 4GiB RAM, 2 CPUs, 1 NIC, 1 x 40GiB storage
 * 3 x cloud nodes: 16GiB RAM, 4 CPUs, 2 NICs, 2 x 80GiB storage
+
+A single network interface is sufficient on the cloud nodes if an Open vSwitch
+bridge is set up in MAAS. Instructions for doing this will be provided later in
+the tutorial.
 
 .. note::
 
    The smaller controller node can be targeted via Juju constraints at
    controller-creation time.
 
-   A single network interface is sufficient on the cloud nodes if an Open
-   vSwitch bridge is set up in MAAS. See the :ref:`MAAS page <cdg:ovs_bridge>`
-   in the Deploy Guide for details.
-
 Software
 ~~~~~~~~
 
 The software versions used in this tutorial are:
 
-* MAAS 2.9.2
-* Juju 2.9.29
+* MAAS 3.2.0
+* Juju 2.9.35
 
 Client
 ~~~~~~
@@ -55,15 +69,6 @@ On this client you should:
 
 * Create directory ``~/tutorial`` . All the files needed for this tutorial will
   be placed there.
-
-Concepts
-~~~~~~~~
-
-You should be briefly acquainted with these concepts:
-
-* `bundles`_
-* `constraints`_
-* `network spaces`_
 
 Procedure
 ---------

@@ -12,14 +12,13 @@ the deploy will work within a given environment.
    Although it is possible to edit the bundle file itself, it is best practice
    to keep it pristine and to use an overlay instead.
 
-The overlay file is :download:`overlay-focal-yoga-mymaas.yaml`. Download it and
-save it in the ``~/tutorial`` directory.
+Download overlay file :download:`overlay-focal-yoga-mymaas.yaml` and save it in
+the ``~/tutorial`` directory.
 
 Replace the variables in the file with the some of the values that were
 collected in the :doc:`previous step <settings>`.
 
-Once you've edited and saved the file, proceed to the :doc:`Prepare Juju
-<juju>` page.
+Once you've edited and saved the file, proceed to the :doc:`juju` page.
 
 Adjustments
 -----------
@@ -35,9 +34,9 @@ being used.
 Network spaces
 ~~~~~~~~~~~~~~
 
-Each charm will need to be informed of a network space, via the ``bindings``
-charm parameter, if a network space is configured within MAAS for the cloud's
-subnet.
+Each principal charm will need to be informed of a network space, via the
+``bindings`` charm parameter, if a network space is configured within MAAS for
+the cloud's subnet.
 
 OVN Chassis data port and hardware addresses
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59,4 +58,46 @@ way:
      br-ex:52:54:00:03:01:02
      br-ex:52:54:00:03:01:03
 
-Use your own MAC addresses but preserve ``br-ex:``.
+Use your own MAC addresses but preserve the ``br-ex:`` portion.
+
+Example overlay
+~~~~~~~~~~~~~~~
+
+Below is an example overlay bundle that has been adjusted according to the
+local environment.
+
+.. code-block:: yaml
+
+   machines:
+
+     '0':
+       constraints: tags=ovs-bridge
+     '1':
+       constraints: tags=ovs-bridge
+     '2':
+       constraints: tags=ovs-bridge
+
+   variables:
+
+     data-port: &data-port br-ex:enp1s0
+     osd-devices: &osd-devices /dev/sda /dev/sdb /dev/sdc /dev/sdd
+
+   applications:
+
+     ovn-chassis:
+       options:
+         bridge-interface-mappings: *data-port
+
+     ceph-osd:
+       options:
+         osd-devices: *osd-devices
+       bindings:
+         "": public-space
+
+     ceph-mon:
+       bindings:
+         "": public-space
+
+     .
+     .
+     .

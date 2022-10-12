@@ -2,13 +2,13 @@
 Verify the cloud
 ================
 
-We'll now verify that the cloud is working by creating a test instance and
-connecting to it over SSH.
+We'll now verify that the cloud is working by creating a test VM and connecting
+to it over SSH.
 
-Create an instance
-------------------
+Create a VM
+-----------
 
-Create a Focal amd64 instance called 'focal-1':
+Create a Focal amd64 VM called 'focal-1':
 
 .. code-block:: none
 
@@ -19,7 +19,7 @@ Create a Focal amd64 instance called 'focal-1':
 Assign a floating IP address
 ----------------------------
 
-Request and assign a floating IP address to the new instance:
+Request and assign a floating IP address to the new VM:
 
 .. code-block:: none
 
@@ -27,10 +27,10 @@ Request and assign a floating IP address to the new instance:
 
    openstack server add floating ip focal-1 $FLOATING_IP
 
-Log in to the instance
-----------------------
+Log in to the VM
+----------------
 
-Log in to the new instance:
+Log in to the new VM:
 
 .. code-block:: none
 
@@ -38,4 +38,4 @@ Log in to the new instance:
 
 Congratulations, you have a working OpenStack cloud!
 
-Advance to the final step: :doc:`Access the dashboard <dashboard>`.
+Advance to the final step: :doc:`dashboard`.
