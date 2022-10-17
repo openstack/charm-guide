@@ -267,18 +267,66 @@ This is the list of provider-specific subordinate charms:
 * neutron-api-plugin-ovn
 * keystone-saml-mellon
 
-Installation sources
---------------------
+Delivering a charm
+------------------
 
-Most charms in the OpenStack Charm project support either the
-``openstack-origin`` or ``source`` configuration option. This options sets the
-software sources of the hosting machine.
+A channel charm gets delivered to a deployment by using the ``--channel``
+option with either the :command:`deploy` or :command:`refresh` commands. See
+also the :doc:`../concepts/software-sources` page.
 
-In order to ensure that a charm's channel will lead to the installation of the
-correct software version, these options will be set automatically according to
-the associated track. This is particularly important when a track spans
-multiple series (e.g. Ussuri is supported on both the 'bionic' and 'focal'
-series).
+Deploying a charm
+~~~~~~~~~~~~~~~~~
+
+To deploy a channel charm select the channel that corresponds to the current
+OpenStack release.
+
+Examples,
+
+To deploy the placement charm on an OpenStack Xena cloud the 'xena/stable'
+channel is chosen:
+
+.. code-block:: none
+
+   juju deploy --channel xena/stable placement
+
+To deploy the ceph-mon charm on an OpenStack Xena cloud the 'quincy/stable'
+channel is chosen:
+
+.. code-block:: none
+
+   juju deploy --channel quincy/stable ceph-mon
+
+.. _changing_the_channel:
+
+Changing the channel
+~~~~~~~~~~~~~~~~~~~~
+
+A charm's channel is typically changed as part of an OpenStack upgrade. The
+new channel must be chosen according to the target OpenStack release.
+
+.. warning::
+
+   Changing a charm's channel will trigger a charm upgrade, which will
+   typically cause the underlying cloud service to restart.
+
+   Study the :doc:`../admin/upgrades/openstack` process prior to changing charm
+   channels.
+
+Examples,
+
+To change the channel for the vault charm when upgrading to OpenStack Yoga
+the channel should be changed to 'yoga/stable':
+
+.. code-block:: none
+
+   juju refresh --channel 1.7/stable vault
+
+To change the channel for the ovn-central charm when upgrading to OpenStack
+Yoga the channel should be changed to '22.03/stable':
+
+.. code-block:: none
+
+   juju refresh --channel 22.03/stable ovn-central
 
 .. LINKS
 .. _Charmhub: https://charmhub.io
