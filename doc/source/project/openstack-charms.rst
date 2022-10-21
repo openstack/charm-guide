@@ -245,6 +245,7 @@ ready for production use (promoted to Stable).
 * `ironic-api`_
 * `ironic-conductor`_
 * `keystone-kerberos`_
+* `keystone-openidc`_
 * `magnum`_
 * `magnum-dashboard`_
 * `manila-dashboard`_
@@ -365,6 +366,7 @@ These charms have reached EOL and are deprecated.
 .. _ironic-api: https://opendev.org/openstack/charm-ironic-api
 .. _ironic-conductor: https://opendev.org/openstack/charm-ironic-conductor
 .. _keystone-kerberos: https://opendev.org/openstack/charm-keystone-kerberos/
+.. _keystone-openidc: https://opendev.org/openstack/charm-keystone-openidc/
 .. _magnum: https://opendev.org/openstack/charm-magnum
 .. _magnum-dashboard: https://opendev.org/openstack/charm-magnum-dashboard
 .. _manila-dashboard: https://opendev.org/openstack/charm-manila-dashboard

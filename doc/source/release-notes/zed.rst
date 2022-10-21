@@ -76,8 +76,13 @@ Documentation updates
 New tech-preview charms
 -----------------------
 
-<TITLE>
-~~~~~~~
+keystone-openidc
+~~~~~~~~~~~~~~~~
+
+The keystone-openidc charm provides OpenID Connect support for the OpenStack
+Keystone service. It is a subordinate charm used in conjunction with the
+keystone principal charm. When related to the openstack-dashboard charm it
+provides Web SSO support for Horizon.
 
 New tech-preview charm features
 -------------------------------
