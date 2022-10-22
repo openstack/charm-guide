@@ -9,15 +9,6 @@ use with hardware offloading and make them available to OpenStack.
 
    For general information on OVN, refer to the main :doc:`index` page.
 
-.. caution::
-
-   This feature is to be considered Tech Preview. OVN has more stringent
-   requirements for match/action support in the hardware than for example
-   Neutron ML2+OVS. Make sure to acquire hardware with appropriate support.
-
-   Depending on hardware vendor, it may be required to install third-party
-   drivers (DKMS) in order to successfully use this feature.
-
 Hardware offload support makes use of SR-IOV as an underlying mechanism to
 accelerate the data path between a virtual machine instance and the NIC
 hardware. But as opposed to traditional SR-IOV support the accelerated ports
