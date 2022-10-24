@@ -54,6 +54,19 @@ ceph-mon charm: COS Lite support
 Support for sending metrics to prometheus-k8s in the `COS Lite
 observability stack`_ has been added.
 
+ovn charms: default to OVN 22.03 on Focal
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+On Focal, deployments of the OVN charms when using track 22.03
+(``--channel 22.03/stable``) will use a new OVN specific UCA pocket. This is to
+ensure that a machine can simultaneously have OpenStack components from one
+source and OVN components from another.
+
+This has no effect when upgrading the OVN charms or when scaling an existing
+application (new units). However, a new configuration option `ovn-source`_ has
+been added that can override this behavior (i.e. payload upgrades will be
+triggered by charm upgrades and scaling).
+
 Documentation updates
 ---------------------
 
@@ -116,6 +129,7 @@ Issues discovered during this release cycle
 .. _Zed milestone: https://launchpad.net/openstack-charms/+milestone/Zed
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _COS Lite observability stack: https://charmhub.io/cos-lite
+.. _ovn-source: https://charmhub.io/ovn-chassis/configure?channel=22.03/stable#ovn-source
 
 .. COMMITS
 
