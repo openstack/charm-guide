@@ -18,17 +18,18 @@ Under development:
 Latest stable:
 
 * :doc:`yoga`
-* :doc:`2106_Trilio`
+* :doc:`42_Trilio`
 
 Older versions listed by year of release:
 
 .. list-table::
    :header-rows: 0
-   :widths: 20 20 20 40 20
+   :widths: 20 20 40 20 40 20
    :stub-columns: 1
 
    * - 2021
      - :doc:`2110`
+     - :doc:`2106_Trilio`
      - :doc:`2101`
      - :doc:`2103_Trilio`
      - :doc:`2104`
@@ -110,11 +111,12 @@ Older versions listed by year of release:
    :maxdepth: 1
    :hidden:
 
+   42_Trilio
    zed
    yoga
    2110
-   2104
    2106_Trilio
+   2104
    2103_Trilio
    2101
    2010

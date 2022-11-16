@@ -19,7 +19,7 @@ Prerequisites
 -------------
 
 * Ubuntu 18.04 LTS or 20.04 LTS
-* OpenStack Queens, Stein, Train, or Ussuri
+* OpenStack Queens, Stein, Train, Ussuri or Wallaby
 * an NFS server for snapshot storage or S3 compatible storage
 * a license (see the project's homepage)
 
@@ -31,15 +31,17 @@ version of Ubuntu and OpenStack.
 
 .. list-table:: **Supported combinations**
    :header-rows: 1
-   :widths: 12 12 20 20
+   :widths: 12 12 20 20 20
 
    * - Ubuntu
      - OpenStack
      - TrilioVault 4.0
      - TrilioVault 4.1
+     - TrilioVault 4.2
 
    * - Bionic
      - Queens
+     - ✔
      - ✔
      - ✔
 
@@ -47,9 +49,11 @@ version of Ubuntu and OpenStack.
      - Stein
      - ✔
      - ✔
+     - ✔
 
    * - Bionic
      - Train
+     - ✔
      - ✔
      - ✔
 
@@ -57,9 +61,17 @@ version of Ubuntu and OpenStack.
      - Ussuri
      - X
      - ✔
+     - ✔
 
    * - Focal
      - Ussuri
+     - X
+     - ✔
+     - ✔
+
+   * - Focal
+     - Wallaby
+     - X
      - X
      - ✔
 
@@ -83,6 +95,12 @@ An OpenStack Dashboard plugin is also provided, allowing for snapshot
 management to take place via a Web UI. This is implemented with the
 trilio-horizon-plugin charm.
 
+The Trilio charms are now managed in channels within the `CharmHub`_. The
+Trilio charms have a track which corresponds to the version of Trilio they
+are compatable with, so each charm has a 4.0, 4.1 and 4.2 channel. The charms
+are also compatable with the previous version of Trilio so that they can
+provide an upgrade path.
+
 An overlay bundle is used to deploy to an existing OpenStack cloud. An example
 is provided below.
 
@@ -101,28 +119,32 @@ is provided below.
    applications:
 
      trilio-wlm:
-       charm: ch:openstack-charmers-trilio-wlm
+       charm: ch:trilio-wlm
+       channel: 4.2/stable
        num_units: 1
        options:
-         openstack-origin: cloud:bionic-train
-         triliovault-pkg-source: 'deb [trusted=yes] https://apt.fury.io/triliodata-4-1/ /'
+         openstack-origin: cloud:focal-wallaby
+         triliovault-pkg-source: 'deb [trusted=yes] https://apt.fury.io/triliodata-4-2/ /'
 
      trilio-data-mover:
-       charm: ch:openstack-charmers-trilio-data-mover
+       charm: ch:trilio-data-mover
+       channel: 4.2/stable
        options:
-         triliovault-pkg-source: 'deb [trusted=yes] https://apt.fury.io/triliodata-4-1/ /'
+         triliovault-pkg-source: 'deb [trusted=yes] https://apt.fury.io/triliodata-4-2/ /'
 
      trilio-dm-api:
-       charm: ch:openstack-charmers-trilio-dm-api
+       charm: ch:trilio-dm-api
+       channel: 4.2/stable
        num_units: 1
        options:
-         openstack-origin: cloud:bionic-train
-         triliovault-pkg-source: 'deb [trusted=yes] https://apt.fury.io/triliodata-4-1/ /'
+         openstack-origin: cloud:focal-wallaby
+         triliovault-pkg-source: 'deb [trusted=yes] https://apt.fury.io/triliodata-4-2/ /'
 
      trilio-horizon-plugin:
-       charm: ch:openstack-charmers-trilio-horizon-plugin
+       charm: ch:trilio-horizon-plugin
+       channel: 4.2/stable
        options:
-         triliovault-pkg-source: 'deb [trusted=yes] https://apt.fury.io/triliodata-4-1/ /'
+         triliovault-pkg-source: 'deb [trusted=yes] https://apt.fury.io/triliodata-4-2/ /'
 
    relations:
 
@@ -273,3 +295,4 @@ state and ready for use.
 .. LINKS
 .. _TrilioVault: https://www.trilio.io/triliovault-for-openstack-2/
 .. _Trilio charms: https://opendev.org/openstack?tab=&sort=recentupdate&q=charm-trilio
+.. _CharmHub: https://charmhub.io/
