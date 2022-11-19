@@ -137,14 +137,14 @@ following syntax:
 
 .. code-block:: none
 
-   juju refresh --switch ch:<charm> --channel=<channel> <application>
+   juju refresh --switch ch:<charm> --channel <channel> <application-name>
 
 For example, if the selected channel for the rabbitmq-server charm is
 ``3.8/stable`` then:
 
 .. code-block:: none
 
-   juju refresh --switch ch:rabbitmq-server --channel=3.8/stable rabbitmq-server
+   juju refresh --switch ch:rabbitmq-server --channel 3.8/stable rabbitmq-server
 
 The application argument represents the application as it appears in the model.
 That is, it may be a named application (e.g. 'mysql' and not
@@ -161,7 +161,7 @@ important to:
   uses the ``ch:`` prefix by default on the command line.
 
 * always specify a channel when deploying a charm (e.g. :command:`juju deploy
-  --channel=pacific/stable ceph-radosgw`)
+  --channel pacific/stable ceph-radosgw`)
 
 .. LINKS
 .. _Charmhub: https://charmhub.io

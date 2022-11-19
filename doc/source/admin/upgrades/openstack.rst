@@ -20,10 +20,6 @@ Please read the :doc:`overview` page before continuing.
 
 It may be worthwhile to read the upstream OpenStack `Upgrades`_ guide.
 
-You should also be familiar with how software sources (versioning) are
-specified for cloud services. See the :doc:`../../concepts/software-sources`
-page.
-
 Upgradable services
 -------------------
 
@@ -32,20 +28,18 @@ get upgraded during an OpenStack upgrade.
 
 Services that are associated with subordinate charms are upgradable but only
 indirectly. They get upgraded along with their parent principal application.
-Subordinate charms do not support the ``openstack-origin`` (or ``source``)
-configuration option that is, as will be shown, a pre-requisite for initiating
-an OpenStack charm payload upgrade.
 
 Non-UCA software is upgraded by the administrator (on the units) using other
 means (e.g. manually via package utilities, the Landscape management tool, a
 snap, or as part of a series upgrade). Common applications where this applies
 are:
 
+* hacluster
 * memcached
-* ntp
-* percona-cluster
 * mysql-innodb-cluster
 * mysql-router
+* ntp
+* percona-cluster
 * rabbitmq-server
 * vault
 
@@ -98,10 +92,10 @@ battery of operational checks on the cloud.
 This step is to make certain that any issues that are apparent after the
 upgrade are not due to pre-existing problems.
 
-Perform the upgrade
--------------------
+Perform pre-upgrade steps
+-------------------------
 
-Perform the upgrade by following the below sections.
+Perform the pre-upgrade steps described in the below sections.
 
 .. _disable_unattended_upgrades:
 
@@ -313,39 +307,6 @@ along with those of the service being targeted.
    The OVN control plane will not be available between the commencement of the
    ovn-central upgrade and the completion of the nova-compute upgrade.
 
-Update the charm channel
-------------------------
-
-.. warning::
-
-   This step is only performed for channel charms - see the
-   :doc:`../../concepts/charm-types` page.
-
-A charm's channel needs to be updated according to the target OpenStack release
-and the Ubuntu series currently in use. The :doc:`../../project/charm-delivery`
-page provides guidance on what values to use.
-
-The change is made as per the following syntax:
-
-.. code-block:: none
-
-   juju refresh --channel=<channel> <application>
-
-For example, if the cloud is being upgraded to OpenStack Yoga then the keystone
-charm's channel should be updated to 'yoga/stable':
-
-.. code-block:: none
-
-   juju refresh --channel=yoga/stable keystone
-
-Charms whose services are not technically part of the OpenStack project will
-generally use a channel naming scheme that is not based on OpenStack release
-names. Here is the ovn-central charm:
-
-.. code-block:: none
-
-   juju refresh --channel=22.03/stable ovn-central
-
 .. _perform_the_upgrade:
 
 Perform the upgrade
@@ -376,7 +337,32 @@ also has the greatest potential for service downtime.
 .. note::
 
    A charm's supported actions can be listed with command :command:`juju
-   actions <charm-name>`.
+   actions <application-name>`.
+
+As a general rule, whenever there is the possibility of upgrading units
+individually, **always upgrade the application leader first**.
+
+.. note::
+
+   The leader is the unit with a ***** next to it in the :command:`juju status`
+   output. It can also be discovered via the CLI:
+
+   .. code-block:: none
+
+      juju run -a <application-name> is-leader
+
+Depending on whether a given charm uses channels or not (see the
+:doc:`../../concepts/charm-types` page), there are slight differences in the
+upgrade procedures:
+
+* With non-channel charms, you will need to set the software sources of the
+  charm. Guidance is provided in the :doc:`../../concepts/software-sources`
+  page.
+
+* With channel charms, you will need to change the charm's channel. See the
+  :ref:`changing_the_channel` section of the Charm delivery page for background
+  information. **Notably, a channel change will typically cause the underlying
+  cloud service to restart**.
 
 All-in-one
 ~~~~~~~~~~
@@ -393,25 +379,24 @@ the corresponding service.
    method but their charms are able to maintain service availability during the
    upgrade.
 
-The syntax is:
-
-.. code-block:: none
-
-   juju config <openstack-charm> openstack-origin=cloud:<cloud-archive-release>
-
 For example, to upgrade Cinder across all units (currently running Focal) from
-Ussuri to Victoria:
+Xena to Yoga:
 
 .. code-block:: none
 
-   juju config cinder openstack-origin=cloud:focal-victoria
+   juju config cinder action-managed-upgrade=False
 
-Charms whose services are not technically part of the OpenStack project will
-use the ``source`` charm option instead. The Ceph charms are a classic example:
+**If charm channels are in use:**
 
 .. code-block:: none
 
-   juju config ceph-mon source=cloud:focal-victoria
+   juju refresh --channel yoga/stable cinder
+
+**If charm channels are not in use:**
+
+.. code-block:: none
+
+   juju config cinder openstack-origin=cloud:focal-yoga
 
 Single-unit
 ~~~~~~~~~~~
@@ -426,25 +411,29 @@ to be upgraded separately. There is a lesser chance of downtime as the unit
 being upgraded must be in the process of servicing client requests for downtime
 to occur.
 
-As a general rule, whenever there is the possibility of upgrading units
-individually, **always upgrade the application leader first**.
-
-.. note::
-
-   The leader is the unit with a ***** next to it in the :command:`juju status`
-   output. It can also be discovered via the CLI:
-
-   .. code-block:: none
-
-      juju run -a <application-name> is-leader
-
-For example, to upgrade a three-unit glance application from Ussuri to Victoria
-where ``glance/1`` is the leader:
+For example, to upgrade a three-unit glance application from Xena to Yoga where
+``glance/1`` is the leader:
 
 .. code-block:: none
 
    juju config glance action-managed-upgrade=True
-   juju config glance openstack-origin=cloud:focal-victoria
+
+**If charm channels are in use:**
+
+.. code-block:: none
+
+   juju refresh --channel yoga/stable glance
+
+**If charm channels are not in use:**
+
+.. code-block:: none
+
+   juju config glance openstack-origin=cloud:focal-yoga
+
+In all cases, continue with the following commands (note that the leader has
+the ``openstack-upgrade`` action applied first):
+
+.. code-block:: none
 
    juju run-action --wait glance/1 openstack-upgrade
    juju run-action --wait glance/0 openstack-upgrade
@@ -468,13 +457,29 @@ separately in addition to the required pause/resume management. However, it is
 the method that will result in the least downtime as clients will not be able
 to solicit a paused service.
 
-For example, to upgrade a three-unit nova-compute application from Ussuri to
-Victoria where ``nova-compute/0`` is the leader:
+For example, to upgrade a three-unit nova-compute application from Xena to
+Yoga where ``nova-compute/0`` is the leader:
 
 .. code-block:: none
 
    juju config nova-compute action-managed-upgrade=True
-   juju config nova-compute openstack-origin=cloud:focal-victoria
+
+**If charm channels are in use:**
+
+.. code-block:: none
+
+   juju refresh --channel yoga/stable nova-compute
+
+**If charm channels are not in use:**
+
+.. code-block:: none
+
+   juju config nova-compute openstack-origin=cloud:focal-yoga
+
+In all cases, continue with the following commands (note that the leader has
+the ``openstack-upgrade`` action applied first):
+
+.. code-block:: none
 
    juju run-action --wait nova-compute/0 pause
    juju run-action --wait nova-compute/0 openstack-upgrade
@@ -488,6 +493,9 @@ Victoria where ``nova-compute/0`` is the leader:
    juju run-action --wait nova-compute/2 openstack-upgrade
    juju run-action --wait nova-compute/2 resume
 
+Paused-single-unit with hacluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 In addition, this method also permits a possible hacluster subordinate unit,
 which typically manages a VIP, to be paused so that client requests will never
 even be directed to the associated parent unit.
@@ -498,13 +506,34 @@ even be directed to the associated parent unit.
    take advantage of the pause-single-unit method's ability to pause it before
    upgrading the parent unit.
 
-For example, to upgrade a three-unit keystone application from Ussuri to
-Victoria where ``keystone/2`` is the leader:
+For example, to upgrade a three-unit keystone application from Xena to Yoga
+where ``keystone/2`` is the leader:
 
 .. code-block:: none
 
    juju config keystone action-managed-upgrade=True
-   juju config keystone openstack-origin=cloud:focal-victoria
+
+**If charm channels are in use:**
+
+.. code-block:: none
+
+   juju refresh --channel yoga/stable keystone
+
+.. code-block:: none
+
+**If charm channels are not in use:**
+
+.. code-block:: none
+
+   juju config keystone openstack-origin=cloud:focal-yoga
+
+Recall that the hacluster charm does not represent software found in the UCA.
+Its channel is therefore not changed here.
+
+In all cases, continue with the following commands (note that the leader has
+the ``openstack-upgrade`` action applied first):
+
+.. code-block:: none
 
    juju run-action --wait keystone-hacluster/1 pause
    juju run-action --wait keystone/2 pause
