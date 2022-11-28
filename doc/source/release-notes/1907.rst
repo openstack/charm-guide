@@ -92,7 +92,7 @@ operational tasks surrounding an unexpected database cluster shutdown.
 Human interaction is still required to recover the cluster.
 
 For more information about the introduced improvements refer to the "Cold Boot"
-section in the `charm documentation <https://jaas.ai/percona-cluster>`__.
+section in the `charm documentation <https://charmhub.io/percona-cluster>`__.
 
 DVR SNAT
 ~~~~~~~~
@@ -106,7 +106,7 @@ hypervisors within the deployment to allow effective load balancing of
 SNAT routers and DVR services across a deployment.
 
 For more details refer to the documentation of the ``use-dvr-snat``
-configuration option of the `neutron-openvswitch <https://jaas.ai/neutron-openvswitch>`__ charm
+configuration option of the `neutron-openvswitch <https://charmhub.io/neutron-openvswitch>`__ charm
 
 Octavia Image Lifecycle Management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -115,7 +115,7 @@ This release introduces the octavia-diskimage-retrofit charm which provides
 a tool for retro-fitting cloud images for use as Octavia Amphora.
 
 For more information about the octavia-diskimage-retrofit charm refer to the
-`charm home page <https://jaas.ai/octavia-diskimage-retrofit/>`__ and the
+`charm home page <https://charmhub.io/octavia-diskimage-retrofit/>`__ and the
 `charm deployment guide <https://docs.openstack.org/charm-guide/latest/admin/networking/load-balancing.html#amphora-image>`__.
 
 Nova Live Migration: Streamline SSH Host Key Handling

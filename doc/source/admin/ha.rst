@@ -827,25 +827,25 @@ Charms`_ project group.
 .. _MAAS: https://maas.io
 .. _MAAS zones: https://maas.io/docs/availability-zones
 .. _High availability: https://docs.openstack.org/arch-design/arch-requirements/arch-requirements-ha.html
-.. _hacluster: https://jaas.ai/hacluster
-.. _nrpe: https://jaas.ai/nrpe
+.. _hacluster: https://charmhub.io/hacluster
+.. _nrpe: https://charmhub.io/nrpe
 .. _OpenStack Charms: https://launchpad.net/openstack-charms
 .. _ceph-mon charm README: https://opendev.org/openstack/charm-ceph-mon/src/branch/master/README.md
 .. _ceph-osd charm README: https://opendev.org/openstack/charm-ceph-osd/src/branch/master/README.md
-.. _ceph-mon: https://jaas.ai/ceph-mon
-.. _ceph-osd: https://jaas.ai/ceph-osd
-.. _neutron-openvswitch: https://jaas.ai/neutron-openvswitch
-.. _nova-compute: https://jaas.ai/nova-compute
-.. _neutron-gateway: https://jaas.ai/neutron-gateway
-.. _swift-proxy: https://jaas.ai/swift-proxy
-.. _swift-storage: https://jaas.ai/swift-storage
-.. _ceph-radosgw: https://jaas.ai/ceph-radosgw
+.. _ceph-mon: https://charmhub.io/ceph-mon
+.. _ceph-osd: https://charmhub.io/ceph-osd
+.. _neutron-openvswitch: https://charmhub.io/neutron-openvswitch
+.. _nova-compute: https://charmhub.io/nova-compute
+.. _neutron-gateway: https://charmhub.io/neutron-gateway
+.. _swift-proxy: https://charmhub.io/swift-proxy
+.. _swift-storage: https://charmhub.io/swift-storage
+.. _ceph-radosgw: https://charmhub.io/ceph-radosgw
 .. _mysql-router: https://opendev.org/openstack/charm-mysql-router/src/branch/master/src/README.md
 .. _mysql-innodb-cluster: https://opendev.org/openstack/charm-mysql-innodb-cluster/src/branch/master/src/README.md
 .. _percona-cluster: https://opendev.org/openstack/charm-percona-cluster/src/branch/master/README.md
 .. _rabbitmq-server: https://opendev.org/openstack/charm-rabbitmq-server/src/branch/master/README.md
 .. _How to deploy to a specific machine: https://juju.is/docs/olm/deploy-to-a-specific-machine
-.. _Bundle reference: https://jaas.ai/docs/bundle-reference
+.. _Bundle reference: https://juju.is/docs/olm/bundle
 .. _Nova availability zone: https://docs.openstack.org/nova/latest/admin/availability-zones.html
 .. _Neutron availability zone: https://docs.openstack.org/neutron/latest/admin/config-az.html
 .. _Open Virtual Network: https://docs.openstack.org/networking-ovn/latest/

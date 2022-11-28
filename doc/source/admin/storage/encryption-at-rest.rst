@@ -71,4 +71,4 @@ and store the key in vault, and to retrieve the key and open encrypted block
 devices during boot.  Keys are only ever held in memory.
 
 .. LINKS
-.. _vault charm: https://jaas.ai/vault/
+.. _vault charm: https://charmhub.io/vault/

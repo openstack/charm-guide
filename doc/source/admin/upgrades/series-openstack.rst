@@ -1092,6 +1092,6 @@ and test the series upgrade primitives:
 .. _Upgrading Percona XtraDB Cluster: https://www.percona.com/doc/percona-xtradb-cluster/LATEST/howtos/upgrade_guide.html
 .. _Percona XtraDB Cluster In-Place Upgrading Guide From 5.5 to 5.6: https://www.percona.com/doc/percona-xtradb-cluster/5.6/upgrading_guide_55_56.html
 .. _Galera replication - how to recover a PXC cluster: https://www.percona.com/blog/2014/09/01/galera-replication-how-to-recover-a-pxc-cluster
-.. _mysql-innodb-cluster: https://jaas.ai/mysql-innodb-cluster
-.. _mysql-router: https://jaas.ai/mysql-router
+.. _mysql-innodb-cluster: https://charmhub.io/mysql-innodb-cluster
+.. _mysql-router: https://charmhub.io/mysql-router
 .. _percona-cluster charm - series upgrade to focal: percona-series-upgrade-to-focal.html

@@ -69,5 +69,5 @@ a three-node Keystone HA cluster with a VIP of 10.246.114.11:
    bug `LP #1930763`_).
 
 .. LINKS
-.. _hacluster charm: https://jaas.ai/hacluster
+.. _hacluster charm: https://charmhub.io/hacluster
 .. _LP #1930763: https://bugs.launchpad.net/charm-keystone/+bug/1930763

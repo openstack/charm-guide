@@ -301,5 +301,5 @@ Octavia please refer to the `Octavia cookbook`_.
 .. _Octavia Policies: https://docs.openstack.org/octavia/latest/configuration/policy.html
 .. _Octavia cookbook: https://docs.openstack.org/octavia/latest/user/guides/basic-cookbook.html
 .. _operators maintenance: https://docs.openstack.org/octavia/latest/admin/guides/operator-maintenance.html#rotating-the-amphora-images
-.. _vault charm: https://jaas.ai/vault/
+.. _vault charm: https://charmhub.io/vault/
 .. _Managing Octavia User Roles: https://docs.openstack.org/octavia/latest/configuration/policy.html#managing-octavia-user-roles

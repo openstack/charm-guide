@@ -161,7 +161,7 @@ https://jujucharms.com/openstack-base
 
 https://jujucharms.com/openstack-telemetry
 
-https://jaas.ai/ceph-base
+https://charmhub.io/ceph-base
 
 
 

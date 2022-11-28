@@ -67,5 +67,5 @@ Verify that Cinder volumes can be created as usual and that existing VMs
 utilising Cinder volumes have not been adversely affected.
 
 .. LINKS
-.. _cinder: https://jaas.ai/cinder
-.. _cinder-lvm: https://jaas.ai/cinder-lvm
+.. _cinder: https://charmhub.io/cinder
+.. _cinder-lvm: https://charmhub.io/cinder-lvm

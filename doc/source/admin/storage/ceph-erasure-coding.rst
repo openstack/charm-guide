@@ -195,9 +195,9 @@ If this option is not provided devices of any class will be used.
 
 .. LINKS
 .. _Ceph Erasure Code: https://docs.ceph.com/docs/master/rados/operations/erasure-code/
-.. _ceph-fs: https://jaas.ai/ceph-fs
-.. _ceph-radosgw: https://jaas.ai/ceph-radosgw
-.. _cinder-ceph: https://jaas.ai/cinder-ceph
-.. _glance: https://jaas.ai/glance
-.. _nova-compute: https://jaas.ai/nova-compute
+.. _ceph-fs: https://charmhub.io/ceph-fs
+.. _ceph-radosgw: https://charmhub.io/ceph-radosgw
+.. _cinder-ceph: https://charmhub.io/cinder-ceph
+.. _glance: https://charmhub.io/glance
+.. _nova-compute: https://charmhub.io/nova-compute
 .. _Erasure Code: https://en.wikipedia.org/wiki/Erasure_code

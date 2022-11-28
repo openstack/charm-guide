@@ -1332,7 +1332,7 @@ Charms`_ project group.
 .. _High availability: https://docs.openstack.org/arch-design/arch-requirements/arch-requirements-ha.html
 .. _Control plane architecture: https://docs.openstack.org/arch-design/design-control-plane.html
 .. _Evacuate instances: https://docs.openstack.org/nova/latest/admin/evacuate.html
-.. _hacluster: https://jaas.ai/hacluster
+.. _hacluster: https://charmhub.io/hacluster
 .. _OpenStack Charms: https://launchpad.net/openstack-charms
 .. _SSH: https://juju.is/docs/olm/accessing-individual-machines-with-ssh
 .. _CRUSH maps: https://docs.ceph.com/docs/master/rados/operations/crush-map

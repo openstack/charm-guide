@@ -410,12 +410,12 @@ in the `OpenStack Charms Deployment Guide`_.
 .. _OpenStack Charm Guide: https://docs.openstack.org/charm-guide/latest/
 .. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
-.. _barbican-softhsm: https://jaas.ai/u/openstack-charmers/barbican-softhsm
-.. _barbican-vault: https://jaas.ai/barbican-vault
-.. _cinder-purestorage: https://jaas.ai/cinder-purestorage
-.. _cinder-lvm charm: https://jaas.ai/cinder-lvm
-.. _cinder-netapp charm: https://jaas.ai/cinder-netapp
-.. _tempest: https://jaas.ai/u/openstack-charmers/tempest
+.. _barbican-softhsm: https://charmhub.io/openstack-charmers-barbican-softhsm
+.. _barbican-vault: https://charmhub.io/barbican-vault
+.. _cinder-purestorage: https://charmhub.io/cinder-purestorage
+.. _cinder-lvm charm: https://charmhub.io/cinder-lvm
+.. _cinder-netapp charm: https://charmhub.io/cinder-netapp
+.. _tempest: https://charmhub.io/openstack-charmers-tempest
 .. _tempest Python package: https://pypi.org/project/tempest/
 .. _Compute meters documentation: https://docs.openstack.org/ceilometer/latest/admin/telemetry-measurements.html#telemetry-compute-meters
 .. _retired: https://docs.openstack.org/releasenotes/neutron-fwaas-dashboard/ussuri.html

@@ -222,7 +222,7 @@ read and understood.
     possible, it is not practical as a solution for users of the CLI.
 
 Please refer to
-`README  <https://jaas.ai/u/openstack-charmers/keystone-saml-mellon/>`_
+`README  <https://charmhub.io/keystone-saml-mellon>`_
 of the charm for more details.
 
 Upgrading charms

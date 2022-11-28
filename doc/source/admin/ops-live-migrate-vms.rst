@@ -377,5 +377,5 @@ A failed migration will result in log messages being appended to the
 ``nova-compute.log`` file on the source host.
 
 .. LINKS
-.. _nova-compute charm: https://jaas.ai/nova-compute
+.. _nova-compute charm: https://charmhub.io/nova-compute
 .. _SSH keys and VM migration: https://opendev.org/openstack/charm-nova-compute/src/branch/master/README.md#ssh-keys-and-vm-migration
