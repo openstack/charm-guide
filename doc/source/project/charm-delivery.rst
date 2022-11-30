@@ -95,156 +95,246 @@ There is the possibility for a further subdivision of tracks and risk levels
 into Charmhub "branches", which are meant to provide short-lived releases (e.g.
 quick bug fix).
 
-Channels and tracks for OpenStack charms
-----------------------------------------
+Tracks for the OpenStack Charms project
+---------------------------------------
 
-.. important::
+.. note::
 
    The information in this section will be updated as new tracks become
    available.
 
-The below tables give the tracks that are available for several categories of
-charms. A mapping of tracks to both OpenStack release and Ubuntu series is also
-provided.
+This section shows the tracks for all the main charms that make up the
+OpenStack Charms project. The information is categorised by the Ubuntu
+release/series running on the cloud nodes.
 
-.. note::
+.. important::
 
-   The OpenStack service charms that support the following OpenStack releases
-   will soon be managed by a single track: Queens, Rocky, Stein, and Train.
+   Recall that the target OpenStack release is identified by the track
+   associated with the OpenStack service charms (top row in each table).
+
+A track can be specified during the deployment of an initial application or
+during an OpenStack service upgrade. See the below section `Delivering a
+charm`_ for details.
 
 .. tabs::
 
-   .. group-tab:: Charm groups
+   .. group-tab:: Ubuntu 18.04 LTS (Bionic)
 
-      +--------------------------+--------------+----------------+--------------+
-      | Group                    | Tracks       | OpenStack      | Series       |
-      +==========================+==============+================+==============+
-      | OpenStack service charms | ``yoga``     | ``Yoga``       | | ``jammy``  |
-      |                          |              |                | | ``focal``  |
-      |                          +--------------+----------------+--------------+
-      |                          | ``xena``     | ``Xena``       | ``focal``    |
-      |                          +--------------+----------------+              |
-      |                          | ``wallaby``  | ``Wallaby``    |              |
-      |                          +--------------+----------------+              |
-      |                          | ``victoria`` | ``Victoria``   |              |
-      |                          +--------------+----------------+--------------+
-      |                          | ``ussuri``   | ``Ussuri``     | | ``focal``  |
-      |                          |              |                | | ``bionic`` |
-      +--------------------------+--------------+----------------+--------------+
-      | Ceph charms              | ``quincy``   | ``Yoga``       | | ``jammy``  |
-      |                          |              |                | | ``focal``  |
-      |                          +--------------+----------------+--------------+
-      |                          | ``pacific``  | | ``Xena``     | ``focal``    |
-      |                          |              | | ``Wallaby``  |              |
-      |                          +--------------+----------------+              |
-      |                          | ``octopus``  | ``Victoria``   |              |
-      |                          |              +----------------+--------------+
-      |                          |              | ``Ussuri``     | | ``focal``  |
-      |                          |              |                | | ``bionic`` |
-      |                          +--------------+----------------+--------------+
-      |                          | ``nautilus`` | ``Train``      | ``bionic``   |
-      |                          +--------------+----------------+              |
-      |                          | ``mimic``    | | ``Stein``    |              |
-      |                          |              | | ``Rocky``    |              |
-      |                          +--------------+----------------+              |
-      |                          | ``luminous`` | ``Queens``     |              |
-      +--------------------------+--------------+----------------+--------------+
-      | OVN charms               | ``22.03``    | ``Yoga``       | | ``jammy``  |
-      |                          |              |                | | ``focal``  |
-      |                          +--------------+----------------+--------------+
-      |                          | ``21.09``    | ``Xena``       | ``focal``    |
-      |                          +--------------+----------------+              |
-      |                          | ``20.12``    | ``Wallaby``    |              |
-      |                          +--------------+----------------+              |
-      |                          | ``20.03``    | ``Victoria``   |              |
-      |                          |              +----------------+--------------+
-      |                          |              | ``Ussuri``     | | ``focal``  |
-      |                          |              |                | | ``bionic`` |
-      +--------------------------+--------------+----------------+--------------+
-      | MySQL charms             | ``8.0``      | ``Yoga``       | | ``jammy``  |
-      |                          |              |                | | ``focal``  |
-      +--------------------------+--------------+----------------+--------------+
+      .. list-table::
+         :header-rows: 1
+         :widths: auto
+         :stub-columns: 0
 
-   .. group-tab:: Individual charms
+         * - Charms
+           - Tracks
+           -
+           -
+           -
+           -
 
-      +--------------------------+--------------+----------------+--------------+
-      | Charm                    | Tracks       | OpenStack      | Series       |
-      +==========================+==============+================+==============+
-      | hacluster                | ``2.4``      | ``Yoga``       | | ``jammy``  |
-      |                          |              |                | | ``focal``  |
-      |                          +--------------+----------------+--------------+
-      |                          | ``2.0.3``    | | ``Xena``     | ``focal``    |
-      |                          |              | | ``Wallaby``  |              |
-      |                          |              | | ``Victoria`` |              |
-      |                          |              +----------------+--------------+
-      |                          |              | ``Ussuri``     | | ``focal``  |
-      |                          |              |                | | ``bionic`` |
-      |                          |              +----------------+--------------+
-      |                          |              | | ``Train``    | ``bionic``   |
-      |                          |              | | ``Stein``    |              |
-      |                          |              | | ``Rocky``    |              |
-      |                          |              | | ``Queens``   |              |
-      +--------------------------+--------------+----------------+--------------+
-      | openstack-loadbalancer   | ``jammy``    | ``Yoga``       | | ``jammy``  |
-      |                          |              |                | | ``focal``  |
-      +--------------------------+--------------+----------------+--------------+
-      | pacemaker-remote         | ``2.4``      | ``Yoga``       | | ``jammy``  |
-      |                          |              |                | | ``focal``  |
-      |                          +--------------+----------------+--------------+
-      |                          | ``2.0.3``    | | ``Xena``     | ``focal``    |
-      |                          |              | | ``Wallaby``  |              |
-      |                          |              | | ``Victoria`` |              |
-      |                          |              +----------------+--------------+
-      |                          |              | ``Ussuri``     | | ``focal``  |
-      |                          |              |                | | ``bionic`` |
-      |                          |              +----------------+--------------+
-      |                          |              | | ``Train``    | ``bionic``   |
-      |                          |              | | ``Stein``    |              |
-      |                          |              | | ``Rocky``    |              |
-      |                          |              | | ``Queens``   |              |
-      +--------------------------+--------------+----------------+--------------+
-      | rabbitmq-server          | ``3.9``      | ``Yoga``       | | ``jammy``  |
-      |                          |              |                | | ``focal``  |
-      |                          +--------------+----------------+--------------+
-      |                          | ``3.8``      | | ``Xena``     | ``focal``    |
-      |                          |              | | ``Wallaby``  |              |
-      |                          |              | | ``Victoria`` |              |
-      |                          |              +----------------+--------------+
-      |                          |              | ``Ussuri``     | | ``focal``  |
-      |                          |              |                | | ``bionic`` |
-      |                          |              +----------------+--------------+
-      |                          |              | | ``Train``    | ``bionic``   |
-      |                          |              | | ``Stein``    |              |
-      |                          |              | | ``Rocky``    |              |
-      |                          |              | | ``Queens``   |              |
-      +--------------------------+--------------+----------------+--------------+
-      | vault                    | ``1.7``      | ``Yoga``       | | ``jammy``  |
-      |                          |              |                | | ``focal``  |
-      |                          |              +----------------+--------------+
-      |                          |              | | ``Xena``     | ``focal``    |
-      |                          |              | | ``Wallaby``  |              |
-      |                          |              | | ``Victoria`` |              |
-      |                          |              | | ``Ussuri``   |              |
-      |                          +--------------+----------------+              |
-      |                          | ``1.6``      | | ``Yoga``     |              |
-      |                          |              | | ``Xena``     |              |
-      |                          | and          | | ``Wallaby``  |              |
-      |                          |              | | ``Victoria`` |              |
-      |                          | ``1.5``      +----------------+--------------+
-      |                          |              | ``Ussuri``     | | ``focal``  |
-      |                          |              |                | | ``bionic`` |
-      |                          |              +----------------+--------------+
-      |                          |              | | ``Train``    | ``bionic``   |
-      |                          |              | | ``Stein``    |              |
-      |                          |              | | ``Rocky``    |              |
-      |                          |              | | ``Queens``   |              |
-      +--------------------------+--------------+----------------+--------------+
-      | percona-cluster          | ``5.7``      | | ``Ussuri``   | ``bionic``   |
-      |                          |              | | ``Train``    |              |
-      |                          |              | | ``Stein``    |              |
-      |                          |              | | ``Rocky``    |              |
-      |                          |              | | ``Queens``   |              |
-      +--------------------------+--------------+----------------+--------------+
+         * - OpenStack charms
+           - ``queens``
+           - ``rocky``
+           - ``stein``
+           - ``train``
+           - ``ussuri``
+
+         * - Ceph charms
+           - ``luminous``
+           - ``mimic``
+           - ``mimic``
+           - ``nautilus``
+           - ``nautilus``
+
+         * - pacemaker-remote
+           - ``bionic``
+           - ``bionic``
+           - ``bionic``
+           - ``bionic``
+           - ``bionic``
+
+         * - percona-cluster
+           - ``5.7``
+           - ``5.7``
+           - ``5.7``
+           - ``5.7``
+           - ``5.7``
+
+         * - hacluster
+           - ``1.1.18``
+           - ``1.1.18``
+           - ``1.1.18``
+           - ``1.1.18``
+           - ``1.1.18``
+
+         * - rabbitmq-server
+           - ``3.6``
+           - ``3.6``
+           - ``3.6``
+           - ``3.6``
+           - ``3.6``
+
+         * - vault
+           - ``1.5``
+           - ``1.5``
+           - ``1.5``
+           - ``1.5``
+           - ``1.5``
+
+   .. group-tab:: Ubuntu 20.04 LTS (Focal)
+
+      .. list-table::
+         :header-rows: 1
+         :widths: auto
+         :stub-columns: 0
+
+         * - Charms
+           - Tracks
+           -
+           -
+           -
+           -
+
+         * - OpenStack charms
+           - ``ussuri``
+           - ``victoria``
+           - ``wallaby``
+           - ``xena``
+           - ``yoga``
+
+         * - Ceph charms
+           - ``octopus``
+           - ``octopus``
+           - ``pacific``
+           - ``pacific``
+           - ``quincy``
+
+         * - OVN charms
+           - | ``20.03``
+             | ``22.03``
+           - | ``20.03``
+             | ``22.03``
+           - | ``20.03``
+             | ``22.03``
+           - | ``20.03``
+             | ``22.03``
+           - | ``20.03``
+             | ``22.03``
+
+         * - MySQL charms
+           - ``8.0``
+           - ``8.0``
+           - ``8.0``
+           - ``8.0``
+           - ``8.0``
+
+         * - hacluster
+           - ``2.0.3``
+           - ``2.0.3``
+           - ``2.0.3``
+           - ``2.0.3``
+           - ``2.0.3``
+
+         * - pacemaker-remote
+           - ``focal``
+           - ``focal``
+           - ``focal``
+           - ``focal``
+           - ``focal``
+
+         * - rabbitmq-server
+           - ``3.8``
+           - ``3.8``
+           - ``3.8``
+           - ``3.8``
+           - ``3.8``
+
+         * - vault
+           - | ``1.5``
+             | ``1.6``
+             | ``1.7``
+           - | ``1.5``
+             | ``1.6``
+             | ``1.7``
+           - | ``1.5``
+             | ``1.6``
+             | ``1.7``
+           - | ``1.5``
+             | ``1.6``
+             | ``1.7``
+           - | ``1.5``
+             | ``1.6``
+             | ``1.7``
+
+   .. group-tab:: Ubuntu 22.04 LTS (Jammy)
+
+      .. list-table::
+         :header-rows: 1
+         :widths: auto
+         :stub-columns: 0
+
+         * - Charms
+           - Tracks
+
+         * - OpenStack charms
+           - ``yoga``
+
+         * - Ceph charms
+           - ``quincy``
+
+         * - OVN charms
+           - ``22.03``
+
+         * - MySQL charms
+           - ``8.0``
+
+         * - hacluster
+           - ``2.4``
+
+         * - pacemaker-remote
+           - ``jammy``
+
+         * - rabbitmq-server
+           - ``3.9``
+
+         * - vault
+           - | ``1.7``
+             | ``1.8``
+
+   .. group-tab:: Ubuntu 22.10 (Kinetic)
+
+      .. list-table::
+         :header-rows: 1
+         :widths: auto
+         :stub-columns: 0
+
+         * - Charms
+           - Tracks
+
+         * - OpenStack charms
+           - ``zed``
+
+         * - Ceph charms
+           - ``quincy``
+
+         * - OVN charms
+           - ``22.09``
+
+         * - MySQL charms
+           - ``8.0``
+
+         * - hacluster
+           - ``2.4``
+
+         * - pacemaker-remote
+           - ``latest``
+
+         * - rabbitmq-server
+           - ``3.9``
+
+         * - vault
+           - | ``1.7``
+             | ``1.8``
 
 Provider-specific subordinate charms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -270,26 +360,26 @@ This is the list of provider-specific subordinate charms:
 Delivering a charm
 ------------------
 
-A channel charm gets delivered to a deployment by using the ``--channel``
-option with either the :command:`deploy` or :command:`refresh` commands. See
-also the :doc:`../concepts/software-sources` page.
+A channel charm gets delivered by using the ``--channel`` option with either
+the :command:`deploy` or :command:`refresh` commands. See also the
+:doc:`../concepts/software-sources` page.
 
 Deploying a charm
 ~~~~~~~~~~~~~~~~~
 
-To deploy a channel charm select the channel that corresponds to the current
+To deploy a channel charm select the channel that corresponds to the target
 OpenStack release.
 
 Examples,
 
-To deploy the placement charm on an OpenStack Xena cloud the 'xena/stable'
+To deploy the placement charm for an OpenStack Xena cloud the 'xena/stable'
 channel is chosen:
 
 .. code-block:: none
 
    juju deploy --channel xena/stable placement
 
-To deploy the ceph-mon charm on an OpenStack Xena cloud the 'quincy/stable'
+To deploy the ceph-mon charm for an OpenStack Xena cloud the 'quincy/stable'
 channel is chosen:
 
 .. code-block:: none
@@ -302,7 +392,7 @@ Changing the channel
 ~~~~~~~~~~~~~~~~~~~~
 
 A charm's channel is typically changed as part of an OpenStack upgrade. The
-new channel must be chosen according to the target OpenStack release.
+new channel must be chosen according to the target future OpenStack release.
 
 .. warning::
 

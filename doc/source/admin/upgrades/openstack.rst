@@ -519,8 +519,6 @@ where ``keystone/2`` is the leader:
 
    juju refresh --channel yoga/stable keystone
 
-.. code-block:: none
-
 **If charm channels are not in use:**
 
 .. code-block:: none
