@@ -88,8 +88,14 @@ New tech-preview charm features
 Informational notices
 ---------------------
 
-<TITLE>
-~~~~~~~
+NVIDIA vGPU Virtual Workstation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Nova vGPU features in the Nova Compute charms where validated for use
+as the graphical display driver for Virtual Workstation usage.
+
+See the `Virtual GPU`_ documentation for details on how to configure vGPU
+mediated device types for this specific use case.
 
 Deprecation notices
 -------------------
@@ -130,6 +136,7 @@ Issues discovered during this release cycle
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _COS Lite observability stack: https://charmhub.io/cos-lite
 .. _ovn-source: https://charmhub.io/ovn-chassis/configure?channel=22.03/stable#ovn-source
+.. _Virtual GPU: https://docs.openstack.org/charm-guide/latest/admin/vgpu.html
 
 .. COMMITS
 
