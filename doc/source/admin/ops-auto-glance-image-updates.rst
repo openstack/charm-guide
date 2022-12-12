@@ -50,13 +50,13 @@ Configure image downloads
 The recommended way to configure image downloads is with a YAML file. As an
 example, we'll filter on the following:
 
-* Bionic and Focal images
+* Focal and Jammy images
 * arm64 and amd64 architectures
 * officially released images and daily images
 * the latest of each found image (i.e. maximum of one)
 
 To satisfy all the above place the below configuration in, say, file
-``~/gss.yaml``:
+``~/gsss.yaml``:
 
 .. code-block:: yaml
 
@@ -66,21 +66,21 @@ To satisfy all the above place the below configuration in, say, file
           name_prefix: 'ubuntu:released',
           path: 'streams/v1/index.sjson',
           max: 1,
-          item_filters: ['arch~(arm64|amd64)', 'ftype~(uefi1.img|uefi.img|disk1.img)', 'release~(bionic|focal)']
+          item_filters: ['arch~(arm64|amd64)', 'ftype~(uefi1.img|uefi.img|disk1.img)', 'release~(focal|jammy)']
         },
         { url: 'http://cloud-images.ubuntu.com/daily/',
           name_prefix: 'ubuntu:daily',
           path: 'streams/v1/index.sjson',
           max: 1,
-          item_filters: ['arch~(arm64|amd64)', 'ftype~(uefi1.img|uefi.img|disk1.img)', 'release~(bionic|focal)']
-        }
+          item_filters: ['arch~(arm64|amd64)', 'ftype~(uefi1.img|uefi.img|disk1.img)', 'release~(focal|jammy)']
+        },
        ]
 
 Now configure the charm by referencing the file:
 
 .. code-block:: none
 
-   juju config --file ~/gss.yaml glance-simplestreams-sync
+   juju config --file ~/gsss.yaml glance-simplestreams-sync
 
 .. note::
 
@@ -99,6 +99,8 @@ checks to occur on a weekly basis:
    juju config glance-simplestreams-sync frequency=weekly run=true
 
 Valid frequencies are 'hourly', 'daily', and 'weekly'.
+
+Enabling the ``run`` option will trigger an initial update within 60 seconds.
 
 Perform a manual image sync (optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -121,25 +123,26 @@ Sample output:
      .
      .
      .
-         created 12b3415c-8f50-491f-916c-e08ba4da71c5: auto-sync/ubuntu-bionic-18.04-amd64-server-20210720-disk1.img
-         created 73ea8a47-1b1f-48cf-b216-c7eba38d96ab: auto-sync/ubuntu-bionic-18.04-arm64-server-20210720-disk1.img
-         created 37d7aeff-5ccb-4a4a-9258-f7948df4caa2: auto-sync/ubuntu-focal-20.04-amd64-server-20210720-disk1.img
-         created 10acb4a1-ed7d-4a43-b14c-49d646f23b87: auto-sync/ubuntu-focal-20.04-arm64-server-20210720-disk1.img
-         created 90d308d3-cf23-49da-a625-c50a55286d94: auto-sync/ubuntu-bionic-daily-amd64-server-20210720-disk1.img
-         created aafa3f2b-002b-4b1c-a212-d99d858bf6b7: auto-sync/ubuntu-bionic-daily-arm64-server-20210720-disk1.img
-         created 350d4537-cb8d-445b-a62f-6a1ad15ce3b7: auto-sync/ubuntu-focal-daily-amd64-server-20210720-disk1.img
-         created 63f75ea0-e55f-499a-92bc-d02f46126834: auto-sync/ubuntu-focal-daily-arm64-server-20210720-disk1.img
+       Stdout: |
+         created 2b0dc3a3-bcac-425b-bbd8-aaa6af848ffd: auto-sync/ubuntu-focal-20.04-amd64-server-20221115.1-disk1.img
+         created 1a6964bb-f674-438e-a39f-78b5a274bf19: auto-sync/ubuntu-focal-20.04-arm64-server-20221115.1-disk1.img
+         created 1ba8780f-90b1-4872-8b30-8b90be158022: auto-sync/ubuntu-jammy-22.04-amd64-server-20221117-disk1.img
+         created 8b9075a3-1528-44d1-8462-7152c7a82a02: auto-sync/ubuntu-jammy-22.04-arm64-server-20221117-disk1.img
+         created df861e6a-321e-4025-a8b0-952a2acdf733: auto-sync/ubuntu-focal-daily-amd64-server-20221121-disk1.img
+         created cbd91693-cde7-45ab-bbca-0c5d761762d2: auto-sync/ubuntu-focal-daily-arm64-server-20221121-disk1.img
+         created e160c75a-b063-45b7-b914-a7669b4244a4: auto-sync/ubuntu-jammy-daily-amd64-server-20221120-disk1.img
+         created 92c85d89-2695-48d0-b476-486e9576d931: auto-sync/ubuntu-jammy-daily-arm64-server-20221120-disk1.img
      status: completed
      timing:
-       completed: 2021-07-23 22:37:28 +0000 UTC
-       enqueued: 2021-07-23 22:22:49 +0000 UTC
-       started: 2021-07-23 22:22:54 +0000 UTC
+       completed: 2022-11-22 17:58:01 +0000 UTC
+       enqueued: 2022-11-22 17:52:15 +0000 UTC
+       started: 2022-11-22 17:52:16 +0000 UTC
 
 This output should reflect the information available via the
 :command:`openstack image list` command.
 
 .. LINKS
-.. _glance-simplestreams-sync: https://jaas.ai/glance-simplestreams-sync
-.. _ceph-radosgw: https://jaas.ai/ceph-radosgw
-.. _swift-proxy: https://jaas.ai/swift-proxy
-.. _swift-storage: https://jaas.ai/swift-storage
+.. _glance-simplestreams-sync: https://charmhub.io/glance-simplestreams-sync
+.. _ceph-radosgw: https://charmhub.io/ceph-radosgw
+.. _swift-proxy: https://charmhub.io/swift-proxy
+.. _swift-storage: https://charmhub.io/swift-storage
