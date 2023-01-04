@@ -13,18 +13,26 @@ This page lists the Release Notes for every version of OpenStack Charms.
 
 Under development:
 
-* :doc:`zed`
+* --
 
 Latest stable:
 
-* :doc:`yoga`
+* :doc:`zed`
 * :doc:`42_Trilio`
 
 Older versions listed by year of release:
 
 .. list-table::
    :header-rows: 0
-   :widths: 20 20 40 20 40 20
+   :widths: 20 20
+   :stub-columns: 1
+
+   * - 2022
+     - :doc:`yoga`
+
+.. list-table::
+   :header-rows: 0
+   :widths: 20 20 30 20 30 20
    :stub-columns: 1
 
    * - 2021
