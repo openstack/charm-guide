@@ -28,6 +28,7 @@ General cloud operations:
    ops-restart-partitioned-rabbitmq-cluster
    ops-replace-control-plane-service-ha
    ops-replace-hyperconverged-compute-node
+   ops-scale-back-ovn-central
 
 Ceph storage operations (published in the Charmed Ceph documentation):
 
