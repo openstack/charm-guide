@@ -211,13 +211,12 @@ Example usage:
 
 .. code-block:: none
 
-   juju deploy glance-simplestreams-sync \
-       --config source=ppa:simplestreams-dev/trunk
+   juju deploy glance-simplestreams-sync
    juju deploy octavia-diskimage-retrofit \
        --config amp-image-tag=octavia-amphora
 
    juju add-relation glance-simplestreams-sync keystone
-   juju add-relation glance-simplestreams-sync rabbitmq-server
+   juju add-relation glance-simplestreams-sync:certificates vault:certificates
    juju add-relation octavia-diskimage-retrofit glance-simplestreams-sync
    juju add-relation octavia-diskimage-retrofit keystone
 
