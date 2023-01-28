@@ -275,29 +275,39 @@ charm`_ for details.
 
          * - Charms
            - Tracks
+           -
 
          * - OpenStack charms
            - ``yoga``
+           - ``zed``
 
          * - Ceph charms
+           - ``quincy``
            - ``quincy``
 
          * - OVN charms
            - ``22.03``
+           - ``22.09``
 
          * - MySQL charms
+           - ``8.0``
            - ``8.0``
 
          * - hacluster
            - ``2.4``
+           - ``2.4``
 
          * - pacemaker-remote
+           - ``jammy``
            - ``jammy``
 
          * - rabbitmq-server
            - ``3.9``
+           - ``3.9``
 
          * - vault
+           - | ``1.7``
+             | ``1.8``
            - | ``1.7``
              | ``1.8``
 
