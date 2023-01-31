@@ -52,21 +52,21 @@ Import an image
 
 You will need a boot image in order to create VMs.
 
-First download a Focal amd64 image:
+First download a Jammy amd64 image:
 
 .. code-block:: none
 
-   wget http://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img \
-      -O ~/tutorial/focal-amd64.img
+   wget http://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img \
+      -O ~/tutorial/jammy-amd64.img
 
-Then import it into Glance. Here we've called it 'focal-amd64':
+Then import it into Glance. Here we've called it 'jammy-amd64':
 
 .. code-block:: none
 
    openstack image create \
       --public --container-format bare --disk-format qcow2 \
-      --file ~/tutorial/focal-amd64.img \
-      focal-amd64
+      --file ~/tutorial/jammy-amd64.img \
+      jammy-amd64
 
 Configure networking
 --------------------

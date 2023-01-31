@@ -8,8 +8,8 @@ Overview
 This tutorial shows how to deploy a test Charmed OpenStack cloud. Its major
 software elements are:
 
-* Ubuntu 20.04 LTS (Focal) for the cloud nodes
-* OpenStack Yoga
+* Ubuntu 22.04 LTS (Jammy) for the cloud nodes
+* OpenStack Zed
 * Ceph Quincy
 
 OpenStack services will include Compute, Network, Block Storage, Object
@@ -54,8 +54,8 @@ Software
 
 The software versions used in this tutorial are:
 
-* MAAS 3.2.0
-* Juju 2.9.35
+* MAAS 3.2.6
+* Juju 2.9.38
 
 Client
 ~~~~~~
@@ -87,7 +87,7 @@ The procedure consists of the following steps:
    dashboard
 
 .. LINKS
-.. _Juju: https://juju.is
+.. _Juju: https://juju.is/docs/olm/install-juju
 .. _MAAS: https://maas.io
 .. _bundles: https://juju.is/docs/sdk/manage-bundles
 .. _constraints: https://juju.is/docs/olm/constraints

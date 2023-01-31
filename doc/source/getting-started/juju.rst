@@ -26,7 +26,7 @@ Assuming that the controller is called 'maas-controller', create a model called
 
 .. code-block:: none
 
-   juju add-model -c maas-controller --config default-series=focal openstack
+   juju add-model -c maas-controller --config default-series=jammy openstack
 
 Advance to the :doc:`deploy` page.
 

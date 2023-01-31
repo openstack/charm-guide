@@ -25,7 +25,7 @@ Assign a value to each variable now.
      - the name of the network interface that the three OVN Chassis will bind
        to
    * - storage devices
-     - **/dev/sda /dev/sdb**
+     - **/dev/sda /dev/sdb /dev/sdc /dev/sdd**
      - OSD_DEVICES
      - all possible block devices that can be used on the three cloud nodes -
        each cloud node will also act as a Ceph OSD node
@@ -38,23 +38,25 @@ Assign a value to each variable now.
 
 Notes on the OVN Chassis network interface (OVN_DATA_PORT):
 
-* When a second interface (per node) *is not* used, an Open vSwitch bridge
-  named 'br-ex' must be set up in MAAS for each node. The bridge name is
+* An Open vSwitch (OVS) bridge is always needed (per node), and its name is
   determined by the ovn-chassis charm's ``ovn-bridge-mappings`` option in the
-  bundle. The value of OVN_DATA_PORT will be the mapping of bridge to original
-  interface (e.g. 'br-ex:enp1s0'). See the :ref:`MAAS page <cdg:ovs_bridge>` in
-  the Deploy Guide for details on creating an OVS bridge in MAAS.
+  bundle ('br-ex'). OVN_DATA_PORT denotes the name of the bridge's underlying
+  interface (e.g. 'bond1' or 'enp1s0').
 
-* When a second interface *is* used, the charms will create an OVS bridge on
-  each interface.
+* When a second interface *is not* used on a node, an OVS bridge must be set up
+  manually (see the :ref:`MAAS page <cdg:ovs_bridge>` in the Deploy Guide for
+  help). In the MAAS web UI, this bridge must be associated with the subnet
+  (EXT_SUBNET) and its IP address status should be set to either 'Auto assign'
+  or 'Static assign'.
 
-* It is convenient for the interface name to be common across the nodes.
-  Individual hardware (MAC) addresses can be used instead if this is not the
-  case. Make note of them.
+* When a second interface *is* used on a node, the charms will automatically
+  create the OVS bridge. In the MAAS web UI, this interface must be associated
+  with the subnet (EXT_SUBNET), but its IP address status should remain as
+  'Unconfigured'.
 
-* Within the MAAS web UI, the interface (e.g. 'br-ex' or 'eth1') should be
-  associated with the subnet (EXT_SUBNET) and its IP address status must remain
-  as 'Unconfigured'.
+* It is convenient for the bridges' underlying interface names to be common.
+  However, if this is not the case, individual hardware (MAC) addresses can be
+  used instead. Make note of them.
 
 .. list-table::
    :header-rows: 1
@@ -81,12 +83,12 @@ Notes on the OVN Chassis network interface (OVN_DATA_PORT):
      - check MAAS settings - if undefined, use the MAAS server address
 
    * - floating IP range start
-     - **10.246.116.0**
+     - **10.246.116.23**
      - EXT_POOL_START
      - resides within the chosen subnet
 
    * - floating IP range end
-     - **10.246.116.10**
+     - **10.246.116.87**
      - EXT_POOL_END
      - resides within the chosen subnet
 
@@ -98,9 +100,11 @@ for its nodes plus any that may be used as floating IPs (for SSH connections).
 .. important::
 
    Since OpenStack manages floating IPs they must not be used by MAAS for any
-   other purpose. This can be assured by means of a `Reserved IP range`_.
+   other purpose. To assure this, configure a "reserved IP range" in MAAS.
+   See `How to manage IP ranges`_ in the MAAS documentation. In this context,
+   the subnet (EXT_SUBNET) is considered "managed" in MAAS.
 
 When you're done, move on to the :doc:`overlay` page.
 
 .. LINKS
-.. _Reserved IP range: https://maas.io/docs/maas-concepts-and-terms-reference#heading--ip-ranges
+.. _How to manage IP ranges: https://maas.io/docs/how-to-enable-dhcp#heading--how-to-manage-ip-ranges

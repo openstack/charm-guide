@@ -12,8 +12,8 @@ the deploy will work within a given environment.
    Although it is possible to edit the bundle file itself, it is best practice
    to keep it pristine and to use an overlay instead.
 
-Download overlay file :download:`overlay-focal-yoga-mymaas.yaml` and save it in
-the ``~/tutorial`` directory.
+Download overlay file :download:`overlay-mymaas.yaml` and save it in the
+``~/tutorial`` directory.
 
 Replace the variables in the file with the some of the values that were
 collected in the :doc:`previous step <settings>`.

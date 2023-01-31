@@ -1,7 +1,7 @@
-series: focal
+# A series declaration is redundant if a default series is defined for the model.
+series: jammy
 
 variables:
-  openstack-origin: &openstack-origin cloud:focal-yoga
   data-port: &data-port to-be-set
   osd-devices: &osd-devices to-be-set
   expected-osd-count: &expected-osd-count 3
@@ -141,7 +141,6 @@ applications:
     options:
       expected-osd-count: *expected-osd-count
       monitor-count: *expected-mon-count
-      source: *openstack-origin
     to:
     - lxd:0
     - lxd:1
@@ -155,7 +154,6 @@ applications:
     num_units: 3
     options:
       osd-devices: *osd-devices
-      source: *openstack-origin
     to:
     - '0'
     - '1'
@@ -167,8 +165,6 @@ applications:
     charm: ch:ceph-radosgw
     channel: quincy/stable
     num_units: 1
-    options:
-      source: *openstack-origin
     to:
     - lxd:0
   cinder-mysql-router:
@@ -182,12 +178,11 @@ applications:
       gui-x: '980'
       gui-y: '1270'
     charm: ch:cinder
-    channel: yoga/stable
+    channel: zed/stable
     num_units: 1
     options:
       block-device: None
       glance-api-version: 2
-      openstack-origin: *openstack-origin
     to:
     - lxd:1
   cinder-ceph:
@@ -195,7 +190,7 @@ applications:
       gui-x: '1120'
       gui-y: '1400'
     charm: ch:cinder-ceph
-    channel: yoga/stable
+    channel: zed/stable
     num_units: 0
   glance-mysql-router:
     annotations:
@@ -208,10 +203,8 @@ applications:
       gui-x: '-230'
       gui-y: '1270'
     charm: ch:glance
-    channel: yoga/stable
+    channel: zed/stable
     num_units: 1
-    options:
-      openstack-origin: *openstack-origin
     to:
     - lxd:2
   keystone-mysql-router:
@@ -225,10 +218,8 @@ applications:
       gui-x: '300'
       gui-y: '1270'
     charm: ch:keystone
-    channel: yoga/stable
+    channel: zed/stable
     num_units: 1
-    options:
-      openstack-origin: *openstack-origin
     to:
     - lxd:0
   neutron-mysql-router:
@@ -242,18 +233,17 @@ applications:
       gui-x: '690'
       gui-y: '1385'
     charm: ch:neutron-api-plugin-ovn
-    channel: yoga/stable
+    channel: zed/stable
   neutron-api:
     annotations:
       gui-x: '580'
       gui-y: '1270'
     charm: ch:neutron-api
-    channel: yoga/stable
+    channel: zed/stable
     num_units: 1
     options:
       neutron-security-groups: true
       flat-network-providers: physnet1
-      openstack-origin: *openstack-origin
     to:
     - lxd:1
   placement-mysql-router:
@@ -267,10 +257,8 @@ applications:
       gui-x: '1320'
       gui-y: '1270'
     charm: ch:placement
-    channel: yoga/stable
+    channel: zed/stable
     num_units: 1
-    options:
-      openstack-origin: *openstack-origin
     to:
     - lxd:2
   nova-mysql-router:
@@ -284,11 +272,10 @@ applications:
       gui-x: '35'
       gui-y: '1270'
     charm: ch:nova-cloud-controller
-    channel: yoga/stable
+    channel: zed/stable
     num_units: 1
     options:
       network-manager: Neutron
-      openstack-origin: *openstack-origin
     to:
     - lxd:0
   nova-compute:
@@ -296,14 +283,13 @@ applications:
       gui-x: '190'
       gui-y: '890'
     charm: ch:nova-compute
-    channel: yoga/stable
+    channel: zed/stable
     num_units: 3
     options:
       config-flags: default_ephemeral_format=ext4
       enable-live-migration: true
       enable-resize: true
       migration-auth-type: ssh
-      openstack-origin: *openstack-origin
     to:
     - '0'
     - '1'
@@ -319,10 +305,8 @@ applications:
       gui-x: '585'
       gui-y: '900'
     charm: ch:openstack-dashboard
-    channel: yoga/stable
+    channel: zed/stable
     num_units: 1
-    options:
-      openstack-origin: *openstack-origin
     to:
     - lxd:1
   rabbitmq-server:
@@ -330,7 +314,7 @@ applications:
       gui-x: '300'
       gui-y: '1550'
     charm: ch:rabbitmq-server
-    channel: 3.8/stable
+    channel: 3.9/stable
     num_units: 1
     to:
     - lxd:2
@@ -350,10 +334,8 @@ applications:
       gui-x: '70'
       gui-y: '1550'
     charm: ch:ovn-central
-    channel: 22.03/stable
+    channel: 22.09/stable
     num_units: 3
-    options:
-      source: *openstack-origin
     to:
     - lxd:0
     - lxd:1
@@ -363,7 +345,7 @@ applications:
       gui-x: '120'
       gui-y: '1030'
     charm: ch:ovn-chassis
-    channel: 22.03/stable
+    channel: 22.09/stable
     options:
       ovn-bridge-mappings: physnet1:br-ex
       bridge-interface-mappings: *data-port
@@ -378,7 +360,7 @@ applications:
       gui-x: '1610'
       gui-y: '1430'
     charm: ch:vault
-    channel: 1.7/stable
+    channel: 1.8/stable
     num_units: 1
     to:
     - lxd:0
