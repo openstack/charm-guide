@@ -77,7 +77,20 @@ instance, if it works in tandem with another charm then state that.
 
 Use an admonishment to indicate whether the charm is in a tech-preview state
 and/or whether the charm has requirements/limitations in terms of an OpenStack
-release or an Ubuntu series.
+release or an Ubuntu series. Examples:
+
+For tech-preview:
+
+.. code-block:: console
+
+   > **Note**: The ceph-dashboard charm is currently in tech-preview.
+
+For requirements/limitations:
+
+.. code-block:: console
+
+   > **Note**: The placement charm is supported starting with the train/stable
+   > channel.
 
 Section **Configuration**
 ~~~~~~~~~~~~~~~~~~~~~~~~~
