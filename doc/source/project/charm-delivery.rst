@@ -65,7 +65,7 @@ based on a version number or a release date. For example:
      - 3.8, 3.9
 
    * - ovn-central
-     - 21.03, 21.09
+     - 22.03, 22.09
 
 ``latest`` track
 ^^^^^^^^^^^^^^^^
@@ -103,8 +103,8 @@ Tracks for the OpenStack Charms project
    The information in this section will be updated as new tracks become
    available.
 
-This section shows the tracks for all the main charms that make up the
-OpenStack Charms project. The information is categorised by the Ubuntu
+This section shows the **recommended** tracks for all the main charms that make
+up the OpenStack Charms project. The information is categorised by the Ubuntu
 release/series running on the cloud nodes.
 
 .. important::
@@ -117,6 +117,119 @@ during an OpenStack service upgrade. See the below section `Delivering a
 charm`_ for details.
 
 .. tabs::
+
+   .. group-tab:: Ubuntu 22.04 LTS (Jammy)
+
+      .. list-table::
+         :header-rows: 1
+         :widths: auto
+         :stub-columns: 0
+
+         * - Charms
+           - Tracks
+           -
+
+         * - OpenStack charms
+           - ``yoga``
+           - ``zed``
+
+         * - Ceph charms
+           - ``quincy``
+           - ``quincy``
+
+         * - OVN charms
+           - ``22.03``
+           - ``22.09``
+
+         * - MySQL charms
+           - ``8.0``
+           - ``8.0``
+
+         * - hacluster
+           - ``2.4``
+           - ``2.4``
+
+         * - pacemaker-remote
+           - ``jammy``
+           - ``jammy``
+
+         * - rabbitmq-server
+           - ``3.9``
+           - ``3.9``
+
+         * - vault
+           - ``1.8``
+           - ``1.8``
+
+   .. group-tab:: Ubuntu 20.04 LTS (Focal)
+
+      .. list-table::
+         :header-rows: 1
+         :widths: auto
+         :stub-columns: 0
+
+         * - Charms
+           - Tracks
+           -
+           -
+           -
+           -
+
+         * - OpenStack charms
+           - ``ussuri``
+           - ``victoria``
+           - ``wallaby``
+           - ``xena``
+           - ``yoga``
+
+         * - Ceph charms
+           - ``octopus``
+           - ``octopus``
+           - ``pacific``
+           - ``pacific``
+           - ``quincy``
+
+         * - OVN charms
+           - ``22.03``
+           - ``22.03``
+           - ``22.03``
+           - ``22.03``
+           - ``22.03``
+
+         * - MySQL charms
+           - ``8.0``
+           - ``8.0``
+           - ``8.0``
+           - ``8.0``
+           - ``8.0``
+
+         * - hacluster
+           - ``2.0.3``
+           - ``2.0.3``
+           - ``2.0.3``
+           - ``2.0.3``
+           - ``2.0.3``
+
+         * - pacemaker-remote
+           - ``focal``
+           - ``focal``
+           - ``focal``
+           - ``focal``
+           - ``focal``
+
+         * - rabbitmq-server
+           - ``3.8``
+           - ``3.8``
+           - ``3.8``
+           - ``3.8``
+           - ``3.8``
+
+         * - vault
+           - ``1.7``
+           - ``1.7``
+           - ``1.7``
+           - ``1.7``
+           - ``1.7``
 
    .. group-tab:: Ubuntu 18.04 LTS (Bionic)
 
@@ -134,9 +247,9 @@ charm`_ for details.
 
          * - OpenStack charms
            - ``queens``
-           - ``rocky``
-           - ``stein``
-           - ``train``
+           - ``rocky``\ :sup:`EOL`
+           - ``stein``\ :sup:`EOL`
+           - ``train``\ :sup:`EOL`
            - ``ussuri``
 
          * - Ceph charms
@@ -180,171 +293,6 @@ charm`_ for details.
            - ``1.5``
            - ``1.5``
            - ``1.5``
-
-   .. group-tab:: Ubuntu 20.04 LTS (Focal)
-
-      .. list-table::
-         :header-rows: 1
-         :widths: auto
-         :stub-columns: 0
-
-         * - Charms
-           - Tracks
-           -
-           -
-           -
-           -
-
-         * - OpenStack charms
-           - ``ussuri``
-           - ``victoria``
-           - ``wallaby``
-           - ``xena``
-           - ``yoga``
-
-         * - Ceph charms
-           - ``octopus``
-           - ``octopus``
-           - ``pacific``
-           - ``pacific``
-           - ``quincy``
-
-         * - OVN charms
-           - | ``20.03``
-             | ``22.03``
-           - | ``20.03``
-             | ``22.03``
-           - | ``20.03``
-             | ``22.03``
-           - | ``20.03``
-             | ``22.03``
-           - | ``20.03``
-             | ``22.03``
-
-         * - MySQL charms
-           - ``8.0``
-           - ``8.0``
-           - ``8.0``
-           - ``8.0``
-           - ``8.0``
-
-         * - hacluster
-           - ``2.0.3``
-           - ``2.0.3``
-           - ``2.0.3``
-           - ``2.0.3``
-           - ``2.0.3``
-
-         * - pacemaker-remote
-           - ``focal``
-           - ``focal``
-           - ``focal``
-           - ``focal``
-           - ``focal``
-
-         * - rabbitmq-server
-           - ``3.8``
-           - ``3.8``
-           - ``3.8``
-           - ``3.8``
-           - ``3.8``
-
-         * - vault
-           - | ``1.5``
-             | ``1.6``
-             | ``1.7``
-           - | ``1.5``
-             | ``1.6``
-             | ``1.7``
-           - | ``1.5``
-             | ``1.6``
-             | ``1.7``
-           - | ``1.5``
-             | ``1.6``
-             | ``1.7``
-           - | ``1.5``
-             | ``1.6``
-             | ``1.7``
-
-   .. group-tab:: Ubuntu 22.04 LTS (Jammy)
-
-      .. list-table::
-         :header-rows: 1
-         :widths: auto
-         :stub-columns: 0
-
-         * - Charms
-           - Tracks
-           -
-
-         * - OpenStack charms
-           - ``yoga``
-           - ``zed``
-
-         * - Ceph charms
-           - ``quincy``
-           - ``quincy``
-
-         * - OVN charms
-           - ``22.03``
-           - ``22.09``
-
-         * - MySQL charms
-           - ``8.0``
-           - ``8.0``
-
-         * - hacluster
-           - ``2.4``
-           - ``2.4``
-
-         * - pacemaker-remote
-           - ``jammy``
-           - ``jammy``
-
-         * - rabbitmq-server
-           - ``3.9``
-           - ``3.9``
-
-         * - vault
-           - | ``1.7``
-             | ``1.8``
-           - | ``1.7``
-             | ``1.8``
-
-   .. group-tab:: Ubuntu 22.10 (Kinetic)
-
-      .. list-table::
-         :header-rows: 1
-         :widths: auto
-         :stub-columns: 0
-
-         * - Charms
-           - Tracks
-
-         * - OpenStack charms
-           - ``zed``
-
-         * - Ceph charms
-           - ``quincy``
-
-         * - OVN charms
-           - ``22.09``
-
-         * - MySQL charms
-           - ``8.0``
-
-         * - hacluster
-           - ``2.4``
-
-         * - pacemaker-remote
-           - ``latest``
-
-         * - rabbitmq-server
-           - ``3.9``
-
-         * - vault
-           - | ``1.7``
-             | ``1.8``
 
 Provider-specific subordinate charms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
