@@ -45,7 +45,7 @@ extensions = [
 ]
 
 intersphinx_mapping = {
-    'cdg': ('https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest', None)
+    'cdg': ('https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/zed', None)
 }
 
 # Spellchecker
