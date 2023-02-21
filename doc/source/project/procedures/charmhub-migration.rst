@@ -2,10 +2,14 @@
 All charms: migration to channels
 =================================
 
-Charmed OpenStack deployments must eventually migrate from legacy non-channel
-charms to charms that use a channel.
+All maintenance for stable charms occurs on the various explicitly-named
+channels (i.e. not based on the ``latest`` track). These are the channels that
+the charms must be migrated to.
 
 .. important::
+
+   In order to receive charm updates (e.g. bug fixes) it is highly recommended
+   to migrate from legacy non-channel charms to charms that use a channel.
 
    See :doc:`../charm-delivery` for an overview of how OpenStack charms are
    distributed.
@@ -18,10 +22,6 @@ All charms are now served from the `Charmhub`_, regardless of which prefix
 not requested at deploy time, the ``latest/stable`` channel in the Charmhub is
 sourced, which points to the 21.10 stable release of OpenStack Charms (or the
 21.06 stable release of Trilio Charms).
-
-All maintenance for stable charms occurs on the various explicitly-named
-channels (i.e. not based on the ``latest`` track). These are the channels that
-the charms must be migrated to.
 
 .. warning::
 

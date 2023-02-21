@@ -351,18 +351,26 @@ individually, **always upgrade the application leader first**.
 
       juju run -a <application-name> is-leader
 
+Legacy charms vs channel charms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Depending on whether a given charm uses channels or not (see the
-:doc:`../../concepts/charm-types` page), there are slight differences in the
-upgrade procedures:
+:doc:`../../concepts/charm-types` page), there are differences in the upgrade
+procedures.
 
-* With non-channel charms, you will need to set the software sources of the
-  charm. Guidance is provided in the :doc:`../../concepts/software-sources`
-  page.
+.. note::
 
-* With channel charms, you will need to change the charm's channel. See the
-  :ref:`changing_the_channel` section of the Charm delivery page for background
-  information. **Notably, a channel change will typically cause the underlying
-  cloud service to restart**.
+   Please read the rest of this document, and any linked resources, before
+   making any changes to your cloud.
+
+The upgrade will involve changing the software sources when either type of
+charm is in use. Background information on sources is provided in the
+:doc:`../../concepts/software-sources` concepts page.
+
+With channel charms, you must also change the charm's channel. See the
+:ref:`changing_the_channel` section of the Charm delivery page for background
+information. Notably, a channel change will typically cause the underlying
+cloud service to restart.
 
 All-in-one
 ~~~~~~~~~~
@@ -390,7 +398,19 @@ Xena to Yoga:
 
 .. code-block:: none
 
+   juju config cinder openstack-origin=cloud:focal-xena
    juju refresh --channel yoga/stable cinder
+   juju config cinder openstack-origin=cloud:focal-yoga
+
+.. note::
+
+   Exceptionally, if upgrading from Ussuri to Victoria the commands will be:
+
+   .. code-block:: none
+
+      juju config cinder openstack-origin=distro
+      juju refresh --channel yoga/stable cinder
+      juju config cinder openstack-origin=cloud:focal-victoria
 
 **If charm channels are not in use:**
 
@@ -423,6 +443,7 @@ For example, to upgrade a three-unit glance application from Xena to Yoga where
 .. code-block:: none
 
    juju refresh --channel yoga/stable glance
+   juju config glance openstack-origin=cloud:focal-yoga
 
 **If charm channels are not in use:**
 
@@ -469,6 +490,7 @@ Yoga where ``nova-compute/0`` is the leader:
 .. code-block:: none
 
    juju refresh --channel yoga/stable nova-compute
+   juju config nova-compute openstack-origin=cloud:focal-yoga
 
 **If charm channels are not in use:**
 
@@ -518,6 +540,7 @@ where ``keystone/2`` is the leader:
 .. code-block:: none
 
    juju refresh --channel yoga/stable keystone
+   juju config keystone openstack-origin=cloud:focal-yoga
 
 **If charm channels are not in use:**
 
