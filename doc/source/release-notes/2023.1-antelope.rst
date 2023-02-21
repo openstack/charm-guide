@@ -45,6 +45,36 @@ Usage example:
    juju deploy --channel antelope/stable ironic-dashboard
    juju integrate openstack-dashboard:dashboard-plugin ironic-dashboard:dashboard
 
+
+Infinidat storage charms
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are three new storage charms that allow the Infinidat storage appliance
+to be used with Charmed OpenStack systems.
+
+These charms are:
+
+* `infinidat-tools`_
+* `cinder-infinidat`_
+* `manila-infinidat`_
+
+They have been developed specifically for OpenStack Ussuri on Ubuntu 20.04 LTS
+(Focal) and thus have a 'stable' risk level for the 'ussuri' track. For more
+recent tracks, the charms have been assigned the 'candidate' risk level and due
+consideration should be taken to validate them prior to production usage. The
+following channels (track/risk combination) are now available:
+
+* ussuri/stable
+* victoria/candidate
+* wallaby/candidate
+* xena/candidate
+* yoga/candidate
+* zed/candidate
+* 2023.1/candidate
+
+As testing occurs, on a per-track basis, the 'candidate' charms will be promoted to 'stable'.
+
+
 New stable charm features
 -------------------------
 
@@ -183,6 +213,10 @@ landed.
 .. _Ironic Dashboard plugin: https://docs.openstack.org/ironic-ui/latest/
 .. _OpenStack Dashboard charm: https://charmhub.io/openstack-dashboard
 .. _iDrac driver: https://docs.openstack.org/ironic/latest/admin/drivers/idrac.html
+.. _infinidat-tools: https://opendev.org/openstack/charm-infinidat-tools
+.. _cinder-infinidat: https://opendev.org/openstack/charm-cinder-infinidat
+.. _manila-infinidat: https://opendev.org/openstack/charm-manila-infinidat
+
 .. COMMITS
 
 .. BUGS
