@@ -7,4 +7,5 @@ Concepts
 
    charm-types
    software-sources
+   spaces
    charm-anatomy
