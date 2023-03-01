@@ -47,6 +47,7 @@ list of documented special charm procedures:
    procedures/cinder-lvm-migration
    procedures/charmhub-migration
    procedures/ovn-migration
+   procedures/ovn-upgrade-2203
 
 OpenStack upgrade path notes
 ----------------------------
@@ -60,8 +61,13 @@ list of documented OpenStack upgrade path notes:
 .. toctree::
    :maxdepth: 1
 
+   issues/upgrade-xena-to-yoga
+   issues/upgrade-wallaby-to-xena
+   issues/upgrade-victoria-to-wallaby
    issues/upgrade-ussuri-to-victoria
    issues/upgrade-stein-to-train
    issues/upgrade-queens-to-rocky
    issues/upgrade-newton-to-ocata
    issues/upgrade-mitaka-to-newton
+
+.. LINKS
