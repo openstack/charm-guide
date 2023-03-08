@@ -34,8 +34,20 @@ For scheduling information of past and future releases see the
 New stable charms
 -----------------
 
-<TITLE>
-~~~~~~~
+ironic-dashboard
+~~~~~~~~~~~~~~~~
+
+This charm provides the `Ironic Dashboard plugin`_ for use with the `OpenStack
+Dashboard charm`_
+
+Usage example:
+
+.. code:: none
+
+  juju deploy --channel antelope/stable openstack-dashboard
+  juju deploy --channel antelope/stable ironic-dashboard
+  juju integrate openstack-dashboard:dashboard-plugin ironic-dashboard:dashboard
+
 
 New stable charm features
 -------------------------
@@ -100,7 +112,8 @@ Issues discovered during this release cycle
 .. _Antelope milestone: https://launchpad.net/openstack-charms/+milestone/antelope
 .. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
-
+.. _Ironic Dashboard plugin: https://docs.openstack.org/ironic-ui/latest/
+.. _OpenStack Dashboard charm: https://charmhub.io/openstack-dashboard
 .. COMMITS
 
 .. BUGS
