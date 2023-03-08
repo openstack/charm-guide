@@ -84,6 +84,15 @@ For example to enable the `iDrac driver`_, the following commands can be used:
    EOF
    juju config ironic-conductor hardware-enablement-options=@./idrac.ini
 
+Stable hostname for nova-compute service
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Provide a stable hostname for the nova-compute service when rendering the
+``nova.conf`` file, this prevents the daemon from registering multiple entries
+(with different hostnames) in the Nova control plane, also sticks to the same
+hostname used by ovn-controller, this allows situations where a new instance
+is allocated to nova-compute host "foo.example.com", but the ovn-chassis
+registered is "foo", for more details see bug `LP #1896630`_.
 
 Documentation updates
 ---------------------
@@ -143,3 +152,4 @@ Issues discovered during this release cycle
 .. COMMITS
 
 .. BUGS
+.. _LP #1896630: https://bugs.launchpad.net/charm-nova-compute/+bug/1896630
