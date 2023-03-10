@@ -57,8 +57,33 @@ test bundle, and/or a section in the current guide (Charm Guide) that details
 its usage. Test bundles are located in the ``src/tests/bundles`` directory of
 the relevant charm repository (see all `charm repositories`_).
 
-<TITLE>
-~~~~~~~
+ironic-conductor charm: hardware enablement configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ironic-conductor charm has acquired a new configuration option:
+
+* ``hardware-enablement-options``
+
+This option allows operators to include extra configuration options that
+allows them to enable hardware specific options in the Ironic Conductor
+service
+
+For example to enable the `iDrac driver`_, the following commands can be used:
+
+.. code-block:: none
+
+   cat << EOF > ./idrac.ini
+   [DEFAULT]
+   enabled_hardware_types = intel-ipmi, ipmi, idrac
+   enabled_management_interfaces = intel-ipmitool, ipmitool, noop, idrac-wsman
+   enabled_inspect_interfaces = no-inspect, idrac-wsman
+   enabled_power_interfaces = ipmitool, idrac-wsman
+   enabled_console_interfaces = ipmitool-shellinabox, ipmitool-socat, no-console
+   enabled_vendor_interfaces = ipmitool, no-vendor, idrac-wsman
+   enabled_raid_interfaces = agent, no-raid, idrac-wsman
+   EOF
+   juju config ironic-conductor hardware-enablement-options=@./idrac.ini
+
 
 Documentation updates
 ---------------------
@@ -114,6 +139,7 @@ Issues discovered during this release cycle
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _Ironic Dashboard plugin: https://docs.openstack.org/ironic-ui/latest/
 .. _OpenStack Dashboard charm: https://charmhub.io/openstack-dashboard
+.. _iDrac driver: https://docs.openstack.org/ironic/latest/admin/drivers/idrac.html
 .. COMMITS
 
 .. BUGS
