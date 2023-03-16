@@ -24,6 +24,12 @@ latter dates are estimated and subject to revision.
      - Release date
      - Release timeline
 
+   * - Antelope
+     - under development
+     - Fri, Mar 31, 2023
+     - Thu, Apr 27, 2023 (estimated)
+     - --
+
    * - Zed
      - current stable
      - --

@@ -13,7 +13,7 @@ This page lists the Release Notes for every version of OpenStack Charms.
 
 Under development:
 
-* --
+* :doc:`antelope`
 
 Latest stable:
 
@@ -120,6 +120,7 @@ Older versions listed by year of release:
    :hidden:
 
    42_Trilio
+   antelope
    zed
    yoga
    2110

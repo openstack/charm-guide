@@ -1,19 +1,12 @@
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-*                                                             *
-* This is a template to be used for future release notes.     *
-* Make a copy, remove this notice, and use the placeholders.  *
-*                                                             *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+========
+Antelope
+========
 
-===========================================
-<CHARM_RELEASE> (Draft version in progress)
-===========================================
-
-The <CHARM_RELEASE> OpenStack Charms release includes updates for the charms
+The Antelope OpenStack Charms release includes updates for the charms
 described on the :doc:`../project/openstack-charms` page. As of this release,
-the project consists of <NUMBER-OF-STABLE-CHARMS> stable charms.
+the project consists of 62 stable charms.
 
-For the list of bugs resolved in this release refer to the `<CHARM_RELEASE>
+For the list of bugs resolved in this release refer to the `Antelope
 milestone`_ in Launchpad.
 
 For scheduling information of past and future releases see the
@@ -104,7 +97,7 @@ Issues discovered during this release cycle
 ~~~~~~~
 
 .. LINKS
-.. _<CHARM_RELEASE> milestone: https://launchpad.net/openstack-charms/+milestone/<CHARM_RELEASE>
+.. _Antelope milestone: https://launchpad.net/openstack-charms/+milestone/antelope
 .. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 
