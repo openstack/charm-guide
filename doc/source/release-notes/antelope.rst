@@ -112,6 +112,41 @@ For example to set duration to one hour run:
 
    juju config swift-temp-url-duration=3600
 
+Service user password rotation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The keystone, mysql-innodb-cluster and rabbitmq-server charms have gained
+actions to assist with rotating the passwords for the service users in an
+OpenStack model. The passwords are auto-generated (not user-defined). Each
+charm can rotate their service user passwords independently of the other
+charms.  These three charms represent all of the service user passwords in an
+OpenStack system.
+
+Service users are those users that are associated with applications that
+provide services within an OpenStack system. Examples are 'glance', 'nova',
+'heat', and 'keystone'. Two actions are provided for each of the keystone,
+mysql-innodb-cluster and rabbitmq-server charms: ``list-service-usernames`` and
+``rotate-service-user-password``.  They must be run on the leader unit.
+
+.. code-block:: none
+
+   juju run-action --wait <application>/leader list-service-usernames
+   juju run-action --wait <application>/leader rotate-service-user-password service-user=glance
+
+
+.. note::
+   In Juju 3.x the ``run-action`` comand has been changed to ``run``.
+
+The ``list-service-usernames`` action provides a list of usernames that can be
+rotated, whilst the ``rotate-service-user-password`` actually performs a
+password rotation for a single service user.
+
+There may be a control plane interruption when a password is rotated. This is
+due to the password being changed in the service provider (MySQL, Keystone and
+RabbmitMQ) before it has been pushed out to the corresponding service user
+applications. However, this is likely to be mitigated to the restart of the
+service application which will force a re-authentication of the service.
+
 Documentation updates
 ---------------------
 
