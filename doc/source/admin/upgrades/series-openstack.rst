@@ -193,7 +193,7 @@ command output:
 
       juju upgrade-series 0/lxd/0 complete
 
-#. Repeat step 4 for each of the remaining machines:
+#. Repeat step 3 for each of the remaining machines:
 
    .. code-block:: none
 
