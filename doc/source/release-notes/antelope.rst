@@ -94,6 +94,24 @@ hostname used by ovn-controller, this allows situations where a new instance
 is allocated to nova-compute host "foo.example.com", but the ovn-chassis
 registered is "foo", for more details see bug `LP #1896630`_.
 
+ironic-conductor charm: Temporary url timeout
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ironic-conductor charm has acquired a new configuration option:
+
+* ``swift-temp-url-duration``
+
+This option allows operators to fine tune the duration of temporary URLs
+passed to ironic-python-agent to download the image that needs to be
+installed, environments that use large images and/or slow IO baremetal nodes
+are encouraged to increase it.
+
+For example to set duration to one hour run:
+
+.. code-block:: none
+
+   juju config swift-temp-url-duration=3600
+
 Documentation updates
 ---------------------
 
