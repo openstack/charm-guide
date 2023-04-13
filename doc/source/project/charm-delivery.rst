@@ -363,8 +363,8 @@ new channel must be chosen according to the target future OpenStack release.
 
 .. warning::
 
-   Changing a charm's channel will trigger a charm upgrade, which will
-   typically cause the underlying cloud service to restart.
+   Changing a charm's channel is intended to trigger a charm upgrade, which
+   will typically cause the underlying cloud service to restart.
 
    Study the :doc:`../admin/upgrades/openstack` process prior to changing charm
    channels.
