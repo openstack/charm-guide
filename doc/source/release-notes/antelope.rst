@@ -1,13 +1,10 @@
-========
-Antelope
-========
+============================
+Antelope (under development)
+============================
 
-The Antelope OpenStack Charms release includes updates for the charms
-described on the :doc:`../project/openstack-charms` page. As of this release,
-the project consists of 62 stable charms.
-
-For the list of bugs resolved in this release refer to the `Antelope
-milestone`_ in Launchpad.
+The Antelope OpenStack Charms release includes updates for the charms described
+on the :doc:`../project/openstack-charms` page. As of this release, the project
+consists of 62 stable charms.
 
 For scheduling information of past and future releases see the
 :doc:`../project/release-schedule`.
@@ -38,16 +35,15 @@ ironic-dashboard
 ~~~~~~~~~~~~~~~~
 
 This charm provides the `Ironic Dashboard plugin`_ for use with the `OpenStack
-Dashboard charm`_
+Dashboard charm`_.
 
 Usage example:
 
-.. code:: none
+.. code-block:: none
 
-  juju deploy --channel antelope/stable openstack-dashboard
-  juju deploy --channel antelope/stable ironic-dashboard
-  juju integrate openstack-dashboard:dashboard-plugin ironic-dashboard:dashboard
-
+   juju deploy --channel antelope/stable openstack-dashboard
+   juju deploy --channel antelope/stable ironic-dashboard
+   juju integrate openstack-dashboard:dashboard-plugin ironic-dashboard:dashboard
 
 New stable charm features
 -------------------------
@@ -57,18 +53,18 @@ test bundle, and/or a section in the current guide (Charm Guide) that details
 its usage. Test bundles are located in the ``src/tests/bundles`` directory of
 the relevant charm repository (see all `charm repositories`_).
 
-ironic-conductor charm: hardware enablement configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ironic-conductor charm
+~~~~~~~~~~~~~~~~~~~~~~
 
-The ironic-conductor charm has acquired a new configuration option:
+Two new configuration options have been added to the ironic-conductor charm.
 
-* ``hardware-enablement-options``
+Hardware enablement configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This option allows operators to include extra configuration options that
-allows them to enable hardware specific options in the Ironic Conductor
-service
+Option ``hardware-enablement-options`` allows operators to enable hardware
+specific options in the Ironic Conductor service.
 
-For example to enable the `iDrac driver`_, the following commands can be used:
+For example, to enable the `iDrac driver`_ the following commands can be used:
 
 .. code-block:: none
 
@@ -82,126 +78,88 @@ For example to enable the `iDrac driver`_, the following commands can be used:
    enabled_vendor_interfaces = ipmitool, no-vendor, idrac-wsman
    enabled_raid_interfaces = agent, no-raid, idrac-wsman
    EOF
+
    juju config ironic-conductor hardware-enablement-options=@./idrac.ini
+
+Temporary URL timeout
+^^^^^^^^^^^^^^^^^^^^^
+
+Option ``swift-temp-url-duration`` allows operators to fine tune the duration
+of temporary URLs passed to ironic-python-agent to download the image that
+needs to be installed. Environments that use large images and/or slow IO
+baremetal nodes are encouraged to increase it.
+
+For example, to set the duration to one hour:
+
+.. code-block:: none
+
+   juju config ironic-conductor swift-temp-url-duration=3600
 
 Stable hostname for nova-compute service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Provide a stable hostname for the nova-compute service when rendering the
-``nova.conf`` file, this prevents the daemon from registering multiple entries
-(with different hostnames) in the Nova control plane, also sticks to the same
-hostname used by ovn-controller, this allows situations where a new instance
-is allocated to nova-compute host "foo.example.com", but the ovn-chassis
-registered is "foo", for more details see bug `LP #1896630`_.
-
-ironic-conductor charm: Temporary url timeout
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The ironic-conductor charm has acquired a new configuration option:
-
-* ``swift-temp-url-duration``
-
-This option allows operators to fine tune the duration of temporary URLs
-passed to ironic-python-agent to download the image that needs to be
-installed, environments that use large images and/or slow IO baremetal nodes
-are encouraged to increase it.
-
-For example to set duration to one hour run:
-
-.. code-block:: none
-
-   juju config swift-temp-url-duration=3600
+The nova-compute charm now supports a stable hostname for the nova-compute
+service when rendering the ``nova.conf`` file. This prevents the daemon from
+registering multiple entries (with different hostnames) in the Nova control
+plane. This also affects the hostname used by ovn-controller, which allows for
+situations where a new instance is allocated to nova-compute hostname
+"foo.example.com" but the corresponding ovn-chassis is registered to "foo". For
+more details see bug `LP #1896630`_.
 
 Service user password rotation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The keystone, mysql-innodb-cluster and rabbitmq-server charms have gained
+The keystone, mysql-innodb-cluster, and rabbitmq-server charms have gained
 actions to assist with rotating the passwords for the service users in an
 OpenStack model. The passwords are auto-generated (not user-defined). Each
 charm can rotate their service user passwords independently of the other
-charms.  These three charms represent all of the service user passwords in an
+charms. These three charms represent all of the service user passwords in an
 OpenStack system.
 
 Service users are those users that are associated with applications that
 provide services within an OpenStack system. Examples are 'glance', 'nova',
-'heat', and 'keystone'. Two actions are provided for each of the keystone,
-mysql-innodb-cluster and rabbitmq-server charms: ``list-service-usernames`` and
-``rotate-service-user-password``.  They must be run on the leader unit.
+'heat', and 'keystone'.
+
+Two actions are provided for each of the three above-mentioned charms:
+
+* ``list-service-usernames``
+* ``rotate-service-user-password``
+
+They must be run on the leader unit:
 
 .. code-block:: none
 
    juju run-action --wait <application>/leader list-service-usernames
    juju run-action --wait <application>/leader rotate-service-user-password service-user=glance
 
-
 .. note::
-   In Juju 3.x the ``run-action`` comand has been changed to ``run``.
+
+   In Juju 3.x the :command:`run-action` command has been changed to
+   :command:`run`.
 
 The ``list-service-usernames`` action provides a list of usernames that can be
-rotated, whilst the ``rotate-service-user-password`` actually performs a
+rotated, and the ``rotate-service-user-password`` actually performs a
 password rotation for a single service user.
 
 There may be a control plane interruption when a password is rotated. This is
-due to the password being changed in the service provider (MySQL, Keystone and
-RabbmitMQ) before it has been pushed out to the corresponding service user
-applications. However, this is likely to be mitigated to the restart of the
-service application which will force a re-authentication of the service.
+due to the password being changed in the service provider (MySQL, Keystone, and
+RabbitMQ) before it has been pushed out to the corresponding service user
+applications. This may be mitigated however by the restart of the service
+application, which will force a re-authentication of the service.
 
 Documentation updates
 ---------------------
 
-<TITLE>
-~~~~~~~
-
-New tech-preview charms
------------------------
-
-<TITLE>
-~~~~~~~
-
-New tech-preview charm features
--------------------------------
-
-<TITLE>
-~~~~~~~
-
-Informational notices
----------------------
-
-<TITLE>
-~~~~~~~
-
-Deprecation notices
--------------------
-
-<TITLE>
-~~~~~~~
-
-Removed features
-----------------
-
-<TITLE>
-~~~~~~~
-
-Removed charms
---------------
-
-<TITLE>
-~~~~~~~
-
-Issues discovered during this release cycle
--------------------------------------------
-
-<TITLE>
-~~~~~~~
+Regular improvements and bug fixes. A new page on :doc:`../concepts/spaces` was
+landed.
 
 .. LINKS
-.. _Antelope milestone: https://launchpad.net/openstack-charms/+milestone/antelope
 .. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _Ironic Dashboard plugin: https://docs.openstack.org/ironic-ui/latest/
 .. _OpenStack Dashboard charm: https://charmhub.io/openstack-dashboard
 .. _iDrac driver: https://docs.openstack.org/ironic/latest/admin/drivers/idrac.html
+
 .. COMMITS
 
 .. BUGS
