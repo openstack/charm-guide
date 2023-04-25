@@ -56,16 +56,24 @@ based on a version number or a release date. For example:
      - Example tracks
 
    * - nova-compute
-     - wallaby, xena
+     - yoga, zed, 2023.1
 
    * - ceph-mon
-     - octopus, pacific
+     - pacific, quincy
 
    * - rabbitmq-server
      - 3.8, 3.9
 
    * - ovn-central
-     - 22.03, 22.09
+     - 22.09, 23.03
+
+.. note::
+
+   Track names for the collection of OpenStack service charms are based on the
+   release names of the upstream OpenStack project. Notably, a rename occurred
+   during the March 2023 release cycle where the expected upstream ``Antelope``
+   release effectively became ``2023.1``. See the upstream `OpenStack
+   Releases`_ page.
 
 ``latest`` track
 ^^^^^^^^^^^^^^^^
@@ -133,7 +141,7 @@ charm`_ for details.
          * - OpenStack charms
            - ``yoga``
            - ``zed``
-           - ``antelope``
+           - ``2023.1``
 
          * - Ceph charms
            - ``quincy``
@@ -387,3 +395,4 @@ Yoga the channel should be changed to '22.03/stable':
 
 .. LINKS
 .. _Charmhub: https://charmhub.io
+.. _OpenStack Releases: https://releases.openstack.org

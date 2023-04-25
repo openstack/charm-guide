@@ -24,7 +24,7 @@ latter dates are estimated and subject to revision.
      - Release date
      - Release timeline
 
-   * - Antelope
+   * - 2023.1 - Antelope
      - under development
      - Fri, Mar 31, 2023
      - Thu, Apr 27, 2023 (estimated)
