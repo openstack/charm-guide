@@ -197,6 +197,9 @@ OpenStack project.
    * - `hacluster`_
      - < 16.10
 
+   * - `ironic-dashboard`_
+     - Ussuri
+
    * - `ovn-central`_
      - 20.05
 
@@ -365,6 +368,7 @@ These charms have reached EOL and are deprecated.
 .. _cinder-solidfire: https://opendev.org/openstack/charm-cinder-solidfire
 .. _ironic-api: https://opendev.org/openstack/charm-ironic-api
 .. _ironic-conductor: https://opendev.org/openstack/charm-ironic-conductor
+.. _ironic-dashboard: https://opendev.org/openstack/charm-ironic-dashboard
 .. _keystone-kerberos: https://opendev.org/openstack/charm-keystone-kerberos/
 .. _keystone-openidc: https://opendev.org/openstack/charm-keystone-openidc/
 .. _magnum: https://opendev.org/openstack/charm-magnum
