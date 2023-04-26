@@ -2,18 +2,11 @@
 Release notes
 =============
 
-This page lists the Release Notes for every version of OpenStack Charms.
-
-.. note::
-
-   The version naming scheme for OpenStack Charms releases has changed from
-   being time-based (YY.MM) to one that uses the name of the newly-supported
-   OpenStack release. See :doc:`Charm delivery <../project/charm-delivery>` for
-   details.
+This page lists the release notes for every version of OpenStack Charms.
 
 Under development:
 
-* :doc:`antelope`
+* :doc:`2023.1-antelope`
 
 Latest stable:
 
@@ -118,31 +111,9 @@ Older versions listed by year of release:
 .. toctree::
    :maxdepth: 1
    :hidden:
+   :glob:
 
-   42_Trilio
-   antelope
-   zed
-   yoga
-   2110
-   2106_Trilio
-   2104
-   2103_Trilio
-   2101
-   2010
-   2008
-   2005
-   2002
-   1910
-   1907
-   1904
-   1811
-   1808
-   1805
-   1802
-   1711
-   1708
-   1702
-   1610
+   *
 
 .. LINKS
 .. _16.07: https://wiki.ubuntu.com/OpenStack/OpenStackCharms/ReleaseNotes1607
