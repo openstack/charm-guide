@@ -58,6 +58,12 @@ ironic-conductor charm
 
 Two new configuration options have been added to the ironic-conductor charm.
 
+ovn-central charm
+~~~~~~~~~~~~~~~~~
+
+``ovn-central`` charm is now capable of seamlesly downscaling units. More
+details can be found in :doc:`"OVN Central" downscaling guide <../admin/ops-scale-back-ovn-central>`
+
 Hardware enablement configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -159,7 +165,6 @@ landed.
 .. _Ironic Dashboard plugin: https://docs.openstack.org/ironic-ui/latest/
 .. _OpenStack Dashboard charm: https://charmhub.io/openstack-dashboard
 .. _iDrac driver: https://docs.openstack.org/ironic/latest/admin/drivers/idrac.html
-
 .. COMMITS
 
 .. BUGS
