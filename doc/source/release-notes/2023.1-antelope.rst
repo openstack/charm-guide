@@ -153,6 +153,24 @@ RabbitMQ) before it has been pushed out to the corresponding service user
 applications. This may be mitigated however by the restart of the service
 application, which will force a re-authentication of the service.
 
+Issues discovered during this release cycle
+-------------------------------------------
+
+Neutron ML2 OVS plugin on DVR mode
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Environments configured to use the ML2 OVS plugin in DVR mode and have
+configured an external network of type ``flat`` will be affected by bug `LP
+#2015090`_. The symptom of an affected system is that newly launched instances
+won't have access to the Metadata service and the ``neutron-dhcp-agent`` service
+log will contain the following error:
+
+.. code-block:: none
+
+   [...]
+   2023-03-31 19:35:06.095 58625 ERROR neutron.agent.dhcp.agent return self._name[:constants.DEVICE_NAME_MAX_LEN]
+   2023-03-31 19:35:06.095 58625 ERROR neutron.agent.dhcp.agent TypeError: 'bool' object is not subscriptable
+
 Documentation updates
 ---------------------
 
@@ -169,3 +187,4 @@ landed.
 
 .. BUGS
 .. _LP #1896630: https://bugs.launchpad.net/charm-nova-compute/+bug/1896630
+.. _LP #2015090: https://bugs.launchpad.net/ubuntu/+source/neutron/+bug/2015090
