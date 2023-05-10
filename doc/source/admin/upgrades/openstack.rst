@@ -409,7 +409,7 @@ Xena to Yoga:
    .. code-block:: none
 
       juju config cinder openstack-origin=distro
-      juju refresh --channel yoga/stable cinder
+      juju refresh --channel victoria/stable cinder
       juju config cinder openstack-origin=cloud:focal-victoria
 
 **If charm channels are not in use:**
