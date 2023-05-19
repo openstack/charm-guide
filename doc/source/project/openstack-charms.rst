@@ -243,8 +243,10 @@ ready for production use (promoted to Stable).
 
 * `ceph-dashboard`_
 * `ceph-nfs`_
+* `cinder-infinidat`_
 * `cinder-nimblestorage`_
 * `cinder-solidfire`_
+* `infinidat-tools`_
 * `ironic-api`_
 * `ironic-conductor`_
 * `keystone-kerberos`_
@@ -252,6 +254,7 @@ ready for production use (promoted to Stable).
 * `magnum`_
 * `magnum-dashboard`_
 * `manila-dashboard`_
+* `manila-infinidat`_
 * `manila-netapp`_
 * `neutron-api-plugin-ironic`_
 * `nova-compute-nvidia-vgpu`_
@@ -364,8 +367,10 @@ These charms have reached EOL and are deprecated.
 
 .. _ceph-dashboard: https://opendev.org/openstack/charm-ceph-dashboard
 .. _ceph-nfs: https://opendev.org/openstack/charm-ceph-nfs
+.. _cinder-infinidat: https://opendev.org/openstack/charm-cinder-infinidat
 .. _cinder-nimblestorage: https://opendev.org/openstack/charm-cinder-nimblestorage
 .. _cinder-solidfire: https://opendev.org/openstack/charm-cinder-solidfire
+.. _infinidat-tools: https://opendev.org/openstack/charm-infinidat-tools
 .. _ironic-api: https://opendev.org/openstack/charm-ironic-api
 .. _ironic-conductor: https://opendev.org/openstack/charm-ironic-conductor
 .. _ironic-dashboard: https://opendev.org/openstack/charm-ironic-dashboard
@@ -374,6 +379,7 @@ These charms have reached EOL and are deprecated.
 .. _magnum: https://opendev.org/openstack/charm-magnum
 .. _magnum-dashboard: https://opendev.org/openstack/charm-magnum-dashboard
 .. _manila-dashboard: https://opendev.org/openstack/charm-manila-dashboard
+.. _manila-infinidat: https://opendev.org/openstack/charm-manila-infinidat
 .. _manila-netapp: https://opendev.org/openstack/charm-manila-netapp
 .. _neutron-api-plugin-ironic: https://opendev.org/openstack/charm-neutron-api-plugin-ironic
 .. _nova-compute-nvidia-vgpu: https://opendev.org/openstack/charm-nova-compute-nvidia-vgpu
