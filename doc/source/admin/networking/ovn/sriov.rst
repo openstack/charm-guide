@@ -21,7 +21,7 @@ documentation.
 
 .. caution::
 
-   Enabling SR-IOV will necessiate the reboot of the associated physical host.
+   Enabling SR-IOV will necessitate the reboot of the associated physical host.
 
 Requirements
 ------------
@@ -187,7 +187,7 @@ Query the VM (here 203.0.113.1) for the assigned VF (via the PF):
 Here ``ixgbevf``, the Linux VF driver for Intel is in use.
 
 .. LINKS
-.. _MAAS: https://maas.io/docs/about-customising-machines#heading--about-kernel-boot-options
+.. _MAAS: https://maas.io/docs/how-to-customise-machines#heading--how-to-set-global-kernel-boot-options
 .. _SR-IOV: https://docs.openstack.org/neutron/latest/admin/config-sriov.html
 .. _SR-IOV guide for OVN: https://docs.openstack.org/neutron/latest/admin/ovn/sriov.html
 .. _LP #1946456: https://bugs.launchpad.net/bugs/1946456

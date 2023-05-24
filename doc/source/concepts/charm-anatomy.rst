@@ -44,7 +44,7 @@ for more details of the configurable options in a **layers.yaml**
 config.yaml
 ~~~~~~~~~~~
 
-The charm authors guide contains a section on the `config.yaml <https://docs.jujucharms.com/devel/en/charms-config>`__
+The charm authors guide contains a section on the `config.yaml <https://juju.is/docs/sdk/config-yaml>`__
 and is a good place to start.  The config.yaml of the built charm is
 constructed from each layer that contains a config.yaml.
 

@@ -293,6 +293,6 @@ The trilio-wlm and trilio-data-mover applications should now be in the 'active'
 state and ready for use.
 
 .. LINKS
-.. _TrilioVault: https://www.trilio.io/triliovault-for-openstack-2/
+.. _TrilioVault: https://trilio.io/products/trilio-for-openstack/
 .. _Trilio charms: https://opendev.org/openstack?tab=&sort=recentupdate&q=charm-trilio
 .. _CharmHub: https://charmhub.io/
