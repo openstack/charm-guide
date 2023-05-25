@@ -18,6 +18,7 @@ fully part of our :doc:`release process <../../project/release-schedule>`:
   results to Gerrit reviews.
 * `Launchpad`_, the bug tracker and continuous delivery pipeline (publishing to
   CharmHub) for the OpenStack charms.
+* `Charmed OpenStack Info`_, where the information about Charmed OpenStack is declared.
 * `GitHub`_, where the OpenStack charms' source code is mirrored.
 * `CharmHub`_, where the charms are published.
 * Our `release tools`_ and documentation.
@@ -115,13 +116,14 @@ interfaces it requires are listed in the `Juju Charm Layers Index`_. Otherwise
 create a pull request. Example:
 https://github.com/juju/layer-index/pull/110
 
-Release Tools
--------------
+Charmed OpenStack Info
+----------------------
 
-The ``release-tools`` repository contains the definitions for the OpenStack,
-Ceph, OVN and supporting charms. Add an entry for the new charm in the
-appropriate file under the ``lp-builder-config`` directory. Example:
-https://github.com/openstack-charmers/release-tools/pull/222
+The `charmed-openstack-info`_ repository contains the definitions for the
+OpenStack, Ceph, OVN and supporting charms. Add an entry for the new charm in
+the appropriate file under the
+``charmed_openstack_info/data/lp-builder-config/`` directory. Example:
+https://github.com/openstack-charmers/charmed-openstack-info/pull/23
 
 The format of the ``lp-builder-config`` files is defined in the
 `CharmProject`_ class.
@@ -144,14 +146,11 @@ project and publishing the resulting charm to `Charmhub`_. Example:
 https://review.opendev.org/c/openstack/charm-openstack-loadbalancer/+/828162/4/charmcraft.yaml
 
 Add your charm to the `lp-builder-config`_. Example:
-https://github.com/openstack-charmers/release-tools/pull/187
+https://github.com/openstack-charmers/charmed-openstack-info/pull/23
 
-Once landed, :doc:`ask us <../contact>` to run the `charmhub-lp-tools`_ in
-order to create the corresponding Launchpad builder recipes:
-
-.. code-block:: none
-
-   charmhub-lp-tool sync --i-really-mean-it
+Once merged, a CI job gets executed which takes care of sync'ing the changes
+into Launchpad. Example:
+https://github.com/openstack-charmers/charmed-openstack-info/actions/runs/5049412206
 
 Visit :samp:`https://launchpad.net/charm-<my-new-thing>` and for each recipe,
 click **Authorize Charmhub uploads**.
@@ -226,6 +225,7 @@ The feature should be deployable during (or after) the deployment of a cloud
 - as per the Juju documentation: `How to add an overlay bundle`_.
 
 .. LINKS
+.. _charmed-openstack-info: https://github.com/openstack-charmers/charmed-openstack-info
 .. _release tools: https://github.com/openstack-charmers/release-tools
 .. _Gitea: https://opendev.org/openstack
 .. _Gerrit: https://review.opendev.org
@@ -237,7 +237,7 @@ The feature should be deployable during (or after) the deployment of a cloud
 .. _Charmhub request: https://discourse.charmhub.io/c/charmhub-requests/46
 .. _OpenDev Project Creator's Guide: https://docs.opendev.org/opendev/infra-manual/latest/creators.html
 .. _Juju Charm Layers Index: https://github.com/juju/layer-index
-.. _lp-builder-config: https://github.com/openstack-charmers/release-tools/tree/master/lp-builder-config
+.. _lp-builder-config: https://github.com/openstack-charmers/charmed-openstack-info/tree/main/charmed_openstack_info/data/lp-builder-config
 .. _charmhub-lp-tools: https://github.com/openstack-charmers/charmhub-lp-tools
 .. _Reactive framework: https://charmsreactive.readthedocs.io/en/latest/
 .. _Operator framework: https://github.com/canonical/operator
