@@ -83,6 +83,21 @@ test bundle, and/or a section in the current guide (Charm Guide) that details
 its usage. Test bundles are located in the ``src/tests/bundles`` directory of
 the relevant charm repository (see all `charm repositories`_).
 
+Service Tokens
+~~~~~~~~~~~~~~
+
+Charmed OpenStack configures the deployed services to send service tokens now.
+This change benefits users in, at least, the following situations:
+
+* For security reasons, the service token allows the control plane to
+  differentiate when a privileged operation is issued by another service (e.g.
+  Nova requesting a volume operation to Cinder) or by a cloud user.
+* Long running job failures, if an operation takes longer than the life of the
+  user's token, there will be queries failing and preventing the completion of
+  the user's requested operation.
+
+For more details see `Using service tokens in Cinder`_ and bug `LP #1992840`_
+
 ironic-conductor charm
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -209,6 +224,7 @@ landed.
 
 .. LINKS
 .. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
+.. _Using service tokens in Cinder: https://docs.openstack.org/cinder/2023.1/configuration/block-storage/service-token.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _Ironic Dashboard plugin: https://docs.openstack.org/ironic-ui/latest/
 .. _OpenStack Dashboard charm: https://charmhub.io/openstack-dashboard
@@ -222,3 +238,4 @@ landed.
 .. BUGS
 .. _LP #1896630: https://bugs.launchpad.net/charm-nova-compute/+bug/1896630
 .. _LP #2015090: https://bugs.launchpad.net/ubuntu/+source/neutron/+bug/2015090
+.. _LP #1992840: https://bugs.launchpad.net/charm-cinder/+bug/1992840
