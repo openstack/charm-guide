@@ -29,6 +29,7 @@ General cloud operations:
    ops-replace-control-plane-service-ha
    ops-replace-hyperconverged-compute-node
    ops-scale-back-ovn-central
+   ops-remove-mysql8-node
 
 Ceph storage operations (published in the Charmed Ceph documentation):
 
