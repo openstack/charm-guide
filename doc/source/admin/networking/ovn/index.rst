@@ -169,6 +169,7 @@ Specific topics on OVN usage are given below:
    internal-dns
    external-connect
    queries
+   ndr
 
 .. LINKS
 .. _vault charm: https://charmhub.io/vault
