@@ -1,6 +1,6 @@
-=====================================
-2023.1 - Antelope (under development)
-=====================================
+=================
+2023.1 - Antelope
+=================
 
 The 2023.1 (Antelope) OpenStack Charms release includes updates for the charms
 described on the :doc:`../project/openstack-charms` page. As of this release,
@@ -72,8 +72,8 @@ following channels (track/risk combination) are now available:
 * zed/candidate
 * 2023.1/candidate
 
-As testing occurs, on a per-track basis, the 'candidate' charms will be promoted to 'stable'.
-
+As testing occurs, on a per-track basis, the candidate charms will be promoted
+to stable.
 
 New stable charm features
 -------------------------
@@ -83,20 +83,21 @@ test bundle, and/or a section in the current guide (Charm Guide) that details
 its usage. Test bundles are located in the ``src/tests/bundles`` directory of
 the relevant charm repository (see all `charm repositories`_).
 
-Service Tokens
+Service tokens
 ~~~~~~~~~~~~~~
 
 Charmed OpenStack configures the deployed services to send service tokens now.
 This change benefits users in, at least, the following situations:
 
-* For security reasons, the service token allows the control plane to
-  differentiate when a privileged operation is issued by another service (e.g.
-  Nova requesting a volume operation to Cinder) or by a cloud user.
-* Long running job failures, if an operation takes longer than the life of the
-  user's token, there will be queries failing and preventing the completion of
-  the user's requested operation.
+* Security enhancement: Service tokens allow the control plane to differentiate
+  between a privileged operation issued by another service (e.g. Nova
+  requesting a volume operation to Cinder) and a regular user operation.
 
-For more details see `Using service tokens in Cinder`_ and bug `LP #1992840`_
+* Long running jobs: If an operation takes longer than the life of a regular
+  user token, queries can fail, preventing the completion of requested
+  operations.
+
+For more details see `Using service tokens in Cinder`_ and bug `LP #1992840`_.
 
 ironic-conductor charm
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -107,7 +108,8 @@ ovn-central charm
 ~~~~~~~~~~~~~~~~~
 
 ``ovn-central`` charm is now capable of seamlesly downscaling units. More
-details can be found in :doc:`"OVN Central" downscaling guide <../admin/ops-scale-back-ovn-central>`
+details can be found in :doc:`"OVN Central" downscaling guide
+<../admin/ops-scale-back-ovn-central>`
 
 Hardware enablement configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -189,8 +191,8 @@ They must be run on the leader unit:
    :command:`run`.
 
 The ``list-service-usernames`` action provides a list of usernames that can be
-rotated, and the ``rotate-service-user-password`` actually performs a
-password rotation for a single service user.
+rotated, and the ``rotate-service-user-password`` actually performs a password
+rotation for a single service user.
 
 There may be a control plane interruption when a password is rotated. This is
 due to the password being changed in the service provider (MySQL, Keystone, and
@@ -207,8 +209,8 @@ Neutron ML2 OVS plugin on DVR mode
 Environments configured to use the ML2 OVS plugin in DVR mode and have
 configured an external network of type ``flat`` will be affected by bug `LP
 #2015090`_. The symptom of an affected system is that newly launched instances
-won't have access to the Metadata service and the ``neutron-dhcp-agent`` service
-log will contain the following error:
+won't have access to the Metadata service and the ``neutron-dhcp-agent``
+service log will contain the following error:
 
 .. code-block:: none
 

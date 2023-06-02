@@ -6,21 +6,22 @@ This page lists the release notes for every version of OpenStack Charms.
 
 Under development:
 
-* :doc:`2023.1-antelope`
+* *coming soon*
 
 Latest stable:
 
-* :doc:`zed`
+* :doc:`2023.1-antelope`
 * :doc:`42_Trilio`
 
 Older versions listed by year of release:
 
 .. list-table::
    :header-rows: 0
-   :widths: 20 20
+   :widths: 20 20 20
    :stub-columns: 1
 
    * - 2022
+     - :doc:`zed`
      - :doc:`yoga`
 
 .. list-table::
