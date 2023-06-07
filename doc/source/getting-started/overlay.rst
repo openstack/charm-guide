@@ -36,7 +36,8 @@ Network spaces
 
 Each principal charm will need to be informed of a network space, via the
 ``bindings`` charm parameter, if a network space is configured within MAAS for
-the cloud's subnet.
+the cloud's subnet. For extra information on using spaces with Charmed
+OpenStack, consult the :doc:`../concepts/spaces` page.
 
 OVN Chassis data port and hardware addresses
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

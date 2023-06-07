@@ -8,9 +8,9 @@ To access the dashboard (Horizon) first obtain its IP address:
 
    juju status --format=yaml openstack-dashboard | grep public-address | awk '{print $2}' | head -1
 
-In this example, the address is '10.246.114.52'.
+In this example, the address is '10.246.114.29'.
 
-The dashboard URL is then: **http://10.246.114.52/horizon**
+The dashboard URL is then: **http://10.246.114.29/horizon**
 
 Now query for the admin password:
 
@@ -33,6 +33,6 @@ The final credentials needed to log in are:
 
    .. code-block:: none
 
-      sudo ssh -i <personal-key> -N -L 8002:10.246.114.52:80 <remote-host>
+      sudo ssh -i <personal-key> -N -L 8002:10.246.114.29:80 <remote-host>
 
    In this case, the URL becomes: **http://localhost:8002/horizon**

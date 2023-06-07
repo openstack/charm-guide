@@ -178,7 +178,7 @@ applications:
       gui-x: '980'
       gui-y: '1270'
     charm: ch:cinder
-    channel: zed/stable
+    channel: 2023.1/stable
     num_units: 1
     options:
       block-device: None
@@ -190,7 +190,7 @@ applications:
       gui-x: '1120'
       gui-y: '1400'
     charm: ch:cinder-ceph
-    channel: zed/stable
+    channel: 2023.1/stable
     num_units: 0
   glance-mysql-router:
     annotations:
@@ -203,7 +203,7 @@ applications:
       gui-x: '-230'
       gui-y: '1270'
     charm: ch:glance
-    channel: zed/stable
+    channel: 2023.1/stable
     num_units: 1
     to:
     - lxd:2
@@ -218,7 +218,7 @@ applications:
       gui-x: '300'
       gui-y: '1270'
     charm: ch:keystone
-    channel: zed/stable
+    channel: 2023.1/stable
     num_units: 1
     to:
     - lxd:0
@@ -233,13 +233,13 @@ applications:
       gui-x: '690'
       gui-y: '1385'
     charm: ch:neutron-api-plugin-ovn
-    channel: zed/stable
+    channel: 2023.1/stable
   neutron-api:
     annotations:
       gui-x: '580'
       gui-y: '1270'
     charm: ch:neutron-api
-    channel: zed/stable
+    channel: 2023.1/stable
     num_units: 1
     options:
       neutron-security-groups: true
@@ -257,7 +257,7 @@ applications:
       gui-x: '1320'
       gui-y: '1270'
     charm: ch:placement
-    channel: zed/stable
+    channel: 2023.1/stable
     num_units: 1
     to:
     - lxd:2
@@ -272,7 +272,7 @@ applications:
       gui-x: '35'
       gui-y: '1270'
     charm: ch:nova-cloud-controller
-    channel: zed/stable
+    channel: 2023.1/stable
     num_units: 1
     options:
       network-manager: Neutron
@@ -283,7 +283,7 @@ applications:
       gui-x: '190'
       gui-y: '890'
     charm: ch:nova-compute
-    channel: zed/stable
+    channel: 2023.1/stable
     num_units: 3
     options:
       config-flags: default_ephemeral_format=ext4
@@ -305,7 +305,7 @@ applications:
       gui-x: '585'
       gui-y: '900'
     charm: ch:openstack-dashboard
-    channel: zed/stable
+    channel: 2023.1/stable
     num_units: 1
     to:
     - lxd:1
@@ -334,7 +334,7 @@ applications:
       gui-x: '70'
       gui-y: '1550'
     charm: ch:ovn-central
-    channel: 22.09/stable
+    channel: 23.03/stable
     num_units: 3
     to:
     - lxd:0
@@ -345,7 +345,7 @@ applications:
       gui-x: '120'
       gui-y: '1030'
     charm: ch:ovn-chassis
-    channel: 22.09/stable
+    channel: 23.03/stable
     options:
       ovn-bridge-mappings: physnet1:br-ex
       bridge-interface-mappings: *data-port
