@@ -8,7 +8,7 @@ Ensure that the current context is the previously-created controller and model:
 
    juju switch maas-controller:openstack
 
-Download bundle file :download:`bundle-jammy-zed.yaml` and save it in the
+Download bundle file :download:`bundle-jammy-2023.1.yaml` and save it in the
 ``~/tutorial`` directory.
 
 Enter the tutorial directory and deploy OpenStack by referring to the bundle
@@ -17,7 +17,7 @@ and the overlay:
 .. code-block:: none
 
    cd ~/tutorial
-   juju deploy ./bundle-jammy-zed.yaml --overlay ./overlay-mymaas.yaml
+   juju deploy ./bundle-jammy-2023.1.yaml --overlay ./overlay-mymaas.yaml
 
 This stage of the procedure can take between 30 and 90 minutes to complete,
 depending on how the MAAS nodes are resourced. Use the :command:`juju status`
