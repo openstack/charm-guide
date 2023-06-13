@@ -21,8 +21,8 @@ Mailing list
 ------------
 
 We are present on the upstream OpenStack mailing list: `openstack-discuss`_.
-Please begin the subject with **[charms]** to differentiate the thread from the
-many other topics that are discussed on this list.
+Please begin the email subject with **[charms]** to differentiate the thread
+from the many other topics that are discussed on this list.
 
 .. LINKS
 .. _Mattermost: https://chat.charmhub.io/charmhub/channels/openstack-charms
