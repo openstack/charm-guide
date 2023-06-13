@@ -82,13 +82,14 @@ copyright = '2016, OpenStack contributors'
 openstackdocs_repo_name = 'openstack/charm-guide'
 openstackdocs_bug_project = 'charm-guide'
 openstackdocs_bug_tag = 'charm-guide'
+openstackdocs_auto_version = False
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = ''
+version = '2023.1 - Antelope'
 # The full version, including alpha/beta/rc tags.
 release = ''
 
