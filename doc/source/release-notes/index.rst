@@ -6,7 +6,7 @@ This page lists the release notes for every version of OpenStack Charms.
 
 Under development:
 
-* *coming soon*
+* :doc:`2023.2-bobcat`
 
 Latest stable:
 
