@@ -42,8 +42,25 @@ test bundle, and/or a section in the current guide (Charm Guide) that details
 its usage. Test bundles are located in the ``src/tests/bundles`` directory of
 the relevant charm repository (see all `charm repositories`_).
 
-<TITLE>
-~~~~~~~
+Keystone role cache config
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The keystone charm now supports configuring the keystone [role] cache_time using
+a new role-cache-expiration config. If not set, this defaults to the global
+expiration_time (configurable by the dogpile-cache-expiration config option). Setting
+the role cache_time to something closer to 10s is recommended for
+clouds that receive frequent role assignment changes and are sensitive to the
+(default) 600s delay that assignements can take to propagate to all keystone
+peer caches.
+
+For example, to set the role cache expiration time to 10 seconds do:
+
+.. code-block:: none
+
+   juju config keystone role-cache-expiration=10
+
+The result of this being that keystone will only used cached role assignments for up to
+10 seconds before refreshing them from the database.
 
 Documentation updates
 ---------------------
