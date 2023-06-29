@@ -119,7 +119,7 @@ upstream OpenStack versions. The Ubuntu project and the OpenStack project have
 deliberately synchronised their respective release cycles.
 
 .. figure:: ../../media/ubuntu-openstack-release-cycle.png
-   :scale: 80%
+   :scale: 90%
    :alt: Ubuntu OpenStack release cycle
 
 .. role:: raw-html(raw)
