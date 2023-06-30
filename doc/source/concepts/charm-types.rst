@@ -5,6 +5,10 @@ Charm types
 There are two general types of OpenStack charms: one that does use channels and
 one that does not (legacy).
 
+The :doc:`../release-notes/2110` charms release was the last release of legacy
+charms. This was followed by the :doc:`../release-notes/yoga` release, which
+utilised channel type charms.
+
 Channels
 --------
 
@@ -27,6 +31,9 @@ charm that works for a recent series-openstack combination will also work on an
 older combination.
 
 The development of legacy charms has stopped at the 21.10 release of OpenStack
-Charms (and at the 21.06 release of Trilio Charms). The last supported
-series-openstack combination is ``focal-xena``.
+Charms (and at the 21.06 release of Trilio Charms). The last OpenStack release
+supported by these charms is OpenStack Xena, in the form of the
+series-openstack combination of ``focal-xena``.
 
+See page :doc:`../project/procedures/charmhub-migration` for steps on migrating
+from legacy charms to channel charms.

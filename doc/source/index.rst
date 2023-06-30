@@ -61,29 +61,29 @@ development environments through to large enterprise-grade solutions.
 
    ---
 
-   Release notes
-   ^^^^^^^^^^^^^
+   Reference
+   ^^^^^^^^^
 
-   View the release notes for all versions of OpenStack Charms, including the one
-   currently in development.
+   View the reference material for the OpenStack Charms project.
 
    .. toctree::
       :maxdepth: 1
 
-      release-notes/index
+      reference/index
 
 Project and community
 ---------------------
 
-Follow the OpenStack Charms project. This is where you will find information
-such as the definitive list of OpenStack charms, support notes, and how the
-charm delivery system works.
+Follow the OpenStack Charms project. This is where you will find a wealth of
+information about the project such as the definitive list of OpenStack charms,
+release notes, support notes, how to help out, and much more.
 
 .. toctree::
    :maxdepth: 1
 
    Project <project/index>
    Community <community/index>
+   Release notes <release-notes/index>
 
 This project abides by the `OpenInfra Foundation community code of conduct`_.
 

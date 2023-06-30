@@ -2,9 +2,6 @@
 Charm delivery
 ==============
 
-Overview
---------
-
 Juju charms are delivered via the online `Charmhub`_. This page provides charm
 delivery information in the context of the OpenStack Charms project.
 
