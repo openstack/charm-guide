@@ -365,7 +365,7 @@ To use the bundle:
 
 .. LINKS
 .. _OSI: https://en.wikipedia.org/wiki/OSI_model
-.. _Juju documentation: https://juju.is/docs/olm
+.. _Juju documentation: https://juju.is/docs/juju
 .. _the Vault section: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/install-openstack.html#vault
 
 .. BUGS

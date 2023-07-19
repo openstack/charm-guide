@@ -87,8 +87,8 @@ The procedure consists of the following steps:
    dashboard
 
 .. LINKS
-.. _Juju: https://juju.is/docs/olm/install-juju
+.. _Juju: https://juju.is/docs/juju/install-juju
 .. _MAAS: https://maas.io
 .. _bundles: https://juju.is/docs/sdk/manage-bundles
-.. _constraints: https://juju.is/docs/olm/constraints
+.. _constraints: https://juju.is/docs/juju/constraint
 .. _network spaces: https://maas.io/docs/maas-concepts-and-terms-reference#heading--spaces

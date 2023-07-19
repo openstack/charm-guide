@@ -1334,9 +1334,9 @@ Charms`_ project group.
 .. _Evacuate instances: https://docs.openstack.org/nova/latest/admin/evacuate.html
 .. _hacluster: https://charmhub.io/hacluster
 .. _OpenStack Charms: https://launchpad.net/openstack-charms
-.. _SSH: https://juju.is/docs/olm/accessing-individual-machines-with-ssh
+.. _SSH: https://juju.is/docs/juju/manage-machines#heading--access-a-machine-via-ssh
 .. _CRUSH maps: https://docs.ceph.com/docs/master/rados/operations/crush-map
-.. _actions: https://juju.is/docs/olm/working-with-actions
+.. _actions: https://juju.is/docs/juju/action
 .. _Partitions: https://www.rabbitmq.com/partitions.html
 .. _Queues: https://www.rabbitmq.com/queues.html
 .. _force_boot: https://www.rabbitmq.com/rabbitmqctl.8.html#force_boot

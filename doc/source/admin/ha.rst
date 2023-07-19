@@ -59,8 +59,7 @@ is done through the use of a placement directive (the ``--to`` option available
 to the :command:`juju deploy` or :command:`juju add-unit` commands) or the
 'zones' machine constraint (e.g. ``--constraints zones=zone2``). This can be
 done at deploy or scale out time and is particularly useful for hyperconverged
-cloud nodes. See `How to deploy to a specific machine`_ and `Bundle reference`_
-in the Juju documentation.
+cloud nodes. See the `Bundle reference`_ in the Juju documentation.
 
 .. note::
 
@@ -844,8 +843,7 @@ Charms`_ project group.
 .. _mysql-innodb-cluster: https://opendev.org/openstack/charm-mysql-innodb-cluster/src/branch/master/src/README.md
 .. _percona-cluster: https://opendev.org/openstack/charm-percona-cluster/src/branch/master/README.md
 .. _rabbitmq-server: https://opendev.org/openstack/charm-rabbitmq-server/src/branch/master/README.md
-.. _How to deploy to a specific machine: https://juju.is/docs/olm/deploy-to-a-specific-machine
-.. _Bundle reference: https://juju.is/docs/olm/bundle
+.. _Bundle reference: https://juju.is/docs/juju/bundle
 .. _Nova availability zone: https://docs.openstack.org/nova/latest/admin/availability-zones.html
 .. _Neutron availability zone: https://docs.openstack.org/neutron/latest/admin/config-az.html
 .. _Open Virtual Network: https://docs.openstack.org/networking-ovn/latest/

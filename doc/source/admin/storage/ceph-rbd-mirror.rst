@@ -354,4 +354,4 @@ Here, we make site 'a' be the primary by demoting site 'b' and promoting site
 .. _charm's documentation: https://opendev.org/openstack/charm-ceph-rbd-mirror/src/branch/master/src/README.md
 .. _RBD mirroring: https://docs.ceph.com/en/latest/rbd/rbd-mirroring
 .. _Geographical Redundancy with rbd-mirror: https://youtu.be/ZifNGprBUTA
-.. _Cross model relations: https://juju.is/docs/olm/manage-cross-model-relations
+.. _Cross model relations: https://juju.is/docs/juju/cross-model-integration

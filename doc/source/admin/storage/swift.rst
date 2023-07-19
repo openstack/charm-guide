@@ -506,6 +506,6 @@ contains the Juju "offers" that ``swift-sf.yaml`` will consume:
 
 .. LINKS
 .. _Global clusters: https://docs.openstack.org/swift/latest/overview_global_cluster.html
-.. _Cross model relations: https://juju.is/docs/olm/cross-model-relations
+.. _Cross model relations: https://juju.is/docs/juju/cross-model-integration
 .. _swift-proxy: https://charmhub.io/swift-proxy
 .. _swift-storage: https://charmhub.io/swift-storage

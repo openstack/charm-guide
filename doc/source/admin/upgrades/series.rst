@@ -376,9 +376,9 @@ the :doc:`series-openstack` page.
 .. LINKS
 .. _Ubuntu Cloud Archive: https://wiki.ubuntu.com/OpenStack/CloudArchive
 .. _Ubuntu releases wiki page: https://wiki.ubuntu.com/Releases
-.. _series upgrade: https://juju.is/docs/olm/upgrade-a-machines-series
+.. _series upgrade: https://juju.is/docs/juju/manage-machines#heading--upgrade-a-workload-machine
 .. _Ubuntu OpenStack release cycle: https://ubuntu.com/about/release-cycle#ubuntu-openstack-release-cycle
-.. _Application leadership: https://juju.is/docs/olm/leaders
+.. _Application leadership: https://juju.is/docs/juju/leader
 .. _ubuntu: https://charmhub.io/ubuntu
 .. _percona-cluster: https://opendev.org/openstack/charm-percona-cluster/
 .. _mysql-innodb-cluster: https://opendev.org/openstack/charm-mysql-innodb-cluster

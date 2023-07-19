@@ -37,5 +37,5 @@ supported CMR scenario file a Launchpad bug describing your use case. To assist
 in this effort kindly use the `cross-model`_ bug tag.
 
 .. LINKS
-.. _Cross model relations: https://juju.is/docs/olm/cross-model-relations
+.. _Cross model relations: https://juju.is/docs/juju/cross-model-integration
 .. _cross-model: https://bugs.launchpad.net/bugs/+bugs?field.tag=cross-model

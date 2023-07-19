@@ -119,7 +119,7 @@ Upgrade Juju
 
 Upgrade every Juju component of the given deployment to Juju ``2.9``. This
 includes the Juju client, the controller model, and the workload model. See the
-`Juju documentation`_ for guidance.
+`Juju upgrade documentation`_ for guidance.
 
 Perform the migration
 ---------------------
@@ -165,4 +165,4 @@ important to:
 
 .. LINKS
 .. _Charmhub: https://charmhub.io
-.. _Juju documentation: https://juju.is/docs/olm/upgrading
+.. _Juju upgrade documentation: https://juju.is/docs/juju/upgrading

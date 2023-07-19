@@ -290,7 +290,7 @@ Put all links at the bottom. For example:
    [cdg]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide
    [hacluster-charm]: https://charmhub.io/hacluster
    [juju-docs-actions]: https://juju.is/docs/working-with-actions
-   [juju-docs-config-apps]: https://juju.is/docs/olm/configure-an-application
+   [juju-docs-config-apps]: https://juju.is/docs/juju/manage-applications#heading--manage-the-configuration-of-an-application
    [<charm>-actions]: https://charmhub.io/<charm>/actions
    [<charm>-configure]: https://charmhub.io/<charm>/configure
    [<charm>-filebug]: https://bugs.launchpad.net/charm-<charm>/+filebug

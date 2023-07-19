@@ -353,7 +353,7 @@ small.
 .. _mailing list thread: https://mail.openvswitch.org/pipermail/ovs-discuss/2023-March/052316.html
 .. _upstream OVN issue: https://bugs.launchpad.net/charm-ovn-chassis/+bug/1940043
 .. _30 second hardcoded timeout: https://github.com/openvswitch/ovs/blob/07c27226ee96a3715126c50e1dbf6d8a1886b305/utilities/ovs-lib.in#L492)
-.. _Juju upgrade documentation: https://juju.is/docs/olm/upgrading
+.. _Juju upgrade documentation: https://juju.is/docs/juju/upgrading
 
 .. BUGS
 .. _LP #1992770: https://bugs.launchpad.net/charm-neutron-api-plugin-ovn/+bug/1992770

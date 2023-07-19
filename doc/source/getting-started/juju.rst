@@ -31,4 +31,4 @@ Assuming that the controller is called 'maas-controller', create a model called
 Advance to the :doc:`deploy` page.
 
 .. LINKS
-.. _How to use MAAS with Juju: https://juju.is/docs/olm/maas
+.. _How to use MAAS with Juju: https://juju.is/docs/juju/maas

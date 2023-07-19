@@ -243,7 +243,7 @@ and the unit agent (``unit``) to 'DEBUG':
 
    juju model-config logging-config="<root>=DEBUG;unit=DEBUG"
 
-The `Juju logs`_ page in the Juju documentation has more details.
+The `How to manage logs`_ page in the Juju documentation has more details.
 
 Service logs
 ^^^^^^^^^^^^
@@ -309,7 +309,7 @@ Please include an explanatory bug comment:
    $ cat split-0?-juju-crashdump > juju-crashdump.tar.xz
 
 .. LINKS
-.. _Juju logs: https://juju.is/docs/olm/juju-logs
+.. _How to manage logs: https://juju.is/docs/juju/manage-logs
 .. _AppArmor: https://ubuntu.com/server/docs/security-apparmor
 .. _Existing bugs: https://bugs.launchpad.net/openstack-charms/+bugs?orderby=-id&start=0
 .. _filing the bug: https://bugs.launchpad.net/openstack-charms/+filebug
