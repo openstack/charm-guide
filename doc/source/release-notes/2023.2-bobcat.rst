@@ -76,6 +76,13 @@ For example, to set BIND9 allow-transfer to 10.0.0.0/8 and 172.16.0.0/16:
 
 This will allow designate-bind to perform zone transfer to 10.0.0.0/8 and 172.16.0.0/12.
 
+Improve Vault snap channel refresh
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Snap channel refresh for the Vault snap in charm-vault has been improved to properly
+stop the service before performing a snap refresh.
+For more details see bug `LP #2007587`_.
+
 Documentation updates
 ---------------------
 
@@ -131,3 +138,4 @@ Issues discovered during this release cycle
 .. COMMITS
 
 .. BUGS
+.. _LP #2007587: https://bugs.launchpad.net/vault-charm/+bug/2007587
