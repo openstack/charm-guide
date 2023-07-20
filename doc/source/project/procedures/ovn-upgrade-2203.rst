@@ -26,10 +26,10 @@ Ensure the following prerequisites are satisfied before making any changes.
 Juju version
 ~~~~~~~~~~~~
 
-Juju is running the latest stable version of its major and minor release (e.g.
-2.9.x). This pertains to all three Juju components: client, controller model,
-and workload model. `Juju upgrade documentation`_ is available, but quick
-guidance is also given below.
+Juju must be running the latest stable version of its major and minor release
+(e.g. 2.9.x). This pertains to all three Juju components: client, controller
+model, and workload model. `Juju upgrade documentation`_ is available, but
+quick guidance is also given below.
 
 First ensure that the client context is the cloud's controller and model (check
 with command :command:`juju whoami`). The essential commands are then:
@@ -43,16 +43,35 @@ with command :command:`juju whoami`). The essential commands are then:
 Channel charms
 ~~~~~~~~~~~~~~
 
-OVN is managed by :doc:`channel charms <../../concepts/charm-types>` (charms
-ovn-central and ovn-chassis). If it is not, perform the migration away from
-legacy charms by applying special procedure :doc:`charmhub-migration` to those
-two charms.
+OVN must be managed by :doc:`channel charms <../../concepts/charm-types>`
+(charms ovn-central and ovn-chassis). If it is not, perform the migration away
+from legacy charms by applying special procedure :doc:`charmhub-migration` to
+those two charms.
 
 .. caution::
 
    As the above migration document states, when performing the migration to
    channel charms, ensure that the currently running OVN version does not
    change.
+
+Updated neutron-api-plugin-ovn charm
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The neutron-api-plugin-ovn charm must support the ``ovn-source`` configuration
+option. This works for the ``xena``, ``wallaby``, ``victoria``, and ``ussuri``
+tracks.
+
+To verify whether the option is available, query for its value:
+
+.. code-block:: none
+
+   juju config neutron-api-plugin-ovn ovn-source
+
+Upgrade the charm if the option is not available:
+
+.. code-block:: none
+
+   juju refresh neutron-api-plugin-ovn
 
 Procedure
 ---------
@@ -72,27 +91,6 @@ document.
 
 Allow the ovn-central application to settle - use the :command:`juju status
 ovn-central` command.
-
-Ensure required Neutron feature
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This process requires the ``neutron-api-plugin-ovn`` charm to support the
-``ovn-source`` configuration option. This feature was added and backported to
-``xena``, ``wallaby``, ``victoria`` and ``ussuri`` tracks. You can run:
-
-.. code-block:: none
-
-   juju config neutron-api-plugin-ovn ovn-source
-
-to check whether the option is available.
-
-If you have the ``neutron-api-plugin-ovn`` charm from one of the above
-mentioned tracks and you do not have this config option available, you can
-upgrade the charm (within the track) with:
-
-.. code-block:: none
-
-   juju refresh neutron-api-plugin-ovn
 
 Ensure OVN package requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -365,5 +363,4 @@ small.
 .. _Juju upgrade documentation: https://juju.is/docs/juju/upgrading
 
 .. BUGS
-.. _LP #1992770: https://bugs.launchpad.net/charm-neutron-api-plugin-ovn/+bug/1992770
 .. _LP #2013344: https://bugs.launchpad.net/charm-ovn-central/+bug/2013344
