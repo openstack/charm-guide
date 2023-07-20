@@ -73,14 +73,31 @@ document.
 Allow the ovn-central application to settle - use the :command:`juju status
 ovn-central` command.
 
-Ensure package requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ensure required Neutron feature
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Ensure that select packages are up to date on the cloud's OVN and Neutron
-units.
+This process requires the ``neutron-api-plugin-ovn`` charm to support the
+``ovn-source`` configuration option. This feature was added and backported to
+``xena``, ``wallaby``, ``victoria`` and ``ussuri`` tracks. You can run:
 
-OVN
-^^^
+.. code-block:: none
+
+   juju config neutron-api-plugin-ovn ovn-source
+
+to check whether the option is available.
+
+If you have the ``neutron-api-plugin-ovn`` charm from one of the above
+mentioned tracks and you do not have this config option available, you can
+upgrade the charm (within the track) with:
+
+.. code-block:: none
+
+   juju refresh neutron-api-plugin-ovn
+
+Ensure OVN package requirements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ensure that select packages are up to date on the cloud's OVN units.
 
 Perform the package upgrades on all OVN units by running commands across the
 ovn-chassis and ovn-central applications:
@@ -95,25 +112,6 @@ ovn-chassis and ovn-central applications:
 .. note::
 
    Some clouds may be running ovn-dedicated-chassis as opposed to ovn-chassis.
-
-Neutron
-^^^^^^^
-
-Perform the package upgrades on all neutron-api units by running commands
-across the neutron-api application:
-
-.. code-block:: none
-
-   juju run -a neutron-api 'apt -y install ubuntu-cloud-keyring'
-   juju run -a neutron-api -- add-apt-repository \
-      'deb http://ubuntu-cloud.archive.canonical.com/ubuntu focal-updates/ovn-22.03 main'
-   juju run -a neutron-api -- 'apt update; apt -y install \
-      --only-upgrade neutron-common openvswitch-common --option Dpkg::Options::="--force-confold"'
-
-.. note::
-
-   For the rationale behind manually enabling the UCA pocket for OVN 22.03 on
-   neutron-api units see `LP #1992770`_.
 
 Fail-safe mode on OVN < 22.03
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -155,6 +153,17 @@ Perform the upgrade
 
 To ensure a smooth migration, guidance is provided below that includes
 verification steps.
+
+Neutron
+^^^^^^^
+
+To upgrade OVN packages used by neutron, configure the
+``neutron-api-plugin-ovn`` charm to use the overlay repository that contains
+the '22.03' release of OVN:
+
+.. code-block:: none
+
+   juju config neutron-api-plugin-ovn ovn-source="cloud:focal-ovn-22.03"
 
 ovn-central
 ^^^^^^^^^^^
