@@ -152,17 +152,6 @@ Perform the upgrade
 To ensure a smooth migration, guidance is provided below that includes
 verification steps.
 
-Neutron
-^^^^^^^
-
-To upgrade OVN packages used by neutron, configure the
-``neutron-api-plugin-ovn`` charm to use the overlay repository that contains
-the '22.03' release of OVN:
-
-.. code-block:: none
-
-   juju config neutron-api-plugin-ovn ovn-source="cloud:focal-ovn-22.03"
-
 ovn-central
 ^^^^^^^^^^^
 
@@ -298,6 +287,35 @@ To upgrade the ovn-chassis application, change the charm's channel to
 
    juju refresh ovn-chassis --channel 22.03/stable
    juju config ovn-chassis ovn-source=cloud:focal-ovn-22.03
+
+Once ``ovn-chassis`` units settle in the ``active/idle`` state after the config
+change, restart OVN Metadata agents with:
+
+.. code-block:: console
+
+   juju run -a ovn-chassis 'systemctl restart neutron-ovn-metadata-agent'
+
+
+.. note::
+
+   Restart of Neutron OVN metadata agents is especially important when
+   upgrading from OVN versions lower than 20.09. These versions used table
+   ``Chassis`` in SB database for chassis registration whereas newer versions
+   use ``Chassis_Private``. Without the service restart, metadata agents will
+   not re-register in the new database table and Neutron will not be able to
+   detect these agents.
+
+Neutron
+^^^^^^^
+
+To upgrade OVN packages used by neutron, configure the
+``neutron-api-plugin-ovn`` charm to use the overlay repository that contains
+the '22.03' release of OVN:
+
+.. code-block:: none
+
+   juju config neutron-api-plugin-ovn ovn-source="cloud:focal-ovn-22.03"
+
 
 Verify: network agents
 ......................
