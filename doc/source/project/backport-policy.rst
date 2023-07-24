@@ -22,8 +22,8 @@ All backports must include the footer "cherry picked from commit ...".
 Backport candidates
 -------------------
 
-Bug fixes classified as **Critical** or **High** in Launchpad are considered
-candidates to be backported.
+Only a fix for a bug classified as **Critical** or **High** in Launchpad can be
+considered as a backport candidate.
 
 A backport of a simple configuration enablement that is opt-in is a candidate to
 be backported.
@@ -31,17 +31,21 @@ be backported.
 A juju action that improves operator experience is a candidate to be backported.
 
 Exclusions
-----------
+~~~~~~~~~~
 
-A large or risky new feature is not a candidate for being backported.
+A code change is generally not eligible as a backport when it is either:
 
-An inconclusive list of aspects that make a backport to fall in the category of
-"risky new feature" would be:
+* large
+* risky
 
-* It introduces new behaviors to the charm or the payload
-* It installs new debian packages in the system, or python packages in the
-  charm.
+The following consequences of a code change qualifies it as risky:
 
+* New behaviour is introduced in the charm
+* New behaviour is introduced in the payload
+* New Debian packages are installed on the host
+* New Python packages are installed in the charm
+
+The above is not an exhaustive list.
 
 Charm configuration options
 ---------------------------
@@ -91,11 +95,11 @@ from commit ..."
 
 You can use `git-review`_ to propose a change to the ``zed`` branch with:
 
-.. code::
+.. code-block:: none
 
-   $ git checkout -t origin/stable/zed
-   $ git cherry-pick -x $master_commit_id
-   $ git review stable/zed
+   git checkout -t origin/stable/zed
+   git cherry-pick -x $master_commit_id
+   git review stable/zed
 
 .. note::
 
