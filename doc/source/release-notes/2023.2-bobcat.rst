@@ -65,16 +65,24 @@ The result of this being that keystone will only used cached role assignments fo
 Designate-bind allow transfer config
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The designate-bind charm now supports configuring BIND9 [allow-transfer].
+The designate-bind charm now supports configuring BIND9 ``allow-transfer``.
 If not set, this defaults to none, which disable allow-transfer.
 
-For example, to set BIND9 allow-transfer to 10.0.0.0/8 and 172.16.0.0/16:
+For example, to set BIND9 allow-transfer to ``10.0.0.0/8`` and ``172.16.0.0/16``:
 
 .. code-block:: none
 
    juju config designate-bind allow_transfer_nets="10.0.0.0/8;172.16.0.0/12"
 
-This will allow designate-bind to perform zone transfer to 10.0.0.0/8 and 172.16.0.0/12.
+This will allow designate-bind to perform zone transfer to ``10.0.0.0/8`` and ``172.16.0.0/12``.
+
+Please note that this change modifies the default behaviour of the
+BIND9 ``allow-transfer`` setting.
+To restore the default behaviour, set ``allow-transfer`` to ``any``:
+
+.. code-block:: none
+
+   juju config designate-bind allow_transfer_nets=any
 
 Documentation updates
 ---------------------
