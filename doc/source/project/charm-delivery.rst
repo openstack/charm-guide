@@ -9,6 +9,11 @@ There are two general types of OpenStack charms: one that does use channels and
 one that does not (legacy) - see the :doc:`../concepts/charm-types` for
 details. This page will focus on channel charms.
 
+.. important::
+
+   For deployments that are running non-channel (legacy) charms, please see
+   special charm operation :doc:`procedures/charmhub-migration`.
+
 Channels
 --------
 
@@ -23,6 +28,14 @@ Unlike many charms in the Charmhub, the OpenStack Charms project leverages
 tracks extensively in order to manage a different array of supported charm
 versions for each supported combination of OpenStack release and Ubuntu series.
 
+.. important::
+
+   When a channel is not requested at deploy time, the default channel is
+   sourced, which, as of Aug 1, 2023, points to ``yoga/stable``.
+
+Querying
+~~~~~~~~
+
 The Charmhub can be queried for a charm's supported channels. For utmost
 clarity, this should be done on a per-series basis. For example, to query the
 channels for the glance charm on the 'focal' series:
@@ -32,11 +45,6 @@ channels for the glance charm on the 'focal' series:
    juju info --series focal glance
 
 Alternatively, the Charmhub web site can be visited: https://charmhub.io/glance
-
-.. important::
-
-   For deployments that are running non-channel (legacy) charms, please see
-   special charm operation :doc:`procedures/charmhub-migration`.
 
 Tracks
 ~~~~~~
@@ -84,6 +92,9 @@ conveniently point to the latest version of a piece of software.
    ``latest`` track due to its implicit nature. In doing so, a future charm
    upgrade may result in a charm version that does not support your current
    OpenStack release.
+
+   It is noteworthy that the OpenStack Charms project no longer uses the
+   ``latest/stable`` channel at all.
 
 Risk levels
 ~~~~~~~~~~~
