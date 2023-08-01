@@ -20,19 +20,6 @@ Background
 All charms are now served from the `Charmhub`_, regardless of which prefix
 (``cs:`` or ``ch:``) is used to deploy charms.
 
-Furthermore, when a channel is not requested at deploy time, the
-``latest/stable`` channel in the Charmhub is sourced, which points to the 21.10
-stable release of OpenStack Charms (or the 21.06 stable release of Trilio
-Charms). When the latter charms were copied from the old Charm Store to the
-new Charmhub they were placed in the ``latest`` track.
-
-.. warning::
-
-   The OpenStack Charms project strongly advises against the use of the
-   ``latest`` track due to its implicit nature. In doing so, a future charm
-   upgrade may result in a charm version that does not support your current
-   OpenStack release.
-
 Determine current versions
 --------------------------
 
