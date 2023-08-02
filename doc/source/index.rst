@@ -7,6 +7,12 @@ OpenStack Charms project. The project oversees the :doc:`collection of Charmed
 Operators <project/openstack-charms>`, also called simply "charms", used to
 deploy and manage OpenStack clouds using `MAAS`_ and `Juju`_.
 
+.. note::
+
+   This guide supports Juju version 2.9.x. Some breaking changes are introduced
+   by Juju 3.x through the renaming of a few commands (see the `Juju 3.0
+   release notes`_).
+
 Each of the OpenStack charms is responsible for the deployment and lifecycle
 management of a single cloud service (e.g. the nova-compute charm for the Nova
 Compute service). The project also includes charms for select non-OpenStack
@@ -96,3 +102,4 @@ Search
 .. _MAAS: https://maas.io/
 .. _Juju: https://juju.is/
 .. _OpenInfra Foundation community code of conduct: https://openinfra.dev/legal/code-of-conduct
+.. _Juju 3.0 release notes: https://juju.is/docs/juju/roadmap#heading--juju-3-0-0---22-oct-2022
