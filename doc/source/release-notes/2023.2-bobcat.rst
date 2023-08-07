@@ -136,8 +136,16 @@ Removed charms
 Issues discovered during this release cycle
 -------------------------------------------
 
-<TITLE>
-~~~~~~~
+Juju 3.x incompatibilities
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The keystone and glance-simplestreams-sync legacy charms (not using channels),
+and stable channels Xena and before, do not work with a Juju 3.x controller.
+The problems arising from upgrading these charms so that they (automatically)
+use Juju 3.x unit agents are related to:
+
+* Fernet key rotations (keystone)
+* status setting and endpoint updating (glance-simplestreams-sync)
 
 .. LINKS
 .. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
