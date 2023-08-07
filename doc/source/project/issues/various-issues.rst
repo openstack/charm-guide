@@ -13,6 +13,47 @@ recently discovered issues are documented in the
    It is recommended to read the :doc:`../issues-and-procedures` page before
    continuing.
 
+Neutron ML2 OVS plugin on DVR mode
+----------------------------------
+
+Environments configured to use the ML2 OVS plugin in DVR mode and have
+configured an external network of type ``flat`` will be affected by bug `LP
+#2015090`_. The symptom of an affected system is that newly launched instances
+won't have access to the Metadata service and the ``neutron-dhcp-agent``
+service log will contain the following error:
+
+.. code-block:: none
+
+   [...]
+   2023-03-31 19:35:06.095 58625 ERROR neutron.agent.dhcp.agent return self._name[:constants.DEVICE_NAME_MAX_LEN]
+   2023-03-31 19:35:06.095 58625 ERROR neutron.agent.dhcp.agent TypeError: 'bool' object is not subscriptable
+
+glance-simplestreams-sync: endpoint change
+------------------------------------------
+
+The ceph-radosgw charm improves how URLs are processed by the RADOS Gateway.
+This change however will lead to breakage for an existing ``product-streams``
+endpoint, set up by the glance-simplestreams-sync application. Manual
+intervention is required - see the :ref:`Upgrade issues
+<charm_upgrade_issue-radosgw_gss>` page for more information.
+
+Nova fails to parse new libvirt mediated device name format
+-----------------------------------------------------------
+
+The name format of mediated devices in libvirt was recently changed from
+``mdev_<uuid>`` to ``mdev_<uuid>_<parent>``. For users of the new tech-preview
+nova-compute-nvidia-vgpu charm, this will cause new Nova instances to enter
+into an error state subsequent to a vGPU device being attached to an instance.
+This is being tracked in issue `LP #1951656`_. A fix will soon be available as
+an SRU.
+
+glance-simplestreams-sync: Juju resources support and snap install
+------------------------------------------------------------------
+
+The glance-simplestreams-sync charm has gained support for Juju resources.
+Since Simplestreams is now installed via a snap, offline environments can
+benefit by being able to supply the snap as a resource.
+
 Lack of FQDN for containers on physical MAAS nodes may affect running services
 ------------------------------------------------------------------------------
 
@@ -63,3 +104,5 @@ Octopus cluster. See bug `LP #1879749`_ for details.
 .. _LP #1914819: https://bugs.launchpad.net/charm-glance/+bug/1914819
 .. _LP #1946456: https://bugs.launchpad.net/bugs/1946456
 .. _LP #1879749: https://bugs.launchpad.net/charm-ceph-rbd-mirror/+bug/1879749
+.. _LP #1951656: https://bugs.launchpad.net/nova/+bug/1951656
+.. _LP #2015090: https://bugs.launchpad.net/ubuntu/+source/neutron/+bug/2015090
