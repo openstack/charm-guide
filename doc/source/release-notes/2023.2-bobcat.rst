@@ -91,6 +91,22 @@ Snap channel refresh for the Vault snap in charm-vault has been improved to prop
 stop the service before performing a snap refresh.
 For more details see bug `LP #2007587`_.
 
+Glance custom image properties
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The glance charm now supports configuring automatic custom image properties for imported images.
+The specified properties will be automatically added to all images that go through the `interoperable image import`_
+process.
+
+To add the custom properties use a comma delimited string of ``key:value`` pairs as follows:
+
+.. code-block:: none
+
+   juju config glance custom-import-properties='property1:value1,property2:value2,property3:value3'
+
+Note properties will only be added to images that go through the import process such as ``openstack image create --import``
+but will not be applied to regular image uploads.
+
 Documentation updates
 ---------------------
 
@@ -142,6 +158,7 @@ Issues discovered during this release cycle
 .. LINKS
 .. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
+.. _interoperable image import: https://docs.openstack.org/glance/latest/admin/interoperable-image-import.html
 
 .. COMMITS
 
