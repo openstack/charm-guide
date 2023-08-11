@@ -237,7 +237,7 @@ Perform the migration
 
       juju deploy neutron-api-plugin-ovn \
          --series focal \
-         --config dns-servers=="1.1.1.1 8.8.8.8"
+         --config dns-servers="1.1.1.1 8.8.8.8"
 
       juju add-relation neutron-api-plugin-ovn:neutron-plugin \
          neutron-api:neutron-plugin-api-subordinate
