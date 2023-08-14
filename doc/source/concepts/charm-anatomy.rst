@@ -52,7 +52,7 @@ metadata.yaml
 ~~~~~~~~~~~~~
 
 The charm
-`metadata.yaml <https://docs.jujucharms.com/devel/en/authors-charm-metadata>`__
+`metadata.yaml <https://juju.is/docs/sdk/metadata-yaml>`__
 describes the charm and how it relates to other charms. This is also
 constructed from each layer that defines a metadata.yaml
 
