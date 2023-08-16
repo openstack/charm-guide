@@ -2,6 +2,12 @@
 Swift
 =====
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Overview
 --------
 
@@ -63,9 +69,9 @@ Add relations between the proxy node and all storage nodes:
 
 .. code-block:: none
 
-   juju add-relation swift-proxy:swift-storage swift-storage-zone1:swift-storage
-   juju add-relation swift-proxy:swift-storage swift-storage-zone2:swift-storage
-   juju add-relation swift-proxy:swift-storage swift-storage-zone3:swift-storage
+   juju integrate swift-proxy:swift-storage swift-storage-zone1:swift-storage
+   juju integrate swift-proxy:swift-storage swift-storage-zone2:swift-storage
+   juju integrate swift-proxy:swift-storage swift-storage-zone3:swift-storage
 
 This will result in a three-zone cluster, with each zone consisting of a single
 storage node, thereby satisfying the replica requirement of three.
@@ -118,7 +124,7 @@ added:
 
 .. code-block:: none
 
-   juju add-relation swift-proxy:swift-storage swift-storage:swift-storage
+   juju integrate swift-proxy:swift-storage swift-storage:swift-storage
 
 The second and third units get assigned to zones '2' and '3', respectively,
 during scale-out operations:
@@ -224,22 +230,22 @@ RegionOne and RegionTwo:
 
 .. code-block:: none
 
-   juju add-relation swift-proxy-region1:swift-storage swift-storage-region1:swift-storage
-   juju add-relation swift-proxy-region1:swift-storage swift-storage-region2:swift-storage
+   juju integrate swift-proxy-region1:swift-storage swift-storage-region1:swift-storage
+   juju integrate swift-proxy-region1:swift-storage swift-storage-region2:swift-storage
 
 Add relations between swift-proxy in RegionTwo and swift-storage in both
 RegionOne and RegionTwo:
 
 .. code-block:: none
 
-   juju add-relation swift-proxy-region2:swift-storage swift-storage-region1:swift-storage
-   juju add-relation swift-proxy-region2:swift-storage swift-storage-region2:swift-storage
+   juju integrate swift-proxy-region2:swift-storage swift-storage-region1:swift-storage
+   juju integrate swift-proxy-region2:swift-storage swift-storage-region2:swift-storage
 
 Add a relation between swift-proxy in RegionOne and swift-proxy in RegionTwo:
 
 .. code-block:: none
 
-   juju add-relation swift-proxy-region1:rings-distributor swift-proxy-region2:rings-consumer
+   juju integrate swift-proxy-region1:rings-distributor swift-proxy-region2:rings-consumer
 
 More than one proxy can be deployed per OpenStack region, and each must have a
 relation to every proxy in all other OpenStack regions. Only one proxy can act

@@ -2,6 +2,12 @@
 Deploy OpenStack
 ================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Ensure that the current context is the previously-created controller and model:
 
 .. code-block:: none
@@ -34,7 +40,7 @@ Vault generate the CA certificate:
 
 .. code-block:: none
 
-   juju run-action --wait vault/leader generate-root-ca
+   juju run --wait vault/leader generate-root-ca
 
 See the :doc:`../admin/security/tls` page for further guidance.
 

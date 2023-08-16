@@ -2,6 +2,12 @@
 Upgrade OVN to 22.03 on Focal
 =============================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Charmed OpenStack supports OVN version 22.03 starting with OpenStack Ussuri.
 Clouds running on Focal nodes that are not using this version are strongly
 recommended to upgrade to it in order to benefit from important bug fixes and
@@ -102,9 +108,9 @@ ovn-chassis and ovn-central applications:
 
 .. code-block:: none
 
-   juju run -a ovn-chassis 'apt update && apt -y install \
+   juju exec -a ovn-chassis 'apt update && apt -y install \
       --only-upgrade openvswitch-common ovn-common'
-   juju run -a ovn-central 'apt update && apt -y install \
+   juju exec -a ovn-central 'apt update && apt -y install \
       --only-upgrade openvswitch-common ovn-common'
 
 .. note::
@@ -122,7 +128,7 @@ First stop the ``ovn-northd`` daemon:
 
 .. code-block:: none
 
-   juju run -a ovn-central 'systemctl stop ovn-northd'
+   juju exec -a ovn-central 'systemctl stop ovn-northd'
 
 Secondly, identify the Southbound database leader unit (see the
 :doc:`../../admin/networking/ovn/queries` page for guidance).
@@ -134,14 +140,14 @@ insert into the database (use the Southbound leader unit found above):
 
 .. code-block:: none
 
-   juju run -u <sb-db-leader-unit> 'ovn-sbctl set sb-global .  options:northd_internal_version="<string>"'
+   juju exec -u <sb-db-leader-unit> 'ovn-sbctl set sb-global .  options:northd_internal_version="<string>"'
 
 An example invocation of the above if the Southbound leader unit is
 ``ovn-central/2``:
 
 .. code-block:: none
 
-   juju run -u ovn-central/2 'ovn-sbctl set sb-global . options:northd_internal_version="safe"'
+   juju exec -u ovn-central/2 'ovn-sbctl set sb-global . options:northd_internal_version="safe"'
 
 The above command contains the string 'safe'. Any string will suffice provided
 that it is different from the current OVN version.
@@ -183,7 +189,7 @@ The Northbound database's target version and actual version, respectively:
 
 .. code-block:: none
 
-   juju run -a ovn-central 'ovsdb-tool schema-version /usr/share/ovn/ovn-nb.ovsschema'
+   juju exec -a ovn-central 'ovsdb-tool schema-version /usr/share/ovn/ovn-nb.ovsschema'
 
    Stdout: |
    6.1.0
@@ -195,7 +201,7 @@ The Northbound database's target version and actual version, respectively:
    6.1.0
    UnitId: ovn-central/2
 
-   juju run -a ovn-central 'ovsdb-client get-schema-version unix:/var/run/ovn/ovnnb_db.sock OVN_Northbound'
+   juju exec -a ovn-central 'ovsdb-client get-schema-version unix:/var/run/ovn/ovnnb_db.sock OVN_Northbound'
 
    Stdout: |
    6.1.0
@@ -211,7 +217,7 @@ The Southbound database's target version and actual version, respectively:
 
 .. code-block:: none
 
-   juju run -a ovn-central 'ovsdb-tool schema-version /usr/share/ovn/ovn-sb.ovsschema'
+   juju exec -a ovn-central 'ovsdb-tool schema-version /usr/share/ovn/ovn-sb.ovsschema'
 
    Stdout: |
    20.21.0
@@ -223,7 +229,7 @@ The Southbound database's target version and actual version, respectively:
    20.21.0
    UnitId: ovn-central/1
 
-   juju run -a ovn-central 'ovsdb-client get-schema-version unix:/var/run/ovn/ovnsb_db.sock OVN_Southbound'
+   juju exec -a ovn-central 'ovsdb-client get-schema-version unix:/var/run/ovn/ovnsb_db.sock OVN_Southbound'
 
    Stdout: |
    20.21.0
@@ -249,7 +255,7 @@ The Northbound database cluster:
 
 .. code-block:: none
 
-   juju run -a ovn-central 'ovs-appctl -t /var/run/ovn/ovnnb_db.ctl cluster/status OVN_Northbound' | egrep "Server ID|Role|Leader"
+   juju exec -a ovn-central 'ovs-appctl -t /var/run/ovn/ovnnb_db.ctl cluster/status OVN_Northbound' | egrep "Server ID|Role|Leader"
 
    Server ID: 2a92 (2a9226b6-7a57-411a-94ee-092aa6a19e40)
    Role: follower
@@ -265,7 +271,7 @@ The Southbound database cluster:
 
 .. code-block:: none
 
-   juju run -a ovn-central 'ovs-appctl -t /var/run/ovn/ovnsb_db.ctl cluster/status OVN_Southbound' | egrep "Server ID|Role|Leader"
+   juju exec -a ovn-central 'ovs-appctl -t /var/run/ovn/ovnsb_db.ctl cluster/status OVN_Southbound' | egrep "Server ID|Role|Leader"
 
    Server ID: 8849 (8849b07b-cc32-47cf-8800-ed89fbc7db94)
    Role: follower
@@ -293,7 +299,7 @@ change, restart OVN Metadata agents with:
 
 .. code-block:: console
 
-   juju run -a ovn-chassis 'systemctl restart neutron-ovn-metadata-agent'
+   juju exec -a ovn-chassis 'systemctl restart neutron-ovn-metadata-agent'
 
 
 .. note::

@@ -4,6 +4,12 @@
 Series upgrade OpenStack
 ========================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 This document will provide specific steps for how to perform a series upgrade
 across the entirety of a Charmed OpenStack cloud.
 
@@ -280,8 +286,8 @@ machine 0/lxd/0 (the principal leader machine).
 
    .. code-block:: none
 
-      juju run-action --wait rabbitmq-server/1 pause
-      juju run-action --wait rabbitmq-server/2 pause
+      juju run --wait rabbitmq-server/1 pause
+      juju run --wait rabbitmq-server/2 pause
 
 #. Perform a series upgrade of the principal leader machine:
 
@@ -325,7 +331,7 @@ machine 0/lxd/0 (the principal leader machine).
 
    .. code-block:: none
 
-      juju run-action --wait rabbitmq-server/leader complete-cluster-series-upgrade
+      juju run --wait rabbitmq-server/leader complete-cluster-series-upgrade
 
 #. Update the software sources for the application's machines.
 
@@ -408,7 +414,7 @@ machine 0/lxd/1 (the principal leader machine).
 
    .. code-block:: none
 
-      juju run-action --wait percona-cluster/leader backup
+      juju run --wait percona-cluster/leader backup
       juju scp -- -r percona-cluster/leader:/opt/backups/mysql /path/to/local/directory
 
    Permissions will need to be altered on the remote machine, and note that the
@@ -424,15 +430,15 @@ machine 0/lxd/1 (the principal leader machine).
 
    .. code-block:: none
 
-      juju run-action --wait percona-cluster-hacluster/0 pause
-      juju run-action --wait percona-cluster-hacluster/1 pause
+      juju run --wait percona-cluster-hacluster/0 pause
+      juju run --wait percona-cluster-hacluster/1 pause
 
 #. Pause the principal non-leader units:
 
    .. code-block:: none
 
-      juju run-action --wait percona-cluster/1 pause
-      juju run-action --wait percona-cluster/2 pause
+      juju run --wait percona-cluster/1 pause
+      juju run --wait percona-cluster/2 pause
 
    Leaving the principal leader unit up will ensure it has the latest MySQL
    sequence number; it will be considered the most up to date cluster member.
@@ -498,7 +504,7 @@ machine 0/lxd/1 (the principal leader machine).
 
    .. code-block:: none
 
-      juju run-action --wait percona-cluster/leader complete-cluster-series-upgrade
+      juju run --wait percona-cluster/leader complete-cluster-series-upgrade
 
 #. Update the software sources for the application's machines.
 
@@ -585,15 +591,15 @@ In summary, the principal leader unit is keystone/0 and is deployed on machine
 
    .. code-block:: none
 
-      juju run-action --wait keystone-hacluster/0 pause
-      juju run-action --wait keystone-hacluster/1 pause
+      juju run --wait keystone-hacluster/0 pause
+      juju run --wait keystone-hacluster/1 pause
 
 #. Pause the principal non-leader units:
 
    .. code-block:: none
 
-      juju run-action --wait keystone/1 pause
-      juju run-action --wait keystone/2 pause
+      juju run --wait keystone/1 pause
+      juju run --wait keystone/2 pause
 
 #. Perform any workload maintenance pre-upgrade steps on all machines. There
    are no keystone-specific steps to perform.
@@ -628,15 +634,15 @@ In summary, the principal leader unit is keystone/0 and is deployed on machine
 
    .. code-block:: none
 
-      juju run --machine=0/lxd/0,1/lxd/0,2/lxd/0 --timeout=10m \
+      juju exec --machine=0/lxd/0,1/lxd/0,2/lxd/0 --timeout=10m \
          -- sudo apt-get update
 
-      juju run --machine=0/lxd/0,1/lxd/0,2/lxd/0 --timeout=60m \
+      juju exec --machine=0/lxd/0,1/lxd/0,2/lxd/0 --timeout=60m \
          -- sudo DEBIAN_FRONTEND=noninteractive apt-get --assume-yes \
          -o "Dpkg::Options::=--force-confdef" \
          -o "Dpkg::Options::=--force-confold" dist-upgrade
 
-      juju run --machine=0/lxd/0,1/lxd/0,2/lxd/0 --timeout=120m \
+      juju exec --machine=0/lxd/0,1/lxd/0,2/lxd/0 --timeout=120m \
          -- sudo DEBIAN_FRONTEND=noninteractive \
          do-release-upgrade -f DistUpgradeViewNonInteractive
 
@@ -653,7 +659,7 @@ In summary, the principal leader unit is keystone/0 and is deployed on machine
 
    .. code-block:: none
 
-      juju run --machine=0/lxd/0,1/lxd/0,2/lxd/0 -- sudo reboot
+      juju exec --machine=0/lxd/0,1/lxd/0,2/lxd/0 -- sudo reboot
 
 #. Invoke the :command:`complete` sub-command on all machines:
 
@@ -746,19 +752,19 @@ In summary,
 
    .. code-block:: none
 
-      juju run-action --wait glance-hacluster/1 pause
-      juju run-action --wait glance-hacluster/2 pause
-      juju run-action --wait nova-cloud-controller-hacluster/1 pause
-      juju run-action --wait nova-cloud-controller-hacluster/2 pause
+      juju run --wait glance-hacluster/1 pause
+      juju run --wait glance-hacluster/2 pause
+      juju run --wait nova-cloud-controller-hacluster/1 pause
+      juju run --wait nova-cloud-controller-hacluster/2 pause
 
 #. Pause the principal non-leader units:
 
    .. code-block:: none
 
-      juju run-action --wait glance/1 pause
-      juju run-action --wait glance/2 pause
-      juju run-action --wait nova-cloud-controller/1 pause
-      juju run-action --wait nova-cloud-controller/2 pause
+      juju run --wait glance/1 pause
+      juju run --wait glance/2 pause
+      juju run --wait nova-cloud-controller/1 pause
+      juju run --wait nova-cloud-controller/2 pause
 
 #. Perform any workload maintenance pre-upgrade steps on all machines. There
    are no glance-specific nor nova-cloud-controller-specific steps to perform.
@@ -781,15 +787,15 @@ In summary,
 
    .. code-block:: none
 
-      juju run --machine=2/lxd/1,2/lxd/2,2/lxd/3,1/lxd/4,1/lxd/2,0/lxd/4 \
+      juju exec --machine=2/lxd/1,2/lxd/2,2/lxd/3,1/lxd/4,1/lxd/2,0/lxd/4 \
          --timeout=20m -- sudo apt-get update
 
-      juju run --machine=2/lxd/1,2/lxd/2,2/lxd/3,1/lxd/4,1/lxd/2,0/lxd/4 \
+      juju exec --machine=2/lxd/1,2/lxd/2,2/lxd/3,1/lxd/4,1/lxd/2,0/lxd/4 \
          --timeout=120m -- sudo DEBIAN_FRONTEND=noninteractive apt-get --assume-yes \
          -o "Dpkg::Options::=--force-confdef" \
          -o "Dpkg::Options::=--force-confold" dist-upgrade
 
-      juju run --machine=2/lxd/1,2/lxd/2,2/lxd/3,1/lxd/4,1/lxd/2,0/lxd/4 \
+      juju exec --machine=2/lxd/1,2/lxd/2,2/lxd/3,1/lxd/4,1/lxd/2,0/lxd/4 \
          --timeout=240m -- sudo DEBIAN_FRONTEND=noninteractive \
          do-release-upgrade -f DistUpgradeViewNonInteractive
 
@@ -800,7 +806,7 @@ In summary,
 
    .. code-block:: none
 
-      juju run --machine=2/lxd/1,2/lxd/2,2/lxd/3,1/lxd/4,1/lxd/2,0/lxd/4 \
+      juju exec --machine=2/lxd/1,2/lxd/2,2/lxd/3,1/lxd/4,1/lxd/2,0/lxd/4 \
          -- sudo reboot
 
 #. Invoke the :command:`complete` sub-command on all machines:
@@ -952,7 +958,7 @@ be no units to pause.
 
    .. code-block:: none
 
-      juju run-action --wait ceph-mon/leader set-noout
+      juju run --wait ceph-mon/leader set-noout
 
 #. Perform any workload maintenance pre-upgrade steps.
 
@@ -976,8 +982,8 @@ be no units to pause.
 
    .. code-block:: none
 
-      juju run --unit ceph-mon/leader -- ceph status
-      juju run-action --wait ceph-mon/leader unset-noout
+      juju exec --unit ceph-mon/leader -- ceph status
+      juju run --wait ceph-mon/leader unset-noout
 
 #. Update the software sources for the machine.
 

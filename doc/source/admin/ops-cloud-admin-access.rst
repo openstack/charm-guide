@@ -4,6 +4,12 @@
 Set up admin access to a cloud
 ==============================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Introduction
 ------------
 
@@ -50,7 +56,7 @@ password:
 
 .. code-block:: none
 
-   export OS_PASSWORD=$(juju run --unit keystone/leader 'leader-get admin_passwd')
+   export OS_PASSWORD=$(juju exec --unit keystone/leader 'leader-get admin_passwd')
 
 Keystone service endpoint
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -60,7 +66,7 @@ Determine the IP address of the keystone unit and set environmental variable
 
 .. code-block:: none
 
-   IP_ADDRESS=$(juju run --unit keystone/leader -- 'network-get --bind-address public')
+   IP_ADDRESS=$(juju exec --unit keystone/leader -- 'network-get --bind-address public')
    export OS_AUTH_URL=https://${IP_ADDRESS}:5000/v3
 
 .. important::
@@ -79,7 +85,7 @@ commonly used path that works for the ``openstackclients`` snap, for user
 .. code-block:: none
 
    export OS_CACERT=/home/ubuntu/snap/openstackclients/common/root-ca.crt
-   juju run --unit vault/leader 'leader-get root-ca' > $OS_CACERT
+   juju exec --unit vault/leader 'leader-get root-ca' > $OS_CACERT
 
 Set other authentication variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

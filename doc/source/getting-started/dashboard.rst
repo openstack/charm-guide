@@ -2,6 +2,12 @@
 Access the dashboard
 ====================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 To access the dashboard (Horizon) first obtain its IP address:
 
 .. code-block:: none
@@ -16,7 +22,7 @@ Now query for the admin password:
 
 .. code-block:: none
 
-   juju run --unit keystone/leader leader-get admin_passwd
+   juju exec --unit keystone/leader leader-get admin_passwd
 
    ****************
 

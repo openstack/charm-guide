@@ -4,6 +4,12 @@
 Remove a MySQL InnoDB Cluster node
 ==================================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Preamble
 --------
 
@@ -51,7 +57,7 @@ Check cluster status:
 
 .. code-block:: none
 
-   juju run-action --wait mysql-innodb-cluster/leader cluster-status
+   juju run --wait mysql-innodb-cluster/leader cluster-status
 
    unit-mysql-innodb-cluster-0:
      UnitId: mysql-innodb-cluster/0
@@ -177,13 +183,13 @@ While the instance is running:
 
 .. code-block:: none
 
-   juju run-action --wait mysql-innodb-cluster/2 remove-instance address=<instance-ip-address>
+   juju run --wait mysql-innodb-cluster/2 remove-instance address=<instance-ip-address>
 
 Use the force argument if the host is down (or no longer exists):
 
 .. code-block:: none
 
-   juju run-action --wait mysql-innodb-cluster/2 remove-instance address=<instance-ip-address> force=True
+   juju run --wait mysql-innodb-cluster/2 remove-instance address=<instance-ip-address> force=True
 
 .. warning::
 
@@ -194,7 +200,7 @@ Check cluster status:
 
 .. code-block:: none
 
-   juju run-action --wait mysql-innodb-cluster/2 cluster-status
+   juju run --wait mysql-innodb-cluster/2 cluster-status
 
    {
       "clusterName":"jujuCluster",
@@ -276,7 +282,7 @@ functioning correctly:
 
 .. code-block:: none
 
-   juju run-action --wait mysql-innodb-cluster/leader cluster-status
+   juju run --wait mysql-innodb-cluster/leader cluster-status
 
 And run an openstack command:
 

@@ -4,6 +4,12 @@
 Replace a hyperconverged Ceph storage and compute node
 ======================================================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Introduction
 ------------
 
@@ -42,7 +48,7 @@ Identify the unit of the storage node and the IDs of the associated OSDs:
 .. code-block:: none
 
    juju status ceph-osd
-   juju run -a ceph-osd mount | grep ceph
+   juju exec -a ceph-osd mount | grep ceph
    juju ssh ceph-mon/leader sudo ceph osd tree
 
 In this example,
@@ -79,7 +85,7 @@ Disable nova-compute services on the node:
 
 .. code-block:: none
 
-   juju run-action --wait nova-compute/0 disable
+   juju run --wait nova-compute/0 disable
 
 Respawn any Octavia VMs
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -150,7 +156,7 @@ Unregister the compute node from the cloud:
 
 .. code-block:: none
 
-   juju run-action --wait nova-compute/0 remove-from-cloud
+   juju run --wait nova-compute/0 remove-from-cloud
 
 See cloud operation :ref:`Scale back the nova-compute application
 <unregister_compute_node>` for more details on this step.
@@ -171,8 +177,8 @@ Remove OSD storage devices
 
 .. code-block:: none
 
-   juju run-action --wait ceph-osd/2 remove-disk osd-ids=osd.0 purge=true
-   juju run-action --wait ceph-osd/2 remove-disk osd-ids=osd.1 purge=true
+   juju run --wait ceph-osd/2 remove-disk osd-ids=osd.0 purge=true
+   juju run --wait ceph-osd/2 remove-disk osd-ids=osd.1 purge=true
 
 .. note::
 
@@ -221,7 +227,7 @@ First list all the disks on the new storage node:
 
 .. code-block:: none
 
-   juju run-action --wait ceph-osd/10 list-disks
+   juju run --wait ceph-osd/10 list-disks
 
 Then query the charm option:
 
@@ -236,7 +242,7 @@ previously-assumed values:
 
 .. code-block:: none
 
-   juju run-action --wait ceph-osd/10 add-disk \
+   juju run --wait ceph-osd/10 add-disk \
       osd-devices='/dev/nvme0n1 /dev/nvme0n2'
 
 Inspect Ceph cluster changes
@@ -248,7 +254,7 @@ previously. In particular, the ceph-osd unit number will have changed:
 .. code-block:: none
 
    juju status ceph-osd
-   juju run -a ceph-osd mount | grep ceph
+   juju exec -a ceph-osd mount | grep ceph
    juju ssh ceph-mon/leader sudo ceph osd tree
 
 Customise the local environment

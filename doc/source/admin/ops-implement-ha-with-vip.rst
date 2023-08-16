@@ -4,6 +4,12 @@
 Implement HA with a VIP
 =======================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Introduction
 ------------
 
@@ -41,7 +47,7 @@ and 2:
 
    juju deploy -n 3 --to lxd:0,lxd:1,lxd:2 --config vip=10.246.114.11 keystone
    juju deploy --config cluster_count=3 hacluster keystone-hacluster
-   juju add-relation keystone-hacluster:ha keystone:ha
+   juju integrate keystone-hacluster:ha keystone:ha
 
 Adding HA to an existing application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -54,7 +60,7 @@ a three-node Keystone HA cluster with a VIP of 10.246.114.11:
    juju config vip=10.246.114.11 keystone
    juju add-unit -n 2 --to lxd:1,lxd:2 keystone
    juju deploy --config cluster_count=3 hacluster keystone-hacluster
-   juju add-relation keystone-hacluster:ha keystone:ha
+   juju integrate keystone-hacluster:ha keystone:ha
 
 .. warning::
 

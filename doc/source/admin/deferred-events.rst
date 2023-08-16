@@ -2,6 +2,12 @@
 Deferred service events
 =======================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Overview
 --------
 
@@ -86,7 +92,7 @@ To see more detail the ``show-deferred-events`` action is used:
 
 .. code-block:: none
 
-   juju run-action --wait neutron-openvswitch/1 show-deferred-events
+   juju run --wait neutron-openvswitch/1 show-deferred-events
 
    unit-neutron-openvswitch-1:
      UnitId: neutron-openvswitch/1
@@ -116,7 +122,7 @@ action:
 
 .. code-block:: none
 
-   juju run-action --wait neutron-openvswitch/1 restart-services deferred-only=True
+   juju run --wait neutron-openvswitch/1 restart-services deferred-only=True
 
 The argument ``deferred-only`` ensures that only the necessary services are
 restarted (for a charm that manages multiple services).
@@ -150,7 +156,7 @@ action:
 
 .. code-block:: none
 
-   juju run-action --wait neutron-openvswitch/1 run-deferred-hooks
+   juju run --wait neutron-openvswitch/1 run-deferred-hooks
 
 .. LINKS
 

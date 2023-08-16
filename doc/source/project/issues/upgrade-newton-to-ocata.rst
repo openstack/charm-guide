@@ -2,6 +2,12 @@
 Upgrade: Newton to Ocata
 ========================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 This page contains notes specific to the Newton to Ocata upgrade path. See the
 main :doc:`../../admin/upgrades/openstack` page for full coverage.
 
@@ -28,7 +34,7 @@ Confirm existing volumes are in an RBD pool called 'cinder':
 
 .. code-block:: none
 
-   juju run --unit cinder/0 "rbd --name client.cinder -p cinder ls"
+   juju exec --unit cinder/0 "rbd --name client.cinder -p cinder ls"
 
 Sample output:
 
@@ -46,10 +52,10 @@ that any existing volumes are in (see above):
 .. code-block:: none
 
    juju deploy --config rbd-pool-name=cinder cinder-ceph
-   juju add-relation cinder cinder-ceph
-   juju add-relation cinder-ceph ceph-mon
+   juju integrate cinder cinder-ceph
+   juju integrate cinder-ceph ceph-mon
    juju remove-relation cinder ceph-mon
-   juju add-relation cinder-ceph nova-compute
+   juju integrate cinder-ceph nova-compute
 
 Step 2: Update volume configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59,5 +65,5 @@ defined cinder-ceph backend:
 
 .. code-block:: none
 
-   juju run-action cinder/0 rename-volume-host currenthost='cinder' \
+   juju run cinder/0 rename-volume-host currenthost='cinder' \
        newhost='cinder@cinder-ceph#cinder.volume.drivers.rbd.RBDDriver'

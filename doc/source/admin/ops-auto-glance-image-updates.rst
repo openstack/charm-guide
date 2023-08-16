@@ -4,6 +4,12 @@
 Implement automatic Glance image updates
 ========================================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Introduction
 ------------
 
@@ -33,8 +39,8 @@ machine 1:
 .. code-block:: none
 
    juju deploy --to lxd:1 glance-simplestreams-sync
-   juju add-relation glance-simplestreams-sync:identity-service keystone:identity-service
-   juju add-relation glance-simplestreams-sync:certificates vault:certificates
+   juju integrate glance-simplestreams-sync:identity-service keystone:identity-service
+   juju integrate glance-simplestreams-sync:certificates vault:certificates
 
 We are assuming that the cloud is TLS-enabled (hence the Vault relation).
 
@@ -110,7 +116,7 @@ action:
 
 .. code-block:: none
 
-   juju run-action --wait glance-simplestreams-sync/leader sync-images
+   juju run --wait glance-simplestreams-sync/leader sync-images
 
 Sample output:
 

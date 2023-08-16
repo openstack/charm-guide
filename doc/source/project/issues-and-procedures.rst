@@ -2,8 +2,8 @@
 Issues, charm procedures, and OpenStack upgrade notes
 =====================================================
 
-This page centralises all software issues, special charm procedures, and
-OpenStack upgrade path notes.
+This page centralises all software issues, special procedures, and OpenStack
+upgrade path notes.
 
 .. important::
 
@@ -54,9 +54,9 @@ OpenStack upgrade path notes
 
 Occasionally, a specific OpenStack upgrade path will require particular
 attention. These upgrade notes typically contain software issues. If a special
-charm procedure is pertinent however, it will be mentioned. It is important to
-study the page that may apply to your upgrade scenario. The following is the
-list of documented OpenStack upgrade path notes:
+procedure is pertinent however, it will be mentioned. It is important to study
+the page that may apply to your upgrade scenario. The following is the list of
+documented OpenStack upgrade path notes:
 
 .. toctree::
    :maxdepth: 1

@@ -4,6 +4,12 @@
 Configure TLS for the Vault API
 ===============================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Introduction
 ------------
 
@@ -71,7 +77,7 @@ settled, the server certificate can be found in
 
 .. code-block:: none
 
-   juju run -a vault "sudo cat /var/snap/vault/common/vault.crt"
+   juju exec -a vault "sudo cat /var/snap/vault/common/vault.crt"
 
 Restart the Vault service
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -86,7 +92,7 @@ For a single unit (``vault/0``):
 
 .. code-block:: none
 
-   juju run-action --wait vault/0 restart
+   juju run --wait vault/0 restart
 
 The output to :command:`juju status vault` should show that Vault is sealed:
 

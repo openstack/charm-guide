@@ -4,6 +4,12 @@
 Scale back the ovn-central application
 =======================================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Preamble
 --------
 
@@ -93,7 +99,7 @@ application to settle and run:
 
 .. code-block:: none
 
-   juju run-action --wait <OVN_CENTRAL_UNIT> cluster-status
+   juju run --wait <OVN_CENTRAL_UNIT> cluster-status
 
 This output will show yaml-formatted status of both Southbound and Northbound
 OVN clusters. Each cluster status will contain key "unit_map", if this list

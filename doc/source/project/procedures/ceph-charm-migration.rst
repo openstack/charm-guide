@@ -2,6 +2,12 @@
 ceph charm: migration to ceph-mon and ceph-osd
 ==============================================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 .. note::
 
    This page describes a procedure that may be required when performing an
@@ -67,7 +73,7 @@ Next, we'll use the existing ceph application to bootstrap the new ceph-mon unit
 
 .. code-block:: none
 
-   juju add-relation ceph ceph-mon
+   juju integrate ceph ceph-mon
 
 Once this process has completed, you should have a Ceph MON cluster of 6 units;
 this can be verified on any of the ceph or ceph-mon units:
@@ -102,18 +108,18 @@ The new ceph-mon units now need to be related to the ceph-osd application:
 
 .. code-block:: none
 
-   juju add-relation ceph-mon ceph-osd
+   juju integrate ceph-mon ceph-osd
 
 Depending on your deployment you'll also need to add relations for other
 applications, for example:
 
 .. code-block:: none
 
-   juju add-relation ceph-mon cinder-ceph
-   juju add-relation ceph-mon glance
-   juju add-relation ceph-mon nova-compute
-   juju add-relation ceph-mon ceph-radosgw
-   juju add-relation ceph-mon gnocchi
+   juju integrate ceph-mon cinder-ceph
+   juju integrate ceph-mon glance
+   juju integrate ceph-mon nova-compute
+   juju integrate ceph-mon ceph-radosgw
+   juju integrate ceph-mon gnocchi
 
 Once hook execution completes across all units, each client should be
 configured with six MON addresses.

@@ -4,6 +4,12 @@
 OpenStack upgrade example
 =========================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 This document shows the specific steps used to perform an OpenStack upgrade.
 They are based entirely on the :doc:`openstack` page.
 
@@ -22,7 +28,7 @@ of the hacluster subordinate application, Keystone was scaled out post-deploy:
    juju add-unit -n 2 --to lxd:1,lxd:2 keystone
    juju config keystone vip=10.246.116.11
    juju deploy --config cluster_count=3 hacluster keystone-hacluster
-   juju add-relation keystone-hacluster:ha keystone:ha
+   juju integrate keystone-hacluster:ha keystone:ha
 
 The pre-upgrade state and topology of the cloud is given via this :doc:`model
 status output <openstack-example-pre-juju-status>`.
@@ -67,7 +73,7 @@ Determine the existing service databases and then back them up.
 
 .. code-block:: none
 
-   PASSWORD=$(juju run -u mysql-innodb-cluster/leader leader-get mysql.passwd)
+   PASSWORD=$(juju exec -u mysql-innodb-cluster/leader leader-get mysql.passwd)
    juju ssh mysql-innodb-cluster/leader "mysql -u root -p${PASSWORD} -e 'SHOW DATABASES;'"
 
    +-------------------------------+
@@ -107,11 +113,11 @@ Now run the following commands:
 
 .. code-block:: none
 
-   juju run-action --wait mysql-innodb-cluster/0 mysqldump \
+   juju run --wait mysql-innodb-cluster/0 mysqldump \
       databases=cinder,glance,horizon,keystone,neutron,nova,nova_api,nova_cell0,placement,vault
-   juju run -u mysql-innodb-cluster/0 -- sudo chmod o+rx /var/backups/mysql
+   juju exec -u mysql-innodb-cluster/0 -- sudo chmod o+rx /var/backups/mysql
    juju scp -- -r mysql-innodb-cluster/0:/var/backups/mysql .
-   juju run -u mysql-innodb-cluster/0 -- sudo chmod o-rx /var/backups/mysql
+   juju exec -u mysql-innodb-cluster/0 -- sudo chmod o-rx /var/backups/mysql
 
 Move the transferred archive to a safe location (off of the client host).
 
@@ -123,7 +129,7 @@ unit:
 
 .. code-block:: none
 
-   juju run-action --wait nova-cloud-controller/0 archive-data
+   juju run --wait nova-cloud-controller/0 archive-data
 
 Repeat this command until the action output reports 'Nothing was archived'.
 
@@ -227,23 +233,23 @@ application, which allows for a more controlled upgrade. Application leader
    juju config keystone action-managed-upgrade=True
    juju config keystone openstack-origin=cloud:focal-xena
 
-   juju run-action --wait keystone-hacluster/0 pause
-   juju run-action --wait keystone/0 pause
-   juju run-action --wait keystone/0 openstack-upgrade
-   juju run-action --wait keystone/0 resume
-   juju run-action --wait keystone-hacluster/0 resume
+   juju run --wait keystone-hacluster/0 pause
+   juju run --wait keystone/0 pause
+   juju run --wait keystone/0 openstack-upgrade
+   juju run --wait keystone/0 resume
+   juju run --wait keystone-hacluster/0 resume
 
-   juju run-action --wait keystone-hacluster/1 pause
-   juju run-action --wait keystone/1 pause
-   juju run-action --wait keystone/1 openstack-upgrade
-   juju run-action --wait keystone/1 resume
-   juju run-action --wait keystone-hacluster/1 resume
+   juju run --wait keystone-hacluster/1 pause
+   juju run --wait keystone/1 pause
+   juju run --wait keystone/1 openstack-upgrade
+   juju run --wait keystone/1 resume
+   juju run --wait keystone-hacluster/1 resume
 
-   juju run-action --wait keystone-hacluster/2 pause
-   juju run-action --wait keystone/2 pause
-   juju run-action --wait keystone/2 openstack-upgrade
-   juju run-action --wait keystone/2 resume
-   juju run-action --wait keystone-hacluster/2 resume
+   juju run --wait keystone-hacluster/2 pause
+   juju run --wait keystone/2 pause
+   juju run --wait keystone/2 openstack-upgrade
+   juju run --wait keystone/2 resume
+   juju run --wait keystone-hacluster/2 resume
 
 ceph-radosgw
 ^^^^^^^^^^^^
@@ -338,17 +344,17 @@ leader ``nova-compute/2`` is upgraded first:
    juju config nova-compute action-managed-upgrade=True
    juju config nova-compute openstack-origin=cloud:focal-xena
 
-   juju run-action --wait nova-compute/2 pause
-   juju run-action --wait nova-compute/2 openstack-upgrade
-   juju run-action --wait nova-compute/2 resume
+   juju run --wait nova-compute/2 pause
+   juju run --wait nova-compute/2 openstack-upgrade
+   juju run --wait nova-compute/2 resume
 
-   juju run-action --wait nova-compute/1 pause
-   juju run-action --wait nova-compute/1 openstack-upgrade
-   juju run-action --wait nova-compute/1 resume
+   juju run --wait nova-compute/1 pause
+   juju run --wait nova-compute/1 openstack-upgrade
+   juju run --wait nova-compute/1 resume
 
-   juju run-action --wait nova-compute/0 pause
-   juju run-action --wait nova-compute/0 openstack-upgrade
-   juju run-action --wait nova-compute/0 resume
+   juju run --wait nova-compute/0 pause
+   juju run --wait nova-compute/0 openstack-upgrade
+   juju run --wait nova-compute/0 resume
 
 ceph-osd
 ^^^^^^^^

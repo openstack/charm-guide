@@ -2,6 +2,12 @@
 Migration to OVN
 ================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Starting with OpenStack Ussuri, Charmed OpenStack recommends OVN as the cloud's
 software defined networking framework (SDN). This page outlines the procedure
 for migrating an existing non-OVN cloud to OVN. Technically, it describes how
@@ -174,15 +180,15 @@ of the actual migration.
       juju deploy --series focal mysql-router vault-mysql-router
       juju deploy --series focal vault
 
-      juju add-relation vault-mysql-router:db-router \
+      juju integrate vault-mysql-router:db-router \
          mysql-innodb-cluster:db-router
-      juju add-relation vault-mysql-router:shared-db vault:shared-db
+      juju integrate vault-mysql-router:shared-db vault:shared-db
 
-      juju add-relation ovn-central:certificates vault:certificates
+      juju integrate ovn-central:certificates vault:certificates
 
-      juju add-relation ovn-chassis:certificates vault:certificates
-      juju add-relation ovn-chassis:ovsdb ovn-central:ovsdb
-      juju add-relation nova-compute:neutron-plugin ovn-chassis:nova-compute
+      juju integrate ovn-chassis:certificates vault:certificates
+      juju integrate ovn-chassis:ovsdb ovn-central:ovsdb
+      juju integrate nova-compute:neutron-plugin ovn-chassis:nova-compute
 
    The values to use for the ``bridge-interface-mappings`` and
    ``ovn-bridge-mappings`` configuration options can be found by looking at
@@ -224,12 +230,12 @@ Perform the migration
 
    .. code-block:: none
 
-      juju run-action neutron-gateway/0 pause
-      juju run-action neutron-gateway/1 pause
-      juju run-action neutron-openvswitch/0 pause
-      juju run-action neutron-openvswitch/1 pause
-      juju run-action neutron-openvswitch/2 pause
-      juju run-action neutron-openvswitch/3 pause
+      juju run neutron-gateway/0 pause
+      juju run neutron-gateway/1 pause
+      juju run neutron-openvswitch/0 pause
+      juju run neutron-openvswitch/1 pause
+      juju run neutron-openvswitch/2 pause
+      juju run neutron-openvswitch/3 pause
 
 8. Deploy the Neutron OVN plugin application
 
@@ -239,11 +245,11 @@ Perform the migration
          --series focal \
          --config dns-servers="1.1.1.1 8.8.8.8"
 
-      juju add-relation neutron-api-plugin-ovn:neutron-plugin \
+      juju integrate neutron-api-plugin-ovn:neutron-plugin \
          neutron-api:neutron-plugin-api-subordinate
-      juju add-relation neutron-api-plugin-ovn:certificates \
+      juju integrate neutron-api-plugin-ovn:certificates \
          vault:certificates
-      juju add-relation neutron-api-plugin-ovn:ovsdb-cms ovn-central:ovsdb-cms
+      juju integrate neutron-api-plugin-ovn:ovsdb-cms ovn-central:ovsdb-cms
 
    The values to use for the ``dns-servers`` configuration option can be
    found by looking at what is set for the ``dns-servers`` configuration
@@ -263,7 +269,7 @@ Perform the migration
 
    .. code-block:: none
 
-      juju run-action --wait neutron-api-plugin-ovn/0 migrate-mtu
+      juju run --wait neutron-api-plugin-ovn/0 migrate-mtu
 
 10. Enable the Neutron OVN plugin
 
@@ -277,9 +283,9 @@ Perform the migration
 
     .. code-block:: none
 
-       juju run-action neutron-api/0 pause
-       juju run-action neutron-api/1 pause
-       juju run-action neutron-api/2 pause
+       juju run neutron-api/0 pause
+       juju run neutron-api/1 pause
+       juju run neutron-api/2 pause
 
     Wait for the deployment to settle.
 
@@ -287,7 +293,7 @@ Perform the migration
 
     .. code-block:: none
 
-       juju run-action --wait neutron-api-plugin-ovn/0 migrate-ovn-db
+       juju run --wait neutron-api-plugin-ovn/0 migrate-ovn-db
 
 13. (Optional) Perform Neutron database surgery to update ``network_type`` of
     overlay networks to 'geneve'.
@@ -317,15 +323,15 @@ Perform the migration
 
     .. code-block:: none
 
-       juju run-action --wait neutron-api-plugin-ovn/0 offline-neutron-morph-db
+       juju run --wait neutron-api-plugin-ovn/0 offline-neutron-morph-db
 
 14. Resume the Neutron API units
 
     .. code-block:: none
 
-       juju run-action neutron-api/0 resume
-       juju run-action neutron-api/1 resume
-       juju run-action neutron-api/2 resume
+       juju run neutron-api/0 resume
+       juju run neutron-api/1 resume
+       juju run neutron-api/2 resume
 
     Wait for the deployment to settle.
 
@@ -352,11 +358,11 @@ Perform the migration
 
     .. code-block:: none
 
-       juju run-action --wait neutron-openvswitch/0 cleanup
-       juju run-action --wait ovn-chassis/0 resume
+       juju run --wait neutron-openvswitch/0 cleanup
+       juju run --wait ovn-chassis/0 resume
 
-       juju run-action --wait neutron-gateway/0 cleanup
-       juju run-action --wait ovn-dedicated-chassis/0 resume
+       juju run --wait neutron-gateway/0 cleanup
+       juju run --wait ovn-dedicated-chassis/0 resume
 
 16. Post migration tasks
 
@@ -366,13 +372,13 @@ Perform the migration
 
     .. code-block:: none
 
-       juju run --application neutron-gateway '\
+       juju exec --application neutron-gateway '\
           apt remove -y neutron-dhcp-agent neutron-l3-agent \
           neutron-metadata-agent neutron-openvswitch-agent'
 
        juju remove-application neutron-gateway
 
-       juju run --application neutron-openvswitch '\
+       juju exec --application neutron-openvswitch '\
           apt remove -y neutron-dhcp-agent neutron-l3-agent \
           neutron-metadata-agent neutron-openvswitch-agent'
 

@@ -2,6 +2,12 @@
 Virtual GPU (vGPU)
 ==================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Overview
 --------
 
@@ -45,7 +51,7 @@ nova-compute:
 .. code-block:: none
 
    juju deploy ch:nova-compute-nvidia-vgpu --channel=yoga/stable
-   juju add-relation nova-compute-nvidia-vgpu:nova-vgpu nova-compute:nova-vgpu
+   juju integrate nova-compute-nvidia-vgpu:nova-vgpu nova-compute:nova-vgpu
 
 .. tip::
 
@@ -80,7 +86,7 @@ When the cloud is ready, reboot all affected Compute nodes:
 
 .. code-block:: none
 
-   juju run -a nova-compute-nvidia-vgpu -- sudo reboot
+   juju exec -a nova-compute-nvidia-vgpu -- sudo reboot
 
 vGPU type definition
 --------------------
@@ -94,7 +100,7 @@ querying the corresponding nova-compute-nvidia-vgpu application unit:
 
 .. code-block:: none
 
-   juju run-action --wait nova-compute-nvidia-vgpu/0 list-vgpu-types
+   juju run --wait nova-compute-nvidia-vgpu/0 list-vgpu-types
 
 Sample output:
 

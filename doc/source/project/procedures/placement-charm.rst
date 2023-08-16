@@ -2,6 +2,12 @@
 placement charm: OpenStack upgrade to Train
 ===========================================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 .. note::
 
    This page describes a procedure that is required when performing an upgrade
@@ -27,10 +33,10 @@ Here are example commands for the process just described:
 .. code-block:: none
 
    juju deploy --series bionic --config openstack-origin=cloud:bionic-train cs:placement
-   juju run-action --wait nova-cloud-controller/leader pause
-   juju add-relation placement percona-cluster
-   juju add-relation placement keystone
-   juju add-relation placement nova-cloud-controller
+   juju run --wait nova-cloud-controller/leader pause
+   juju integrate placement percona-cluster
+   juju integrate placement keystone
+   juju integrate placement nova-cloud-controller
 
 List endpoints and ensure placement endpoints are now listening on the new
 placement IP address. Follow this up by resuming nova-cloud-controller:
@@ -38,7 +44,7 @@ placement IP address. Follow this up by resuming nova-cloud-controller:
 .. code-block:: none
 
    openstack endpoint list
-   juju run-action --wait nova-cloud-controller/leader resume
+   juju run --wait nova-cloud-controller/leader resume
 
 Finally, upgrade the nova-cloud-controller services. Below all units are
 upgraded simultaneously but see the :ref:`paused_single_unit` service upgrade

@@ -2,6 +2,12 @@
 Instance high availability
 ==========================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Overview
 --------
 
@@ -242,7 +248,7 @@ interface. For example, to bring down a node that corresponds to unit
 
 .. code-block:: none
 
-   juju run --unit nova-compute/2 sudo ip link set br-ens3 down
+   juju exec --unit nova-compute/2 sudo ip link set br-ens3 down
 
 'reserved_host'
 ^^^^^^^^^^^^^^^
@@ -469,9 +475,9 @@ process gets started:
 
 .. code-block:: none
 
-   juju run --unit nova-compute/2 'pgrep -f guest=instance-00000001'
-   juju run --unit nova-compute/2 'sudo pkill -f -9 guest=instance-00000001'
-   juju run --unit nova-compute/2 'pgrep -f guest=instance-00000001'
+   juju exec --unit nova-compute/2 'pgrep -f guest=instance-00000001'
+   juju exec --unit nova-compute/2 'sudo pkill -f -9 guest=instance-00000001'
+   juju exec --unit nova-compute/2 'pgrep -f guest=instance-00000001'
 
 Supplementary information
 -------------------------

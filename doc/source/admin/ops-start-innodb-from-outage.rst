@@ -4,6 +4,12 @@
 Start MySQL InnoDB Cluster from a complete outage
 =================================================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Introduction
 ------------
 
@@ -33,7 +39,7 @@ action on any mysql-innodb-cluster unit:
 
 .. code-block:: none
 
-   juju run-action --wait mysql-innodb-cluster/1 reboot-cluster-from-complete-outage
+   juju run --wait mysql-innodb-cluster/1 reboot-cluster-from-complete-outage
 
 .. important::
 

@@ -4,6 +4,12 @@
 Repair a RabbitMQ node
 ======================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Introduction
 ~~~~~~~~~~~~
 
@@ -104,7 +110,7 @@ Pause the RabbitMQ service on the unhealthy node/unit:
 
 .. code-block:: none
 
-   juju run-action --wait rabbitmq-server/0 pause
+   juju run --wait rabbitmq-server/0 pause
 
 Identify the unhealthy node's hostname
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -144,7 +150,7 @@ from the cluster:
 
 .. code-block:: none
 
-   juju run-action --wait rabbitmq-server/2 forget-cluster-node node=rabbit@juju-64dabb-0-lxd-0
+   juju run --wait rabbitmq-server/2 forget-cluster-node node=rabbit@juju-64dabb-0-lxd-0
 
 The cluster's status output should now include:
 
@@ -258,7 +264,7 @@ Resume the RabbitMQ service on the repaired node/unit:
 
 .. code-block:: none
 
-   juju run-action --wait rabbitmq-server/0 resume
+   juju run --wait rabbitmq-server/0 resume
 
 Verify model health
 ~~~~~~~~~~~~~~~~~~~

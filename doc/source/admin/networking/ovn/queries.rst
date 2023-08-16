@@ -2,6 +2,12 @@
 Querying OVN
 ============
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 The OVN databases are configured to use the `Clustered Database Service
 Model`_. In this configuration only the leader processes transactions and the
 administrative client tools are configured to require a connection to the
@@ -42,9 +48,9 @@ To get an immediate view of the database clusters:
 
 .. code-block:: none
 
-   juju run --application ovn-central 'ovn-appctl -t \
+   juju exec --application ovn-central 'ovn-appctl -t \
        /var/run/ovn/ovnnb_db.ctl cluster/status OVN_Northbound'
-   juju run --application ovn-central 'ovn-appctl -t \
+   juju exec --application ovn-central 'ovn-appctl -t \
        /var/run/ovn/ovnsb_db.ctl cluster/status OVN_Southbound'
 
 Querying DBs
@@ -54,9 +60,9 @@ To query the individual databases:
 
 .. code-block:: none
 
-   juju run --unit ovn-central/0 'ovn-nbctl show'
-   juju run --unit ovn-central/2 'ovn-sbctl show'
-   juju run --unit ovn-central/2 'ovn-sbctl lflow-list'
+   juju exec --unit ovn-central/0 'ovn-nbctl show'
+   juju exec --unit ovn-central/2 'ovn-sbctl show'
+   juju exec --unit ovn-central/2 'ovn-sbctl lflow-list'
 
 As an alternative you may provide the administrative client tools with
 command-line arguments for path to certificates and IP address of servers so

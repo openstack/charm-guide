@@ -4,6 +4,12 @@
 Develop an API charm
 ====================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 The example below will walk through the creation of a basic API charm for the
 Openstack `Congress <https://wiki.openstack.org/wiki/Congress>`__ service.
 The charm will use prewritten Openstack `layers <https://opendev.org/explore/repos?q=charm-layer>`__
@@ -115,9 +121,9 @@ charm.
 .. code:: bash
 
     juju deploy ~/congress-charm/congress/build/congress
-    juju add-relation congress keystone
-    juju add-relation congress rabbitmq-server
-    juju add-relation congress mysql
+    juju integrate congress keystone
+    juju integrate congress rabbitmq-server
+    juju integrate congress mysql
 
 ``juju status`` will show the deployment as it proceeds.
 
@@ -202,7 +208,7 @@ to the hacluster charm when the two are joined.
 
     juju deploy hacluster
     juju set-config congress vip=10.5.100.1 vip_cidr=24
-    juju add-relation hacluster congress
+    juju integrate hacluster congress
 
 Juju status now reflects the new charms
 
