@@ -126,5 +126,4 @@ manually kick servers listed as "UNKNOWN" using the `cluster-kick`_ action
 provided by the charm.
 
 .. LINKS
-.. _cluster-kick: https://charmhub.io/ovn-central/actions?channel=edge#cluster-kick
-
+.. _cluster-kick: https://charmhub.io/ovn-central/actions?channel=latest/edge#cluster-kick
