@@ -2,6 +2,12 @@
 Nova Cells
 ==========
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Overview
 ++++++++
 
@@ -84,10 +90,10 @@ out onto a separate broker.
 
 .. code:: bash
 
-   juju add-relation neutron-api:amqp rabbitmq-server-neutron:amqp
-   juju add-relation neutron-gateway:amqp rabbitmq-server-neutron:amqp
-   juju add-relation neutron-openvswitch:amqp rabbitmq-server-neutron:amqp
-   juju add-relation ceilometer:amqp-listener rabbitmq-server-neutron:amqp
+   juju integrate neutron-api:amqp rabbitmq-server-neutron:amqp
+   juju integrate neutron-gateway:amqp rabbitmq-server-neutron:amqp
+   juju integrate neutron-openvswitch:amqp rabbitmq-server-neutron:amqp
+   juju integrate ceilometer:amqp-listener rabbitmq-server-neutron:amqp
 
 Adding A New Cell to an Existing Deployment
 +++++++++++++++++++++++++++++++++++++++++++
@@ -114,28 +120,28 @@ Relate the new cell applications to each other:
 
 .. code:: bash
 
-   juju add-relation nova-compute-cell2:amqp rabbitmq-server-nova-cell2:amqp
-   juju add-relation nova-cell-controller-cell2:amqp rabbitmq-server-nova-cell2:amqp
-   juju add-relation nova-cell-controller-cell2:shared-db nova-cell-controller-cell2-mysql-router:shared-db
-   juju add-relation nova-cell-controller-cell2-mysql-router:db-router mysql-innodb-cluster-cell2:db-router
-   juju add-relation nova-cell-controller-cell2:cloud-compute nova-compute-cell2:cloud-compute
+   juju integrate nova-compute-cell2:amqp rabbitmq-server-nova-cell2:amqp
+   juju integrate nova-cell-controller-cell2:amqp rabbitmq-server-nova-cell2:amqp
+   juju integrate nova-cell-controller-cell2:shared-db nova-cell-controller-cell2-mysql-router:shared-db
+   juju integrate nova-cell-controller-cell2-mysql-router:db-router mysql-innodb-cluster-cell2:db-router
+   juju integrate nova-cell-controller-cell2:cloud-compute nova-compute-cell2:cloud-compute
 
 Relate the super conductor to the new cell:
 
 .. code:: bash
 
-   juju add-relation nova-cloud-controller:nova-cell-api nova-cell-controller-cell2:nova-cell-compute
-   juju add-relation nova-cloud-controller:amqp-cell rabbitmq-server-nova-cell2:amqp
-   juju add-relation nova-cloud-controller:shared-db-cell nova-cell-controller-cell2-mysql-router:shared-db
+   juju integrate nova-cloud-controller:nova-cell-api nova-cell-controller-cell2:nova-cell-compute
+   juju integrate nova-cloud-controller:amqp-cell rabbitmq-server-nova-cell2:amqp
+   juju integrate nova-cloud-controller:shared-db-cell nova-cell-controller-cell2-mysql-router:shared-db
 
 Relate the new cell to network, image and identity services:
 
 .. code:: bash
 
-   juju add-relation nova-compute-cell2:neutron-plugin neutron-openvswitch:neutron-plugin
-   juju add-relation nova-compute-cell2:image-service glance:image-service
-   juju add-relation nova-cell-controller-cell2:identity-credentials keystone:identity-credentials
-   juju add-relation nova-compute-cell2:cloud-credentials keystone:identity-credentials
+   juju integrate nova-compute-cell2:neutron-plugin neutron-openvswitch:neutron-plugin
+   juju integrate nova-compute-cell2:image-service glance:image-service
+   juju integrate nova-cell-controller-cell2:identity-credentials keystone:identity-credentials
+   juju integrate nova-compute-cell2:cloud-credentials keystone:identity-credentials
 
 Relate the new cell to telemetry services.
 
@@ -150,8 +156,8 @@ Relate the new cell to telemetry services.
 
 .. code:: bash
 
-   juju add-relation ceilometer:amqp-listener rabbitmq-server-nova-cell2:amqp
-   juju add-relation ceilometer-agent:nova-ceilometer nova-compute-cell2:nova-ceilometer
+   juju integrate ceilometer:amqp-listener rabbitmq-server-nova-cell2:amqp
+   juju integrate ceilometer-agent:nova-ceilometer nova-compute-cell2:nova-ceilometer
 
 New Deployments
 +++++++++++++++

@@ -2,6 +2,12 @@
 Using SR-IOV with OVN
 =====================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Single root I/O virtualisation (SR-IOV) is an open hardware specification that
 enables splitting a single physical network port into multiple virtual network
 ports known as virtual functions (VFs). In this context, the physical port
@@ -60,7 +66,7 @@ To enable base SR-IOV support:
 
    juju config neutron-api enable-sriov=true
    juju config ovn-chassis enable-sriov=true
-   juju add-relation ovn-chassis:amqp rabbitmq-server:amqp
+   juju integrate ovn-chassis:amqp rabbitmq-server:amqp
 
 Create VFs
 ~~~~~~~~~~
@@ -104,7 +110,7 @@ First gather some device information by querying the ovn-chassis application:
 
 .. code-block:: none
 
-   juju run -a ovn-chassis 'lspci -nn | grep "Virtual Function"'
+   juju exec -a ovn-chassis 'lspci -nn | grep "Virtual Function"'
 
    03:10.0 Ethernet controller [0200]: Intel Corporation 82599 Ethernet Controller Virtual Function [8086:10ed] (rev 01)
    03:10.2 Ethernet controller [0200]: Intel Corporation 82599 Ethernet Controller Virtual Function [8086:10ed] (rev 01)

@@ -4,18 +4,18 @@ if [ ! -d $_snap_user_dir ]; then
     mkdir -p $_snap_user_dir
 fi
 _root_ca=$_snap_user_dir/root-ca.crt
-juju run -u vault/leader -- 'leader-get root-ca' | tee $_root_ca >/dev/null 2>&1
+juju exec -u vault/leader -- 'leader-get root-ca' | tee $_root_ca >/dev/null 2>&1
 
 # Find an IP address for Keystone
 _keystone_vip=$(juju config keystone vip)
 if [ -n "$_keystone_vip" ]; then
     _keystone_ip=$(echo $_keystone_vip | awk '{print $1}')
 else
-    _keystone_ip=$(juju run -u keystone/leader -- 'network-get --bind-address public')
+    _keystone_ip=$(juju exec -u keystone/leader -- 'network-get --bind-address public')
 fi
 
 # Query for the Keystone admin password
-_password=$(juju run -u keystone/leader -- 'leader-get admin_passwd')
+_password=$(juju exec -u keystone/leader -- 'leader-get admin_passwd')
 
 # Set the OpenStack environment variables
 export OS_AUTH_PROTOCOL=https

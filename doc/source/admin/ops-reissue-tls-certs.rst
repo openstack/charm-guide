@@ -4,6 +4,12 @@
 Reissue TLS certificates across the cloud
 =========================================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Introduction
 ------------
 
@@ -74,7 +80,7 @@ To reissue new certificates to all TLS-enabled clients run the
 
 .. code-block:: none
 
-   juju run-action --wait vault/leader reissue-certificates
+   juju run --wait vault/leader reissue-certificates
 
 The output to the :command:`juju status` command for the model will show
 activity for each affected service as their corresponding endpoints get updated

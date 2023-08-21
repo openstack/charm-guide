@@ -2,6 +2,12 @@
 Load balancing
 ==============
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Overview
 --------
 
@@ -48,11 +54,11 @@ To deploy Barbican:
 
    juju deploy barbican --config openstack-origin=cloud:bionic-rocky
    juju deploy barbican-vault
-   juju add-relation barbican mysql
-   juju add-relation barbican rabbitmq-server
-   juju add-relation barbican keystone
-   juju add-relation barbican barbican-vault
-   juju add-relation barbican-vault vault
+   juju integrate barbican mysql
+   juju integrate barbican rabbitmq-server
+   juju integrate barbican keystone
+   juju integrate barbican barbican-vault
+   juju integrate barbican-vault vault
 
 Octavia can then be deployed. Use the appropriate section depending on your
 cloud's networking framework:
@@ -63,15 +69,15 @@ Neutron ML2+OVS
 .. code-block:: none
 
    juju deploy octavia --config openstack-origin=cloud:bionic-rocky
-   juju add-relation octavia rabbitmq-server
-   juju add-relation octavia mysql
-   juju add-relation octavia keystone
-   juju add-relation octavia neutron-openvswitch
-   juju add-relation octavia neutron-api
+   juju integrate octavia rabbitmq-server
+   juju integrate octavia mysql
+   juju integrate octavia keystone
+   juju integrate octavia neutron-openvswitch
+   juju integrate octavia neutron-api
    juju config neutron-api enable-ml2-port-security=True
 
    juju deploy octavia-dashboard
-   juju add-relation octavia-dashboard openstack-dashboard
+   juju integrate octavia-dashboard openstack-dashboard
 
 Neutron ML2+OVN
 ~~~~~~~~~~~~~~~
@@ -79,15 +85,15 @@ Neutron ML2+OVN
 .. code-block:: none
 
    juju deploy octavia --config openstack-origin=cloud:bionic-ussuri
-   juju add-relation octavia rabbitmq-server
-   juju add-relation octavia mysql
-   juju add-relation octavia keystone
-   juju add-relation octavia ovn-chassis
-   juju add-relation octavia neutron-api
+   juju integrate octavia rabbitmq-server
+   juju integrate octavia mysql
+   juju integrate octavia keystone
+   juju integrate octavia ovn-chassis
+   juju integrate octavia neutron-api
    juju config neutron-api enable-ml2-port-security=True
 
    juju deploy octavia-dashboard
-   juju add-relation octavia-dashboard openstack-dashboard
+   juju integrate octavia-dashboard openstack-dashboard
 
 .. note::
 
@@ -157,7 +163,7 @@ on the lead octavia unit:
 
 .. code-block:: none
 
-   juju run-action --wait octavia/0 configure-resources
+   juju run --wait octavia/0 configure-resources
 
 This action must be run before Octavia is fully operational.
 
@@ -215,10 +221,10 @@ Example usage:
    juju deploy octavia-diskimage-retrofit \
        --config amp-image-tag=octavia-amphora
 
-   juju add-relation glance-simplestreams-sync keystone
-   juju add-relation glance-simplestreams-sync:certificates vault:certificates
-   juju add-relation octavia-diskimage-retrofit glance-simplestreams-sync
-   juju add-relation octavia-diskimage-retrofit keystone
+   juju integrate glance-simplestreams-sync keystone
+   juju integrate glance-simplestreams-sync:certificates vault:certificates
+   juju integrate octavia-diskimage-retrofit glance-simplestreams-sync
+   juju integrate octavia-diskimage-retrofit keystone
 
 After the deployment has settled and ``glance-simplestreams-sync`` has
 completed its initial image sync, you may ask a ``octavia-diskimage-retrofit``
@@ -228,7 +234,7 @@ This is accomplished by running an action on one of the units.
 
 .. code-block:: none
 
-   juju run-action --wait octavia-diskimage-retrofit/leader retrofit-image
+   juju run --wait octavia-diskimage-retrofit/leader retrofit-image
 
 Octavia will use this image for all Amphora instances.
 

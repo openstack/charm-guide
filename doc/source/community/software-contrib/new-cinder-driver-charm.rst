@@ -2,6 +2,12 @@
 Develop Cinder storage driver charm
 ===================================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 The example below will walk through the creation of a basic Cinder storage
 subordinate charm for the `Openstack Cinder NFS`_ backend. The charm will
 use existing `operator framework helpers`_. Once the charm is written it will
@@ -98,7 +104,7 @@ Deploy the charm
 
    juju deploy --channel yoga/edge ch:cinder
    juju deploy ./cinder-nfs.charm
-   juju add-relation cinder:storage-backend cinder-nfs:storage-backend
+   juju integrate cinder:storage-backend cinder-nfs:storage-backend
 
 :command:`juju status` will now show both charms deployed. The ``cinder``
 status will show some missing relations but that's not an issue for this
@@ -179,7 +185,7 @@ the cinder.conf file:
 
 .. code-block:: none
 
-   juju run --unit cinder/0 "grep NfsDriver /etc/cinder/cinder.conf"
+   juju exec --unit cinder/0 "grep NfsDriver /etc/cinder/cinder.conf"
    volume_driver = cinder.volume.drivers.nfs.NfsDriver
 
 .. LINKS

@@ -2,6 +2,12 @@
 percona-cluster charm: series upgrade to focal
 ==============================================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 .. note::
 
    This page describes a procedure that may be required when performing an
@@ -105,9 +111,9 @@ Procedure
 
   .. code-block:: none
 
-     juju add-relation cinder-mysql-router:db-router mysql-innodb-cluster:db-router
-     juju add-relation glance-mysql-router:db-router mysql-innodb-cluster:db-router
-     juju add-relation keystone-mysql-router:db-router mysql-innodb-cluster:db-router
+     juju integrate cinder-mysql-router:db-router mysql-innodb-cluster:db-router
+     juju integrate glance-mysql-router:db-router mysql-innodb-cluster:db-router
+     juju integrate keystone-mysql-router:db-router mysql-innodb-cluster:db-router
      ...
 
 On a per-application basis:
@@ -135,7 +141,7 @@ On a per-application basis:
 
     .. code-block:: none
 
-       juju run-action --wait percona-cluster/0 set-pxc-strict-mode mode=MASTER
+       juju run --wait percona-cluster/0 set-pxc-strict-mode mode=MASTER
 
   * Here is a non-exhaustive example that lists databases using the :command:`mysql` client:
 
@@ -197,10 +203,10 @@ On a per-application basis:
     .. code-block:: none
 
        # Single DB
-       juju run-action --wait percona-cluster/0 mysqldump databases=keystone
+       juju run --wait percona-cluster/0 mysqldump databases=keystone
 
        # Multiple DBs
-       juju run-action --wait percona-cluster/0 mysqldump \
+       juju run --wait percona-cluster/0 mysqldump \
        databases=aodh,cinder,designate,glance,gnochii,horizon,keystone,neutron,nova,nova_api,nova_cell0,placement
 
   * Return Percona enforcing strict mode. See `Percona strict mode`_ to
@@ -208,7 +214,7 @@ On a per-application basis:
 
     .. code-block:: none
 
-       juju run-action --wait percona-cluster/0 set-pxc-strict-mode mode=ENFORCING
+       juju run --wait percona-cluster/0 set-pxc-strict-mode mode=ENFORCING
 
 * Transfer the mysqldump file from the percona-cluster unit to the
   mysql-innodb-cluster RW unit. The RW unit of the mysql-innodb-cluster can be
@@ -224,14 +230,14 @@ On a per-application basis:
 
   .. code-block:: none
 
-     juju run-action --wait mysql-innodb-cluster/0 restore-mysqldump dump-file=/home/ubuntu/mysqldump-keystone-<DATE>.gz
+     juju run --wait mysql-innodb-cluster/0 restore-mysqldump dump-file=/home/ubuntu/mysqldump-keystone-<DATE>.gz
 
 * Relate an instance of mysql-router for every application that requires a data
   store (i.e. every application that needed percona-cluster):
 
   .. code-block:: none
 
-     juju add-relation keystone:shared-db keystone-mysql-router:shared-db
+     juju integrate keystone:shared-db keystone-mysql-router:shared-db
 
 * Repeat for remaining applications.
 

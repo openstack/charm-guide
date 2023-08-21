@@ -4,6 +4,12 @@
 Develop an SDN charm
 ====================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Before writing the charm the charm author needs to have a clear idea of what
 applications the charm is going to need to relate to, what files and services
 the charm is going to manage and possibly what files or services do other
@@ -62,7 +68,7 @@ Deploy Charm
     cd build
     juju deploy cs:xenial/nova-compute
     juju deploy ~/sdn-charm/virtual-token-ring/build/virtual-token-ring
-    juju add-relation nova-compute virtual-token-ring
+    juju integrate nova-compute virtual-token-ring
 
 ``juju status`` will now show both charms deployed. The ``nova-compute`` status
 will show some missing relations but that's not an issue for this demonstration.
@@ -123,7 +129,7 @@ Check Update
 
 .. code:: bash
 
-    juju run --unit nova-compute/0 "grep random_option /etc/nova/nova.conf"
+    juju exec --unit nova-compute/0 "grep random_option /etc/nova/nova.conf"
     random_option = true
 
 

@@ -2,6 +2,12 @@
 TrilioVault data protection
 ===========================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Overview
 --------
 
@@ -275,7 +281,7 @@ application). This is done with the trilio-wlm charm's
 
 .. code-block:: none
 
-   juju run-action --wait trilio-wlm/leader create-cloud-admin-trust password=cloudadminpassword
+   juju run --wait trilio-wlm/leader create-cloud-admin-trust password=cloudadminpassword
 
 Licensing
 ---------
@@ -287,7 +293,7 @@ charm's ``create-license`` action:
 .. code-block:: none
 
    juju attach trilio-wlm license=mycorp_tv.lic
-   juju run-action trilio-wlm/leader create-license
+   juju run trilio-wlm/leader create-license
 
 The trilio-wlm and trilio-data-mover applications should now be in the 'active'
 state and ready for use.

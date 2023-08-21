@@ -4,6 +4,12 @@
 Develop a Manila plugin configuration charm
 ===========================================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Typically, a Manila backend configuration simply needs to provide one or more
 configuration sections to the ``manila.conf`` file.  It might also need to
 install some additional software to the node that manila is running on. (Note
@@ -285,7 +291,7 @@ Then if there are errors:
     # wait until the subordinate is removed/and or destroy the manila unit.
     # If destroying the manila unit, then remember to redploy it
     juju upgrade-charm --path=build/{package-name} {package-name}
-    juju add-relation manila {package-name}
+    juju integrate manila {package-name}
 
 This will re-install the subordinate charm which may show further errors, etc.
 

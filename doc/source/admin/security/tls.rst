@@ -2,6 +2,12 @@
 Managing TLS certificates
 =========================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Overview
 --------
 
@@ -47,7 +53,7 @@ To have Vault generate a self-signed root CA certificate:
 
 .. code-block:: none
 
-   juju run-action --wait vault/leader generate-root-ca
+   juju run --wait vault/leader generate-root-ca
 
 You're done.
 
@@ -69,7 +75,7 @@ unit:
 
 .. code-block:: none
 
-   juju run-action --wait vault/leader get-csr
+   juju run --wait vault/leader get-csr
 
 .. note::
 
@@ -173,7 +179,7 @@ action on the leader unit:
 
 .. code-block:: none
 
-   juju run-action --wait vault/leader upload-signed-csr \
+   juju run --wait vault/leader upload-signed-csr \
        pem="$(cat ~/vault-charm-int.pem | base64)" \
        root-ca="$(cat ~/root-ca.pem | base64)" \
        allowed-domains='openstack.local'
@@ -210,11 +216,11 @@ certificates to clients (API services). Client requests are made via the
 
 .. code-block:: none
 
-   juju add-relation keystone:certificates vault:certificates
-   juju add-relation nova-cloud-controller:certificates vault:certificates
-   juju add-relation cinder:certificates vault:certificates
-   juju add-relation neutron-api:certificates vault:certificates
-   juju add-relation glance:certificates vault:certificates
+   juju integrate keystone:certificates vault:certificates
+   juju integrate nova-cloud-controller:certificates vault:certificates
+   juju integrate cinder:certificates vault:certificates
+   juju integrate neutron-api:certificates vault:certificates
+   juju integrate glance:certificates vault:certificates
 
 A request will result in the transfer of certificates and keys from Vault. The
 corresponding API endpoint will also be updated in Keystone's service catalogue
@@ -226,7 +232,7 @@ CA:
 
 .. code-block:: none
 
-   juju add-relation mysql-innodb-cluster:certificates vault:certificates
+   juju integrate mysql-innodb-cluster:certificates vault:certificates
 
 .. important::
 
@@ -298,7 +304,7 @@ backend:
 
 .. code-block:: none
 
-   juju run-action --wait vault/leader disable-pki
+   juju run --wait vault/leader disable-pki
 
 This step deletes the existing root certificate and invalidates any previous
 CSR requests.
@@ -313,7 +319,7 @@ CA certificate to Vault:
 
 .. code-block:: none
 
-   juju run-action --wait vault/leader upload-signed-csr \
+   juju run --wait vault/leader upload-signed-csr \
       pem=“$(cat /path/to/vault-charm-int.pem | base64)" \
       root-ca="$(cat /path/to/root-ca.pem | base64)"
 
@@ -325,8 +331,8 @@ PKI secrets backend and then generate a root CA certificate:
 
 .. code-block:: none
 
-   juju run-action --wait vault/leader disable-pki
-   juju run-action --wait vault/leader generate-root-ca
+   juju run --wait vault/leader disable-pki
+   juju run --wait vault/leader generate-root-ca
 
 Configuring SSL certificates via charm options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

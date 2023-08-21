@@ -4,6 +4,12 @@
 Unseal Vault
 ============
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Introduction
 ------------
 
@@ -71,7 +77,7 @@ The output to :command:`juju status vault` should eventually contain:
 .. note::
 
    It can take a few minutes for the "ready" status to appear. To expedite,
-   force a status update: ``juju run -u vault/0 hooks/update-status``.
+   force a status update: ``juju exec -u vault/0 hooks/update-status``.
 
 For multiple vault units, repeat the procedure by using a different value each
 time for ``VAULT_ADDR``. For a three-member Vault cluster the output should

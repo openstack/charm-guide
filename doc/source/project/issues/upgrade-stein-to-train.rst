@@ -2,6 +2,12 @@
 Upgrade: Stein to Train
 =======================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 This page contains notes specific to the Stein to Train upgrade path. See the
 main :doc:`../../admin/upgrades/openstack` page for full coverage.
 
@@ -36,7 +42,7 @@ See bug `LP #1828534`_. This can be resolved by restarting the memcached service
 
 .. code-block:: none
 
-   juju run --application=memcached 'sudo systemctl restart memcached'
+   juju exec --application=memcached 'sudo systemctl restart memcached'
 
 Ceph PG auto-scaler not enabled by default
 ------------------------------------------

@@ -4,6 +4,12 @@
 Replace Vault cluster node
 ==========================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Introduction
 ------------
 
@@ -63,7 +69,7 @@ being removed. Here, unit ``vault-hacluster/2`` corresponds to unit
 
 .. code-block:: none
 
-   juju run-action --wait vault-hacluster/2 pause
+   juju run --wait vault-hacluster/2 pause
 
 Remove the principal application unit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -2,6 +2,12 @@
 Encryption at Rest
 ==================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 Overview
 ++++++++
 
@@ -36,9 +42,9 @@ ceph-osd charms and a relation to the vault application:
     juju config swift-storage encrypt=true
     juju config nova-compute encrypt=true ephemeral-device=/dev/bcache2
     juju config ceph-osd osd-encrypt=true osd-encrypt-keymanager=vault
-    juju add-relation swift-storage:secrets-storage vault:secrets
-    juju add-relation nova-compute:secrets-storage vault:secrets
-    juju add-relation ceph-osd:secrets-storage vault:secrets
+    juju integrate swift-storage:secrets-storage vault:secrets
+    juju integrate nova-compute:secrets-storage vault:secrets
+    juju integrate ceph-osd:secrets-storage vault:secrets
 
 .. note::
 

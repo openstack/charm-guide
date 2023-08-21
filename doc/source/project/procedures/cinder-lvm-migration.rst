@@ -2,6 +2,12 @@
 LVM support in cinder charm: migration to cinder-lvm
 ====================================================
 
+.. important::
+
+   This page has been identified as being affected by the breaking changes
+   introduced between versions 2.9.x and 3.x of the Juju client. Read
+   support note :ref:`juju_29_3x_changes` before continuing.
+
 As of the 21.10 release of OpenStack Charms, support for local (LVM) Cinder
 storage in the `cinder`_ charm is deprecated. This functionality has been
 de-coupled and is now managed by the `cinder-lvm`_ subordinate charm. This page
@@ -61,7 +67,7 @@ relation to the cinder application:
 .. code-block:: none
 
    juju deploy --config cinder-lvm.yaml cinder-lvm
-   juju add-relation cinder-lvm:storage-backend cinder:storage-backend
+   juju integrate cinder-lvm:storage-backend cinder:storage-backend
 
 Verify that Cinder volumes can be created as usual and that existing VMs
 utilising Cinder volumes have not been adversely affected.
