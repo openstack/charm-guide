@@ -107,6 +107,33 @@ To add the custom properties use a comma delimited string of ``key:value`` pairs
 Note properties will only be added to images that go through the import process such as ``openstack image create --import``
 but will not be applied to regular image uploads.
 
+Adjust ceph credentials to be the same across nova-compute apps
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When using the config libvirt-image-backend=rbd, VMs
+created from image have their disk data stored in ceph
+instead of the compute node itself.
+
+When performing live-migrations, both nodes need to
+access the same ceph credentials to access the VM's
+disk in ceph. Previously, each nova-compute charm
+app had a different credential according to the
+app name. Now every nova-compute charm app uses
+the ``nova-compute`` ceph credential.
+
+Upon performing the upgrade, any previously running
+VM will continue to use the old credential until fully
+stopped and then started to refresh the libvirt XML
+for the VM. While using the old credentials, the VMs
+can still continue to operate without
+disruption and can be live-migrated to nodes
+pertaning to the same nova-compute charm app.
+
+The old credential file remains alongside the new one
+in the nova-compute node and is not cleaned up until the
+relation between nova-compute and ceph-mon is removed.
+For more details see bug `LP #2028559`_.
+
 Documentation updates
 ---------------------
 
@@ -172,3 +199,4 @@ use Juju 3.x unit agents are related to:
 
 .. BUGS
 .. _LP #2007587: https://bugs.launchpad.net/vault-charm/+bug/2007587
+.. _LP #2028559: https://bugs.launchpad.net/charm-nova-compute/+bug/2028559
