@@ -88,7 +88,7 @@ Neutron ML2+OVN
    juju integrate octavia rabbitmq-server
    juju integrate octavia mysql
    juju integrate octavia keystone
-   juju integrate octavia ovn-chassis
+   juju integrate octavia:ovsdb-subordinate ovn-chassis:ovsdb-subordinate
    juju integrate octavia neutron-api
    juju config neutron-api enable-ml2-port-security=True
 
