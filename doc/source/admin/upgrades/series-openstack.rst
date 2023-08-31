@@ -36,11 +36,9 @@ When machines associated with a single API application undergo a series upgrade
 that individual API will also experience downtime. This is because it is
 necessary to pause services in order to avoid race condition errors.
 
-For those applications working in tandem with hacluster, as will be shown, some
-hacluster units will need to be paused before the upgrade. One should assume
-that the commencement of an outage coincides with this step (it will cause
-cluster quorum heartbeats to fail and the service VIP will consequently go
-offline).
+A clustered application, working in tandem with hacluster, will be unavailable
+during a series upgrade. The service VIP will go offline due to the resource
+management software being shut down.
 
 Generalised OpenStack series upgrade
 ------------------------------------
@@ -80,9 +78,6 @@ Applications for which this summary does **not** apply include:
 The steps are as follows:
 
 #. Set the default series for the principal application.
-
-#. If hacluster is used, pause the hacluster units not associated with the
-   principal leader machine.
 
 #. Pause the principal non-leader units.
 
@@ -426,13 +421,6 @@ machine 0/lxd/1 (the principal leader machine).
 
       juju set-series percona-cluster bionic
 
-#. Pause the hacluster units not associated with the principal leader machine:
-
-   .. code-block:: none
-
-      juju run --wait percona-cluster-hacluster/0 pause
-      juju run --wait percona-cluster-hacluster/1 pause
-
 #. Pause the principal non-leader units:
 
    .. code-block:: none
@@ -477,7 +465,7 @@ machine 0/lxd/1 (the principal leader machine).
 
       juju upgrade-series 0/lxd/1 complete
 
-#. Repeat step 4 for each of the principal non-leader machines:
+#. Repeat step 3 for each of the principal non-leader machines:
 
    .. code-block:: none
 
@@ -586,13 +574,6 @@ In summary, the principal leader unit is keystone/0 and is deployed on machine
    .. code-block:: none
 
       juju set-series keystone bionic
-
-#. Pause the hacluster units not associated with the principal leader machine:
-
-   .. code-block:: none
-
-      juju run --wait keystone-hacluster/0 pause
-      juju run --wait keystone-hacluster/1 pause
 
 #. Pause the principal non-leader units:
 
@@ -746,16 +727,6 @@ In summary,
 
       juju set-series glance bionic
       juju set-series nova-cloud-controller bionic
-
-#. Pause the hacluster units not associated with their principal leader
-   machines:
-
-   .. code-block:: none
-
-      juju run --wait glance-hacluster/1 pause
-      juju run --wait glance-hacluster/2 pause
-      juju run --wait nova-cloud-controller-hacluster/1 pause
-      juju run --wait nova-cloud-controller-hacluster/2 pause
 
 #. Pause the principal non-leader units:
 
@@ -943,8 +914,7 @@ arrive at the following output:
 
 In summary, the ceph-osd and nova-compute applications are hosted on machine 1.
 Since application leadership does not play a significant role with these two
-applications, and because the hacluster application is not present, there will
-be no units to pause.
+applications there will be no units to pause.
 
 .. important::
 
