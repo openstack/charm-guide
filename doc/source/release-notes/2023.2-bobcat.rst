@@ -134,6 +134,16 @@ in the nova-compute node and is not cleaned up until the
 relation between nova-compute and ceph-mon is removed.
 For more details see bug `LP #2028559`_.
 
+magnum charm: new option to expose cluster_user_trust
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This configuration option controls whether to assign a trust to the cluster user
+or not. This option needs to be set to True for clusters with
+volume_driver=cinder, cloud_provider_enabled=true or registry_enabled=true in
+the underlying cluster template to work. This is a potential security risk since
+the trust gives instances OpenStack API access to the cluster's project. For
+more details see bug `LP #1996237`_.
+
 Documentation updates
 ---------------------
 
@@ -200,3 +210,4 @@ use Juju 3.x unit agents are related to:
 .. BUGS
 .. _LP #2007587: https://bugs.launchpad.net/vault-charm/+bug/2007587
 .. _LP #2028559: https://bugs.launchpad.net/charm-nova-compute/+bug/2028559
+.. _LP #1996237: https://launchpad.net/bugs/1996237
