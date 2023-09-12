@@ -9,9 +9,8 @@ deploy and manage OpenStack clouds using `MAAS`_ and `Juju`_.
 
 .. note::
 
-   This guide supports Juju version 2.9.x. Some breaking changes are introduced
-   by Juju 3.x through the renaming of a few commands (see the `Juju 3.0
-   release notes`_).
+   This guide supports Juju version 3.x. Users of Juju 2.9.x seeking guidance
+   can read support note :ref:`juju_29_3x_changes`.
 
 Each of the OpenStack charms is responsible for the deployment and lifecycle
 management of a single cloud service (e.g. the nova-compute charm for the Nova
@@ -102,4 +101,3 @@ Search
 .. _MAAS: https://maas.io/
 .. _Juju: https://juju.is/
 .. _OpenInfra Foundation community code of conduct: https://openinfra.dev/legal/code-of-conduct
-.. _Juju 3.0 release notes: https://juju.is/docs/juju/roadmap#heading--juju-3-0-0---22-oct-2022
