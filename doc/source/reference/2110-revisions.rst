@@ -29,6 +29,20 @@ architecture, if applicable). Information is categorised by charm groups:
 * OVN charms
 * miscellaneous support charms
 
+To use these revisions, the charm needs to be downloaded and then deployed
+locally. Furthermore, the download must be done with version 2.x of the
+charm-tools snap.
+
+For example, to deploy revision 46 of the aodh charm:
+
+.. code-block:: none
+
+   sudo snap install charm --channel=2.x/stable --classic
+   cd <some-temporary-dir>
+   charm pull aodh-46
+   juju deploy ./aodh
+
+
 OpenStack
 ~~~~~~~~~
 
