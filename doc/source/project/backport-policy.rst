@@ -63,7 +63,7 @@ Charm configuration options
 A backport of a simple charm configuration enablement that is opt-in is a
 candidate to be backported.
 
-For changes to configuration options, new behaviour must not be introduced.
+For changes to configuration options, new behaviour should not be introduced.
 This can take the form of default values changed in comparison to the ones
 already defined in the configuration template or the payload's default.
 
@@ -88,8 +88,32 @@ considered low risk.
 Backport approvals
 ------------------
 
+Charms
+~~~~~~
+
 All charm stable branch reviews must be approved by **two** core reviewers or
 stable maintainers prior to landing and CI system(s) voted with a Verified+1.
+
+Charm and test libraries
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Backports are also sometimes needed for the charm libraries that support the
+OpenStack, Ceph, OVN and support charms.  These libraries are:
+
+* `zaza`_
+* `zaza-openstack-tests`_
+* `charm-helpers`_
+* `charms.openstack`_
+* `charms.ceph`_
+
+All library backports may be approved by a **single** core reviewer or stable
+maintainer prior to landing and the CI system(s) having voted with a
+Verified+1.
+
+.. note::
+
+   This is different to charm backports as libraries are "tested again" when
+   charms are built and go through the test process.
 
 Cherry picking details
 ----------------------
@@ -119,3 +143,8 @@ line in the commit message.
 .. _git-review: https://docs.opendev.org/opendev/git-review/latest/
 .. _Support --visibility option for simplestreams: https://review.opendev.org/q/I1955f3d2a56654c9a683a2b9d36b33c0f0fd63d4
 .. _Refactor unit tests to avoid leaks of mocks: https://review.opendev.org/c/openstack/charm-nova-compute/+/874505
+.. _zaza: https://github.com/openstack-charmers/zaza
+.. _zaza-openstack-tests: https://github.com/openstack-charmers/zaza-openstack-tests
+.. _charm-helpers: https://github.com/juju/charm-helpers
+.. _charms.openstack: https://opendev.org/openstack/charms.openstack
+.. _charms.ceph: https://opendev.org/openstack/charms.ceph
