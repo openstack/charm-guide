@@ -69,7 +69,7 @@ being removed. Here, unit ``vault-hacluster/2`` corresponds to unit
 
 .. code-block:: none
 
-   juju run --wait vault-hacluster/2 pause
+   juju run vault-hacluster/2 pause
 
 Remove the principal application unit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

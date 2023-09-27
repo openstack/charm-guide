@@ -281,8 +281,8 @@ machine 0/lxd/0 (the principal leader machine).
 
    .. code-block:: none
 
-      juju run --wait rabbitmq-server/1 pause
-      juju run --wait rabbitmq-server/2 pause
+      juju run rabbitmq-server/1 pause
+      juju run rabbitmq-server/2 pause
 
 #. Perform a series upgrade of the principal leader machine:
 
@@ -326,7 +326,7 @@ machine 0/lxd/0 (the principal leader machine).
 
    .. code-block:: none
 
-      juju run --wait rabbitmq-server/leader complete-cluster-series-upgrade
+      juju run rabbitmq-server/leader complete-cluster-series-upgrade
 
 #. Update the software sources for the application's machines.
 
@@ -409,7 +409,7 @@ machine 0/lxd/1 (the principal leader machine).
 
    .. code-block:: none
 
-      juju run --wait percona-cluster/leader backup
+      juju run percona-cluster/leader backup
       juju scp -- -r percona-cluster/leader:/opt/backups/mysql /path/to/local/directory
 
    Permissions will need to be altered on the remote machine, and note that the
@@ -425,8 +425,8 @@ machine 0/lxd/1 (the principal leader machine).
 
    .. code-block:: none
 
-      juju run --wait percona-cluster/1 pause
-      juju run --wait percona-cluster/2 pause
+      juju run percona-cluster/1 pause
+      juju run percona-cluster/2 pause
 
    Leaving the principal leader unit up will ensure it has the latest MySQL
    sequence number; it will be considered the most up to date cluster member.
@@ -492,7 +492,7 @@ machine 0/lxd/1 (the principal leader machine).
 
    .. code-block:: none
 
-      juju run --wait percona-cluster/leader complete-cluster-series-upgrade
+      juju run percona-cluster/leader complete-cluster-series-upgrade
 
 #. Update the software sources for the application's machines.
 
@@ -579,8 +579,8 @@ In summary, the principal leader unit is keystone/0 and is deployed on machine
 
    .. code-block:: none
 
-      juju run --wait keystone/1 pause
-      juju run --wait keystone/2 pause
+      juju run keystone/1 pause
+      juju run keystone/2 pause
 
 #. Perform any workload maintenance pre-upgrade steps on all machines. There
    are no keystone-specific steps to perform.
@@ -732,10 +732,10 @@ In summary,
 
    .. code-block:: none
 
-      juju run --wait glance/1 pause
-      juju run --wait glance/2 pause
-      juju run --wait nova-cloud-controller/1 pause
-      juju run --wait nova-cloud-controller/2 pause
+      juju run glance/1 pause
+      juju run glance/2 pause
+      juju run nova-cloud-controller/1 pause
+      juju run nova-cloud-controller/2 pause
 
 #. Perform any workload maintenance pre-upgrade steps on all machines. There
    are no glance-specific nor nova-cloud-controller-specific steps to perform.
@@ -928,7 +928,7 @@ applications there will be no units to pause.
 
    .. code-block:: none
 
-      juju run --wait ceph-mon/leader set-noout
+      juju run ceph-mon/leader set-noout
 
 #. Perform any workload maintenance pre-upgrade steps.
 
@@ -953,7 +953,7 @@ applications there will be no units to pause.
    .. code-block:: none
 
       juju exec --unit ceph-mon/leader -- ceph status
-      juju run --wait ceph-mon/leader unset-noout
+      juju run ceph-mon/leader unset-noout
 
 #. Update the software sources for the machine.
 

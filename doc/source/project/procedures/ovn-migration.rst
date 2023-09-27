@@ -269,7 +269,7 @@ Perform the migration
 
    .. code-block:: none
 
-      juju run --wait neutron-api-plugin-ovn/0 migrate-mtu
+      juju run neutron-api-plugin-ovn/0 migrate-mtu
 
 10. Enable the Neutron OVN plugin
 
@@ -293,7 +293,7 @@ Perform the migration
 
     .. code-block:: none
 
-       juju run --wait neutron-api-plugin-ovn/0 migrate-ovn-db
+       juju run neutron-api-plugin-ovn/0 migrate-ovn-db
 
 13. (Optional) Perform Neutron database surgery to update ``network_type`` of
     overlay networks to 'geneve'.
@@ -323,7 +323,7 @@ Perform the migration
 
     .. code-block:: none
 
-       juju run --wait neutron-api-plugin-ovn/0 offline-neutron-morph-db
+       juju run neutron-api-plugin-ovn/0 offline-neutron-morph-db
 
 14. Resume the Neutron API units
 
@@ -358,11 +358,11 @@ Perform the migration
 
     .. code-block:: none
 
-       juju run --wait neutron-openvswitch/0 cleanup
-       juju run --wait ovn-chassis/0 resume
+       juju run neutron-openvswitch/0 cleanup
+       juju run ovn-chassis/0 resume
 
-       juju run --wait neutron-gateway/0 cleanup
-       juju run --wait ovn-dedicated-chassis/0 resume
+       juju run neutron-gateway/0 cleanup
+       juju run ovn-dedicated-chassis/0 resume
 
 16. Post migration tasks
 

@@ -40,7 +40,7 @@ Vault generate the CA certificate:
 
 .. code-block:: none
 
-   juju run --wait vault/leader generate-root-ca
+   juju run vault/leader generate-root-ca
 
 See the :doc:`../admin/security/tls` page for further guidance.
 

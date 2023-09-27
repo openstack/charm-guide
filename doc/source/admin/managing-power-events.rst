@@ -283,7 +283,7 @@ well-known caveats, or just valuable tips.
 As noted under `Stopping and starting services`_, this document encourages the
 use of actions for managing application services. The general syntax is::
 
-    juju run --wait <unit> <action>
+    juju run <unit> <action>
 
 In the procedures that follow, <unit> will be replaced by an example only (e.g.
 ``nova-compute/0``). You will need to substitute in the actual unit for your
@@ -349,7 +349,7 @@ cluster
 3. Set the cluster-wide ``noout`` option, on any MON unit, to prevent data
    rebalancing from occurring when OSDs start disappearing from the network::
 
-    juju run --wait ceph-mon/1 set-noout
+    juju run ceph-mon/1 set-noout
 
    Query status again to ensure that the option is set::
 
@@ -375,7 +375,7 @@ cluster
 
    Now pause the service::
 
-    juju run --wait ceph-radosgw/0 pause
+    juju run ceph-radosgw/0 pause
 
    Verify that the service has stopped::
 
@@ -385,7 +385,7 @@ cluster
 
 5. Stop all of a unit's OSDs. Do this on **each** ``ceph-osd`` unit::
 
-    juju run --wait ceph-osd/1 stop osds=all
+    juju run ceph-osd/1 stop osds=all
 
    Once done, verify that all of the cluster's OSDs are down::
 
@@ -432,7 +432,7 @@ component
 
    a. Mark the OSD (with id 2) on a ``ceph-osd`` unit as 'out'::
 
-       juju run --wait ceph-osd/2 osd-out osds=2
+       juju run ceph-osd/2 osd-out osds=2
 
    b. Do not mark OSDs on another unit as 'out' until the cluster has recovered
       from the loss of the current one (run a status check).
@@ -441,13 +441,13 @@ component
 
    Mark the OSD (with id 2) on a ``ceph-osd`` unit as 'down'::
 
-    juju run --wait ceph-osd/2 stop osds=2
+    juju run ceph-osd/2 stop osds=2
 
 5. **ceph-osd** - To take 'out' all the OSDs on a single unit:
 
    a. Mark all the OSDs on a ``ceph-osd`` unit as 'out'::
 
-       juju run --wait ceph-osd/2 osd-out osds=all
+       juju run ceph-osd/2 osd-out osds=all
 
    b. Do not mark OSDs on another unit as 'out' until the cluster has recovered
       from the loss of the current ones (run a status check).
@@ -456,7 +456,7 @@ component
 
    Mark all the OSDs on a ``ceph-osd`` unit as 'down'::
 
-    juju run --wait ceph-osd/2 stop osds=all
+    juju run ceph-osd/2 stop osds=all
 
 startup
 ^^^^^^^
@@ -478,12 +478,12 @@ started in this order:
 
 a. the ``noout`` option was set, you will need to unset it. On any MON unit::
 
-    juju run --wait ceph-mon/0 unset-noout
+    juju run ceph-mon/0 unset-noout
 
 b. a RADOS Gateway service was paused, you will need to resume it. Do this for
    **each** ``ceph-radosgw`` unit::
 
-    juju run --wait ceph-radosgw/0 resume
+    juju run ceph-radosgw/0 resume
 
 Finally, ensure that the cluster is in a healthy state by running a status
 check on any MON unit::
@@ -510,13 +510,13 @@ component
 
    a. Re-insert the OSD (with id 2) on the ``ceph-osd`` unit::
 
-       juju run --wait ceph-osd/1 osd-in osds=2
+       juju run ceph-osd/1 osd-in osds=2
 
 4. **ceph-osd** - To set as 'in' all the OSDs on a unit:
 
    a. Re-insert the OSDs on the ``ceph-osd`` unit::
 
-       juju run --wait ceph-osd/1 osd-in osds=all
+       juju run ceph-osd/1 osd-in osds=all
 
    b. Do not re-insert OSDs on another unit until the cluster has recovered
       from the addition of the current ones (run a status check).
@@ -531,14 +531,14 @@ shutdown
 
 To pause the Cinder service::
 
-    juju run --wait cinder/0 pause
+    juju run cinder/0 pause
 
 startup
 ^^^^^^^
 
 To resume the Cinder service::
 
-    juju run --wait cinder/0 resume
+    juju run cinder/0 resume
 
 -------------------------------------------------------------------------------
 
@@ -569,7 +569,7 @@ read queries
 
 To see the etcd cluster status. On any ``etcd`` unit::
 
-    juju run --wait etcd/0 health
+    juju run etcd/0 health
 
 loss of etcd quorum
 ^^^^^^^^^^^^^^^^^^^
@@ -613,7 +613,7 @@ shutdown
 
 To pause the Glance service::
 
-    juju run --wait glance/0 pause
+    juju run glance/0 pause
 
 .. important::
 
@@ -625,7 +625,7 @@ startup
 
 To resume the Glance service::
 
-    juju run --wait glance/0 resume
+    juju run glance/0 resume
 
 .. important::
 
@@ -642,7 +642,7 @@ shutdown
 
 To pause the Keystone service::
 
-    juju run --wait keystone/0 pause
+    juju run keystone/0 pause
 
 .. important::
 
@@ -654,7 +654,7 @@ startup
 
 To resume the Keystone service::
 
-    juju run --wait keystone/0 resume
+    juju run keystone/0 resume
 
 .. important::
 
@@ -677,7 +677,7 @@ shutdown
 
 1. Pause the Landscape service::
 
-    juju run --wait landscape-server/0 pause
+    juju run landscape-server/0 pause
 
 2. Stop the PostgreSQL service::
 
@@ -685,7 +685,7 @@ shutdown
 
 3. Pause the RabbitMQ service::
 
-    juju run --wait rabbitmq-server/0 pause
+    juju run rabbitmq-server/0 pause
 
 .. caution::
 
@@ -699,7 +699,7 @@ The startup of Landscape should be done in the reverse order.
 
 1. Ensure the RabbitMQ service is started::
 
-    juju run --wait rabbitmq-server/0 resume
+    juju run rabbitmq-server/0 resume
 
 2. Ensure the PostgreSQL service is started::
 
@@ -707,7 +707,7 @@ The startup of Landscape should be done in the reverse order.
 
 3. Resume the Landscape service::
 
-    juju run --wait landscape-server/0 resume
+    juju run landscape-server/0 resume
 
 -------------------------------------------------------------------------------
 
@@ -721,7 +721,7 @@ To pause the MySQL InnoDB Cluster for a mysql-innodb-cluster unit:
 
 .. code-block:: none
 
-   juju run --wait mysql-innodb-cluster/0 pause
+   juju run mysql-innodb-cluster/0 pause
 
 To gracefully shut down the cluster repeat the above for every unit.
 
@@ -769,7 +769,7 @@ action on any unit:
 
 .. code-block:: none
 
-   juju run --wait mysql-innodb-cluster/1 reboot-cluster-from-complete-outage
+   juju run mysql-innodb-cluster/1 reboot-cluster-from-complete-outage
 
 Here we see, in the command's partial output, that the chosen unit does not
 correspond to the GTID node:
@@ -785,7 +785,7 @@ corresponds to unit ``mysql-innodb-cluster/2``. Therefore:
 
 .. code-block:: none
 
-   juju run --wait mysql-innodb-cluster/2 reboot-cluster-from-complete-outage
+   juju run mysql-innodb-cluster/2 reboot-cluster-from-complete-outage
 
 This time, the output should include:
 
@@ -861,14 +861,14 @@ shutdown
 
 To pause a Neutron gateway service::
 
-    juju run --wait neutron-gateway/0 pause
+    juju run neutron-gateway/0 pause
 
 startup
 ^^^^^^^
 
 To resume a Neutron gateway service::
 
-    juju run --wait neutron-gateway/0 resume
+    juju run neutron-gateway/0 resume
 
 -------------------------------------------------------------------------------
 
@@ -880,14 +880,14 @@ shutdown
 
 To pause the Open vSwitch service::
 
-    juju run --wait neutron-openvswitch/0 pause
+    juju run neutron-openvswitch/0 pause
 
 startup
 ^^^^^^^
 
 To resume the Open vSwitch service::
 
-    juju run --wait neutron-openvswitch/0 resume
+    juju run neutron-openvswitch/0 resume
 
 -------------------------------------------------------------------------------
 
@@ -900,14 +900,14 @@ shutdown
 To pause Nova controller services (Nova scheduler, Nova api, Nova network, Nova
 objectstore)::
 
-    juju run --wait nova-cloud-controller/0 pause
+    juju run nova-cloud-controller/0 pause
 
 startup
 ^^^^^^^
 
 To resume Nova controller services::
 
-    juju run --wait nova-cloud-controller/0 resume
+    juju run nova-cloud-controller/0 resume
 
 -------------------------------------------------------------------------------
 
@@ -938,7 +938,7 @@ To stop a Nova service:
 
 3. Pause the Nova service::
 
-    juju run --wait nova-compute/0 pause
+    juju run nova-compute/0 pause
 
 .. tip::
 
@@ -951,7 +951,7 @@ startup
 
 To resume a Nova service::
 
-    juju run --wait nova-compute/0 resume
+    juju run nova-compute/0 resume
 
 Instances that fail to come up properly can be moved to another compute host
 (see `Evacuate instances`_).
@@ -968,7 +968,7 @@ To pause the Percona XtraDB service for a ``percona-cluster`` unit:
 
 .. code-block:: none
 
-   juju run --wait percona-cluster/0 pause
+   juju run percona-cluster/0 pause
 
 To gracefully shut down the cluster repeat the above for every unit.
 
@@ -1048,7 +1048,7 @@ to be a non-leader.
 
 .. code-block:: none
 
-   juju run --wait percona-cluster/2 bootstrap-pxc
+   juju run percona-cluster/2 bootstrap-pxc
 
 Notify the cluster of the new bootstrap UUID
 """"""""""""""""""""""""""""""""""""""""""""
@@ -1086,7 +1086,7 @@ leader, which here is ``percona-cluster/0``:
 
 .. code-block:: none
 
-   juju run --wait percona-cluster/0 notify-bootstrapped
+   juju run percona-cluster/0 notify-bootstrapped
 
 After the model settles, the status output should show all nodes in active and
 ready state:
@@ -1114,14 +1114,14 @@ shutdown
 
 To pause a RabbitMQ service::
 
-    juju run --wait rabbitmq-server/0 pause
+    juju run rabbitmq-server/0 pause
 
 startup
 ^^^^^^^
 
 To resume a RabbitMQ service::
 
-    juju run --wait rabbitmq-server/0 resume
+    juju run rabbitmq-server/0 resume
 
 read queries
 ^^^^^^^^^^^^
@@ -1129,7 +1129,7 @@ read queries
 Provided rabbitmq is running on a ``rabbitmq-server`` unit, you can perform a
 status check::
 
-    juju run --wait rabbitmq-server/1 cluster-status
+    juju run rabbitmq-server/1 cluster-status
 
 Example partial output is:
 
@@ -1147,7 +1147,7 @@ above).
 
 To list unconsumed queues (those with pending messages)::
 
-    juju run --wait rabbitmq-server/1 list-unconsumed-queues
+    juju run rabbitmq-server/1 list-unconsumed-queues
 
 See `Partitions`_ and `Queues`_ in the RabbitMQ documentation.
 
@@ -1160,10 +1160,10 @@ along the way:
 
 .. code-block:: none
 
-   juju run --wait rabbitmq-server/0 pause
-   juju run --wait rabbitmq-server/1 cluster-status
-   juju run --wait rabbitmq-server/0 pause
-   juju run --wait rabbitmq-server/1 cluster-status
+   juju run rabbitmq-server/0 pause
+   juju run rabbitmq-server/1 cluster-status
+   juju run rabbitmq-server/0 pause
+   juju run rabbitmq-server/1 cluster-status
 
 If errors persist, the mnesia database will need to be removed from the
 affected unit so it can be resynced from the other units. Do this by removing
@@ -1235,7 +1235,7 @@ e.g.
 
 .. code-block:: none
 
-   juju run --wait rabbitmq-server/0 force-boot
+   juju run rabbitmq-server/0 force-boot
 
 which makes use of the RabbitMQ `force_boot`_ option. The cluster will
 become operational, however, it will be running on fewer units and
@@ -1276,7 +1276,7 @@ shutdown
 
 To pause a Vault service::
 
-    juju run --wait vault/0 pause
+    juju run vault/0 pause
 
 The :command:`juju status` command will return: ``blocked, Vault service not
 running``.
@@ -1286,7 +1286,7 @@ startup
 
 To resume a Vault service::
 
-    juju run --wait vault/0 resume
+    juju run vault/0 resume
 
 The :command:`juju status` command will return: ``blocked, Unit is sealed``.
 

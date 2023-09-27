@@ -92,7 +92,7 @@ To see more detail the ``show-deferred-events`` action is used:
 
 .. code-block:: none
 
-   juju run --wait neutron-openvswitch/1 show-deferred-events
+   juju run neutron-openvswitch/1 show-deferred-events
 
    unit-neutron-openvswitch-1:
      UnitId: neutron-openvswitch/1
@@ -122,7 +122,7 @@ action:
 
 .. code-block:: none
 
-   juju run --wait neutron-openvswitch/1 restart-services deferred-only=True
+   juju run neutron-openvswitch/1 restart-services deferred-only=True
 
 The argument ``deferred-only`` ensures that only the necessary services are
 restarted (for a charm that manages multiple services).
@@ -156,7 +156,7 @@ action:
 
 .. code-block:: none
 
-   juju run --wait neutron-openvswitch/1 run-deferred-hooks
+   juju run neutron-openvswitch/1 run-deferred-hooks
 
 .. LINKS
 

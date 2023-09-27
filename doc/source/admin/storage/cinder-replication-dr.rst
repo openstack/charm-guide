@@ -194,7 +194,7 @@ Demote the site-a images with the ``demote`` action:
 
 .. code-block:: none
 
-   juju run --wait site-a-ceph-rbd-mirror/0 demote pools=cinder-ceph-a
+   juju run site-a-ceph-rbd-mirror/0 demote pools=cinder-ceph-a
 
 Flag the site-a images for a resync with the ``resync-pools`` action. The
 ``pools`` argument should point to the corresponding site's pool, which by
@@ -203,7 +203,7 @@ default is the name of the cinder-ceph application for the site (here
 
 .. code-block:: none
 
-   juju run --wait site-a-ceph-rbd-mirror/0 resync-pools i-really-mean-it=true pools=cinder-ceph-a
+   juju run site-a-ceph-rbd-mirror/0 resync-pools i-really-mean-it=true pools=cinder-ceph-a
 
 The Ceph RBD mirror daemon will perform the resync in the background.
 
@@ -216,7 +216,7 @@ are fully synchronised. Perform a check with the ceph-rbd-mirror charm's
 
 .. code-block:: none
 
-   juju run --wait site-a-ceph-rbd-mirror/0 status verbose=true | grep -A3 volume-
+   juju run site-a-ceph-rbd-mirror/0 status verbose=true | grep -A3 volume-
 
 This will take a while.
 
@@ -273,7 +273,7 @@ We can also check the status of the image as per :ref:`RBD image status
 
 .. code-block:: none
 
-   juju run --wait site-a-ceph-rbd-mirror/0 status verbose=true | grep -A3 volume-
+   juju run site-a-ceph-rbd-mirror/0 status verbose=true | grep -A3 volume-
 
    volume-c44d4d20-6ede-422a-903d-588d1b0d51b0:
      global_id:   3a4aa755-c9ee-4319-8ba4-fc494d20d783

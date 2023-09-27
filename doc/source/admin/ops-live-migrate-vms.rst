@@ -183,7 +183,7 @@ corresponding unit:
 
 .. code-block:: none
 
-   juju run --wait nova-compute/0 disable
+   juju run nova-compute/0 disable
 
 This will stop nova-compute services and inform nova-scheduler to no longer
 assign new VMs to the host.
@@ -304,7 +304,7 @@ its corresponding unit:
 
 .. code-block:: none
 
-   juju run --wait nova-compute/0 enable
+   juju run nova-compute/0 enable
 
 This will start nova-compute services and allows nova-scheduler to run new VMs
 on this host.

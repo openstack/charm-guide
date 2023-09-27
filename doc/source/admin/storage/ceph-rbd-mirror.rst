@@ -271,14 +271,14 @@ protocol) or manually by the operator:
 
    .. code-block:: none
 
-      juju run --wait -m site-a site-a-ceph-mon/leader create-pool name=mypool app-name=rbd
-      juju run --wait -m site-a site-a-ceph-rbd-mirror/leader refresh-pools
+      juju run -m site-a site-a-ceph-mon/leader create-pool name=mypool app-name=rbd
+      juju run -m site-a site-a-ceph-rbd-mirror/leader refresh-pools
 
    This can be verified by listing the pools in site 'b':
 
    .. code-block:: none
 
-      juju run --wait -m site-b site-b-ceph-mon/leader list-pools
+      juju run -m site-b site-b-ceph-mon/leader list-pools
 
 .. note::
 
@@ -299,22 +299,22 @@ the latter is promoted. The rest of the commands are status checks:
 
 .. code-block:: none
 
-   juju run --wait -m site-a site-a-ceph-rbd-mirror/leader status verbose=true
-   juju run --wait -m site-b site-b-ceph-rbd-mirror/leader status verbose=true
+   juju run -m site-a site-a-ceph-rbd-mirror/leader status verbose=true
+   juju run -m site-b site-b-ceph-rbd-mirror/leader status verbose=true
 
-   juju run --wait -m site-a site-a-ceph-rbd-mirror/leader demote
+   juju run -m site-a site-a-ceph-rbd-mirror/leader demote
 
-   juju run --wait -m site-a site-a-ceph-rbd-mirror/leader status verbose=true
-   juju run --wait -m site-b site-b-ceph-rbd-mirror/leader status verbose=true
+   juju run -m site-a site-a-ceph-rbd-mirror/leader status verbose=true
+   juju run -m site-b site-b-ceph-rbd-mirror/leader status verbose=true
 
-   juju run --wait -m site-b site-b-ceph-rbd-mirror/leader promote
+   juju run -m site-b site-b-ceph-rbd-mirror/leader promote
 
 To fall back to site 'a' the actions are reversed:
 
 .. code-block:: none
 
-   juju run --wait -m site-b site-b-ceph-rbd-mirror/leader demote
-   juju run --wait -m site-a site-a-ceph-rbd-mirror/leader promote
+   juju run -m site-b site-b-ceph-rbd-mirror/leader demote
+   juju run -m site-a site-a-ceph-rbd-mirror/leader promote
 
 .. note::
 
@@ -341,13 +341,13 @@ Here, we make site 'a' be the primary by demoting site 'b' and promoting site
 
 .. code-block:: none
 
-   juju run --wait -m site-b site-b-ceph-rbd-mirror/leader demote
-   juju run --wait -m site-a site-a-ceph-rbd-mirror/leader promote force=true
+   juju run -m site-b site-b-ceph-rbd-mirror/leader demote
+   juju run -m site-a site-a-ceph-rbd-mirror/leader promote force=true
 
-   juju run --wait -m site-a site-a-ceph-rbd-mirror/leader status verbose=true
-   juju run --wait -m site-b site-b-ceph-rbd-mirror/leader status verbose=true
+   juju run -m site-a site-a-ceph-rbd-mirror/leader status verbose=true
+   juju run -m site-b site-b-ceph-rbd-mirror/leader status verbose=true
 
-   juju run --wait -m site-b site-b-ceph-rbd-mirror/leader resync-pools i-really-mean-it=true
+   juju run -m site-b site-b-ceph-rbd-mirror/leader resync-pools i-really-mean-it=true
 
 .. note::
 

@@ -141,7 +141,7 @@ On a per-application basis:
 
     .. code-block:: none
 
-       juju run --wait percona-cluster/0 set-pxc-strict-mode mode=MASTER
+       juju run percona-cluster/0 set-pxc-strict-mode mode=MASTER
 
   * Here is a non-exhaustive example that lists databases using the :command:`mysql` client:
 
@@ -203,10 +203,10 @@ On a per-application basis:
     .. code-block:: none
 
        # Single DB
-       juju run --wait percona-cluster/0 mysqldump databases=keystone
+       juju run percona-cluster/0 mysqldump databases=keystone
 
        # Multiple DBs
-       juju run --wait percona-cluster/0 mysqldump \
+       juju run percona-cluster/0 mysqldump \
        databases=aodh,cinder,designate,glance,gnochii,horizon,keystone,neutron,nova,nova_api,nova_cell0,placement
 
   * Return Percona enforcing strict mode. See `Percona strict mode`_ to
@@ -214,7 +214,7 @@ On a per-application basis:
 
     .. code-block:: none
 
-       juju run --wait percona-cluster/0 set-pxc-strict-mode mode=ENFORCING
+       juju run percona-cluster/0 set-pxc-strict-mode mode=ENFORCING
 
 * Transfer the mysqldump file from the percona-cluster unit to the
   mysql-innodb-cluster RW unit. The RW unit of the mysql-innodb-cluster can be
@@ -230,7 +230,7 @@ On a per-application basis:
 
   .. code-block:: none
 
-     juju run --wait mysql-innodb-cluster/0 restore-mysqldump dump-file=/home/ubuntu/mysqldump-keystone-<DATE>.gz
+     juju run mysql-innodb-cluster/0 restore-mysqldump dump-file=/home/ubuntu/mysqldump-keystone-<DATE>.gz
 
 * Relate an instance of mysql-router for every application that requires a data
   store (i.e. every application that needed percona-cluster):

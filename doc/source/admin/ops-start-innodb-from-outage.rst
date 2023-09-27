@@ -39,7 +39,7 @@ action on any mysql-innodb-cluster unit:
 
 .. code-block:: none
 
-   juju run --wait mysql-innodb-cluster/1 reboot-cluster-from-complete-outage
+   juju run mysql-innodb-cluster/1 reboot-cluster-from-complete-outage
 
 .. important::
 

@@ -50,15 +50,15 @@ and 3.x. These are caused by the renaming and re-purposing of several commands
 
 In the context of this guide, the pertinent changes are shown here:
 
-+---------------------------+----------------------------+
-| 2.9.x                     | 3.x                        |
-+===========================+============================+
-| :command:`add-relation`   | :command:`integrate`       |
-+---------------------------+----------------------------+
-| :command:`run`            | :command:`exec`            |
-+---------------------------+----------------------------+
-| :command:`run-action`     | :command:`run`             |
-+---------------------------+----------------------------+
++------------------------------+----------------------+
+| 2.9.x                        | 3.x                  |
++==============================+======================+
+| :command:`add-relation`      | :command:`integrate` |
++------------------------------+----------------------+
+| :command:`run`               | :command:`exec`      |
++------------------------------+----------------------+
+| :command:`run-action --wait` | :command:`run`       |
++------------------------------+----------------------+
 
 See the `Juju 3.0 release notes`_ for the comprehensive list of changes.
 

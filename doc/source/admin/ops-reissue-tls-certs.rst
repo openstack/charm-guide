@@ -80,7 +80,7 @@ To reissue new certificates to all TLS-enabled clients run the
 
 .. code-block:: none
 
-   juju run --wait vault/leader reissue-certificates
+   juju run vault/leader reissue-certificates
 
 The output to the :command:`juju status` command for the model will show
 activity for each affected service as their corresponding endpoints get updated

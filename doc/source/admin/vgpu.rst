@@ -100,7 +100,7 @@ querying the corresponding nova-compute-nvidia-vgpu application unit:
 
 .. code-block:: none
 
-   juju run --wait nova-compute-nvidia-vgpu/0 list-vgpu-types
+   juju run nova-compute-nvidia-vgpu/0 list-vgpu-types
 
 Sample output:
 

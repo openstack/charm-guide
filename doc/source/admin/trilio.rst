@@ -281,7 +281,7 @@ application). This is done with the trilio-wlm charm's
 
 .. code-block:: none
 
-   juju run --wait trilio-wlm/leader create-cloud-admin-trust password=cloudadminpassword
+   juju run trilio-wlm/leader create-cloud-admin-trust password=cloudadminpassword
 
 Licensing
 ---------

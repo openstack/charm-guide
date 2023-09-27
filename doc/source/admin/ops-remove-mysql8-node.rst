@@ -57,7 +57,7 @@ Check cluster status:
 
 .. code-block:: none
 
-   juju run --wait mysql-innodb-cluster/leader cluster-status
+   juju run mysql-innodb-cluster/leader cluster-status
 
    unit-mysql-innodb-cluster-0:
      UnitId: mysql-innodb-cluster/0
@@ -183,13 +183,13 @@ While the instance is running:
 
 .. code-block:: none
 
-   juju run --wait mysql-innodb-cluster/2 remove-instance address=<instance-ip-address>
+   juju run mysql-innodb-cluster/2 remove-instance address=<instance-ip-address>
 
 Use the force argument if the host is down (or no longer exists):
 
 .. code-block:: none
 
-   juju run --wait mysql-innodb-cluster/2 remove-instance address=<instance-ip-address> force=True
+   juju run mysql-innodb-cluster/2 remove-instance address=<instance-ip-address> force=True
 
 .. warning::
 
@@ -200,7 +200,7 @@ Check cluster status:
 
 .. code-block:: none
 
-   juju run --wait mysql-innodb-cluster/2 cluster-status
+   juju run mysql-innodb-cluster/2 cluster-status
 
    {
       "clusterName":"jujuCluster",
@@ -282,7 +282,7 @@ functioning correctly:
 
 .. code-block:: none
 
-   juju run --wait mysql-innodb-cluster/leader cluster-status
+   juju run mysql-innodb-cluster/leader cluster-status
 
 And run an openstack command:
 

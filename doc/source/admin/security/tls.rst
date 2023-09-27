@@ -53,7 +53,7 @@ To have Vault generate a self-signed root CA certificate:
 
 .. code-block:: none
 
-   juju run --wait vault/leader generate-root-ca
+   juju run vault/leader generate-root-ca
 
 You're done.
 
@@ -75,7 +75,7 @@ unit:
 
 .. code-block:: none
 
-   juju run --wait vault/leader get-csr
+   juju run vault/leader get-csr
 
 .. note::
 
@@ -179,7 +179,7 @@ action on the leader unit:
 
 .. code-block:: none
 
-   juju run --wait vault/leader upload-signed-csr \
+   juju run vault/leader upload-signed-csr \
        pem="$(cat ~/vault-charm-int.pem | base64)" \
        root-ca="$(cat ~/root-ca.pem | base64)" \
        allowed-domains='openstack.local'
@@ -304,7 +304,7 @@ backend:
 
 .. code-block:: none
 
-   juju run --wait vault/leader disable-pki
+   juju run vault/leader disable-pki
 
 This step deletes the existing root certificate and invalidates any previous
 CSR requests.
@@ -319,7 +319,7 @@ CA certificate to Vault:
 
 .. code-block:: none
 
-   juju run --wait vault/leader upload-signed-csr \
+   juju run vault/leader upload-signed-csr \
       pem=“$(cat /path/to/vault-charm-int.pem | base64)" \
       root-ca="$(cat /path/to/root-ca.pem | base64)"
 
@@ -331,8 +331,8 @@ PKI secrets backend and then generate a root CA certificate:
 
 .. code-block:: none
 
-   juju run --wait vault/leader disable-pki
-   juju run --wait vault/leader generate-root-ca
+   juju run vault/leader disable-pki
+   juju run vault/leader generate-root-ca
 
 Configuring SSL certificates via charm options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -110,7 +110,7 @@ Pause the RabbitMQ service on the unhealthy node/unit:
 
 .. code-block:: none
 
-   juju run --wait rabbitmq-server/0 pause
+   juju run rabbitmq-server/0 pause
 
 Identify the unhealthy node's hostname
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -150,7 +150,7 @@ from the cluster:
 
 .. code-block:: none
 
-   juju run --wait rabbitmq-server/2 forget-cluster-node node=rabbit@juju-64dabb-0-lxd-0
+   juju run rabbitmq-server/2 forget-cluster-node node=rabbit@juju-64dabb-0-lxd-0
 
 The cluster's status output should now include:
 
@@ -264,7 +264,7 @@ Resume the RabbitMQ service on the repaired node/unit:
 
 .. code-block:: none
 
-   juju run --wait rabbitmq-server/0 resume
+   juju run rabbitmq-server/0 resume
 
 Verify model health
 ~~~~~~~~~~~~~~~~~~~

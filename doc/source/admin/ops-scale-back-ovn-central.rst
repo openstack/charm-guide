@@ -99,7 +99,7 @@ application to settle and run:
 
 .. code-block:: none
 
-   juju run --wait <OVN_CENTRAL_UNIT> cluster-status
+   juju run <OVN_CENTRAL_UNIT> cluster-status
 
 This output will show yaml-formatted status of both Southbound and Northbound
 OVN clusters. Each cluster status will contain key "unit_map", if this list

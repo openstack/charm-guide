@@ -116,7 +116,7 @@ action:
 
 .. code-block:: none
 
-   juju run --wait glance-simplestreams-sync/leader sync-images
+   juju run glance-simplestreams-sync/leader sync-images
 
 Sample output:
 

@@ -154,7 +154,7 @@ Site a (primary),
 
 .. code-block:: none
 
-   juju run --wait site-a-ceph-rbd-mirror/0 status verbose=true | grep -A3 volume-
+   juju run site-a-ceph-rbd-mirror/0 status verbose=true | grep -A3 volume-
          volume-c44d4d20-6ede-422a-903d-588d1b0d51b0:
            global_id:   f66140a6-0c09-478c-9431-4eb1eb16ca86
            state:       up+stopped
@@ -164,7 +164,7 @@ Site b (secondary is in sync with the primary),
 
 .. code-block:: none
 
-   juju run --wait site-b-ceph-rbd-mirror/0 status verbose=true | grep -A3 volume-
+   juju run site-b-ceph-rbd-mirror/0 status verbose=true | grep -A3 volume-
          volume-c44d4d20-6ede-422a-903d-588d1b0d51b0:
            global_id:   f66140a6-0c09-478c-9431-4eb1eb16ca86
            state:       up+replaying
@@ -396,7 +396,7 @@ the ceph-rbd-mirror unit in site-b is the target:
 
 .. code-block:: none
 
-   juju run --wait site-b-ceph-rbd-mirror/0 status verbose=true | grep -A3 volume-
+   juju run site-b-ceph-rbd-mirror/0 status verbose=true | grep -A3 volume-
 
 If all images look good, perform the failover of site-a:
 
@@ -515,7 +515,7 @@ ceph-rbd-mirror charm's ``status`` action as per `RBD image status`_:
 
 .. code-block:: none
 
-   juju run --wait site-b-ceph-rbd-mirror/0 status verbose=true | grep -A3 volume-
+   juju run site-b-ceph-rbd-mirror/0 status verbose=true | grep -A3 volume-
 
 If all images look good, perform the failover of site-a:
 

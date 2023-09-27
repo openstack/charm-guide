@@ -81,7 +81,7 @@ being removed. Here, unit ``keystone-hacluster/2`` corresponds to unit
 
 .. code-block:: none
 
-   juju run --wait keystone-hacluster/2 pause
+   juju run keystone-hacluster/2 pause
 
 Remove the unwanted node
 ~~~~~~~~~~~~~~~~~~~~~~~~

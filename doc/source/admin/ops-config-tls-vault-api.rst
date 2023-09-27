@@ -92,7 +92,7 @@ For a single unit (``vault/0``):
 
 .. code-block:: none
 
-   juju run --wait vault/0 restart
+   juju run vault/0 restart
 
 The output to :command:`juju status vault` should show that Vault is sealed:
 

@@ -33,7 +33,7 @@ Here are example commands for the process just described:
 .. code-block:: none
 
    juju deploy --series bionic --config openstack-origin=cloud:bionic-train cs:placement
-   juju run --wait nova-cloud-controller/leader pause
+   juju run nova-cloud-controller/leader pause
    juju integrate placement percona-cluster
    juju integrate placement keystone
    juju integrate placement nova-cloud-controller
@@ -44,7 +44,7 @@ placement IP address. Follow this up by resuming nova-cloud-controller:
 .. code-block:: none
 
    openstack endpoint list
-   juju run --wait nova-cloud-controller/leader resume
+   juju run nova-cloud-controller/leader resume
 
 Finally, upgrade the nova-cloud-controller services. Below all units are
 upgraded simultaneously but see the :ref:`paused_single_unit` service upgrade

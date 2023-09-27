@@ -163,7 +163,7 @@ on the lead octavia unit:
 
 .. code-block:: none
 
-   juju run --wait octavia/0 configure-resources
+   juju run octavia/0 configure-resources
 
 This action must be run before Octavia is fully operational.
 
@@ -234,7 +234,7 @@ This is accomplished by running an action on one of the units.
 
 .. code-block:: none
 
-   juju run --wait octavia-diskimage-retrofit/leader retrofit-image
+   juju run octavia-diskimage-retrofit/leader retrofit-image
 
 Octavia will use this image for all Amphora instances.
 

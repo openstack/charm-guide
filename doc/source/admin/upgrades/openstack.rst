@@ -144,10 +144,10 @@ The percona-cluster application requires a modification to its "strict mode"
 
 .. code-block:: none
 
-   juju run --wait percona-cluster/0 set-pxc-strict-mode mode=MASTER
-   juju run --wait percona-cluster/0 mysqldump \
+   juju run percona-cluster/0 set-pxc-strict-mode mode=MASTER
+   juju run percona-cluster/0 mysqldump \
       databases=aodh,cinder,designate,glance,gnocchi,horizon,keystone,neutron,nova,nova_api,nova_cell0,placement
-   juju run --wait percona-cluster/0 set-pxc-strict-mode mode=ENFORCING
+   juju run percona-cluster/0 set-pxc-strict-mode mode=ENFORCING
 
    juju exec -u percona-cluster/0 -- sudo chmod o+rx /var/backups/mysql
    juju scp -- -r percona-cluster/0:/var/backups/mysql .
@@ -158,7 +158,7 @@ mysql-innodb-cluster
 
 .. code-block:: none
 
-   juju run --wait mysql-innodb-cluster/0 mysqldump \
+   juju run mysql-innodb-cluster/0 mysqldump \
       databases=cinder,designate,glance,gnocchi,horizon,keystone,neutron,nova,nova_api,nova_cell0,placement,vault
 
    juju exec -u mysql-innodb-cluster/0 -- sudo chmod o+rx /var/backups/mysql
@@ -174,7 +174,7 @@ by running the ``archive-data`` action on any nova-cloud-controller unit:
 
 .. code-block:: none
 
-   juju run --wait nova-cloud-controller/0 archive-data
+   juju run nova-cloud-controller/0 archive-data
 
 This action may need to be run multiple times until the action output reports
 'Nothing was archived'.
@@ -462,9 +462,9 @@ the ``openstack-upgrade`` action applied first):
 
 .. code-block:: none
 
-   juju run --wait glance/1 openstack-upgrade
-   juju run --wait glance/0 openstack-upgrade
-   juju run --wait glance/2 openstack-upgrade
+   juju run glance/1 openstack-upgrade
+   juju run glance/0 openstack-upgrade
+   juju run glance/2 openstack-upgrade
 
 .. _paused_single_unit:
 
@@ -509,17 +509,17 @@ the ``openstack-upgrade`` action applied first):
 
 .. code-block:: none
 
-   juju run --wait nova-compute/0 pause
-   juju run --wait nova-compute/0 openstack-upgrade
-   juju run --wait nova-compute/0 resume
+   juju run nova-compute/0 pause
+   juju run nova-compute/0 openstack-upgrade
+   juju run nova-compute/0 resume
 
-   juju run --wait nova-compute/1 pause
-   juju run --wait nova-compute/1 openstack-upgrade
-   juju run --wait nova-compute/1 resume
+   juju run nova-compute/1 pause
+   juju run nova-compute/1 openstack-upgrade
+   juju run nova-compute/1 resume
 
-   juju run --wait nova-compute/2 pause
-   juju run --wait nova-compute/2 openstack-upgrade
-   juju run --wait nova-compute/2 resume
+   juju run nova-compute/2 pause
+   juju run nova-compute/2 openstack-upgrade
+   juju run nova-compute/2 resume
 
 Paused-single-unit with hacluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -562,23 +562,23 @@ the ``openstack-upgrade`` action applied first):
 
 .. code-block:: none
 
-   juju run --wait keystone-hacluster/1 pause
-   juju run --wait keystone/2 pause
-   juju run --wait keystone/2 openstack-upgrade
-   juju run --wait keystone/2 resume
-   juju run --wait keystone-hacluster/1 resume
+   juju run keystone-hacluster/1 pause
+   juju run keystone/2 pause
+   juju run keystone/2 openstack-upgrade
+   juju run keystone/2 resume
+   juju run keystone-hacluster/1 resume
 
-   juju run --wait keystone-hacluster/2 pause
-   juju run --wait keystone/1 pause
-   juju run --wait keystone/1 openstack-upgrade
-   juju run --wait keystone/1 resume
-   juju run --wait keystone-hacluster/2 resume
+   juju run keystone-hacluster/2 pause
+   juju run keystone/1 pause
+   juju run keystone/1 openstack-upgrade
+   juju run keystone/1 resume
+   juju run keystone-hacluster/2 resume
 
-   juju run --wait keystone-hacluster/0 pause
-   juju run --wait keystone/0 pause
-   juju run --wait keystone/0 openstack-upgrade
-   juju run --wait keystone/0 resume
-   juju run --wait keystone-hacluster/0 resume
+   juju run keystone-hacluster/0 pause
+   juju run keystone/0 pause
+   juju run keystone/0 openstack-upgrade
+   juju run keystone/0 resume
+   juju run keystone-hacluster/0 resume
 
 .. warning::
 
