@@ -49,31 +49,31 @@ of the ceph-radosgw charm:
     deployment; the zone configuration must be unique per application.
 
 When deploying with this configuration the ceph-radosgw applications will
-deploy into a blocked state until the master/slave (cross-model) relation
+deploy into a blocked state until the primary/secondary (cross-model) relation
 is added.
 
 Typically each ceph-radosgw deployment will be associated with a separate
 ceph cluster at different physical locations - in this example the deployments
 are in different models ('us-east' and 'us-west').
 
-One ceph-radosgw application acts as the initial master for the deployment -
-setup the master relation endpoint as the provider of the offer for the
+One ceph-radosgw application acts as the initial primary for the deployment -
+setup the primary relation endpoint as the provider of the offer for the
 cross-model relation:
 
 .. code::
 
-    juju offer -m us-east rgw-us-east:master
+    juju offer -m us-east rgw-us-east:primary
 
 The cross-model relation offer can then be consumed in the other model and
-related to the slave ceph-radosgw application:
+related to the secondary ceph-radosgw application:
 
 .. code::
 
     juju consume -m us-west admin/us-east.rgw-us-east
-    juju add-relation -m us-west rgw-us-west:slave rgw-us-east:master
+    juju add-relation -m us-west rgw-us-west:secondary rgw-us-east:primary
 
 Once the relation has been added the realm, zonegroup and zone configuration
-will be created in the master deployment and then synced to the slave
+will be created in the primary deployment and then synced to the secondary
 deployment.
 
 The current sync status can be validated from either model:
@@ -97,7 +97,7 @@ optionally be tidied using the 'tidydefaults' action:
 
 .. code::
 
-    juju run-action -m us-west --unit rgw-us-west/0 tidydefaults
+    juju run-action -m us-west --wait rgw-us-west/0 tidydefaults
 
 .. warning::
 
@@ -106,22 +106,22 @@ optionally be tidied using the 'tidydefaults' action:
 Failover/Recovery
 +++++++++++++++++
 
-In the event that the site hosting the zone which is the master for metadata
-(in this example us-east) has an outage, the master metadata zone must be
-failed over to the slave site; this operation is performed using the 'promote'
+In the event that the site hosting the zone which is the primary for metadata
+(in this example us-east) has an outage, the primary metadata zone must be
+failed over to the secondary site; this operation is performed using the 'promote'
 action:
 
 .. code::
 
     juju run-action -m us-west --wait rgw-us-west/0 promote
 
-Once this action has completed, the slave site will be the master for metadata
+Once this action has completed, the secondary site will be the primary for metadata
 updates and the deployment will accept new uploads of data.
 
-Once the failed site has been recovered it will resync and resume as a slave
-to the promoted master site (us-west in this example).
+Once the failed site has been recovered it will resync and resume as a secondary
+to the promoted primary site (us-west in this example).
 
-The master metadata zone can be failed back to its original location once resync
+The primary metadata zone can be failed back to its original location once resync
 has completed using the 'promote' action:
 
 .. code::
@@ -132,9 +132,9 @@ Read/write vs Read-only
 -----------------------
 
 By default all zones within a deployment will be read/write capable but only
-the master zone can be used to create new containers.
+the primary zone can be used to create new containers.
 
-Non-master zones can optionally be marked as read-only by using the 'readonly'
+Non-primary zones can optionally be marked as read-only by using the 'readonly'
 action:
 
 .. code::
@@ -142,7 +142,7 @@ action:
     juju run-action -m us-east --wait rgw-us-east/0 readonly
 
 a zone that is currently read-only can be switched to read/write mode by either
-promoting it to be the current master or by using the 'readwrite' action:
+promoting it to be the current primary or by using the 'readwrite' action:
 
 .. code::
 
