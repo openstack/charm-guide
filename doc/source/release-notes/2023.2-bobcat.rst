@@ -144,6 +144,20 @@ the underlying cluster template to work. This is a potential security risk since
 the trust gives instances OpenStack API access to the cluster's project. For
 more details see bug `LP #1996237`_.
 
+nova-cloud-controller charm: new relation to openstack-dashboard
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``juju integrate nova-cloud-controller:dashboard openstack-dashboard:dashboard``
+allows nova-cloud-controller to know that possible hosts and IP addresses that
+the cloud users use to access the OpenStack Dashboard, the nova-cloud-controller
+units use this information to configure the nova-serialproxy daemon and `allow
+requests`_ coming from the web browsers visiting the dashboard.
+
+This relation is mandatory when the nova-cloud-controller application is
+configured with `enable-serial-console`_ set to True.
+
+For more details see `LP #2030094`_.
+
 Documentation updates
 ---------------------
 
@@ -204,6 +218,8 @@ use Juju 3.x unit agents are related to:
 .. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _interoperable image import: https://docs.openstack.org/glance/latest/admin/interoperable-image-import.html
+.. _allow requests: https://docs.openstack.org/nova/latest/configuration/config.html#console.allowed_origins_
+.. _enable-serial-console: https://charmhub.io/nova-cloud-controller/configure#enable-serial-console_
 
 .. COMMITS
 
@@ -211,3 +227,4 @@ use Juju 3.x unit agents are related to:
 .. _LP #2007587: https://bugs.launchpad.net/vault-charm/+bug/2007587
 .. _LP #2028559: https://bugs.launchpad.net/charm-nova-compute/+bug/2028559
 .. _LP #1996237: https://launchpad.net/bugs/1996237
+.. _LP #2030094: https://bugs.launchpad.net/charm-nova-cloud-controller/+bug/2030094
