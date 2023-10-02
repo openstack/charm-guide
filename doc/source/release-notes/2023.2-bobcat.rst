@@ -158,6 +158,61 @@ configured with `enable-serial-console`_ set to True.
 
 For more details see `LP #2030094`_.
 
+Nova AvailabilityZoneFilter removal in Bobcat
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The AvailabilityZoneFilter was removed from nova.conf in 2023.2 Bobcat
+(see `nova 2023.2 upgrades`_). In order for the scheduler to honor an
+availability zone request, there must now be a placement aggregate
+that matches the nova host aggregate that was assigned the availability
+zone.
+
+Since nova 18.0.0 (Rocky), the nova-api service attempts to automatically
+mirror the association of compute host with a placement aggregate when
+a host is added/removed to/from a nova host aggregate.
+
+The following example shows how to determine if mirroring of nova host
+aggregates to placement aggregates has occurred:
+
+.. code-block:: none
+
+   openstack aggregate list
+   +----+------+-------------------+
+   | ID | Name | Availability Zone |
+   +----+------+-------------------+
+   |  1 | myag | myaz              |
+   +----+------+-------------------+
+
+   openstack aggregate show --column availability_zone --column hosts --column uuid myag
+   +-------------------+------------------------------------------------------+
+   | Field             | Value                                                |
+   +-------------------+------------------------------------------------------+
+   | availability_zone | myaz                                                 |
+   | hosts             | juju-2c7db9-zaza-2349f0f509d3-14.project.serverstack |
+   | uuid              | 4dd789b7-b4c3-45f1-8b2b-a6f5a8c37d55                 |
+   +-------------------+------------------------------------------------------+
+
+   openstack resource provider list --column uuid --column name
+   +--------------------------------------+------------------------------------------------------+
+   | uuid                                 | name                                                 |
+   +--------------------------------------+------------------------------------------------------+
+   | 482399c5-9ed7-4d4d-bdcf-c076dae99f2d | juju-2c7db9-zaza-2349f0f509d3-14.project.serverstack |
+   | d1322831-94db-4628-9adc-3406014d24e4 | juju-2c7db9-zaza-2349f0f509d3-15.project.serverstack |
+   | 624c0f64-8a2b-47c7-9ea6-e3f1de611bc2 | juju-2c7db9-zaza-2349f0f509d3-16.project.serverstack |
+   +--------------------------------------+------------------------------------------------------+
+
+   openstack resource provider aggregate list --column uuid 482399c5-9ed7-4d4d-bdcf-c076dae99f2d
+   +--------------------------------------+
+   | uuid                                 |
+   +--------------------------------------+
+   | 4dd789b7-b4c3-45f1-8b2b-a6f5a8c37d55 |
+   +--------------------------------------+
+
+Manual intervention will be required if an AZ-assigned Nova aggregate
+is not associated with a Placement aggregate. This is done with the
+``openstack resource provider aggregate set`` command (see `nova
+aggregates in placement`_).
+
 Documentation updates
 ---------------------
 
@@ -220,6 +275,8 @@ use Juju 3.x unit agents are related to:
 .. _interoperable image import: https://docs.openstack.org/glance/latest/admin/interoperable-image-import.html
 .. _allow requests: https://docs.openstack.org/nova/latest/configuration/config.html#console.allowed_origins_
 .. _enable-serial-console: https://charmhub.io/nova-cloud-controller/configure#enable-serial-console_
+.. _nova 2023.2 upgrades: https://docs.openstack.org/releasenotes/nova/2023.2.html#upgrade-notes
+.. _nova aggregates in placement: https://docs.openstack.org/nova/latest/admin/aggregates.html#aggregates-in-placement
 
 .. COMMITS
 
