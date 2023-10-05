@@ -213,6 +213,14 @@ is not associated with a Placement aggregate. This is done with the
 ``openstack resource provider aggregate set`` command (see `nova
 aggregates in placement`_).
 
+Removal of hyperv mechanism driver
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The hyperv mechanism driver has been removed from the neutron-api charm
+in Bobcat. The networking-hyperv project is now retired and the package
+was removed from Ubuntu 23.10 (Mantic). For more details see bug
+`LP #2036953`_.
+
 Documentation updates
 ---------------------
 
@@ -285,3 +293,4 @@ use Juju 3.x unit agents are related to:
 .. _LP #2028559: https://bugs.launchpad.net/charm-nova-compute/+bug/2028559
 .. _LP #1996237: https://launchpad.net/bugs/1996237
 .. _LP #2030094: https://bugs.launchpad.net/charm-nova-cloud-controller/+bug/2030094
+.. _LP #2036953: https://launchpad.net/bugs/2036953
