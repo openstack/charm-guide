@@ -245,6 +245,17 @@ Informational notices
 <TITLE>
 ~~~~~~~
 
+Ceph FileStore Support Removed
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+WARNING: do not attempt to upgrade FileStore-formatted OSDs to Ceph Reef.
+
+FileStore OSDs were deprecated in Ceph Quincy, and Ceph Reef has removed support for FileStore completely -- only BlueStore will be supported. FileStore OSDs will NOT be able to start under Ceph Reef!
+
+The ceph-osd charm will attempt to detect FileStore OSDs, and if any are found will block an upgrade to Ceph Reef. Please convert your OSDs before upgradeing Ceph.
+
+
+
 Deprecation notices
 -------------------
 
