@@ -6,6 +6,9 @@ The 2023.2 (Bobcat) OpenStack Charms release includes updates for the charms
 described on the :doc:`../project/openstack-charms` page. As of this release,
 the project consists of <NUMBER-OF-STABLE-CHARMS> stable charms.
 
+The 2023.2 (Bobcat) OpenStack Charms release is a non-SLURP release and will
+be supported until July, 2024.
+
 For scheduling information of past and future releases see the
 :doc:`../project/release-schedule`.
 
