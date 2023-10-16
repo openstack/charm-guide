@@ -61,6 +61,7 @@ documented OpenStack upgrade path notes:
 .. toctree::
    :maxdepth: 1
 
+   issues/upgrade-2023.1-to-2023.2
    issues/upgrade-xena-to-yoga
    issues/upgrade-wallaby-to-xena
    issues/upgrade-victoria-to-wallaby
