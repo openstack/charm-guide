@@ -81,6 +81,27 @@ also associated with a Placement aggregate. This is done with the
 :command:`openstack resource provider aggregate set` command (see `Aggregates
 in Placement`_) in the Nova documentation.
 
+.. _bluestore_migration:
+
+FileStore support removal in Ceph Reef
+--------------------------------------
+
+Charmed OpenStack 2023.2 ships with Ceph Reef, which has `removed support for
+the OSD FileStore format`_, leaving support for only the BlueStore format.
+
+.. warning::
+
+   Data loss may occur if you attempt to upgrade to Ceph Reef when FileStore
+   OSDs are present. As an extra precaution, the ceph-osd charm will attempt to
+   detect FileStore OSDs, and, if any are found, it will block a payload
+   upgrade.
+
+Before upgrading the payload ("OpenStack upgrade") of any of the Ceph charms,
+migrate all FileStore OSDs to BlueStore by following the upstream
+documentation: `BlueStore migration strategies`_.
+
 .. LINKS
 .. _Nova 2023.2 upgrade notes: https://docs.openstack.org/releasenotes/nova/2023.2.html#upgrade-notes
 .. _Aggregates in Placement: https://docs.openstack.org/nova/latest/admin/aggregates.html#aggregates-in-placement
+.. _removed support for the OSD FileStore format: https://docs.ceph.com/en/latest/rados/configuration/storage-devices/#filestore
+.. _BlueStore migration strategies: https://docs.ceph.com/en/quincy/rados/operations/bluestore-migration/

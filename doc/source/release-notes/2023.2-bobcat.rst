@@ -4,10 +4,12 @@
 
 The 2023.2 (Bobcat) OpenStack Charms release includes updates for the charms
 described on the :doc:`../project/openstack-charms` page. As of this release,
-the project consists of <NUMBER-OF-STABLE-CHARMS> stable charms.
+the project consists of 62 stable charms.
 
-The 2023.2 (Bobcat) OpenStack Charms release is a non-SLURP release and will
-be supported until July, 2024.
+.. note::
+
+   This release corresponds to a non-SLURP (upstream OpenStack) release and
+   will consequently only be supported until July 2024.
 
 For scheduling information of past and future releases see the
 :doc:`../project/release-schedule`.
@@ -31,12 +33,6 @@ For scheduling information of past and future releases see the
    :depth: 2
    :backlinks: top
 
-New stable charms
------------------
-
-<TITLE>
-~~~~~~~
-
 New stable charm features
 -------------------------
 
@@ -48,12 +44,13 @@ the relevant charm repository (see all `charm repositories`_).
 Keystone role cache config
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The keystone charm now supports configuring the keystone [role] cache_time using
-a new role-cache-expiration config. If not set, this defaults to the global
-expiration_time (configurable by the dogpile-cache-expiration config option). Setting
-the role cache_time to something closer to 10s is recommended for
-clouds that receive frequent role assignment changes and are sensitive to the
-(default) 600s delay that assignements can take to propagate to all keystone
+The keystone charm now supports configuring the Keystone ``[role] cache_time``
+option using a new ``role-cache-expiration`` charm configuration option. If not
+set, this defaults to the global ``expiration_time`` (configurable by the
+``dogpile-cache-expiration`` charm configuration option). Setting
+``cache_time`` to around 10 (seconds) is recommended for clouds that receive
+frequent role assignment changes and that are therefore sensitive to the
+(default) 600s delay that assignments can take to propagate to all Keystone
 peer caches.
 
 For example, to set the role cache expiration time to 10 seconds do:
@@ -62,26 +59,23 @@ For example, to set the role cache expiration time to 10 seconds do:
 
    juju config keystone role-cache-expiration=10
 
-The result of this being that keystone will only used cached role assignments for up to
-10 seconds before refreshing them from the database.
-
 Designate-bind allow transfer config
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The designate-bind charm now supports configuring BIND9 ``allow-transfer``.
-If not set, this defaults to none, which disable allow-transfer.
+The designate-bind charm now supports configuring the BIND9 ``allow-transfer``
+option. If not set, the corresponding feature is disabled.
 
-For example, to set BIND9 allow-transfer to ``10.0.0.0/8`` and ``172.16.0.0/16``:
+For example, to set ``allow-transfer`` to ``10.0.0.0/8`` and ``172.16.0.0/16``:
 
 .. code-block:: none
 
    juju config designate-bind allow_transfer_nets="10.0.0.0/8;172.16.0.0/12"
 
-This will allow designate-bind to perform zone transfer to ``10.0.0.0/8`` and ``172.16.0.0/12``.
+This will allow designate-bind to perform a zone transfer to ``10.0.0.0/8`` and
+``172.16.0.0/12``.
 
-Please note that this change modifies the default behaviour of the
-BIND9 ``allow-transfer`` setting.
-To restore the default behaviour, set ``allow-transfer`` to ``any``:
+This change modifies the default behaviour of the ``allow-transfer`` setting.
+To restore the default behaviour, set ``allow-transfer-nets`` to ``any``:
 
 .. code-block:: none
 
@@ -90,52 +84,25 @@ To restore the default behaviour, set ``allow-transfer`` to ``any``:
 Improve Vault snap channel refresh
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Snap channel refresh for the Vault snap in charm-vault has been improved to properly
-stop the service before performing a snap refresh.
-For more details see bug `LP #2007587`_.
+The refresh mechanism for the Vault snap managed within the vault charm has
+been improved. It now properly stops the service before performing a snap
+refresh. For more details see bug `LP #2007587`_.
 
 Glance custom image properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The glance charm now supports configuring automatic custom image properties for imported images.
-The specified properties will be automatically added to all images that go through the `interoperable image import`_
-process.
+The glance charm now supports configuring automatic custom image properties for
+imported images.
 
-To add the custom properties use a comma delimited string of ``key:value`` pairs as follows:
+To add custom properties, use a comma-delimited string of ``key:value`` pairs:
 
 .. code-block:: none
 
    juju config glance custom-import-properties='property1:value1,property2:value2,property3:value3'
 
-Note properties will only be added to images that go through the import process such as ``openstack image create --import``
-but will not be applied to regular image uploads.
-
-Adjust ceph credentials to be the same across nova-compute apps
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-When using the config libvirt-image-backend=rbd, VMs
-created from image have their disk data stored in ceph
-instead of the compute node itself.
-
-When performing live-migrations, both nodes need to
-access the same ceph credentials to access the VM's
-disk in ceph. Previously, each nova-compute charm
-app had a different credential according to the
-app name. Now every nova-compute charm app uses
-the ``nova-compute`` ceph credential.
-
-Upon performing the upgrade, any previously running
-VM will continue to use the old credential until fully
-stopped and then started to refresh the libvirt XML
-for the VM. While using the old credentials, the VMs
-can still continue to operate without
-disruption and can be live-migrated to nodes
-pertaning to the same nova-compute charm app.
-
-The old credential file remains alongside the new one
-in the nova-compute node and is not cleaned up until the
-relation between nova-compute and ceph-mon is removed.
-For more details see bug `LP #2028559`_.
+These properties will only be added to images that go through the
+`Interoperable image import`_ process such as ``openstack image create
+--import``. They will not be applied to regular image uploads.
 
 magnum charm: new option to expose cluster_user_trust
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -144,8 +111,9 @@ This configuration option controls whether to assign a trust to the cluster user
 or not. This option needs to be set to True for clusters with
 volume_driver=cinder, cloud_provider_enabled=true or registry_enabled=true in
 the underlying cluster template to work. This is a potential security risk since
-the trust gives instances OpenStack API access to the cluster's project. For
-more details see bug `LP #1996237`_.
+the trust gives instances OpenStack API access to the cluster's project.
+
+For more details see bug `LP #1996237`_.
 
 nova-cloud-controller charm: new relation to openstack-dashboard
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -159,48 +127,48 @@ requests`_ coming from the web browsers visiting the dashboard.
 This relation is mandatory when the nova-cloud-controller application is
 configured with `enable-serial-console`_ set to True.
 
-For more details see `LP #2030094`_.
-
-Removal of hyperv mechanism driver
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The hyperv mechanism driver has been removed from the neutron-api charm
-in Bobcat. The networking-hyperv project is now retired and the package
-was removed from Ubuntu 23.10 (Mantic). For more details see bug
-`LP #2036953`_.
+For more details see bug `LP #2030094`_.
 
 Documentation updates
 ---------------------
 
-<TITLE>
-~~~~~~~
+OpenStack 2023.2 guide updates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-New tech-preview charms
------------------------
+The Charm Guide and the Deploy Guide were updated for OpenStack 2023.2.
 
-<TITLE>
-~~~~~~~
+Juju 3.x guide updates
+~~~~~~~~~~~~~~~~~~~~~~
 
-New tech-preview charm features
--------------------------------
+The Charm Guide and the Deploy Guide were updated for Juju 3.x.
 
-<TITLE>
-~~~~~~~
+Charm Guide changes
+~~~~~~~~~~~~~~~~~~~
+
+* the project's backport policy was refreshed
+* legacy charm revisions were published as reference material
+* policy overrides page refactored into how-to, conceptual, and tutorial
+  material
+* ongoing improvements and corrections
 
 Informational notices
 ---------------------
 
-<TITLE>
-~~~~~~~
-
-Ceph FileStore Support Removed
+Ceph FileStore support removed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-WARNING: do not attempt to upgrade FileStore-formatted OSDs to Ceph Reef.
+OSD FileStore format has been deprecated in upstream Ceph starting with the
+Quincy release. With the Reef release, `FileStore support has been removed`_,
+leaving support for only BlueStore format.
 
-FileStore OSDs were deprecated in Ceph Quincy, and Ceph Reef has removed support for FileStore completely -- only BlueStore will be supported. FileStore OSDs will NOT be able to start under Ceph Reef!
+.. warning::
 
-The ceph-osd charm will attempt to detect FileStore OSDs, and if any are found will block an upgrade to Ceph Reef. Please convert your OSDs before upgradeing Ceph.
+   Data loss may occur if you attempt to upgrade to Ceph Reef when FileStore
+   OSDs are present.
+
+Before upgrading the payload ("OpenStack upgrade") of any of the Ceph charms,
+migrate all FileStore OSDs to BlueStore. See upgrade path note :ref:`BlueStore
+migration <bluestore_migration>` for guidance.
 
 Nova ``AvailabilityZoneFilter`` removal in 2023.2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -216,29 +184,23 @@ This should not technically affect users as the new configuration should have
 been automatically done. However, verification steps have been provided as an
 :ref:`upgrade path note <az_option_removal>`.
 
-Deprecation notices
--------------------
-
-<TITLE>
-~~~~~~~
-
 Removed features
 ----------------
 
-<TITLE>
-~~~~~~~
+hyperv mechanism driver
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Removed charms
---------------
+The hyperv mechanism driver has been removed from the neutron-api charm. The
+networking-hyperv (OpenStack Winstackers) project is now retired and the
+package was removed from Ubuntu 23.10 (Mantic).
 
-<TITLE>
-~~~~~~~
+For more details see bug `LP #2036953`_.
 
 Issues discovered during this release cycle
 -------------------------------------------
 
 Juju 3.x incompatibilities
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The keystone and glance-simplestreams-sync legacy charms (not using channels),
 and stable channels Xena and before, do not work with a Juju 3.x controller.
@@ -251,17 +213,17 @@ use Juju 3.x unit agents are related to:
 .. LINKS
 .. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
-.. _interoperable image import: https://docs.openstack.org/glance/latest/admin/interoperable-image-import.html
+.. _Interoperable image import: https://docs.openstack.org/glance/latest/admin/interoperable-image-import.html
 .. _allow requests: https://docs.openstack.org/nova/latest/configuration/config.html#console.allowed_origins_
 .. _enable-serial-console: https://charmhub.io/nova-cloud-controller/configure#enable-serial-console_
 .. _Nova 2023.2 upgrade notes: https://docs.openstack.org/releasenotes/nova/2023.2.html#upgrade-notes
 .. _Aggregates in Placement: https://docs.openstack.org/nova/latest/admin/aggregates.html#aggregates-in-placement
+.. _FileStore support has been removed: https://docs.ceph.com/en/latest/rados/configuration/storage-devices/#filestore
 
 .. COMMITS
 
 .. BUGS
 .. _LP #2007587: https://bugs.launchpad.net/vault-charm/+bug/2007587
-.. _LP #2028559: https://bugs.launchpad.net/charm-nova-compute/+bug/2028559
 .. _LP #1996237: https://launchpad.net/bugs/1996237
 .. _LP #2030094: https://bugs.launchpad.net/charm-nova-cloud-controller/+bug/2030094
 .. _LP #2036953: https://launchpad.net/bugs/2036953
