@@ -233,6 +233,12 @@ OpenStack project.
    * - `vault`_
      - 18.05
 
+   * - `watcher`_
+     - 2023.2 (Bobcat)
+
+   * - `watcher-dashboard`_
+     - 2023.2 (Bobcat)
+
 Tech-preview charms (Beta)
 --------------------------
 
@@ -270,8 +276,6 @@ lacking, either from a charm perspective, or from the workload package
 perspective.
 
 * `manila-generic`_
-* `watcher`_
-* `watcher-dashboard`_
 
 Maintenance-mode charms
 -----------------------

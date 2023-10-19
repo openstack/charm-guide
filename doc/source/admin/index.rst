@@ -84,6 +84,7 @@ Compute
    compute/nova-cells
    compute/pci-passthrough
    compute/nfv
+   compute/watcher
 
 Storage
 ~~~~~~~
