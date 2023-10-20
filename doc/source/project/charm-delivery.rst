@@ -145,23 +145,28 @@ charm`_ for details.
            - Tracks
            -
            -
+           -
 
          * - OpenStack charms
            - ``yoga``
            - ``zed``
            - ``2023.1``
+           - ``2023.2``
 
          * - Ceph charms
            - ``quincy``
            - ``quincy``
            - ``quincy``
+           - ``reef``
 
          * - OVN charms
            - ``22.03``
            - ``22.09``
            - ``23.03``
+           - ``23.09``
 
          * - MySQL charms
+           - ``8.0``
            - ``8.0``
            - ``8.0``
            - ``8.0``
@@ -170,8 +175,10 @@ charm`_ for details.
            - ``2.4``
            - ``2.4``
            - ``2.4``
+           - ``2.4``
 
          * - pacemaker-remote
+           - ``jammy``
            - ``jammy``
            - ``jammy``
            - ``jammy``
@@ -180,8 +187,10 @@ charm`_ for details.
            - ``3.9``
            - ``3.9``
            - ``3.9``
+           - ``3.9``
 
          * - vault
+           - ``1.8``
            - ``1.8``
            - ``1.8``
            - ``1.8``
