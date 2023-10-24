@@ -134,9 +134,9 @@ BlueStore (set ceph-osd charm option ``bluestore`` to 'False'). See bug `LP
 Ceph: option ``require-osd-release``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Before upgrading Ceph its ``require-osd-release`` option should be set to the
-current Ceph release (e.g. 'nautilus' if upgrading to Octopus). Failing to do
-so may cause the upgrade to fail, rendering the cluster inoperable.
+Before upgrading Ceph, option ``require-osd-release`` should reflect the
+current Ceph release (e.g. 'nautilus' if upgrading to Octopus). Otherwise, the
+subsequent upgrade may fail, rendering the cluster inoperable.
 
 On any ceph-mon unit, the current value of the option can be queried with:
 
@@ -151,15 +151,14 @@ current release is Nautilus:
 
    sudo ceph osd require-osd-release nautilus
 
-In addition, upon completion of the upgrade, the option should be set to the
-new release. Here the new release is Octopus:
+Once Ceph (all charms) is upgraded, the option should be set to the new
+release. Here the new release is Octopus:
 
 .. code-block:: none
 
    sudo ceph osd require-osd-release octopus
 
-The charms should be able to respond intelligently to these two situations. Bug
-`LP #1929254`_ is for tracking this effort.
+Bug `LP #1929254`_ is for tracking this effort.
 
 Octavia
 ~~~~~~~
