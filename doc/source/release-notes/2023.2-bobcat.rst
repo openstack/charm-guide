@@ -44,6 +44,20 @@ provides a flexible and scalable resource optimization service for multi-tenant
 OpenStack-based clouds. A how-to is available at:
 :doc:`../admin/compute/watcher`.
 
+watcher-dashboard
+~~~~~~~~~~~~~~~~~
+
+The `watcher-dashboard charm` provides the `Watcher Dashboard plugin`_ for use
+with the `openstack-dashboard charm`_.
+
+Usage example:
+
+.. code-block:: none
+
+   juju deploy --channel 2023.2/stable openstack-dashboard
+   juju deploy --channel 2023.2/stable watcher-dashboard
+   juju integrate openstack-dashboard:dashboard-plugin watcher-dashboard:dashboard
+
 New stable charm features
 -------------------------
 
@@ -223,6 +237,9 @@ use Juju 3.x unit agents are related to:
 
 .. LINKS
 .. _watcher charm: https://charmhub.io/watcher
+.. _watcher-dashboard charm: https://charmhub.io/watcher-dashboard
+.. _Watcher Dashboard plugin: https://docs.openstack.org/watcher-dashboard/latest/
+.. _openstack-dashboard charm: https://charmhub.io/openstack-dashboard
 .. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _Interoperable image import: https://docs.openstack.org/glance/latest/admin/interoperable-image-import.html
