@@ -33,6 +33,17 @@ For scheduling information of past and future releases see the
    :depth: 2
    :backlinks: top
 
+New stable charms
+-----------------
+
+watcher
+~~~~~~~
+
+The `watcher charm`_ enables the OpenStack Watcher service. The watcher charm
+provides a flexible and scalable resource optimization service for multi-tenant
+OpenStack-based clouds. A how-to is available at:
+:doc:`../admin/compute/watcher`.
+
 New stable charm features
 -------------------------
 
@@ -211,6 +222,7 @@ use Juju 3.x unit agents are related to:
 * status setting and endpoint updating (glance-simplestreams-sync)
 
 .. LINKS
+.. _watcher charm: https://charmhub.io/watcher
 .. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _Interoperable image import: https://docs.openstack.org/glance/latest/admin/interoperable-image-import.html
