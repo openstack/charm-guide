@@ -182,6 +182,23 @@ DNS HA: upgrade to focal
 DNS HA has been reported to not work on the focal series. See `LP #1882508`_
 for more information.
 
+LXD container upgrade to jammy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+While performing LXD container series upgrades from focal to jammy, these
+containers may lose their IP addresses and network connectivity on reboot
+due to `LP #2041480`_.
+
+This issue currently only affects juju deployed LXD containers where deployed
+using juju 2.9.43 and older. LXD containers deployed using juju 2.9.44+
+are not effected.
+
+Please see the bug report for more details and available workarounds.
+
+It is highly recommended to apply the workarounds prior to performing the
+series upgrades.
+
+
 Upgrading while Vault is sealed
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -216,3 +233,4 @@ error can be resolved with:
 .. _LP #1890106: https://bugs.launchpad.net/vault-charm/+bug/1890106
 .. _LP #1912638: https://bugs.launchpad.net/charm-rabbitmq-server/+bug/1912638
 .. _LP #1929254: https://bugs.launchpad.net/charm-ceph-osd/+bug/1929254
+.. _LP #2041480: https://bugs.launchpad.net/ubuntu/+source/netplan.io/+bug/2041480

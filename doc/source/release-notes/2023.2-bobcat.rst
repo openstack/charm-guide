@@ -235,6 +235,14 @@ use Juju 3.x unit agents are related to:
 * Fernet key rotations (keystone)
 * status setting and endpoint updating (glance-simplestreams-sync)
 
+LXD container upgrade to jammy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+While performing LXD container series upgrades from focal to jammy, these
+containers may lose their IP addresses and network connectivity on reboot.
+
+For more details see `Upgrade issues`_.
+
 .. LINKS
 .. _watcher charm: https://charmhub.io/watcher
 .. _watcher-dashboard charm: https://charmhub.io/watcher-dashboard
@@ -248,6 +256,7 @@ use Juju 3.x unit agents are related to:
 .. _Nova 2023.2 upgrade notes: https://docs.openstack.org/releasenotes/nova/2023.2.html#upgrade-notes
 .. _Aggregates in Placement: https://docs.openstack.org/nova/latest/admin/aggregates.html#aggregates-in-placement
 .. _FileStore support has been removed: https://docs.ceph.com/en/latest/rados/configuration/storage-devices/#filestore
+.. _Upgrade issues: https://docs.openstack.org/charm-guide/latest/project/issues/upgrade-issues.html
 
 .. COMMITS
 
