@@ -258,6 +258,23 @@ containers may lose their IP addresses and network connectivity on reboot.
 
 For more details see `Upgrade issues`_.
 
+Designate charm default values not used
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Due to `LP #2042944`_ the following designate charm config options aren't
+applied when creating zone records:
+
+* ``default-soa-expire``
+* ``default-soa-minimum``
+* ``default-soa-refresh-min``
+* ``default-soa-retry``
+* ``default-ttl``
+
+The ``openstack zone create ...`` and designate API for zone creation allow
+these parameters to be set directly as a workaround.
+
+For more details see bug `LP #2042944`_.
+
 .. LINKS
 .. _watcher charm: https://charmhub.io/watcher
 .. _watcher-dashboard charm: https://charmhub.io/watcher-dashboard
@@ -281,3 +298,4 @@ For more details see `Upgrade issues`_.
 .. _LP #2030094: https://bugs.launchpad.net/charm-nova-cloud-controller/+bug/2030094
 .. _LP #2036953: https://launchpad.net/bugs/2036953
 .. _LP #2018998: https://bugs.launchpad.net/charm-octavia/+bug/2018998
+.. _LP #2042944: https://bugs.launchpad.net/designate/+bug/2042944
