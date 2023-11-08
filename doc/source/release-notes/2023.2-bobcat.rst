@@ -209,6 +209,21 @@ This should not technically affect users as the new configuration should have
 been automatically done. However, verification steps have been provided as an
 :ref:`upgrade path note <az_option_removal>`.
 
+Enforce MTU size between Octavia networks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The behaviour of the Octavia loadbalancer charm has been changed to ensure that
+the MTU size on the health manager port (typically called ``o-hm0``) matches
+the MTU on the load balancer network (called ``lb-mgmt-net``).  Prior to this
+change, when the MTU sizes were not aligned and the ``o-hm0`` MTU is less than
+the ``lb-mgmt-net`` MTU, then health check messages will be dropped causing the
+load balancer to fail-over.
+
+The new behaviour is to *always* align the MTU of the health manager port
+(``o-hm0``) to that of the load balancer network (``lb-mgmt-net``).
+
+For more details please see bug `LP #2018998`_.
+
 Removed features
 ----------------
 
@@ -265,3 +280,4 @@ For more details see `Upgrade issues`_.
 .. _LP #1996237: https://launchpad.net/bugs/1996237
 .. _LP #2030094: https://bugs.launchpad.net/charm-nova-cloud-controller/+bug/2030094
 .. _LP #2036953: https://launchpad.net/bugs/2036953
+.. _LP #2018998: https://bugs.launchpad.net/charm-octavia/+bug/2018998
