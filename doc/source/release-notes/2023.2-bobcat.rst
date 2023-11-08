@@ -224,6 +224,23 @@ The new behaviour is to *always* align the MTU of the health manager port
 
 For more details please see bug `LP #2018998`_.
 
+nova-compute charm: rbd instance folder cleanup after evacuations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+After evacuations and revert resizes when using rbd storage backend, the
+instance folder is usually left behind on the host and this can cause issues
+when migrating the instance back to the same host if it has previously been
+migrated away from the host.  This may happen during maintenance when instances
+are migrated to allow a physical host to be shutdown.
+
+The new behaviour, with the rbd storage backend, is for the nova-compute
+service to cleanup those folders as part of the periodic checks that run for
+instances that have been evacuated/migrated.
+
+This is present in 2023.2, and has been backported to the ussuri release.
+
+For more details see `LP #2019141`_.
+
 Removed features
 ----------------
 
@@ -299,3 +316,4 @@ For more details see bug `LP #2042944`_.
 .. _LP #2036953: https://launchpad.net/bugs/2036953
 .. _LP #2018998: https://bugs.launchpad.net/charm-octavia/+bug/2018998
 .. _LP #2042944: https://bugs.launchpad.net/designate/+bug/2042944
+.. _LP #2019141: https://bugs.launchpad.net/charm-nova-compute/+bug/2019141
