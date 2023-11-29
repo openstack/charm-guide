@@ -25,13 +25,13 @@ latter dates are estimated and subject to revision.
      - Release timeline
 
    * - 2023.2 - Bobcat
-     - under development
-     - Fri, Sep 29, 2023 (estimated)
-     - Fri, Oct 27, 2023 (estimated)
+     - current stable
+     - Fri, Sep 29, 2023
+     - Thu, Nov 30, 2023
      - --
 
    * - 2023.1 - Antelope
-     - current stable
+     - --
      - Fri, Mar 31, 2023
      - Fri, Jun 2, 2023
      - --

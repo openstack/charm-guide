@@ -1,10 +1,10 @@
-===========================================
-2023.2 (Bobcat) (under development)
-===========================================
+===============
+2023.2 (Bobcat)
+===============
 
 The 2023.2 (Bobcat) OpenStack Charms release includes updates for the charms
 described on the :doc:`../project/openstack-charms` page. As of this release,
-the project consists of 62 stable charms.
+the project consists of 65 stable charms.
 
 .. note::
 
@@ -84,8 +84,8 @@ For example, to set the role cache expiration time to 10 seconds do:
 
    juju config keystone role-cache-expiration=10
 
-Designate-bind allow transfer config
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+designate-bind charm: new option for ``zone transfer`` feature
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The designate-bind charm now supports configuring the BIND9 ``allow-transfer``
 option. If not set, the corresponding feature is disabled.
@@ -132,20 +132,25 @@ These properties will only be added to images that go through the
 magnum charm: new option to expose cluster_user_trust
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This configuration option controls whether to assign a trust to the cluster user
-or not. This option needs to be set to True for clusters with
-volume_driver=cinder, cloud_provider_enabled=true or registry_enabled=true in
-the underlying cluster template to work. This is a potential security risk since
-the trust gives instances OpenStack API access to the cluster's project.
+The magnum charm has a new configuration option: ``cluster-user-trust``.
+
+This controls whether to assign a trust to the cluster user or not. This option
+needs to be set to True for clusters with volume_driver=cinder,
+cloud_provider_enabled=true or registry_enabled=true in the underlying cluster
+template to work. This is a potential security risk since the trust gives
+instances OpenStack API access to the cluster's project.
 
 For more details see bug `LP #1996237`_.
 
 nova-cloud-controller charm: new relation to openstack-dashboard
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+The nova-cloud-controller charm has a new relation:
+
 ``juju integrate nova-cloud-controller:dashboard openstack-dashboard:dashboard``
-allows nova-cloud-controller to know that possible hosts and IP addresses that
-the cloud users use to access the OpenStack Dashboard, the nova-cloud-controller
+
+This allows nova-cloud-controller to know what hosts and IP addresses cloud
+users may use to access the OpenStack Dashboard. The nova-cloud-controller
 units use this information to configure the nova-serialproxy daemon and `allow
 requests`_ coming from the web browsers visiting the dashboard.
 
@@ -239,7 +244,7 @@ instances that have been evacuated/migrated.
 
 This is present in 2023.2, and has been backported to the ussuri release.
 
-For more details see `LP #2019141`_.
+For more details see bug `LP #2019141`_.
 
 Removed features
 ----------------
@@ -275,11 +280,11 @@ containers may lose their IP addresses and network connectivity on reboot.
 
 For more details see `Upgrade issues`_.
 
-Designate charm default values not used
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+designate charm: some settings not honoured
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Due to `LP #2042944`_ the following designate charm config options aren't
-applied when creating zone records:
+The following designate charm configuration options aren't applied when
+creating zone records:
 
 * ``default-soa-expire``
 * ``default-soa-minimum``
@@ -287,8 +292,8 @@ applied when creating zone records:
 * ``default-soa-retry``
 * ``default-ttl``
 
-The ``openstack zone create ...`` and designate API for zone creation allow
-these parameters to be set directly as a workaround.
+As a workaround, the ``openstack zone create`` command and the designate API
+for zone creation allow these parameters to be set directly.
 
 For more details see bug `LP #2042944`_.
 
