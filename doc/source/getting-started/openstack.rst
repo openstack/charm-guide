@@ -22,11 +22,6 @@ Download cloud init file :download:`openrc <openrc>` and save it in the
 ``~/tutorial`` directory. It will assist you in setting up admin access to the
 cloud.
 
-.. important::
-
-   This ``openrc`` file does not support the Juju 2.9.x client. Read support
-   note :ref:`juju_29_3x_changes` before continuing.
-
 Now source the file and test cloud access by querying the Keystone service
 catalogue:
 
