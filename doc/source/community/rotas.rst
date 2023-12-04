@@ -18,17 +18,16 @@ When triaging or filing bugs for `OpenStack Charms projects`_, please use the
 following Launchpad tags:
 
 * `openstack-upgrade`_ - Issues upgrading the charm payload (OpenStack
-  version), such as Train to Ussuri.
-* `charm-upgrade`_ - Issues upgrading the charm revision, such as cs:foo-100
-  to cs:foo-101 (not a payload or OpenStack version upgrade, not a series
-  upgrade).
-* `series-upgrade`_ - Issues upgrading from one series to the next, i.e. Bionic
-  to Focal.
+  version), such as ``Zed`` to ``2023.1``.
+* `series-upgrade`_ - Issues upgrading from one series to the next, such as
+  ``focal`` to ``jammy``.
+* `charm-upgrade`_ - Issues upgrading the charm revision, such as ``ch:foo-100``
+  to ``ch:foo-101`` (not a payload or series upgrade).
 * `ceph-upgrade`_ - Issues upgrading the Ceph version (not charm upgrade).
 * `scaleback`_ - Issues removing a unit, shrinking a cluster, replacing a unit.
-* `cold-start`_ - Issues in recovering the charm payload functionality after a
+* `cold-start`_ - Issues in recovering charm payload functionality after a
   power event such as a reboot or shutdown.
-* `cross-model`_ - Issues with Cross-Model Relations.
+* `cross-model`_ - Issues with cross-model relations.
 * `unstable-test`_ - Issues that result in :doc:`automated tests
   <software-contrib/testing>` producing false negatives or positives.
 
