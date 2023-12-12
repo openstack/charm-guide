@@ -397,11 +397,11 @@ new channel must be chosen according to the target future OpenStack release.
 Examples,
 
 To change the channel for the vault charm when upgrading to OpenStack Yoga
-the channel should be changed to 'yoga/stable':
+the channel should be changed to '1.8/stable':
 
 .. code-block:: none
 
-   juju refresh --channel 1.7/stable vault
+   juju refresh --channel 1.8/stable vault
 
 To change the channel for the ovn-central charm when upgrading to OpenStack
 Yoga the channel should be changed to '22.03/stable':
