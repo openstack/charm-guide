@@ -24,6 +24,11 @@ that can cause network disruption to all cloud VMs.
    It is recommended that the upgrade be tested in a staged environment prior
    to applying the steps to a production cloud.
 
+.. contents:: Contents:
+   :local:
+   :depth: 4
+   :backlinks: top
+
 Prerequisites
 -------------
 
@@ -310,6 +315,26 @@ change, restart OVN Metadata agents with:
    use ``Chassis_Private``. Without the service restart, metadata agents will
    not re-register in the new database table and Neutron will not be able to
    detect these agents.
+
+Disable version pinning
+.......................
+
+The 22.03 version of the ovn-chassis charm defaults to enforcing version
+pinning. This was necessary to support the upgrade procedure you have just
+completed.
+
+Once 22.03 is running, however, this default is undesirable as it may cause
+upgrade issues when minor updates to the OVN packages are released.
+
+From OVN LTS version 22.03 and onwards, rolling chassis upgrades are supported
+when upgrading to minor versions as well as to any version within the next
+major OVN LTS version.
+
+Therefore, to ensure smooth cluster operation, disable version pinning:
+
+.. code-block:: none
+
+   juju config ovn-chassis enable-version-pinning=false
 
 Neutron
 ^^^^^^^
