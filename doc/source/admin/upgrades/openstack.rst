@@ -603,7 +603,23 @@ Example upgrade
 The :doc:`openstack-example` page shows the explicit steps used to upgrade a
 basic cloud.
 
+Automation
+----------
+
+`Charmed OpenStack Upgrader`_ (COU) is a tool that standardizes and automates
+upgrade procedures. COU encapsulates the processes described in this document
+and on the :doc:`charms` page, which remain the primary references for
+performing OpenStack (payload) and charm upgrades respectively.
+
+.. important::
+
+   Charmed OpenStack Upgrader should be tested thoroughly before using it in
+   production. See the `COU documentation`_ for information on its usage and
+   level of readiness.
+
 .. LINKS
+.. _Charmed OpenStack Upgrader: https://snapcraft.io/charmed-openstack-upgrader
+.. _COU documentation: https://canonical-charmed-openstack-upgrader.readthedocs-hosted.com/
 .. _Ubuntu Cloud Archive: https://wiki.ubuntu.com/OpenStack/CloudArchive
 .. _Upgrades: https://docs.openstack.org/operations-guide/ops-upgrades.html
 .. _Percona strict mode: https://www.percona.com/doc/percona-xtradb-cluster/LATEST/features/pxc-strict-mode.html
