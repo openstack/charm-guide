@@ -174,7 +174,7 @@ also be provided and placed in, say, file ``~/root-ca.pem``.
 Upload the signed certificate and the root CA certificate to Vault
 ..................................................................
 
-To upload certificate information to Vault run the ``upload-signed-csr``
+To upload certificate information to Vault, run the ``upload-signed-csr``
 action on the leader unit:
 
 .. code-block:: none
@@ -206,6 +206,22 @@ See the following resources:
 
 * `RFC5280`_: for details concerning certificate paths and trust
 * `RFC7468`_: for details on the format of certificate PEM bundles
+
+If the Vault infrastructure is not generally accessible to client endpoints
+used to access services secured by the Vault intermediate CA, a CRL
+distribution point can be used:
+
+.. code-block:: none
+
+   juju run vault/leader upload-signed-csr \
+       pem="$(cat ~/vault-charm-int.pem | base64)" \
+       root-ca="$(cat ~/root-ca.pem | base64)" \
+       allowed-domains='openstack.local' \
+       crl-distribution-point='CDP-URI'
+
+The string value ``CDP-URI`` corresponds to a publicly-accessible CRL
+distribution point URI. This relies on an external process to synchronise
+certificates revoked in Vault to this distribution point.
 
 Issuing of certificates
 ~~~~~~~~~~~~~~~~~~~~~~~
