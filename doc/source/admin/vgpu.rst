@@ -26,7 +26,7 @@ Pre-requisites
 
 The following requirements must be met in order to use the vGPU feature:
 
-* OpenStack Queens or newer
+* OpenStack Yoga or newer
 * `Nvidia vGPU software`_ (Linux driver ``510.47.03`` or newer; Ubuntu package)
 * a `supported GPU device on Ubuntu`_
 
