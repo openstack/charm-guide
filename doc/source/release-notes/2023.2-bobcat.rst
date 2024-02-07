@@ -297,6 +297,21 @@ for zone creation allow these parameters to be set directly.
 
 For more details see bug `LP #2042944`_.
 
+Changes backported to this release
+----------------------------------
+
+manila charm: add support to configure scheduler default filters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The manila charm has a new configuration option `scheduler-default-filters`.
+This configures the `scheduler_default_filters` parameter in manila
+configuration file.
+
+This is unset by default, so manila retains the default value for
+`scheduler_default_filters`. Those might change based on OpenStack release.
+
+For more details see bug `LP #1998200`_.
+
 .. LINKS
 .. _watcher charm: https://charmhub.io/watcher
 .. _watcher-dashboard charm: https://charmhub.io/watcher-dashboard
@@ -322,3 +337,4 @@ For more details see bug `LP #2042944`_.
 .. _LP #2018998: https://bugs.launchpad.net/charm-octavia/+bug/2018998
 .. _LP #2042944: https://bugs.launchpad.net/designate/+bug/2042944
 .. _LP #2019141: https://bugs.launchpad.net/charm-nova-compute/+bug/2019141
+.. _LP #1998200: https://bugs.launchpad.net/charm-manila/+bug/1998200

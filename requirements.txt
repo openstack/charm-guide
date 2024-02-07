@@ -4,10 +4,10 @@
 
 pbr!=2.1.0,>=2.0.0 # Apache-2.0
 
-sphinx>=4.2 # BSD
+sphinx==5.0.0 # BSD
 openstackdocstheme>=2.2.1 # Apache-2.0
 whereto>=0.3.0 # Apache-2.0
 pyenchant # GNU LGPL
-sphinxcontrib-spelling # Doug Hellmann - permissions granted
+sphinxcontrib-spelling==5.0.0 # Doug Hellmann - permissions granted
 sphinx-panels # MIT
 sphinx-tabs # MIT
