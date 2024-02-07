@@ -45,8 +45,17 @@ test bundle, and/or a section in the current guide (Charm Guide) that details
 its usage. Test bundles are located in the ``src/tests/bundles`` directory of
 the relevant charm repository (see all `charm repositories`_).
 
-<TITLE>
-~~~~~~~
+manila charm: add support to configure scheduler default filters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The manila charm has a new configuration option `scheduler-default-filters`.
+This configures the `scheduler_default_filters` parameter in manila
+configuration file.
+
+This is unset by default, so manila retains the default value for
+`scheduler_default_filters`. Those might change based on OpenStack release.
+
+For more details see bug `LP #1998200`_.
 
 Documentation updates
 ---------------------
@@ -109,3 +118,4 @@ Changes backported to this release
 .. COMMITS
 
 .. BUGS
+.. _LP #1998200: https://bugs.launchpad.net/charm-manila/+bug/1998200
