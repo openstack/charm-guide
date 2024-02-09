@@ -259,7 +259,7 @@ Perform the migration
 
       The plugin will not be activated until the neutron-api
       ``manage-neutron-plugin-legacy-mode`` configuration option is changed in
-      step 9.
+      step 10.
 
 9. Adjust MTU on overlay networks (if required)
 
