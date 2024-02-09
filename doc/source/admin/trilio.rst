@@ -245,7 +245,7 @@ To configure for an S3 backend:
 Parameters that describe the S3 service are passed with configuration
 options available to both the trilio-wlm and trilio-data-mover charms:
 
-* ``tv-s3-endpoint-url`` the URL of the S3 storage (can be omitted if using AWS)
+* ``tv-s3-endpoint-url`` the URL of the S3 storage
 * ``tv-s3-secret-key`` the secret key for accessing the S3 storage
 * ``tv-s3-access-key`` the access key for accessing the S3 storage
 * ``tv-s3-region-name`` the region for accessing the S3 storage

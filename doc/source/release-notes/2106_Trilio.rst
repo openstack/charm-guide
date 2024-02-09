@@ -146,17 +146,17 @@ Using S3 to store backups
 
 The Trilio charms now support using an S3 compatible storage service to store
 backups. This is achieved by setting the ``backup-target-type`` option of the
-trilio-data-mover and trilio-wlm charms to `S3` and set the following
+trilio-data-mover and trilio-wlm charms to ``S3`` and set the following
 configuration options to provide information regarding the S3 service:
 
-* ``tv-s3-endpoint-url`` the URL of the S3 storage (can be omitted if using AWS)
+* ``tv-s3-endpoint-url`` the URL of the S3 storage
 * ``tv-s3-secret-key`` the secret key for accessing the S3 storage
 * ``tv-s3-access-key`` the access key for accessing the S3 storage
 * ``tv-s3-region-name`` the region for accessing the S3 storage
 * ``tv-s3-bucket`` the S3 bucket to use to storage backups in
 * ``tv-s3-ssl-cert`` the SSL CA to use when connecting to the S3 service
 
- See `DeploymentGuideTrilio`_ for more details.
+See `DeploymentGuideTrilio`_ for more details.
 
 .. warning::
 
