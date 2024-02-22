@@ -94,13 +94,13 @@ it (four here):
    modified, you can have Netplan attempt to make the necessary changes with
    command :command:`sudo netplan apply`. However, rebooting the underlying
    host remains the best method since changing SR-IOV configuration via Netplan
-   is device/driver/configuration specific. 
+   is device/driver/configuration specific.
 
 Reboot physical hosts
 ^^^^^^^^^^^^^^^^^^^^^
 
 After analysing your cloud's topology and ascertaining what effects a reboot
-may have, plan to have each each hypervisor that is hosting an affected
+may have, plan to have each hypervisor that is hosting an affected
 ovn-chassis unit rebooted.
 
 Authorise passthrough devices
