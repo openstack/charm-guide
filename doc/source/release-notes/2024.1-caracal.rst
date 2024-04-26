@@ -57,6 +57,19 @@ This is unset by default, so manila retains the default value for
 
 For more details see bug `LP #1998200`_.
 
+cinder charm: add support for Keystone audit middleware API logging
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The cinder charm has a new configuration option `audit-middleware`. This option
+enables or disables Keystone audit middleware functionality that allows the
+user to audit API requests and configure their environment for CADF compliance
+(see `keystone_audit_middleware`_). These audit events are written to
+`/var/log/apache2/cinder_error.log`.
+
+This option is disabled by default to prevent log file bloat.
+
+For more details see bug `LP #1856555`_.
+
 Documentation updates
 ---------------------
 
@@ -114,8 +127,10 @@ Changes backported to this release
 .. _2024.1 milestone: https://launchpad.net/openstack-charms/+milestone/2024.1
 .. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
+.. _keystone_audit_middleware: https://docs.openstack.org/keystonemiddleware/latest/audit.html
 
 .. COMMITS
 
 .. BUGS
 .. _LP #1998200: https://bugs.launchpad.net/charm-manila/+bug/1998200
+.. _LP #1856555: https://bugs.launchpad.net/charm-cinder/+bug/1856555
