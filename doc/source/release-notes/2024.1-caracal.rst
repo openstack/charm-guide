@@ -70,6 +70,17 @@ This option is disabled by default to prevent log file bloat.
 
 For more details see bug `LP #1856555`_.
 
+Ironic: add support for OVN
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+OpenStack Ironic now supports OVN as the configured SDN of choice. The neutron-api,
+neutron-api-plugin-ovn, neutron-api-plugin-ironic charms have been update to
+support the necessary services and drivers to use OVN instead of Open vSwitch. To
+use this feature, deploy OVN services and ensure that both the neutron-api-plugin-ovn
+and neutron-api-plugin-ironic are deployed.
+
+For more details see the `Ironic documentation`_ for OpenStack charms.
+
 Documentation updates
 ---------------------
 
@@ -128,6 +139,7 @@ Changes backported to this release
 .. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _keystone_audit_middleware: https://docs.openstack.org/keystonemiddleware/latest/audit.html
+.. _Ironic documentation: https://docs.openstack.org/charm-guide/latest/admin/compute/ironic.html
 
 .. COMMITS
 

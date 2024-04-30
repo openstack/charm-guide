@@ -16,8 +16,8 @@ Ironic. It is important to have `Upstream Ironic Documentation`_ as context.
    Ironic is supported by Charmed OpenStack starting with OpenStack Ussuri 
    on Ubuntu 18.04.
 
-   Currently, charmed Ironic requires Neutron OpenVSwtich as the SDN and does
-   not support OVN.
+   Ironic with OVN is available starting in the Caracal (2024.1) release of
+   OpenStack.
 
 Charms
 ~~~~~~
@@ -34,9 +34,15 @@ There are three Ironic charms:
 Deployment considerations
 -------------------------
 
-See `Example Bundle`_ for a known working configuration. The bundle deploys an
-instantiation of nova-compute dedicated to Ironic. The ``virt-type`` is set to
-'ironic' in order to indicate to Nova that bare metal deployments are available.
+For releases prior to 2024.1, the deployment required a neutron-gateway configuration using
+Neutron Open vSwitch. Starting in 2024.1, Ironic can now be deployed using OVN as the SDN.
+
+ * `Neutron Open vSwitch Example Bundle`_
+ * `Neutron OVN Example Bundle`_
+
+The bundles each deploy an instance of the nova-compute application dedicated to Ironic. The
+``virt-type`` is set to 'ironic' in order to indicate to Nova that bare metal deployments are
+available.
 
 .. note::
 
@@ -46,8 +52,8 @@ instantiation of nova-compute dedicated to Ironic. The ``virt-type`` is set to
 .. code-block:: yaml
 
    nova-ironic:
-     charm: cs:~openstack-charmers-next/nova-compute
-     series: focal
+     charm: ch:nova-compute
+     series: jammy
      num_units: 1
      bindings:
        "": *oam-space
@@ -58,6 +64,14 @@ instantiation of nova-compute dedicated to Ironic. The ``virt-type`` is set to
        virt-type: ironic
      to:
        - "lxd:3"
+
+ML/2 OVN
+~~~~~~~~
+
+When deploying with OVN as the SDN, the Ironic nova-compute application can
+be deployed to a bare-metal machine with the ovn-chassis application in order
+to act as a gateway for the deployment. In this scenario, the ``prefer-chassis-as-gw``
+option should be set to 'True' on the ovn-chassis application.
 
 Network topology
 ~~~~~~~~~~~~~~~~
@@ -430,7 +444,8 @@ Boot a bare metal machine
 .. LINKS
 .. _Neutron networking deployment: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/ussuri/install-openstack.html#neutron-networking
 .. _Upstream Ironic Documentation: https://docs.openstack.org/ironic/latest/
-.. _Example Bundle: https://github.com/thedac/openstack-bundles/blob/ironic-deployment/development/openstack-ironic-focal-ussuri/bundle.yaml
+.. _Neutron Open vSwitch Example Bundle: https://github.com/thedac/openstack-bundles/blob/ironic-deployment/development/openstack-ironic-focal-ussuri/bundle.yaml
+.. _Neutron OVN Example Bundle: https://github.com/wolsen/tf-ironic-lab/blob/dae1b8cc2992d1528ba5da6923675758ba8f6f3d/ironic-bundle.yaml
 .. _Building deploy ramdisk: https://docs.openstack.org/ironic/latest/install/deploy-ramdisk.html
 .. _Ironic Python Agent Builder: https://docs.openstack.org/ironic-python-agent-builder/latest/
 .. _vm: https://docs.openstack.org/diskimage-builder/latest/elements/vm/README.html
