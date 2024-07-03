@@ -57,16 +57,21 @@ This is unset by default, so manila retains the default value for
 
 For more details see bug `LP #1998200`_.
 
-cinder charm: add support for Keystone audit middleware API logging
+Add support for Keystone audit middleware API logging
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The cinder charm has a new configuration option `audit-middleware`. This option
-enables or disables Keystone audit middleware functionality that allows the
-user to audit API requests and configure their environment for CADF compliance
-(see `keystone_audit_middleware`_). These audit events are written to
-`/var/log/apache2/cinder_error.log`.
+The charms listed below have a new configuration option `audit-middleware`.
+This option enables or disables Keystone audit middleware functionality that
+allows the user to audit API requests and configure their environment for CADF
+compliance (see `keystone audit middleware`_). This option is disabled by
+default to prevent log file bloat. The following charms support this feature,
+with the respective audit log file write locations:
 
-This option is disabled by default to prevent log file bloat.
+* **charm-cinder:** `/var/log/apache2/cinder_error.log`
+* **charm-glance:** `/var/log/glance/glance-api.log`
+* **charm-heat:** `/var/log/heat/heat-api.log`
+* **charm-neutron-api:** `/var/log/neutron/neutron-server.log`
+* **charm-nova-cloud-controller:** `/var/log/nova/nova-api-wsgi.log`
 
 For more details see bug `LP #1856555`_.
 
@@ -138,7 +143,7 @@ Changes backported to this release
 .. _2024.1 milestone: https://launchpad.net/openstack-charms/+milestone/2024.1
 .. _Upgrades overview: https://docs.openstack.org/charm-guide/latest/admin/upgrades/overview.html
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
-.. _keystone_audit_middleware: https://docs.openstack.org/keystonemiddleware/latest/audit.html
+.. _keystone audit middleware: https://docs.openstack.org/keystonemiddleware/latest/audit.html
 .. _Ironic documentation: https://docs.openstack.org/charm-guide/latest/admin/compute/ironic.html
 
 .. COMMITS
