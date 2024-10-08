@@ -22,4 +22,4 @@ Deployment and configuration details are available in the `Charmed Ceph
 documentation`_.
 
 .. LINKS
-.. _Charmed Ceph documentation: https://ubuntu.com/ceph/docs/multi-site
+.. _Charmed Ceph documentation: https://ubuntu.com/ceph/docs/setting-up-multi-site-replication
