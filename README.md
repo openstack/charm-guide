@@ -34,4 +34,4 @@ Documentation issues can be filed on [Launchpad][lp-bugs-cg].
 [lp-bugs-cg]: https://bugs.launchpad.net/charm-guide/+filebug
 [gerrit-openstack]: https://review.openstack.org
 [opendev-dev-guide]: https://docs.openstack.org/infra/manual/developers.html
-[cg-doc-contrib]: https://launchpad.net/openstack-charms/latest/community/doc-contrib.html
+[cg-doc-contrib]: https://docs.openstack.org/charm-guide/latest/community/doc-contrib/index.html
