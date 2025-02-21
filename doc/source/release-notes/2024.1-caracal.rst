@@ -1,6 +1,6 @@
-============================================
-2024.1 (Caracal) (Draft version in progress)
-============================================
+================
+2024.1 (Caracal)
+================
 
 The 2024.1 OpenStack Charms release includes updates for the charms
 described on the :doc:`../project/openstack-charms` page. As of this release,
@@ -58,7 +58,7 @@ This is unset by default, so manila retains the default value for
 For more details see bug `LP #1998200`_.
 
 Add support for Keystone audit middleware API logging
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The charms listed below have a new configuration option `audit-middleware`.
 This option enables or disables Keystone audit middleware functionality that
@@ -75,16 +75,99 @@ with the respective audit log file write locations:
 
 For more details see bug `LP #1856555`_.
 
-Ironic: add support for OVN
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ironic charm: add support for OVN
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-OpenStack Ironic now supports OVN as the configured SDN of choice. The neutron-api,
-neutron-api-plugin-ovn, neutron-api-plugin-ironic charms have been update to
-support the necessary services and drivers to use OVN instead of Open vSwitch. To
-use this feature, deploy OVN services and ensure that both the neutron-api-plugin-ovn
-and neutron-api-plugin-ironic are deployed.
+OpenStack Ironic now supports OVN as the configured SDN of choice. The
+neutron-api, neutron-api-plugin-ovn, neutron-api-plugin-ironic charms have been
+updated to support the necessary services and drivers to use OVN instead of Open
+vSwitch. To use this feature, deploy OVN services and ensure that both the
+neutron-api-plugin-ovn and neutron-api-plugin-ironic are deployed.
 
 For more details see the `Ironic documentation`_ for OpenStack charms.
+
+gnocchi charm: add config to customize memcached heartbeat timeout
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The heartbeat expiry timeout is hardcoded to 5 seconds and that may not be
+enough to prevent the lock from expiring. A new configuration option was added
+to allow customizing the value.
+
+It's possible to adjust the timeout by running:
+
+.. code-block:: none
+
+   juju config gnocchi memcached-coordinator-lock-timeout=10
+
+For more details see bug `LP #1907243`_.
+
+glance-simplestreams-sync charm: make the GPG validation keyring configurable
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Add a new configuration option ``custom_keyring`` which allows the user to
+provide a custom GPG keyring for validating the simplestreams source, instead of
+the default ``/usr/share/keyrings/ubuntu-cloudimage-keyring.gpg``.
+
+It's possible to use a custom keyring in the file ``my-keyring.gpg`` by running:
+
+.. code-block:: none
+
+   juju config glance-simplestreams-sync custom_keyring=$(base64 ./my-keyring.gpg)
+
+octavia charm: add config options for volume-based amphora
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+By default launched amphorae will use ephemeral storage as defined by the flavor
+used, this is suboptimal for environments where live-migration is desired (and
+avoiding the transfer of the blockstorage is needed), but also provides some
+resiliency in case of hypervisor failures.
+
+The octavia charm has three new configuration options:
+
+* ``enable-volume-based-amphora``, when this option is enabled, Octavia will
+  create a volume and attach it to the amphora
+* ``volume-size`` specifies the size of the volume, in GB, for amphora
+  instances. Applies only when ``enable-volume-based-amphora`` is ``True``.
+* ``volume-type`` specifies the type of volume for amphora volume root disk.
+  Applies only when enable-volume-based-amphora is ``True``. If this isn't
+  specified, the ``default_volume_type`` from ``cinder.conf`` will be used.
+
+manila-netapp charm: add goodness-function config
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This configuration option allows specifying functions that further optimize the
+scheduling of shares across backend stanzas.
+
+This is needed due to a netapp-driver specific problem when using
+SVM scoped accounts. It does not have enough permissions to obtain
+the ``total_capacity_gb`` information, so it cannot calculate utilization,
+and therefore the goodness_function always returns 50 and end up
+scheduling shares always to the same pool.
+
+It's possible to use a goodness function based on the free capacity by running:
+
+.. code-block:: none
+
+   juju config manila-netapp goodness-function="(capabilities.free_capacity_gb / 1000)"
+
+For more details see `LP #2073537`_.
+
+keystone-saml-mellon charm: improve compatibility with Chromium-based browsers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+mod_auth_mellon 0.18.0 changed the default behavior (see `5a629a1`_) of
+cross-site cookies by allowing all if unset. Some IDP providers use cross-site
+cookies to authenticate. Chromium-based browsers reject insecure cross-site
+cookies.
+
+Adding config option to optionally enable Secure HTTPS cookies so it can work
+with Chromium-based browsers as long as the IDP connection is HTTPS.
+
+.. code-block:: none
+
+   juju config keystone-saml-mellon allow-cross-site-cookies=True
+
+For more details see `LP #2068654`_.
 
 Documentation updates
 ---------------------
@@ -107,8 +190,135 @@ New tech-preview charm features
 Informational notices
 ---------------------
 
-<TITLE>
-~~~~~~~
+keystone charm: disable cache by default
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Due to the architecture of how memcache gets deployed with each unit of
+Keystone, it's possible for the cache on different units to become inconsistent.
+
+This results in non-deterministic behaviors depending on which Keystone unit
+services an API request.
+
+Disable caching by default to ensure consistency and security within a
+deployment; Operators may choose to enable caching and can reduce the impact of
+cache unit inconsistency by tuning the expiration configuration options from the
+default of 600 seconds.
+
+It's possible to turn the cache on by running:
+
+.. code-block:: none
+
+   juju config keystone enable-cache=True
+
+For more details see bug `LP #2089616`_.
+
+ceilometer charm: add missing region setting in service_credentials
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Add region name when rendering ``ceilometer.conf``.
+
+
+Ironic: re-enable legacy RBAC
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ironic went into `Secure RBAC by default`_ in the 2024.1 (Caracal)
+release. This is causing issues with zaza-openstack-tests[2] which uses a
+project scoped token. Even when z-o-t can be modified to use a system scoped
+token, this opens the question if we should allow charm-ironic-api to configure
+Secure RBAC or not.
+
+This change sets enforce_scope and enforce_new_defaults to False in the
+ironic-conductor and ironic-api charms to give a seamless upgrade experience to
+operators since Charmed OpenStack hasn't implemented Secure RBAC support accross
+the board.
+
+For more details see the `Ironic upgrade notes`_.
+
+nova-compute charm: make cloud-compute hostname same as nova.conf host
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To avoid inconsistency between the fqdn added to the ``nova.conf`` 'host' config
+and the hostname set of the cloud-compute relation, it was needed to ensure that
+both are using the same means of determining the host fqdn. This is so that when
+nova-cloud-controller charm populates ssh known_hosts and shares with all
+computes it definitely contains an entry for the ``nova.conf`` host config since
+this is sometimes used as part of a live-migration.
+
+For more details see `LP #2089781`_.
+
+openstack-dashboard charm: set X-Frame-Options header to sameorigin for https
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the header ``X-Frame-Options`` is set to deny, then operations cannot be
+performed from the network topology page as the ``<svg>`` tag is a kind of
+``<embed>`` and access is restricted from there. This was previously set only
+for the HTTP virtual host (commit `ef031d4`_).
+
+For more details see `LP #2077024`_.
+
+keystone-openidc charm: fix JSONDecodeError from misconfigured OIDCRedirectURI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This change makes the ``OIDCRedirectURI`` be set to a unused URI. If
+``OIDCRedirectURI`` matches a real Keystone federation auth endpoint, the
+Keystone federation auth workflow gets interrupted making the authentication
+process fail.
+
+For more details see `LP #2075349`_.
+
+nova-compute charm: do not render console config for s390x
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Remote console access protocols such as spice, novnc, etc. are not supported on
+s390x, so they are no longer enabled in ``nova.conf`` as this causes Nova to
+error.
+
+For more details see `LP #2063190`_
+
+manila-ganesha charm: use client cert for keystone-identity
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When manila-ganesha is related to the vault charm, it needs a client cert to
+configure the ``[keystone-auth]`` section of ``manila.conf`` to communicate with
+Keystone. This change sets that up and removes the broken server cert auto
+configuration which ended up masking the manila-share service.
+
+For more details see `LP #2064487`_.
+
+designate charm: stop apache2 when the unit is paused
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When the designate units are paused via the ``pause`` action, the apache2
+service is now stopped, this allows the API port to get closed and prevents
+false positive checks.
+
+For more details see `LP #2067285`_
+
+keystone charm: add service role to service users
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Secure RBAC work adds a service role which is utilized in some policies for
+various services (e.g. neutron requires the service role for updating port
+binding information). The keystone charm now adds the ``service`` role to all
+the service users created through the ``identity-credentials`` relation.
+
+neutron-api charm: enable more recent DNS extensions (dns-integration-domain-keywords)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Since yoga, there have been two "additions" to the DNS extensions, which
+simply build on top of the older ones. By changing the DNS extension to
+be the latest (dns-integration-domain-keywords), all 4 extensions will
+be activated:
+
+* ``dns-integration`` (already included)
+* ``dns-domain-ports`` (the previous default extension)
+* ``subnet-dns-publish-fixed-ip``
+* ``dns-integration-domain-keywords``
+
+These extensions are required to enable replacement of keywords in DNS
+entries and allow publishing fixed IPs without restrictions.
+
+For more details see `Designate documentation Neutron integration`_.
 
 Deprecation notices
 -------------------
@@ -145,9 +355,25 @@ Changes backported to this release
 .. _charm repositories: https://opendev.org/openstack?sort=alphabetically&q=charm-&tab=
 .. _keystone audit middleware: https://docs.openstack.org/keystonemiddleware/latest/audit.html
 .. _Ironic documentation: https://docs.openstack.org/charm-guide/latest/admin/compute/ironic.html
+.. _Ironic upgrade notes: https://docs.openstack.org/releasenotes/ironic/2024.1.html#relnotes-24-0-0-stable-2024-1-upgrade-notes
+.. _Designate documentation Neutron integration: https://docs.openstack.org/designate/latest/user/neutron-integration.html
 
 .. COMMITS
+
+.. _Secure RBAC by default: https://opendev.org/openstack/ironic/commit/4359323558403b2e9b02ae3d20aea96ce56f5639
+.. _ef031d4: https://opendev.org/openstack/charm-openstack-dashboard/commit/ef031d4
+.. _5a629a1: https://github.com/latchset/mod_auth_mellon/commit/5a629a1
 
 .. BUGS
 .. _LP #1998200: https://bugs.launchpad.net/charm-manila/+bug/1998200
 .. _LP #1856555: https://bugs.launchpad.net/charm-cinder/+bug/1856555
+.. _LP #2089616: https://launchpad.net/bugs/2089616
+.. _LP #1907243: https://launchpad.net/bugs/1907243
+.. _LP #2089781: https://launchpad.net/bugs/2089781
+.. _LP #2077024: https://launchpad.net/bugs/2077024
+.. _LP #2075349: https://launchpad.net/bugs/2075349
+.. _LP #2063190: https://launchpad.net/bugs/2063190
+.. _LP #2073537: https://launchpad.net/bugs/2073537
+.. _LP #2064487: https://launchpad.net/bugs/2064487
+.. _LP #2067285: https://launchpad.net/bugs/2067285
+.. _LP #2068654: https://launchpad.net/bugs/2068654
