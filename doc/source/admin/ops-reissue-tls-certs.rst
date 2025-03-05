@@ -60,7 +60,7 @@ Output:
 
 .. code-block:: console
 
-   ----BEGIN CERTIFICATE-----
+   -----BEGIN CERTIFICATE-----
    MIIEPjCCAyagAwIBAgIUOkw3afcFa47rmYSGwdqphiboh5kwDQYJKoZIhvcNAQEL
    BQAwPTE7MDkGA1UEAxMyVmF1bHQgUm9vdCBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkg
    KGNoYXJtLXBraS1sb2NhbCkwHhcNMjEwOTI0MjAxOTM4WhcNMjIwOTI0MTkyMDA4
