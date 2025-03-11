@@ -341,8 +341,23 @@ Removed charms
 Issues discovered during this release cycle
 -------------------------------------------
 
-<TITLE>
-~~~~~~~
+Leader-settings-changed hook failed, cluster_status exit code 64
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In environments where the rabbitmq-server units are running in resource
+constrained machines, there could be a hook failures due to the fact that the
+rabbitmq-server daemon hasn't fully started and the charm can't query the state
+of the cluste. The symptom of an affected system is that the unit's log will
+contain the following error:
+
+.. code-block:: none
+
+   [...]
+   unit-rabbitmq-server-2: 08:48:11 WARNING unit.rabbitmq-server/2.leader-settings-changed raise CalledProcessError(retcode, process.args,
+   unit-rabbitmq-server-2: 08:48:11 WARNING unit.rabbitmq-server/2.leader-settings-changed subprocess.CalledProcessError: Command '['/usr/sbin/rabbitmqctl', 'cluster_status', '--formatter=json']' returned non-zero exit status 64.
+   unit-rabbitmq-server-2: 08:48:12 ERROR juju.worker.uniter.operation hook "leader-settings-changed" (via explicit, bespoke hook script) failed: exit status 1
+
+For more detail see `LP #1976523`_
 
 Changes backported to this release
 ----------------------------------
@@ -377,3 +392,4 @@ Changes backported to this release
 .. _LP #2064487: https://launchpad.net/bugs/2064487
 .. _LP #2067285: https://launchpad.net/bugs/2067285
 .. _LP #2068654: https://launchpad.net/bugs/2068654
+.. _LP #1976523: https://launchpad.net/bugs/1976523
