@@ -4,7 +4,7 @@
 
 The 2024.1 OpenStack Charms release includes updates for the charms
 described on the :doc:`../project/openstack-charms` page. As of this release,
-the project consists of <NUMBER-OF-STABLE-CHARMS> stable charms.
+the project consists of 65 stable charms.
 
 For the list of bugs resolved in this release refer to the `2024.1
 milestone`_ in Launchpad.
@@ -30,12 +30,6 @@ For scheduling information of past and future releases see the
    :local:
    :depth: 2
    :backlinks: top
-
-New stable charms
------------------
-
-<TITLE>
-~~~~~~~
 
 New stable charm features
 -------------------------
@@ -169,24 +163,6 @@ with Chromium-based browsers as long as the IDP connection is HTTPS.
 
 For more details see `LP #2068654`_.
 
-Documentation updates
----------------------
-
-<TITLE>
-~~~~~~~
-
-New tech-preview charms
------------------------
-
-<TITLE>
-~~~~~~~
-
-New tech-preview charm features
--------------------------------
-
-<TITLE>
-~~~~~~~
-
 Informational notices
 ---------------------
 
@@ -319,24 +295,6 @@ These extensions are required to enable replacement of keywords in DNS
 entries and allow publishing fixed IPs without restrictions.
 
 For more details see `Designate documentation Neutron integration`_.
-
-Deprecation notices
--------------------
-
-<TITLE>
-~~~~~~~
-
-Removed features
-----------------
-
-<TITLE>
-~~~~~~~
-
-Removed charms
---------------
-
-<TITLE>
-~~~~~~~
 
 Issues discovered during this release cycle
 -------------------------------------------
