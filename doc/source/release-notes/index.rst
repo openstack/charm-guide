@@ -4,24 +4,21 @@ Release notes
 
 This page lists the release notes for every version of OpenStack Charms.
 
-Under development:
-
-* :doc:`2024.1-caracal`
-
 Latest stable:
 
-* :doc:`2023.2-bobcat`
+* :doc:`2024.1-caracal`
 * :doc:`42_Trilio`
 
 Older versions listed by year of release:
 
 .. list-table::
    :header-rows: 0
-   :widths: 20 20
+   :widths: 20 20 20
    :stub-columns: 1
 
    * - 2023
      - :doc:`2023.1-antelope`
+     - :doc:`2023.2-bobcat`
 
 .. list-table::
    :header-rows: 0
