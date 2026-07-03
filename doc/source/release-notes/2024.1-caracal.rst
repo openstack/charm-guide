@@ -163,6 +163,13 @@ with Chromium-based browsers as long as the IDP connection is HTTPS.
 
 For more details see `LP #2068654`_.
 
+Ubuntu 24.04 LTS (Noble) support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+All 65 stable charms in the 2024.1 (Caracal) release support Ubuntu 24.04 LTS
+(Noble) as a deployment series. Noble can be used for new deployments as well as
+a target for :doc:`../admin/upgrades/series` upgrades from Jammy.
+
 Informational notices
 ---------------------
 

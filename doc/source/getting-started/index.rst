@@ -8,7 +8,7 @@ Overview
 This tutorial shows how to deploy a test Charmed OpenStack cloud. Its major
 software elements are:
 
-* Ubuntu 22.04 LTS (Jammy) for the cloud nodes
+* Ubuntu 22.04 LTS (Jammy)
 * OpenStack 2023.2 (Bobcat)
 * Ceph Reef
 

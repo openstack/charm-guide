@@ -19,7 +19,7 @@ to the :doc:`series-openstack` page that describes the process in more detail.
 Concerning the cloud being operated upon, the following is assumed:
 
 * It is being upgraded from one LTS series to another (e.g. xenial to
-  bionic, bionic to focal, etc.).
+  bionic, bionic to focal, jammy to noble, etc.).
 * Its nodes are backed by MAAS.
 * Its services are highly available.
 * It is being upgraded with minimal downtime.

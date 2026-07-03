@@ -24,8 +24,14 @@ latter dates are estimated and subject to revision.
      - Release date
      - Release timeline
 
-   * - 2023.2 - Bobcat
+   * - 2024.1 - Caracal
      - current stable
+     - --
+     - --
+     - --
+
+   * - 2023.2 - Bobcat
+     - --
      - Fri, Sep 29, 2023
      - Thu, Nov 30, 2023
      - --
