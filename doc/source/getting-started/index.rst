@@ -8,9 +8,9 @@ Overview
 This tutorial shows how to deploy a test Charmed OpenStack cloud. Its major
 software elements are:
 
-* Ubuntu 22.04 LTS (Jammy)
-* OpenStack 2023.2 (Bobcat)
-* Ceph Reef
+* Ubuntu 24.04 LTS (Noble)
+* OpenStack 2024.1 (Caracal)
+* Ceph Squid
 
 OpenStack services will include Compute, Network, Block Storage, Object
 Storage, Identity, Image, and Dashboard.
@@ -55,7 +55,7 @@ Software
 The software versions used in this tutorial are:
 
 * MAAS 3.3.4
-* Juju 3.1.6
+* Juju 3.6.25
 
 Client
 ~~~~~~
