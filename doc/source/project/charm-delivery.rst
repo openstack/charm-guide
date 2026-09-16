@@ -134,6 +134,40 @@ charm`_ for details.
 
 .. tabs::
 
+   .. group-tab:: Ubuntu 24.04 LTS (Noble)
+
+      .. list-table::
+         :header-rows: 1
+         :widths: auto
+         :stub-columns: 0
+
+         * - Charms
+           - Tracks
+
+         * - OpenStack charms
+           - ``2024.1``
+
+         * - Ceph charms
+           - ``squid``
+
+         * - OVN charms
+           - ``24.03``
+
+         * - MySQL charms
+           - ``8.0``
+
+         * - hacluster
+           - ``2.8``
+
+         * - pacemaker-remote
+           - ``noble``
+
+         * - rabbitmq-server
+           - ``3.12``
+
+         * - vault
+           - ``1.8``
+
    .. group-tab:: Ubuntu 22.04 LTS (Jammy)
 
       .. list-table::
@@ -146,26 +180,31 @@ charm`_ for details.
            -
            -
            -
+           -
 
          * - OpenStack charms
            - ``yoga``
            - ``zed``
            - ``2023.1``
            - ``2023.2``
+           - ``2024.1``
 
          * - Ceph charms
            - ``quincy``
            - ``quincy``
            - ``quincy``
            - ``reef``
+           - ``squid``
 
          * - OVN charms
            - ``22.03``
            - ``22.09``
            - ``23.03``
            - ``23.09``
+           - ``24.03``
 
          * - MySQL charms
+           - ``8.0``
            - ``8.0``
            - ``8.0``
            - ``8.0``
@@ -176,8 +215,10 @@ charm`_ for details.
            - ``2.4``
            - ``2.4``
            - ``2.4``
+           - ``2.4``
 
          * - pacemaker-remote
+           - ``jammy``
            - ``jammy``
            - ``jammy``
            - ``jammy``
@@ -188,8 +229,10 @@ charm`_ for details.
            - ``3.9``
            - ``3.9``
            - ``3.9``
+           - ``3.9``
 
          * - vault
+           - ``1.8``
            - ``1.8``
            - ``1.8``
            - ``1.8``
