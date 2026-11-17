@@ -303,6 +303,29 @@ entries and allow publishing fixed IPs without restrictions.
 
 For more details see `Designate documentation Neutron integration`_.
 
+nova-compute charm: reserve disk resource for the libvirt image cache
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The nova-compute charm now sets the Nova option
+``workarounds.reserve_disk_resource_for_image_cache`` to ``True`` by default.
+With this enabled, each compute node periodically refreshes the reserved
+DISK_GB it reports to Placement to include both the statically configured
+``reserved-host-disk`` value and the disk space currently consumed by the
+libvirt image cache (``/var/lib/nova/instances/_base``).
+
+Operators should be aware that, as a node's image cache grows, the disk
+capacity available for scheduling new instances on that node shrinks
+accordingly. The reservation is refreshed by a periodic task rather than
+synchronously (the charm leaves Nova's ``update_resources_interval`` at its
+default, so the refresh runs at the default periodic interval of 60
+seconds), so Placement may briefly overestimate free disk immediately after
+an image is cached. Even so, the scheduler's visibility into actual
+free disk is vastly improved, avoiding the instance build failures and
+interruption of running instances that occurred when busy compute nodes
+exhausted local disk that Placement believed to be available.
+
+For more details see `LP #2173743`_.
+
 Issues discovered during this release cycle
 -------------------------------------------
 
@@ -358,3 +381,4 @@ Changes backported to this release
 .. _LP #2067285: https://launchpad.net/bugs/2067285
 .. _LP #2068654: https://launchpad.net/bugs/2068654
 .. _LP #1976523: https://launchpad.net/bugs/1976523
+.. _LP #2173743: https://launchpad.net/bugs/2173743
